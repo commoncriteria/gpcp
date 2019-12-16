@@ -43,7 +43,6 @@
 		in terms of [CC] and to define security functional and assurance requirements for such products. 
             <h:br></h:br>
         </section>
-      
 
 	<tech-terms>
 	  <term full="Administrator">Administrators perform management activities on the platform. These management functions do not include administration of tenant 
@@ -75,7 +74,6 @@
           <term abbr="NIST" full="National Institute of Standards and Technology"/>
           <term abbr="NVLAP" full="National Voluntary Laboratory Accreditation Program"/>
           <term abbr="OS" full="Operating System"/>
-	  <term full="Physical Platform">The hardware environment on which a VS executes. Physical platform resources include processors, memory, devices, and associated firmware.</term>
           <term abbr="PKV" full="Public Key Verification"/>
 	  <term full="Platform">The hardware and firmware on which tenant software executes. For this PP, the TOE is the platform, hence there is no "TOE Platform."</term>
           <term abbr="RSA" full="Rivest, Shamir, Adleman"/>
@@ -233,7 +231,8 @@
         <section id="secobjtoe" title="Security Objectives for the TOE">
             <SOs>
                 <SO id="O.PLATFORM_INTEGRITY">
-                    <description>The integrity of the <abbr linkend="VMM"/> depends on the integrity of the hardware and software on 
+                    <description>Since the platform is the TOE, this objective probably shouldn't be here. So this is just a placeholder.
+			    The integrity of the <abbr linkend="VMM"/> depends on the integrity of the hardware and software on 
                         which the <abbr linkend="VMM"/> relies. Although the VS does not have complete control over the integrity of 
                         the platform, the VS should as much as possible try to ensure that no users or software hosted by the VS is 
                         capable of undermining the integrity of the platform.
@@ -275,7 +274,7 @@
                     </description>
                 </SOE>
                 <SOE id="OE.NON_MALICIOUS_USER">
-                    <description>Users are trusted to be not willfully negligent or hostile and use the VS in compliance with the 
+                    <description>Users are trusted to be not willfully negligent or hostile and use the TOE in compliance with the 
 			    applied enterprise security policy and guidance.
                     </description>
                 </SOE>
@@ -556,25 +555,49 @@
                         </title>
                         <aactivity>
                             <Tests>
-                                If ‘username and password authentication‘ is selected, the evaluator will configure the VS with a known username and password and conduct the following tests:
+                                If ‘username and password authentication‘ is selected, the evaluator will configure the TOE with a
+				    known username and password and conduct the following tests:
                             <testlist>
-                                <test>The evaluator will attempt to authenticate to the VS using the known username and password. The evaluator will ensure that the authentication attempt is successful.</test>
-                                <test>The evaluator will attempt to authenticate to the VS using the known username but an incorrect password. The evaluator will ensure that the authentication attempt is unsuccessful.</test>
+                                <test>The evaluator will attempt to authenticate to the TOE using the known username and password. The
+					evaluator will ensure that the authentication attempt is successful.</test>
+                                <test>The evaluator will attempt to authenticate to the TOE using the known username but an incorrect 
+					password. The evaluator will ensure that the authentication attempt is unsuccessful.</test>
                             </testlist>
-                            If ‘username and PIN that releases an asymmetric key‘ is selected, the evaluator will examine the <abbr linkend="TSS"/> for guidance on supported protected storage and will then configure the <abbr linkend="TOE"/> or OE to establish a PIN which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or isolated execution environment) with which the VS can interface. The evaluator will then conduct the following tests:
+                            If ‘username and PIN that releases an asymmetric key‘ is selected, the evaluator will examine the 
+				    <abbr linkend="TSS"/> for guidance on supported protected storage and will then configure the
+				    <abbr linkend="TOE"/> or OE to establish a PIN which enables release of the asymmetric key from
+				    the protected storage (such as a TPM, a hardware token, or isolated execution environment) with 
+				    which the TOE can interface. The evaluator will then conduct the following tests:
                             <testlist>
-                                <test>The evaluator will attempt to authenticate to the VS using the known user name and PIN. The evaluator will ensure that the authentication attempt is successful.</test>
-                                <test>The evaluator will attempt to authenticate to the VS using the known user name but an incorrect PIN. The evaluator will ensure that the authentication attempt is unsuccessful.</test>
+                                <test>The evaluator will attempt to authenticate to the TOE using the known user name and PIN. The
+					evaluator will ensure that the authentication attempt is successful.</test>
+                                <test>The evaluator will attempt to authenticate to the TOE using the known user name but an incorrect
+					PIN. The evaluator will ensure that the authentication attempt is unsuccessful.</test>
                             </testlist>
-                            If ‘X.509 certificate authentication‘ is selected, the evaluator will generate an X.509v3 certificate for an Administrator user with the Client Authentication Enhanced Key Usage field set. The evaluator will provision the VS for authentication with the X.509v3 certificate. The evaluator will ensure that the certificates are validated by the VS as per FIA_X509_EXT.1.1 and then conduct the following tests:
+                            If ‘X.509 certificate authentication‘ is selected, the evaluator will generate an X.509v3 certificate for
+				    an Administrator user with the Client Authentication Enhanced Key Usage field set. The evaluator
+				    will provision the TOE for authentication with the X.509v3 certificate. The evaluator will ensure
+				    that the certificates are validated by the TOE as per FIA_X509_EXT.1.1 and then conduct the
+				    following tests:
                             <testlist>
-                                <test>The evaluator will attempt to authenticate to the VS using the X.509v3 certificate. The evaluator will ensure that the authentication attempt is successful.</test>
-                                <test>The evaluator will generate a second certificate identical to the first except for the public key and any values derived from the public key. The evaluator will attempt to authenticate to the VS with this certificate. The evaluator will ensure that the authentication attempt is unsuccessful.</test>
+                                <test>The evaluator will attempt to authenticate to the TOE using the X.509v3 certificate. The 
+					evaluator will ensure that the authentication attempt is successful.</test>
+                                <test>The evaluator will generate a second certificate identical to the first except for the public
+					key and any values derived from the public key. The evaluator will attempt to authenticate to
+					the TOE with this certificate. The evaluator will ensure that the authentication attempt is
+					unsuccessful.</test>
                             </testlist>
-                            If ‘SSH public-key credential authentication‘ is selected, the evaluator shall generate a public-private host key pair on the <abbr linkend="TOE"/> using RSA or ECDSA, and a second public-private key pair on a remote client. The evaluator shall provision the VS with the client public key for authentication over SSH, and conduct the following tests:
+                            If ‘SSH public-key credential authentication‘ is selected, the evaluator shall generate a public-private
+				    host key pair on the <abbr linkend="TOE"/> using RSA or ECDSA, and a second public-private key
+				    pair on a remote client. The evaluator shall provision the TOE with the client public key for
+				    authentication over SSH, and conduct the following tests:
                             <testlist>
-                                <test>The evaluator will attempt to authenticate to the VS using a message signed by the client private key that corresponds to provisioned client public key. The evaluator will ensure that the authentication attempt is successful.</test>
-                                <test>The evaluator will generate a second client key pair and will attempt to authenticate to the VS with the private key over SSH without first provisioning the VS to support the new key pair. The evaluator will ensure that the authentication attempt is unsuccessful.</test>
+                                <test>The evaluator will attempt to authenticate to the TOE using a message signed by the client
+					private key that corresponds to provisioned client public key. The evaluator will ensure that
+					the authentication attempt is successful.</test>
+                                <test>The evaluator will generate a second client key pair and will attempt to authenticate to the TOE
+					with the private key over SSH without first provisioning the TOE to support the new key pair.
+					The evaluator will ensure that the authentication attempt is unsuccessful.</test>
                             </testlist>
                             </Tests>
                         </aactivity>
@@ -615,7 +638,7 @@
                             </TSS>
                             <Guidance>
                                 The evaluator shall examine the operational guidance to verify that it details how to configure the 
-                                VS with separate Management and Operational Networks.
+                                TOE with separate Management and Operational Networks.
                             </Guidance>
                             <Tests>
                                 The evaluator shall configure the management network as documented. If separation is cryptographic or 
@@ -679,10 +702,26 @@
                         <title>The <abbr linkend="TSF"/> shall make these measurements available to the Management Subsystem.
                         </title>
                         <note role="application">
-                            A measured launch of the platform and Virtualization System, demonstrates that the proper <abbr linkend="TOE"/> software was loaded. A measured launch process employs verifiable integrity measurement mechanisms. For example, a VS may hash components such as: the hypervisor, service <abbr linkend="VM"/>s and/or the Management Subsystem. A measured launch process only allows components to be executed after the measurement has been recorded. An example process may add each component’s hash before it is executed so that the final hash reflects the evidence of a component’s state prior to execution. The measurement may be verified as the system boots, but this is not required.<h:br></h:br><h:br></h:br>
-                            The Platform is outside of the <abbr linkend="TOE"/>. However, this requirement specifies that the VS must be capable of receiving Platform measurements if the Platform provides them. This requirement is requiring <abbr linkend="TOE"/> support for Platform measurements if provided; it is not placing a requirement on the Platform to take such measurements.<h:br></h:br><h:br></h:br>
-                            If available, hardware should be used to store measurements in such a manner that they cannot be modified in any manner except to be extended. These measurements should be produced in a repeatable manner so that a third party can verify the measurements if given the inputs. Hardware devices, like Trusted Platform Modules (TPM), TrustZone, and MMU are some examples that may serve as foundations for storing and reporting measurements.<h:br></h:br><h:br></h:br>
-                            Platforms with a root of trust for measurement (RTM) should initiate the measured launch process. This may include core BIOS or the chipset. The chipset is the preferred RTM, but core BIOS or other firmware is acceptable. In system without a traditional RTM, the first component that boots would be considered the RTM, this is not preferred.
+                            A measured launch of the platform and Virtualization System, demonstrates that the proper 
+				<abbr linkend="TOE"/> software was loaded. A measured launch process employs verifiable integrity 
+				measurement mechanisms. For example, a TOE may hash components such as: the hypervisor, service
+				<abbr linkend="VM"/>s and/or the Management Subsystem. A measured launch process only allows components
+				to be executed after the measurement has been recorded. An example process may add each component’s 
+				hash before it is executed so that the final hash reflects the evidence of a component’s state prior 
+				to execution. The measurement may be verified as the system boots, but this is not required.<h:br></h:br><h:br></h:br>
+                            The Platform is outside of the <abbr linkend="TOE"/>. However, this requirement specifies that the TOE must
+				be capable of receiving Platform measurements if the Platform provides them. This requirement is 
+				requiring <abbr linkend="TOE"/> support for Platform measurements if provided; it is not placing a
+				requirement on the Platform to take such measurements.<h:br></h:br><h:br></h:br>
+                            If available, hardware should be used to store measurements in such a manner that they cannot be modified
+				in any manner except to be extended. These measurements should be produced in a repeatable manner so
+				that a third party can verify the measurements if given the inputs. Hardware devices, like Trusted
+				Platform Modules (TPM), TrustZone, and MMU are some examples that may serve as foundations for storing
+				and reporting measurements.<h:br></h:br><h:br></h:br>
+                            Platforms with a root of trust for measurement (RTM) should initiate the measured launch process. This may
+				include core BIOS or the chipset. The chipset is the preferred RTM, but core BIOS or other firmware is
+				acceptable. In system without a traditional RTM, the first component that boots would be considered
+				the RTM, this is not preferred.
                         </note>
                         <aactivity>
                             <TSS>
@@ -694,7 +733,8 @@
                             <Tests>
                                 The evaluator shall perform the following tests:<h:br></h:br><h:br></h:br>
                                 <testlist>
-                                    <test>The evaluator shall start the VS, login as an Administrator, and verify that the measurements for the specified components are viewable in the Management Subsystem.</test>
+                                    <test>The evaluator shall start the TOE, login as an Administrator, and verify that the
+					    measurements for the specified components are viewable in the Management Subsystem.</test>
                               </testlist>
                             </Tests>
                         </aactivity>
