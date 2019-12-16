@@ -3,7 +3,7 @@
 
 <!-- to do
     
-   
+   -- Starting from Virt PP and adapting.
    
     -->
 
@@ -46,25 +46,23 @@
       
 
 	<tech-terms>
-	  <term full="Administrator">Administrators perform management activities on the VS. These management functions do not include administration of software running within Guest VMs, such as the Guest OS. Administrators need not be human as in the case of embedded or headless VMs. Administrators are often nothing more than software entities that operate within the VM.</term>
+	  <term full="Administrator">Administrators perform management activities on the platform. These management functions do not include administration of tenant 
+		  software running on the platform. Generally only server platforms have administrators that act through a Service Processor.
+		  Administrators may be no more than software entities.</term>
 	  <term abbr="AES" full="Advanced Encryption Standard"/>
 	  <term full="Auditor">Auditors are responsible for managing the audit capabilities of the TOE. An Auditor may also be an Administrator. It is not a requirement that the TOE be capable of supporting an Auditor role that is separate from that of an Administrator.</term>
           <term abbr="CPU" full="Central Processing Unit"/>
           <term abbr="DEP" full="Data Execution Prevention"/>
           <term abbr="DKM" full="Derived Keying Material"/>
-	  <term full="Domain">A Domain or Information Domain is a policy construct that groups together execution environments and networks by sensitivity of information and access control policy. For example, classification levels represent information domains. Within classification levels, there might be other domains representing communities of interest or coalitions. In the context of a VS, information domains are generally implemented as collections of VMs connected by virtual networks. The VS itself can be considered an Information Domain, as can its Management Subsystem.</term>
+	  <term full="Domain">A Domain or Information Domain is a policy construct that groups together execution environments and 
+		  networks by sensitivity of information and access control policy. For example, classification levels represent 
+		  information domains. Within classification levels, there might be other domains representing communities of interest
+		  or coalitions.</term>
           <term abbr="DSS" full="Digital Signature Standard"/>
           <term abbr="ECC" full="Elliptic Curve Cryptography"/>
           <term abbr="FIPS" full="Federal Information Processing Standard"/>
           <term abbr="FFC" full="Finite-Field Cryptography"/>
 	  <term abbr="GPCP" full="General-Purpose Computing Platform"/>
-	  <term full="Guest Network">See Operational Network.</term>
-	  <term full="Guest Operating System (OS)">An operating system that runs within a Guest VM.</term>
-	  <term full="Guest VM">A Guest VM is a VM that contains a virtual environment for the execution of an independent computing system. Virtual environments execute mission workloads and implement customer-specific client or server functionality in Guest VMs, such as a web server or desktop productivity applications.</term>
-	  <term full="Helper VM">A Helper VM is a VM that performs services on behalf of one or more Guest VMs, but does not qualify as a Service VM—and therefore is not part of the VMM. Helper VMs implement functions or services that are particular to the workloads of Guest VMs. For example, a VM that provides a virus scanning service for a Guest VM would be considered a Helper VM. For the purposes of this document, Helper VMs are considered a type of Guest VM, and are therefore subject to all the same requirements, unless specifically stated otherwise.</term>
-	  <term full="Host Operating System (OS)">An operating system onto which a VS is installed. Relative to the VS, the Host OS is part of the Platform.</term>
-	  <term full="Hypervisor">The Hypervisor is part of the VMM. It is the software executive of the physical platform of a VS. A Hypervisor’s primary function is to mediate access to all CPU and memory resources, but it is also responsible for either the direct management or the delegation of the management of all other hardware devices on the hardware platform.</term>
-	  <term full="Hypercall">An API function that allows VM-aware software running within a VM to invoke VMM functionality.</term>
           <term abbr="IEC" full="International Electrotechnical Commission"/>
 	  <term full="Information Domain">See Domain.</term>
 	  <term full="Introspection">A capability that allows a specially designated and privileged domain to have visibility into another domain for purposes of anomaly detection or monitoring.</term>
@@ -74,26 +72,21 @@
           <term abbr="ITSEF" full="Information Technology Security Evaluation Facility"/>
           <term abbr="KDF" full="Key Derivation Function"/>
           <term abbr="MAC" full="Message Authentication Code"/>
-	  <term full="Management Network">A network, which may have both physical and virtualized components, used to manage and administer a VS. Management networks include networks used by VS Administrators to communicate with management components of the VS, and networks used by the VS for communications between VS components. For purposes of this document, networks that connect physical hosts for purposes of VM transfer or coordinate, and backend storage networks are considered management networks. </term>
-	  <term full="Management Subsystem">Components of the VS that allow VS Administrators to configure and manage the VMM, as well as configure Guest VMs. VMM management functions include VM configuration, virtualized network configuration, and allocation of physical resources.</term>
           <term abbr="NIST" full="National Institute of Standards and Technology"/>
           <term abbr="NVLAP" full="National Voluntary Laboratory Accreditation Program"/>
-	  <term full="Operational Network">An Operational Network is a network, which may have both physical and virtualized components, used to connect Guest VMs to each other and potentially to other entities outside of the VS. Operational Networks support mission workloads and customer-specific client or server functionality. Also called a “Guest Network.”</term>
           <term abbr="OS" full="Operating System"/>
 	  <term full="Physical Platform">The hardware environment on which a VS executes. Physical platform resources include processors, memory, devices, and associated firmware.</term>
           <term abbr="PKV" full="Public Key Verification"/>
-	  <term full="Platform">The hardware, firmware, and software environment into which a VS is installed and executes.</term>
+	  <term full="Platform">The hardware and firmware on which tenant software executes. For this PP, the TOE is the platform, hence there is no "TOE Platform."</term>
           <term abbr="RSA" full="Rivest, Shamir, Adleman"/>
-	  <term full="Service VM">A Service VM is a VM whose purpose is to support the Hypervisor in providing the resources or services necessary to support Guest VMs. Service VMs may implement some portion of Hypervisor functionality, but also may contain important system functionality that is not necessary for Hypervisor operation. As with any VM, Service VMs necessarily execute without full Hypervisor privileges—only the privileges required to perform its designed functionality. Examples of Service VMs include device driver VMs that manage access to a physical devices, and name-service VMs that help establish communication paths between VMs.</term>
           <term abbr="SP" full="Special Publication"/>
           <term abbr="SPD" full="Security Policy Database"/>
-	  <term full="System Security Policy" abbr="SSP">The overall policy enforced by the VS defining constraints on the behavior of VMs and users.</term>
+	  <term full="System Security Policy" abbr="SSP">The overall policy enforced by the TOE defining constraints on the behavior 
+		  of the platform and on tenant software.</term>
           <term abbr="SWID" full="Software Identification"/>
           <term abbr="TPM" full="Trusted Platform Module"/>
-	  <term full="User">Users operate Guest VMs and are subject to configuration policies applied to the VS by Administrators. Users need not be human as in the case of embedded or headless VMs, users are often nothing more than software entities that operate within the VM.</term>
-	  <term full="Virtual Machine" abbr="VM">A Virtual Machine is a virtualized hardware environment in which an operating system may execute.</term>
-	  <term full="Virtual Machine Manager" abbr="VMM">A VMM is a collection of software components responsible for enabling VMs to function as expected by the software executing within them. Generally, the VMM consists of a Hypervisor, Service VMs, and other components of the VS, such as virtual devices, binary translation systems, and physical device drivers. It manages concurrent execution of all VMs and virtualizes platform resources as needed.</term>
-	  <term full="Virtualization System" abbr="VS">A software product that enables multiple independent computing systems to execute on the same physical hardware platform without interference from one other. For the purposes of this document, the VS consists of a Virtual Machine Manager (VMM), Virtual Machine abstractions, a management subsystem, and other components.</term>
+	  <term full="User">Users are entities that operate within the environment created by the TOE. The two kinds of users are
+		  Administrators and Tenants. Users need not be human. As far as the TOE is concerned, all users are just software.</term>
 	</tech-terms>
 	    
 	<!-- Compliant Targets of Evaluation -->
@@ -111,38 +104,30 @@
 		    embedded controllers, trusted platform modules, management controllers, host processors, network interface controllers, 
 		    graphics processing units, flash memory, storage controllers, storage devices, boot firmware, runtime firmware, 
 		    and a power supply.<h:br></h:br><h:br></h:br>
-		The TOE does not include tenant software and customer workloads such as operating systems, virtualization systems, and applications. 
+		The TOE does not include tenant software and customer workloads such as operating systems, virtualization systems, 
+		    and applications. Firmware that comes pre-installed on the platform is considered to be part of the platform--whether its 
+		    purpose is to support the functioning of the platform itself or to support tenant workloads. For example, a server's Service Processor
+		    and its firmware are considered part of the server platform.
             </subsection>
 
-	    <subsection id="platformreqs" title="Requirements Met by the Platform">
-                Depending on the way the VS is installed, functions tested under this PP may be implemented by the 
-		    <abbr linkend="TOE"/> or by the Platform. There is no difference in the testing required whether the function is 
-		    implemented by the <abbr linkend="TOE"/> or by the Platform. In either case, the tests determine whether the 
-		    function being tested provides a level of assurance acceptable to meet the goals of this Profile with respect to 
-		    a particular product and platform. The equivalency guidelines are intended in part to address this 
-		    <abbr linkend="TOE"/> vs. Platform distinction, and to ensure that the assurance level does not change between
-		    instances of equivalent products on equivalent platforms—and also, of course, to ensure that the appropriate
-		    testing is done when the distinction is significant.
-            </subsection>
-		
             <subsection id="scopecert" title="Scope of Certification">
-                Successful evaluation of a Virtualization System against this profile does not constitute or imply successful 
-		    evaluation of any Host Operating System or Platform—no matter how tightly integrated with the VS. The Platform, 
-		    including any Host OS, supports the VS through provision of services and resources. Specialized VS components 
-		    installed on or in a Host OS to support the VS may be considered part of the <abbr linkend="TOE"/>. But 
-		    general-purpose OS components and functions—whether or not they support the VS—are not part of the 
-		    <abbr linkend="TOE"/>, and thus are not evaluated under this PP.
+                Successful evaluation of a Generl-Purpose Comuting Platform against this profile does not constitute or imply successful 
+		    evaluation of any tenant software no matter how tightly integrated with the platform.
             </subsection>
 		
             <subsection id="equiv" title="Product and Platform Equivalence">
-                The tests in this Protection Profile must be run on all product versions and Platforms with which the Vendor would
+                The tests in this Protection Profile must be run for all Platforms with which the Vendor would
 		    like to claim compliance—subject to this Profile’s equivalency guidelines (see Annex E).
             </subsection>
         </section>
 
         <section id="usecases" title="Use Cases">
-            This base PP does not define any use cases for virtualization technology. Client Virtualization and Server Virtualization
-		products have different use cases and so these are defined in their respective <abbr linkend="EP"/>s.
+            This PP defines use cases for server platforms and client platforms:<h:br></h:br><h:br></h:br>
+
+		Server Use Case:<h:br></h:br><h:br></h:br>
+		
+		Client Use Case: <h:br></h:br><h:br></h:br>
+		
         </section>
     </chapter>
     
@@ -221,9 +206,14 @@
                     </objective-refer>
                 </assumption>
                 <assumption id="A.COVERT_CHANNELS">
-                    <description>If the <abbr linkend="TOE"/> has covert storage or timing channels, then for all <abbr linkend="VM"/>s executing on that <abbr linkend="TOE"/>, it is assumed that relative to the IT assets to which they have access, those <abbr linkend="VM"/>s will have assurance sufficient to outweigh the risk that they will violate the security policy of the <abbr linkend="TOE"/> by using those covert channels.</description>
+                    <description>If the <abbr linkend="TOE"/> has covert storage or timing channels, then for all tenant software executing on
+			    that TOE, it is assumed that relative to the IT assets to which they have access, the tenant software will have 
+			    assurance sufficient to outweigh the risk that they will violate the security policy of the TOE by using those
+			    covert channels.</description>
                     <objective-refer ref="OE.COVERT_CHANNELS">
-                        <rationale>It is expected that any data contained within <abbr linkend="VM"/>s is commensurate with the security provided by the <abbr linkend="TOE"/>, which includes any vulnerabilities due to the potential presence of covert storage and/or timing channels.</rationale>
+                        <rationale>It is expected that any data contained within tenant software is commensurate with the security provided
+				by the <abbr linkend="TOE"/>, which includes any vulnerabilities due to the potential presence of covert
+				storage and/or timing channels.</rationale>
                     </objective-refer>
                 </assumption>
              </assumptions>
@@ -262,23 +252,31 @@
 	<section id="secobjoe" title="Security Objectives for the Operational Environment">
             <SOEs>
                 <SOE id="OE.CONFIG">
-                    <description><abbr linkend="TOE"/> administrators will configure the Virtualization System correctly to create the intended security policy.
+                    <description><abbr linkend="TOE"/> administrators will configure the Virtualization System correctly to create 
+			    the intended security policy.
                     </description>
                 </SOE>
                 <SOE id="OE.PHYSICAL">
-                    <description>Physical security, commensurate with the value of the <abbr linkend="TOE"/> and the data it contains, is provided by the environment.
+                    <description>Physical security, commensurate with the value of the <abbr linkend="TOE"/> and the data it contains,
+			    is provided by the environment.
                     </description>
                 </SOE>
                 <SOE id="OE.TRUSTED_ADMIN">
-                    <description><abbr linkend="TOE"/> Administrators are trusted to follow and apply all administrator guidance in a trusted manner.
+                    <description><abbr linkend="TOE"/> Administrators are trusted to follow and apply all administrator guidance in 
+			    a trusted manner.
                     </description>
                 </SOE>
                 <SOE id="OE.COVERT_CHANNELS">
-                    <description>If the <abbr linkend="TOE"/> has covert storage or timing channels, then for all <abbr linkend="VM"/>s executing on that <abbr linkend="TOE"/>, it is assumed that those <abbr linkend="VM"/>s will have sufficient assurance relative to the IT assets to which they have access, to outweigh the risk that they will violate the security policy of the <abbr linkend="TOE"/> by using those covert channels.
+                    <description>If the <abbr linkend="TOE"/> has covert storage or timing channels, then for all
+			    <abbr linkend="VM"/>s executing on that <abbr linkend="TOE"/>, it is assumed that those 
+			    <abbr linkend="VM"/>s will have sufficient assurance relative to the IT assets to which they have access, 
+			    to outweigh the risk that they will violate the security policy of the <abbr linkend="TOE"/> by using 
+			    those covert channels.
                     </description>
                 </SOE>
                 <SOE id="OE.NON_MALICIOUS_USER">
-                    <description>Users are trusted to be not willfully negligent or hostile and use the VS in compliance with the applied enterprise security policy and guidance.
+                    <description>Users are trusted to be not willfully negligent or hostile and use the VS in compliance with the 
+			    applied enterprise security policy and guidance.
                     </description>
                 </SOE>
             </SOEs>
@@ -289,8 +287,10 @@
     
     <chapter id="req" title="Security Requirements">
         <section id="sfr" title="TOE Security Functional Requirements">
-            The Security Functional Requirements (SFRs) included in this section are derived from Part 2 of the Common Criteria for Information Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional components.<h:br></h:br><h:br></h:br>
-            The <abbr linkend="CC"/> defines operations on Security Functional Requirements: assignments, selections, assignments within selections and refinements.
+            The Security Functional Requirements (SFRs) included in this section are derived from Part 2 of the Common Criteria for 
+		Information Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional components.<h:br></h:br><h:br></h:br>
+            The <abbr linkend="CC"/> defines operations on Security Functional Requirements: assignments, selections, assignments 
+		within selections and refinements.
 
 	    <!-- FAU_GEN.1 -->
             <subsection id="fau" title="Security Audit (FAU)">
@@ -586,40 +586,6 @@
 		    </audit-event>
                 </f-component>
 
-                <!-- FIA_UIA_EXT.1 -->
-                <f-component id="fia_uia_ext.1" name="Administrator Identification and Authentication">
-                    <f-element>
-                        <title>The <abbr linkend="TSF"/> shall require Administrators to be successfully identified and authenticated
-                            using one of the methods in FIA_UAU.5 before allowing any <abbr linkend="TSF"/>-mediated management
-                            function to be performed by that Administrator.
-                        </title>
-                        <note role="application">Users do not have to authenticate, only Administrators need to authenticate.</note>
-                        <aactivity>
-                            <TSS>
-                                The evaluator shall examine the <abbr linkend="TSS"/> to determine that it describes the logon
-                                process for each logon method (local, remote (HTTPS, SSH, etc.)) supported for the product. 
-                                This description shall contain information pertaining to the credentials allowed/used, any 
-                                protocol transactions that take place, and what constitutes a “successful logon”. The evaluator
-                                shall examine the operational guidance to determine that any necessary preparatory steps (e.g., 
-                                establishing credential material such as pre-shared keys, tunnels, certificates, etc.) to logging
-                                in are described. For each supported the login method, the evaluator shall ensure the operational
-                                guidance provides clear instructions for successfully logging on. If configuration is necessary
-                                to ensure the services provided before login are limited, the evaluator shall determine that the
-                                operational guidance provides sufficient instruction on limiting the allowed services.
-                            </TSS>
-                        </aactivity>
-                    </f-element>
-		    <audit-event> 
-                        <table known="mandatory"/>
-			<description>Administrator authentication attempts<h:br></h:br>
-                                     All use of the identification and authentication mechanism.
-			</description>
-                        <add-info>Provided user identity, origin of the attempt (e.g. console, remote IP address).
-			</add-info>
-		    </audit-event>
-                </f-component>
-            </subsection>
-            
             <subsection id="fmt" title="Security Management">
                 
                 <!-- FMT_SMO_EXT.1 -->
@@ -1158,7 +1124,7 @@
 
     <!-- Annex E: Equivalency Cuidelines -->
     <appendix id="equiv" title="Equivalency Guidlines">
-        <section id="vm-intro" title="Introduction">
+        <section id="gpcp-intro" title="Introduction">
           The purpose of equivalence in PP-based evaluations is to find a balance between evaluation rigor and commercial
             practicability--to ensure that evaluations meet customer expectations while recognizing that there is little to be gained
             from requiring that every variation in a product or platform be fully tested. If a product is found to be compliant with
