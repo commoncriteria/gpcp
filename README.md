@@ -1,13 +1,9 @@
-[![Build Status](https://travis-ci.com/commoncriteria/gpcp.svg?branch=master)](https://travis-ci.com/commoncriteria/gpcp)
-
-[![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/gpcp.svg?maxAge=2592000)](https://github.com/commoncriteria/gpcp/issues) 
-
-![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
-
-
-
 Protection Profile or Extended Package for General Purpose Computing Platform
 ===============
+
+[![Build Status](https://travis-ci.com/commoncriteria/gpcp.svg?branch=master)](https://travis-ci.com/commoncriteria/gpcp)
+[![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/gpcp.svg?maxAge=2592000)](https://github.com/commoncriteria/gpcp/issues) 
+![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
 This repository hosts the draft version of the Protection Profile for General Purpose Computing Platform based on the
 [Essential Security Requirements (ESR)](https://commoncriteria.github.io/pp/gpcp/gpcp-esr.html) for this technology class of
