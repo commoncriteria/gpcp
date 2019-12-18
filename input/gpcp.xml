@@ -45,11 +45,13 @@
         </section>
 
 	<tech-terms>
-	  <term full="Administrator">Administrators perform management activities on the platform. These management functions do not include administration of tenant 
-		  software running on the platform. Generally only server platforms have administrators that act through a Service Processor.
-		  Administrators may be no more than software entities.</term>
+	  <term full="Administrator">Administrators perform management activities on the platform. These management functions do not
+		  include administration of tenant software running on the platform. Generally only server platforms have
+		  administrators that act through a Service Processor. Administrators may be no more than software entities.</term>
 	  <term abbr="AES" full="Advanced Encryption Standard"/>
-	  <term full="Auditor">Auditors are responsible for managing the audit capabilities of the TOE. An Auditor may also be an Administrator. It is not a requirement that the TOE be capable of supporting an Auditor role that is separate from that of an Administrator.</term>
+	  <term full="Auditor">Auditors are responsible for managing the audit capabilities of the TOE. An Auditor may also be an
+		  Administrator. It is not a requirement that the TOE be capable of supporting an Auditor role that is separate from
+		  that of an Administrator.</term>
           <term abbr="CPU" full="Central Processing Unit"/>
           <term abbr="DEP" full="Data Execution Prevention"/>
           <term abbr="DKM" full="Derived Keying Material"/>
@@ -64,7 +66,8 @@
 	  <term abbr="GPCP" full="General-Purpose Computing Platform"/>
           <term abbr="IEC" full="International Electrotechnical Commission"/>
 	  <term full="Information Domain">See Domain.</term>
-	  <term full="Introspection">A capability that allows a specially designated and privileged domain to have visibility into another domain for purposes of anomaly detection or monitoring.</term>
+	  <term full="Introspection">A capability that allows a specially designated and privileged domain to have visibility into
+		  another domain for purposes of anomaly detection or monitoring.</term>
           <term abbr="ISO" full="International Organization for Standardization"/>
           <term abbr="IP" full="Internet Protocol"/>
           <term abbr="IT" full="Information Technology"/>
@@ -75,7 +78,8 @@
           <term abbr="NVLAP" full="National Voluntary Laboratory Accreditation Program"/>
           <term abbr="OS" full="Operating System"/>
           <term abbr="PKV" full="Public Key Verification"/>
-	  <term full="Platform">The hardware and firmware on which tenant software executes. For this PP, the TOE is the platform, hence there is no "TOE Platform."</term>
+	  <term full="Platform">The hardware and firmware on which tenant software executes. For this PP, the TOE is the platform,
+		  hence there is no "TOE Platform."</term>
           <term abbr="RSA" full="Rivest, Shamir, Adleman"/>
           <term abbr="SP" full="Special Publication"/>
           <term abbr="SPD" full="Security Policy Database"/>
@@ -135,7 +139,9 @@
 <!--        <cclaims>
             <cclaim id="statement">
                 <description>
-                    To be conformant to this PP, an <abbr linkend="ST"/> must demonstrate Exact Conformance, a subset of Strict Conformance as defined in [<abbr linkend="CC"/>] Part 1 (ASE_CCL). The <abbr linkend="ST"/> must include all components in this PP that are:
+                    To be conformant to this PP, an <abbr linkend="ST"/> must demonstrate Exact Conformance, a subset of Strict 
+			Conformance as defined in [<abbr linkend="CC"/>] Part 1 (ASE_CCL). The <abbr linkend="ST"/> must include all
+ 			components in this PP that are:
                     <h:ul>
                         <h:li>Unconditional (which are always required)</h:li>
                         <h:li>Selection-based (which are required when certain selections are chosen in the unconditional requirements)
@@ -143,7 +149,10 @@
                         <h:li>Optional</h:li>
                         <h:li>Objective.</h:li>
                     </h:ul>
-                    Unconditional requirements are found in the main body of the document (Section 5), while appendices contain the selection-based, optional, and objective requirements. The <abbr linkend="ST"/> may iterate any of these components but it must not introduce any additional component (e.g., from <abbr linkend="CC"/> Part 2 or 3) that is not defined in this PP.
+                    Unconditional requirements are found in the main body of the document (Section 5), while appendices contain the 
+			selection-based, optional, and objective requirements. The <abbr linkend="ST"/> may iterate any of these
+ 			components but it must not introduce any additional component (e.g., from <abbr linkend="CC"/> Part 2 or 3) 
+			that is not defined in this PP.
                 </description>
             </cclaim>
             <cclaim id="claims">
@@ -231,11 +240,12 @@
         <section id="secobjtoe" title="Security Objectives for the TOE">
             <SOs>
                 <SO id="O.PLATFORM_INTEGRITY">
-                    <description>Since the platform is the TOE, this objective probably shouldn't be here. So this is just a placeholder.
-			    The integrity of the <abbr linkend="VMM"/> depends on the integrity of the hardware and software on 
-                        which the <abbr linkend="VMM"/> relies. Although the VS does not have complete control over the integrity of 
-                        the platform, the VS should as much as possible try to ensure that no users or software hosted by the VS is 
-                        capable of undermining the integrity of the platform.
+                    <description>
+			    Since the TOE is a platform, this objective probably shouldn't be here. So this is just a placeholder.
+			    The integrity of the TOE depends on the integrity of the software on which the TOE relies. Although 
+			    the TOE does not have complete control over the integrity of the platform, the TOE should as much as
+			    possible try to ensure that no users or software hosted by the TOE is capable of undermining the integrity
+			    of the platform.
                     </description>
 		    <addressed-by>
 		      FDP_HBI_EXT.1, FDP_PPR_EXT.1, FDP_VMS_EXT.1,
@@ -291,8 +301,10 @@
             The <abbr linkend="CC"/> defines operations on Security Functional Requirements: assignments, selections, assignments 
 		within selections and refinements.
 
-	    <!-- FAU_GEN.1 -->
+	    <!-- Audit -->
             <subsection id="fau" title="Security Audit (FAU)">
+		    
+  	        <!-- FAU_GEN.1 -->
                 <f-component id="fau_gen.1" name="Audit Data Generation">
                     <f-element>
                         <title>The <abbr linkend="TSF"/> shall be able to generate an audit record of the following auditable events:
@@ -328,12 +340,23 @@
                             </h:ol>
                         </title>
                         <note role="application">
-                            The <abbr linkend="ST"/> author can include other auditable events directly in Table 1; they are not limited to the list presented. The <abbr linkend="ST"/> author should update the table in FAU_GEN.1.2 with any additional information generated. “Subject identity” in FAU_GEN.1.2 could be a user id or an identifier specifying a <abbr linkend="VM"/>, for example.<h:br></h:br><h:br></h:br>
+                            The <abbr linkend="ST"/> author can include other auditable events directly in Table 1; they are not limited to
+				the list presented. The <abbr linkend="ST"/> author should update the table in FAU_GEN.1.2 with any additional
+				information generated. “Subject identity” in FAU_GEN.1.2 could be a user id or an identifier specifying a 
+				<abbr linkend="VM"/>, for example.<h:br></h:br><h:br></h:br>
                             If ‘additional information defined in Table 3’ is selected, it is acceptable to include individual
                             entries from Table 3 without including the entirety of Table 3.  Appropriate entries from Tables 2, 4,
-                            and 5 should be included in the <abbr linkend="ST"/> if the associated SFRs and selections are included.<h:br></h:br><h:br></h:br>
-                            The Table 1 entry for FDP_VNC_EXT.1 refers to configuration settings that attach <abbr linkend="VM"/>s to virtualized network components. Changes to these configurations can be made during <abbr linkend="VM"/> execution or when <abbr linkend="VM"/>s are not running. Audit records must be generated for either case.<h:br></h:br><h:br></h:br>
-                            The intent of the audit requirement for FDP_PPR_EXT.1 is to log that the <abbr linkend="VM"/> is connected to a physical device (when the device becomes part of the <abbr linkend="VM"/>’s hardware view), not to log every time that the device is accessed. Generally, this is only once at <abbr linkend="VM"/> startup. However, some devices can be connected and disconnected during operation (e.g., virtual USB devices such as CD-ROMs). All such connection/disconnection events must be logged.
+                            and 5 should be included in the <abbr linkend="ST"/> if the associated SFRs and selections are included.
+				<h:br></h:br><h:br></h:br>
+                            The Table 1 entry for FDP_VNC_EXT.1 refers to configuration settings that attach <abbr linkend="VM"/>s to 
+				virtualized network components. Changes to these configurations can be made during <abbr linkend="VM"/> 
+				execution or when <abbr linkend="VM"/>s are not running. Audit records must be generated for either case.
+				<h:br></h:br><h:br></h:br>
+                            The intent of the audit requirement for FDP_PPR_EXT.1 is to log that the <abbr linkend="VM"/> is connected to a
+				physical device (when the device becomes part of the <abbr linkend="VM"/>’s hardware view), not to log every
+				time that the device is accessed. Generally, this is only once at <abbr linkend="VM"/> startup. However,
+				some devices can be connected and disconnected during operation (e.g., virtual USB devices such as CD-ROMs). 
+				All such connection/disconnection events must be logged.
                         </note>
 			<aactivity>
                             <TSS>
@@ -379,15 +402,18 @@
                 </f-component>
             </subsection>
             
-            <subsection id="fcs" title="Cryptographic Support">
+	    <!-- Cryptographic Support -->
+	    <subsection id="fcs" title="Cryptographic Support">
                 
                 <!-- FCS_CKM.1 -->
                 <f-component id="fcs_ckm.1" name="Cryptographic Key Generation">
                     <f-element>
-                        <title> The <abbr linkend="TSF"/> shall generate asymmetric cryptographic keys in accordance with a specified cryptographic key generation algorithm
+                        <title> The <abbr linkend="TSF"/> shall generate asymmetric cryptographic keys in accordance with a specified 
+				cryptographic key generation algorithm
                             <selectables linebreak="yes">
                                 <selectable>
-                                    RSA schemes using cryptographic key sizes [2048-bit or greater] that meet the following: [FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3]
+                                    RSA schemes using cryptographic key sizes [2048-bit or greater] that meet the following:
+					[FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3]
                                 </selectable>
                                 <selectable>
                                     ECC schemes using [“NIST curves” P-256, P-384, and
@@ -398,12 +424,18 @@
                                     that meet the following: [FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.4]
                                     </selectable>
                                 <selectable>
-                                    FFC schemes using cryptographic key sizes [2048-bit or greater] that meet the following: [FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.1]].
+                                    FFC schemes using cryptographic key sizes [2048-bit or greater] that meet the following: 
+					[FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.1]].
                                 </selectable>
                             </selectables>.
                         </title>
-                        <note role="application">The <abbr linkend="ST"/> author selects all key generation schemes used for key establishment and device authentication. When key generation is used for key establishment, the schemes in FCS_CKM.2.1 and selected cryptographic protocols shall match the selection. When key generation is used for device authentication, the public key is expected to be associated with an X.509v3 certificate.<h:br></h:br><h:br></h:br>
-                            If the <abbr linkend="TOE"/> acts as a receiver in the RSA key establishment scheme, the <abbr linkend="TOE"/> does not need to implement RSA key generation.
+                        <note role="application">The <abbr linkend="ST"/> author selects all key generation schemes used for key
+				establishment and device authentication. When key generation is used for key establishment, the 
+				schemes in FCS_CKM.2.1 and selected cryptographic protocols shall match the selection. When key
+				generation is used for device authentication, the public key is expected to be associated with an
+				X.509v3 certificate.<h:br></h:br><h:br></h:br>
+                            If the <abbr linkend="TOE"/> acts as a receiver in the RSA key establishment scheme, the 
+				<abbr linkend="TOE"/> does not need to implement RSA key generation.
                         </note>
                         <aactivity>
                             <TSS>
@@ -421,7 +453,11 @@
                                 Note: The following tests require the developer to provide access to a test platform that 
                                 provides the evaluator with tools that are typically not found on factory products.<h:br></h:br><h:br></h:br>
                                 <h:b>Key Generation for FIPS PUB 186-4 RSA Schemes</h:b><h:br></h:br>
-                                The evaluator shall verify the implementation of RSA Key Generation by the <abbr linkend="TOE"/> using the Key Generation test. This test verifies the ability of the <abbr linkend="TSF"/> to correctly produce values for the key components including the public verification exponent e, the private prime factors p and q, the public modulus n and the calculation of the private signature exponent d.<h:br></h:br><h:br></h:br>
+                                The evaluator shall verify the implementation of RSA Key Generation by the <abbr linkend="TOE"/> 
+				    using the Key Generation test. This test verifies the ability of the <abbr linkend="TSF"/> to
+				    correctly produce values for the key components including the public verification exponent e, 
+				    the private prime factors p and q, the public modulus n and the calculation of the private
+				    signature exponent d.<h:br></h:br><h:br></h:br>
                                 Key Pair generation specifies 5 ways (or methods) to generate the primes p and q. These include:<h:br></h:br><h:br></h:br>
                                 <h:ul>
                                     <h:li> Random Primes:
@@ -439,16 +475,36 @@
                                         </h:ul>
                                     </h:li>
                                 </h:ul><h:br></h:br><h:br></h:br>
-                                To test the key generation method for the Random Provable primes method and for all the Primes with Conditions methods, the evaluator shall seed the <abbr linkend="TSF"/> key generation routine with sufficient data to deterministically generate the RSA key pair. This includes the random seed(s), the public exponent of the RSA key, and the desired key length. For each key length supported, the evaluator shall have the <abbr linkend="TSF"/> generate 25 key pairs. The evaluator shall verify the correctness of the <abbr linkend="TSF"/>’s implementation by comparing values generated by the <abbr linkend="TSF"/> with those generated from a known good implementation.<h:br></h:br><h:br></h:br>
+                                To test the key generation method for the Random Provable primes method and for all the Primes with 
+				    Conditions methods, the evaluator shall seed the <abbr linkend="TSF"/> key generation routine with
+				    sufficient data to deterministically generate the RSA key pair. This includes the random seed(s),
+				    the public exponent of the RSA key, and the desired key length. For each key length supported, the 
+				    evaluator shall have the <abbr linkend="TSF"/> generate 25 key pairs. The evaluator shall verify
+				    the correctness of the <abbr linkend="TSF"/>’s implementation by comparing values generated by the 
+				    <abbr linkend="TSF"/> with those generated from a known good implementation.
+				    <h:br></h:br><h:br></h:br>
                                 <h:b>Key Generation for Elliptic Curve Cryptography (ECC)</h:b><h:br></h:br><h:br></h:br>
                                 <h:p> FIPS 186-4 ECC Key Generation Test</h:p><h:br></h:br><h:br></h:br>
-                                For each supported NIST curve, i.e., P-256, P-384 and P-521, the evaluator shall require the implementation under test (IUT) to generate 10 private/public key pairs. The private key shall be generated using an approved random bit generator (RBG). To determine correctness, the evaluator shall submit the generated key pairs to the public key verification (PKV) function of a known good implementation.
+                                For each supported NIST curve, i.e., P-256, P-384 and P-521, the evaluator shall require the 
+				    implementation under test (IUT) to generate 10 private/public key pairs. The private key shall be
+				    generated using an approved random bit generator (RBG). To determine correctness, the evaluator
+				    shall submit the generated key pairs to the public key verification (PKV) function of a known good
+				    implementation.
                                 <h:br/>
                                 <h:p>FIPS 186-4 Public Key Verification (PKV) Test</h:p>
-                                For each supported NIST curve, i.e., P-256, P-384 and P-521, the evaluator shall generate 10 private/public key pairs using the key generation function of a known good implementation and modify five of the public key values so that they are incorrect, leaving five values unchanged (i.e., correct). The evaluator shall obtain in response a set of 10 PASS/FAIL values.<h:br></h:br><h:br></h:br>
+                                For each supported NIST curve, i.e., P-256, P-384 and P-521, the evaluator shall generate 10 
+				    private/public key pairs using the key generation function of a known good implementation and
+				    modify five of the public key values so that they are incorrect, leaving five values unchanged
+				    (i.e., correct). The evaluator shall obtain in response a set of 10 PASS/FAIL values.
+				    <h:br></h:br><h:br></h:br>
                                 <h:b>Key Generation for Finite-Field Cryptography (FFC)</h:b><h:br></h:br><h:br></h:br>
-                                The evaluator shall verify the implementation of the Parameters Generation and the Key Generation for FFC by the <abbr linkend="TOE"/> using the Parameter Generation and Key Generation test. This test verifies the ability of the <abbr linkend="TSF"/> to correctly produce values for the field prime p, the cryptographic prime q (dividing p-1), the cryptographic group generator g, and the calculation of the private key x and public key y.<h:br></h:br><h:br></h:br>
-                                The Parameter generation specifies 2 ways (or methods) to generate the cryptographic prime q and the field prime p:<h:br></h:br><h:br></h:br>
+                                The evaluator shall verify the implementation of the Parameters Generation and the Key Generation for
+				    FFC by the <abbr linkend="TOE"/> using the Parameter Generation and Key Generation test. This test
+				    verifies the ability of the <abbr linkend="TSF"/> to correctly produce values for the field prime
+				    p, the cryptographic prime q (dividing p-1), the cryptographic group generator g, and the
+				    calculation of the private key x and public key y.<h:br></h:br><h:br></h:br>
+                                The Parameter generation specifies 2 ways (or methods) to generate the cryptographic prime q and the
+				    field prime p:<h:br></h:br><h:br></h:br>
                                 <h:ul>
                                     <h:li>Primes q and p shall both be provable primes</h:li>
                                     <h:li>Primes q and field prime p shall both be probable primes</h:li>
@@ -463,9 +519,17 @@
                                     <h:li>len(q) bit output of RBG where  1 &#2264; x &#2264; q-1 <!-- the special characters 1 <=x <= q-1 --></h:li>
                                     <h:li>len(q) + 64 bit output of RBG, followed by a mod q-1 operation where 1 &#2264; x &#2264; q-1 <!-- 1<= x<=q-1. --></h:li>
                                 </h:ul><h:br></h:br><h:br></h:br>
-                                The security strength of the RBG shall be at least that of the security offered by the FFC parameter set.<h:br></h:br><h:br></h:br>
-                                To test the cryptographic and field prime generation method for the provable primes method and/or the group generator g for a verifiable process, the evaluator shall seed the <abbr linkend="TSF"/> parameter generation routine with sufficient data to deterministically generate the parameter set.<h:br></h:br><h:br></h:br>
-                                For each key length supported, the evaluator shall have the <abbr linkend="TSF"/> generate 25 parameter sets and key pairs. The evaluator shall verify the correctness of the <abbr linkend="TSF"/>’s implementation by comparing values generated by the <abbr linkend="TSF"/> with those generated from a known good implementation. Verification shall also confirm <h:br></h:br><h:br></h:br>
+                                The security strength of the RBG shall be at least that of the security offered by the FFC parameter
+				    set.<h:br></h:br><h:br></h:br>
+                                To test the cryptographic and field prime generation method for the provable primes method and/or the
+				    group generator g for a verifiable process, the evaluator shall seed the <abbr linkend="TSF"/> 
+				    parameter generation routine with sufficient data to deterministically generate the parameter 
+				    set.<h:br></h:br><h:br></h:br>
+                                For each key length supported, the evaluator shall have the <abbr linkend="TSF"/> generate 25
+				    parameter sets and key pairs. The evaluator shall verify the correctness of the 
+				    <abbr linkend="TSF"/>’s implementation by comparing values generated by the <abbr linkend="TSF"/> 
+				    with those generated from a known good implementation. Verification shall also confirm 
+				    <h:br></h:br><h:br></h:br>
                                 <h:ul>
                                     <h:li>g != 0,1</h:li>
                                     <h:li>q divides p-1</h:li>
@@ -489,12 +553,18 @@
                 <!-- FDP_RIP_EXT.1 -->
                 <f-component id="fdp_rip_ext.1" name="Residual Information in Memory">
                     <f-element>
-                        <title>The <abbr linkend="TSF"/> shall ensure that any previous information content of physical memory is cleared prior to allocation to a Guest <abbr linkend="VM"/>.
+                        <title>The <abbr linkend="TSF"/> shall ensure that any previous information content of physical memory is
+				cleared prior to allocation to a Guest <abbr linkend="VM"/>.
                         </title>
-                        <note role="application">Physical memory must be zeroed before it is made accessible to a <abbr linkend="VM"/> for general use by a Guest OS.<h:br></h:br><h:br></h:br>
-                            The purpose of this requirement is to ensure that a <abbr linkend="VM"/> does not receive memory containing data previously used by another <abbr linkend="VM"/> or the host.<h:br></h:br><h:br></h:br>
-                            “For general use” means for use by the Guest OS in its page tables for running applications or system software.<h:br></h:br><h:br></h:br>
-                            This does not apply to pages shared by design or policy between <abbr linkend="VM"/>s or between the <abbr linkend="VMM"/>s and <abbr linkend="VM"/>s, such as read-only OS pages or pages used for virtual device buffers.
+                        <note role="application">Physical memory must be zeroed before it is made accessible to a <abbr linkend="VM"/>
+				for general use by a Guest OS.<h:br></h:br><h:br></h:br>
+                            The purpose of this requirement is to ensure that a <abbr linkend="VM"/> does not receive memory 
+				containing data previously used by another <abbr linkend="VM"/> or the host.<h:br></h:br><h:br></h:br>
+                            “For general use” means for use by the Guest OS in its page tables for running applications or system 
+				software.<h:br></h:br><h:br></h:br>
+                            This does not apply to pages shared by design or policy between <abbr linkend="VM"/>s or between the 
+				<abbr linkend="VMM"/>s and <abbr linkend="VM"/>s, such as read-only OS pages or pages used for virtual
+				device buffers.
                         </note>
                         <aactivity>
                             <TSS>
@@ -528,7 +598,8 @@
                                     </selectables>
                                     authentication based on username and password
                                 </selectable>
-                                <selectable>authentication based on username and a PIN that releases an asymmetric key stored in OE-protected storage</selectable>
+                                <selectable>authentication based on username and a PIN that releases an asymmetric key stored in
+					OE-protected storage</selectable>
                                 <selectable id="uau-x509">
                                     <selectables>
                                         <selectable>local</selectable>
@@ -546,12 +617,20 @@
                             </selectables>                            
                             to support Administrator authentication.
                         </title>
-                        <note role="application">Selection of ‘authentication based on username and password’ requires that FIA_PMG_EXT.1 be included in the <abbr linkend="ST"/>. This also requires that the <abbr linkend="ST"/> include a management function for password management. If the <abbr linkend="ST"/> author selects ‘authentication based on an SSH public-key credential’, the <abbr linkend="TSF"/> shall be validated against the Extended Package for Secure Shell.<h:br></h:br><h:br></h:br>
-                            PINs used to access OE-protected storage are set and managed by the OE-protected storage mechanism. Thus requirements on PIN management are outside the scope of the <abbr linkend="TOE"/>.
+                        <note role="application">Selection of ‘authentication based on username and password’ requires that 
+				FIA_PMG_EXT.1 be included in the <abbr linkend="ST"/>. This also requires that the 
+				<abbr linkend="ST"/> include a management function for password management. If the 
+				<abbr linkend="ST"/> author selects ‘authentication based on an SSH public-key credential’, the
+				<abbr linkend="TSF"/> shall be validated against the Extended Package for Secure Shell.
+				<h:br></h:br><h:br></h:br>
+                            PINs used to access OE-protected storage are set and managed by the OE-protected storage mechanism. 
+				Thus requirements on PIN management are outside the scope of the <abbr linkend="TOE"/>.
                         </note>
                     </f-element>
                     <f-element>
-                        <title>The <abbr linkend="TSF"/> shall authenticate any Administrator’s claimed identity according to the <assignable>rules describing how the multiple authentication mechanisms provide authentication</assignable>.
+                        <title>The <abbr linkend="TSF"/> shall authenticate any Administrator’s claimed identity according to the 
+				<assignable>rules describing how the multiple authentication mechanisms provide authentication
+				</assignable>.
                         </title>
                         <aactivity>
                             <Tests>
@@ -615,7 +694,8 @@
                 <!-- FMT_SMO_EXT.1 -->
                 <f-component id="fmt_smo_ext.1" name="Separation of Management and Operational Networks">
                     <f-element>
-                        <title>The <abbr linkend="TSF"/> shall support the configuration of separate management and operational networks through
+                        <title>The <abbr linkend="TSF"/> shall support the configuration of separate management and operational
+				networks through
                             <selectables>
                                 <selectable>physical means</selectable>
                                 <selectable>logical means</selectable>
@@ -626,10 +706,18 @@
                     <f-element>
                         <title>
                         </title>
-                        <note role="application">Management communications must be separate from user workloads. Administrative communications—including communications between physical hosts concerning load balancing, audit data, <abbr linkend="VM"/> startup and shutdown—must be separate from guest operational networks.<h:br></h:br><h:br></h:br>
-                            “Physical means” refers to using separate physical networks for management and operational networks. For example, the machines in the management network are connected by separate cables plugged into separate and dedicated physical ports on each physical host.<h:br></h:br><h:br></h:br>
-                            “Logical means” refers to using separate network cables to connect physical hosts together using general-purpose networking ports. The management and operational networks are kept separate within the hosts using separate virtualized networking components.<h:br></h:br><h:br></h:br>
-                            If the <abbr linkend="ST"/> author selects “trusted channel”, then the protocols used for network separation must be selected in FTP_ITC_EXT.1.
+                        <note role="application">Management communications must be separate from user workloads. Administrative 
+				communications—including communications between physical hosts concerning load balancing, audit data,
+				<abbr linkend="VM"/> startup and shutdown—must be separate from guest operational networks.
+				<h:br></h:br><h:br></h:br>
+                            “Physical means” refers to using separate physical networks for management and operational networks. For
+				example, the machines in the management network are connected by separate cables plugged into separate
+				and dedicated physical ports on each physical host.<h:br></h:br><h:br></h:br>
+                            “Logical means” refers to using separate network cables to connect physical hosts together using 
+				general-purpose networking ports. The management and operational networks are kept separate within 
+				the hosts using separate virtualized networking components.<h:br></h:br><h:br></h:br>
+                            If the <abbr linkend="ST"/> author selects “trusted channel”, then the protocols used for network 
+				separation must be selected in FTP_ITC_EXT.1.
                         </note>
                         <aactivity>
                             <TSS>
@@ -660,15 +748,31 @@
                 <!-- FPT_HAS_EXT.1 -->
                 <f-component id="fpt_has_ext.1" name="Hardware Assists">
                     <f-element>
-                        <title>The <abbr linkend="VMM"/> shall use <assignable>list of hardware-based virtualization assists</assignable> to reduce or eliminate the need for binary translation.
+                        <title>The <abbr linkend="VMM"/> shall use <assignable>list of hardware-based virtualization assists
+				</assignable> to reduce or eliminate the need for binary translation.
                         </title>
                     </f-element>
                     <f-element>
-                        <title>The <abbr linkend="VMM"/> shall use <assignable>list of hardware-based virtualization memory-handling assists</assignable> to reduce or eliminate the need for shadow page tables.
+                        <title>The <abbr linkend="VMM"/> shall use <assignable>list of hardware-based virtualization memory-handling
+				assists</assignable> to reduce or eliminate the need for shadow page tables.
                         </title>
-                        <note role="application">These hardware-assists help reduce the size and complexity of the <abbr linkend="VMM"/>, and thus, of the trusted computing base, by eliminating or reducing the need for paravirtualization or binary translation. Paravirtualization involves modifying guest software so that instructions that cannot be properly virtualized are never executed on the physical processor.<h:br></h:br><h:br></h:br>
-                            For the assignment in FPT_HAS_EXT.1, the <abbr linkend="ST"/> author lists the hardware-based virtualization assists on all platforms included in the <abbr linkend="ST"/> that are used by the <abbr linkend="VMM"/> to reduce or eliminate the need for software-based binary translation. Examples for the x86 platform are Intel VT-x and AMD-V. “None” is an acceptable assignment for platforms that do not require virtualization assists in order to eliminate the need for binary translation. This must be documented in the <abbr linkend="TSS"/>.<h:br></h:br><h:br></h:br>
-                            For the assignment in FPT_HAS_EXT.1.2, the <abbr linkend="ST"/> author lists the set of hardware-based virtualization memory-handling extensions for all platforms listed in the <abbr linkend="ST"/> that are used by the <abbr linkend="VMM"/> to reduce or eliminate the need for shadow page tables. Examples for the x86 platform are Intel EPT and AMD RVI. “None” is an acceptable assignment for platforms that do not require memory-handling assists in order to eliminate the need for shadow page tables. This must be documented in the <abbr linkend="TSS"/>.
+                        <note role="application">These hardware-assists help reduce the size and complexity of the 
+				<abbr linkend="VMM"/>, and thus, of the trusted computing base, by eliminating or reducing the need 
+				for paravirtualization or binary translation. Paravirtualization involves modifying guest software so 
+				that instructions that cannot be properly virtualized are never executed on the physical processor.
+				<h:br></h:br><h:br></h:br>
+                            For the assignment in FPT_HAS_EXT.1, the <abbr linkend="ST"/> author lists the hardware-based 
+				virtualization assists on all platforms included in the <abbr linkend="ST"/> that are used by the 
+				<abbr linkend="VMM"/> to reduce or eliminate the need for software-based binary translation. Examples
+				for the x86 platform are Intel VT-x and AMD-V. “None” is an acceptable assignment for platforms that
+				do not require virtualization assists in order to eliminate the need for binary translation. This must 
+				be documented in the <abbr linkend="TSS"/>.<h:br></h:br><h:br></h:br>
+                            For the assignment in FPT_HAS_EXT.1.2, the <abbr linkend="ST"/> author lists the set of hardware-based
+				virtualization memory-handling extensions for all platforms listed in the <abbr linkend="ST"/> that
+				are used by the <abbr linkend="VMM"/> to reduce or eliminate the need for shadow page tables. Examples 
+				for the x86 platform are Intel EPT and AMD RVI. “None” is an acceptable assignment for platforms that
+				do not require memory-handling assists in order to eliminate the need for shadow page tables. This
+				must be documented in the <abbr linkend="TSS"/>.
                         </note>
                         <aactivity>
                             <TSS>
@@ -689,7 +793,8 @@
                  <!-- FPT_ML_EXT.1 -->
                 <f-component id="fpt_ml_ext.1" name="Measured Launch of Platform and VMM"  status="objective">
                     <f-element>
-                        <title>The <abbr linkend="TSF"/> shall support a measured launch of the Virtualization System. Measured components of the Virtualization system shall include the static executable image of the Hypervisor and:
+                        <title>The <abbr linkend="TSF"/> shall support a measured launch of the Virtualization System. Measured components
+				of the Virtualization system shall include the static executable image of the Hypervisor and:
                             <selectables linebreak="yes">
                                 <selectable>Static executable images of the Management Subsystem</selectable>
                                 <selectable><assignable>list of (static images of) Service <abbr linkend="VM"/>s</assignable></selectable>
@@ -777,15 +882,35 @@
             </subsection>
           </section>
 
+	<!-- Security Assurance Requirements -->
         <section id="sar" title="TOE Security Assurance Requirements">
-            The Security Objectives for the <abbr linkend="TOE"/> in Section 4 were constructed to address threats identified in Section 3.1. The Security Functional Requirements (SFRs) in Section 5.1 are a formal instantiation of the Security Objectives. The PP identifies the Security Assurance Requirements (SARs) to frame the extent to which the evaluator assesses the documentation applicable for the evaluation and performs independent testing.<h:br></h:br><h:br></h:br>
-            This section lists the set of Security Assurance Requirements (SARs) from Part 3 of the Common Criteria for Information Technology Security Evaluation, Version 3.1, Revision 4 that are required in evaluations against this PP. Individual assurance activities to be performed are specified in both Section 5.1 as well as in this section.<h:br></h:br><h:br></h:br>
-            After the <abbr linkend="ST"/> has been approved for evaluation, the Information Technology Security Evaluation Facility (ITSEF) will obtain the <abbr linkend="TOE"/>, supporting environmental IT, and the administrative/user guides for the <abbr linkend="TOE"/>. The ITSEF is expected to perform actions mandated by the <abbr linkend="CEM"/> for the ASE and ALC SARs. The ITSEF also performs the assurance activities contained within Section 5, which are intended to be an interpretation of the other <abbr linkend="CEM"/> assurance requirements as they apply to the specific technology instantiated in the <abbr linkend="TOE"/>. The assurance activities that are captured in Section 5 also provide clarification as to what the developer needs to provide to demonstrate the <abbr linkend="TOE"/> is compliant with the PP.
+            The Security Objectives for the <abbr linkend="TOE"/> in Section 4 were constructed to address threats identified in
+		Section 3.1. The Security Functional Requirements (SFRs) in Section 5.1 are a formal instantiation of the Security
+		Objectives. The PP identifies the Security Assurance Requirements (SARs) to frame the extent to which the evaluator
+		assesses the documentation applicable for the evaluation and performs independent testing.<h:br></h:br><h:br></h:br>
+            This section lists the set of Security Assurance Requirements (SARs) from Part 3 of the Common Criteria for Information 
+		Technology Security Evaluation, Version 3.1, Revision 4 that are required in evaluations against this PP. Individual
+		assurance activities to be performed are specified in both Section 5.1 as well as in this section.
+		<h:br></h:br><h:br></h:br>
+            After the <abbr linkend="ST"/> has been approved for evaluation, the Information Technology Security Evaluation Facility
+		(ITSEF) will obtain the <abbr linkend="TOE"/>, supporting environmental IT, and the administrative/user guides for
+		the <abbr linkend="TOE"/>. The ITSEF is expected to perform actions mandated by the <abbr linkend="CEM"/> for the ASE
+		and ALC SARs. The ITSEF also performs the assurance activities contained within Section 5, which are intended to be an
+		interpretation of the other <abbr linkend="CEM"/> assurance requirements as they apply to the specific technology
+		instantiated in the <abbr linkend="TOE"/>. The assurance activities that are captured in Section 5 also provide
+		clarification as to what the developer needs to provide to demonstrate the <abbr linkend="TOE"/> is compliant with
+		the PP.
             <subsection id="ase" title="Class ASE: Security Target Evaluation">
-                As per ASE activities defined in [<abbr linkend="CEM"/>] plus the <abbr linkend="TSS"/> assurance activities defined for any SFRs claimed by the <abbr linkend="TOE"/>.
+                As per ASE activities defined in [<abbr linkend="CEM"/>] plus the <abbr linkend="TSS"/> assurance activities defined
+		    for any SFRs claimed by the <abbr linkend="TOE"/>.
             </subsection>
             <subsection id="adv" title="Class ADV: Development">
-                The information about the <abbr linkend="TOE"/> is contained in the guidance documentation available to the end user as well as the <abbr linkend="TOE"/> Summary Specification (<abbr linkend="TSS"/>) portion of the <abbr linkend="ST"/>. The <abbr linkend="TOE"/> developer must concur with the description of the product that is contained in the <abbr linkend="TSS"/> as it relates to the functional requirements. The Assurance Activities contained in Section 5.2 should provide the <abbr linkend="ST"/> authors with sufficient information to determine the appropriate content for the <abbr linkend="TSS"/> section.
+                The information about the <abbr linkend="TOE"/> is contained in the guidance documentation available to the end user
+		    as well as the <abbr linkend="TOE"/> Summary Specification (<abbr linkend="TSS"/>) portion of the 
+		    <abbr linkend="ST"/>. The <abbr linkend="TOE"/> developer must concur with the description of the product that
+		    is contained in the <abbr linkend="TSS"/> as it relates to the functional requirements. The Assurance Activities
+		    contained in Section 5.2 should provide the <abbr linkend="ST"/> authors with sufficient information to determine
+		    the appropriate content for the <abbr linkend="TSS"/> section.
 
                 <!-- ADV_FSP.1 -->
                 <a-component id="ADV_FSP.1" name="Basic functional specification">
@@ -795,42 +920,63 @@
                     <a-element type="D">
                         <title>The developer shall provide a tracing from the functional specification to the SFRs.</title>
                         <note role="developer">
-                            As indicated in the introduction to this section, the functional specification is composed of the information contained in the AGD_OPR and AGD_PRE documentation, coupled with the information provided in the <abbr linkend="TSS"/> of the <abbr linkend="ST"/>. The assurance activities in the functional requirements point to evidence that should exist in the documentation and <abbr linkend="TSS"/> section; since these are directly associated with the SFRs, the tracing in element ADV_FSP.1.2D is implicitly already done and no additional documentation is necessary.</note>
+                            As indicated in the introduction to this section, the functional specification is composed of the
+				information contained in the AGD_OPR and AGD_PRE documentation, coupled with the information provided
+				in the <abbr linkend="TSS"/> of the <abbr linkend="ST"/>. The assurance activities in the functional
+				requirements point to evidence that should exist in the documentation and <abbr linkend="TSS"/>
+				section; since these are directly associated with the SFRs, the tracing in element ADV_FSP.1.2D is
+				implicitly already done and no additional documentation is necessary.</note>
                     </a-element>
                 	
                     <a-element type="C">
-                        <title>The functional specification shall describe the purpose and method of use for each SFR-enforcing and SFR-supporting TSFI.</title>
+                        <title>The functional specification shall describe the purpose and method of use for each SFR-enforcing 
+				and SFR-supporting TSFI.</title>
                     </a-element>
                     <a-element type="C">
-                        <title>The functional specification shall identify all parameters associated with each SFR-enforcing and SFR-supporting TSFI.</title>
+                        <title>The functional specification shall identify all parameters associated with each SFR-enforcing and 
+				SFR-supporting TSFI.</title>
                     </a-element>
                     <a-element type="C">
-                        <title>The functional specification shall provide rationale for the implicit categorization of interfaces as SFR-non-interfering.</title>
+                        <title>The functional specification shall provide rationale for the implicit categorization of interfaces 
+				as SFR-non-interfering.</title>
                     </a-element>
                     <a-element type="C">
                         <title>The tracing shall demonstrate that the SFRs trace to TSFIs in the functional specification.</title>
                     </a-element>
                   	
                     <a-element type="E">
-                        <title>The evaluator shall confirm that the information provided meets all requirements for content and presentation of evidence.</title>
+                        <title>The evaluator shall confirm that the information provided meets all requirements for content and
+				presentation of evidence.</title>
                     </a-element>
                     <a-element type="E">
-                        <title>The evaluator shall determine that the functional specification is an accurate and complete instantiation of the SFRs.</title>
+                        <title>The evaluator shall determine that the functional specification is an accurate and complete 
+				instantiation of the SFRs.</title>
                         <note role="application">
-                            There are no specific assurance activities associated with these SARs. The functional specification documentation is provided to support the evaluation activities described in Section 5.2, and other activities described for AGD, ATE, and AVA SARs. The requirements on the content of the functional specification information is implicitly assessed by virtue of the other assurance activities being performed; if the evaluator is unable to perform an activity because the there is insufficient interface information, then an adequate functional specification has not been provided.
+                            There are no specific assurance activities associated with these SARs. The functional specification 
+				documentation is provided to support the evaluation activities described in Section 5.2, and other
+				activities described for AGD, ATE, and AVA SARs. The requirements on the content of the functional 
+				specification information is implicitly assessed by virtue of the other assurance activities being
+				performed; if the evaluator is unable to perform an activity because the there is insufficient
+				interface information, then an adequate functional specification has not been provided.
                         </note>
                     </a-element>
                 </a-component>
             </subsection>
 
             <subsection id="agd" title="Class AGD: Guidance Documents">
-                The guidance documents will be provided with the developer’s security target. Guidance must include a description of how the authorized user verifies that the Operational Environment can fulfill its role for the security functionality. The documentation should be in an informal style and readable by an authorized user.<h:br></h:br><h:br></h:br>
-                Guidance must be provided for every operational environment that the product supports as claimed in the <abbr linkend="ST"/>. This guidance includes
+                The guidance documents will be provided with the developer’s security target. Guidance must include a description
+		    of how the authorized user verifies that the Operational Environment can fulfill its role for the security
+		    functionality. The documentation should be in an informal style and readable by an authorized user.
+		    <h:br></h:br><h:br></h:br>
+                Guidance must be provided for every operational environment that the product supports as claimed in the 
+		    <abbr linkend="ST"/>. This guidance includes
                 <h:ul>
                     <h:li>instructions to successfully install the <abbr linkend="TOE"/> in that environment; and</h:li>
-                    <h:li>instructions to manage the security of the <abbr linkend="TOE"/> as a product and as a component of the larger operational environment.</h:li>
+                    <h:li>instructions to manage the security of the <abbr linkend="TOE"/> as a product and as a component of the 
+			    larger operational environment.</h:li>
                 </h:ul>
-                Guidance pertaining to particular security functionality is also provided; specific requirements on such guidance are contained in the assurance activities specified with individual SFRs where applicable.
+                Guidance pertaining to particular security functionality is also provided; specific requirements on such guidance are
+		    contained in the assurance activities specified with individual SFRs where applicable.
                 
 		<!-- AGD_OPE.1 -->
 		<a-component id="AGD_OPE.1" name="Operational User Guidance">
@@ -839,33 +985,47 @@
                         <title>The developer shall provide operational user guidance.
                         </title>
                         <note role="developer">
-                            Rather than repeat information here, the developer should review the assurance activities for this component to ascertain the specifics of the guidance that the evaluators will be checking for. This will provide the necessary information for the preparation of acceptable guidance.</note>
+                            Rather than repeat information here, the developer should review the assurance activities for this
+				component to ascertain the specifics of the guidance that the evaluators will be checking for. 
+				This will provide the necessary information for the preparation of acceptable guidance.</note>
                     </a-element>
                     
                     <a-element type="C">
-                        <title>The operational user guidance shall describe what the authorized user-accessible functions and privileges that should be controlled in a secure processing environment, including appropriate warnings.</title>
+                        <title>The operational user guidance shall describe what the authorized user-accessible functions and
+				privileges that should be controlled in a secure processing environment, including appropriate 
+				warnings.</title>
                     </a-element>
                     <a-element type="C">
-                        <title>The operational user guidance shall describe, for the authorized user, how to use the available interfaces provided by the <abbr linkend="TOE"/> in a secure manner.</title>
+                        <title>The operational user guidance shall describe, for the authorized user, how to use the available
+				interfaces provided by the <abbr linkend="TOE"/> in a secure manner.</title>
                     </a-element>
                     <a-element type="C">
-                        <title>The operational user guidance shall describe, for the authorized user, the available functions and interfaces, in particular all security parameters under the control of the user, indicating secure values as appropriate.</title>
+                        <title>The operational user guidance shall describe, for the authorized user, the available functions and
+				interfaces, in particular all security parameters under the control of the user, indicating secure
+				values as appropriate.</title>
                     </a-element>
                     <a-element type="C">
-                        <title>The operational user guidance shall, for the authorized user, clearly present each type of security-relevant event relative to the user-accessible functions that need to be performed, including changing the security characteristics of entities under the control of the <abbr linkend="TSF"/>.</title>
+                        <title>The operational user guidance shall, for the authorized user, clearly present each type of 
+				security-relevant event relative to the user-accessible functions that need to be performed, including
+				changing the security characteristics of entities under the control of the <abbr linkend="TSF"/>.</title>
                     </a-element>
                     <a-element type="C">
-                        <title>The operational user guidance shall identify all possible modes of operation of the <abbr linkend="TOE"/> (including operation following failure or operational error), their consequences and implications for maintaining secure operation.</title>
+                        <title>The operational user guidance shall identify all possible modes of operation of the
+				<abbr linkend="TOE"/> (including operation following failure or operational error), their consequences
+				and implications for maintaining secure operation.</title>
                     </a-element>
                     <a-element type="C">
-                        <title>The operational user guidance shall, for the authorized user, describe the security measures to be followed in order to fulfill the security objectives for the operational environment as described in the <abbr linkend="ST"/>.</title>
+                        <title>The operational user guidance shall, for the authorized user, describe the security measures to be
+				followed in order to fulfill the security objectives for the operational environment as described in
+				the <abbr linkend="ST"/>.</title>
                     </a-element>
                     <a-element type="C">
                         <title>The operational user guidance shall be clear and reasonable.</title>
                     </a-element>
                   	
                     <a-element type="E">
-                        <title>The evaluator shall confirm that the information provided meets all requirements for content and presentation of evidence.</title>
+                        <title>The evaluator shall confirm that the information provided meets all requirements for content and
+				presentation of evidence.</title>
                         <aactivity>
                             <Guidance>
                                 Some of the contents of the operational guidance will be verified by the assurance activities in 
@@ -882,9 +1042,16 @@
                                 this process includes the following steps:
                                 <h:ul>
                                     <h:li>Instructions for querying the current version of the <abbr linkend="TOE"/> software.</h:li>
-                                    <h:li>For hashes, a description of where the hash for a given update can be obtained. For digital signatures, instructions for obtaining the certificate that will be used by the FCS_COP.1(2) mechanism to ensure that a signed update has been received from the certificate owner. This may be supplied with the product initially, or may be obtained by some other means.</h:li>
-                                    <h:li>Instructions for obtaining the update itself. This should include instructions for making the update accessible to the <abbr linkend="TOE"/> (e.g., placement in a specific directory).</h:li>
-                                    <h:li>Instructions for initiating the update process, as well as discerning whether the process was successful or unsuccessful. This includes generation of the hash/digital signature.</h:li>
+                                    <h:li>For hashes, a description of where the hash for a given update can be obtained. For digital
+					    signatures, instructions for obtaining the certificate that will be used by the 
+					    FCS_COP.1(2) mechanism to ensure that a signed update has been received from the 
+					    certificate owner. This may be supplied with the product initially, or may be obtained by
+					    some other means.</h:li>
+                                    <h:li>Instructions for obtaining the update itself. This should include instructions for making 
+					    the update accessible to the <abbr linkend="TOE"/> (e.g., placement in a specific 
+					    directory).</h:li>
+                                    <h:li>Instructions for initiating the update process, as well as discerning whether the process
+					    was successful or unsuccessful. This includes generation of the hash/digital signature.</h:li>
                               </h:ul>
                             </Guidance>
                         </aactivity>
@@ -897,22 +1064,29 @@
                     <a-element type="D">
                         <title>The developer shall provide the <abbr linkend="TOE"/> including its preparative procedures.
                         </title>
-                        <note role="developer">As with the operational guidance, the developer should look to the assurance activities to determine the required content with respect to preparative procedures.
+                        <note role="developer">As with the operational guidance, the developer should look to the assurance
+				activities to determine the required content with respect to preparative procedures.
                         </note>
                     </a-element>
                     
                     <a-element type="C">
-                        <title>The preparative procedures shall describe all the steps necessary for secure acceptance of the delivered <abbr linkend="TOE"/> in accordance with the developer’s delivery procedures.</title>
+                        <title>The preparative procedures shall describe all the steps necessary for secure acceptance of the
+				delivered <abbr linkend="TOE"/> in accordance with the developer’s delivery procedures.</title>
                     </a-element>
                     <a-element type="C">
-                        <title>The preparative procedures shall describe all the steps necessary for secure installation of the <abbr linkend="TOE"/> and for the secure preparation of the operational environment in accordance with the security objectives for the operational environment as described in the <abbr linkend="ST"/>.</title>
+                        <title>The preparative procedures shall describe all the steps necessary for secure installation of the 
+				<abbr linkend="TOE"/> and for the secure preparation of the operational environment in accordance 
+				with the security objectives for the operational environment as described in the <abbr linkend="ST"/>.
+			    </title>
                     </a-element>
                    	
                     <a-element  type="E">
-                        <title>The evaluator shall confirm that the information provided meets all requirements for content and presentation of evidence.</title>
+                        <title>The evaluator shall confirm that the information provided meets all requirements for content and 
+				presentation of evidence.</title>
                     </a-element>
                     <a-element type="E">
-                        <title>The evaluator shall apply the preparative procedures to confirm that the <abbr linkend="TOE"/> can be prepared securely for operation.</title>
+                        <title>The evaluator shall apply the preparative procedures to confirm that the <abbr linkend="TOE"/> can be
+				prepared securely for operation.</title>
                         <aactivity>
                             <Guidance>
                                 As indicated in the introduction above, there are significant expectations with respect to the
@@ -930,7 +1104,12 @@
             </subsection>
 
             <subsection id="alc" title="Class ALC: Life-Cycle Support">
-                At the assurance level specified for <abbr linkend="TOE"/>s conformant to this PP, life-cycle support is limited to an examination of the <abbr linkend="TOE"/> vendor’s development and configuration management process in order to provide a baseline level of assurance that the <abbr linkend="TOE"/> itself is developed in a secure manner and that the developer has a well-defined process in place to deliver updates to mitigate known security flaws. This is a result of the critical role that a developer’s practices play in contributing to the overall trustworthiness of a product.
+                At the assurance level specified for <abbr linkend="TOE"/>s conformant to this PP, life-cycle support is limited to 
+		    an examination of the <abbr linkend="TOE"/> vendor’s development and configuration management process in order to
+		    provide a baseline level of assurance that the <abbr linkend="TOE"/> itself is developed in a secure manner and
+		    that the developer has a well-defined process in place to deliver updates to mitigate known security flaws. This
+		    is a result of the critical role that a developer’s practices play in contributing to the overall trustworthiness
+		    of a product.
 
 		<!-- ALC_CMC.1 -->
 		<a-component id="ALC_CMC.1" name="Labeling of the TOE">
@@ -946,7 +1125,8 @@
                     </a-element>
                     
                     <a-element type="E">
-                        <title>The evaluator shall confirm that the information provided meets all requirements for content and presentation of evidence.
+                        <title>The evaluator shall confirm that the information provided meets all requirements for content and 
+				presentation of evidence.
                         </title>
                         <aactivity>
                             <TSS>
@@ -985,7 +1165,8 @@
                     </a-element>
                     
                     <a-element type="E">
-                        <title>The evaluator shall confirm that the information provided meets all requirements for content and presentation of evidence.</title>
+                        <title>The evaluator shall confirm that the information provided meets all requirements for content and
+				presentation of evidence.</title>
                         <aactivity>
                             <Guidance>
                                 The evaluator shall ensure that the developer has identified (in public-facing development
@@ -1005,38 +1186,62 @@
 
 		<!-- ALC_TSU_EXT -->
                 <a-component id="ALC_TSU_EXT.1" name="Timely Security Updates">
-                    This component requires the <abbr linkend="TOE"/> developer, in conjunction with any other necessary parties, to provide information as to how the Virtualization System is updated to address security issues in a timely manner. The documentation describes the process of providing updates to the public from the time a security flaw is reported/discovered, to the time an update is released. This description includes the parties involved (e.g., the developer, hardware vendors) and the steps that are performed (e.g., developer testing), including worst case time periods, before an update is made available to the public.
+                    This component requires the <abbr linkend="TOE"/> developer, in conjunction with any other necessary parties, to
+			provide information as to how the Virtualization System is updated to address security issues in a timely 
+			manner. The documentation describes the process of providing updates to the public from the time a security
+			flaw is reported/discovered, to the time an update is released. This description includes the parties involved 
+			(e.g., the developer, hardware vendors) and the steps that are performed (e.g., developer testing), including
+			worst case time periods, before an update is made available to the public.
                     
                     <a-element type="D">
-                        <title>The developer shall provide a description in the <abbr linkend="TSS"/> of how timely security updates are made to the <abbr linkend="TOE"/>.</title>
+                        <title>The developer shall provide a description in the <abbr linkend="TSS"/> of how timely security updates
+				are made to the <abbr linkend="TOE"/>.</title>
                     </a-element>
                  	
                     <a-element type="C">
-                        <title>The description shall include the process for creating and deploying security updates for the <abbr linkend="TOE"/> software/firmware.</title>
+                        <title>The description shall include the process for creating and deploying security updates for the 
+				<abbr linkend="TOE"/> software/firmware.</title>
                     </a-element>
                     <a-element type="C">
-                        <title>The description shall express the time window as the length of time, in days, between public disclosure of a vulnerability and the public availability of security updates to the <abbr linkend="TOE"/>.</title>
+                        <title>The description shall express the time window as the length of time, in days, between public disclosure
+				of a vulnerability and the public availability of security updates to the <abbr linkend="TOE"/>.</title>
                         <note role="application">
-                            The total length of time may be presented as a summation of the periods of time that each party (e.g., <abbr linkend="TOE"/> developer, hardware vendor) on the critical path consumes. The time period until public availability per deployment mechanism may differ; each is described.</note>
+                            The total length of time may be presented as a summation of the periods of time that each party (e.g.,
+				<abbr linkend="TOE"/> developer, hardware vendor) on the critical path consumes. The time period until
+				public availability per deployment mechanism may differ; each is described.</note>
                     </a-element>
                     <a-element type="C">
-                        <title>The description shall include the mechanisms publicly available for reporting security issues pertaining to the <abbr linkend="TOE"/>.</title>
+                        <title>The description shall include the mechanisms publicly available for reporting security issues
+				pertaining to the <abbr linkend="TOE"/>.</title>
                         <note role="application">
-                            The reporting mechanism could include web sites, email addresses, and a means to protect the sensitive nature of the report (e.g., public keys that could be used to encrypt the details of a proof-of-concept exploit).</note>
+                            The reporting mechanism could include web sites, email addresses, and a means to protect the sensitive
+				nature of the report (e.g., public keys that could be used to encrypt the details of a proof-of-concept
+				exploit).</note>
                     </a-element>
                     
                     <a-element type="E">
-                        <title>The evaluator shall confirm that the information provided meets all requirements for content and presentation of evidence.</title>
+                        <title>The evaluator shall confirm that the information provided meets all requirements for content and 
+				presentation of evidence.</title>
                     </a-element>
                 </a-component>
 
             </subsection>
             <subsection id="ate" title="Class ATE: Tests">
-                Testing is specified for functional aspects of the system as well as aspects that take advantage of design or implementation weaknesses. The former is done through ATE_IND family, while the latter is through the AVA_VAN family. At the assurance level specified in this PP, testing is based on advertised functionality and interfaces with dependency on the availability of design information. One of the primary outputs of the evaluation process is the test report as specified in the following requirements.
+                Testing is specified for functional aspects of the system as well as aspects that take advantage of design or
+		    implementation weaknesses. The former is done through ATE_IND family, while the latter is through the AVA_VAN
+		    family. At the assurance level specified in this PP, testing is based on advertised functionality and interfaces
+		    with dependency on the availability of design information. One of the primary outputs of the evaluation process is 
+		    the test report as specified in the following requirements.
 
 		<!-- ATE_IND.1 -->
 	 	<a-component id="ATE_IND.1" name="Independent Testing - Sample">
-                    Testing is performed to confirm the functionality described in the <abbr linkend="TSS"/> as well as the administrative (including configuration and operation) documentation provided. The focus of the testing is to confirm that the requirements specified in Section 5.1 are being met, although some additional testing is specified for SARs in Section 5.2. The Assurance Activities identify the additional testing activities associated with these components. The evaluator produces a test report documenting the plan for and results of testing, as well as coverage arguments focused on the platform/<abbr linkend="TOE"/> combinations that are claiming conformance to this PP.
+                    Testing is performed to confirm the functionality described in the <abbr linkend="TSS"/> as well as the
+			administrative (including configuration and operation) documentation provided. The focus of the testing is to
+			confirm that the requirements specified in Section 5.1 are being met, although some additional testing is
+			specified for SARs in Section 5.2. The Assurance Activities identify the additional testing activities
+			associated with these components. The evaluator produces a test report documenting the plan for and results
+			of testing, as well as coverage arguments focused on the platform/<abbr linkend="TOE"/> combinations that are
+			claiming conformance to this PP.
             	    
                     <a-element type="D">
                         <title>The developer shall provide the <abbr linkend="TOE"/> for testing.
@@ -1049,17 +1254,42 @@
                     </a-element>
                     
                     <a-element type="E">
-                        <title>The evaluator shall confirm that the information provided meets all requirements for content and presentation of evidence.</title>
+                        <title>The evaluator shall confirm that the information provided meets all requirements for content and 
+				presentation of evidence.</title>
                     </a-element>
                     <a-element type="E">
-                        <title>The evaluator shall test a subset of the <abbr linkend="TSF"/> to confirm that the <abbr linkend="TSF"/> operates as specified.
+                        <title>The evaluator shall test a subset of the <abbr linkend="TSF"/> to confirm that the <abbr linkend="TSF"/> 
+				operates as specified.
                         </title>
                         <aactivity>
                             <Tests>
-                                The evaluator shall prepare a test plan and report documenting the testing aspects of the system. While it is not necessary to have one test case per test listed in an Assurance Activity, the evaluators must document in the test plan that each applicable testing requirement in the <abbr linkend="ST"/> is covered.<h:br></h:br><h:br></h:br>
-                                The Test Plan identifies the platforms to be tested, and for those platforms not included in the test plan but included in the <abbr linkend="ST"/>, the test plan provides a justification for not testing the platforms. This justification must address the differences between the tested platforms and the untested platforms, and make an argument that the differences do not affect the testing to be performed. It is not sufficient to merely assert that the differences have no affect; rationale must be provided. If all platforms claimed in the <abbr linkend="ST"/> are tested, then no rationale is necessary.<h:br></h:br><h:br></h:br>
-                                The test plan describes the composition of each platform to be tested, and any setup that is necessary beyond what is contained in the AGD documentation. It should be noted that the evaluators are expected to follow the AGD documentation for installation and setup of each platform either as part of a test or as a standard pre-test condition. This may include special test drivers or tools. For each driver or tool, an argument (not just an assertion) is provided that the driver or tool will not adversely affect the performance of the functionality by the <abbr linkend="TOE"/> and its platform. This also includes the configuration of cryptographic engines to be used. The cryptographic algorithms implemented by these engines are those specified by this PP and used by the cryptographic protocols being evaluated (IPsec, TLS/HTTPS, SSH).<h:br></h:br><h:br></h:br>
-                                The test plan identifies high-level test objectives as well as the test procedures to be followed to achieve those objectives. These procedures include expected results. The test report (which could just be an annotated version of the test plan) details the activities that took place when the test procedures were executed, and includes the actual results of the tests. This shall be a cumulative account, so if there was a test run that resulted in a failure; a fix installed; and then a successful re-run of the test, the report would show a “fail” and “pass” result (and the supporting details), and not just the “pass” result.
+                                The evaluator shall prepare a test plan and report documenting the testing aspects of the system. 
+				    While it is not necessary to have one test case per test listed in an Assurance Activity, the 
+				    evaluators must document in the test plan that each applicable testing requirement in the 
+				    <abbr linkend="ST"/> is covered.<h:br></h:br><h:br></h:br>
+                                The Test Plan identifies the platforms to be tested, and for those platforms not included in the test 
+				    plan but included in the <abbr linkend="ST"/>, the test plan provides a justification for not
+				    testing the platforms. This justification must address the differences between the tested
+				    platforms and the untested platforms, and make an argument that the differences do not affect the
+				    testing to be performed. It is not sufficient to merely assert that the differences have no affect;
+				    rationale must be provided. If all platforms claimed in the <abbr linkend="ST"/> are tested, then
+				    no rationale is necessary.<h:br></h:br><h:br></h:br>
+                                The test plan describes the composition of each platform to be tested, and any setup that is necessary
+				    beyond what is contained in the AGD documentation. It should be noted that the evaluators are
+				    expected to follow the AGD documentation for installation and setup of each platform either as
+				    part of a test or as a standard pre-test condition. This may include special test drivers or tools.
+				    For each driver or tool, an argument (not just an assertion) is provided that the driver or tool 
+				    will not adversely affect the performance of the functionality by the <abbr linkend="TOE"/> and
+				    its platform. This also includes the configuration of cryptographic engines to be used. The 
+				    cryptographic algorithms implemented by these engines are those specified by this PP and used by 
+				    the cryptographic protocols being evaluated (IPsec, TLS/HTTPS, SSH).<h:br></h:br><h:br></h:br>
+                                The test plan identifies high-level test objectives as well as the test procedures to be followed to
+				    achieve those objectives. These procedures include expected results. The test report (which could
+				    just be an annotated version of the test plan) details the activities that took place when the
+				    test procedures were executed, and includes the actual results of the tests. This shall be a 
+				    cumulative account, so if there was a test run that resulted in a failure; a fix installed; and
+				    then a successful re-run of the test, the report would show a “fail” and “pass” result (and the
+				    supporting details), and not just the “pass” result.
                             </Tests>
                          </aactivity>
                     </a-element>
@@ -1067,7 +1297,13 @@
             </subsection>
             
             <subsection id="ava" title="Class AVA: Vulnerability Assessment">
-                For the first generation of this Protection Profile, the evaluation lab is expected to survey open sources to learn what vulnerabilities have been discovered in these types of products. In most cases, these vulnerabilities will require sophistication beyond that of a basic attacker. Until penetration tools are created and uniformly distributed to the evaluation labs, evaluators will not be expected to test for these vulnerabilities in the <abbr linkend="TOE"/>. The labs will be expected to comment on the likelihood of these vulnerabilities given the documentation provided by the vendor. This information will be used in the development of penetration testing tools and for the development of future PPs.
+                For the first generation of this Protection Profile, the evaluation lab is expected to survey open sources to learn
+		    what vulnerabilities have been discovered in these types of products. In most cases, these vulnerabilities will
+		    require sophistication beyond that of a basic attacker. Until penetration tools are created and uniformly 
+		    distributed to the evaluation labs, evaluators will not be expected to test for these vulnerabilities in the 
+		    <abbr linkend="TOE"/>. The labs will be expected to comment on the likelihood of these vulnerabilities given the
+		    documentation provided by the vendor. This information will be used in the development of penetration testing 
+		    tools and for the development of future PPs.
 
 		<!-- AVA_VAN.1 -->
 		<a-component id="AVA_VAN.1" name="Vulnerability survey">
@@ -1083,14 +1319,30 @@
                     </a-element>
                     
                     <a-element type="E">
-                        <title>The evaluator shall confirm that the information provided meets all requirements for content and presentation of evidence.</title>
+                        <title>The evaluator shall confirm that the information provided meets all requirements for content and
+				presentation of evidence.</title>
                     </a-element>
                     <a-element type="E">
-                        <title>The evaluator shall perform a search of public domain sources to identify potential vulnerabilities in the <abbr linkend="TOE"/>.</title>
+                        <title>The evaluator shall perform a search of public domain sources to identify potential vulnerabilities in
+				the <abbr linkend="TOE"/>.</title>
                     </a-element>
                     <a-element type="E">
-                        <title>The evaluator shall conduct penetration testing, based on the identified potential vulnerabilities, to determine that the <abbr linkend="TOE"/> is resistant to attacks performed by an attacker possessing Basic attack potential.</title>
-                        <aactivity>As with ATE_IND the evaluator shall generate a report to document their findings with respect to this requirement. This report could physically be part of the overall test report mentioned in ATE_IND, or a separate document. The evaluator performs a search of public information to determine the vulnerabilities that have been found in virtualization in general, as well as those that pertain to the particular <abbr linkend="TOE"/>. The evaluator documents the sources consulted and the vulnerabilities found in the report. For each vulnerability found, the evaluator either provides a rationale with respect to its non-applicability or the evaluator formulates a test (using the guidelines provided in ATE_IND) to confirm the vulnerability, if suitable. Suitability is determined by assessing the attack vector needed to take advantage of the vulnerability. For example, if the vulnerability can be detected by pressing a key combination on boot-up, a test would be suitable at the assurance level of this PP. If exploiting the vulnerability requires expert skills and an electron microscope, for instance, then a test would not be suitable and an appropriate justification would be formulated.</aactivity>
+                        <title>The evaluator shall conduct penetration testing, based on the identified potential vulnerabilities, to
+				determine that the <abbr linkend="TOE"/> is resistant to attacks performed by an attacker possessing
+				Basic attack potential.</title>
+                        <aactivity>As with ATE_IND the evaluator shall generate a report to document their findings with respect to
+				this requirement. This report could physically be part of the overall test report mentioned in ATE_IND,
+				or a separate document. The evaluator performs a search of public information to determine the
+				vulnerabilities that have been found in virtualization in general, as well as those that pertain to
+				the particular <abbr linkend="TOE"/>. The evaluator documents the sources consulted and the
+				vulnerabilities found in the report. For each vulnerability found, the evaluator either provides a
+				rationale with respect to its non-applicability or the evaluator formulates a test (using the
+				guidelines provided in ATE_IND) to confirm the vulnerability, if suitable. Suitability is determined
+				by assessing the attack vector needed to take advantage of the vulnerability. For example, if the
+				vulnerability can be detected by pressing a key combination on boot-up, a test would be suitable at
+				the assurance level of this PP. If exploiting the vulnerability requires expert skills and an electron
+				microscope, for instance, then a test would not be suitable and an appropriate justification would be
+				formulated.</aactivity>
                     </a-element>
                 </a-component>
             </subsection>
@@ -1103,7 +1355,9 @@
         <h:br></h:br><h:br></h:br>
 
         See <ctr-ref refid="audit-table">: Auditable Events</ctr-ref> for more information.<h:br/><h:br/>
-        Depending on the specific requirements selected by the <abbr linkend="ST"/> author, the <abbr linkend="ST"/>/<abbr linkend="TOE"/> should include the appropriate auditable events from the table below in the <abbr linkend="ST"/> as part of the FAU_GEN.1 claim.<h:br></h:br><h:br></h:br>
+        Depending on the specific requirements selected by the <abbr linkend="ST"/> author, the 
+	    <abbr linkend="ST"/>/<abbr linkend="TOE"/> should include the appropriate auditable events from the table below in
+	    the <abbr linkend="ST"/> as part of the FAU_GEN.1 claim.<h:br></h:br><h:br></h:br>
 	    
         <audit-events table="optional"/><h:br/>
         <ctr id="audit-table" ctr-type="Table">: Auditable Events</ctr>
@@ -1133,7 +1387,8 @@
     <appendix id="objective" title="Objective Requirements">
       
         <h:b>Auditable Events</h:b>
-        Depending on the specific objective SFRs that are claimed by the <abbr linkend="ST"/>/<abbr linkend="TOE"/>, the <abbr linkend="ST"/> author shall
+        Depending on the specific objective SFRs that are claimed by the <abbr linkend="ST"/>/<abbr linkend="TOE"/>, the
+	    <abbr linkend="ST"/> author shall
 	include the appropriate auditable events listed below in the claims made for FAU_GEN.1.<h:br></h:br><h:br></h:br>
 
         See <ctr-ref refid="audit-table">: Auditable Events</ctr-ref> for more information.<h:br/><h:br/>
@@ -1148,17 +1403,37 @@
     <!-- Annex D: Entropy Documentation and Assessment -->
     <appendix id="ent" title="Entropy Documentation and Assessment">
         <section id="design" title="Design Description">
-            Documentation shall include the design of the entropy source as a whole, including the interaction of all entropy source components. It will describe the operation of the entropy source to include how it works, how entropy is produced, and how unprocessed (raw) data can be obtained from within the entropy source for testing purposes. The documentation should walk through the entropy source design indicating where the random comes from, where it is passed next, any post-processing of the raw outputs (hash, XOR, etc.), if/where it is stored, and finally, how it is output from the entropy source. Any conditions placed on the process (e.g., blocking) should also be described in the entropy source design. Diagrams and examples are encouraged.<h:br></h:br><h:br></h:br>
-            This design must also include a description of the content of the security boundary of the entropy source and a description of how the security boundary ensures that an adversary outside the boundary cannot affect the entropy rate.
+            Documentation shall include the design of the entropy source as a whole, including the interaction of all entropy source 
+		components. It will describe the operation of the entropy source to include how it works, how entropy is produced, and
+		how unprocessed (raw) data can be obtained from within the entropy source for testing purposes. The documentation 
+		should walk through the entropy source design indicating where the random comes from, where it is passed next, any
+		post-processing of the raw outputs (hash, XOR, etc.), if/where it is stored, and finally, how it is output from the 
+		entropy source. Any conditions placed on the process (e.g., blocking) should also be described in the entropy source
+		design. Diagrams and examples are encouraged.<h:br></h:br><h:br></h:br>
+            This design must also include a description of the content of the security boundary of the entropy source and a 
+		description of how the security boundary ensures that an adversary outside the boundary cannot affect the entropy 
+		rate.
         </section>
         <section id="justification" title="Entropy Justification">
-            There should be a technical argument for where the unpredictability in the source comes from and why there is confidence in the entropy source exhibiting probabilistic behavior (an explanation of the probability distribution and justification for that distribution given the particular source is one way to describe this). This argument will include a description of the expected entropy rate and explain how you ensure that sufficient entropy is going into the <abbr linkend="TOE"/> randomizer seeding process. This discussion will be part of a justification for why the entropy source can be relied upon to produce bits with entropy.
+            There should be a technical argument for where the unpredictability in the source comes from and why there is confidence
+		in the entropy source exhibiting probabilistic behavior (an explanation of the probability distribution and
+		justification for that distribution given the particular source is one way to describe this). This argument will
+		include a description of the expected entropy rate and explain how you ensure that sufficient entropy is going into
+		the <abbr linkend="TOE"/> randomizer seeding process. This discussion will be part of a justification for why the
+		entropy source can be relied upon to produce bits with entropy.
         </section>
         <section id="oc" title="Operating Conditions">
-            Documentation will also include the range of operating conditions under which the entropy source is expected to generate random data. It will clearly describe the measures that have been taken in the system design to ensure the entropy source continues to operate under those conditions. Similarly, documentation shall describe the conditions under which the entropy source is known to malfunction or become inconsistent. Methods used to detect failure or degradation of the source shall be included.
+            Documentation will also include the range of operating conditions under which the entropy source is expected to generate 
+		random data. It will clearly describe the measures that have been taken in the system design to ensure the entropy
+		source continues to operate under those conditions. Similarly, documentation shall describe the conditions under which
+		the entropy source is known to malfunction or become inconsistent. Methods used to detect failure or degradation of
+		the source shall be included.
         </section>
         <section id="health" title="Health Testing">
-            More specifically, all entropy source health tests and their rationale will be documented. This will include a description of the health tests, the rate and conditions under which each health test is performed (e.g., at startup, continuously, or on-demand), the expected results for each health test, and rationale indicating why each test is believed to be appropriate for detecting one or more failures in the entropy source.
+            More specifically, all entropy source health tests and their rationale will be documented. This will include a description
+		of the health tests, the rate and conditions under which each health test is performed (e.g., at startup, continuously,
+		or on-demand), the expected results for each health test, and rationale indicating why each test is believed to be
+		appropriate for detecting one or more failures in the entropy source.
         </section>
     </appendix>
 
@@ -1280,7 +1555,8 @@
         <h:tr>
           <h:td rowspan="2" valign="top">PP-Specified Functionality</h:td>
           <h:td valign="top">Same</h:td>
-          <h:td valign="top">If the differences between Models affect only non-PP-specified functionality, then the Models are equivalent. </h:td>
+          <h:td valign="top">If the differences between Models affect only non-PP-specified functionality, then the Models are
+		  equivalent. </h:td>
         </h:tr>
         <h:tr>
           <h:td valign="top">Different</h:td>
@@ -1288,7 +1564,8 @@
             then the Models are not equivalent and must be tested separately. It is necessary to test only the functionality
             affected by the software differences. If only differences are tested, then the differences must be enumerated,
             and for each difference the Vendor must provide an explanation of why each difference does or does not affect
-            PP-specified functionality. If the Product Models are fully tested separately, then there is no need to document the differences.
+            PP-specified functionality. If the Product Models are fully tested separately, then there is no need to document the 
+		  differences.
           </h:td>
         </h:tr>
       </h:table>
@@ -1313,7 +1590,8 @@
         <h:tr valign="top">
           <h:td valign="top">Product Models</h:td>
           <h:td valign="top">Different</h:td>
-          <h:td valign="top">Versions of different Product Models are not equivalent unless the Models are equivalent as defined in Section 3.</h:td>
+          <h:td valign="top">Versions of different Product Models are not equivalent unless the Models are equivalent as defined in
+		  Section 3.</h:td>
         </h:tr>
         <h:tr>
           <h:td rowspan="2" valign="top">PP-Specified Functionality</h:td>
