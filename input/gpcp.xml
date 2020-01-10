@@ -99,7 +99,9 @@
 		controllers, storage devices, boot firmware, runtime firmware, and a power supply.<h:br></h:br><h:br></h:br>
 	    A general-purpose computing platform is a hardware device that it capable of hosting more than one different operating 
 		system, virtualization system, or bare-metal application. Typical platform implementations include servers, PC 
-		clients, laptops, and tablets.
+		clients, laptops, and tablets.<h:br></h:br><h:br></h:br>
+	    The PP does not apply to mobile devices (as defined by the Protection Profile for Mobile Device Fundamentals), network devices
+		(as defined by the Collaborative Protection Profile for Network Devices), or to IoT devices.
 		
             <subsection id="toeboundary" title="TOE Boundary">
 		The TOE is composed of hardware and firmware capable of running general-purpose software. This typically includes motherboards,
@@ -113,7 +115,7 @@
             </subsection>
 
             <subsection id="scopecert" title="Scope of Certification">
-                Successful evaluation of a Generl-Purpose Comuting Platform against this profile does not constitute or imply successful 
+                Successful evaluation of a General-Purpose Computing Platform against this profile does not constitute or imply successful 
 		    evaluation of any tenant software no matter how tightly integrated with the platform.
             </subsection>
 		
@@ -126,10 +128,16 @@
         <section id="usecases" title="Use Cases">
             This PP defines use cases for server platforms and client platforms:<h:br></h:br><h:br></h:br>
 
-		Server Use Case:<h:br></h:br><h:br></h:br>
-		
-		Client Use Case: <h:br></h:br><h:br></h:br>
-		
+		<h:b>Client Use Case:</h:b> <h:br></h:br><h:br></h:br>
+		Client platforms are computers that run an operating system or virtualization system on behalf of a user that is 
+		generally physically present at the machine. Examples include tablet computers, laptops, and desktop computers or
+		workstations.<h:br></h:br><h:br></h:br>
+
+		<h:b>Server Use Case:</h:b> <h:br></h:br><h:br></h:br>
+		Servers platforms are computers that run an operating system or virtualization system in a data center or server 
+		environment on behalf of one or more users, or an enterprise. Generally, there is no user physically present at the 
+		machine. Server platforms often include integrated management subsystems.<h:br></h:br><h:br></h:br>
+
         </section>
     </chapter>
     
@@ -312,11 +320,23 @@
                                 <h:li>Start-up and shutdown of audit functions</h:li>
                                 <h:li>All administrative actions</h:li>
                                 <h:li>[Specifically defined auditable events in Table 1]</h:li>
-                                <h:li><selectables>
-                                    <selectable>additional information defined in Table 2</selectable>
-                                    <selectable>additional information defined in Table 3</selectable>
-                                    <selectable>additional information defined in Table 4</selectable>
-                                    <selectable>additional information defined in in Table 5</selectable>
+
+				<!-- Problem here is that audit events can be:
+					-- included in the ST if the SFR is included (this is default behavior)
+					   --  in the table depending on what section the SFR is
+					-- But then it can also have a separate selection dependency. 
+	
+				     Real problem is how do we display the audit events in a separate table if they are separately
+					selectable--as is the case with Virt Table 3 or MDF Table 4.
+				  	Because this is a nice way to present them and then have a selection in FAU_GEN.
+					But this need not be the way. E.g. inclusion could depend on 
+				 -->
+				    
+				    <h:li><selectables>
+                                    <selectable>audit events defined in Table 2 for included optional SFRs</selectable>
+                                    <selectable>audit events defined in Table 3</selectable>
+                                    <selectable>audit events defined in Table 4 for included selection-based SFRs</selectable>
+                                    <selectable>audit events defined in Table 5 for included objective SFRs</selectable>
                                     <selectable>no other information</selectable>
                                 </selectables></h:li>
                             </h:ol>
