@@ -313,32 +313,24 @@
             <subsection id="fau" title="Security Audit (FAU)">
 		    
   	        <!-- FAU_GEN.1 -->
+		<!-- Re-worded the assignments in the requirement to make them apply only to SFRs that are included in the ST.
+		     It makes no sense for them to be selections. Same for both elements. -->
                 <f-component id="fau_gen.1" name="Audit Data Generation">
                     <f-element>
                         <title>The <abbr linkend="TSF"/> shall be able to generate an audit record of the following auditable events:
                             <h:ol type="a">
                                 <h:li>Start-up and shutdown of audit functions</h:li>
                                 <h:li>All administrative actions</h:li>
-                                <h:li>[Specifically defined auditable events in Table 1]</h:li>
-
-				<!-- Problem here is that audit events can be:
-					- included in the ST if the SFR is included (this is default behavior)
-					   -  in the table depending on what section the SFR is
-					- But then it can also have a separate selection dependency. 
-	
-				     Real problem is how do we display the audit events in a separate table if they are separately
-					selectable, as is the case with Virt Table 3 or MDF Table 4.
-				  	Because this is a nice way to present them and then have a selection in FAU_GEN.
-					But this need not be the way. E.g. inclusion could depend on 
-				 -->
-				    
-				    <h:li><selectables>
-                                    <selectable>audit events defined in Table 2 for included optional SFRs</selectable>
-                                    <selectable>audit events defined in Table 3</selectable>
-                                    <selectable>audit events defined in Table 4 for included selection-based SFRs</selectable>
-                                    <selectable>audit events defined in Table 5 for included objective SFRs</selectable>
+                                <h:li>[all audit events listed in Table 1]</h:li>
+                                <h:li>[audit events listed in Table 2 for optional SFRs included in the ST]</h:li>
+                                <h:li>[audit events listed in Table 4 for selection-based SFRs included in the ST]</h:li>
+                                <h:li>[audit events listed in Table 5 for objective SFRs included in the ST]</h:li>
+			    
+				<h:li><selectables>
+                                    <selectable>all audit events listed in Table 3</selectable>
                                     <selectable>no other information</selectable>
                                 </selectables></h:li>
+				    
                             </h:ol>
                         </title>
                     </f-element>
@@ -350,14 +342,16 @@
                                 <h:li>Subject and object identity (if applicable)</h:li>
                                 <h:li>The outcome (success or failure) of the event</h:li>
                                 <h:li>[Additional information defined in Table 1]</h:li>
-                                <h:li><selectables>
-                                    <selectable>additional information defined in Table 2</selectable>
-                                    <selectable>additional information defined in Table 3</selectable>
-                                    <selectable>additional information defined in Table 4</selectable>
-                                    <selectable>additional information defined in in Table 5</selectable>
+                                <h:li>[Additional information defined in Table 2 for optional SFRs included in the ST]</h:li>
+                                <h:li>[Additional information defined in Table 4 for selection-based SFRs included in the ST]</h:li>
+                                <h:li>[Additional information defined in Table 5 for objective SFRs included in the ST]</h:li>
+
+				<h:li><selectables>
+                                    <selectable>Additional information defined in Table 3</selectable>
                                     <selectable>no other information</selectable>
                                 </selectables></h:li>
-                            </h:ol>
+
+			    </h:ol>
                         </title>
                         <note role="application">
                             The <abbr linkend="ST"/> author can include other auditable events directly in Table 1; they are not limited to
@@ -414,6 +408,8 @@
                             </Tests>   
                         </aactivity>
                     </f-element>
+		    <!-- This is a "None" audit event. It probably needs to be here in case we have a PP with no audit events.
+		         But a default audit event could be <audit-events />  -->
 		    <audit-event>
                         <table known="mandatory"/>
 			<description>None.</description>
