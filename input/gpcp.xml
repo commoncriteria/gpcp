@@ -321,14 +321,14 @@
                             <h:ol type="a">
                                 <h:li>Start-up and shutdown of audit functions</h:li>
                                 <h:li>All administrative actions</h:li>
-                                <h:li>[all audit events listed in Table 1]</h:li>
-                                <h:li>[audit events listed in Table 2 for optional SFRs included in the ST]</h:li>
-                                <h:li>[audit events listed in Table 4 for selection-based SFRs included in the ST]</h:li>
-                                <h:li>[audit events listed in Table 5 for objective SFRs included in the ST]</h:li>
+                                <h:li>[all auditable events defined in Table 1]</h:li>
+                                <h:li>[auditable events defined in Table 2 for included SFRs]</h:li>
+                                <h:li>[auditable events defined in Table 4 for included SFRs]</h:li>
+                                <h:li>[auditable events defined in Table 5 for included SFRs]</h:li>
 			    
 				<h:li><selectables>
-                                    <selectable>all audit events listed in Table 3</selectable>
-                                    <selectable>no other information</selectable>
+                                    <selectable>all auditable events defined in Table 3</selectable>
+                                    <selectable>no other auditable events</selectable>
                                 </selectables></h:li>
 				    
                             </h:ol>
@@ -342,9 +342,9 @@
                                 <h:li>Subject and object identity (if applicable)</h:li>
                                 <h:li>The outcome (success or failure) of the event</h:li>
                                 <h:li>[Additional information defined in Table 1]</h:li>
-                                <h:li>[Additional information defined in Table 2 for optional SFRs included in the ST]</h:li>
-                                <h:li>[Additional information defined in Table 4 for selection-based SFRs included in the ST]</h:li>
-                                <h:li>[Additional information defined in Table 5 for objective SFRs included in the ST]</h:li>
+                                <h:li>[Additional information defined in Table 2 for included SFRs]</h:li>
+                                <h:li>[Additional information defined in Table 4 for included SFRs]</h:li>
+                                <h:li>[Additional information defined in Table 5 for included SFRs]</h:li>
 
 				<h:li><selectables>
                                     <selectable>Additional information defined in Table 3</selectable>
@@ -751,12 +751,33 @@
                             </Tests>
                         </aactivity>
                     </f-element>
+
 		    <audit-event>
                         <table known="mandatory"/>
-			<description>None.</description>
-                        <add-info>None.</add-info>
+			<description>Initiation of software update.</description>
+                        <add-info>Version of update.</add-info>
 		    </audit-event>
-                </f-component>
+
+		    <!-- What if we want these two to be selectable as a group? -->
+		    <audit-event>
+                        <table name="table2"/>
+			<description><selectables>
+				<selectable>Initiation of policy update</selectable>
+				<selectable>None.</selectable></selectables>
+			</description>
+                        <add-info><selectables>
+				<selectable>Policy name</selectable>
+				<selectable>None.</selectable></selectables>
+			</add-info>
+		    </audit-event>
+
+		    <audit-event>
+                        <table known="table2"/>
+			<description>Initiation of Application Installation or Update.</description>
+                        <add-info>Name and version of application.</add-info>
+		    </audit-event>
+
+		</f-component>
             </subsection>
             
             <subsection id="fpt" title="Protection of the TSF">
