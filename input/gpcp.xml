@@ -8,11 +8,11 @@
   <!-- <inline-comment color='blue' linebreak='yes'> Hello World QQQQ </inline-comment> -->
   <PPReference>
     <ReferenceTable>
-      <PPTitle>Protection Profile for General Purpose Computing Platforms</PPTitle>
+      <PPTitle>Protection Profile for General-Purpose Computing Platforms</PPTitle>
       <PPVersion>1.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
       <PPPubDate>2020-11-09</PPPubDate>
-      <Keywords>General Purpose Computing Platforms</Keywords>
+      <Keywords>General-Purpose Computing Platforms</Keywords>
     </ReferenceTable>
   </PPReference>
 
@@ -28,53 +28,30 @@
     <entry>
       <version>1.0</version>
       <date>2020-11-09</date>
-      <subject>Release - first version released</subject>
+      <subject>Initial release</subject>
     </entry>
   </RevisionHistory>
 
-  <chapter title="Introduction" id="int">
+
+<!-- 1.0 Introduction   -->
+<!--    1.1 Overview   -->
+<chapter title="Introduction" id="int">
     <section title="Overview" id="ppoverview">
-
       
-      The scope of this Protection Profile (PP) is to
-      describe the security functionality of QQQQ products in terms of <citeCC/>
-      and to define functional and assurance requirements for such products.
-      <choice>An operating system is software that manages computer hardware and software
-      resources, and provides common services for application programs. The hardware
-      it manages may be <selectables><selectable id="physical">physical</selectable>
-		                             <selectable id="virtual">virtual</selectable><selectable id="imgi">imaginary</selectable></selectables>.</choice>
-
-      <h:p> This is going to show some tests:
- 	<h:ul>
-	  <h:li> Terms with abbrs like ASLR, or API, should be found a linked automatically.</h:li>
-          <h:li> And components can be refered to by their name: FQQ_QQQ.1 </h:li>
-          <h:li> And so can requirements: FQQ_QQQ.1.1 or by their unique identifier: <linkref linkend="a-unique-id"/></h:li>
- 
-   	  <h:li> Or you can stop them <no-link>ASLR</no-link> </h:li>
-          <h:li> This is how you do a picture: 
-                <figure entity="images/niaplogo.png" title="Niap's Logo " id="fig-logo"/> </h:li>
-          <h:li> And this is how you reference it: <figref ref-id="fig-logo"/></h:li>
-          <h:li> This is how you do an equation with an arbitrary counter:  
-              <equation><value>x=\frac{-b\pm\sqrt{b^{2}-4ac}}{2a}</value>
-                        <label><ctr id="quadeq" ctr-type='eq-'/></label></equation>
-
-</h:li> 
-          <h:li> And this is how you reference it: <ctr-ref ref-id="quadeq"/> </h:li>
-          <h:li> <h:div><depends on="selection"><ref-id>aaa</ref-id></depends> 
-                    Some text </h:div> </h:li> 
-  		<h:li> <h:div><depends on="implements"><ref-id>a-feature-id</ref-id></depends> 
-                    Someting dependent on a feature</h:div> </h:li> 
-           
-          <h:li> And here's the audit event table for mandatory requirements. <h:br/>
-           
-          <audit-table table="mandatory"/>
-<!-- 
-                 <audit-events table="mandatory"/> -->
-          </h:li>
-        </h:ul>
-        And this is another sentence (or fragment). I added this sentence and deleted the next one. 
-      </h:p>
+      	The scope of this Protection Profile (PP) is to
+      	describe the security functionality of General-Purpose Computing Platforms in terms of <citeCC/>
+      	and to define functional and assurance requirements for such products.<h:br/><h:br/>
+  
+	A platform is a collection of hardware devices and firmware that provide the functional capabilities and services needed by tenant
+	software. Such components typically include embedded controllers, trusted platform modules, management controllers, host processors, network
+	interface controllers, graphics processing units, flash memory, storage controllers, storage devices, boot firmware, runtime firmware,
+	human interface devices, and a power supply.
     </section>
+	
+<!--   1.2 Terms   -->
+<!--     1.2.1 Common Criteria Terms (auto-generated) -->
+<!--     1.2.2 Technical Terms -->
+	  
     <tech-terms>
       <term abbr='AES' full="Advanced Encryption Standard"/>
       <term abbr='API' full="Application Programming Interface"/>
@@ -213,32 +190,78 @@
 	  <term abbr="VM" full="Virtual Machine">Blah Blah Blah</term>
       <term abbr='XCCDF' full="eXtensible Configuration Checklist Description Format"/>
       <term abbr='XOR' full="Exclusive Or"/>
-    </tech-terms>    
+    </tech-terms>   
+	
+<!--   1.3 Compliant Targets of Evaluation -->
     <section title="Compliant Targets of Evaluation" id="TOEdescription">
+  	A general-purpose computing platform is a hardware device that it capable
+	of hosting more than one different operating system, virtualization system,
+	or bare-metal application. Typical platform implementations include--but are not
+	limited to--servers, PC clients, laptops, and tablets.<h:br/><h:br/>
+
+<!--      1.3.1 TOE Boundary -->	    
       <subsection title="TOE Boundary" id="TOEboundary">
         <figure entity="images/Toe.png" title="General TOE " id="toe"/>
+	TODO: Add a description of what is in the TOE ahd what is outside. 
+	E.g. Tenant software is outside. Is everything else inside?
       </subsection>
+
+<!--     1.3.2 TOE Platform -->
       <subsection title="TOE Platform" id="TOEplatform">
-      </subsection>
+	      TODO: Since this is a platform, is there a platform? What is the Operational Environment?
+	      Probably look at NDcPP for clues.
+      </subsection>    
     </section>
-    <section title="Use Cases" id="usecases">Requirements in this Protection Profile are designed to
-      address the security problems in at least the following use cases. These use cases are intentionally
-      very broad, as many specific use cases exist for an operating system. These use cases may also
-      overlap with one another.  An operating system's functionality may even be effectively extended by
-      privileged applications installed onto it.  However, these are out of scope of this PP. <usecases>
-        <usecase title="End User Devices" id="enduserdevices">
-          <description>
-          </description>
+	
+<!--   1.4 Use Cases  -->
+    <section title="Use Cases" id="usecases">
+   	TODO: Requirements in this Protection Profile are designed to
+      	address the security problems in at least the following use cases. 
+	    
+	<usecases>
+		<usecase title="Server-Class Platform?" id="enduserdevices">
+          	<description>
+          	</description>
         </usecase>
+	<usecases>
+		<usecase title="Client User Platform?" id="enduserdevices">
+          	<description>
+          	</description>
+        </usecase>
+	<usecases>
+		<usecase title="Client Headless Platform?" id="enduserdevices">
+          	<description>
+          	</description>
+        </usecase>
+		
       </usecases>
     </section>
   </chapter>
 
+<!-- 2.0 Conformance Claims (this is all boilerplate) -->
   <chapter title="Conformance Claims" id="cclaims"/>
-  <chapter title="Security Problem Description" id="spd">The security problem is described in terms
-    of the threats that the OS is expected to address, assumptions about the
-    operational environment, and any organizational security policies that the OS
-    is expected to enforce.
+	
+<!-- 3.0 Security Problem Description -->
+  <chapter title="Security Problem Description" id="spd">
+	The security problem is described in terms
+    	of the threats that the OS is expected to address, assumptions about the
+    	operational environment, and any organizational security policies that the OS
+    	is expected to enforce.<h:br/><h:br/>
+  	The platform has three major security responsibilities:
+	<h:ul>
+		<h:li>ensuring the integrity of its own firmware</h:li>
+		<h:li>ensuring that it is resilient</h:li>
+		<h:li>providing security services to tenant workloads</h:li>
+	</h:ul><h:br/><h:br/>
+	These responsibilities manifest as protecting: 
+	<h:ul>
+		<h:li>Platform firmware</h:li>
+		<h:li>Platform firmware updates</h:li>
+		<h:li>Tenant initialization (boot)</h:li>
+	</h:ul>
+
+<!--    3.1 Threats -->
+	  
     <section title="Threats" id="threats">
       <threats>
         <threat name="T.NETWORK_ATTACK">
@@ -304,6 +327,8 @@
         </threat>
       </threats>
     </section>
+	  
+<!--   3.2 Assumptions  -->
     <section title="Assumptions" id="assumptions">
       <assumptions>
         <assumption name="A.PLATFORM">
@@ -334,7 +359,9 @@
         </assumption>
       </assumptions>
     </section>
-<!--    <section title="Organizational Security Policies" id="OSPs">
+	  
+<!--   3.3 Organizational Security Policies -->
+    <section title="Organizational Security Policies" id="OSPs">
       <OSPs>
         <OSP id="P.ENTERPRISE">
           <description>If the OS is bound to a directory or management server, the configuration of
@@ -347,9 +374,13 @@
           </objective-refer>
         </OSP>
       </OSPs>
-    </section> -->
+    </section>
   </chapter>
+	    
+<!-- 4.0 Security Objectives -->
   <chapter title="Security Objectives" id="obj">
+	  
+<!--   4.1 Security Objectives for the TOE -->
     <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
       <SOs>
         <SO name="O.ACCOUNTABILITY">
@@ -396,19 +427,13 @@
             <addressed-by>FTA_TAB.1</addressed-by><rationale>For reasons </rationale>
             <addressed-by>FTP_TRP.1</addressed-by><rationale>For reasons </rationale>
         </SO>
-	<!-- <SO id="O.RESILIENCE"> -->
-	<!--   <description>  -->
-	<!--     To address the issue of exploitation in the event of software vulnerabilities,  -->
-	<!--     conformant OSs employ industry-standard exploitation countermeasures. -->
-	<!--   </description> -->
-	<!-- </SO> -->
         <SO name="O.PROTECTED_STORAGE">
           <description>
-To address the issue of loss of confidentiality of credentials in the event of
-loss of physical control of the storage medium, conformant OSes
-provide data-at-rest protection for credentials.
-Conformant OSes also provide access controls which allow users to keep their files private from other
-users of the same system.
+		To address the issue of loss of confidentiality of credentials in the event of
+		loss of physical control of the storage medium, conformant OSes
+		provide data-at-rest protection for credentials.
+		Conformant OSes also provide access controls which allow users to keep their files private from other
+		users of the same system.
           </description>
           <addressed-by>FCS_STO_EXT.1, FCS_RBG_EXT.1, FCS_COP.1/ENCRYPT, FDP_ACF_EXT.1</addressed-by>
           <rationale>Rationale for a big chunk</rationale>
@@ -427,6 +452,8 @@ users of the same system.
         </SO>
       </SOs>
     </section>
+	  
+<!--   4.2 Security Objectives for the Operational Environment -->
     <section title="Security Objectives for the Operational Environment"
       id="SecurityObjectivesTOEorEnvironment">The following security objectives for the operational
       environment assist the OS in correctly providing its security functionality.
@@ -448,11 +475,14 @@ users of the same system.
             security policy. </description>
         </SOE>
       </SOEs></section>
+	  
+<!--   4.3 Security Objectives Rationale -->
     <section title="Security Objectives Rationale" id="SOR">
       <!-- This section is populated by boilerplates.xsl in transforms. -->
       </section>
   </chapter>
 
+<!-- 5.0 Security Requirements -->
   <chapter title="Security Requirements" id="req">This chapter describes the security requirements
     which have to be fulfilled by the OS. Those requirements comprise functional
     components from Part 2 and assurance components from Part 3 of <cite linkend="bibCC"/>. The
@@ -472,138 +502,22 @@ users of the same system.
         "(1)")</h:li>
     </h:ul>
 
+<!--   5.1 Security Functional Requirements -->
     <section title="Security Functional Requirements" id="SFRs">
-      <subsection title="QQQQ" id="QQQQ">
-         <f-component cc-id="fqq_qqq.1" name="QQQQQ">
-          <f-element id="a-unique-id">
-            <title> The TOE shall do either <selectables><selectable id="aaa">this</selectable><selectable>that</selectable></selectables>. 
-            </title>
-            <note role="application"></note>
-            <aactivity>
-              <TSS>
-Activities assoiated with the TSS.
-              </TSS>
-               <Guidance>
-Activities assoiated with guidance
-              </Guidance>
-             <Tests>
-Activities assoiated with the Tests. 
-                 <h:div><depends on="selection"><ref-id>virtual</ref-id></depends>
-					 Great tests for something virtual.
-				 </h:div>
-                 <h:div><depends on="selection"><ref-id>physical</ref-id><ref-id>imgi</ref-id></depends>
-					 Great tests for something tangible or in my mind.
-				 </h:div>
+	    
+<!--     5.1.1 Audible Events for Mandatory SFRs  -->
+    	<subsection id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
+           <audit-table table="mandatory">
+  	     <h:br/><h:b><ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr></h:b>
+	   </audit-table>
+         </subsection>
 
-              </Tests>
-	    </aactivity>
-          </f-element>
- 	  <audit-event>
-                <audit-event-descr>
-	On failure of audit data capture due to lack of disk space or pre-defined limit.
-                </audit-event-descr>
-                <audit-event-info>None.</audit-event-info>
-          </audit-event>
-  	  <audit-event type="optional" table="turtle">
-                <audit-event-descr>
-	On number of turtles in the area.
-                </audit-event-descr>
-          </audit-event>
-        </f-component>
-        <f-component cc-id="fqq_qqq.3" name="BQQQQQ" status="objective">
-          <f-element>
-            <title> The TOE shall do <assignable>guidance on what things should be assignable </assignable>. </title>
-            <note role="application">Notes. Notes. Notes.</note>
-            <aactivity>
-              <Guidance>
-Activities assoiated with guidance
-              </Guidance>
-	    </aactivity>
-          </f-element>
-        </f-component>
-        <f-component cc-id="fqq_qqq.2" name="TQQQQQ" status="optional">
-          <f-element>
-            <title> The TOE shall do soemthing.</title>
-            <note role="application"></note>
-            <aactivity>
-              <TSS>
-Activities assoiated with the TSS.
-              </TSS>
-	    </aactivity>
-          </f-element>
-        </f-component>
-         <f-component cc-id="fqq_qqq.4" name="UQQQQQ" status="sel-based">
-          <selection-depends req="a-unique-id" ids="aaa"/>
-          <f-element>
-            <title> The TOE shall do something great.</title>
-            <note role="application"></note>
-            <aactivity>
-              <TSS>
-Activities assoiated with the TSS.
-              </TSS>
-	    </aactivity>
-          </f-element>
-        </f-component>
-        <f-component cc-id="fqq_qqq.6" name="WQQQQQ" status="feat-based">
-          <depends on="implements"><ref-id>a-feature-id</ref-id></depends>
-          <f-element>
-            <title> The TOE shall do something with regards to some implementation.</title>
-            <note role="application"></note>
-            <aactivity>
-              <TSS>
-Activities assoiated with the TSS.
-              </TSS>
-	    </aactivity>
-          </f-element>
-        </f-component>
-      </subsection>
+<!--     5.1.2 Security Audit (FAU) --> 
 
-      <subsection title="Security Management (FMT)" id="fmt-2">
-          <f-component cc-id="fmt_smf.1" iteration="HOST" name="Specification of Management Functions (EDR Management of Host Agent)">
-            <f-element>
-              <title>The EDR shall be capable of performing the following functions that control
-                behavior of the Host Agent:<h:br/>
-                <management-function-set default="O">
-                  <manager cid="a">Administrator</manager>
-                  <manager cid="s">SOC Analyst</manager>
-                  <manager cid="u">Read-Only User</manager>
-                  <management-function>
-                    <text>Configure the time frame for sending Host Agent data to the EDR
-                        <assignable>list of configurable time frames</assignable>
-                    </text>
-                    <M ref="a"/><O ref="s"/><_ ref="u"/>
-                  </management-function>
-                  <management-function>
-                    <text>Assign a label or tag to categorize or group individual endpoint systems </text>
-                    <M ref="a"/><O ref="s"/><_ ref="u"/>
-                  </management-function>
-                </management-function-set>
-              </title>
-              <note role="application">This requirement captures all the configuration
-                functionality the EDR provides the administrator to configure the
-                EDR Host Agents. <h:br/><h:br/>
-              Chart legend: X = Mandatory, O = Optional, - = N/A</note>
-              <aactivity>
-                <TSS>The evaluator shall verify the ST contains a list of roles and what functions they can perform.  
-                  The evaluator shall verify the list matches the chart in the requirement.</TSS>
-                <Guidance>The evaluator shall review the operational guidance to verify that the EDR has
-                documented capabilities to perform the management functions.</Guidance>
-                <Tests>The evaluator shall perform the below tests:
-                 <testlist>
-                   <test>The evaluator shall modify the time frame for sending Host Agent data to the EDR
-                   and verify that an affected Host Agent is sending data at the intended interval.</test>
-                   <test>The evaluator shall tag or categorize a group of individual endpoint systems and
-                   verify that the tag or categorization persists within the EDR management dashboard for
-                   other users.</test>
-                   <test>The evaluator shall attempt each function with each role and verify access conforms with the chart in the requirement.</test>
-                 </testlist>
-                </Tests>
-              </aactivity>
-            </f-element>
-          </f-component>
-         </subsection> 
-          <!-- FAU_GEN.1 -->
             <subsection id="fau" title="Security Audit (FAU)">
+		    
+		<!-- FAU_GEN.1 -->
+
                 <f-component cc-id="fau_gen.1" name="Audit Data Generation">
                     <f-element>
                         <title>The TSF shall be able to generate an audit record of the following auditable events:
@@ -695,19 +609,11 @@ Activities assoiated with the TSS.
 			See <ctr-ref ref-id="man-table">: Auditable Events</ctr-ref> for more information.
 
 			<!-- AUDIT TABLE for MANDATORY SFRs. This needs to move outside the EAs -->
-<!-- Bob killed this 
-                       <ctr id="man-table" ctr-type="Table">: Auditable Events</ctr>
-                        <audit-events table="mandatory"/><h:br/>
-			    
-                        <audit-events table="turtle">
-                            <ctr id="turtle-table" ctr-type="Table">: Auditable Events</ctr>
-			    <depends on="selection"><ref-id>table2</ref-id></depends>
-			</audit-events><h:br/>
--->
 
                             </Tests>   
                         </aactivity>
                     </f-element>
+  	 	<audit-event />
                 </f-component>
                 
                 <!-- FAU_SAR.1 -->
@@ -879,7 +785,57 @@ Activities assoiated with the TSS.
 		    </audit-event>
 	        </f-component>
             </subsection>
+
+	    
+      <subsection title="Security Management (FMT)" id="fmt-2">
+          <f-component cc-id="fmt_smf.1" iteration="HOST" name="Specification of Management Functions (EDR Management of Host Agent)">
+            <f-element>
+              <title>The EDR shall be capable of performing the following functions that control
+                behavior of the Host Agent:<h:br/>
+                <management-function-set default="O">
+                  <manager cid="a">Administrator</manager>
+                  <manager cid="s">SOC Analyst</manager>
+                  <manager cid="u">Read-Only User</manager>
+                  <management-function>
+                    <text>Configure the time frame for sending Host Agent data to the EDR
+                        <assignable>list of configurable time frames</assignable>
+                    </text>
+                    <M ref="a"/><O ref="s"/><_ ref="u"/>
+                  </management-function>
+                  <management-function>
+                    <text>Assign a label or tag to categorize or group individual endpoint systems </text>
+                    <M ref="a"/><O ref="s"/><_ ref="u"/>
+                  </management-function>
+                </management-function-set>
+              </title>
+              <note role="application">This requirement captures all the configuration
+                functionality the EDR provides the administrator to configure the
+                EDR Host Agents. <h:br/><h:br/>
+              Chart legend: X = Mandatory, O = Optional, - = N/A</note>
+              <aactivity>
+                <TSS>The evaluator shall verify the ST contains a list of roles and what functions they can perform.  
+                  The evaluator shall verify the list matches the chart in the requirement.</TSS>
+                <Guidance>The evaluator shall review the operational guidance to verify that the EDR has
+                documented capabilities to perform the management functions.</Guidance>
+                <Tests>The evaluator shall perform the below tests:
+                 <testlist>
+                   <test>The evaluator shall modify the time frame for sending Host Agent data to the EDR
+                   and verify that an affected Host Agent is sending data at the intended interval.</test>
+                   <test>The evaluator shall tag or categorize a group of individual endpoint systems and
+                   verify that the tag or categorization persists within the EDR management dashboard for
+                   other users.</test>
+                   <test>The evaluator shall attempt each function with each role and verify access conforms with the chart in the requirement.</test>
+                 </testlist>
+                </Tests>
+              </aactivity>
+            </f-element>
+          </f-component>
+         </subsection> 
+	    
     </section>
+	  
+<!--   5.2 Security Assurance Requirements -->
+	  
     <section title="Security Assurance Requirements" id="SARs">
       The Security Objectives in 
       <secref linkend="obj"/> were constructed to address threats identified in
@@ -976,6 +932,7 @@ Activities assoiated with the TSS.
 	  
         </a-component>
       </subsection>
+	    
       <subsection id="agd" title="Class AGD: Guidance Documentation">The guidance documents will be
         provided with the ST. Guidance must include a description of how the IT
         personnel verifies that the Operational Environment can fulfill its role for the security
@@ -1245,6 +1202,7 @@ Activities assoiated with the TSS.
 	  
         </a-component>
       </subsection>
+	    
       <subsection id="ate" title="Class ATE: Tests">Testing is specified for functional aspects of
         the system as well as aspects that take advantage of design or implementation weaknesses.
         The former is done through the ATE_IND family, while the latter is through the AVA_VAN
@@ -1372,6 +1330,12 @@ Activities assoiated with the TSS.
     </section>
   </chapter>
 
+	    
+<!-- Appendix A and B are auto-generated. -->
+<!-- Appendix A includes optional, objective, and implementation-dependent requirements -->
+<!-- Appendix B is selection-based requirements -->
+	    
+	    
   <!-- 
        Do NOT put SFRs in this section. All SFR belong up above in SFR section. 
        To make an SFR optional tag it above as status="optional" 
@@ -1572,6 +1536,11 @@ Activities assoiated with the TSS.
       indicating why each test is believed to be appropriate for detecting one or more failures in
       the entropy source. </section>
   </appendix>
+	    
+  <appendix title="Equivalancy Guidelines" id="appendix-equiv">
+	  TODO
+  </appendix>
+
 
   <appendix title="References" id="biblio">
     <bibliography>
