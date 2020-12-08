@@ -206,11 +206,11 @@
 	E.g. Tenant software is outside. Is everything else inside?
       </subsection>
 
-<!--     1.3.2 TOE Platform -->
-      <subsection title="TOE Platform" id="TOEplatform">
-	      TODO: Since this is a platform, is there a platform? What is the Operational Environment?
-	      Probably look at NDcPP for clues.
-      </subsection>    
+<!--     1.3.2 TOE Operational Environment -->
+      <subsection title="TOE Operational Environment" id="TOEopenv">
+	      The TOE has no platform since it is itself a platform. But the TOE does have an operational environment. The OE consists of the 
+	      physical environment in which the TOE operates (e.g., data center, vehicle, outdoors) and any networks to which the TOE may be connected.
+      </subsection>
     </section>
 	
 <!--   1.4 Use Cases  -->
@@ -387,30 +387,29 @@
 <!--   3.2 Assumptions  -->
     <section title="Assumptions" id="assumptions">
       <assumptions>
-        <assumption name="A.PLATFORM">
-          <description> The OS relies upon a trustworthy computing platform for
-            its execution. This underlying platform is out of scope of this PP. </description>
-          <objective-refer ref="OE.PLATFORM">
-            <rationale> The operational environment objective OE.PLATFORM is realized through
-              A.PLATFORM. </rationale>
+        <assumption name="A.PHYSICAL_PROTECTION">
+          <description>The TOE is assumed to be physically protected in its operational environment and
+		  thus is not subject to physical attacks that could compromise its security or its ability
+		  to support the security of tenant workloads. </description>
+          <objective-refer ref="OE.PHYSICAL_PROTECTION">
+            <rationale> The operational environment objective OE.PHYSICAL_PROTECTION is realized through
+              A.PHYSICAL_PROTECTION. </rationale>
           </objective-refer>
         </assumption>
-        <assumption name="A.PROPER_USER">
-          <description> The user of the OS is not willfully negligent or hostile, and uses the
-            software in compliance with the applied enterprise security policy. At the same time,
-            malicious software could act <h:i>as</h:i> the user, so requirements which
-            confine malicious subjects are still in scope.</description>
-          <objective-refer ref="OE.PROPER_USER">
-            <rationale>The operational environment objective OE.PROPER_USER is realized through
-              A.PROPER_USER.</rationale>
+        <assumption name="A.ROT_INTEGRITY">
+          <description>The TOE includes one or more Roots of Trust composed of TOE firmware, hardware, and
+		  pre-installed credentials. Roots of Trust are assumed to be free of malicious capabilities as
+		  their integrity cannot be verified. </description>
+          <objective-refer ref="OE.ROT_INTEGRITY">
+            <rationale>The operational environment objective OE.SUPPLY_CHAIN is realized through
+              A.ROT_INTEGRITY.</rationale>
           </objective-refer>
         </assumption>
-        <assumption name="A.PROPER_ADMIN">
-          <description> The administrator of the OS is not careless, willfully negligent or hostile,
-            and administers the OS within compliance of the applied enterprise security policy. </description>
-          <objective-refer ref="OE.PROPER_ADMIN">
-            <rationale>The operational environment objective OE.PROPER_ADMIN is realized through
-              A.PROPER_ADMIN.</rationale>
+        <assumption name="A.TRUSTED_ADMIN">
+          <description> The administrator of the TOE is not careless, willfully negligent or hostile.</description>
+          <objective-refer ref="OE.TRUSTED_ADMIN">
+            <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
+              A.TRUSTED_ADMIN.</rationale>
           </objective-refer>
         </assumption>
       </assumptions>
