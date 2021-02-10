@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
 
-<PP xmlns="https://niap-ccevs.org/cc/v1" name="Protection Profile for General Purpose Computing Platforms"
+<PP xmlns="https://niap-ccevs.org/cc/v1"
+    xmlns:sec="https://niap-ccevs.org/cc/v1/section" name="Protection Profile for General-Purpose Computing Platforms"
     xmlns:h="http://www.w3.org/1999/xhtml" boilerplate='yes'>
 
   <!-- <inline-comment color='green'> Hello World QQQQ </inline-comment> -->
@@ -35,7 +36,7 @@
 
 <!-- 1.0 Introduction   -->
 <!--    1.1 Overview   -->
-<chapter title="Introduction" id="int">
+<section title="Introduction" id="int">
     <section title="Overview" id="ppoverview">
       
       	The scope of this Protection Profile (PP) is to
@@ -200,17 +201,17 @@
 	limited to--servers, PC clients, laptops, and tablets.<h:br/><h:br/>
 
 <!--      1.3.1 TOE Boundary -->	    
-      <subsection title="TOE Boundary" id="TOEboundary">
+      <section title="TOE Boundary" id="TOEboundary">
         <figure entity="images/Toe.png" title="General TOE " id="toe"/>
 	TODO: Add a description of what is in the TOE ahd what is outside. 
 	E.g. Tenant software is outside. Is everything else inside?
-      </subsection>
+      </section>
 
 <!--     1.3.2 TOE Operational Environment -->
-      <subsection title="TOE Operational Environment" id="TOEopenv">
+      <section title="TOE Operational Environment" id="TOEopenv">
 	      The TOE has no platform since it is itself a platform. But the TOE does have an operational environment. The OE consists of the 
 	      physical environment in which the TOE operates (e.g., data center, vehicle, outdoors) and any networks to which the TOE may be connected.
-      </subsection>
+      </section>
     </section>
 	
 <!--   1.4 Use Cases  -->
@@ -269,16 +270,16 @@
 	        </usecase>	
       </usecases>
     </section>
-  </chapter>
+  </section>
 
 <!-- 2.0 Conformance Claims (this is all boilerplate) -->
-  <chapter title="Conformance Claims" id="cclaims"/>
+  <section title="Conformance Claims" id="cclaims"/>
 	
 <!-- 3.0 Security Problem Description -->
-  <chapter title="Security Problem Description" id="spd">
+  <section title="Security Problem Description" id="spd">
 	The security problem is described in terms
-    	of the threats that the OS is expected to address, assumptions about the
-    	operational environment, and any organizational security policies that the OS
+    	of the threats that the GPCP is expected to address, assumptions about the
+    	operational environment, and any organizational security policies that the GPCP
     	is expected to enforce.<h:br/><h:br/>
   	The platform has three major security responsibilities:
 	<h:ul>
@@ -430,10 +431,10 @@
         </OSP>
       </OSPs>
     </section>
-  </chapter>
+  </section>
 	    
 <!-- 4.0 Security Objectives -->
-  <chapter title="Security Objectives" id="obj">
+  <section title="Security Objectives" id="obj">
 	  
 <!--   4.1 Security Objectives for the TOE -->
     <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
@@ -535,357 +536,158 @@
     <section title="Security Objectives Rationale" id="SOR">
       <!-- This section is populated by boilerplates.xsl in transforms. -->
       </section>
-  </chapter>
+  </section>
 
 <!-- 5.0 Security Requirements -->
-  <chapter title="Security Requirements" id="req">This chapter describes the security requirements
-    which have to be fulfilled by the OS. Those requirements comprise functional
-    components from Part 2 and assurance components from Part 3 of <cite linkend="bibCC"/>. The
-    following notations are used: <h:ul>
-      <h:li>
-        <h:b>Refinement</h:b> operation (denoted by <h:b>bold text</h:b>): is used to add details to a
-        requirement, and thus further restricts a requirement.</h:li>
-      <h:li>
-        <h:b>Selection</h:b> (denoted by <h:i>italicized text</h:i>): is used to select one or more options
-        provided by the [CC] in stating a requirement.</h:li>
-      <h:li>
-        <h:b>Assignment</h:b> operation (denoted by <h:span class="assignable-content">italicized text</h:span>): is used to assign a
-        specific value to an unspecified parameter, such as the length of a password. Showing the
-        value in square brackets indicates assignment.</h:li>
-      <h:li>
-        <h:b>Iteration</h:b> operation: are identified with a number inside parentheses (e.g.
-        "(1)")</h:li>
-    </h:ul>
-
+  <section title="Security Requirements" id="req">
+	  
 <!--   5.1 Security Functional Requirements -->
     <section title="Security Functional Requirements" id="SFRs">
+
+	<section id="fcs" title="Cryptographic Support (FCS)">
+		
+		<f-component cc-id="fcs_cop.1" iteration="SIGVER" title="Cryptographic Operation (Signature Verification)">
+			<f-element id="fcs-cop-1e1-sigver">
+				<title><refinement>Refinement:</refinement> The TSF shall perform 
+					<refinement>cryptographic signature verification for a platform
+					firmware update image</refinement>
+					in accordance with a 
+					<selectables linebreak="yes">
+						<selectable>Digital Signature Algorithm (DSA) with a key 
+							size (modulus) of 2048 bits or greater</selectable>
+						<selectable>RSA Digital Signature Algorithm (rDSA) with a key
+							size (modulus) of 2048 bits or greater</selectable>
+						<selectable>Elliptic Curve Digital Signature Algorithm 
+							(ECDSA) with a key size of 256 bits or greater</selectable>
+					</selectables> that meets the following:<h:p/><refinement>
+					Case: Digital Signature Algorithm<h:br/><h:ul>
+					<h:li>[FIPS PUB 186-3, "Digital Signature Standard"]</h:li></h:ul><h:br/>
+					Case: RSA Digital Signature Algorithm<h:br/><h:ul>
+					<h:li>[FIPS PUB 186-3, "Digital Signature Standard"]</h:li></h:ul><h:br/>
+					Case: Elliptic Curve Digital Signature Algorithm<h:br/><h:ul>
+					<h:li>[FIPS PUB 186-3, "Digital Signature Standard"]</h:li>
+					<h:li>The TSF shall implement “NIST curves” 
+						<selectables>
+							<selectable>P-256</selectable>
+							<selectable>P-384</selectable>
+							<selectable>P-512</selectable>
+							<selectable>no other curves</selectable>
+						</selectables>(as defined in FIPS PUB 186-3, “Digital
+						Signature Standard”)</h:li></h:ul></refinement>
+				</title>
+				<note role="application">
+					The ST author should choose the algorithm implemented to perform digital signatures; if more 
+					than one algorithm is available, this requirement should be iterated to specify the functionality. For the algorithm
+					chosen, the ST author should make the appropriate assignments/selections to specify the parameters
+					that are implemented for that algorithm. In particular, if ECDSA is selected as one of the signature
+					algorithms, the key size specified must match the selection for the curve used in the algorithm.<h:p/>
+					34 For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the
+					base point. As the preferred approach for digital signatures, elliptic curves will be required after all the
+					necessary standards and other supporting information are fully established.
+				</note>
+				<aactivity>
+					<no-tests>Can be stolen from BIOS PP</no-tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+									 
+	</section>	 
 	    
-<!--     5.1.1 Audible Events for Mandatory SFRs  -->
-    	<subsection id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
-           <audit-table table="mandatory">
-  	     <h:br/><h:b><ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr></h:b>
-	   </audit-table>
-         </subsection>
+	<section id="fpt" title="Class: Protection of the TSF (FPT)">
 
-<!--     5.1.2 Security Audit (FAU) --> 
-
-            <subsection id="fau" title="Security Audit (FAU)">
-		    
-		<!-- FAU_GEN.1 -->
-
-                <f-component cc-id="fau_gen.1" name="Audit Data Generation">
-                    <f-element>
-                        <title>The TSF shall be able to generate an audit record of the following auditable events:
-                            <h:ol type="a">
-                                <h:li>Start-up and shutdown of audit functions</h:li>
-                                <h:li>All administrative actions</h:li>
-                                <h:li>[Specifically defined auditable events in Table 1]</h:li>
-                                <h:li><selectables>
-
-				<!-- It makes no sense to have a selection for the various audit tables. The entries in those 
-				tables are automatically included in the ST is the associated SFR is included. The audit events are effectively
-				part of their corresponding SFRs. Selecting them here has no effect. 
-				-->
-                                    <selectable id="table2">additional information defined in Table 2</selectable>
-				    <selectable>additional information defined in Table 3</selectable>
-                                    <selectable>additional information defined in Table 4</selectable>
-                                    <selectable>additional information defined in in Table 5</selectable>
-                                    <selectable>no other information</selectable>
-
-				 </selectables></h:li>
-                            </h:ol>
-                        </title>
-                    </f-element>
-                    <f-element>
-                        <title>The TSF shall record within each audit record at least the following information:
-                            <h:ol type="a">
-                                <h:li>Date and time of the event</h:li>
-                                <h:li>Type of event</h:li>
-                                <h:li>Subject and object identity (if applicable)</h:li>
-                                <h:li>The outcome (success or failure) of the event</h:li>
-                                <h:li>[Additional information defined in Table 1]</h:li>
-                                <h:li><selectables>
-<!-- XXX Table 2 is Optional.
-        Depending on the specific optional SFRs from Annex A that are claimed in the ST, the ST author shall
-	include the appropriate auditable events from Table 2 for FAU_GEN.1.<h:br></h:br><h:br></h:br>
-        Depending on the specific selection-based SFRs from Annex B that are claimed in the ST, the ST author shall
-	include the appropriate auditable events from Table 4 for FAU_GEN.1.<h:br></h:br><h:br></h:br>
-        Depending on the specific objective SFRs from Annex C that are claimed in the ST, the ST author shall
-	include the appropriate auditable events from Table 4 for FAU_GEN.1.<h:br></h:br><h:br></h:br>
-	
-	FIA_UIA_EXT.1 is a mandatory requirement that has both mandatory and optional audit events. I think
- 	I should handle this with a selection within the audit event table.
- 
--->
-                                    <selectable>additional information defined in Table 2</selectable>
-                                    <selectable>additional information defined in Table 3</selectable>
-                                    <selectable>additional information defined in Table 4</selectable>
-                                    <selectable>additional information defined in in Table 5</selectable>
-                                    <selectable>no other information</selectable>
-                                </selectables></h:li>
-                            </h:ol>
-                        </title>
-                        <note role="application">
-                            The ST author can include other auditable events directly in Table 1; they are not limited to the list presented. The ST author should update the table in FAU_GEN.1.2 with any additional information generated. “Subject identity” in FAU_GEN.1.2 could be a user id or an identifier specifying a VM, for example.<h:br></h:br><h:br></h:br>
-                            If ‘additional information defined in Table 3’ is selected, it is acceptable to include individual
-                            entries from Table 3 without including the entirety of Table 3.  Appropriate entries from Tables 2, 4,
-                            and 5 should be included in the ST if the associated SFRs and selections are included.<h:br></h:br><h:br></h:br>
-                            The Table 1 entry for FDP_VNC_EXT.1 refers to configuration settings that attach VMs to virtualized network components. Changes to these configurations can be made during VM execution or when VMs are not running. Audit records must be generated for either case.<h:br></h:br><h:br></h:br>
-                            The intent of the audit requirement for FDP_PPR_EXT.1 is to log that the VM is connected to a physical device (when the device becomes part of the VM’s hardware view), not to log every time that the device is accessed. Generally, this is only once at VM startup. However, some devices can be connected and disconnected during operation (e.g., virtual USB devices such as CD-ROMs). All such connection/disconnection events must be logged.
-                        </note>
+	<f-component cc-id="fpt_rot_ext.1" name="Platform Integrity Root">
+		<f-element id="fpt-rot-ext-1e1">
+			<title>The integrity of platform firmware shall be rooted in 
+				<selectables linebreak="yes">
+					<selectable>code or data written to immutable memory or storage</selectable>
+					<selectable>credentials held in immutable storage or protected off-platform</selectable>
+					<selectable>a separate management controller that is itself rooted in a mechanism that meets this requirement</selectable>
+					<selectable>integrity measurements held securely in an on-platform dedicated security component</selectable>
+					<selectable>integrity measurements help securely by an off-platform third-party</selectable>
+					<selectable>a combination of the above</selectable>
+				</selectables>.
+			</title>
+			<note role="application">
+				The integrity of the first platform firmware that executes must be 
+				established by one or more of the selections in FPT_ROT_EXT.1.1. The 
+				integrity of subsequently executed platform firmware must be traceable back
+				to this root or to some other root. This SFR should be iterated for
+				additional roots (for example, a management controller or firmware executed 
+				from an add-in card).<h:p/>
+				The integrity of subsequently executed platform firmware must be
+				integrity-checked using a mechanism specified in FXX_XXX_EXT.1.<h:p/>
+				For example, firmware written to immutable storage cannot be modified, so 
+				its integrity is ensured. The integrity of the immutable storage can be
+				extended to firmware that is not written to immutable storage through 
+				cryptographic functions implemented in the immutable storage and using
+				immutable credentials.<h:p/>
+				If a platform does not have immutable storage, firmware integrity can be 
+				established through cryptographic means implemented in code that has had 
+				its integrity ensured by a NIST SP800-147/B-conformant update mechanism and 
+				platform protections as defined in FXX_XXX_EXT.1.<h:p/>
+				Alternately, integrity can be established through secure storage of
+				known-good measurements in an on-platform dedicated security component, 
+				such as a Trusted Platform Module (TPM), or through a trusted measurement
+				certification process involving an off-platform third-party, such as those 
+				defined in NIST SP 800-155.<h:p/>
+			</note>
 			<aactivity>
-                            <TSS>
-                                The evaluator shall check the TSS and ensure that it lists all of the auditable events 
-                                and provides a format for audit records. Each audit record format type shall be covered, along with a 
-                                brief description of each field. The evaluator shall check to make sure that every audit event type 
-                                mandated by the PP is described in the TSS.<h:br></h:br><h:br></h:br>
-                            </TSS>
-                            <Guidance>
-                                The evaluator shall also make a determination of the administrative actions that are relevant in the 
-                                context of this PP. The evaluator shall examine the administrative guide and make a determination of which 
-                                administrative commands, including subcommands, scripts, and configuration files, are related to the 
-                                configuration (including enabling or disabling) of the mechanisms implemented in the TOE 
-                                that are necessary to enforce the requirements specified in the PP. The evaluator shall document the 
-                                methodology or approach taken while determining which actions in the administrative guide are 
-                                security-relevant with respect to this PP.<h:br></h:br><h:br></h:br>
-                            </Guidance>
-                            <Tests>
-                                The evaluator shall test the TOE’s ability to correctly generate audit records by 
-                                having the TOE generate audit records for the events listed and administrative actions. 
-                                For administrative actions, the evaluator shall test that each action determined by the evaluator above to 
-                                be security relevant in the context of this PP is auditable. When verifying the test results, the 
-                                evaluator shall ensure the audit records generated during testing match the format specified in the 
-                                administrative guide, and that the fields in each audit record have the proper entries.<h:br></h:br>
-                                <h:br></h:br>
-                                Note that the testing here can be accomplished in conjunction with the testing of the security mechanisms 
-                                directly.<h:br></h:br>
-				    
-				    							
-			See <ctr-ref ref-id="man-table">: Auditable Events</ctr-ref> for more information.
+				<TSS>
+					QQQQ.
+				</TSS>
+				<Guidance>
+					QQQQ.
+				</Guidance>
+				<Tests>
+					QQQQ.
+				</Tests>
+			</aactivity>
+		</f-element>
+		<audit-event/>
+	</f-component>
 
-			<!-- AUDIT TABLE for MANDATORY SFRs. This needs to move outside the EAs -->
-
-                            </Tests>   
-                        </aactivity>
-                    </f-element>
-  	 	<audit-event />
-                </f-component>
-                
-                <!-- FAU_SAR.1 -->
-                <f-component cc-id="fau_sar.1" name="Audit Review">
-                    <f-element>
-                        <title>The TSF shall provide [administrators] with the capability to read [all information] from the audit records.
-                        </title>
-                    </f-element>
-                    <f-element>
-                        <title>The TSF shall provide the audit records in a manner suitable for the user to interpret the information.
-                        </title>
-                        <aactivity>
-                            <Guidance>
-                                The evaluator shall review the operational guidance for the procedure on how to review the audit 
-                                records.
-                            </Guidance>
-                            <Tests>
-                                The evaluator shall verify that the audit records provide all of the information specified in 
-                                FAU_GEN.1 and that this information is suitable for human interpretation. The assurance 
-                                activity for this requirement is performed in conjunction with the assurance activity for 
-                                FAU_GEN.1.
-                            </Tests>
-                        </aactivity>
-                    </f-element>
-                </f-component>
-                
-                <!-- FAU_STG.1 -->
-                <f-component cc-id="fau_stg.1" name="Protected Audit Trail Storage">
-                    <f-element>
-                        <title>The TSF shall protect the stored audit records in the audit trail from unauthorized deletion.
-                        </title>
-                    </f-element>
-                    <f-element>
-                        <title>The TSF shall be able to [prevent] modifications to the stored audit records in the audit trail.
-                        </title>
-                        <note role="application">The assurance activity for this SFR is not intended to imply that the TOE must support an administrator’s ability to designate individual audit records for deletion. That level of granularity is not required.</note>
-                        <aactivity>The evaluator shall ensure that the TSS describes how the audit records are protected from unauthorized modification or deletion. The evaluator shall ensure that the TSS describes the conditions that must be met for authorized deletion of audit records. The evaluator shall perform the following tests:<h:br></h:br><h:br></h:br>
-                            <Tests>
-                                <testlist>
-                                    <test>The evaluator shall access the audit trail as an unauthorized Administrator and attempt 
-                                        to modify and delete the audit records. The evaluator shall verify that these attempts 
-                                        fail.
-                                    </test>
-                                    <test>The evaluator shall access the audit trail as an authorized Administrator and attempt 
-                                        to delete the audit records. The evaluator shall verify that these attempts succeed. 
-                                        The evaluator shall verify that only the records authorized for deletion are deleted.
-                                    </test>
-                                </testlist>
-                            </Tests>
-                        </aactivity>
-                    </f-element>
-					
-                </f-component>
-
-                <!-- FAU_STG_EXT.1 -->
-                <f-component cc-id="fau_stg_ext.1" name="Off-Loading of Audit Data">
-                    <f-element>
-                        <title>The TSF shall be able to transmit the generated audit data to an external IT entity using a trusted channel as specified in FTP_ITC_EXT.1.
-                        </title>
-                        <aactivity>
-                            Protocols used for implementing the trusted channel must be selected in FTP_ITC_EXT.1.
-                            <TSS>
-                                The evaluator shall examine the TSS to ensure it describes the means by which 
-                                the audit data are transferred to the external audit server, and how the trusted channel is 
-                                provided. 
-                            </TSS>
-                            <Guidance>
-                                The evaluator shall examine the operational guidance to ensure it describes how to establish the trusted channel to the audit server, as well as describe any requirements 
-                                on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
-                                as configuration of the TOE needed to communicate with the audit server.
-                            </Guidance>
-                            <Tests>
-                                Testing of the trusted channel mechanism is to be performed as specified in the assurance 
-                                activities for FTP_ITC_EXT.1. <h:br></h:br><h:br></h:br>
-                                The evaluator shall perform the following test for this requirement:<h:br></h:br><h:br></h:br>
-                                <testlist>
-                                    <test>The evaluator shall establish a session between the TOE and the audit server according to the configuration guidance provided. The evaluator shall then examine the traffic that passes between the audit server and the TOE during several activities of the evaluator’s choice designed to generate audit data to be transferred to the audit server. The evaluator shall observe that these data are not able to be viewed in the clear during this transfer, and that they are successfully received by the audit server. The evaluator shall record the particular software (name, version) used on the audit server during testing.</test>
-                                </testlist>
-                            </Tests>
-                        </aactivity>
-                    </f-element>
-                    <f-element>
-                        <title>The TSF shall
-                            <selectables>
-                                <selectable>drop new audit data</selectable>
-                                <selectable>overwrite previous audit records according to the following rule:
-                                    <assignable>rule for overwriting previous audit records</assignable></selectable>
-                                <selectable><assignable>other action</assignable></selectable>
-                            </selectables>
-                            when the local storage space for audit data is full.
-                        </title>
-                        <note role="application">An external log server, if available, might be used as alternative storage space in case the local storage space is full. An ‘other action’ could be defined in this case as ‘send the new audit data to an external IT entity’.</note>
-                        <aactivity>
-                            <TSS>
-                                The evaluator shall examine the TSS to ensure it describes what happens when the 
-                                local audit data store is full. 
-                            </TSS>
-                            <Guidance>
-                                The evaluator shall also examine the operational guidance to 
-                                determine that it describes the relationship between the local audit data and the audit data that 
-                                are sent to the audit log server. For example, when an audit event is generated, is it simultaneously
-                                sent to the external server and the local store, or is the local store used as a buffer and “cleared”
-                                periodically by sending the data to the audit server.
-                            </Guidance>
-                            <Tests>
-                                The evaluator shall perform operations that generate audit data and verify that this data is 
-                                stored locally. The evaluator shall perform operations that generate audit data until the local 
-                                storage space is exceeded and verifies that the TOE complies with the behavior 
-                                defined in the ST for FAU_STG_EXT.1.2.
-                            </Tests>
-                        </aactivity>
-                    </f-element>
-		    <audit-event table="mandatory">
-                        <audit-event-descr>
-				Failure of audit data capture due to lack of disk space or pre-defined limit.
-                                On failure of logging function, capture record of failure and record upon restart of logging function.
-					</audit-event-descr>
-		    </audit-event>
-                </f-component>
- 					
-                
-                <!-- FAU_ARP.1 -->
-                <f-component cc-id="fau_arp.1" name="Security Audit Automatic Response"  status="optional">
-                    <f-element>
-                        <title>The TSF shall take <assignable>list of actions</assignable> upon detection of a potential security violation.
-                        </title>
-                        <note role="application">In certain cases, it may be useful for Virtualization Systems to perform automated responses to certain security events. An example may include halting a VM which has taken some action to violate a key system security policy. This may be especially useful with headless endpoints when there is no human user in the loop.<h:br></h:br><h:br></h:br>
-                            The potential security violation mentioned in FAU_ARP.1.1 refers to FAU_SAA.1. </note>
-                        <aactivity>
-                            <Tests>
-                                The evaluator shall generate a potential security violation as defined in FAU_SAA.1 and verify 
-                                that each action in the assignment in FAU_ARP.1.1 is performed by the TSF as a 
-                                result. The evaluator shall perform this action for each security violation that is defined in 
-                                FAU_SAA.1.
-                            </Tests>
-                        </aactivity>
-                    </f-element>
-		    <audit-event table="optional">
-                        <audit-event-descr>Actions taken due to potential security violations.</audit-event-descr>
-		    </audit-event>
-	        </f-component>
-                
-                <!-- FAU_SAA.1 -->
-                <f-component cc-id="fau_saa.1" name="Security Audit Analysis"  status="optional">
-                    <f-element>
-                        <title>The TSF shall be able to apply a set of rules in monitoring the audited events and based upon these rules indicate a potential violation of the enforcement of the SFRs.
-                        </title>
-                    </f-element>
-                    <f-element>
-                        <title>The TSF shall enforce the following rules for monitoring audited events:
-                            <h:ol type="a">
-                                <h:li>accumulation or combination of <assignable>subset of defined auditable events</assignable> known to indicate a potential security violation</h:li>
-                                <h:li><assignable>any other rules</assignable></h:li>
-                            </h:ol>
-                        </title>
-                        <note role="application">The potential security violation described in FAU_SAA.1 can be used as a trigger for automated responses as defined in FAU_ARP.1.</note>
-                        <aactivity>
-                            <Tests>
-                                The evaluator shall cause each combination of auditable events defined in FAU_SAA.1.2 to occur,
-                                and verify that a potential security violation is indicated by the TSF.
-                            </Tests>
-                        </aactivity>
-                    </f-element>
-		    <audit-event table="optional">
-                        <audit-event-descr>
-				Enabling and disabling of any of the analysis mechanisms
-                    		Automated responses performed by the TSF.
-			</audit-event-descr>
-		    </audit-event>
-	        </f-component>
-            </subsection>
-
-	    
-      <subsection title="Security Management (FMT)" id="fmt-2">
-          <f-component cc-id="fmt_smf.1" iteration="HOST" name="Specification of Management Functions (EDR Management of Host Agent)">
-            <f-element>
-              <title>The EDR shall be capable of performing the following functions that control
-                behavior of the Host Agent:<h:br/>
-                <management-function-set default="O">
-                  <manager cid="a">Administrator</manager>
-                  <manager cid="s">SOC Analyst</manager>
-                  <manager cid="u">Read-Only User</manager>
-                  <management-function>
-                    <text>Configure the time frame for sending Host Agent data to the EDR
-                        <assignable>list of configurable time frames</assignable>
-                    </text>
-                    <M ref="a"/><O ref="s"/><_ ref="u"/>
-                  </management-function>
-                  <management-function>
-                    <text>Assign a label or tag to categorize or group individual endpoint systems </text>
-                    <M ref="a"/><O ref="s"/><_ ref="u"/>
-                  </management-function>
-                </management-function-set>
-              </title>
-              <note role="application">This requirement captures all the configuration
-                functionality the EDR provides the administrator to configure the
-                EDR Host Agents. <h:br/><h:br/>
-              Chart legend: X = Mandatory, O = Optional, - = N/A</note>
-              <aactivity>
-                <TSS>The evaluator shall verify the ST contains a list of roles and what functions they can perform.  
-                  The evaluator shall verify the list matches the chart in the requirement.</TSS>
-                <Guidance>The evaluator shall review the operational guidance to verify that the EDR has
-                documented capabilities to perform the management functions.</Guidance>
-                <Tests>The evaluator shall perform the below tests:
-                 <testlist>
-                   <test>The evaluator shall modify the time frame for sending Host Agent data to the EDR
-                   and verify that an affected Host Agent is sending data at the intended interval.</test>
-                   <test>The evaluator shall tag or categorize a group of individual endpoint systems and
-                   verify that the tag or categorization persists within the EDR management dashboard for
-                   other users.</test>
-                   <test>The evaluator shall attempt each function with each role and verify access conforms with the chart in the requirement.</test>
-                 </testlist>
-                </Tests>
-              </aactivity>
-            </f-element>
-          </f-component>
-         </subsection> 
+	<f-component cc-id="fpt_ppf_ext.1" title="Protection of Platform Firmware">
+		<f-element id="fpt-ppf-ext-1e1">
+			<title>The TSF shall allow modification of platform firmware
+				only through the update mechanisms described in FPT_TUD_EXT.1.
+			</title>
+			<aactivity>
+				<no-tests>QQQQ</not-tests>
+			</aactivity>
+		</f-element>
+		<audit-event/>
+	</f-component>
+		
+	<f-component cc-id="fpt_tud_ext.1" title="TOE Firmware Update">
+		<f-element id="fpt-tud-ext-1e1">
+			<title>The TSF shall provide an firmware update mechanism as described in
+				FPT_TUD_EXT.2, and [selection: a secure local firmware update mechanism
+				described in FPT_TUD_EXT.3, no other mechanism] to update TOE firmware.
+			</title>
+			<aactivity>
+				<no-tests>QQQQ</not-tests>
+			</aactivity>
+		</f-element>
+		<f-element id="fpt-tud-ext-1e2">
+			<title>The TSF shall authenticate the source of any firmware update using the 
+				digital signature algorithm specified in FCS_COP.1/SIG using the key store 
+				that contains 
+				<selectables>
+					<selectable>the public key</selectable>
+					<selectable>hash value of the public key</selectable>
+				</selectables>.
+			</title>
+		</f-element>
+		<f-element id="fpt-tud-ext-1e3">
+			<title>The TSF shall allow installation of updates only if the digital
+				signature has been successfully verified as specified in FCS_COP.1/SIG.
+			</title>
+		</f-element>
+		<audit-event/>
+	<f-component>
+		
+    </section>				
 	    
     </section>
 	  
