@@ -1,7 +1,7 @@
 Protection Profile or Extended Package for General Purpose Computing Platform
 ===============
 
-[![Build Status](https://travis-ci.com/commoncriteria/gpcp.svg?branch=master)](https://travis-ci.com/commoncriteria/gpcp)
+[![Build Status](https://travis-ci.com/commoncriteria/gpcp.svg?branch=master)](https://github.com/commoncriteria/gpcp/actions)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/gpcp.svg?maxAge=2592000)](https://github.com/commoncriteria/gpcp/issues) 
 ![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
@@ -13,8 +13,8 @@ A list of products that have passed evaluation against this Protection Profile c
 
 ## Draft Version
 
-* [Protection Profile for General-Purpose Computing Platforms](https://commoncriteria.github.io/pp/gpcp/gpcp-release.html) (html)
-* [Protection Profile for General-Purpose Computing Platforms](https://commoncriteria.github.io/pp/gpcp/gpcp-release.pdf) (pdf)
+* [Protection Profile for General-Purpose Computing Platforms](https://commoncriteria.github.io/gpcp/gpcp-release.html) (html)
+* [Protection Profile for General-Purpose Computing Platforms](https://commoncriteria.github.io/gpcp/gpcp-release.pdf) (pdf)
 
 ## Release Version
 * N/A - Not released yet
