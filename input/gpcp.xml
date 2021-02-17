@@ -868,7 +868,18 @@
 				update mechanism..." and include FPT_TUD_EXT.2 in the ST.
 			</note>
 			<aactivity>
-				<no-tests>QQQQ</no-tests>
+				<TSS>
+					If the ST author selects "make no provision for platform firmware update," then the 
+					evaluator shall examine the TSS to ensure that it explains all ways of modifying platform 
+					firmware in the absence of any provided mechanism. For example, breaking open the case
+					and prying a chip off the motherboard and then reprogramming the chip. The purpose of this
+					activity is to ensure that the TOE does not implement a local update mechanism that does not
+					meet the requirements of FPT_TUD_EXT.3.<h:p/>
+					This requirement is met if the platform implements no means for updating platform firmware
+					and the TSS describes a method for updating or replacing platform firmware that involves
+					potentially destroying or damaging the TOE or some of its components. (QQQQ: The point here is to
+					distinguish between secure local update and unauthorized physical update.
+				</TSS>
 			</aactivity>
 		</f-element>
 		<audit-event/>
