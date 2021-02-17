@@ -1,7 +1,7 @@
 Protection Profile or Extended Package for General Purpose Computing Platform
 ===============
 
-[![Build Status](https://travis-ci.com/commoncriteria/gpcp.svg?branch=master)](https://github.com/commoncriteria/gpcp/actions)
+![Build](https://github.com/commoncriteria/gpcp/workflows/Build/badge.svg)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/gpcp.svg?maxAge=2592000)](https://github.com/commoncriteria/gpcp/issues) 
 ![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
