@@ -548,7 +548,7 @@
 			<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing)-->
 			<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)">
                 <f-element id="fcs-cop-1e1-hash">
-                    <title>The TSF shall perform [cryptographic hashing] in accordance with a specified cryptographic algorithm
+                    <title>The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified cryptographic algorithm
                         <selectables>
                             <selectable id="sel-cop1-sha1">SHA-1</selectable>
                             <selectable id="sel-cop1-sha256">SHA-256</selectable>
@@ -585,11 +585,11 @@
                         <TSS>
                             The evaluator shall check that the association of the hash function with other TSF 
                             cryptographic functions (for example, the digital signature verification function) is documented 
-                            in the TSS.
+                            in the TSS.<h:p/>
                         </TSS>
                         <Guidance>
                             The evaluator checks the AGD documents to determine that any configuration that is required to 
-                            be done to configure the functionality for the required hash sizes is present. 
+                            be done to configure the functionality for the required hash sizes is present. <h:p/>
                         </Guidance>
                         <Tests>
 							<h:b><h:u>SHA-1 and SHA-2 Tests</h:u></h:b><h:br/>
@@ -623,14 +623,14 @@
                             <h:b>Selected Long Messages Test Bit-oriented Mode</h:b><h:br/>
                             The evaluators devise an input set consisting of m messages, where m is the block length
                             of the hash algorithm. The length of the ith message is 512 + 99*i, where
-                            1 &#2264; i &#2264; m <!--   1 = i = m -->. The message text shall be pseudo-randomly
+                            1 &le; i &le; m. The message text shall be pseudo-randomly
                             generated. The evaluators compute the message digest for each of the messages and ensure
                             that the correct result is produced when the messages are provided to the TSF.
                             <h:p/>
                             <h:b>Selected Long Messages Test Byte-oriented Mode</h:b><h:br/>
                             The evaluators devise an input set consisting of m/8 messages,
                             where m is the block length of the hash algorithm. The length of the ith message
-                            is 512 + 8*99*i, where 1 &#2264; i &#2264; m/8 <!--   1 = i = m/8-->.
+                            is 512 + 8*99*i, where 1 &le; i &le; m/8.
                             The message text shall be pseudo-randomly generated. The evaluators compute the message
                             digest for each of the messages and ensure that the correct result is produced when
                             the messages are provided to the TSF.
@@ -642,7 +642,7 @@
                             associated digests by following the algorithm provided in Figure 1 of [SHAVS]. The
                             evaluators then ensure that the correct result is produced when the messages are
                             provided to the TSF.<h:p/>
-							<h:b><h:u>SHA-3 Tests</h:u></h:b>Mh:br/>
+							<h:b><h:u>SHA-3 Tests</h:u></h:b><h:br/>
 							The tests below are derived from the The Secure Hash Algorithm-3 Validation System (SHA3VS), 
 							Updated: April 7, 2016, from the National Institute of Standards and Technology.<h:p/>
 							For each SHA-3-XXX implementation, XXX represents d, the digest length in bits. The capacity, c,
@@ -680,7 +680,7 @@
 							to (rate+100*(rate+8)), incrementing by rate+8. (For example, SHA-3-256 has a rate of 1088 bits.
 							Therefore 100 messages will be generated of lengths 2184, 3280, 4376, …, 110688 bits.) The message
 							text shall be pseudo-randomly generated. The evaluators compute the message digest for each of the
-							messages and ensure that the correct result is produced when the messages are provided to the TSF.<h:br/><h:br/><h:br/>
+							messages and ensure that the correct result is produced when the messages are provided to the TSF.<h:p/>
 							<h:b>Pseudo-randomly Generated Messages Monte Carlo) Test, Byte-oriented Mode</h:b><h:p/>
 							The evaluators supply a seed of d bits (where d is the length of the message digest produced by
 							the hash function to be tested. This seed is used by a pseudorandom function to generate 100,000 
@@ -715,17 +715,16 @@
 					</selectables>
 				</title>
 				<note role="application">
-					The ST author should choose the algorithm implemented to perform digital signatures; if more 
-					than one algorithm is available, this requirement should be iterated to specify the functionality. For the algorithm
-					chosen, the ST author should make the appropriate assignments/selections to specify the parameters
-					that are implemented for that algorithm. In particular, if ECDSA is selected as one of the signature
+					The ST author should choose the algorithm implemented to perform vertification of digital signatures. 
+					if more than one algorithm is available, this requirement should be iterated to specify the functionality. 
+					For the algorithm chosen, the ST author should make the appropriate assignments/selections to specify the 
+					parameters that are implemented for that algorithm. In particular, if ECDSA is selected as one of the signature
 					algorithms, the key size specified must match the selection for the curve used in the algorithm.<h:p/>
-					34 For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the
+					For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the
 					base point. As the preferred approach for digital signatures, elliptic curves will be required after all the
 					necessary standards and other supporting information are fully established.
 				</note>
 				<aactivity>
-					The evaluator shall perform the following activities based on the selections in the ST.
 					<Tests>
 						The following tests require the developer to provide access to a test
 						application that provides the evaluator with tools that are typically not found
@@ -734,14 +733,14 @@
 						<testlist>
 							<test><h:i>ECDSA FIPS 186-4 Signature Generation Test.</h:i> For each 
 								supported NIST curve (i.e., P-256, P-384 and P-521) and SHA 
-								function pair, the evaluator shall generate 10 1024-bit long
+								function pair, the evaluator shall generate ten 1024-bit long
 								messages and obtain for each message a public key and the 
 								resulting signature values R and S. To determine correctness,
 								the evaluator shall use the signature verification function of a 
 								known good implementation.</test>
 							<test><h:i>ECDSA FIPS 186-4 Signature Verification Test.</h:i> For each
 								supported NIST curve (i.e., P-256, P-384 and P-521) and SHA
-								function pair, the evaluator shall generate a set of 10 1024-bit
+								function pair, the evaluator shall generate a set of ten 1024-bit
 								message, public key and signature tuples and modify one of the 
 								values (message, public key or signature) in five of the 10
 								tuples. The evaluator shall obtain in response a set of 10
@@ -797,7 +796,7 @@
 				additional roots (for example, a management controller or firmware executed 
 				from an add-in card).<h:p/>
 				The integrity of subsequently executed platform firmware must be
-				integrity-checked using a mechanism specified in FXX_XXX_EXT.1.<h:p/>
+				integrity-checked using a mechanism specified in FPT_INT_EXT.1.<h:p/>
 				For example, firmware written to immutable storage cannot be modified, so 
 				its integrity is ensured. The integrity of the immutable storage can be
 				extended to firmware that is not written to immutable storage through 
@@ -805,8 +804,8 @@
 				immutable credentials.<h:p/>
 				If a platform does not have immutable storage, firmware integrity can be 
 				established through cryptographic means implemented in code that has had 
-				its integrity ensured by a NIST SP800-147/B-conformant update mechanism and 
-				platform protections as defined in FXX_XXX_EXT.1.<h:p/>
+				its integrity ensured by a NIST SP800-147/B-conformant update mechanism as 
+				defined in FPT_TUD_EXT.1.<h:p/>
 				Alternately, integrity can be established through secure storage of
 				known-good measurements in an on-platform dedicated security component, 
 				such as a Trusted Platform Module (TPM), or through a trusted measurement
@@ -815,21 +814,16 @@
 			</note>
 			<aactivity>
 				<TSS>
-					QQQQ.
+					The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware
+					is established, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.1.
 				</TSS>
-				<Guidance>
-					QQQQ.
-				</Guidance>
-				<Tests>
-					QQQQ.
-				</Tests>
 			</aactivity>
 		</f-element>
 		<audit-event/>
 	</f-component>
 
 	<!-- FPT_PPF_EXT.1 Protection of Platform Firmware -->
-	<f-component cc-id="fpt_ppf_ext.1" title="Protection of Platform Firmware">
+	<f-component cc-id="fpt_ppf_ext.1" title="Protection of Platform Firmware and Critical Data">
 		<f-element id="fpt-ppf-ext-1e1">
 			<title>The TSF shall allow modification of platform firmware
 				only through the update mechanisms described in FPT_TUD_EXT.1.
@@ -837,10 +831,36 @@
 			<note role="application">
 				Platform firmware must be modifiable only through one of the secure update mechanisms specified 
 				in FPT_TUD_EXT.1. If the update mechanism itself is implemented in platform firmware, then
-				naturally, it must itself also be modifiable only through the secure update mechanism.
+				naturally, it must itself also be modifiable only through the secure update mechanism.<h:p/>
+				Configuration data used by platform firmware that is stored in nonvolatile memory is not included 
+				in these protections.<h:p/>
+				Software portions of TSF and data critical for ensuring the integrity of the TSF are included 
+				in these protections. Specifically, this includes the key store and the signature verification algorithm used
+				by the update mechanisms. 
 			</note>
 			<aactivity>
-				<no-tests>QQQQ</no-tests>
+				<TSS>
+					The evaluator shall examine the TSS to ensure that it explains how the various areas of platform firmware and critical data 
+					are protected from modification outside of the platform firmware update mechanism described in FPT_TUD_EXT.1.					
+				</TSS>
+				<Guidance>
+					The evaluator shall check the operational guidance to ensure that there are instructions for how to
+					securely modify the platform firmware and critical data using a mechanism specified in 
+					FPT_TUD_EXT.2 or FPT_TUD_EXT.3.
+				</Guidance>
+				<Tests>
+					<testlist>
+						<test>Using the information contained in the TSS and in other evidences (AGD, interface
+							specifications), the evaluator shall attempt to overwrite or modify the platform firmware in the 
+							system while bypassing the authenticated update (e.g., using a modified Linux boot loader such as
+							GRUB that attempts to write to the memory where the platform firmware is stored). The test 
+							succeeds if the attempts to overwrite platform firmware fail.</test>
+						<test>If the TOE implements an update mechanism, using the information contained in the TSS and in other evidences (AGD, interface
+							specifications), the evaluator shall attempt to overwrite or modify the TSF components (e.g., key
+							store, cryptographic algorithms). The test succeeds if the attempts to overwrite platform firmware
+							fail.  QQQQ: I don't like that these tests are so open-ended. Is there a way to tighen them up?</test>
+					</testlist>
+				</Tests>
 			</aactivity>
 		</f-element>
 		<audit-event/>
@@ -850,7 +870,7 @@
 	<f-component cc-id="fpt_tud_ext.1" title="TOE Firmware Update">
 		<f-element id="fpt-tud-ext-1e1">
 			<title>The TSF shall 
-				<selectables>
+				<selectables linebreak="yes">
 					<selectable>make no provision for platform firmware update</selectable>
 					<selectable>implement a secure platform firmware update mechanism as described in
 						FPT_TUD_EXT.2</selectable>
@@ -878,39 +898,23 @@
 					This requirement is met if the platform implements no means for updating platform firmware
 					and the TSS describes a method for updating or replacing platform firmware that involves
 					potentially destroying or damaging the TOE or some of its components. (QQQQ: The point here is to
-					distinguish between secure local update and unauthorized physical update.
+					distinguish between secure local update and unauthorized physical update.)<h:p/>
+					If the ST author selects "implement a secure platform update mechanism..." then this requirement is 
+					satisfied if FPT_TUD_EXT.2 is satisfied. <h:p/>
+					If the ST author selects "implement a secure local platform update mechanism..." then this requirement is 
+					satisfied if FPT_TUD_EXT.3 is satisfied. <h:p/>
 				</TSS>
 			</aactivity>
 		</f-element>
 		<audit-event/>
 	</f-component>			
 
-		<!--
-		Authentication verifies that a BIOS was
-generated by an authentic source and is unaltered. All updates to the system BIOS shall go through an
-authenticated BIOS update mechanism as described in FPT_BUA_EXT.1. Additionally if the TOE offers a
-secure local update mechanism, the appropriate selection is made and the ST author must select the
-FPT_SLU_EXT.1 specified in Appendix C.
-			
-			Assurance Activities:
-51 The evaluator shall consult the TSS of the ST in performing the assurance activities for this requirement.
-The evaluator focuses on ensuring that the description is comprehensive in how the BIOS update image
-is updated to the system and the point at which the authenticated BIOS update mechanism is applied.
-52 In performing their review, the evaluator shall determine that the TSS contains a description of the
-activities that happen on process of updating the BIOS. When the RTU is not integrated in the BIOS, its
-update process shall also be explained in the TSS specifying the security mechanisms guaranteeing its
-integrity. The evaluators also shall check other evidences (AGD, ADV and ATE) for detailed descriptions
-17
-of authenticated BIOS update mechanism. If an optional secure local update mechanism is supported by
-the TOE, the evaluator shall check that the TSS and other evidences describe how this mechanism works
-and when this mechanism can be used.
-  -->
 
 	<!-- FPT_TUD_EXT.2 Secure Platform Firmware Update Mechanism -->
 	<f-component cc-id="fpt_tud_ext.2" title="Secure Platform Firmware Update Mechanism">
 		<f-element id="fpt-tud-ext-2e1">
-			<title>The TSF shall authenticate the source of any firmware update using the 
-				digital signature algorithm specified in FCS_COP.1/SIGVER using the key store 
+			<title>The TSF shall authenticate the source of all platform firmware updates using a 
+				digital signature algorithm specified in FCS_COP.1/SigVer using a key store 
 				that contains 
 				<selectables>
 					<selectable>the public key</selectable>
@@ -918,10 +922,53 @@ and when this mechanism can be used.
 				</selectables>.
 			</title>
 			<note role="application">
-				blah
+				The authenticated BIOS update mechanism employs digital signatures to ensure the authenticity of the
+BIOS update image. The TSF provides a RTU that contains a signature verification algorithm and a key
+store that includes the public key needed to verify the signature on the BIOS update image. The key
+store in the RTU shall include a public key used to verify the signature on a BIOS update image or a hash
+of the public key if a copy of the public key is provided with the BIOS update image. In the latter case,
+the update mechanism shall hash the public key provided with the BIOS update image, and ensure that
+it matches a hash which appears in the key store before using the provided public key to verify the
+signature on the BIOS update image. If the hash of the public key is selected, the ST author may iterate
+the FCS_COP.1(2) requirement - to specify the hashing functions used.
+54 The intent of this requirement is to specify that the authenticated BIOS update mechanism shall ensure
+that the BIOS update image has been digitally signed; and that the digital signature can be verified by
+using a public key before updating the BIOS. The requirement also specifies that the authenticated BIOS
+update mechanism allows installation of only BIOS updates that digital signature has been successfully
+verified by the TSF.
+
 			</note>
 			<aactivity>
-				<no-tests>Nope</no-tests>
+				<no-tests>
+				5 The evaluator shall consult the TSS of the ST in performing the assurance activities for this requirement.
+The evaluator focuses on ensuring that the description is comprehensive in how the RTU is implemented
+by the TSF (i.e. the RTU key storage includes the public key or the hash of the public key).
+56 The TSS should cover the initialization process and the activities that are performed to ensure that the
+digital signature of the BIOS/RTU update image is verified before updating the BIOS/RTU. In performing 
+18
+their review, the evaluators shall determine that the TSS contains a description of the digital signature
+verification process. The evaluators also shall look in other evidence (AGD, ADV and ATE) for
+descriptions of what will happen if the digital signature of the BIOS/RTU image cannot be verified
+successfully by the TSF (i.e. the BIOS/RTU image has not been signed, or signature cannot be verified
+using the key saved in the RTU, etc.).
+57 The evaluators shall perform the following tests:
+ Test 1: The evaluator determines the current version of the BIOS present in the TOE (system).
+After the update tests described in the following tests, the evaluator performs this activity again
+to verify that the version correctly corresponds to that of the updated BIOS.
+ Test 2: The evaluator obtains or produces a legitimate update image of the BIOS using
+procedures described in the operational guidance and verifies that BIOS update is successfully
+loaded on the TOE. Perform a subset of other assurance activity tests to demonstrate that the
+update functions as expected.
+ Test 3: The evaluator obtains or produces an illegitimate BIOS update image(s) for each of the
+following cases:
+a) unsigned image,
+b) signed with an incorrect key,
+c) signed with the correct key, but a corrupted BIOS image,
+and attempts to install it on the TOE (system). The evaluator verifies that the TOE rejects all the
+attempted BIOS updates.
+58 If the TSF can be updated separately from the system BIOS, the ST author should include the
+requirement FPT_TUD_EXT.1 from Appendix C.</no-tests>
+
 			</aactivity>
 		</f-element>
 		<audit-event/>
