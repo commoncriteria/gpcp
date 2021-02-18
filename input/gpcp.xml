@@ -543,156 +543,156 @@
 <!--   5.1 Security Functional Requirements -->
     <section title="Security Functional Requirements" id="SFRs">
 
-	<section id="fcs" title="Cryptographic Support (FCS)">
+		<section id="fcs" title="Cryptographic Support (FCS)">
 		
-		<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing)-->
-                <f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)">
-                    <f-element id="fcs-cop-1e1-hash">
-                        <title>The TSF shall perform [cryptographic hashing] in accordance with a specified cryptographic algorithm
-                            <selectables>
-                                <selectable id="sel-cop1-sha1">SHA-1</selectable>
-                                <selectable id="sel-cop1-sha256">SHA-256</selectable>
-                                <selectable id="sel-cop1-sha384">SHA-384</selectable>
-                                <selectable id="sel-cop1-sha512">SHA-512</selectable>
-								<selectable id="sel-cop1-sha3-224">SHA-3-224</selectable>
-								<selectable id="sel-cop1-sha3-256">SHA-3-256</selectable>
-								<selectable id="sel-cop1-sha3-384">SHA-3-384</selectable>
-								<selectable id="sel-cop1-sha3-512">SHA-3-512</selectable>		    
-                            </selectables> and message digest sizes
-                            <selectables>
-                                <selectable>160</selectable>
+			<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing)-->
+			<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)">
+                <f-element id="fcs-cop-1e1-hash">
+                    <title>The TSF shall perform [cryptographic hashing] in accordance with a specified cryptographic algorithm
+                        <selectables>
+                            <selectable id="sel-cop1-sha1">SHA-1</selectable>
+                            <selectable id="sel-cop1-sha256">SHA-256</selectable>
+                            <selectable id="sel-cop1-sha384">SHA-384</selectable>
+                            <selectable id="sel-cop1-sha512">SHA-512</selectable>
+							<selectable id="sel-cop1-sha3-224">SHA-3-224</selectable>
+							<selectable id="sel-cop1-sha3-256">SHA-3-256</selectable>
+							<selectable id="sel-cop1-sha3-384">SHA-3-384</selectable>
+							<selectable id="sel-cop1-sha3-512">SHA-3-512</selectable>		    
+                        </selectables> and message digest sizes
+                        <selectables>
+                            <selectable>160</selectable>
 <!-- Is this a thing?		<selectable>224</selectable>    -->
-                                <selectable>256</selectable>
-                                <selectable>384</selectable>
-                                <selectable>512 bits</selectable>
-                            </selectables> that meet the following:
-							<selectables>
-								<selectable>FIPS PUB 180-4 "Secure Hash Standard"</selectable>
-								<selectable>ISO/IEC 10118-3:2018</selectable>
-							</selectables>   
-                        </title>
-                        <note role="application">
-                            Per NIST SP 800-131A, SHA-1 for generating digital signatures is no longer allowed, and SHA-1 for 
-							verification of digital signatures is strongly discouraged as there may be risk in accepting these
-							signatures. It is expected that vendors will implement SHA-2 algorithms in accordance with SP 800-131A.
-                            <h:br></h:br><h:br></h:br>
-                            The intent of this requirement is to specify the hashing function. The hash selection shall support the
-							message digest size selection. The hash selection should be consistent with the overall strength of
-							the algorithm used (for example, SHA 256 for 128-bit keys).
-                            <h:br></h:br><h:br></h:br>
-                        </note>
-                        <aactivity>
-                            <TSS>
-                                The evaluator shall check that the association of the hash function with other TSF 
-                                cryptographic functions (for example, the digital signature verification function) is documented 
-                                in the TSS.
-                            </TSS>
-                            <Guidance>
-                                The evaluator checks the AGD documents to determine that any configuration that is required to 
-                                be done to configure the functionality for the required hash sizes is present. 
-                            </Guidance>
-                            <Tests>
-								<h:b><h:u>SHA-1 and SHA-2 Tests</h:u></h:b>
-                                The TSF hashing functions can be implemented in one of two modes. The first mode is the byteoriented
-								mode. In this mode the TSF only hashes messages that are an integral number of bytes in length;
-								i.e., the length (in bits) of the message to be hashed is divisible by 8. The second mode is the
-								bitoriented mode. In this mode the TSF hashes messages of arbitrary length. As there are different
-								tests for each mode, an indication is given in the following sections for the bitoriented vs. the
-								byteoriented testmacs.
-                                <h:br></h:br><h:br></h:br>
-                                The evaluator shall perform all of the following tests for each hash algorithm implemented by the TSF
-								and used to satisfy the requirements of this PP.
-                                <h:br></h:br><h:br></h:br>
-                                <h:b>Assurance Activity Note:</h:b><h:br /> The following tests require the developer to provide access
-								to a test platform that provides the evaluator with tools that are typically not found on factory 
-								products.
-                                <h:br></h:br><h:br></h:br>
-                                <h:b>Short Messages Test Bit-oriented Mode</h:b><h:br></h:br><h:br></h:br>
-                                The evaluators devise an input set consisting of m+1 messages, where m is the block length of the hash
-								algorithm. The length of the messages range sequentially from 0 to m bits. The message text shall
-								be pseudo-randomly generated. The evaluators compute the message digest for each of the messages
-								and ensure that the correct result is produced when the messages are provided to the TSF.
-                                <h:br></h:br><h:br></h:br>
-                                <h:b>Short Messages Test Byte-oriented Mode</h:b><h:br></h:br><h:br></h:br>
-                                The evaluators devise an input set consisting of m/8+1 messages, where m is the block length of the 
-								hash algorithm. The length of the messages range sequentially from 0 to m/8 bytes, with each 
-								message being an integral number of bytes. The message text shall be pseudo-randomly generated.
-								The evaluators compute the message digest for each of the messages and ensure that the correct
-								result is produced when the messages are provided to the TSF.
-                                <h:br></h:br><h:br></h:br>
-                                <h:b>Selected Long Messages Test Bit-oriented Mode</h:b><h:br></h:br><h:br></h:br>
-                                The evaluators devise an input set consisting of m messages, where m is the block length
-                                of the hash algorithm. The length of the ith message is 512 + 99*i, where
-                                1 &#2264; i &#2264; m <!--   1 = i = m -->. The message text shall be pseudo-randomly
-                                generated. The evaluators compute the message digest for each of the messages and ensure
-                                that the correct result is produced when the messages are provided to the TSF.
-                                <h:br></h:br><h:br></h:br>
-                                <h:b>Selected Long Messages Test Byte-oriented Mode</h:b><h:br></h:br><h:br></h:br>
-                                The evaluators devise an input set consisting of m/8 messages,
-                                where m is the block length of the hash algorithm. The length of the ith message
-                                is 512 + 8*99*i, where 1 &#2264; i &#2264; m/8 <!--   1 = i = m/8-->.
-                                The message text shall be pseudo-randomly generated. The evaluators compute the message
-                                digest for each of the messages and ensure that the correct result is produced when
-                                the messages are provided to the TSF.
-                                <h:br></h:br><h:br></h:br>
-                                <h:b>Pseudo-randomly Generated Messages Test</h:b><h:br></h:br><h:br></h:br>
-                                This test is for byte-oriented implementations only. The evaluators randomly generate a
-                                seed that is n bits long, where n is the length of the message digest produced by the
-                                hash function to be tested. The evaluators then formulate a set of 100 messages and
-                                associated digests by following the algorithm provided in Figure 1 of [SHAVS]. The
-                                evaluators then ensure that the correct result is produced when the messages are
-                                provided to the TSF.<h:br></h:br><h:br></h:br>
-								<h:b><h:u>SHA-3 Tests</h:u></h:b>
-								The tests below are derived from the The Secure Hash Algorithm-3 Validation System (SHA3VS), 
-								Updated: April 7, 2016, from the National Institute of Standards and Technology.<h:br/><h:br/>
-								For each SHA-3-XXX implementation, XXX represents d, the digest length in bits. The capacity, c,
-								is equal to 2d bits. The rate is equal to 1600-c bits.  <h:br/><h:br/>
-								The TSF hashing functions can be implemented with one of two orientations. The first is a bit-oriented
-								mode that hashes messages of arbitrary length. The second is a byte-oriented mode that hashes messages 
-								that are an integral number of bytes in length (i.e., the length (in bits) of the message to be
-								hashed is divisible by 8). Separate tests for each orientation are given below. <h:br/><h:br/>
-								The evaluator shall perform all of the following tests for each hash algorithm and orientation
-								implemented by the TSF and used to satisfy the requirements of this PP. The evaluator shall
-								compare digest values produced by a known-good SHA-3 implementation against those generated by
-								running the same values through the TSF.<h:br/><h:br/><h:br/><h:br/>
-								<h:b>Short Messages Test, Bit-oriented Mode</h:b><h:br/><h:br/>
-								The evaluators devise an input set consisting of rate+1 short messages. The length of the messages
-								ranges sequentially from 0 to rate bits. The message text shall be pseudo-randomly generated. The
-								evaluators compute the message digest for each of the messages and ensure that the correct result
-								is produced when the messages are provided to the TSF. The message of length 0 is omitted if the
-								TOE does not support zero-length messages.<h:br/><h:br/><h:br/>
-								<h:b>Short Messages Test, Byte-oriented Mode</h:b><h:br/><h:br/>
-								The evaluators devise an input set consisting of rate/8+1 short messages. The length of the
-								messages ranges sequentially from 0 to rate/8 bytes, with each message being an integral number of 
-								bytes. The message text shall be pseudo-randomly generated. The evaluators compute the message
-								digest for each of the messages and ensure that the correct result is produced when the messages
-								are provided to the TSF. The message of length 0 is omitted if the TOE does not support zero-length
-								messages.<h:br/><h:br/><h:br/>
-								<h:b>Selected Long Messages Test, Bit-oriented Mode</h:b><h:br/><h:br/>
-								The evaluators devise an input set consisting of 100 long messages ranging in size from 
-								rate+(rate+1) to rate+(100*(rate+1)), incrementing by rate+1. (For example, SHA-3-256 has a rate
-								of 1088 bits. Therefore, 100 messages will be generated with lengths 2177, 3266, …, 109988 bits.)
-								The message text shall be pseudo-randomly generated. The evaluators compute the message digest for
-								each of the messages and ensure that the correct result is produced when the messages are provided
-								to the TSF.<h:br/><h:br/><h:br/>
-								<h:b>Selected Long Messages Test, Byte-oriented Mode</h:b><h:br/><h:br/>
-								The evaluators devise an input set consisting of 100 messages ranging in size from (rate+(rate+8))
-								to (rate+100*(rate+8)), incrementing by rate+8. (For example, SHA-3-256 has a rate of 1088 bits.
-								Therefore 100 messages will be generated of lengths 2184, 3280, 4376, …, 110688 bits.) The message
-								text shall be pseudo-randomly generated. The evaluators compute the message digest for each of the
-								messages and ensure that the correct result is produced when the messages are provided to the TSF.<h:br/><h:br/><h:br/>
-								<h:b>Pseudo-randomly Generated Messages Monte Carlo) Test, Byte-oriented Mode</h:b><h:br/><h:br/>
-								The evaluators supply a seed of d bits (where d is the length of the message digest produced by
-								the hash function to be tested. This seed is used by a pseudorandom function to generate 100,000 
-								message digests. One hundred of the digests (every 1000th digest) are recorded as checkpoints. The
-								TOE then uses the same procedure to generate the same 100,000 message digests and 100 checkpoint
-								values. The evaluators then compare the results generated ensure that the correct result is
-								produced when the messages are generated by the TSF.<h:br/><h:br/>
-                            </Tests>
-                        </aactivity>
-                    </f-element>
-		    <audit-event />
-                </f-component>
+                            <selectable>256</selectable>
+                            <selectable>384</selectable>
+                            <selectable>512 bits</selectable>
+                        </selectables> that meet the following:
+						<selectables>
+							<selectable>FIPS PUB 180-4 "Secure Hash Standard"</selectable>
+							<selectable>ISO/IEC 10118-3:2018</selectable>
+						</selectables>   
+                    </title>
+                    <note role="application">
+                        Per NIST SP 800-131A, SHA-1 for generating digital signatures is no longer allowed, and SHA-1 for 
+						verification of digital signatures is strongly discouraged as there may be risk in accepting these
+						signatures. It is expected that vendors will implement SHA-2 algorithms in accordance with SP 800-131A.
+                        <h:br></h:br><h:br></h:br>
+                        The intent of this requirement is to specify the hashing function. The hash selection shall support the
+						message digest size selection. The hash selection should be consistent with the overall strength of
+						the algorithm used (for example, SHA 256 for 128-bit keys).
+                        <h:br></h:br><h:br></h:br>
+                    </note>
+                    <aactivity>
+                        <TSS>
+                            The evaluator shall check that the association of the hash function with other TSF 
+                            cryptographic functions (for example, the digital signature verification function) is documented 
+                            in the TSS.
+                        </TSS>
+                        <Guidance>
+                            The evaluator checks the AGD documents to determine that any configuration that is required to 
+                            be done to configure the functionality for the required hash sizes is present. 
+                        </Guidance>
+                        <Tests>
+							<h:b><h:u>SHA-1 and SHA-2 Tests</h:u></h:b><h:br/>
+                            The TSF hashing functions can be implemented in one of two modes. The first mode is the byte-oriented
+							mode. In this mode the TSF only hashes messages that are an integral number of bytes in length;
+							i.e., the length (in bits) of the message to be hashed is divisible by 8. The second mode is the
+							bit-oriented mode. In this mode the TSF hashes messages of arbitrary length. As there are different
+							tests for each mode, an indication is given in the following sections for the bit-oriented vs. the
+							byte-oriented testmacs.
+                            <h:p/>
+                            The evaluator shall perform all of the following tests for each hash algorithm implemented by the TSF
+							and used to satisfy the requirements of this PP.
+                            <h:p/>
+                            <h:b>Assurance Activity Note:</h:b><h:br /> The following tests require the developer to provide access
+							to a test platform that provides the evaluator with tools that are typically not found on factory 
+							products.
+                            <h:p/>
+                            <h:b>Short Messages Test Bit-oriented Mode</h:b><h:br/>
+                            The evaluators devise an input set consisting of m+1 messages, where m is the block length of the hash
+							algorithm. The length of the messages range sequentially from 0 to m bits. The message text shall
+							be pseudo-randomly generated. The evaluators compute the message digest for each of the messages
+							and ensure that the correct result is produced when the messages are provided to the TSF.
+                            <h:p/>
+                            <h:b>Short Messages Test Byte-oriented Mode</h:b><h:br/>
+                            The evaluators devise an input set consisting of m/8+1 messages, where m is the block length of the 
+							hash algorithm. The length of the messages range sequentially from 0 to m/8 bytes, with each 
+							message being an integral number of bytes. The message text shall be pseudo-randomly generated.
+							The evaluators compute the message digest for each of the messages and ensure that the correct
+							result is produced when the messages are provided to the TSF.
+                            <h:p/>
+                            <h:b>Selected Long Messages Test Bit-oriented Mode</h:b><h:br/>
+                            The evaluators devise an input set consisting of m messages, where m is the block length
+                            of the hash algorithm. The length of the ith message is 512 + 99*i, where
+                            1 &#2264; i &#2264; m <!--   1 = i = m -->. The message text shall be pseudo-randomly
+                            generated. The evaluators compute the message digest for each of the messages and ensure
+                            that the correct result is produced when the messages are provided to the TSF.
+                            <h:p/>
+                            <h:b>Selected Long Messages Test Byte-oriented Mode</h:b><h:br/>
+                            The evaluators devise an input set consisting of m/8 messages,
+                            where m is the block length of the hash algorithm. The length of the ith message
+                            is 512 + 8*99*i, where 1 &#2264; i &#2264; m/8 <!--   1 = i = m/8-->.
+                            The message text shall be pseudo-randomly generated. The evaluators compute the message
+                            digest for each of the messages and ensure that the correct result is produced when
+                            the messages are provided to the TSF.
+                            <h:p/>
+                            <h:b>Pseudo-randomly Generated Messages Test</h:b><h:br/>
+                            This test is for byte-oriented implementations only. The evaluators randomly generate a
+                            seed that is n bits long, where n is the length of the message digest produced by the
+                            hash function to be tested. The evaluators then formulate a set of 100 messages and
+                            associated digests by following the algorithm provided in Figure 1 of [SHAVS]. The
+                            evaluators then ensure that the correct result is produced when the messages are
+                            provided to the TSF.<h:p/>
+							<h:b><h:u>SHA-3 Tests</h:u></h:b>Mh:br/>
+							The tests below are derived from the The Secure Hash Algorithm-3 Validation System (SHA3VS), 
+							Updated: April 7, 2016, from the National Institute of Standards and Technology.<h:p/>
+							For each SHA-3-XXX implementation, XXX represents d, the digest length in bits. The capacity, c,
+							is equal to 2d bits. The rate is equal to 1600-c bits.  <h:p/>
+							The TSF hashing functions can be implemented with one of two orientations. The first is a bit-oriented
+							mode that hashes messages of arbitrary length. The second is a byte-oriented mode that hashes messages 
+							that are an integral number of bytes in length (i.e., the length (in bits) of the message to be
+							hashed is divisible by 8). Separate tests for each orientation are given below. <h:p/>
+							The evaluator shall perform all of the following tests for each hash algorithm and orientation
+							implemented by the TSF and used to satisfy the requirements of this PP. The evaluator shall
+							compare digest values produced by a known-good SHA-3 implementation against those generated by
+							running the same values through the TSF.<h:p/>
+							<h:b>Short Messages Test, Bit-oriented Mode</h:b><h:br/>
+							The evaluators devise an input set consisting of rate+1 short messages. The length of the messages
+							ranges sequentially from 0 to rate bits. The message text shall be pseudo-randomly generated. The
+							evaluators compute the message digest for each of the messages and ensure that the correct result
+							is produced when the messages are provided to the TSF. The message of length 0 is omitted if the
+							TOE does not support zero-length messages.<h:p/>
+							<h:b>Short Messages Test, Byte-oriented Mode</h:b><h:br/>
+							The evaluators devise an input set consisting of rate/8+1 short messages. The length of the
+							messages ranges sequentially from 0 to rate/8 bytes, with each message being an integral number of 
+							bytes. The message text shall be pseudo-randomly generated. The evaluators compute the message
+							digest for each of the messages and ensure that the correct result is produced when the messages
+							are provided to the TSF. The message of length 0 is omitted if the TOE does not support zero-length
+							messages.<h:br/><h:p/>
+							<h:b>Selected Long Messages Test, Bit-oriented Mode</h:b><h:br/>
+							The evaluators devise an input set consisting of 100 long messages ranging in size from 
+							rate+(rate+1) to rate+(100*(rate+1)), incrementing by rate+1. (For example, SHA-3-256 has a rate
+							of 1088 bits. Therefore, 100 messages will be generated with lengths 2177, 3266, …, 109988 bits.)
+							The message text shall be pseudo-randomly generated. The evaluators compute the message digest for
+							each of the messages and ensure that the correct result is produced when the messages are provided
+							to the TSF.<h:p/>
+							<h:b>Selected Long Messages Test, Byte-oriented Mode</h:b><h:br/>
+							The evaluators devise an input set consisting of 100 messages ranging in size from (rate+(rate+8))
+							to (rate+100*(rate+8)), incrementing by rate+8. (For example, SHA-3-256 has a rate of 1088 bits.
+							Therefore 100 messages will be generated of lengths 2184, 3280, 4376, …, 110688 bits.) The message
+							text shall be pseudo-randomly generated. The evaluators compute the message digest for each of the
+							messages and ensure that the correct result is produced when the messages are provided to the TSF.<h:br/><h:br/><h:br/>
+							<h:b>Pseudo-randomly Generated Messages Monte Carlo) Test, Byte-oriented Mode</h:b><h:p/>
+							The evaluators supply a seed of d bits (where d is the length of the message digest produced by
+							the hash function to be tested. This seed is used by a pseudorandom function to generate 100,000 
+							message digests. One hundred of the digests (every 1000th digest) are recorded as checkpoints. The
+							TOE then uses the same procedure to generate the same 100,000 message digests and 100 checkpoint
+							values. The evaluators then compare the results generated ensure that the correct result is
+							produced when the messages are generated by the TSF.<h:br/><h:br/>
+                        </Tests>
+                    </aactivity>
+                </f-element>
+				<audit-event />
+            </f-component>
  
 		<!-- FCS_COP.1/SigVer Cryptographic Operation (Signature Verification) --> 
 		<f-component cc-id="fcs_cop.1" iteration="SigVer" title="Cryptographic Operation (Signature Verification)">
