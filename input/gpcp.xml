@@ -867,7 +867,7 @@
 						<test>If the TOE implements an update mechanism, using the information contained in the TSS and in other evidences (AGD, interface
 							specifications), the evaluator shall attempt to overwrite or modify the TSF components (e.g., key
 							store, cryptographic algorithms). The test succeeds if the attempts to overwrite platform firmware
-							fail.  QQQQ: I don't like that these tests are so open-ended. Is there a way to tighen them up?</test>
+							fail. <h:b> QQQQ: I don't like that these tests are so open-ended. Is there a way to tighen them up?</h:b></test>
 					</testlist>
 				</Tests>
 			</aactivity>
@@ -906,8 +906,8 @@
 					meet the requirements of FPT_TUD_EXT.3.<h:p/>
 					This requirement is met if the platform implements no means for updating platform firmware
 					and the TSS describes a method for updating or replacing platform firmware that involves
-					potentially destroying or damaging the TOE or some of its components. (QQQQ: The point here is to
-					distinguish between secure local update and unauthorized physical update.)<h:p/>
+					potentially destroying or damaging the TOE or some of its components. <h:b>(QQQQ: The point here is to
+					distinguish between secure local update and unauthorized physical update.)</h:b><h:p/>
 					If the ST author selects "implement a secure platform update mechanism..." then this requirement is 
 					satisfied if FPT_TUD_EXT.2 is satisfied. <h:p/>
 					If the ST author selects "implement a secure local platform update mechanism..." then this requirement is 
@@ -920,6 +920,10 @@
 
 
 	<!-- FPT_TUD_EXT.2 Secure Platform Firmware Update Mechanism -->
+	<!-- Should this SFR have elements mandating what to do in case of-
+		- authentication or integrity failure 
+		- update failure 
+	-->
 	<f-component cc-id="fpt_tud_ext.2" title="Secure Platform Firmware Update Mechanism" status="sel-based">
 		<selection-depends req="fpt-tud-ext-1e1" ids="sel-tud-update"/>
 		<f-element id="fpt-tud-ext-2e1">
@@ -1014,22 +1018,54 @@
 	<f-component cc-id="fpt_tud_ext.3" title="Secure Local Platform Firmware Update Mechanism" status="sel-based">
 		<selection-depends req="fpt-tud-ext-1e1" ids="sel-tud-local-update"/>
 		<f-element id="fpt-tud-ext-3e1">
-			<title>The TSF shall allow installation of updates only if the digital
-				signature has been successfully verified as specified in FCS_COP.1/SigVer.
+			<title>The TSF shall provide a secure local update mechanism that requires physical access to the
+				TOE before permitting the update of platform firmware.
+			</title>
+		</f-element>
+		<f-element id="fpt-tud-ext-3e2">
+			<title>
+				The secure local update mechanism shall be used
+				<selectables linebreak="yes">
+					<selectable>to replace the manufacturer's original platform firmware image</selectable>				
+					<selectable>to recover from a corrupted platform firmware installation or bricked machine</selectable>
+					<selectable>as the normal platform firmware update mechanism</selectable>
+				</selectables>
 			</title>
 			<note role="application">
-				Blah
+				This requirement pertains to platform firmware update mechanisms that do not use the 
+				authentication-based update mechanism described in FPT_TUD_EXT.2. The secure local update
+				mechanism ensures the authenticity and integrity of the firmware update image by requiring a physical
+				presence at the TOE. An assertion of physical presence can take the form, for example, of
+				requiring entry of a password at a boot screen, unlocking of a physical lock (e.g., a motherboard
+				jumper), or inserting a USB cable before permitting platform firmware to be updated. <h:p/>
+				<h:b>This mechanism is distinguished from the lack of an update capability (as described in FPT_TUD_EXT.1)
+				in that the local update is designed in to the system. ???<h:p/>
+				Is a chip in a socket that renders it removable a local update mechanism? Or is that not an update mechanism?
+				Sometimes it's a fine line.<h:p/>
+				Would this potentially be subject to rollback protections?<h:p/>
+				Should we worry about update versions? If this is used for recovery only, then versions won't matter,
+				but if it is used as the normal update mechanism, then it does matter. Probably you can have a local update
+				with an override for rollback protections. If that's a thing.
+				</h:b>
 			</note>
-			<aactivity>
-				<no-tests>Nope</no-tests>
+		<aactivity>
+			<TSS>
+				The evaluator shall check the TSS section to confirm that it clearly and thoroughly describes how the
+				secure local update functionality is implemented.
+			</TSS>
+			<Guidance>
+				The evaluator shall examine the operational guidance to ensure that it describes instructions for 
+				using the local update mechanism, and how to validate that the update was succesful.		
+			</Guidance>
+			<Tests> The evaluator tests the secure local update by following the instructions provided in the operational 
+				guidance to replace the ...<h:p/>
+			</Tests>
 			</aactivity>
 		</f-element>
 		<audit-event/>
 	</f-component>
 		
 <!-- Other things to do for update:
-    - A requirement of what to do on authentication failure 
-	- A requirement of what to do if the update fails 
 	- Anti-rollback protection
 	-->		
 		
