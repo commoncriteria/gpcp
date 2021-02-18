@@ -546,7 +546,8 @@
 		<section id="fcs" title="Cryptographic Support (FCS)">
 		
 			<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing)-->
-			<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)">
+			<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
+				<selection-depends req="fpt-tud-ext-2e1" ids="sel-tud2-hash"/>
                 <f-element id="fcs-cop-1e1-hash">
                     <title>The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified cryptographic algorithm
                         <selectables>
@@ -695,7 +696,8 @@
             </f-component>
  
 		<!-- FCS_COP.1/SigVer Cryptographic Operation (Signature Verification) --> 
-		<f-component cc-id="fcs_cop.1" iteration="SigVer" title="Cryptographic Operation (Signature Verification)">
+		<f-component cc-id="fcs_cop.1" iteration="SigVer" title="Cryptographic Operation (Signature Verification)" status="sel-based">
+			<selection-depends req="fpt-tud-ext-1e1" ids="sel-tud-update"/>
 			<f-element id="fcs-cop-1e1-sigver">
 				<title><refinement>Refinement:</refinement> The TSF shall perform  
 					<refinement>cryptographic signature verification for a platform
@@ -841,7 +843,10 @@
 			<aactivity>
 				<TSS>
 					The evaluator shall examine the TSS to ensure that it explains how the various areas of platform firmware and critical data 
-					are protected from modification outside of the platform firmware update mechanism described in FPT_TUD_EXT.1.					
+					are protected from modification outside of the platform firmware update mechanism described in FPT_TUD_EXT.1. 
+					If the TOE implements a secure update mechanism as specified in FPT_TUD_EXT.2, then the evauator shall ensure
+					that the TSS describes specically how the signature verification code and key store is protected from update
+					outside of the secure platform firmware update mechanism.
 				</TSS>
 				<Guidance>
 					The evaluator shall check the operational guidance to ensure that there are instructions for how to
@@ -872,9 +877,9 @@
 			<title>The TSF shall 
 				<selectables linebreak="yes">
 					<selectable>make no provision for platform firmware update</selectable>
-					<selectable>implement a secure platform firmware update mechanism as described in
+					<selectable id="sel-tud-update">implement a secure platform firmware update mechanism as described in
 						FPT_TUD_EXT.2</selectable>
-					<selectable>implement a secure local platform firmware update mechanism
+					<selectable id="sel-tud-local-update">implement a secure local platform firmware update mechanism
 						described in FPT_TUD_EXT.3</selectable>
 				</selectables>.
 			</title>
@@ -911,71 +916,100 @@
 
 
 	<!-- FPT_TUD_EXT.2 Secure Platform Firmware Update Mechanism -->
-	<f-component cc-id="fpt_tud_ext.2" title="Secure Platform Firmware Update Mechanism">
+	<f-component cc-id="fpt_tud_ext.2" title="Secure Platform Firmware Update Mechanism" status="sel-based">
+		<selection-depends req="fpt-tud-ext-1e1" ids="sel-tud-update"/>
 		<f-element id="fpt-tud-ext-2e1">
 			<title>The TSF shall authenticate the source of all platform firmware updates using a 
-				digital signature algorithm specified in FCS_COP.1/SigVer using a key store 
+				digital signature algorithm specified in FCS_COP.1/SigVer and using a key store 
 				that contains 
 				<selectables>
 					<selectable>the public key</selectable>
-					<selectable>hash value of the public key</selectable>
+					<selectable id="sel-tud2-hash">hash value of the public key</selectable>
 				</selectables>.
 			</title>
+		</f-element>
+		<f-element id="fpt-tud-ext-2e2">
+			<title>
+				The TSF shall allow installation of updates only if the digital signature has been
+				successfully verified as specified in FCS_COP.1/SigVer.
+			</title>
+		</f-element>
+		<f-element id="fpt-tud-ext-2e3">
+			<title>
+				The TSF shall include an observable platform firmware version identifier that is accessible by the update mechanism and
+				includes information that enables the update mechanism to determine the intended relative order of updates.
+			</title>
+		</f-element>
+		<f-element id="fpt-tud-ext-2e4">
+			<title>
+				The TSF shall provide some observable indication of the success or failure of the update operation.
+			</title>
 			<note role="application">
-				The authenticated BIOS update mechanism employs digital signatures to ensure the authenticity of the
-BIOS update image. The TSF provides a RTU that contains a signature verification algorithm and a key
-store that includes the public key needed to verify the signature on the BIOS update image. The key
-store in the RTU shall include a public key used to verify the signature on a BIOS update image or a hash
-of the public key if a copy of the public key is provided with the BIOS update image. In the latter case,
-the update mechanism shall hash the public key provided with the BIOS update image, and ensure that
-it matches a hash which appears in the key store before using the provided public key to verify the
-signature on the BIOS update image. If the hash of the public key is selected, the ST author may iterate
-the FCS_COP.1(2) requirement - to specify the hashing functions used.
-54 The intent of this requirement is to specify that the authenticated BIOS update mechanism shall ensure
-that the BIOS update image has been digitally signed; and that the digital signature can be verified by
-using a public key before updating the BIOS. The requirement also specifies that the authenticated BIOS
-update mechanism allows installation of only BIOS updates that digital signature has been successfully
-verified by the TSF.
-
+				The platform firmware update mechanism employs digital signatures to ensure the authenticity of the
+				firmware update image. The TSF includes a signature verification algorithm and a key
+				store containing the public key needed to verify the signature on the firmware update image. <h:p/>
+				A hash of the public key may be stored if a copy of the public key is provided with firmware
+				update images. In this case, the update mechanism shall hash the public key provided with the update 
+				image, and ensure that it matches a hash which appears in the key store before using the provided public 
+				key to verify the signature of the update image. If the hash of the public key is selected, the ST author may
+				iterate the FCS_COP.1/Hash requirement to specify the hashing functions used.<h:p/>
+				An indication of success or failure can be generation of an audit event by a management subsystem, a beep code,
+				an updated version number on a splash screen, or simple failure to continue functioning.<h:p/>
+				If the update mechanism generates audit events, the ST author shall make the approriate selections
+				from the audit events table (<xref g="atref-sel-based"/>).
 			</note>
 			<aactivity>
-				<no-tests>
-				5 The evaluator shall consult the TSS of the ST in performing the assurance activities for this requirement.
-The evaluator focuses on ensuring that the description is comprehensive in how the RTU is implemented
-by the TSF (i.e. the RTU key storage includes the public key or the hash of the public key).
-56 The TSS should cover the initialization process and the activities that are performed to ensure that the
-digital signature of the BIOS/RTU update image is verified before updating the BIOS/RTU. In performing 
-18
-their review, the evaluators shall determine that the TSS contains a description of the digital signature
-verification process. The evaluators also shall look in other evidence (AGD, ADV and ATE) for
-descriptions of what will happen if the digital signature of the BIOS/RTU image cannot be verified
-successfully by the TSF (i.e. the BIOS/RTU image has not been signed, or signature cannot be verified
-using the key saved in the RTU, etc.).
-57 The evaluators shall perform the following tests:
- Test 1: The evaluator determines the current version of the BIOS present in the TOE (system).
-After the update tests described in the following tests, the evaluator performs this activity again
-to verify that the version correctly corresponds to that of the updated BIOS.
- Test 2: The evaluator obtains or produces a legitimate update image of the BIOS using
-procedures described in the operational guidance and verifies that BIOS update is successfully
-loaded on the TOE. Perform a subset of other assurance activity tests to demonstrate that the
-update functions as expected.
- Test 3: The evaluator obtains or produces an illegitimate BIOS update image(s) for each of the
-following cases:
-a) unsigned image,
-b) signed with an incorrect key,
-c) signed with the correct key, but a corrupted BIOS image,
-and attempts to install it on the TOE (system). The evaluator verifies that the TOE rejects all the
-attempted BIOS updates.
-58 If the TSF can be updated separately from the system BIOS, the ST author should include the
-requirement FPT_TUD_EXT.1 from Appendix C.</no-tests>
-
+				<TSS>
+					The evaluator shall ensure that the TSS includes a comprehansive description of how the 
+					authentication of platform firmware updates is implemented by the TSF. The TSS should cover the 
+					initialization process and the activities that are performed to ensure that the
+					digital signature of the update image is verified before modification of the firmware. <h:p/>
+					The evaluator shall examine the TSF to ensure that it describes the platform firmware version identifier
+					and explains its meaning and encoding.<h:p/>
+					The evaluator shall also ensure that the TSS describes the actions taken by the TSF is 
+					an update image fails authentication.
+				</TSS>
+				<Guidance>
+					The evaluator shall examine the operational guidance to ensure that it describes the process for 
+					updating the platform firmware.<h:p/>
+					The evaluator shall examine the operational guidance to ensure that it documents the observable indications
+					of update success or failure, and that it describes how to access the platform firmware version indicators.
+				</Guidance>
+				<Tests>
+					<testlist>
+						<test>The evaluator determines the current version of the platform firmware, and obtains or 
+							produces a valid, authentic, and permissible update image of platform firmware. The evaluator 
+							initiates an update using this image through the process described in the operational guidance.
+							After the process is complete, the evaluator checks the current firmware version to ensure
+							that the new firmware version matches that of the update.</test>
+						<test>The evaluator performs the same test, this time using a valid update image that is signed
+							with an incorrect key. The update must fail.</test>
+						<test>The evaluator performs the same test, this time using an update image that is corrupted
+							but is signed with the correct key. The update must fail.</test>
+						<test>The evaluator performs the same test, this time using a valid update image that is not signed.
+							The update must fail.</test>
+						</test>
+					</testlist>
+				</Tests>
 			</aactivity>
 		</f-element>
-		<audit-event/>
+		<audit-event type="optional">
+			<audit-event-descr>Failure of update authentication</audit-event-descr>
+			<audit-event-info>Version numbers of the current firmware and of the attempted update</audit-event-info>
+		</audit-event>
+		<audit-event type="optional">
+			<audit-event-descr>Failure of update operation</audit-event-descr>
+			<audit-event-info>Version numbers of the current firmware and of the attempted update</audit-event-info>
+		</audit-event>
+		<audit-event type="optional">
+			<audit-event-descr>Success of update operation</audit-event-descr>
+			<audit-event-info>Version numbers of the new and old firmware images.</audit-event-info>
+		</audit-event>
 	</f-component>
 		
 	<!-- FPT_TUD_EXT.3 Secure Local Platform Firmware Update Mechanism -->	
-	<f-component cc-id="fpt_tud_ext.3" title="Secure Local Platform Firmware Update Mechanism">
+	<f-component cc-id="fpt_tud_ext.3" title="Secure Local Platform Firmware Update Mechanism" status="sel-based">
+		<selection-depends req="fpt-tud-ext-1e1" ids="sel-tud-local-update/>
 		<f-element id="fpt-tud-ext-3e1">
 			<title>The TSF shall allow installation of updates only if the digital
 				signature has been successfully verified as specified in FCS_COP.1/SigVer.
@@ -989,6 +1023,12 @@ requirement FPT_TUD_EXT.1 from Appendix C.</no-tests>
 		</f-element>
 		<audit-event/>
 	</f-component>
+		
+<!-- Other things to do for update:
+    - A requirement of what to do on authentication failure 
+	- A requirement of what to do if the update fails 
+	- Anti-rollback protection
+	-->		
 		
     </section>				
 	    
