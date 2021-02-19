@@ -786,12 +786,12 @@
 		<f-element id="fpt-rot-ext-1e1">
 			<title>The integrity of platform firmware shall be rooted in 
 				<selectables linebreak="yes">
-					<selectable>code or data written to immutable memory or storage</selectable>
-					<selectable>credentials held in immutable storage or protected off-platform</selectable>
-					<selectable>a separate management controller that is itself rooted in a mechanism that meets this requirement</selectable>
-					<selectable>integrity measurements held securely in an on-platform dedicated security component</selectable>
-					<selectable>integrity measurements help securely by an off-platform third-party</selectable>
-					<selectable>a combination of the above</selectable>
+					<selectable id="sel-rot-immutable-code">code or data written to immutable memory or storage</selectable>
+					<selectable id="sel-rot-immutable-creds">credentials held in immutable storage or protected off-platform</selectable>
+					<selectable id="sel-rot-mc">a separate management controller that is itself rooted in a mechanism that meets this requirement</selectable>
+					<selectable id="sel-rot-dsc">integrity measurements held securely in an on-platform dedicated security component</selectable>
+					<selectable id="sel-rot-3dP">integrity measurements help securely by an off-platform third-party</selectable>
+					<selectable id="sel-rot-combo">a combination of the above</selectable>
 				</selectables>.
 			</title>
 			<note role="application">
@@ -828,6 +828,72 @@
 		<audit-event/>
 	</f-component>
 
+<!-- 
+One or more of the following techniques shall be used by the RTD or CTD to validate firmware code: 
+a) Integrity verification, using an approved
+ digital signature algorithm or cryptographic hash, of device firmware code prior to execution of code outside the RTD. NIST SP 800-193 PLATFORM
+ FIRMWARE RESILIENCY GUIDELINES 26 This publication is available free of charge from: https://doi.org/10.6028/NIST.SP.800-193 Note: Integrity 
+verification could also be performed at runtime. These mechanisms may or may not be anchored in the RTD. 
+b) Symbiont devices may rely on a host device to perform detection. If the symbiont device boots independently from the host device, integrity
+ verification of the symbiont’s device firmware shall be performed prior to execution of code outside the host CTD. In such cases, the following 
+additional requirements apply: 
+	i) The symbiont’s firmware shall be protected according to the requirements in Section 4.2.1. 
+	ii) The host device should be capable of immediately 
+triggering a recovery of the symbiont’s firmware, followed by a restart of the device, in cases where corruption is detected. 
+c) Certain hardware devices (e.g., FPGAs, CPLDs) may have field-upgradable logic rather than firmware code, often referred to as configuration bitstream
+. If these devices do not have the ability to support cryptographic verification or the ability to measure and report in conformance with a) or b),
+ they shall use hardware-based mechanisms to detect device load failures. 
+d) Other techniques (e.g., watchdog timers) may be used in combination with cryptographic integrity checks to detect other problems with the
+ initialization process of platform devices.
+
+ Do we need a requirement for dealing with failures of verification/authentication? 
+-->		
+	<f-component cc-id="fpt_rot_ext.2" name="Platform Integrity Extension">
+		<f-element id="fpt-rot-ext-2e1">
+			<title>The integrity of the platform integrity root shall be extended to other platform firmware before it is executed
+				and to critical platform firmware data before it is used through (verification of integrity by)
+				<selectables linebreak="yes">
+					<selectable>the code or data is in iummutable storage</selectable>
+					<selectable>computation of a hash of the next block of code/data by a previoulsy verified block</selectable>
+					<selectable>verification of a digital signature of the code by some other thing</selectable>
+					<selectable>Measurement or verification by a platform component (e.g. mc) that has already been itself verified</selectable>
+					<selectable>Verification by a 3rd party off-platform component</selectable>
+				</selectables>.
+			</title>
+			<note role="application">
+				The integrity of the first platform firmware that executes must be 
+				established by one or more of the selections in FPT_ROT_EXT.1.1. The 
+				integrity of subsequently executed platform firmware must be traceable back
+				to this root or to some other root. This SFR should be iterated for
+				additional roots (for example, a management controller or firmware executed 
+				from an add-in card).<h:p/>
+				The integrity of subsequently executed platform firmware must be
+				integrity-checked using a mechanism specified in FPT_INT_EXT.1.<h:p/>
+				For example, firmware written to immutable storage cannot be modified, so 
+				its integrity is ensured. The integrity of the immutable storage can be
+				extended to firmware that is not written to immutable storage through 
+				cryptographic functions implemented in the immutable storage and using
+				immutable credentials.<h:p/>
+				If a platform does not have immutable storage, firmware integrity can be 
+				established through cryptographic means implemented in code that has had 
+				its integrity ensured by a NIST SP800-147/B-conformant update mechanism as 
+				defined in FPT_TUD_EXT.1.<h:p/>
+				Alternately, integrity can be established through secure storage of
+				known-good measurements in an on-platform dedicated security component, 
+				such as a Trusted Platform Module (TPM), or through a trusted measurement
+				certification process involving an off-platform third-party, such as those 
+				defined in NIST SP 800-155.<h:p/>
+			</note>
+			<aactivity>
+				<TSS>
+					The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware
+					is established, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.1.
+				</TSS>
+			</aactivity>
+		</f-element>
+		<audit-event/>
+	</f-component>	
+		
 	<!-- FPT_PPF_EXT.1 Protection of Platform Firmware -->
 	<f-component cc-id="fpt_ppf_ext.1" title="Protection of Platform Firmware and Critical Data">
 		<f-element id="fpt-ppf-ext-1e1">
@@ -950,7 +1016,29 @@
 		</f-element>
 		<f-element id="fpt-tud-ext-2e4">
 			<title>
-				The TSF shall provide some observable indication of the success or failure of the update operation.
+				The TSF shall provide an observable indication of the success or failure of the update operation.
+			</title>
+		</f-element>
+		<f-element id="fpt-tud-ext-2e5">   <!-- QQQQ: Need to fill this out, app notes, and EAs. Look at 800-193 -->
+			<title>
+				On failure to authenticate a platform firmware update image, the TSF shall not install the update image and
+				<selectables>
+					<selectable>Throw an audit event as described in (Table Ref)</selectable>
+					<selectable>Initiate auto recovery</selectable>
+					<selectable>Go dark</selectable>
+					<selectable>Struggle to reboot</selectable>					
+				</selectables>			
+			</title>
+		</f-element>
+		<f-element id="fpt-tud-ext-2e6">   <!-- QQQQ: Need to fill this out, app notes, and EAs. Look at 800-193. Could fail because of rollback protections -->
+			<title>
+				On failure of the update process to install an authenticated platform firmware update image, the TSF shall 
+				<selectables>
+					<selectable>Throw an audit event as described in (Table Ref)</selectable>
+					<selectable>Initiate auto recovery</selectable>
+					<selectable>Go dark</selectable>
+					<selectable>Struggle to reboot</selectable>					
+				</selectables>			
 			</title>
 			<note role="application">
 				The platform firmware update mechanism employs digital signatures to ensure the authenticity of the
