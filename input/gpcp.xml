@@ -547,10 +547,36 @@
 <!--   5.1 Security Functional Requirements -->
     <section title="Security Functional Requirements" id="SFRs">
 
-		<section id="fcs" title="Cryptographic Support (FCS)">
+	<section id="fau" title="Security Audit (FAU)">
 		
-			<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing)-->
-			<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
+	<!-- FAU_GEN.1 Audit Data Generation-->
+		<f-component cc-id="fau_gen.1" title="Audit Data Generation" status="sel-based">
+		<selection-depends req="fcs-rot-ext-1e1" ids="sel-rot1-audit"/>
+		<selection-depends req="fcs-rot-ext-2e1" ids="sel-rot2-audit"/>
+			<f-element id="fau-gen-1e1">
+				<title>The TSF shall be able to generate an audit record of the following auditable events:<h:br/>
+					<h:ol type="1">
+						<h:li>Start-up and shutdown of the audit functions</h:li>
+						<h:li>All auditable events for the [not selected] level of audit</h:li>
+						<h:li>All administrative actions</h:li>
+						<h:li>Start-up, shutdown, and reboot of the platform</h:li>
+						<h:li>Specifically defined auditable events in Table 1</h:li>
+						<h:li>[selection: Audit records reaching [assignment: integer value less than 100] percentage of audit capacity, [assignment: other auditable events derived from this profile]]</h:li>
+						<h:li>[selection: Specifically defined auditable event in Table 2, no additional auditable events]</h:li>
+					</h:ol>
+				</title>
+			</f-element>
+			<note role="application">
+				Hmm
+			</note>
+			<audit-event/>
+		</f-component>
+    	</section>
+
+	<section id="fcs" title="Cryptographic Support (FCS)">
+	
+	<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing)-->
+	<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
 				<selection-depends req="fpt-tud-ext-2e1" ids="sel-tud2-hash"/>
                 <f-element id="fcs-cop-1e1-hash">
                     <title>The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified cryptographic algorithm
@@ -818,6 +844,21 @@
 				certification process involving an off-platform third-party, such as those 
 				defined in NIST SP 800-155.<h:p/>
 			</note>
+		</f-element>
+		<f-element>
+			<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.1.1 fails:
+				<selectables>
+					<selectable>Reboot the platform and try again</selectable>
+					<selectable>Stop all execution and shut down</selectable>
+					<selectable>Restore the Integrity Root to a known-good state</selectable>
+					<selectable id="sel-rot1-audit">Log an audit event and notofy an administrator</selectable>
+					<selectable>Do nothing</selectable>
+					<selectable>Set fire to your pants and run screaming from the room waving your hands above your head</selectable>
+				</selectables>
+			</title>
+			<note role="application">
+				Talk about actions to take.
+			</note>
 			<aactivity>
 				<TSS>
 					The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware
@@ -850,14 +891,14 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 -->		
 	<f-component cc-id="fpt_rot_ext.2" name="Platform Integrity Extension">
 		<f-element id="fpt-rot-ext-2e1">
-			<title>The integrity of the platform integrity root shall be extended to other platform firmware before it is executed
-				and to critical platform firmware data before it is used through (verification of integrity by)
+			<title>The integrity of all platform firmware outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
+				prior to execution or use through:
 				<selectables linebreak="yes">
-					<selectable>the code or data is in iummutable storage</selectable>
-					<selectable>computation of a hash of the next block of code/data by a previoulsy verified block</selectable>
-					<selectable>verification of a digital signature of the code by some other thing</selectable>
-					<selectable>Measurement or verification by a platform component (e.g. mc) that has already been itself verified</selectable>
-					<selectable>Verification by a 3rd party off-platform component</selectable>
+					<selectable>the code or data being executed/used from immutable storage</selectable>
+					<selectable>computation and verification of a hash using previously verified code/data</selectable>
+					<selectable>verification of a digital signature using previously verified code/data</selectable>
+					<selectable>measurement and verification using previously verified platform code/data</selectable>
+					<selectable>measurement and verification by a 3rd-party off-platform component</selectable>
 				</selectables>.
 			</title>
 			<note role="application">
@@ -884,6 +925,20 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 				certification process involving an off-platform third-party, such as those 
 				defined in NIST SP 800-155.<h:p/>
 			</note>
+			<f-element>
+				<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.1.1 fails:
+					<selectables>
+						<selectable>Reboot the platform and try again</selectable>
+						<selectable>Stop all execution and shut down</selectable>
+						<selectable>Restore the Integrity Root to a known-good state</selectable>
+						<selectable id="sel-rot2-audit">Log an audit event and notofy an administrator</selectable>
+						<selectable>Do nothing</selectable>
+						<selectable>Set fire to your pants and run screaming from the room waving your hands above your head</selectable>
+					</selectables>
+				</title>
+				<note role="application">
+					Talk about actions to take.
+				</note>
 			<aactivity>
 				<TSS>
 					The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware
@@ -1005,7 +1060,12 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 		<f-element id="fpt-tud-ext-2e2">
 			<title>
 				The TSF shall allow installation of updates only if the digital signature has been
-				successfully verified as specified in FCS_COP.1/SigVer.
+				successfully verified as specified in FCS_COP.1/SigVer and 
+				<selectables>
+					<selectable>the version number of the platform firmware update is more recent than the version number of the current
+						installed platform firmware</selectable>
+					<selectable>no other reasons</selectable>
+				</selectables>.
 			</title>
 		</f-element>
 		<f-element id="fpt-tud-ext-2e3">
@@ -1152,10 +1212,6 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 		</f-element>
 		<audit-event/>
 	</f-component>
-		
-<!-- Other things to do for update:
-	- Anti-rollback protection
-	-->		
 		
     </section>				
 	    
