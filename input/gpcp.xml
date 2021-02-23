@@ -990,15 +990,16 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 	</f-component>
 	
 	<!-- FPT_RVR_EXT.1 Platform Firmware Recovery -->
-	<f-component cc-id="fpt_rvr_ext.1" title="Platform Firmware Recovery">
+	<f-component cc-id="fpt_rvr_ext.1" title="Platform Firmware Recovery" status="sel-based">
 		<selection-depends req="fpt-rot-ext-1e2" ids="sel-rot1-recovery"/>
 		<selection-depends req="fpt-rot-ext-2e2" ids="sel-rot2-recovery"/>
 		<f-element id="fpt-rvr-ext-1e1">
 			<title>
-				Something about recovery.
+				Something about recovery. 
 			</title>
 			<note role="application">
-				Somthing in here describing the permissible ways to recover from a boot or integrity failure.
+				Something in here describing the permissible ways to recover from a boot or integrity
+				failure. Could this be merged with the secure local update requyirement.
 			</note>
 			<aactivity>
 				<no-tests>Nothing to see here.</no-tests>
@@ -1228,23 +1229,23 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 	  
     <section title="Security Assurance Requirements" id="SARs">
       The Security Objectives in 
-      <secref linkend="obj"/> were constructed to address threats identified in
-      <secref linkend="threats"/>. The Security Functional Requirements (SFRs)
-      in <secref linkend="SFRs"/> are a formal instantiation of the Security Objectives. The PP
+      <xref to="obj"/> were constructed to address threats identified in
+      <xref to="threats"/>. The Security Functional Requirements (SFRs)
+      in <xref to="SFRs"/> are a formal instantiation of the Security Objectives. The PP
       identifies the Security Assurance Requirements (SARs) to frame the extent to
       which the evaluator assesses the documentation applicable for the evaluation and performs
       independent testing. <h:br/> This section lists the set of SARs from CC part 3
       that are required in evaluations against this PP. Individual Assurance Activities
-      <!--(AAs). Never use these again --> to be performed are specified both in <secref
-        linkend="req"/> as well as in this section. <h:br/> The general model for evaluation of OSs against STs written to conform to this PP is as follows: <h:br/> After the
-        ST has been approved for evaluation, the <abbr class="expanded"
-        title="Information Technology Security Evaluation Facility">ITSEF</abbr> will obtain the
+      <!--(AAs). Never use these again --> to be performed are specified both in <xref
+        to="req"/> as well as in this section. <h:br/> The general model for evaluation of OSs
+		against STs written to conform to this PP is as follows: <h:br/> After the
+        ST has been approved for evaluation, the ITSEF will obtain the
         OS, supporting environmental IT, and the administrative/user guides for
       the OS. The ITSEF is expected to perform actions mandated by the Common Evaluation
       Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the Assurance Activities
-      contained within <secref linkend="req"/>, which are intended to be an interpretation of the
+      contained within <xref to="req"/>, which are intended to be an interpretation of the
       other CEM assurance requirements as they apply to the specific technology instantiated in the
-      OS. The Assurance Activities that are captured in <secref linkend="req"/> also provide
+      OS. The Assurance Activities that are captured in <xref to="req"/> also provide
       clarification as to what the developer needs to provide to demonstrate the OS is compliant
       with the PP. 
 	    <section title="Class ASE: Security Target" id="ase">As per ASE activities
@@ -1252,10 +1253,10 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
       <section title="Class ADV: Development" id="adv">The information about the OS is contained in the guidance documentation available to the end user as
         well as the TSS portion of the ST. The OS developer must concur with the description of the product that is
         contained in the TSS as it relates to the functional requirements. The Assurance Activities
-        contained in <secref linkend="SFRs"/> should provide the ST authors with
+        contained in <xref to="SFRs"/> should provide the ST authors with
         sufficient information to determine the appropriate content for the TSS section.
           <a-component cc-id="adv_fsp.1" name="Basic Functional Specification (ADV_FSP.1)">The
-          functional specification describes the <abbr title="TSF Interface">TSFI</abbr>s. It is not
+          functional specification describes the TSFIs. It is not
           necessary to have a formal or complete specification of these interfaces. Additionally,
           because OSs conforming to this PP will necessarily have interfaces to
           the Operational Environment that are not directly invokable by OS
@@ -1285,11 +1286,11 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 	  
             <a-element type="C">
               <title>The functional specification shall describe the purpose and method of use for
-              each SFR-enforcing and SFR-supporting <abbr title="TSF Interface">TSFI</abbr>.</title>
+              each SFR-enforcing and SFR-supporting TSFI.</title>
             </a-element>
             <a-element type="C">
               <title>The functional specification shall identify all parameters associated with each
-              SFR-enforcing and SFR-supporting <abbr title="TSF Interface">TSFI</abbr>.</title>
+              SFR-enforcing and SFR-supporting TSFI.</title>
             </a-element>
             <a-element type="C">
               <title>The functional specification shall provide rationale for the implicit
@@ -1297,8 +1298,7 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
             </a-element>
             <a-element type="C">
               <title>
-		The tracing shall demonstrate that the SFRs trace to 
-		<abbr title="TSF Interface">TSFI</abbr>s 
+		The tracing shall demonstrate that the SFRs trace to TSFIs 
 		in the functional specification.
 	      </title>
             </a-element>
@@ -1312,7 +1312,7 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
               and complete instantiation of the SFRs.</title>
               <aactivity>There are no specific assurance activities associated with these SARs, except
               ensuring the information is provided. The functional specification documentation is
-              provided to support the evaluation activities described in <secref linkend="SFRs"/>, and
+              provided to support the evaluation activities described in <xref to="SFRs"/>, and
               other activities described for AGD, ATE, and AVA SARs. The requirements on the content
               of the functional specification information is implicitly assessed by virtue of the
               other assurance activities being performed; if the evaluator is unable to perform an
@@ -1398,7 +1398,7 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
               <title>The evaluator shall confirm that the information provided meets all requirements
               for content and presentation of evidence. </title>
               <aactivity>Some of the contents of the operational guidance are verified by the
-              assurance activities in <secref linkend="SFRs"/> and evaluation of the OS according to the <cite linkend="bibCEM"/>. The following additional
+              assurance activities in <xref to="SFRs"/> and evaluation of the OS according to the <cite linkend="bibCEM"/>. The following additional
               information is also required. If cryptographic functions are provided by the OS, the operational guidance shall contain instructions for configuring
               the cryptographic engine associated with the evaluated configuration of the OS. It shall provide a warning to the administrator that use of other
               cryptographic engines was not evaluated nor tested during the CC evaluation of the
@@ -1601,12 +1601,13 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
         family. At the assurance level specified in this PP, testing is based on advertised
         functionality and interfaces with dependency on the availability of design information. One
         of the primary outputs of the evaluation process is the test report as specified in the
-        following requirements. <a-component cc-id="ate_ind.1"
-          name="Independent Testing – Conformance (ATE_IND.1)"> Testing is performed to confirm the
+        following requirements. 
+		<a-component cc-id="ate_ind.1" name="Independent Testing – Conformance (ATE_IND.1)"> 
+			Testing is performed to confirm the
           functionality described in the TSS as well as the administrative
           (including configuration and operational) documentation provided. The focus of the testing
-          is to confirm that the requirements specified in <secref linkend="SFRs"/> being met,
-          although some additional testing is specified for SARs in <secref linkend="SARs"/>. The
+          is to confirm that the requirements specified in <xref to="SFRs"/> being met,
+          although some additional testing is specified for SARs in <xref to="SARs"/>. The
           Assurance Activities identify the additional testing activities associated with these
           components. The evaluator produces a test report documenting the plan for and results of
           testing, as well as coverage arguments focused on the platform/OS
@@ -1733,7 +1734,6 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
        Do NOT put SFRs in this section. All SFR belong up above in SFR section. 
        To make an SFR optional tag it above as status="optional" 
   -->
-
 
 
   <appendix title="References" id="biblio">
