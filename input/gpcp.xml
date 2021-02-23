@@ -551,8 +551,8 @@
 		
 	<!-- FAU_GEN.1 Audit Data Generation-->
 		<f-component cc-id="fau_gen.1" title="Audit Data Generation" status="sel-based">
-		<selection-depends req="fcs-rot-ext-1e1" ids="sel-rot1-audit"/>
-		<selection-depends req="fcs-rot-ext-2e1" ids="sel-rot2-audit"/>
+		<selection-depends req="fpt-rot-ext-1e2" ids="sel-rot1-audit"/>
+		<selection-depends req="fpt-rot-ext-2e2" ids="sel-rot2-audit"/>
 			<f-element id="fau-gen-1e1">
 				<title>The TSF shall be able to generate an audit record of the following auditable events:<h:br/>
 					<h:ol type="1">
@@ -567,7 +567,8 @@
 				</title>
 			</f-element>
 			<note role="application">
-				Hmm
+				The ST Author should include this SFR in the ST if the TOE generates audit events for integrity verification or boot failures
+				as indicated by the appropriate selections in FPT_ROT_EXT.1.2 and FPR_ROT_EXT.2.2.
 			</note>
 			<audit-event/>
 		</f-component>
@@ -796,8 +797,8 @@
 								signatures. The evaluator shall inject errors into the test 
 								vectors produced during the Signature Verification Test by
 								introducing errors in some of the public keys, e, messages, IR
-								format, and/or signatures. The TOE attempts to verify th
-								e signatures and returns success or failure.</test>
+								format, and/or signatures. The TOE attempts to verify the 
+								signatures and returns success or failure.</test>
 						</testlist>
 					</Tests>
 				</aactivity>
@@ -838,12 +839,12 @@
 				defined in NIST SP 800-155.<h:p/>
 			</note>
 		</f-element>
-		<f-element>
+		<f-element id="fpt-rot-ext-1e2">
 			<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.1.1 fails:
-				<selectables>
+				<selectables linebreak="yes">
 					<selectable>Reboot the platform and try again</selectable>
 					<selectable>Stop all execution and shut down</selectable>
-					<selectable>Restore the Integrity Root to a known-good state through a Recovery process as specified in FPT_RVR_EXT.1</selectable>
+					<selectable id="sel-rot1-recovery">Restore the Integrity Root to a known-good state through a Recovery process as specified in FPT_RVR_EXT.1</selectable>
 					<selectable id="sel-rot1-audit">Log an audit event and notify an administrator</selectable>
 					<selectable>Do nothing and continue booting the system</selectable>
 				</selectables>
@@ -909,12 +910,12 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 				by TOE components such as management controllers or off-TOE 3rd-party entities.<h:p/>				
 			</note>
 			</f-element>
-			<f-element>
+			<f-element id="fpt-rot-ext-2e2">
 				<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.2.1 fails:
-					<selectables>
+					<selectables linebreak="yes">
 						<selectable>Reboot the platform and try again</selectable>
 						<selectable>Stop all execution and shut down</selectable>
-						<selectable>Restore the firmware image to a known-good state through a Recovery Process specified in FPT_RVR_EXT.1</selectable>
+						<selectable id="sel-rot2-recovery">Restore the firmware image to a known-good state through a Recovery Process specified in FPT_RVR_EXT.1</selectable>
 						<selectable id="sel-rot2-audit">Log an audit event and notofy an administrator</selectable>
 						<selectable>Do nothing</selectable>
 					</selectables>
@@ -986,6 +987,23 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 			</aactivity>
 		</f-element>
 		<audit-event/>
+	</f-component>
+	
+	<!-- FPT_RVR_EXT.1 Platform Firmware Recovery -->
+	<f-component cc-id="fpt_rvr_ext.1" title="Platform Firmware Recovery">
+		<selection-depends req="fpt-rot-ext-1e2" ids="sel-rot1-recovery"/>
+		<selection-depends req="fpt-rot-ext-2e2" ids="sel-rot2-recovery"/>
+		<f-element id="fpt-rvr-ext-1e1">
+			<title>
+				Something about recovery.
+			</title>
+			<note role="application">
+				Somthing in here describing the permissible ways to recover from a boot or integrity. 
+			</note>
+			<aactivity>
+				<no-tests>Nothing to see here.</no-tests>
+			</aactivity>
+		</f-element>
 	</f-component>
 		
 	<!-- FPT_TUD_EXT.1 Platform Firmware Update -->
@@ -1468,7 +1486,8 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
               an identifier (such as a product name/version number) that specifically identifies the
               version that meets the requirements of the ST. Further, the
               evaluator will check the AGD guidance and OS samples received for
-              testing to ensure that the version number is consistent with that in the ST. If the vendor maintains a web site advertising the OS, the evaluator will examine the information on the web site to
+              testing to ensure that the version number is consistent with that in the ST. If the vendor
+			  maintains a web site advertising the OS, the evaluator will examine the information on the web site to
               ensure that the information in the ST is sufficient to distinguish
               the product.</aactivity>
             </a-element>
@@ -1651,7 +1670,8 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
         what vulnerabilities have been discovered in these types of products. In most cases, these
         vulnerabilities will require sophistication beyond that of a basic attacker. Until
         penetration tools are created and uniformly distributed to the evaluation labs, the
-        evaluator will not be expected to test for these vulnerabilities in the OS. The labs will be expected to comment on the likelihood of these vulnerabilities given
+        evaluator will not be expected to test for these vulnerabilities in the OS. The labs will be 
+		expected to comment on the likelihood of these vulnerabilities given
         the documentation provided by the vendor. This information will be used in the development
         of penetration testing tools and for the development of future protection profiles.
         <a-component cc-id="ava_van.1" name="Vulnerability Survey (AVA_VAN.1)">
@@ -1712,41 +1732,6 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
        Do NOT put SFRs in this section. All SFR belong up above in SFR section. 
        To make an SFR optional tag it above as status="optional" 
   -->
-  <appendix title="Optional Requirements" id="optional"> As indicated in <secref linkend="ccl"/>,
-    the baseline requirements (those that must be performed by the OS) are
-    contained in the body of this PP. Additionally, there are three other types of requirements
-    specified in <appref linkend="optional"/>, <appref linkend="sel-based"/>, and <appref
-      linkend="objective"/>. The first type (in this Appendix) are requirements that can be included
-    in the ST, but are not required in order for a OS to claim conformance to
-    this PP. The second type (in <appref linkend="sel-based"/>) are requirements based on selections
-    in the body of the PP: if certain selections are made, then additional requirements in that
-    appendix must be included. The third type (in <appref linkend="objective"/> are components that
-    are not required in order to conform to this PP, but will be included in the baseline
-    requirements in future versions of this PP, so adoption by vendors is encouraged. Note that the
-    ST author is responsible for ensuring that requirements that may be associated with those in
-      <appref linkend="optional"/>, <appref linkend="sel-based"/>, and <appref linkend="objective"/>
-    but are not listed (e.g., FMT-type requirements) are also included in the ST. </appendix>
-
-  <!-- 
-       Do NOT put SFRs in this section. All SFR belong up above in SFR section. 
-       To make an SFR optional tag it above as status="sel-based" 
-  -->
-  <appendix title="Selection-Based Requirements" id="sel-based"> As indicated in the introduction to
-    this PP, the baseline requirements (those that must be performed by the OS or its underlying
-    platform) are contained in the body of this PP. There are additional requirements based on
-    selections in the body of the PP: if certain selections are made, then additional requirements
-    below will need to be included. </appendix>
-
-  <!-- 
-       Do NOT put SFRs in this section. All SFR belong up above in SFR section. 
-       To make an SFR optional tag it above as status="objective" 
-  -->
-  <appendix title="Objective Requirements" id="objective"> This appendix includes requirements that
-    specify security functionality which also addresses threats. The requirements are not currently
-    mandated in the body of this PP as they describe security functionality not yet widely-available
-    in commercial technology. However, these requirements may be included in the ST such that the
-    OS is still conformant to this PP, and it is expected that they be included as soon as
-    possible. </appendix>
 
   <appendix title="Inherently Satisfied Requirements" id="satisfiedreqs"> This
 	appendix lists requirements that should be considered satisfied by products
