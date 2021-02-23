@@ -816,7 +816,7 @@
 					<selectable id="sel-rot-immutable-creds">credentials held in immutable storage or protected off-platform</selectable>
 					<selectable id="sel-rot-mc">a separate management controller that is itself rooted in a mechanism that meets this requirement</selectable>
 					<selectable id="sel-rot-dsc">integrity measurements held securely in an on-platform dedicated security component</selectable>
-					<selectable id="sel-rot-3dP">integrity measurements help securely by an off-platform third-party</selectable>
+					<selectable id="sel-rot-3dP">integrity measurements held securely by an off-platform third-party</selectable>
 					<selectable id="sel-rot-combo">a combination of the above</selectable>
 				</selectables>.
 			</title>
@@ -827,13 +827,6 @@
 				to this root or to some other root. This SFR should be iterated for
 				additional roots (for example, a management controller or firmware executed 
 				from an add-in card).<h:p/>
-				The integrity of subsequently executed platform firmware must be
-				integrity-checked using a mechanism specified in FPT_INT_EXT.1.<h:p/>
-				For example, firmware written to immutable storage cannot be modified, so 
-				its integrity is ensured. The integrity of the immutable storage can be
-				extended to firmware that is not written to immutable storage through 
-				cryptographic functions implemented in the immutable storage and using
-				immutable credentials.<h:p/>
 				If a platform does not have immutable storage, firmware integrity can be 
 				established through cryptographic means implemented in code that has had 
 				its integrity ensured by a NIST SP800-147/B-conformant update mechanism as 
@@ -850,23 +843,28 @@
 				<selectables>
 					<selectable>Reboot the platform and try again</selectable>
 					<selectable>Stop all execution and shut down</selectable>
-					<selectable>Restore the Integrity Root to a known-good state</selectable>
-					<selectable id="sel-rot1-audit">Log an audit event and notofy an administrator</selectable>
-					<selectable>Do nothing</selectable>
-					<selectable>Set fire to your pants and run screaming from the room waving your hands above your head</selectable>
+					<selectable>Restore the Integrity Root to a known-good state through a Recovery process as specified in FPT_RVR_EXT.1</selectable>
+					<selectable id="sel-rot1-audit">Log an audit event and notify an administrator</selectable>
+					<selectable>Do nothing and continue booting the system</selectable>
 				</selectables>
 			</title>
 			<note role="application">
-				Talk about actions to take.
+				The ability to generate audit events would generally be limited to server platforms with management controllers.
 			</note>
 			<aactivity>
 				<TSS>
 					The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware
 					is established, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.1.
 				</TSS>
+				<Guidance>
+					The evaluator shall examine the operational guidance to ensure that it describes the actions taken in case of failure to establish
+					the integrity of the platform firmware root. If the actions are configurable, the guidance shall explain how they are configured.
+				</Guidance>
 			</aactivity>
 		</f-element>
-		<audit-event/>
+		<audit-event type="optional">
+			<audit-event-descr>Failure of integrity verification.</audit-event-descr>
+		</audit-event>
 	</f-component>
 
 <!-- 
@@ -887,7 +885,6 @@ c) Certain hardware devices (e.g., FPGAs, CPLDs) may have field-upgradable logic
 d) Other techniques (e.g., watchdog timers) may be used in combination with cryptographic integrity checks to detect other problems with the
  initialization process of platform devices.
 
- Do we need a requirement for dealing with failures of verification/authentication? 
 -->		
 	<f-component cc-id="fpt_rot_ext.2" name="Platform Integrity Extension">
 		<f-element id="fpt-rot-ext-2e1">
@@ -902,52 +899,46 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 				</selectables>.
 			</title>
 			<note role="application">
-				The integrity of the first platform firmware that executes must be 
-				established by one or more of the selections in FPT_ROT_EXT.1.1. The 
-				integrity of subsequently executed platform firmware must be traceable back
-				to this root or to some other root. This SFR should be iterated for
-				additional roots (for example, a management controller or firmware executed 
-				from an add-in card).<h:p/>
-				The integrity of subsequently executed platform firmware must be
-				integrity-checked using a mechanism specified in FPT_INT_EXT.1.<h:p/>
-				For example, firmware written to immutable storage cannot be modified, so 
-				its integrity is ensured. The integrity of the immutable storage can be
-				extended to firmware that is not written to immutable storage through 
-				cryptographic functions implemented in the immutable storage and using
-				immutable credentials.<h:p/>
-				If a platform does not have immutable storage, firmware integrity can be 
-				established through cryptographic means implemented in code that has had 
-				its integrity ensured by a NIST SP800-147/B-conformant update mechanism as 
-				defined in FPT_TUD_EXT.1.<h:p/>
-				Alternately, integrity can be established through secure storage of
-				known-good measurements in an on-platform dedicated security component, 
-				such as a Trusted Platform Module (TPM), or through a trusted measurement
-				certification process involving an off-platform third-party, such as those 
-				defined in NIST SP 800-155.<h:p/>
+				This requirement specifies the means for extending the initial integrity
+				of platform firmware established by FPT_ROT_EXT.1.1 to subsequently executed
+				platform firmware.<h:p/>
+				Integrity of code and data written to immutable storage is assured. Otherwise,
+				integrity must be extended through cryptograpihic means: either through hashes
+				or digitial signatures computed and verified by firmware that has itself been
+				previously had its integrity verified or ensured. Verificcation can be performed
+				by TOE components such as management controllers or off-TOE 3rd-party entities.<h:p/>				
 			</note>
 			</f-element>
 			<f-element>
-				<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.1.1 fails:
+				<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.2.1 fails:
 					<selectables>
 						<selectable>Reboot the platform and try again</selectable>
 						<selectable>Stop all execution and shut down</selectable>
-						<selectable>Restore the Integrity Root to a known-good state</selectable>
+						<selectable>Restore the firmware image to a known-good state through a Recovery Process specified in FPT_RVR_EXT.1</selectable>
 						<selectable id="sel-rot2-audit">Log an audit event and notofy an administrator</selectable>
 						<selectable>Do nothing</selectable>
-						<selectable>Set fire to your pants and run screaming from the room waving your hands above your head</selectable>
 					</selectables>
 				</title>
 				<note role="application">
-					Talk about actions to take.
+					The ability to generate audit events would generally be limited to server platforms with management controllers.
 				</note>
 				<aactivity>
-				<TSS>
-					The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware
-					is established, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.1.
-				</TSS>
+					<TSS>
+						The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware
+						is extended to other platform components, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.2.
+					</TSS>
+					<Guidance>
+						The evaluator shall examine the operational guidance to ensure that it describes the actions taken in case of failure to establish
+						the integrity of the platform firmware root. If the actions are configurable, the guidance shall explain how they are configured.
+					</Guidance>
+					<Tests>
+						<h:b>Is there a reasonable way to test this?</h:b>
+					</Tests>
 				</aactivity>
 			</f-element>
-		<audit-event/>
+			<audit-event type="optional">
+				<audit-event-descr>Failure of integrity verification.</audit-event-descr>
+			</audit-event>
 	</f-component>	
 		
 	<!-- FPT_PPF_EXT.1 Protection of Platform Firmware -->
@@ -1042,10 +1033,6 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 
 
 	<!-- FPT_TUD_EXT.2 Secure Platform Firmware Update Mechanism -->
-	<!-- Should this SFR have elements mandating what to do in case of-
-		- authentication or integrity failure 
-		- update failure 
-	-->
 	<f-component cc-id="fpt_tud_ext.2" title="Secure Platform Firmware Update Mechanism" status="sel-based">
 		<selection-depends req="fpt-tud-ext-1e1" ids="sel-tud-update"/>
 		<f-element id="fpt-tud-ext-2e1">
