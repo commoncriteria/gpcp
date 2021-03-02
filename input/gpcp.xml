@@ -817,7 +817,7 @@
 					<selectable id="sel-rot-immutable-creds">credentials held in immutable storage or protected off-platform</selectable>
 					<selectable id="sel-rot-mc">a separate management controller that is itself rooted in a mechanism that meets this requirement</selectable>
 					<selectable id="sel-rot-dsc">integrity measurements held securely in an on-platform dedicated security component</selectable>
-					<selectable id="sel-rot-3dP">integrity measurements held securely by an off-platform third-party</selectable>
+					<selectable id="sel-rot-3dP">integrity measurements held securely by an off-platform entity</selectable>
 					<selectable id="sel-rot-combo">a combination of the above</selectable>
 				</selectables>.
 			</title>
@@ -841,13 +841,12 @@
 		</f-element>
 		<f-element id="fpt-rot-ext-1e2">
 			<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.1.1 fails:
-				<selectables linebreak="yes">
-					<selectable>Reboot the platform and try again</selectable>
+				Halt, throw an alert or audit event or notification and <selectables linebreak="yes">
+					<selectable></selectable>
 					<selectable>Stop all execution and shut down</selectable>
-					<selectable id="sel-rot1-recovery">Restore the Integrity Root to a known-good state through a Recovery process as specified in FPT_RVR_EXT.1</selectable>
-					<selectable id="sel-rot1-audit">Log an audit event and notify an administrator</selectable>
-					<selectable>Do nothing and continue booting the system</selectable>
-				</selectables>
+					<selectable id="sel-rot1-recovery">Initiate a Recovery process as specified in FPT_RVR_EXT.1</selectable>
+					<selectable></selectable>
+				</selectables> either automatically or as Administrator initiated, including policy.
 			</title>
 			<note role="application">
 				The ability to generate audit events would generally be limited to server platforms with management controllers.
