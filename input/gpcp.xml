@@ -817,8 +817,7 @@
 					<selectable id="sel-rot-immutable-creds">credentials held in immutable storage or protected off-platform</selectable>
 					<selectable id="sel-rot-mc">a separate management controller that is itself rooted in a mechanism that meets this requirement</selectable>
 					<selectable id="sel-rot-dsc">integrity measurements held securely in an on-platform dedicated security component</selectable>
-					<selectable id="sel-rot-3dP">integrity measurements held securely by an off-platform entity</selectable>
-					<selectable id="sel-rot-combo">a combination of the above</selectable>
+					<selectable id="sel-rot-offplat">integrity measurements held securely by an off-platform entity</selectable>
 				</selectables>.
 			</title>
 			<note role="application">
@@ -835,21 +834,30 @@
 				Alternately, integrity can be established through secure storage of
 				known-good measurements in an on-platform dedicated security component, 
 				such as a Trusted Platform Module (TPM), or through a trusted measurement
-				certification process involving an off-platform third-party, such as those 
+				certification process involving an off-platform entity, such as those 
 				defined in NIST SP 800-155.<h:p/>
 			</note>
 		</f-element>
 		<f-element id="fpt-rot-ext-1e2">
 			<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.1.1 fails:
-				Halt, throw an alert or audit event or notification and <selectables linebreak="yes">
-					<selectable></selectable>
-					<selectable>Stop all execution and shut down</selectable>
-					<selectable id="sel-rot1-recovery">Initiate a Recovery process as specified in FPT_RVR_EXT.1</selectable>
-					<selectable></selectable>
-				</selectables> either automatically or as Administrator initiated, including policy.
+				<h:ul>
+					<h:li>Halt,</h:li>
+					<h:li>Notify an administrator/user (generate an indication of the problem?), and</h:li>
+					<h:li><selectables linebreak="yes">
+						<selectable>Stop all execution and shut down</selectable>
+						<selectable id="sel-rot1-recovery">Initiate a Recovery process as specified in FPT_RVR_EXT.1</selectable>
+					</selectables></h:li>
+				</h:ul> 
+				<selectables linebreak="yes">
+					<selectable>automatically</selectable>
+					<selectable>in accordance with administrator-configurable policy</selectable>
+					<selectable>by express determination of an administrator/user</selectable>
+				</selectables>.						
 			</title>
 			<note role="application">
-				The ability to generate audit events would generally be limited to server platforms with management controllers.
+				Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
+				of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
+				example, by blinking lights, beep codes, screen indications, or local logging.
 			</note>
 			<aactivity>
 				<TSS>
@@ -860,6 +868,10 @@
 					The evaluator shall examine the operational guidance to ensure that it describes the actions taken in case of failure to establish
 					the integrity of the platform firmware root. If the actions are configurable, the guidance shall explain how they are configured.
 				</Guidance>
+				<Tests>
+					<h:b>(It would be really great to have some tests here. Is it practical to force an integrity failure and ensure that the
+					thing that is supposed to happen actually happens?)</h:b>
+				</Tests>
 			</aactivity>
 		</f-element>
 		<audit-event type="optional">
@@ -895,7 +907,8 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 					<selectable>computation and verification of a hash using previously verified code/data</selectable>
 					<selectable>verification of a digital signature using previously verified code/data</selectable>
 					<selectable>measurement and verification using previously verified platform code/data</selectable>
-					<selectable>measurement and verification by a 3rd-party off-platform component</selectable>
+					<selectable>measurement and verification by an on-platform dedicated security component</selectable>
+					<selectable>measurement and verification by an off-platform entity</selectable>
 				</selectables>.
 			</title>
 			<note role="application">
@@ -911,16 +924,23 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 			</f-element>
 			<f-element id="fpt-rot-ext-2e2">
 				<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.2.1 fails:
-					<selectables linebreak="yes">
-						<selectable>Reboot the platform and try again</selectable>
+				<h:ul>
+					<h:li>Halt,</h:li>
+					<h:li>Notify an administrator/user (generate an indication of the problem?), and</h:li>
+					<h:li><selectables linebreak="yes">
 						<selectable>Stop all execution and shut down</selectable>
-						<selectable id="sel-rot2-recovery">Restore the firmware image to a known-good state through a Recovery Process specified in FPT_RVR_EXT.1</selectable>
-						<selectable id="sel-rot2-audit">Log an audit event and notofy an administrator</selectable>
-						<selectable>Do nothing</selectable>
-					</selectables>
-				</title>
+						<selectable id="sel-rot1-recovery">Initiate a Recovery process as specified in FPT_RVR_EXT.1</selectable>
+					</selectables></h:li>
+				</h:ul> 
+				<selectables linebreak="yes">
+					<selectable>automatically</selectable>
+					<selectable>in accordance with administrator-configurable policy</selectable>
+					<selectable>by express determination of an administrator/user</selectable>
+				</selectables>.						
 				<note role="application">
-					The ability to generate audit events would generally be limited to server platforms with management controllers.
+					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
+					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
+					example, by blinking lights, beep codes, screen indications, or local logging.
 				</note>
 				<aactivity>
 					<TSS>
