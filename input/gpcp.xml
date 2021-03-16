@@ -817,121 +817,59 @@
 					<selectable id="sel-rot-immutable-creds">credentials held in immutable storage or protected off-platform</selectable>
 					<selectable id="sel-rot-mc">a separate management controller that is itself rooted in a mechanism that meets this requirement</selectable>
 					<selectable id="sel-rot-dsc">integrity measurements held securely in an on-platform dedicated security component</selectable>
-					<selectable id="sel-rot-offplat">integrity measurements held securely by an off-platform entity</selectable>
+					<selectable id="sel-rot-offplat">integrity measurements held securely by an off-platform trusted entity</selectable>
 				</selectables>.
 			</title>
 			<note role="application">
-				The integrity of the first platform firmware that executes must be 
-				established by one or more of the selections in FPT_ROT_EXT.1.1. The 
-				integrity of subsequently executed platform firmware must be traceable back
-				to this root or to some other root. This SFR should be iterated for
-				additional roots (for example, a management controller or firmware executed 
-				from an add-in card).<h:p/>
-				If a platform does not have immutable storage, firmware integrity can be 
-				established through cryptographic means implemented in code that has had 
-				its integrity ensured by a NIST SP800-147/B-conformant update mechanism as 
-				defined in FPT_TUD_EXT.1.<h:p/>
-				Alternately, integrity can be established through secure storage of
-				known-good measurements in an on-platform dedicated security component, 
-				such as a Trusted Platform Module (TPM), or through a trusted measurement
-				certification process involving an off-platform entity, such as those 
-				defined in NIST SP 800-155.<h:p/>
-			</note>
-		</f-element>
-		<f-element id="fpt-rot-ext-1e2">
-			<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.1.1 fails:
-				<h:ul>
-					<h:li>Halt,</h:li>
-					<h:li>Notify an administrator/user (generate an indication of the problem?), and</h:li>
-					<h:li><selectables linebreak="yes">
-						<selectable>Stop all execution and shut down</selectable>
-						<selectable id="sel-rot1-recovery">Initiate a Recovery process as specified in FPT_RVR_EXT.1</selectable>
-					</selectables></h:li>
-				</h:ul> 
-				<selectables linebreak="yes">
-					<selectable>automatically</selectable>
-					<selectable>in accordance with administrator-configurable policy</selectable>
-					<selectable>by express determination of an administrator/user</selectable>
-				</selectables>.						
-			</title>
-			<note role="application">
-				Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
-				of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
-				example, by blinking lights, beep codes, screen indications, or local logging.
+				Roots of Trust are components that constitute a set of unconditionally trusted functions. The above are acceptable
+				roots of trust for platform firmware integrity.<h:p/>
+				The integrity of the first platform firmware that executes must be established by one or more of the selections
+				in FPT_ROT_EXT.1.1. The integrity of subsequently executed platform firmware must be traceable back
+				to this root or to some other root. This SFR should be iterated for additional roots (for example, a management 
+				controller or firmware executed from an add-in card).<h:p/>
 			</note>
 			<aactivity>
-				<TSS>
-					The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware
-					is established, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.1.
+				<TSS>The evaluator shall verify that the TSS describes the Root of Trust on which initial integrity of platform firmware is anchored, consistent 
+					with the selection above. The description shall include means by which the Root of Trust is protected from 
+					modification.<h:p/>
 				</TSS>
-				<Guidance>
-					The evaluator shall examine the operational guidance to ensure that it describes the actions taken in case of failure to establish
-					the integrity of the platform firmware root. If the actions are configurable, the guidance shall explain how they are configured.
-				</Guidance>
-				<Tests>
-					<h:b>(It would be really great to have some tests here. Is it practical to force an integrity failure and ensure that the
-					thing that is supposed to happen actually happens?)</h:b>
-				</Tests>
-			</aactivity>
+			</aactivity>				
 		</f-element>
-		<audit-event type="optional">
-			<audit-event-descr>Failure of integrity verification.</audit-event-descr>
-		</audit-event>
 	</f-component>
 
-<!-- 
-One or more of the following techniques shall be used by the RTD or CTD to validate firmware code: 
-a) Integrity verification, using an approved
- digital signature algorithm or cryptographic hash, of device firmware code prior to execution of code outside the RTD. NIST SP 800-193 PLATFORM
- FIRMWARE RESILIENCY GUIDELINES 26 This publication is available free of charge from: https://doi.org/10.6028/NIST.SP.800-193 Note: Integrity 
-verification could also be performed at runtime. These mechanisms may or may not be anchored in the RTD. 
-b) Symbiont devices may rely on a host device to perform detection. If the symbiont device boots independently from the host device, integrity
- verification of the symbiont’s device firmware shall be performed prior to execution of code outside the host CTD. In such cases, the following 
-additional requirements apply: 
-	i) The symbiont’s firmware shall be protected according to the requirements in Section 4.2.1. 
-	ii) The host device should be capable of immediately 
-triggering a recovery of the symbiont’s firmware, followed by a restart of the device, in cases where corruption is detected. 
-c) Certain hardware devices (e.g., FPGAs, CPLDs) may have field-upgradable logic rather than firmware code, often referred to as configuration bitstream
-. If these devices do not have the ability to support cryptographic verification or the ability to measure and report in conformance with a) or b),
- they shall use hardware-based mechanisms to detect device load failures. 
-d) Other techniques (e.g., watchdog timers) may be used in combination with cryptographic integrity checks to detect other problems with the
- initialization process of platform devices.
-
--->		
 	<f-component cc-id="fpt_rot_ext.2" name="Platform Integrity Extension">
 		<f-element id="fpt-rot-ext-2e1">
-			<title>The integrity of all platform firmware outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
+			<title>The integrity of all mutable platform firmware outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
 				prior to execution or use through:
 				<selectables linebreak="yes">
-					<selectable>the code or data being executed/used from immutable storage</selectable>
-					<selectable>computation and verification of a hash using previously verified code/data</selectable>
-					<selectable>verification of a digital signature using previously verified code/data</selectable>
-					<selectable>measurement and verification using previously verified platform code/data</selectable>
+					<selectable>computation and verification of a hash by trusted code/data</selectable>
+					<selectable>verification of a digital signature by trusted code/data</selectable>
+					<selectable>measurement and verification by trusted code/data</selectable>
 					<selectable>measurement and verification by an on-platform dedicated security component</selectable>
-					<selectable>measurement and verification by an off-platform entity</selectable>
+					<selectable>measurement and verification by an off-platform trusted entity</selectable>
 				</selectables>.
 			</title>
 			<note role="application">
 				This requirement specifies the means for extending the initial integrity
 				of platform firmware established by FPT_ROT_EXT.1.1 to subsequently executed
-				platform firmware.<h:p/>
-				Integrity of code and data written to immutable storage is assured. Otherwise,
-				integrity must be extended through cryptographic means: either through hashes
-				or digital signatures computed and verified by firmware that has itself 
-				previously had its integrity verified or ensured. Verification can be performed
+				platform firmware and data that is located in mutable storage.
+				(Integrity of code and data written to immutable storage is assured).<h:p/>
+				Otherwise, integrity must be extended through cryptographic means: either through hashes
+				or digital signatures computed and verified by firmware that is trusted because it has  
+				previously had its integrity verified or is itself a Root of Trust. Verification can be performed
 				by TOE components such as management controllers or off-TOE 3rd-party entities.<h:p/>				
 			</note>
 		</f-element>
 		<f-element id="fpt-rot-ext-2e2">
 			<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.2.1 fails:
-				<h:ul>
+				<h:ol type="1">
 					<h:li>Halt,</h:li>
-					<h:li>Notify an administrator/user (generate an indication of the problem?), and</h:li>
+					<h:li>Notify an administrator/user, and</h:li>
 					<h:li><selectables linebreak="yes">
 						<selectable>Stop all execution and shut down</selectable>
 						<selectable id="sel-rot1-recovery">Initiate a Recovery process as specified in FPT_RVR_EXT.1</selectable>
 					</selectables></h:li>
-				</h:ul> 
+				</h:ol> 
 				<selectables linebreak="yes">
 					<selectable>automatically</selectable>
 					<selectable>in accordance with administrator-configurable policy</selectable>
@@ -945,15 +883,26 @@ d) Other techniques (e.g., watchdog timers) may be used in combination with cryp
 			</note>
 			<aactivity>
 				<TSS>
-					The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware
-					is extended to other platform components, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.2.
+					The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware is
+					extended to other platform components, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.2.
+					The TSF shall also describe how the TOE responds to failure of verification consistent with the selections in
+					FPT_ROT_EXT.2.2.
 				</TSS>
 				<Guidance>
 					The evaluator shall examine the operational guidance to ensure that it describes the actions taken in case of failure to extend
 					the integrity of the platform firmware root. If the actions are configurable, the guidance shall explain how they are configured.
 				</Guidance>
 				<Tests>
-					<h:b>Is there a reasonable way to test this?</h:b>
+					The evaluator shall modify the platform firmware in a way that should cause a failure of the integrity check. 
+					The test passes if the mechanism specified in FPT_ROT_EXT.2.2 is triggered on the first subsequent boot 
+					of the platform. <h:p/>
+					Depending on the protections implemented, the evaluator may need a specially crafted update module from the vendor
+					to perform this test. But note that this is not necessarily the same as a test of the update mechanism.
+					The update mechanism can be tested either at boot time or at the time of the update. This verification 
+					check must be done during boot.<h:p/>
+					If modification of platform firmware <h:i>in situ</h:i> or using the update mechanism is deemed to be 
+					not feasible within the time and cost constraints of the evaluation, then with concurrence of the
+					CC scheme, this test can be replaced by evidence of vendor testing.
 				</Tests>
 			</aactivity>
 		</f-element>
