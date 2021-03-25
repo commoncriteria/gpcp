@@ -814,19 +814,19 @@
 			<title>The integrity of platform firmware shall be rooted in 
 				<selectables linebreak="yes">
 					<selectable id="sel-rot-immutable-code">code or data written to immutable memory or storage</selectable>
-					<selectable id="sel-rot-immutable-creds">credentials held in immutable storage or protected off-platform</selectable>
+					<selectable id="sel-rot-immutable-creds">credentials held in immutable storage on-platform or protected storage off-platform</selectable>
 					<selectable id="sel-rot-mc">a separate management controller that is itself rooted in a mechanism that meets this requirement</selectable>
 					<selectable id="sel-rot-dsc">integrity measurements held securely in an on-platform dedicated security component</selectable>
-					<selectable id="sel-rot-offplat">integrity measurements held securely by an off-platform trusted entity</selectable>
+					<selectable id="sel-rot-offplat">integrity measurements held securely by an off-platform entity</selectable>
 				</selectables>.
 			</title>
 			<note role="application">
 				Roots of Trust are components that constitute a set of unconditionally trusted functions. The above are acceptable
 				roots of trust for platform firmware integrity.<h:p/>
-				The integrity of the first platform firmware that executes must be established by one or more of the selections
-				in FPT_ROT_EXT.1.1. The integrity of subsequently executed platform firmware must be traceable back
-				to this root or to some other root. This SFR should be iterated for additional roots (for example, a management 
-				controller or firmware executed from an add-in card).<h:p/>
+				The ST author must select the root of trust used to ensure the integrity of the first platform firmware that executes. The integrity
+				of subsequently executed platform firmware must be traceable back to this root or to some other root as specified in FPT_ROT_EXT.2.
+				This SFR should be iterated for additional TOE roots (for example, a management controller or firmware executed from 
+				an add-in card).<h:p/>
 			</note>
 			<aactivity>
 				<TSS>The evaluator shall verify that the TSS describes the Root of Trust on which initial integrity of platform firmware is anchored, consistent 
@@ -846,7 +846,7 @@
 					<selectable>verification of a digital signature by trusted code/data</selectable>
 					<selectable>measurement and verification by trusted code/data</selectable>
 					<selectable>measurement and verification by an on-platform dedicated security component</selectable>
-					<selectable>measurement and verification by an off-platform trusted entity</selectable>
+					<selectable>measurement and verification by an off-platform entity</selectable>
 				</selectables>.
 			</title>
 			<note role="application">
@@ -857,7 +857,7 @@
 				Otherwise, integrity must be extended through cryptographic means: either through hashes
 				or digital signatures computed and verified by firmware that is trusted because it has  
 				previously had its integrity verified or is itself a Root of Trust. Verification can be performed
-				by TOE components such as management controllers or off-TOE 3rd-party entities.<h:p/>				
+				by TOE components such as management controllers or non-TOE trusted entities.<h:p/>				
 			</note>
 		</f-element>
 		<f-element id="fpt-rot-ext-2e2">
