@@ -607,11 +607,13 @@
                         Per NIST SP 800-131A, SHA-1 for generating digital signatures is no longer allowed, and SHA-1 for 
 						verification of digital signatures is strongly discouraged as there may be risk in accepting these
 						signatures. It is expected that vendors will implement SHA-2 algorithms in accordance with SP 800-131A.
-                        <h:br></h:br><h:br></h:br>
+                        <h:p/>
                         The intent of this requirement is to specify the hashing function. The hash selection shall support the
 						message digest size selection. The hash selection should be consistent with the overall strength of
 						the algorithm used (for example, SHA 256 for 128-bit keys).
-                        <h:br></h:br><h:br></h:br>
+                        <h:p/>
+			If cryptographic hash services are provided to the TOE or to tenant software by a local DSC, 
+			then the ST should include an instance of this SFR with instance identifier "(DSC)."  
                     </note>
                     <aactivity>
                         <TSS>
@@ -755,7 +757,9 @@
 					algorithms, the key size specified must match the selection for the curve used in the algorithm.<h:p/>
 					For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the
 					base point. As the preferred approach for digital signatures, elliptic curves will be required after all the
-					necessary standards and other supporting information are fully established.
+					necessary standards and other supporting information are fully established.<h:p/>
+					If cryptographic signature vertification services are provided to the TOE or to tenant software by a local DSC, 
+					then the ST should include an instance of this SFR with instance identifier "(DSC)." 
 				</note>
 				<aactivity>
 					<Tests>
