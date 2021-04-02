@@ -888,7 +888,7 @@
 				Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 				of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
 				example, by blinking lights, beep codes, screen indications, or local logging.<h:p/>
-				If "generating an audit event" is selected then FAU_GEN.1 must be included in the ST.
+				If "<h:i>generating an audit event</h:i>" is selected then FAU_GEN.1 must be included in the ST.
 			</note>
 			<aactivity>
 				<TSS>
@@ -941,7 +941,7 @@
 				<TSS>
 					The evaluator shall examine the TSS to ensure that it explains how the various areas of platform firmware and critical data 
 					are protected from modification outside of the platform firmware update mechanism described in FPT_TUD_EXT.1. 
-					If the TOE implements a secure update mechanism as specified in FPT_TUD_EXT.2, then the evauator shall ensure
+					If the TOE implements an authenticated update mechanism as specified in FPT_TUD_EXT.2, then the evauator shall ensure
 					that the TSS describes specifically how the signature verification code and key store is protected from update
 					outside of the secure platform firmware update mechanism.
 				</TSS>
@@ -952,15 +952,13 @@
 				</Guidance>
 				<Tests>
 					<testlist>
-						<test>Using the information contained in the TSS and in other evidences (AGD, interface
-							specifications), the evaluator shall attempt to overwrite or modify the platform firmware in the 
-							system while bypassing the authenticated update (e.g., using a modified Linux boot loader such as
-							GRUB that attempts to write to the memory where the platform firmware is stored). The test 
-							succeeds if the attempts to overwrite platform firmware fail.</test>
-						<test>If the TOE implements an update mechanism, using the information contained in the TSS and in other evidences (AGD, interface
-							specifications), the evaluator shall attempt to overwrite or modify the TSF components (e.g., key
-							store, cryptographic algorithms). The test succeeds if the attempts to overwrite platform firmware
-							fail.</test>
+						<test>The evaluator shall attempt to overwrite or modify the platform firmware without invoking one of
+							the update mechanisms specified in FPT_TUD_EXT.1 (e.g., using a modified Linux boot loader such 
+							as GRUB that attempts to write to the memory where platform firmware is stored). The test succeeds
+							if the attempts to overwrite platform firmware fail. The evaluator shall attempt at least two 
+							such tests--one that attempts to overwrite the first platform firmware that executes after boot,
+							and one that targets the secure update mechanism (if implemented), and one that targets firmware that
+							has been integrity-checked since the last boot.</test>
 					</testlist>
 				</Tests>
 			</aactivity>
@@ -973,10 +971,16 @@
 		<depends on-sel="sel-rot-recovery"/>
 		<f-element id="fpt-rvr-ext-1e1">
 			<title>
-				Something about recovery. 
+				The TSF shall implement a mechanism for recovering from boot firmware failure consisting of 
+				<selectables linebreak="yes">
+					<selectable>the secure local update mechanism described in FPT_TUD_EXT.4</selectable>
+					<selectable>reversion to a known-good or recovery firmware image</selectable>
+					<selectable>reversion to the prior firmware image</selectable>
+					<selectable>reversion to a firmware recovery image that puts the TOE into a maintenance mode</selectable>
+				</selectables>
 			</title>
 			<note role="application">
-				Something in here describing the permissible ways to recover from a boot or integrity
+				QQQQQQQQQQQ Something in here describing the permissible ways to recover from a boot or integrity
 				failure. Could this be merged with the secure local update requyirement.
 			</note>
 			<aactivity>
@@ -1076,7 +1080,7 @@
 				On failure to authenticate a platform firmware update image, the TSF shall not install the update image and
 				<selectables>
 					<selectable>Throw an audit event as described in (Table Ref)</selectable>
-					<selectable>Initiate auto recovery</selectable>
+					<selectable>Initiate auto recovery as speciofoed in FPT_RVR_EXT.1</selectable>
 					<selectable>Go dark</selectable>
 					<selectable>Struggle to reboot</selectable>					
 				</selectables>			
