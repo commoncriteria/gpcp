@@ -553,6 +553,8 @@
 		<f-component cc-id="fau_gen.1" title="Audit Data Generation" status="sel-based">
 			<depends on-sel="sel-audit-integrity"/>
 			<depends on-sel="sel-audit-update"/>
+			<depends on-sel="sel-tud2-audit"/>
+			<depends on-sel="sel-tud3-audit"/>
 			<f-element id="fau-gen-1e1">
 				<title>The TSF shall be able to generate an audit record of the following auditable events:<h:br/>
 					<h:ol type="1">
@@ -1072,7 +1074,7 @@
 	</f-component>			
 
 
-	<!-- FPT_TUD_EXT.2 Secure Platform Firmware Update Mechanism -->
+	<!-- FPT_TUD_EXT.2 Platform Firmware Authenticated Update Mechanism -->
 	<f-component cc-id="fpt_tud_ext.2" title="Platform Firmware Authenticated Update Mechanism" status="sel-based">
 		<depends on-sel="sel-auth-update"/>
 		<f-element id="fpt-tud-ext-2e1">
@@ -1116,18 +1118,19 @@
 			</title>
 			<note role="application">
 				For success, this should be an indication of the version number of the newly installed firmware. 
-				For failure, see FPT_TUD_EXT.2.5.
+				Notification of failure could include generation of an audit event by a management subsystem, a 
+				beep code, an updated version number on a splash screen, or simple failure to continue functioning.
 			</note>
 		</f-element>
 		<f-element id="fpt-tud-ext-2e5">  
 			<title>
-				The TOE shall take the following actions if a platform firmware update signature
-				verification fails, or a platform firmware update fails for any other reason: 
+				The TOE shall take the following actions if a platform firmware integrity or authenticity 
+				check fails, or a platform firmware update fails for any other reason: 
 				<h:ul>
 					<h:li>Do not install the update,</h:li>
 					<h:li>Notify an administrator/user by 
 						<selectables>
-							<selectable>generating an audit event</selectable>
+							<selectable id="sel-tud2-audit">generating an audit event</selectable>
 							<selectable><assignable>notification method</assignable></selectable>
 						</selectables>
 					</h:li>
@@ -1194,7 +1197,7 @@
 			</aactivity>
 		</f-element>
 		<audit-event type="optional">
-			<audit-event-descr>Failure of update authentication</audit-event-descr>
+			<audit-event-descr>Failure of update authentication/integrity check</audit-event-descr>
 			<audit-event-info>Version numbers of the current firmware and of the attempted update</audit-event-info>
 		</audit-event>
 		<audit-event type="optional">
@@ -1213,73 +1216,83 @@
 		meaning all the other requirements are met. Especially FPT_ROT_EXT.2. -->
 	<f-component cc-id="fpt_tud_ext.3" title="Platform Firmware Unauthenticated Update Mechanism" status="sel-based">
 		<depends on-sel="sel-unauth-update"/>
+		<f-element id="fpt-tud-ext-3e1">
+			<title>
+				The TSF shall allow execution or use of platform firmware updates only if new platform firmware
+				is integrity- and authenticity-checked using the mechanism described in FPT_ROT_EXT.2 prior to its
+				execution or use, and
+				<selectables>
+					<selectable>the version number of the platform firmware update is more recent than 
+						the version number of the current installed platform firmware</selectable>
+					<selectable>no other conditions</selectable>
+				</selectables>.
+			</title>
+			<note role="application">
+				This update mechanism does not require an integrity or authenticity check prior to installation, but the
+				newly installed platform firmware must have its integrity and authenticity verified prior to 
+				being executed or used. In a nutshell, this update mechanism takes advantage of the existing FPT_ROT_EXT.2
+				requirement to avoid having to verify the integrity and authenticity of an update package.<h:p/>
+				The ST author should select "the version number of the platform firmware update is more recent than 
+				the version number of the current installed platform firmware" if the TSF supports rollback prevention.
+			</note>
+		</f-element>
 		<f-element id="fpt-tud-ext-3e2">
 			<title>
-				The TSF shall allow installation of updates only if the digital signature has been
-				successfully verified as specified in FCS_COP.1/SigVer and 
-				<selectables>
-					<selectable>the version number of the platform firmware update is more recent than the version number of the current
-						installed platform firmware</selectable>
-					<selectable>no other reasons</selectable>
-				</selectables>.
+				The TSF shall include an observable platform firmware version identifier that is accessible by the
+				update mechanism and includes information that enables the update mechanism to determine the relative
+				order of updates.
 			</title>
 		</f-element>
 		<f-element id="fpt-tud-ext-3e3">
 			<title>
-				The TSF shall include an observable platform firmware version identifier that is accessible by the update mechanism and
-				includes information that enables the update mechanism to determine the intended relative order of updates.
-			</title>
-		</f-element>
-		<f-element id="fpt-tud-ext-3e4">
-			<title>
 				The TSF shall provide an observable indication of the success or failure of the update operation.
 			</title>
+			<note role="application">
+				For success, this should at least include an indication of the version number of the newly installed firmware. 
+				Notification of failure could include generation of an audit event by a management subsystem, a 
+				beep code, an updated version number on a splash screen, or simple failure to continue functioning.
+			</note>
 		</f-element>
-		<f-element id="fpt-tud-ext-3e5"> 
+		<f-element id="fpt-tud-ext-3e4"> 
 			<title>
-				On failure to authenticate a platform firmware update image, the TSF shall not install the update image and
-				<selectables>
-					<selectable>Throw an audit event as described in (Table Ref)</selectable>
-					<selectable>Initiate auto recovery</selectable>
-					<selectable>Go dark</selectable>
-					<selectable>Struggle to reboot</selectable>					
-				</selectables>			
-			</title>
-		</f-element>
-		<f-element id="fpt-tud-ext-3e6"> 
-			<title>
-				On failure of the update process to install an authenticated platform firmware update image, the TSF shall 
-				<selectables>
-					<selectable>Throw an audit event as described in (Table Ref)</selectable>
-					<selectable>Initiate auto recovery</selectable>
-					<selectable>Go dark</selectable>
-					<selectable>Struggle to reboot</selectable>					
-				</selectables>			
+				The TOE shall take the following actions if a platform firmware update integrity or authentication check
+				fails, or a platform firmware update fails for any other reason:
+				<h:ul>
+					<h:li>Notify Notify an administrator/user by 
+						<selectables>
+							<selectable id="sel-tud3-audit">generating an audit event</selectable>
+							<selectable><assignable>notification method</assignable></selectable>
+						</selectables></h:li>
+				</h:ul> and
+				<selectables linebreak="yes">
+					<selectable>Halt</selectable>
+					<selectable>Stop all execution and shut down</selectable>
+					<selectable>Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
+				</selectables>
+				<selectables linebreak="yes">
+					<selectable>automatically</selectable>
+					<selectable>in accordance with administrator-configurable policy</selectable>
+					<selectable>by express determination of an administrator/user</selectable>
+				</selectables>.
 			</title>
 			<note role="application">
-				The platform firmware update mechanism employs digital signatures to ensure the authenticity of the
-				firmware update image. The TSF includes a signature verification algorithm and a key
-				store containing the public key needed to verify the signature on the firmware update image. <h:p/>
-				A hash of the public key may be stored if a copy of the public key is provided with firmware
-				update images. In this case, the update mechanism shall hash the public key provided with the update 
-				image, and ensure that it matches a hash which appears in the key store before using the provided public 
-				key to verify the signature of the update image. If the hash of the public key is selected, the ST author may
-				iterate the FCS_COP.1/Hash requirement to specify the hashing functions used.<h:p/>
-				An indication of success or failure can be generation of an audit event by a management subsystem, a beep code,
-				an updated version number on a splash screen, or simple failure to continue functioning.<h:p/>
-				If the update mechanism generates audit events, the ST author shall make the approriate selections
-				from the audit events table (<xref g="t-audit-sel-based"/>).
+				The platform firmware unauthenticated update mechanism installs platform firmware updates without
+				first checking their integrity or authenticity. Instead, this mechanism either invokes a 
+				special authentication/integrity check on the firmware <h:i>in situ</h:i> or relies on the
+				firmware checks required by FPT_ROT_EXT.2 to ensure the integrity and authenticity of the update 
+				image. In either case, the integrity and authenticity of the update must be verified before the 
+				updated firmware is executed or used.
 			</note>
 			<aactivity>
 				<TSS>
 					The evaluator shall ensure that the TSS includes a comprehansive description of how the 
 					authentication of platform firmware updates is implemented by the TSF. The TSS should cover the 
 					initialization process and the activities that are performed to ensure that the
-					digital signature of the update image is verified before modification of the firmware. <h:p/>
+					digital signature of the update image is verified before it is executed or used. <h:p/>
 					The evaluator shall examine the TSF to ensure that it describes the platform firmware version identifier
 					and explains its meaning and encoding.<h:p/>
 					The evaluator shall also ensure that the TSS describes the actions taken by the TSF is 
-					an update image fails authentication.
+					an update image fails authentication or integrity checks.
 				</TSS>
 				<Guidance>
 					The evaluator shall examine the operational guidance to ensure that it describes the process for 
@@ -1294,18 +1307,16 @@
 							initiates an update using this image through the process described in the operational guidance.
 							After the process is complete, the evaluator checks the current firmware version to ensure
 							that the new firmware version matches that of the update.</test>
-						<test>The evaluator performs the same test, this time using a valid update image that is signed
-							with an incorrect key. The update must fail.</test>
+						<test>The evaluator performs the same test, this time using a inauthentic update image. The update code
+							must fail to execute.</test>
 						<test>The evaluator performs the same test, this time using an update image that is corrupted
-							but is signed with the correct key. The update must fail.</test>
-						<test>The evaluator performs the same test, this time using a valid update image that is not signed.
-							The update must fail.</test>
+							but is otherwise authentic. The update code must fail to execute.</test>
 					</testlist>
 				</Tests>
 			</aactivity>
 		</f-element>
 		<audit-event type="optional">
-			<audit-event-descr>Failure of update authentication</audit-event-descr>
+			<audit-event-descr>Failure of update authentication/integrity check</audit-event-descr>
 			<audit-event-info>Version numbers of the current firmware and of the attempted update</audit-event-info>
 		</audit-event>
 		<audit-event type="optional">
@@ -1318,7 +1329,7 @@
 		</audit-event>
 	</f-component>
 		
-	<!-- FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism -->	
+	<!-- FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism QQQQ -->	
 	<f-component cc-id="fpt_tud_ext.4" title="Secure Local Platform Firmware Update Mechanism" status="sel-based">
 		<depends on-sel="sel-local-update"/>
 		<f-element id="fpt-tud-ext-4e1">
