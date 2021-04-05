@@ -974,17 +974,49 @@
 				The TSF shall implement a mechanism for recovering from boot firmware failure consisting of 
 				<selectables linebreak="yes">
 					<selectable>the secure local update mechanism described in FPT_TUD_EXT.4</selectable>
-					<selectable>reversion to a known-good or recovery firmware image</selectable>
+					<selectable>installation of a known-good or recovery firmware image</selectable>
 					<selectable>reversion to the prior firmware image</selectable>
-					<selectable>reversion to a firmware recovery image that puts the TOE into a maintenance mode</selectable>
+					<selectable>installation of a recovery image that puts the TOE into a maintenance mode</selectable>
 				</selectables>
 			</title>
 			<note role="application">
-				QQQQQQQQQQQ Something in here describing the permissible ways to recover from a boot or integrity
-				failure. Could this be merged with the secure local update requyirement.
+				This SFR must be included in the ST if:
+				<h:ul>
+					<h:li>"Initiate a Recovery process as specified in FPT_RVR_EXT.1" is selected in FPT_ROT_EXT.2.2,</h:li>
+					<h:li>"Initiate a Recovery process as specified in FPT_RVR_EXT.1" is selected in FPT_TUD_EXT.2.5,</h:li>
+					<h:li>The TOE implements a recovery mechanism for firmware corruption not necessarily related to 
+						integrity or update failure.</h:li>
+				</h:ul>
+				As indicated above, in addition to integrity or update failure, the TOE may use a recovery 
+				mechanism to deal with non-security-related failures, such as a power outage during update or a 
+				power surge during normal operation.<h:p/>
+				The recovery process may be initiated automatically on failure, as the result of physically present User
+				action, or as the result of pre-configured policy. The action taken may depend on the nature of the
+				failure as specified in FPT_ROT_EXT.2.2 and FPT_TUD_EXT.2.5.<h:p/>
 			</note>
 			<aactivity>
-				<no-tests>Nothing to see here.</no-tests>
+				<TSS>
+					The evaluator shall examine the TSS section to confirm that it describes how the platform 
+					firmware recovery mechanism works and the conditions under which it is invoked. 
+				</TSS>
+				<Guidance>
+					The evaluator shall examine the guidance to ensure that is describes how to configure the 
+					conditions under which the recovery mechanism is initiated (if configurable).
+				</Guidance>
+				<Tests>
+					The evaluators shall perform the following tests:
+					<testlist>
+						<test>To test this requirement, the evaluator shall trigger the recovery process
+							either by forcing an update error or a boot integrity failure and observing that 
+							the recovery process has been initiated.</test>
+						<test>The evaluator will engage with the recovery process as necessary, and after recovery
+							will determine the version of the current firmware image. The test is passed 
+							if the resultant image is as expected in accordance with policy and the selections
+							in FPT_RVR_EXT.1.1. If the recovery process uses the secure
+							local update process as specified in FPT_TUD_EXT.4, then this test is satisfied by
+							testing of that requirement. </test>
+					</testlist>
+				</Tests>
 			</aactivity>
 		</f-element>
 		<audit-event/>
@@ -1080,7 +1112,7 @@
 				On failure to authenticate a platform firmware update image, the TSF shall not install the update image and
 				<selectables>
 					<selectable>Throw an audit event as described in (Table Ref)</selectable>
-					<selectable>Initiate auto recovery as speciofoed in FPT_RVR_EXT.1</selectable>
+					<selectable>Initiate auto recovery as specified in FPT_RVR_EXT.1</selectable>
 					<selectable>Go dark</selectable>
 					<selectable>Struggle to reboot</selectable>					
 				</selectables>			
