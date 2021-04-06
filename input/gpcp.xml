@@ -577,6 +577,36 @@
     	</section>
 
 	<section id="fcs" title="Cryptographic Support (FCS)">
+		
+	<!-- FCS_CKM.1/KEK Cryptographic Key Generation (Key Encryption Key)  -->
+	<f-component cc-id="fcs_ckm.1" iteration="KEK" name="Cryptographic Key Generation (Key Encryption Key)" status="optional">
+		<f-element id="fcs-ckm-1e1-kek">
+			<title>The TSF shall generate key encryption keys in accordance with a specified
+				cryptographic key generation algorithm corresponding to 
+				<selectables linebreak="yes">
+					<selectable>Asymmetric KEKs generated in accordance with FCS_CKM.1/AK identifier AK1</selectable>
+					<selectable>Symmetric KEKs generated in accordance with FCS_CKM.1/SK</selectable>
+					<selectable>Derived KEKs generated in accordance with FCS_CKM_EXT.5</selectable>
+				</selectables>
+				and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet the
+				following: <assignable>list of standards</assignable>.
+			</title>
+			<note role="application">
+				KEKs protect KEKs and Symmetric Keys (SKs). DSCs should use key strengths commensurate
+				with protecting the chosen symmetric encryption key strengths.<h:p/>
+				If Asymmetric KEKs generated in accordance with FCS_CKM.1/AK is selected, the selection-based
+				SFR FCS_CKM.1/AK must be claimed by the TOE.<h:p/>
+				If Symmetric KEKs generated in accordance with FCS_CKM.1/SK is selected, the selection-based
+				SFR FCS_CKM.1/SK must be claimed by the TOE.<h:p/>
+				If Derived KEKs generated in accordance with FCS_CKM_EXT.5 is selected, the selection-based
+				SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
+			</note>
+			<aactivity>
+				<no-tests>Test test test</no-tests>
+			</aactivity>
+		</f-element>
+		<audit-event/>		
+	</f-component>
 	
 	<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing)-->
 	<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
