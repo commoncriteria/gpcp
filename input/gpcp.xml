@@ -578,8 +578,164 @@
 
 	<section id="fcs" title="Cryptographic Support (FCS)">
 		
+		<f-component cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="optional">
+			<!--			<exportable id="inf-gpcp-fcs-ckm-ak"/>  -->
+			<!-- 			<importable inf-id="inf-dsc-fcs-ckm-ak"/>  -->
+			<f-element id="fcs-ckm-1e1-ak">
+				<title>The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys using the methods defined by 
+					the following rows in <xref to="fcs-ckm-1-ak-sels"/>:
+					<!-- [selection: identifier from Supported Methods for Asymmetric Key Generation table] --> 
+					<selectables>
+						<selectable id="sel-fcs-ckm-ak-ak1">AK1</selectable>
+						<selectable id="sel-fcs-ckm-ak-ak2">AK2</selectable>
+						<selectable id="sel-fcs-ckm-ak-ak3">AK3</selectable>
+						<selectable id="sel-fcs-ckm-ak-ak4">AK4</selectable>
+						<selectable id="sel-fcs-ckm-ak-ak5">AK5</selectable>
+					</selectables>.<h:p/>
+					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-ak-sels">: Supported Methods for Asymmetric Key Generation</ctr></h:b><h:br/>	
+					<h:table>
+						<h:tr class="header"><h:td>Identifier</h:td><h:td>Key Type</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+
+						<h:tr><depends on-sel="sel-fcs-ckm-ak-ak1"/>
+						<h:td>AK1</h:td>
+						<h:td>RSA</h:td>
+						<h:td><selectables>
+							<selectable id="sel-exp-ak-rsa-2048">2048 bit</selectable>
+							<selectable id="sel-exp-ak-rsa-3072">3072-bit</selectable></selectables></h:td>
+						<h:td>FIPS PUB 186-4 (Section B.3)</h:td></h:tr>
+						
+						<h:tr><depends on-sel="sel-fcs-ckm-ak-ak2"/>
+						<h:td>AK2</h:td>
+						<h:td>ECC-N</h:td>
+						<h:td><selectables>
+							<selectable id="sel-exp-ak-eccn-P256">256 (P-256)</selectable>
+							<selectable id="sel-exp-ak-eccn-P384">384 (P-384)</selectable>
+							<selectable id="sel-exp-ak-eccn-P521">521 (P-521)</selectable></selectables></h:td>
+						<h:td>FIPS PUB 186-4 (Section B.4 &amp; D.1.2)</h:td></h:tr>
+
+						<h:tr><depends on-sel="sel-fcs-ckm-ak-ak3"/>
+						<h:td>AK3</h:td>
+						<h:td>ECC-B</h:td>
+						<h:td><selectables>
+							<selectable id="sel-exp-ak-ecc-bpP256r1">256 (brainpoolP256r1)</selectable>
+							<selectable id="sel-exp-ak-ecc-bpP384r1">384 (brainpoolP384r1)</selectable>
+							<selectable id="sel-exp-ak-ecc-bpP512r1">512 (brainpoolP512r1)</selectable></selectables></h:td>
+						<h:td>RFC5639 (Section 3) (Brainpool Curves)</h:td></h:tr>
+
+						<h:tr><depends on-sel="sel-fcs-ckm-ak-ak4"/>
+						<h:td>AK4</h:td>
+						<h:td>DSA</h:td>
+						<h:td>DSA Bit lengths of p and q respectively (L, N) 
+							<selectables>
+								<selectable id="sel-exp-ak-dsa-1024-160">(1024, 160)</selectable>
+								<selectable id="sel-exp-ak-dsa-2048-224">(2048, 224)</selectable>
+								<selectable id="sel-exp-ak-dsa-2048-256">(2048, 256)</selectable>
+								<selectable id="sel-exp-ak-dsa-3027-256">(3027, 256)</selectable></selectables></h:td>
+						<h:td>FIPS 186-4 Appendix B.1</h:td></h:tr>
+
+						<h:tr><depends on-sel="sel-fcs-ckm-ak-ak5"/>
+						<h:td>AK5</h:td>
+						<h:td>Curve25519</h:td>
+						<h:td>256 bits</h:td>
+						<h:td>RFC 7748</h:td></h:tr>
+					</h:table>
+				</title>
+				<note role="application">					
+					This requirement is included for the purposes of encryption and decryption operations only. To
+					support ITE protected communications requirement for the transfer of encrypted data, this 
+					requirement mandates implementation compliance to FIPS 186-4 only. Implementations
+					according to FIPS 186-2 or FIPS 186-3 will not be accepted.<h:p/>
+					This requirement must be claimed by the TOE if at least one of FCS_CKM.1 or FCS_CKM.1/KEK
+					chooses a selection related to generation of asymmetric keys.
+				</note>
+				<aactivity>
+					<no-tests/>
+				</aactivity>
+			</f-element>
+		</f-component>
+	  
+		<f-component cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="optional">
+<!--			<exportable id="inf-gpcp-fcs-ckm-sk"/> -->
+<!--			<importable inf-id="inf-dsc-fcs-ckm-sk"/> -->
+			<f-element id="fcs-ckm-1e1-sk">
+				<title>The TSF shall generate <h:b>symmetric</h:b> cryptographic keys using the methods defined by 
+					the following rows in <xref to="fcs-ckm-1-sk-sels"/>:
+				<!-- [selection: identifier from Supported Methods for Symmetric Encryption Key Generation table] -->
+					<selectables>
+						<selectable id="sel-fcs-ckm-sk-rsk">RSK</selectable>
+						<selectable id="sel-fcs-ckm-sk-dsk">DSK</selectable>
+						<selectable id="sel-fcs-ckm-sk-pbk">PBK</selectable>
+					</selectables>.<h:p/>
+					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-sk-sels">: Supported Methods for Symmetric Key Generation</ctr></h:b><h:br/>	
+					<h:table>
+						<h:tr class="header"><h:td>Identifier</h:td><h:td>Key Type</h:td>
+							<h:td>Cryptographic Key Generation Algorithm</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+
+						<h:tr><depends on-sel="sel-fcs-ckm-sk-rsk"/>
+							<h:td>RSK</h:td>
+						<h:td><selectables>
+							<selectable>symmetric key</selectable>
+							<selectable>submask</selectable>
+							<selectable>authorization value</selectable></selectables></h:td>
+						<h:td>Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</h:td>
+						<h:td><selectables>
+							<selectable>128</selectable>
+							<selectable>192</selectable>
+							<selectable>256</selectable>
+							<selectable>512</selectable></selectables> bits</h:td>
+						<h:td>NIST SP 800-133 (Section 7.1) with ISO 18031 as an approved RBG in addition
+							to those in NIST SP 800-133 (Section 5).</h:td></h:tr>
+							
+						<h:tr><depends on-sel="sel-fcs-ckm-sk-dsk"/>
+							<h:td>DSK <selectables> 
+							<selectable>identifier from Table 16: Key Derivation Functions</selectable></selectables></h:td>
+						<h:td><selectables>
+							<selectable>Key Type from Table 16: Key Derivation Functions</selectable></selectables></h:td>
+						<h:td>Derived from a Key Derivation Function as specified in FCS_CKM_EXT.5 
+							<selectables>
+								<selectable>Key Derivation Algorithm from Table 16: Key Derivation Function</selectable></selectables></h:td>
+						<h:td><selectables>
+							<selectable>key sizes from Table 16: Key Derivation Functions</selectable></selectables></h:td>
+						<h:td><selectables>
+							<selectable>List of Standards from Table 16: Key Derivation Functions</selectable></selectables></h:td></h:tr>
+						
+						<h:tr><depends on-sel="sel-fcs-ckm-sk-pbk"/>
+							<h:td>PBK</h:td>
+						<h:td><selectables>
+							<selectable>submask</selectable>
+							<selectable>authentication token</selectable>
+							<selectable>authorization value</selectable></selectables></h:td>
+						<h:td>Derived from a Password Based Key Derivation Function as specified in FCS_COP.1/PBKDF</h:td>
+						<h:td><selectables>
+							<selectable>key sizes as specified in FCS_COP.1/PBKDF</selectable></selectables></h:td>
+						<h:td><selectables>
+							<selectable>standards as specified in FCS_COP.1/PBKDF</selectable></selectables></h:td></h:tr>
+					</h:table>
+				</title>
+				<note role="application">
+					The selection of key size 512 bits is for the case of XTS-AES using AES-256. In the case of XTSAES
+					for both AES-128 and AES-256, the developer is expected to ensure that the full key is
+					generated using direct generation from the RBG as in NIST SP 800-133 section.<h:p/>
+					The ST author selects at least one algorithm from the RSK row if the ST supports creating keys
+					directly from the output of the RBG without further conditioning, at least one algorithm from the
+					DSK row should be selected if the ST supports key derivation functions which are usually seeded
+					from RBG and then further conditioned to the appropriate key size, and at least one algorithm
+					from the PBK row should be selected if the ST supports keys derived from passwords.<h:p/>
+					If DSK is selected, the selection-based SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
+					If PBK is selected, the selection-based SFR FCS_COP.1/PBKDF must be claimed by the TOE.<h:p/>
+					This requirement must be claimed by the TOE if at least one of FCS_CKM.1 or FCS_CKM.1/KEK
+					chooses a selection related to generation of symmetric keys.<h:p/>
+				</note>
+				<aactivity>
+					<no-tests/>
+				</aactivity>
+			</f-element>
+		</f-component>
+		
 	<!-- FCS_CKM.1/KEK Cryptographic Key Generation (Key Encryption Key)  -->
 	<f-component cc-id="fcs_ckm.1" iteration="KEK" name="Cryptographic Key Generation (Key Encryption Key)" status="optional">
+<!--			<exportable id="inf-gpcp-fcs-ckm-kek"/>  -->
+<!--			<importable inf-id="inf-dsc-fcs-ckm-kek"/>  -->
 		<f-element id="fcs-ckm-1e1-kek">
 			<title>The TSF shall generate key encryption keys in accordance with a specified
 				cryptographic key generation algorithm corresponding to 
@@ -607,10 +763,371 @@
 		</f-element>
 		<audit-event/>		
 	</f-component>
-	
+
+	<f-component cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="optional">
+<!--			<exportable id="inf-gpcp-fcs-ckm-est"/>   -->
+<!--			<importable inf-id="inf-dsc-fcs-ckm-est"/>   -->
+			<f-element id="fcs-ckm-2e1">
+				<title>The TSF shall establish cryptographic keys in accordance with a specified
+					cryptographic key establishment method: 
+					<selectables linebreak="yes">
+						<selectable>RSA-based key establishment schemes that meet the following: NIST Special
+							Publication 800-56B Revision 2, “Recommendation for Pair-Wise Key Establishment
+							Schemes Using Integer Factorization Cryptography”</selectable>
+						<selectable>RSA-based key establishment schemes that meet the following: RSAES-PKCS1-v1_5
+							as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards
+							(PKCS) #1: RSA Cryptography Specifications Version 2.2”</selectable>
+						<selectable>Elliptic curve-based key establishment schemes that meet the following: 
+							<selectables linebreak="yes">
+								<selectable>NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise
+									Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
+								<selectable>RFC 7748, “Elliptic Curves for Security”</selectable>
+							</selectables></selectable>
+						<selectable>Finite field-based key establishment schemes that meet the following: NIST Special
+							Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment
+							Schemes Using Discrete Logarithm Cryptography”</selectable>
+						<selectable>Elliptic Curve Integrated Encryption Scheme (ECIES) that meets the following:
+							<selectables linebreak="yes">
+								<selectable>ANSI X9.63 - Public Key Cryptography for the Financial Services Industry
+									Key Agreement and Key Transport Using Elliptic Curve Cryptography</selectable>
+								<selectable>IEEE 1363a - Standard Specification for Public-Key Cryptography -
+									Amendment 1: Additional Techniques</selectable>
+								<selectable>ISO/IEC 18033-2 - Information Technology - Security Techniques -
+									Encryption Algorithms - Part 2: Asymmetric Ciphers</selectable>
+								<selectable>SECG SEC1 - Standards for Efficient Cryptography Group Elliptic Curve
+									Cryptography, section 5.1 Elliptic Curve Integrated Encryption Scheme</selectable>
+							</selectables></selectable>
+					</selectables> <h:s>that meets the following: [<h:i>assignment: list of standards</h:i>]</h:s>.
+				</title>
+				<note role="application">
+					This is a refinement of the SFR FCS_CKM.2 to deal with key establishment rather than key
+					distribution.<h:p/>
+					The ST author selects all key establishment schemes used for the selected cryptographic protocols.<h:p/>
+					The RSA-based key establishment schemes are described in Section 8 of NIST SP 800-56B Revision
+					2 [NIST-RSA]; however, Section 8 relies on implementation of other sections in SP 800-56B Revision 2.<h:p/>
+					The elliptic curves used for the key establishment scheme correlate with the curves specified in
+					FCS_CKM.1/AK.<h:p/>
+					The selections in this SFR must be consistent with those for FCS_COP.1/KAT.<h:p/>
+				</note>
+				<aactivity>
+					<no-tests/>
+				</aactivity>
+			</f-element>
+		</f-component>
+
+		<f-component cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="optional">
+		<!-- <exportable id="inf-gpcp-fcs-ckm-derv"/> -->
+		<!-- <exportable inf-id="inf-dsc-fcs-ckm-derv"/> -->
+			<f-element id="fcs-ckm-ext-5e1">
+				<title>The TSF shall generate cryptographic keys using the Key Derivation Functions defined by the following 
+					rows of <xref to="fcs-ckm-keydrv-sels"/>:
+					<selectables>
+						<selectable id="sel-fcs-ckm-keydrv-1">KeyDrv1</selectable>
+						<selectable id="sel-fcs-ckm-keydrv-2">KeyDrv2</selectable>
+						<selectable id="sel-fcs-ckm-keydrv-3">KeyDrv3</selectable>
+						<selectable id="sel-fcs-ckm-keydrv-4">KeyDrv4</selectable>
+						<selectable id="sel-fcs-ckm-keydrv-5">KeyDrv5</selectable>
+						<selectable id="sel-fcs-ckm-keydrv-6">KeyDrv6</selectable>
+						<selectable id="sel-fcs-ckm-keydrv-7">KeyDrv7</selectable>
+						<selectable id="sel-fcs-ckm-keydrv-8">KeyDrv8</selectable>
+					</selectables>.<h:p/>
+					<h:b><ctr ctr-type='Table' id="fcs-ckm-keydrv-sels">: Key Derivation Functions</ctr></h:b><h:br/>	
+					<h:table>
+						<h:tr class="header"><h:td>Identifier</h:td><h:td>Key Type</h:td><h:td>Input Parameters</h:td>
+						<h:td>Key Derivation Algorithm</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+
+						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-1"/>
+							<h:td>KeyDrv1</h:td>
+						<h:td><selectables>
+							<selectable>symmetric key</selectable>
+							<selectable>initialization vector</selectable>
+							<selectable>authentication token</selectable>
+							<selectable>authorization value</selectable>
+							<selectable>HMAC key</selectable>
+							<selectable>KMAC key</selectable>
+							</selectables></h:td>
+						<h:td>Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1 </h:td>
+						<h:td>KDF in Counter Mode using <selectables>
+								<selectable>CMAC-AES-128</selectable>
+								<selectable>CMAC-AES-192</selectable>
+								<selectable>CMAC-AES-256</selectable>
+								<selectable>HMAC-SHA-1</selectable>
+								<selectable>HMAC-SHA-256</selectable>
+								<selectable>HMAC-SHA-512</selectable>
+							</selectables>as the PRF</h:td>
+						<h:td><selectables>
+							<selectable>128</selectable>
+							<selectable>192</selectable>
+							<selectable>256</selectable>
+							</selectables>bits</h:td>
+						<h:td>NIST SP 800-108 (Section 5.1) (KDF in Counter Mode)<h:p/>
+							<selectables>
+								<selectable>ISO-CMAC</selectable>
+								<selectable>NIST-CMAC</selectable>
+								<selectable>ISO-CIPH</selectable>
+								<selectable>ISO-HMAC</selectable> 
+								<selectable>FIPS-HMAC</selectable>
+								<selectable>ISO-HASH</selectable>
+								<selectable>FIPS-SHA</selectable>
+								</selectables></h:td>
+						</h:tr>
+		
+						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-2"/>
+						<h:td>KeyDrv2</h:td>
+						<h:td><selectables>
+							<selectable>symmetric key</selectable>
+							<selectable>initialization vector</selectable>
+							<selectable>authentication token</selectable>
+							<selectable>authorization value</selectable>
+							<selectable>HMAC key</selectable>
+							<selectable>KMAC key</selectable>
+							</selectables></h:td>
+						<h:td>Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1 </h:td>
+						<h:td>KDF in Feedback Mode using <selectables>
+								<selectable>CMAC-AES-128</selectable>
+								<selectable>CMAC-AES-192</selectable>
+								<selectable>CMAC-AES-256</selectable>
+								<selectable>HMAC-SHA-1</selectable>
+								<selectable>HMAC-SHA-256</selectable>
+								<selectable>HMAC-SHA-512</selectable>
+							</selectables>as the PRF</h:td>
+						<h:td><selectables>
+							<selectable>128</selectable>
+							<selectable>192</selectable>
+							<selectable>256</selectable>
+							</selectables>bits</h:td>
+						<h:td>NIST SP 800-108 (Section 5.2) (KDF in Feedback Mode)<h:p/>
+							<selectables>
+								<selectable>ISO-CMAC</selectable>
+								<selectable>NIST-CMAC</selectable>
+								<selectable>ISO-CIPH</selectable>
+								<selectable>ISO-HMAC</selectable> 
+								<selectable>FIPS-HMAC</selectable>
+								<selectable>ISO-HASH</selectable>
+								<selectable>FIPS-SHA</selectable>
+								</selectables></h:td>
+						</h:tr>
+		
+						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-3"/>
+						<h:td>KeyDrv3</h:td>
+						<h:td><selectables>
+							<selectable>symmetric key</selectable>
+							<selectable>initialization vector</selectable>
+							<selectable>authentication token</selectable>
+							<selectable>authorization value</selectable>
+							<selectable>HMAC key</selectable>
+							<selectable>KMAC key</selectable>
+							</selectables></h:td>
+						<h:td>Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1 </h:td>
+						<h:td>KDF in Double Pipeline Iteration Mode using <selectables>
+								<selectable>CMAC-AES-128</selectable>
+								<selectable>CMAC-AES-192</selectable>
+								<selectable>CMAC-AES-256</selectable>
+								<selectable>HMAC-SHA-1</selectable>
+								<selectable>HMAC-SHA-256</selectable>
+								<selectable>HMAC-SHA-512</selectable>
+							</selectables>as the PRF</h:td>
+						<h:td><selectables>
+							<selectable>128</selectable>
+							<selectable>192</selectable>
+							<selectable>256</selectable>
+							</selectables>bits</h:td>
+						<h:td>NIST SP 800-108 (Section 5.3) (KDF in n Double Pipeline Iteration Mode)<h:p/>
+							<selectables>
+								<selectable>ISO-CMAC</selectable>
+								<selectable>NIST-CMAC</selectable>
+								<selectable>ISO-CIPH</selectable>
+								<selectable>ISO-HMAC</selectable> 
+								<selectable>FIPS-HMAC</selectable>
+								<selectable>ISO-HASH</selectable>
+								<selectable>FIPS-SHA</selectable>
+								</selectables></h:td>
+						</h:tr>
+
+						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-4"/>
+						<h:td>KeyDrv4</h:td>
+						<h:td><selectables>
+							<selectable>symmetric key</selectable>
+							<selectable>initialization vector</selectable>
+							<selectable>authentication token</selectable>
+							<selectable>authorization value</selectable>
+							<selectable>HMAC key</selectable>
+							<selectable>KMAC key</selectable>
+							</selectables></h:td>
+						<h:td>Intermediary keys</h:td>
+						<h:td><selectables>
+							<selectable>exclusive OR (XOR)</selectable>
+							<selectable>SHA256</selectable>
+							<selectable>SHA-512</selectable></selectables></h:td>
+						<h:td><selectables>
+							<selectable>128</selectable>
+							<selectable>192</selectable>
+							<selectable>256</selectable>
+							</selectables>bits</h:td>
+						<h:td><selectables>
+							<selectable>ISO-HASH</selectable>
+							<selectable>FIPSSHA</selectable>
+							</selectables></h:td>
+						</h:tr>
+		
+						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-5"/>
+						<h:td>KeyDrv5</h:td>
+						<h:td><selectables>
+							<selectable>symmetric key</selectable>
+							<selectable>initialization vector</selectable>
+							<selectable>authentication token</selectable>
+							<selectable>authorization value</selectable>
+							<selectable>HMAC key</selectable>
+							<selectable>KMAC key</selectable>
+							</selectables></h:td>
+						<h:td>Concatenated keys</h:td>
+						<h:td>KDF in <selectables>
+							<selectable>Counter Mode</selectable>
+							<selectable>Feedback Mode</selectable>
+							<selectable>Double Pipeline Iteration Mode</selectable>
+							</selectables> using <selectables>
+							<selectable>CMAC-AES-128</selectable>
+							<selectable>CMAC-AES-192</selectable>
+							<selectable>CMAC-AES-256</selectable>
+							<selectable>HMAC-SHA-1</selectable>
+							<selectable>HMAC-SHA-256</selectable>
+							<selectable>HMAC-SHA-512</selectable>
+							</selectables>as the PRF</h:td>
+						<h:td><selectables>
+							<selectable>128</selectable>
+							<selectable>192</selectable>
+							<selectable>256</selectable>
+							</selectables>bits</h:td>
+						<h:td>NIST SP 800-108 [selection: (Section 5.1) (KDF in Counter Mode);<h:p/>
+							(Section 5.2) (KDF in Feedback Mode);<h:p/>
+							(Section 5.3) (KDF in Double-Pipeline Iteration Mode)]<h:p/>
+							<selectables>
+								<selectable>ISO-CMAC</selectable>
+								<selectable>NIST-CMAC</selectable>
+								<selectable>ISO-CIPH</selectable>
+								<selectable>ISO-HMAC</selectable> 
+								<selectable>FIPS-HMAC</selectable>
+								<selectable>ISO-HASH</selectable>
+								<selectable>FIPS-SHA</selectable>
+								</selectables></h:td>
+						</h:tr>
+
+						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-6"/>
+						<h:td>KeyDrv6</h:td>
+						<h:td><selectables>
+							<selectable>symmetric key</selectable>
+							<selectable>initialization vector</selectable>
+							<selectable>authentication token</selectable>
+							<selectable>authorization value</selectable>
+							<selectable>HMAC key</selectable>
+							<selectable>KMAC key</selectable>
+							</selectables></h:td>
+						<h:td>Two keys</h:td>
+						<h:td><selectables>
+							<selectable>AES-CCM</selectable>
+							<selectable>AES-GCM</selectable>
+							<selectable>AES-CBC</selectable>
+							<selectable>AES-KWP</selectable>
+							<selectable>AES-KW</selectable>
+							<selectable>CAM-CBC</selectable> 
+							<selectable>CAM-CCM</selectable>
+							<selectable>CAM-GCM</selectable></selectables> from FCS_COP.1/SKC Symmetric Key table</h:td>
+						<h:td><selectables>
+							<selectable>128</selectable>
+							<selectable>192</selectable>
+							<selectable>256</selectable>
+							</selectables>bits</h:td>
+						<h:td>[selection: see List of Standards in FCS_COP.1/SKC Symmetric Key table]</h:td></h:tr>
+
+						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-7"/>
+						<h:td>KeyDrv7</h:td>
+						<h:td><selectables>
+							<selectable>symmetric key</selectable>
+							<selectable>secret IV</selectable>
+							<selectable>seed</selectable>
+							</selectables></h:td>
+						<h:td>Shared secret, salt, output length, fixed information</h:td>
+						<h:td><selectables>
+							<selectable>hash function from FCS_COP.1/Hash</selectable>
+							<selectable>keyed hash from FCS_COP.1/HMAC</selectable>
+							</selectables></h:td>
+						<h:td><selectables>
+							<selectable>128</selectable>
+							<selectable>192</selectable>
+							<selectable>256</selectable>
+							</selectables>bits</h:td>
+						<h:td>(NIST-KDRV) sec 4<h:p/>
+							<selectables>
+								<selectable>see List of Standards in FCS_COP.1/Hash and FCS_COP.1/HMAC</selectable>
+								</selectables></h:td></h:tr>
+
+						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-8"/>
+						<h:td>KeyDrv8</h:td>
+						<h:td><selectables>
+							<selectable>symmetric key</selectable>
+							<selectable>secret IV</selectable>
+							<selectable>seed</selectable>
+							</selectables></h:td>
+						<h:td>Shared secret, salt, IV, output length, fixed information</h:td>
+						<h:td><selectables>
+							<selectable>keyed hash from FCS_COP.1/HMAC</selectable></selectables></h:td>
+						<h:td><selectables>
+							<selectable>128</selectable>
+							<selectable>192</selectable>
+							<selectable>256</selectable>
+							</selectables>bits</h:td>
+						<h:td>(NIST-KDRV) sec 5<h:p/>
+							<selectables>
+								<selectable>see List of Standards in FCS_COP.1/Hash and FCS_COP.1/HMAC</selectable>
+								</selectables></h:td></h:tr>
+					</h:table>
+				</title>
+				<note role="application">
+					Note that Camellia algorithms do not support 192-bit key sizes.<h:p/>
+					The interface referenced in the requirement could take different forms, the most likely of which is
+					an application programming interface to an OS kernel. There may be various levels of abstraction.
+					For Authorization Factor Submasks, the key size to be used in the HMAC falls into a range between
+					L1 and L2 defined in ISO/IEC 10118 for the appropriate hash function (for example for SHA-256
+					L1 = 512, L2 =256) where L2 = k = L1.<h:p/>
+					General note: in order to use a NIST SP 800-108 conformant method of key derivation, the TOE
+					is permitted to implement this with keys as derived as indicated in Key Derivation Functions table
+					above, and with the algorithms as indicated in the same table.<h:p/>
+					NIST SP 800-131A Rev 1 allows the use of SHA-1 in these use cases.<h:p/>
+					KeyDrv5, KeyDrv6, and the XOR option in KeyDrv4 will create an “inverted key hierarchy” in
+					which the TSF will combine two or more keys to create a third key. These same KDFs may also
+					use a submask key as input, which could be an authorization factor or derived from a PBKDF. In
+					these cases the ST author must explicitly declare this option and should present a reasonable
+					argument that the entropy of the inputs to the KDFs will result in full entropy of the expected
+					output.<h:p/>
+					If keys are combined, the ST author shall describe which method of combination is used in order
+					to justify that the effective entropy of each factor is preserved.<h:p/>
+					The documentation of the product’s encryption key management should be detailed enough that,
+					after reading, the evaluator will thoroughly understand the product’s key management and how it
+					meets the requirements to ensure the keys are adequately protected. This documentation should
+					include an essay and diagrams. This documentation is not required to be part of the TSS; it can be
+					submitted as a separate document and marked as developer proprietary.<h:p/>
+					SP 800-56C specifies a two-step key derivation procedure that employs an extraction-thenexpansion technique for deriving keying material from a shared secret generated during a key
+					establishment scheme. The Randomness Extraction step as described in Section 5 of SP 800-56C
+					is followed by Key Expansion using the key derivation functions defined in SP 800-108.<h:p/>
+					This requirement must be claimed by the TOE if at least one of FCS_CKM.1/KEK,
+					FCS_CKM.1/SK, or FCS_COP.1/KeyEnc chooses a selection related to key derivation.<h:p/>
+					If at least one of KeyDrv4, KeyDrv5, or KeyDrv6 is selected AND password-based key derivation
+					is used to create at least one of the inputs, the selection-based SFR FCS_COP.1/PBKDF must also
+					be claimed.<h:p/>
+				</note>
+				<aactivity>
+					<no-tests/>
+				</aactivity>
+			</f-element>
+		</f-component>
+
+
+		
 	<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing)-->
 	<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
-				<selection-depends req="fpt-tud-ext-2e1" ids="sel-tud2-hash"/>
+<!-- 		<exportable id="inf-gpcp-fcs-cop-hash"/> -->
+<!-- 		<importable inf-id="inf-dsc-fcs-cop-hash"/> -->
+		<selection-depends req="fpt-tud-ext-2e1" ids="sel-tud2-hash"/>
                 <f-element id="fcs-cop-1e1-hash">
                     <title>The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified cryptographic algorithm
                         <selectables>
@@ -622,32 +1139,23 @@
 							<selectable id="sel-cop1-sha3-256">SHA-3-256</selectable>
 							<selectable id="sel-cop1-sha3-384">SHA-3-384</selectable>
 							<selectable id="sel-cop1-sha3-512">SHA-3-512</selectable>		    
-                        </selectables> and message digest sizes
-                        <selectables>
-                            <selectable>160</selectable>
-<!-- Is this a thing?		<selectable>224</selectable>    -->
-                            <selectable>256</selectable>
-                            <selectable>384</selectable>
-                            <selectable>512 bits</selectable>
                         </selectables> that meet the following:
-						<selectables>
-							<selectable>FIPS PUB 180-4 "Secure Hash Standard"</selectable>
-							<selectable>ISO/IEC 10118-3:2018</selectable>
-						</selectables>   
+					<selectables>
+						<selectable>ISO/IEC 10118-3:2018</selectable>
+						<selectable>FIPS 180-4</selectable>
+					</selectables>   
                     </title>
                     <note role="application">
-                        Per NIST SP 800-131A, SHA-1 for generating digital signatures is no longer allowed, and SHA-1 for 
-						verification of digital signatures is strongly discouraged as there may be risk in accepting these
-						signatures. It is expected that vendors will implement SHA-2 algorithms in accordance with SP 800-131A.
-                        <h:p/>
-                        The intent of this requirement is to specify the hashing function. The hash selection shall support the
-						message digest size selection. The hash selection should be consistent with the overall strength of
-						the algorithm used (for example, SHA 256 for 128-bit keys).
-                        <h:p/>
-			If cryptographic hash services are provided to the TOE or to tenant software by a local DSC, 
-			then the ST should include an instance of this SFR with instance identifier "(DSC)."  
+				The hash selection should be consistent with the overall strength of the algorithm used for
+				signature generation. For example, the ST Author should choose SHA-256 for 2048-bit RSA or ECC 
+				with P-256, SHA-384 for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 for ECC
+				with P-521. The ST author selects the standard based on the algorithms selected.<h:p/>
+				SHA-1 may be used for the following applications: generating and verifying hash-based message
+				authentication codes (HMACs), key derivation functions (KDFs), and random bit/number
+				generation (In certain cases, SHA-1 may also be used for verifying old digital signatures and time
+				stamps, provided that this is explicitly allowed by the application domain).
                     </note>
-                    <aactivity>
+                    <aactivity>  <!-- QQQQ: This evaluation activity must be checked against DSC -->
                         <TSS>
                             The evaluator shall check that the association of the hash function with other TSF 
                             cryptographic functions (for example, the digital signature verification function) is documented 
@@ -759,6 +1267,114 @@
                 </f-element>
 				<audit-event />
             </f-component>
+		
+	<f-component cc-id="fcs_cop.1" iteration="HMAC" name="Cryptographic Operation (Keyed Hash)" status="optional">
+<!--			<exportable id="inf-gpcp-fcs-cop-hmac"/> -->
+<!--			<exportable inf-id="inf-dsc-fcs-cop-hmac"/> -->
+			<f-element id="fcs-cop-1e1-hmac">
+				<title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
+					with a specified cryptographic algorithm 
+					<selectables>
+						<selectable>HMAC-SHA-1</selectable>
+						<selectable>HMAC-SHA-256</selectable>
+						<selectable>HMAC-SHA-384</selectable>
+						<selectable>HMAC-SHA-512</selectable>
+						<selectable>KMAC128</selectable>
+						<selectable>KMAC256</selectable>
+					</selectables> and cryptographic key sizes <assignable>key size (in bits)</assignable>
+					that meet the following: 
+					<selectables>
+						<selectable>ISO/IEC 9797-2:2011 Section 7 “MAC Algorithm 2”</selectable>
+						<selectable>[NIST-KDV] section 4 “KMAC”</selectable>
+					</selectables>.
+				</title>
+				<note role="application">
+					The HMAC key size falls into a range between L1 and L2 defined in ISO/IEC 10118 for the
+					appropriate hash function (for example for SHA-256 L1 = 512, L2 = 256) where L2 ≤ k ≤ L1.
+				</note>
+				<aactivity>
+					<no-tests/>
+				</aactivity>
+			</f-element>
+		</f-component>
+
+		<f-component cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" status="optional">
+<!--			<exportable id="inf-gpcp-fcs-cop-keyenc"/>  -->
+<!--			<importable inf-id="inf-dsc-fcs-cop-keyenc"/>  -->
+			<f-element id="fcs-cop-1e1-keyenc">
+				<title>
+					The TSF shall perform [<h:i>key encryption and decryption</h:i>] using the methods defined in the
+					following rows of <xref to="fcs-cop-keyenc-sels"/>:
+					<selectables>
+						<selectable id="sel-fcs-cop-keyenc-se1">SE1</selectable>
+						<selectable id="sel-fcs-cop-keyenc-ae1">AE1</selectable>
+						<selectable id="sel-fcs-cop-keyenc-se2">SE2</selectable>
+						<selectable id="sel-fcs-cop-keyenc-xor">XOR</selectable>
+					</selectables><h:p/>
+					<h:b><ctr ctr-type='Table' id="fcs-cop-keyenc-sels">: Supported Methods for Key Encryption Operation</ctr></h:b><h:br/>	
+					<h:table>
+						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
+						<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+
+						<h:tr><depends on-sel="sel-fcs-cop-keyenc-se1"/>
+						<h:td>SE1</h:td>
+						<h:td>Symmetric <selectables>
+							<selectable>AES-CCM</selectable>
+							<selectable>AES-GCM</selectable>
+							<selectable>AES-CBC</selectable>
+							<selectable>AES-CTR</selectable>
+							<selectable>AES-KWP</selectable>
+							<selectable>AESKW</selectable>
+							</selectables></h:td>
+							<h:td><selectables>
+								<selectable>128</selectable>
+								<selectable>192</selectable>
+								<selectable>256</selectable></selectables> bits</h:td>
+						<h:td>See FCS_COP.1/SKC</h:td></h:tr>
+					
+						<h:tr><depends on-sel="sel-fcs-cop-keyenc-ae1"/>
+						<h:td>AE1</h:td>
+						<h:td>Asymmetric KTS-OAEP</h:td>
+						<h:td><selectables>
+							<selectable>2048</selectable>
+							<selectable>3072</selectable></selectables> bits</h:td>
+						<h:td>See FCS_COP.1/SKC</h:td></h:tr>
+		
+						<h:tr><depends on-sel="sel-fcs-cop-keyenc-se2"/>
+						<h:td>SE2</h:td>
+						<h:td>Symmetric <selectables>
+							<selectable>CAM-CBC</selectable>
+							<selectable>CAM-CCM</selectable>
+							<selectable>CAM-GCM</selectable>
+							</selectables></h:td>
+						<h:td><selectables>
+							<selectable>128</selectable>
+							<selectable>256</selectable></selectables> bits</h:td>
+						<h:td>See FCS_COP.1/KAT</h:td></h:tr>
+						
+						<h:tr><depends on-sel="sel-fcs-cop-keyenc-xor"/>
+						<h:td>XOR</h:td>
+						<h:td>Exclusive OR operation</h:td>
+							<h:td><selectables>
+								<selectable>128</selectable>
+								<selectable>192</selectable>
+								<selectable>256</selectable></selectables> bits</h:td>
+						<h:td>See FCS_CKM_EXT.5</h:td></h:tr>
+					</h:table>
+				</title>
+				<note role="application">
+					A TOE will use this requirement to specify how the Key Encryption Key (KEK) wraps a
+					symmetric encryption key. A TOE will always need this requirement in order to capture the last
+					stage of the key chain in which the Key Encryption Key (KEK) wraps the symmetric encryption
+					key.<h:p/>
+					If XOR is selected, the selection-based SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
+				</note>
+				<aactivity>
+					<no-tests/>
+				</aactivity>
+			</f-element>
+		</f-component>
+
  
 		<!-- FCS_COP.1/SigVer Cryptographic Operation (Signature Verification) --> 
 		<f-component cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" status="sel-based">
@@ -840,7 +1456,47 @@
 				</aactivity>
 			</f-element>
 			<audit-event/>
-		</f-component>							 
+		</f-component>	
+		
+		<f-component cc-id="fcs_rbg_ext.1" name="Random Bit Generation" status="optional">
+<!--			<exportable id="inf-gpcp-fcs-rbg"/>  -->
+<!--			<importable inf-id="inf-dsc-fcs-rbg"/>  -->
+			<f-element id="fcs-rbg-ext-1e1">
+				<title>The TSF shall perform all deterministic random bit generation services in
+					accordance with ISO/IEC 18031:2011 using 
+					<selectables>
+						<selectable>Hash_DRBG (any)</selectable>
+						<selectable>HMAC_DRBG (any)</selectable>
+						<selectable>CTR_DRBG (AES)</selectable>
+					</selectables>.
+				</title>
+			</f-element>
+			<f-element id="fcs-rbg-ext-1e2">
+				<title>The deterministic RBG shall be seeded by at least one entropy source in
+					accordance with NIST SP 800-90B that accumulates entropy from 
+					<selectables>
+						<selectable><assignable>number of software-based sources</assignable>
+							software-based noise source</selectable>
+						<selectable><assignable>number of hardware-based sources</assignable>
+							hardware-based noise source</selectable>
+					</selectables> with a minimum of 
+					<selectables>
+						<selectable>128</selectable>
+						<selectable>192</selectable>
+						<selectable>256</selectable>
+					</selectables> bits of entropy at least equal to the greatest security strength, 
+					according to ISO/IEC 18031:2011, of the keys and CSPs that it will generate.
+				</title>
+				<note role="application">
+					ISO/IEC 18031:2011 contains three different methods of generating random numbers. Each of
+					these in turn depends on underlying cryptographic primitives (hash functions/ciphers). This cPP
+					allows SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512 for Hash_DRBG or HMAC_DRBG
+					and only AES-based implementations for CTR_DRBG. 		
+				</note>
+			</f-element>
+		</f-component>		
+		
+		
 	</section>	 
 	    
 	<section id="fpt" title="Class: Protection of the TSF (FPT)">
@@ -1157,8 +1813,8 @@
 		</f-element>
 		<f-element id="fpt-tud-ext-2e5">  
 			<title>
-				The TOE shall take the following actions if a platform firmware integrity or authenticity 
-				check fails, or a platform firmware update fails for any other reason: 
+				The TOE shall take the following actions if a platform firmware integrity, authenticity, 
+				or rollback-prevention check fails, or a platform firmware update fails for any other reason: 
 				<h:ul>
 					<h:li>Do not install the update,</h:li>
 					<h:li>Notify an administrator/user by 
@@ -1224,12 +1880,15 @@
 							but is signed with the correct key. The update must fail.</test>
 						<test>The evaluator performs the same test, this time using a valid update image that is not signed.
 							The update must fail.</test>
+						<test>If the TSF implements rollback protections, the evaluator performs the same test, this time using 
+							a valid, signed update image that is has an earlier version number than the currently installed
+							firmware. The update must fail.</test>
 					</testlist>
 				</Tests>
 			</aactivity>
 		</f-element>
 		<audit-event type="optional">
-			<audit-event-descr>Failure of update authentication/integrity check</audit-event-descr>
+			<audit-event-descr>Failure of update authentication/integrity check/rollback</audit-event-descr>
 			<audit-event-info>Version numbers of the current firmware and of the attempted update</audit-event-info>
 		</audit-event>
 		<audit-event type="optional">
@@ -1255,17 +1914,18 @@
 				execution or use, and
 				<selectables>
 					<selectable>the version number of the platform firmware update is more recent than 
-						the version number of the current installed platform firmware</selectable>
+						the version number of the previously installed platform firmware</selectable>
 					<selectable>no other conditions</selectable>
 				</selectables>.
 			</title>
 			<note role="application">
 				This update mechanism does not require an integrity or authenticity check prior to installation, but the
 				newly installed platform firmware must have its integrity and authenticity verified prior to 
-				being executed or used. In a nutshell, this update mechanism takes advantage of the existing FPT_ROT_EXT.2
-				requirement to avoid having to verify the integrity and authenticity of an update package.<h:p/>
+				being executed or used. This update mechanism takes advantage of the existing FPT_ROT_EXT.2
+				requirement to avoid having to verify the integrity and authenticity of an update package
+				at install time.<h:p/>
 				The ST author should select "the version number of the platform firmware update is more recent than 
-				the version number of the current installed platform firmware" if the TSF supports rollback prevention.
+				the version number of the previously installed platform firmware" if the TSF supports rollback prevention.
 			</note>
 		</f-element>
 		<f-element id="fpt-tud-ext-3e2">
@@ -1287,8 +1947,8 @@
 		</f-element>
 		<f-element id="fpt-tud-ext-3e4"> 
 			<title>
-				The TOE shall take the following actions if a platform firmware update integrity or authentication check
-				fails, or a platform firmware update fails for any other reason:
+				The TOE shall take the following actions if a platform firmware update integrity, authentication, or
+				rollback-prevention check fails, or a platform firmware update fails for any other reason:
 				<h:ul>
 					<h:li>Notify Notify an administrator/user by 
 						<selectables>
@@ -1310,10 +1970,12 @@
 			<note role="application">
 				The platform firmware unauthenticated update mechanism installs platform firmware updates without
 				first checking their integrity or authenticity. Instead, this mechanism either invokes a 
-				special authentication/integrity check on the firmware <h:i>in situ</h:i> or relies on the
+				special authentication/integrity check on the firmware <h:i>in situ</h:i> after install or relies on the
 				firmware checks required by FPT_ROT_EXT.2 to ensure the integrity and authenticity of the update 
 				image. In either case, the integrity and authenticity of the update must be verified before the 
-				updated firmware is executed or used.
+				updated firmware is executed or used.<h:p/>
+				Likewise, if the TSF implement rollback prevention, this check must be made before the newly installed
+				firmware is executed.
 			</note>
 			<aactivity>
 				<h:p/><TSS>
@@ -1323,8 +1985,8 @@
 					digital signature of the update image is verified before it is executed or used. <h:p/>
 					The evaluator shall examine the TSF to ensure that it describes the platform firmware version identifier
 					and explains its meaning and encoding.<h:p/>
-					The evaluator shall also ensure that the TSS describes the actions taken by the TSF is 
-					an update image fails authentication or integrity checks.<h:p/>
+					The evaluator shall also ensure that the TSS describes the actions taken by the TSF if 
+					an update image fails authentication, integrity, or rollback-prevention checks.<h:p/>
 				</TSS>
 				<Guidance>
 					The evaluator shall examine the operational guidance to ensure that it describes the process for 
@@ -1343,12 +2005,15 @@
 							must fail to execute.</test>
 						<test>The evaluator performs the same test, this time using an update image that is corrupted
 							but is otherwise authentic. The update code must fail to execute.</test>
+						<test>If the TSF implements rollback protections, the evaluator performs the same test, this time using 
+							a valid, signed update image that is has an earlier version number than the currently installed
+							firmware. The update code must fail to execute.</test>
 					</testlist>
 				</Tests>
 			</aactivity>
 		</f-element>
 		<audit-event type="optional">
-			<audit-event-descr>Failure of update authentication/integrity check</audit-event-descr>
+			<audit-event-descr>Failure of update authentication/integrity/rollback check</audit-event-descr>
 			<audit-event-info>Version numbers of the current firmware and of the attempted update</audit-event-info>
 		</audit-event>
 		<audit-event type="optional">
@@ -1366,16 +2031,17 @@
 		<depends on-sel="sel-local-update"/>
 		<f-element id="fpt-tud-ext-4e1">
 			<title>The TSF shall provide a secure local update mechanism that requires an assertion of physical access to the TOE
-				by an authorized user before installation of update.
+				before installation of an update.
 			</title>
 		</f-element>
 		<f-element id="fpt-tud-ext-4e2">
 			<title>
 				The Administrator/User shall assert physical presence to the TSF through: 
 				<selectables linebreak="yes">
-					<selectable>login from a console physically connected to the TOE</selectable>
+					<selectable>login to the TOE from a physically connected console or terminal</selectable>
 					<selectable>physical connection of a jumper or cable</selectable>
-					<selectable><assignable>description of of assertion mechanism</assignable></selectable>
+					<selectable>connection to a debug port</selectable>
+					<selectable><assignable>description of other mechanism for asserting physical presence</assignable></selectable>
 				</selectables>
 			</title>
 			<note role="application">
