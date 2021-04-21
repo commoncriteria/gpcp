@@ -225,6 +225,15 @@
 <!--	    
 -->
 	    
+	<!-- Physical protections are one of the major differences in use cases. There are probably 
+	four levels of physical protections. 
+	    1. None. Physical protection commensurate with the value of the information is assumed to be
+		provided by the operational environment.
+		2. Tamper Detect without Automatic Notification (FPT_PHP.1)
+		3. Tamper Detect with Automtic Notification (FPT_PHP.2)
+		4. Tamer Resistance (FPT_PHP.3)
+		We just have to align these levels with the use cases.
+	-->
 	<usecases>
 		<usecase title="Server-Class Platform, Data Center-based" id="server-dc">
         	  	<description>
@@ -1458,6 +1467,55 @@
 			<audit-event/>
 		</f-component>	
 		
+		<!-- FCS_ENT_EXT.1 -->
+        <f-component cc-id="fcs_ent_ext.1" name="Entropy for Tenant Software">
+            <f-element id="fcs-ent-ext-1e1">
+                <title>The TSF shall provide one or more mechanisms to make entropy suitable for use in FCS_RBG_EXT.1
+					available to tenant software.
+                </title>
+                <note role="application">
+                    This requirement ensures that the TOE makes available sufficient entropy to any tenant
+					that requires it. Every entropy source need not provide high-quality entropy, but tenant
+					software must have a means of acquiring sufficient entropy.<h:p/>
+					A hardware noise source is a component that produces data that cannot be explained
+					by a deterministic rule, due to its physical nature. In other words, a hardware based
+					noise source generates sequences of random numbers from a physical process that
+					cannot be predicted. For example, a sampled ring oscillator consists of an odd number
+					of inverter gates chained into a loop, with an electrical pulse traveling from 
+					inverter to inverter around the loop. The inverters are not clocked, so the precise 
+					time required for a complete circuit around the loop varies slightly as various
+					physical effects modify the small delay time at each inverter on the line to the
+					next inverter. This variance results in an approximate natural frequency that 
+					contains drift and jitter over time. The output of the ring oscillator consists 
+					of the oscillating binary value sampled at a constant rate from one of the 
+					inverters – a rate that is significantly slower than the oscillator’s natural 
+					frequency.
+                </note>
+                <aactivity>
+                    <TSS>
+                        The evaluator shall verify that the TSS documents the entropy sources implemented by the TOE.
+						It is not necessary to document all the platform features that can be used by tenant software to 
+						contribute to entropy, rather only those features expressly provided as entropy sources. 
+                    </TSS>
+					<Guidance>
+						The evaluator shall examine the AGD to ensure that it describes how to configure 
+						entropy sources (if applicable) and how tenant software can access the sources. 
+					</Guidance>
+                    <Tests>
+                        The evaluator shall perform the following tests:
+                        <testlist>
+                            <test>
+                                The evaluator shall invoke the entropy source(s) from tenant software.
+								The evaluator shall verify that the tenant acquires values from the 
+								interface.
+                            </test>
+                        </testlist>
+                    </Tests>
+                </aactivity>
+            </f-element>
+        </f-component>
+
+		
 		<f-component cc-id="fcs_rbg_ext.1" name="Random Bit Generation" status="optional">
 <!--			<exportable id="inf-gpcp-fcs-rbg"/>  -->
 <!--			<importable inf-id="inf-dsc-fcs-rbg"/>  -->
@@ -1488,10 +1546,26 @@
 					according to ISO/IEC 18031:2011, of the keys and CSPs that it will generate.
 				</title>
 				<note role="application">
+					For the selection in FCS_RBG_EXT.1.2, the ST author selects the appropriate number 
+					of bits of entropy that corresponds to the greatest security strength of the
+					algorithms included in the ST. Security strength is defined in Tables 2 and 3 of 
+					NIST SP 800-57A. For example, if the implementation includes 2048-bit RSA (security
+					strength of 112 bits), AES 128 (security strength 128 bits), and HMAC-SHA-256
+					(security strength 256 bits), then the ST author would select 256 bits.
+				</note>
+			</f-element>
+			<f-element id="fcs-rbg-ext-1e3">
+				<title>
+					The TSF shall be capable of providing output of the RBG to applications running on the TSF
+					that request random bits.
+				</title>
+				<note role="application">
 					ISO/IEC 18031:2011 contains three different methods of generating random numbers. Each of
 					these in turn depends on underlying cryptographic primitives (hash functions/ciphers). This cPP
 					allows SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512 for Hash_DRBG or HMAC_DRBG
-					and only AES-based implementations for CTR_DRBG. 		
+					and only AES-based implementations for CTR_DRBG. <h:p/>
+					This requirement must be included in the ST only if the TOE generates keys for its
+					own use, or if it provides RNG services for tenant software.
 				</note>
 			</f-element>
 		</f-component>		
@@ -1609,6 +1683,127 @@
 			<audit-event-descr>Failure of integrity verification.</audit-event-descr>
 		</audit-event>
 	</f-component>	
+	
+	<!-- FPT_PHP.1: Passive Detection of Physical Attack.
+		 -->
+	<f-component cc-id="fpt_php.1" name="Passive detection of physical attack" status="optional">
+		<f-element id="fpt-php-1e1">
+			<title>The TSF shall provide unambiguous detection of physical tampering
+				that might compromise the TSF.
+			</title>
+		</f-element>
+		<f-element id="fpt-php-1e2">
+			<title>
+				The TSF shall provide the capability to determine whether physical
+				tampering with the TSF's devices or TSF's elements has occurred. 
+			</title>
+			<aactivity>
+				<no-tests/>
+			</aactivity>
+		</f-element>
+		<audit-event>
+			<audit-event-descr>Detection of intrusion.</audit-event-descr>
+		</audit-event>
+	</f-component>
+	
+	<!-- FPT_PHP.2: Notification of physical attack
+		 -->
+	<f-component cc-id="fpt_php.2" name="Notification of physical attack" status="optional">
+		<f-element id="fpt-php-2e1">
+			<title>The TSF shall provide unambiguous detection of physical tampering that
+				might compromise the TSF.
+			</title>
+		</f-element>
+		<f-element id="fpt-php-2e2">
+			<title>
+				The TSF shall provide the capability to determine whether physical
+				tampering with the TSF's devices or TSF's elements has occurred. 
+			</title>
+		</f-element>
+		<f-element id="fpt-php-2e3">
+			<title>
+				For <assignable>list of TSF devices/elements for which active detection is
+				required</assignable>, the TSF shall monitor the devices and elements and notify
+				<assignable>a designated user or role</assignable> when physical tampering with the
+				TSF's devices or TSF's elements has occurred. 
+			</title>
+		<aactivity>
+			<no-tests/>
+		</aactivity>
+		</f-element>
+		<audit-event>
+			<audit-event-descr>Detection of intrusion.</audit-event-descr>
+		</audit-event>
+	</f-component>
+	
+	<!-- FPT_PHP.3: Resistance to physical attack
+		 -->
+	<f-component cc-id="fpt_php.3" name="Resistance to physical attack" status="optional">
+		<f-element id="fpt-php-3e1">
+			<title>The TSF shall resist <assignable>physical tampering scenarios</assignable> to the
+				<assignable>list of TSF devices/elements</assignable> by responding automatically
+				such that the SFRs are always enforced. 
+			</title>
+		<aactivity>
+			<no-tests/>
+		</aactivity>
+		</f-element>
+		<audit-event>
+			<audit-event-descr>Detection of attempted intrusion.</audit-event-descr>
+		</audit-event>
+	</f-component>
+
+	<!-- FPT_PHP_EXT.1: Hardware component integrity
+		 -->
+	<f-component cc-id="fpt_php_ext.1" name="Hardware component integrity" status="optional">
+		<f-element id="fpt-php-ext-1e1">
+			<title>
+				The integrity of all platform hardware components outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
+				prior to execution or use through: 
+				<assignable>method for ensuring integrity of platform hardware components</assignable>. 
+			</title>
+			<note role="application">
+				The scope of the project is limited to manufacturing and OEM processes that protect against counterfeits, tampering, and insertion of unexpected software and hardware, and the corresponding customer processes that verify that client and server computing devices and components have not been tampered with or otherwise modified. Manufacturing processes that cannot be verified by the customer are explicitly out of scope.
+			</note>
+		</f-element>
+		<f-element id="fpt-php-ext-1e2">
+			<title>
+				The TOE shall take the following actions if an integrity check specified in FPT_PHP_EXT.1.1 fails:
+				<h:ol type="1">
+					<h:li>Halt,</h:li>
+					<h:li>Notify an administrator/user by
+						<selectables>
+							<selectable id="sel-audit-integrity">generating an audit event</selectable>
+							<selectable><assignable>other notification method(s)</assignable></selectable>
+						</selectables>, and</h:li>
+					<h:li><selectables linebreak="yes">
+						<selectable>Stop all execution and shut down</selectable>
+						<selectable>Continue execution without the integrity-compromised component</selectable>
+					</selectables></h:li>
+				</h:ol> 
+				<selectables linebreak="yes">
+					<selectable>automatically</selectable>
+					<selectable>in accordance with administrator-configurable policy</selectable>
+					<selectable>by express determination of an administrator/user</selectable>
+				</selectables>.	
+			</title>				
+			<note role="application">
+				Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
+				of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
+				example, by blinking lights, beep codes, screen indications, or local logging.<h:p/>
+				If "<h:i>generating an audit event</h:i>" is selected then FAU_GEN.1 must be included in the ST.
+			</note>
+			</title>
+			<aactivity>
+			<no-tests/>
+			</aactivity>
+		</f-element>
+		<audit-event>
+			<audit-event-descr>Detection of attempted intrusion.</audit-event-descr>
+		</audit-event>
+	</f-component>
+
+
 		
 	<!-- FPT_PPF_EXT.1 Protection of Platform Firmware -->
 	<f-component cc-id="fpt_ppf_ext.1" name="Protection of Platform Firmware and Critical Data">
