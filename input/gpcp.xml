@@ -265,41 +265,118 @@
 		3. Tamper Detect with Automtic Notification (FPT_PHP.2)
 		4. Tamper Resistance (FPT_PHP.3)
 		We just have to align these levels with the use cases.
+		
+		CSfC/MACP has some EUD choices:
+		- EUD with DAR 
+		  - Continuous physical control required
+		- Classified EUD 
+		  - Rely on the environment for physical protection
+		  - Continuous physical control required
+		  - DAR required to store keys
+		- Thin EUD
+		  - DAR required to store keys
+		  - Contunous physical control required
+		  
+		MA-EU-10  An EUD must be de-authorized from the network and submitted for Forensic Analysis if
+				suspected of being compromised.
+		MA-EU-11 An EUD must be destroyed if it has been determined to be compromised through
+				Forensic Analysis.
+		MA-EU-41 The EUD must perform a wipe of all protected data after 10 or less authentication failures. 
+		MA-EU-57 USB debugging capabilities must be disabled on the EUDs.
+		MA-CM-3 All solution components must be configured with a monitoring service that detects all
+				changes to configuration. All O Optional
+		MA-AU-9 Solution components must log all actions performed on the audit log (i.e., off-loading,
+				deletion, etc.).		
+		MA-GD-7 Users must periodically inspect the physical attributes of EUDs for signs of tampering or
+				other unauthorized changes.		
+		MA-GD-30 All hardware components must be tracked through an AO-approved inventory
+				management process that identifies each component as part of a CSfC Solution. All T=O
+		MA-GD-31 Users must maintain continuous physical control of the EUD as defined by local policy.
+		MA-RP-11 Solution owners must report any evidence of malicious physical tampering with solution
+				components.
 	-->
 	<usecases>
-		<usecase title="Server-Class Platform, Data Center-based" id="uc-server-dc">
-        	  	<description>
-				Server-class hardware in a data center is assumed to be physically protected by the operational environment. 
-          		</description>
+		<usecase title="Server-Class Platform" id="uc-server">
+        	<description>
+				This use case includes the base requirements for server-class hardware in a data center. There are 
+				no additional physical protections required because the platform us assumed to be protected 
+				by the operational environment. 
+          	</description>
+			<config>
+			</config>
         </usecase>
-		<usecase title="Server-Class Platform, Field-based (Edge servers)" id="uc-servers-edge">
-        	  	<description>
-				Field-based (edge) servers may be physically protected or not.
-          		</description>
+		<usecase title="Server-Class Platform, Enhanced" id="uc-servers-enhanced">
+        	<description>
+				This use case adds physical protections to the base requirements for server-class hardware.
+				Additional physical protections required because the platform us assumed to be minimally 
+				protected by the by the operational environment. This use case can also be used for servers in 
+				data centers where there are enhanced security requirements.
+          	</description>
+			<config>
+			</config>
         </usecase>
-		<usecase title="Thin/Zero Clients" id="uc-clients-thin">
-        	  	<description>
-				Client platforms that run thin client operating systems.
-				It would be great if we could fold this into one or both of the client platform use cases. At the boot firmware level, are they really 
-				any different.
-          		</description>
+		<usecase title="Portable Clients (laptops, tablets)" id="uc-clients-portable">
+        	<description>
+				This use case includes the base requirements for portable clients or end-user devices.  
+          	</description>
+			<config>
+			</config>
         </usecase>
-		<usecase title="Portable Clients, (laptops, tablets)" id="uc-clients-portable">
-        	  	<description>
-				High-assurance, and normal. THe difference between high-assurance and normal would likely be the degree of physical protection 
-				implemented by the platform.
-          		</description>
+		<usecase title="Portable Clients (laptops, tablets), Enhanced" id="uc-clients-portable-enhanced">
+        	<description>
+				This use case adds physical protections to the base requirements for portable clients or end-user 
+				devices. it is intended for devices that are used in high-assurance scanrios.
+          	</description>
+			<config>
+			</config>
+        </usecase>
+		<usecase title="CSfC EUD" id="uc-csfc-eud">
+        	<description>
+				EUDs used in accordance with the CSfC Mobile Access Capability Package can include smart phones, tablets, 
+				and laptops. This use case covers the basic CSfC requirements for tablet and laptop EUDs.
+          	</description>
+			<config>
+			</config>
+        </usecase>
+		<usecase title="CSfC Hardened EUD" id="uc-csfc-hard-eud">
+        	<description>
+				EUDs used in accordance with the CSfC Mobile Access Capability Package can include smart phones, tablets, 
+				and laptops. This use case adds requirements for the protection of the device to the base CSfC EUD requirements. 
+          	</description>
+			<config>
+			</config>
+        </usecase>
+		<usecase title="Tactical EUD" id="uc-tactical-eud">
+        	<description>
+				This use case adds requirements for portable end user computing devices in a tactial environment. 
+          	</description>
+			<config>
+			</config>
         </usecase>
 		<usecase title="Desktop clients" id="uc-clients-desktop">
-        	  	<description>
-				High-assurance, and normal
-          		</description>
+        	<description>
+				This use case covers the requirements for non-portable desktop computing devices in a low-threat
+				physical environment.
+          	</description>
+			<config>
+			</config>
+        </usecase>
+		<usecase title="Thin/Zero Clients" id="uc-clients-thin">
+        	<description>
+				Client platforms that run thin client operating systems.
+				It would be great if we could fold this into one or both of the client platform use cases. At the boot firmware level, are they really 
+				any different. CSfC has a thin client option.
+          	</description>
+			<config>
+			</config>
         </usecase>
 		<usecase title="IoT Devices" id="uc-iot-device">
-        	  	<description>
+        	<description>
 				IoT devices are field-located devices without human interfaces when in normal operation. In order to qualify for evaluation 
 				under this PP, the device must meet the basic criteria for a general-purpose platform. 
-          		</description>
+          	</description>
+			<config>
+			</config>
         </usecase>
     </section>
   </section>
@@ -2445,9 +2522,27 @@
 			</aactivity>
 		</f-element>
 	</f-component>
-		
-		
 	</section>	 
+	
+	
+	<section id="fdp" title="User Data Protection (FDP)">
+	
+		<f-component cc-id="fdp_tee_ext.1" name="Trusted execution environment for tenant software">
+			<f-element id="fdp-tee-ext-1e1">
+				<title>
+					The TSF shall implement a trusted execution environment that conforms to the following
+					standard: [<h:i>Advanced Trusted Environment: OMTP TR1 v1.1</h:i>] 
+					and make this TEE available to tenant software.
+				</title>
+				<aactivity>
+					<no-tests/>
+				</aactivity>
+			</f-element>
+		</f-component>
+			
+		
+	
+	</section>
 	    
 	<section id="fpt" title="Class: Protection of the TSF (FPT)">
 
@@ -2634,8 +2729,8 @@
 	<f-component cc-id="fpt_php_ext.1" name="Hardware component integrity" status="optional">
 		<f-element id="fpt-php-ext-1e1">
 			<title>
-				The integrity of all platform hardware components outside of the platform integrity root
-				specified in FPT_ROT_EXT.1 shall be verified 
+				Outside of the integrity root specified in FPT_ROT_EXT.1, the integrity of 
+				<assignable>platform hardware components</assignable>shall be verified 
 				prior to execution or use through: 
 				<assignable>method for ensuring integrity of platform hardware components</assignable>. 
 			</title>
