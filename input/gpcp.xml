@@ -37,7 +37,7 @@
     	<audit-events-in-sfrs/>
     </pp-preferences>
 
-<!--
+<!-- DSC Exportable Functions 
 	x Asymmetric-Key Generation [FCS_CKM.1/AK]
 	x Symmetric-Key Generation [FCS_CKM.1/SK]
 	x Private-Key Cryptography FCS_CKM.2
@@ -67,9 +67,9 @@
 <section title="Introduction" id="int">
     <section title="Overview" id="ppoverview">
       
-      	The scope of this Protection Profile (PP) is to
-      	describe the security functionality of General-Purpose Computing Platforms in terms of <citeCC/>
-      	and to define functional and assurance requirements for such products.<h:br/><h:br/>
+    The scope of this Protection Profile (PP) is to
+    describe the security functionality of General-Purpose Computing Platforms in terms of <citeCC/>
+    and to define functional and assurance requirements for such products.<h:p/>
   
 	A platform is a collection of hardware devices and firmware that provide the functional capabilities and services needed by tenant
 	software. Such components typically include embedded controllers, trusted platform modules, management controllers, host processors, network
@@ -226,29 +226,36 @@
   	A general-purpose computing platform is a hardware device that it capable
 	of hosting more than one different operating system, virtualization system,
 	or bare-metal application. Typical platform implementations include--but are not
-	limited to--servers, PC clients, laptops, and tablets.<h:br/><h:br/>
+	limited to--servers, PC clients, laptops, and tablets.<h:p/>
+	Mobile device platforms as defined in the Protection Profile for Mobile Device Fundamentals and 
+	network device platforms as defined in the collaborative Protection Profile for Network Devices 
+	are out of scope of this PP.  Mobile device and network device platforms must be evaluated 
+	against the more specific requirements in their respective specialized PPs.
 
 <!--      1.3.1 TOE Boundary -->	    
       <section title="TOE Boundary" id="TOEboundary">
         <figure entity="images/Toe.png" title="General TOE " id="toe"/>
-	TODO: Add a description of what is in the TOE ahd what is outside. 
-	E.g. Tenant software is outside. Is everything else inside?
+		The TOE comprises the hardware and firmware necessary for the hosting of tenant software. Generally,
+		tenant software is an operating system or virtualization system, but may also be "bare-metal" applications.
+		Tenant software is outside the TOE boundary.<h:p/>
+		For example, for a PC Client platform, the hardware and firmware responsible for booting the platform and 
+		operation of platform devices (such as BIOS, device controller firmware and plaform management firmware would all 
+		be included in the TOE. Operating systems and application software would be outside the TOE. The chassis 
+		and case could be inside or outside the TOE depending on the use case.<h:p/>
+		For server-class hardware, any management controller responsible for updating platform firmware is expressly
+		included within the TOE.
       </section>
 
 <!--     1.3.2 TOE Operational Environment -->
       <section title="TOE Operational Environment" id="TOEopenv">
 	      The TOE has no platform since it is itself a platform. But the TOE does have an operational environment. The OE consists of the 
 	      physical environment in which the TOE operates (e.g., data center, vehicle, outdoors) and any networks to which the TOE may be connected.
+		  Different use cases invoke different requirements depending on the operational environment.
       </section>
     </section>
 	
 <!--   1.4 Use Cases  -->
     <section title="Use Cases" id="usecases">
-   	TODO: Requirements in this Protection Profile are designed to
-      	address the security problems in at least the following use cases.
-	Is the major distinction going to be related to physical protections?
-<!--	    
--->
 	    
 	<!-- Physical protections are one of the major differences in use cases. There are probably 
 	four levels of physical protections. 
@@ -256,56 +263,44 @@
 		provided by the operational environment.
 		2. Tamper Detect without Automatic Notification (FPT_PHP.1)
 		3. Tamper Detect with Automtic Notification (FPT_PHP.2)
-		4. Tamer Resistance (FPT_PHP.3)
+		4. Tamper Resistance (FPT_PHP.3)
 		We just have to align these levels with the use cases.
 	-->
 	<usecases>
-		<usecase title="Server-Class Platform, Data Center-based" id="server-dc">
+		<usecase title="Server-Class Platform, Data Center-based" id="uc-server-dc">
         	  	<description>
 				Server-class hardware in a data center is assumed to be physically protected by the operational environment. 
           		</description>
-	        </usecase>
-		<usecase title="Server-Class Platform, Field-based (Edge servers)" id="servers-edge">
+        </usecase>
+		<usecase title="Server-Class Platform, Field-based (Edge servers)" id="uc-servers-edge">
         	  	<description>
 				Field-based (edge) servers may be physically protected or not.
           		</description>
-	        </usecase>
-		<usecase title="Thin/Zero Clients" id="clients-thin">
+        </usecase>
+		<usecase title="Thin/Zero Clients" id="uc-clients-thin">
         	  	<description>
 				Client platforms that run thin client operating systems.
 				It would be great if we could fold this into one or both of the client platform use cases. At the boot firmware level, are they really 
 				any different.
           		</description>
-	        </usecase>
-		<usecase title="Portable Clients, (laptopns, tablets)" id="clients-portable">
+        </usecase>
+		<usecase title="Portable Clients, (laptops, tablets)" id="uc-clients-portable">
         	  	<description>
 				High-assurance, and normal. THe difference between high-assurance and normal would likely be the degree of physical protection 
 				implemented by the platform.
           		</description>
-	        </usecase>
-		<usecase title="Desktop clients" id="clients-desktop">
+        </usecase>
+		<usecase title="Desktop clients" id="uc-clients-desktop">
         	  	<description>
 				High-assurance, and normal
           		</description>
-	        </usecase>
-		<usecase title="IoT Devices" id="iot-device">
+        </usecase>
+		<usecase title="IoT Devices" id="uc-iot-device">
         	  	<description>
 				IoT devices are field-located devices without human interfaces when in normal operation. In order to qualify for evaluation 
 				under this PP, the device must meet the basic criteria for a general-purpose platform. 
           		</description>
-	        </usecase>
-		<usecase title="Network Devices" id="network-device">
-        	  	<description>
-				Network devices are not addressed by this PP. They are addressed by the collaborative Protection Profile for Network Devices.
-				Server-class platforms that run virtualized network devices fall under one of the server-class platform use cases.
-          		</description>
-	        </usecase>
-		<usecase title="Mobile Devices" id="mobile-device">
-        	  	<description>
-				Mobile devices, as defined by the Protection Profile for Mobile Device Fundamentals, are not addressed by this PP.
-          		</description>
-	        </usecase>	
-      </usecases>
+        </usecase>
     </section>
   </section>
 
