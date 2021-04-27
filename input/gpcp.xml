@@ -37,6 +37,31 @@
     	<audit-events-in-sfrs/>
     </pp-preferences>
 
+<!--
+	x Asymmetric-Key Generation [FCS_CKM.1/AK]
+	x Symmetric-Key Generation [FCS_CKM.1/SK]
+	x Private-Key Cryptography FCS_CKM.2
+	x Public-Key Cryptography FCS_CKM.2
+	x Symmetric-Key Cryptography FCS_COP.1/SKC
+	x KEK Creation FCS_CKM.1/KEK
+	x Random-Bit Generation FCS_RBG_EXT.1, [FCS_ENT_EXT.1]
+	x RNG Seeding FCS_RBG_EXT.1, [FCS_RBG_EXT.2]
+	x Key Wrapping FCS_COP.1/KeyEnc
+	x Cryptographic Hashing FCS_COP.1/Hash
+	x Cryptographic Keyed Hash FCS_COP.1/HMAC
+	x Password Hashing (PBKDF) [FCS_COP.1/PBKDF]
+	x Signature Generation FCS_COP.1/SigGen
+	x Signature Verification FCS_COP.1/SigVer
+	Factory Reset FDP_FRS_EXT.1, [FDP_FRS_EXT.2]
+	x Destroy Persistent Secrets FCS_CKM.4
+	Set Root Encryption Key (mutable H/W) FCS_STG_EXT.1
+	Store Persistent Secrets FCS_STG_EXT.1-3
+	Wrap Transient Secrets FCS_STG_EXT.1-3
+	Get Time Stamp FPT_STM.1
+	Cryptographic Self-Tests FPT_TST.1
+-->
+
+
 <!-- 1.0 Introduction   -->
 <!--    1.1 Overview   -->
 <section title="Introduction" id="int">
@@ -825,6 +850,122 @@
 			</f-element>
 		</f-component>
 
+	<f-component cc-id="fcs_ckm.4" name="Cryptographic Key Destruction" status="optional">
+		<f-element id="fcs-ckm-4e1">
+			<title>The TSF shall destroy cryptographic keys and keying material in accordance
+				with a specified cryptographic key destruction method 
+					<h:ul><h:li>For volatile memory, the destruction shall be executed by a 
+						<selectables linebreak="yes">
+							<selectable>single overwrite consisting of 
+								<selectables>
+									<selectable>a pseudo-random pattern using the TSF’s RBG</selectable>
+									<selectable>zeroes</selectable>
+									<selectable>ones</selectable>
+									<selectable>a new value of a key</selectable>
+									<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
+								</selectables></selectable>
+							<selectable>removal of power to the memory</selectable>
+							<selectable>removal of all references to the key directly followed by a request for garbage
+								collection</selectable>
+						</selectables></h:li>
+					<h:li>For non-volatile memory 
+						<selectables linebreak="yes">
+							<selectable>that employs a wear-leveling algorithm, the destruction shall be executed by a
+								<selectables>
+									<selectable>single overwrite consisting of 
+										<selectables>
+											<selectable>zeroes</selectable>
+											<selectable>ones</selectable>
+											<selectable>pseudo-random pattern</selectable>
+											<selectable>a new value of a key of the same size</selectable>
+											<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
+										</selectables></selectable>
+									<selectable>block erase</selectable>
+								</selectables></selectable>
+							<selectable>that does not employ a wear-leveling algorithm, the destruction shall be executed by a
+								<selectables linebreak="yes">
+									<selectable>
+										<selectables>
+											<selectable>single</selectable>
+											<selectable><assignable>ST author-defined multi-pass</assignable></selectable>
+										</selectables> overwrite consisting of 
+										<selectables>
+											<selectable>zeros</selectable>
+											<selectable>ones</selectable>
+											<selectable>pseudo-random pattern</selectable>
+											<selectable>a new value of a key of the same size</selectable>
+											<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
+										</selectables> followed by a read-verify. If the read-verification of the overwritten data fails,
+										the process shall be repeated again up to <assignable>number of times to attempt overwrite</assignable> times, 
+										whereupon an error is returned.</selectable>
+									<selectable>block erase</selectable>
+								</selectables></selectable>
+						</selectables></h:li></h:ul>
+				that meets the following: [<h:i>no standard</h:i>].
+			</title>
+			<note role="application">
+				The platform must implement mechanisms to destroy cryptographic keys and key material contained in
+				persistent storage when no longer needed. The term “cryptographic keys” in this SFR includes
+				the authorization data that is the entry point to a key chain and all other cryptographic keys and
+				keying material (whether in plaintext or encrypted form). This SFR does not apply to the public
+				component of asymmetric key pairs, or to keys that are permitted to remain stored such as device
+				identification keys.<h:p/>
+				In the case of volatile memory, the selection “removal of all references to the key directly followed
+				by a request for garbage collection” is used in a situation where the TSF cannot address the
+				specific physical memory locations holding the data to be erased and therefore relies on
+				addressing logical addresses (which frees the relevant physical addresses holding the old data)
+				and then requesting the platform to ensure that the data in the physical addresses is no longer
+				available for reading (i.e. the “garbage collection” referred to in the SFR text).
+				Guidance documentation for the TOE requires users not to allow the TOE to leave the user’s
+				control while a session is active (and hence while the DEK is likely to be in plaintext in volatile
+				memory).<h:p/>
+				The selection for destruction of data in non-volatile memory includes block erase as an option,
+				and this option applies only to flash memory. A block erase does not require a read verify, since 
+				collaborative Protection Profile for Dedicated Security Components
+				the mappings of logical addresses to the erased memory locations are erased as well as the data
+				itself.<h:p/>
+				Where different destruction methods are used for different data or different destruction situations
+				then the different methods and the data/situations they apply to (e.g. different points in time, or
+				power-loss situations) are described in the TSS (and the ST may use separate iterations of the SFR
+				to aid clarity). The TSS includes a table describing all relevant keys and keying material (including
+				authorization data) used in the implementation of the SFRs, stating the source of the data, all
+				memory types in which the data is stored (covering storage both during and outside of a session,
+				and both plaintext and non-plaintext forms of the data), and the applicable destruction method
+				and time of destruction in each case.<h:p/>
+				Some selections allow assignment of “some value that does not contain any CSP.” This means
+				that the TOE uses some specified data not drawn from an RBG meeting FCS_RBG_EXT
+				requirements, and not being any of the particular values listed as other selection options. The point
+				of the phrase “does not contain any sensitive data” is to ensure that the overwritten data is
+				carefully selected, and not taken from a general pool that might contain current or residual data
+				(e.g. SDOs or intermediate key chain values) that itself requires confidentiality protection.<h:p/>
+			</note>
+		<aactivity>
+			<no-tests/>
+		</aactivity>
+	</f-element>
+	</f-component>
+
+	<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="optional">
+		<f-element id="fcs-ckm-ext-1e1">
+			<title>
+				The TSF shall destroy all keys and keying material when no longer needed.
+			</title>
+			<note role="application">
+				The platform will have mechanisms to destroy keys, including intermediate keys and key material, by
+				using an approved method, FCS_CKM.4. Examples of keys include intermediate keys, leaf keys,
+				encryption keys, signing keys, verification keys, authentication tokens, and submasks. The DSC
+				will have mechanisms to destroy keys and key material contained in persistent storage when no
+				longer needed. Based on their implementation, vendors will explain when certain keys are no
+				longer needed. An example in which key is no longer necessary includes a wrapped key whose
+				password has changed. However, there are instances when keys are allowed to remain in memory,
+				for example, a device identification key.
+			</note>
+			<aactivity>
+				<no-tests/>
+			</aactivity>
+		</f-element>
+	</f-component>
+
 		<f-component cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="optional">
 		<!-- <exportable id="inf-gpcp-fcs-ckm-derv"/> -->
 		<!-- <exportable inf-id="inf-dsc-fcs-ckm-derv"/> -->
@@ -1308,6 +1449,167 @@
 			</f-element>
 		</f-component>
 
+	<f-component cc-id="fcs_cop.1" iteration="KAT" name="Cryptographic Operation (Key Agreement/Transport)" status="optional">
+		<f-element id="fcs-cop-1e1-kat">
+			<title>The TSF shall perform [<h:i>cryptographic key agreement/transport</h:i>] using the supported
+			methods for key agreement/transport defined by the following rows of <xref to="fcs-ckm-kat-sels"/>: 
+			<selectables>
+				<selectable id="sel-fcs-cop-kat-kas1">KAS1</selectable>
+				<selectable id="sel-fcs-cop-kat-kas2">KAS2</selectable>
+				<selectable id="sel-fcs-cop-kat-kts">KTS-OAEP</selectable>
+				<selectable id="sel-fcs-cop-kat-rsaes">RSAES-PKCS1-v1_5</selectable>
+				<selectable id="sel-fcs-cop-kat-ecdh-nist">ECDH-NIST</selectable>
+				<selectable id="sel-fcs-cop-kat-ecdh-bpc">ECDH-BPC</selectable>
+				<selectable id="sel-fcs-cop-kat-dh">DH</selectable>
+				<selectable id="sel-fcs-cop-kat-curve25519">Curve25519</selectable>
+				<selectable id="sel-fcs-cop-kat-ecies">ECIES</selectable>
+			</selectables>.<h:p/>
+			<h:b><ctr ctr-type='Table' id="fcs-ckm-kat-sels">: Supported Methods for Key Agreement/Transport Operation</ctr></h:b><h:br/>	
+			<h:table>
+				<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td><h:td>Key Sizes</h:td>
+						<h:td>List of Standards</h:td></h:tr>
+					
+				<h:tr><depends on-sel="sel-fcs-cop-kat-kas1"/>
+					<h:td>KAS1</h:td>
+					<h:td>RSA-single party</h:td>
+					<h:td><selectables>
+						<selectable>2048</selectable>
+						<selectable>3072</selectable>
+						<selectable>4096</selectable>
+						<selectable>6144</selectable>
+						<selectable>8192</selectable>
+					</selectables>bits</h:td>
+					<h:td>NIST SP 800-56Br2 section 8.2</h:td>
+				</h:tr>
+			
+				<h:tr><depends on-sel="sel-fcs-cop-kat-kas2"/>
+					<h:td>KAS2</h:td>
+					<h:td>RSA-both party</h:td>
+					<h:td><selectables>
+						<selectable>2048</selectable>
+						<selectable>3072</selectable>
+						<selectable>4096</selectable>
+						<selectable>6144</selectable>
+						<selectable>8192</selectable>
+					</selectables>bits</h:td>
+					<h:td>NIST SP 800-56Br2 section 8.3</h:td>
+				</h:tr>
+
+				<h:tr><depends on-sel="sel-fcs-cop-kat-kts"/>
+					<h:td>KTS-OAEP</h:td>
+					<h:td>RSA</h:td>
+					<h:td><selectables>
+						<selectable>2048</selectable>
+						<selectable>3072</selectable>
+						<selectable>4096</selectable>
+						<selectable>6144</selectable>
+						<selectable>8192</selectable>
+					</selectables>bits</h:td>
+					<h:td>NIST SP 800-56Br2 section 9</h:td>
+				</h:tr>
+
+				<h:tr><depends on-sel="sel-fcs-cop-kat-rsaes"/>
+					<h:td>RSAES-PKCS1-v1_5</h:td>
+					<h:td>RSA</h:td>
+					<h:td><selectables>
+						<selectable>2048</selectable>
+						<selectable>3072</selectable>
+						<selectable>4096</selectable>
+						<selectable>6144</selectable>
+						<selectable>8192</selectable>
+					</selectables>bits</h:td>
+					<h:td>RFC 8017 Section 7.2</h:td>
+				</h:tr>
+				
+				<h:tr><depends on-sel="sel-fcs-cop-kat-ecdh-nist"/>
+					<h:td>ECDH-NIST</h:td>
+					<h:td>ECDH with NIST curves</h:td>
+					<h:td><selectables>
+						<selectable>256 (P-256)</selectable>
+						<selectable>384 (P-384)</selectable>
+						<selectable>512 (P-521)</selectable>
+					</selectables></h:td>
+					<h:td>NIST SP 800-56Ar3</h:td>
+				</h:tr>
+
+				<h:tr><depends on-sel="sel-fcs-cop-kat-ecdh-bpc"/>
+					<h:td>ECDH-BPC</h:td>
+					<h:td>ECDH with Brainpool curves</h:td>
+					<h:td><selectables>
+						<selectable>256 (brainpoolP256r1)</selectable>
+						<selectable>384 (brainpoolP384r1</selectable>
+						<selectable>512 (brainpoolP512r1)</selectable>
+					</selectables></h:td>
+					<h:td>RFC 5639 (Section 3)</h:td>
+				</h:tr>
+
+				<h:tr><depends on-sel="sel-fcs-cop-kat-dh"/>
+					<h:td>DH</h:td>
+					<h:td>Diffie-Hellman</h:td>
+					<h:td><selectables>
+						<selectable>2048</selectable>
+						<selectable>3072</selectable>
+						<selectable>4096</selectable>
+						<selectable>6144</selectable>
+						<selectable>8192</selectable>
+					</selectables>bits</h:td>
+					<h:td>NIST SP 800-56A rev 3,
+						<selectables>
+							<selectable>RFC 3526 Section 
+								<selectables>
+									<selectable>3</selectable>
+									<selectable>4</selectable>
+									<selectable>5</selectable>
+									<selectable>6</selectable>
+									<selectable>7</selectable>
+									</selectables></selectable>
+							<selectable>RFC 7919 Appendices 
+								<selectables>
+									<selectable>A.1</selectable>
+									<selectable>A.2</selectable>
+									<selectable>A.3</selectable>
+									<selectable>A.4</selectable>
+									<selectable>A.5</selectable>
+								</selectables></selectable>
+						</selectables></h:td>
+				</h:tr>
+				
+				<h:tr><depends on-sel="sel-fcs-cop-kat-curve25519"/>
+					<h:td>Curve25519</h:td>
+					<h:td>ECDH</h:td>
+					<h:td>256 bits</h:td>
+					<h:td>RFC 7748</h:td>
+				</h:tr>
+
+				<h:tr><depends on-sel="sel-fcs-cop-kat-ecies"/>
+					<h:td>ECIES</h:td>
+					<h:td>ECIES</h:td>
+					<h:td><selectables>
+						<selectable>256</selectable>
+						<selectable>384</selectable>
+						<selectable>512</selectable>
+					</selectables>bits</h:td>
+					<h:td>
+						<selectables>
+							<selectable>ANSI X9.63</selectable>,
+							<selectable>IEEE 1363a</selectable>,
+							<selectable>ISO/IEC 18033-2 Part 2</selectable>,
+							<selectable>SECG SEC1 sec 5.1</selectable>
+						</selectables></h:td>
+				</h:tr>
+			</h:table>
+			</title>
+			<note role="application">
+				The selections in this SFR should be consistent with the algorithms selected in FCS_CKM.2.	
+			</note>
+			<aactivity>
+				<no-tests/>
+			</aactivity>
+		</f-element>
+	</f-component>
+		
+
+
 		<f-component cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" status="optional">
 <!--			<exportable id="inf-gpcp-fcs-cop-keyenc"/>  -->
 <!--			<importable inf-id="inf-dsc-fcs-cop-keyenc"/>  -->
@@ -1385,6 +1687,203 @@
 			</f-element>
 		</f-component>
 
+	<f-component cc-id="fcs_cop.1" iteration="pbkdf" name="Cryptographic Operation (Password-Based Key Derivation Functions)" 
+		status="optional">
+		<f-element id="fcs-cop-1e1-pbkdf">
+			<title>The TSF shall perform [<h:i>password-based key derivation functions</h:i>] in
+				accordance with a specified cryptographic algorithm [<h:i>HMAC-</h:i>
+				<selectables>
+					<selectable>SHA-256</selectable>
+					<selectable>SHA-384</selectable>
+					<selectable>SHA-512</selectable>
+				</selectables>], with <assignable>integer number greater than or equal to 1000</assignable>
+				iterations, and output cryptographic key sizes 
+				<selectables>
+					<selectable>128</selectable>
+					<selectable>192</selectable>
+					<selectable>256</selectable>
+				</selectables>bits that meet the following standard: [<h:i>NIST SP 800-132</h:i>].
+			</title>
+			<note role="application">
+				The ST must condition a password into a string of bits prior to using it as input to algorithms that
+				form SKs and KEKs. The ST can perform conditioning using one of the identified hash functions
+				or the process described in NIST SP 800-132; the ST author selects the method used. NIST SP
+				800-132 requires the use of a pseudo-random function (PRF) consisting of HMAC with an
+				approved hash function.<h:p/>
+				Appendix A of NIST SP 800-132 recommends setting the iteration count in order to increase the
+				computation needed to derive a key from a password and, therefore, increase the workload of
+				performing a dictionary attack.<h:p/>
+				The TOE must claim this requirement if it claims FCS_CKM.1/SK and selects an algorithm in the
+				PBK row or claims FCS_CKM_EXT.5 and selects at least one of KeyDrv4, KeyDrv5, or KeyDrv6
+				AND uses password-based key derivation to create at least one of the inputs.<h:p/>
+			</note>
+			<aactivity>
+				<no-tests/>
+			</aactivity>
+		</f-element>
+	</f-component>		  
+
+
+ 	<f-component cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation (Signature Generation)" status="optional">
+		<f-element id="fcs-cop-1e1-siggen">
+			<title>
+				The TSF shall perform [<h:i>digital signature generation</h:i>] using the supported methods 
+				for signature generation defined in the following rows of <xref to="fcs-cop-siggen-sels"/>
+				<selectables>
+					<selectable id="sel=fcs-cop-siggen-1">SigGen1</selectable>
+					<selectable id="sel=fcs-cop-siggen-2">SigGen2</selectable>
+					<selectable id="sel=fcs-cop-siggen-3">SigGen3</selectable>
+					<selectable id="sel=fcs-cop-siggen-4">SigGen4</selectable>
+					<selectable id="sel=fcs-cop-siggen-5">SigGen5</selectable>
+				</selectables>.<h:p/>
+				
+				<h:b><ctr ctr-type='Table' id="fcs-cop-siggen-sels">: Supported Methods for Signature Generation Operation</ctr></h:b><h:br/>	
+				<h:table>
+					<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
+					<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+					
+					<h:tr><depends on-sel="sel=fcs-cop-siggen-1"/>
+					<h:td>SigGen1</h:td>
+					<h:td>RSASSA-PKCS1-v1_5 using
+						<selectables>
+							<selectable>SHA-256</selectable>
+							<selectable>SHA-384</selectable>
+							<selectable>SHA-512</selectable>
+							<selectable>SHA3-256</selectable>
+							<selectable>SHA3-384</selectable>
+							<selectable>SHA3-512</selectable>
+						</selectables></h:td>
+					<h:td><selectables>
+						<selectable>2048 bit</selectable>
+						<selectable>3072 bit</selectable>
+					</selectables></h:td>
+					<h:td>
+						<selectables>
+							<selectable>RFC 8017</selectable>
+							<selectable>PKCS #1 v2.2 (Section 8.2)</selectable>
+							<selectable>FIPS186-4, (Section 5.5)</selectable>
+						</selectables>(RSASSA-PKCS1-v1_5)<h:p/>
+						<selectables>
+							<selectable>ISO10118-3 (Clause 10, 11)</selectable>
+							<selectable>FIPS180-4 (Section 6)</selectable>
+						</selectables>(SHA)</h:td>
+				</h:tr>
+
+				<h:tr><depends on-sel="sel=fcs-cop-siggen-2"/>
+					<h:td>SigGen2</h:td>
+					<h:td>Digital signature scheme 2 using
+						<selectables>
+							<selectable>SHA-256</selectable>
+							<selectable>SHA-384</selectable>
+							<selectable>SHA-512</selectable>
+							<selectable>SHA3-256</selectable>
+							<selectable>SHA3-384</selectable>
+							<selectable>SHA3-512</selectable>
+						</selectables></h:td>
+					<h:td><selectables>
+						<selectable>2048 bit</selectable>
+						<selectable>3072 bit</selectable>
+					</selectables></h:td>
+					<h:td>
+						ISO9796-2, (Clause 9) (Digital signature scheme 2)<h:p/>
+						<selectables>
+							<selectable>ISO10118-3 (Clause 10, 11)</selectable>
+							<selectable>FIPS180-4 (Section 6)</selectable>
+						</selectables>(SHA)</h:td>
+				</h:tr>
+
+				<h:tr><depends on-sel="sel=fcs-cop-siggen-3"/>
+					<h:td>SigGen3</h:td>
+					<h:td>Digital signature scheme 3 using
+						<selectables>
+							<selectable>SHA-256</selectable>
+							<selectable>SHA-384</selectable>
+							<selectable>SHA-512</selectable>
+							<selectable>SHA3-256</selectable>
+							<selectable>SHA3-384</selectable>
+							<selectable>SHA3-512</selectable>
+						</selectables></h:td>
+					<h:td><selectables>
+						<selectable>2048 bit</selectable>
+						<selectable>3072 bit</selectable>
+					</selectables></h:td>
+					<h:td>
+						ISO9796-2, (Clause 10) (Digital signature scheme 3)<h:p/>
+						<selectables>
+							<selectable>ISO10118-3 (Clause 10, 11)</selectable>
+							<selectable>FIPS180-4 (Section 6)</selectable>
+						</selectables>(SHA)</h:td>
+				</h:tr>
+
+				<h:tr><depends on-sel="sel=fcs-cop-siggen-4"/>
+					<h:td>SigGen4</h:td>
+					<h:td>RSASSA-PSS using
+						<selectables>
+							<selectable>SHA-256</selectable>
+							<selectable>SHA-384</selectable>
+							<selectable>SHA-512</selectable>
+							<selectable>SHA3-256</selectable>
+							<selectable>SHA3-384</selectable>
+							<selectable>SHA3-512</selectable>
+						</selectables></h:td>
+					<h:td><selectables>
+						<selectable>2048 bit</selectable>
+						<selectable>3072 bit</selectable>
+					</selectables></h:td>
+					<h:td>
+						[RFC8017, PKCS#1v2.2 (Section 8.1)] (RSASSAPSS)<h:p/>
+						<selectables>
+							<selectable>ISO10118-3 (Clause 10, 11)</selectable>
+							<selectable>FIPS180-4 (Section 6)</selectable>
+						</selectables>(SHA)</h:td>
+				</h:tr>
+
+				<h:tr><depends on-sel="sel=fcs-cop-siggen-5"/>
+					<h:td>SigGen5</h:td>
+					<h:td>ECDSA on 
+						<selectables>
+							<selectable>brainpoolP256r1</selectable>
+							<selectable>brainpoolP384r1</selectable>
+							<selectable>brainpoolP512r1</selectable>
+							<selectable>NIST P-256</selectable>
+							<selectable>NIST P-384</selectable>
+							<selectable>NIST P-521</selectable>
+						</selectables> using
+						<selectables>
+							<selectable>SHA-256</selectable>
+							<selectable>SHA-384</selectable>
+							<selectable>SHA-512</selectable>
+							<selectable>SHA3-256</selectable>
+							<selectable>SHA3-384</selectable>
+							<selectable>SHA3-512</selectable>
+						</selectables></h:td>
+					<h:td><selectables>
+						<selectable>2048 bit</selectable>
+						<selectable>3072 bit</selectable>
+					</selectables></h:td>
+					<h:td>
+						<selectables linebreak="yes">
+							<selectable>
+								<selectables>
+									<selectable>ISO14888-3</selectable>
+									<selectable>FIPS186-4 (Section 6)</selectable>
+								</selectables>(EDCSA)</selectable>
+							<selectable>RFC5639 (Section 3)(Brainpool Curves)</selectable>
+							<selectable>FIPS186-4 (Appendix D.1.2) (NIST Curves)</selectable>
+						</selectables><h:p/>
+						<selectables>
+							<selectable>ISO10118-3 (Clause 10, 11)</selectable>
+							<selectable>FIPS180-4 (Section 6)</selectable>
+						</selectables>(SHA)</h:td>
+				</h:tr>
+				</h:table>
+			</title>
+			<aactivity>
+				<no-tests/>
+			</aactivity>
+		</f-element>
+	</f-component>
+ 
  
 		<!-- FCS_COP.1/SigVer Cryptographic Operation (Signature Verification) --> 
 		<f-component cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" status="sel-based">
@@ -1467,6 +1966,219 @@
 			</f-element>
 			<audit-event/>
 		</f-component>	
+		
+		
+	<f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="optional">
+		<f-element id="fcs-cop-1e1-skc">
+			<title>
+				The TSF shall perform [<h:i>data encryption/decryption</h:i>] using the supported symmetric-key cryptography
+				methods defined in the following rows of <xref to="fcs-cop-skc-sels"/>
+				<selectables>
+					<selectable id="sel-fcs-cop-skc-aes-ccm">AES-CCM</selectable>
+					<selectable id="sel-fcs-cop-skc-aes-gcm">AES-GCM</selectable>
+					<selectable id="sel-fcs-cop-skc-aes-cbc">AES-CBC</selectable>
+					<selectable id="sel-fcs-cop-skc-aes-ctr">AES-CTR</selectable>
+					<selectable id="sel-fcs-cop-skc-xts-aes">XTS-AES</selectable>
+					<selectable id="sel-fcs-cop-skc-aes-kwp">AES-KWP</selectable>
+					<selectable id="sel-fcs-cop-skc-aes-kw">AES-KW</selectable>
+					<selectable id="sel-fcs-cop-skc-cam-cbs">CAM-CBC</selectable>
+					<selectable id="sel-fcs-cop-skc-cam-ccm">CAM-CCM</selectable>
+					<selectable id="sel-fcs-cop-skc-cam-gcm">CAM-GCM</selectable>
+					<selectable id="sel-fcs-cop-skc-xts-cam">XTS-CAM</selectable>
+				</selectables>.<h:p/>
+				<h:b><ctr ctr-type='Table' id="fcs-cop-skc-sels">: Supported Methods for Symmetric Key Cryptography Operation</ctr></h:b><h:br/>	
+				<h:table>
+					<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
+					<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+					
+					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-ccm"/>
+					<h:td>AES-CCM</h:td>
+					<h:td>AES in CCM mode with unpredictable, nonrepeating nonce, minimum size of 64 bits</h:td>
+					<h:td><selectables>
+						<selectable>128 bits</selectable>
+						<selectable>192 bits</selectable>
+						<selectable>256 bits</selectable>
+					</selectables></h:td>
+					<h:td>
+						ISO 18033-3 (AES)<h:p/>
+						ISO 19772, Clause 8 (CCM)<h:p/>
+						NIST SP800-38C (CCM)</h:td>
+					</h:tr>
+
+					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-gcm"/>
+					<h:td>AES-GCM</h:td>
+					<h:td>AES in GCM mode with non-repeating IVs; IV length must be equal to 96
+						bits; the deterministic IV construction method (SP800-38D, Section 8.2.1) must
+						be used; the MAC length t must be one of the values 
+						<selectables>
+							<selectable>96</selectable>
+							<selectable>104</selectable>
+							<selectable>112</selectable>
+							<selectable>120</selectable>
+							<selectable>128</selectable>
+						</selectables></h:td>
+					<h:td><selectables>
+							<selectable>128 bits</selectable>
+							<selectable>192 bits</selectable>
+							<selectable>256 bits</selectable>
+						</selectables></h:td>
+					<h:td>
+						ISO 18033-3 (AES)<h:p/>
+						ISO 19772, Clause 11 (GCM)<h:p/>
+						NIST SP800-38D (GCM)</h:td>
+					</h:tr>
+
+					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-cbc"/>
+					<h:td>AES-CBC</h:td>
+					<h:td>AES in CBC mode with non-repeating and unpredictable IVs</h:td>
+					<h:td><selectables>
+							<selectable>128 bits</selectable>
+							<selectable>192 bits</selectable>
+							<selectable>256 bits</selectable>
+						</selectables></h:td>
+					<h:td>
+						ISO 18033-3 (AES)<h:p/>
+						ISO 10116 (CBC)<h:p/>
+						NIST SP800-38A (CBC)</h:td>
+					</h:tr>
+
+					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-ctr"/>
+					<h:td>AES-CTR</h:td>
+					<h:td>AES in counter mode with a non-repeating initial counter and with no
+						repeated use of counter values across multiple messages with the same
+						secret key</h:td>
+					<h:td><selectables>
+							<selectable>128 bits</selectable>
+							<selectable>192 bits</selectable>
+							<selectable>256 bits</selectable>
+						</selectables></h:td>
+					<h:td>
+						ISO 18033-3 (AES)<h:p/>
+						ISO 10116 (CTR)<h:p/>
+						NIST SP800-38A (CTR)</h:td>
+					</h:tr>
+
+					<h:tr><depends on-sel="sel=fcs-cop-skc-xts-aes"/>
+					<h:td>XTS-AES</h:td>
+					<h:td>AES in XTS mode with unique 
+						<selectables>
+							<selectable>consecutive non-negative integers starting at an
+								arbitrary non-negative integer</selectable>
+							<selectable>data unit sequence numbers</selectable>
+						</selectables> tweak values</h:td>
+					<h:td><selectables>
+							<selectable>256 bits</selectable>
+							<selectable>512 bits</selectable>
+						</selectables></h:td>
+					<h:td>
+						ISO 18033-3 (AES)<h:p/>
+						<selectables>
+							<selectable>IEEE 1619</selectable>
+							<selectable>NIST SP800-38E</selectable>
+						</selectables>(XTS)</h:td>
+					</h:tr>
+
+					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-kwp"/>
+					<h:td>AES-KWP</h:td>
+					<h:td>KWP based on AES </h:td>
+					<h:td><selectables>
+							<selectable>128 bits</selectable>
+							<selectable>192 bits</selectable>
+							<selectable>256 bits</selectable>
+						</selectables></h:td>
+					<h:td>
+						ISO 18033-3 (AES)<h:p/>
+						NIST SP 800-38F, sec. 6.3 (KWP)</h:td>
+					</h:tr>
+
+					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-kw"/>
+					<h:td>AES-KW</h:td>
+					<h:td>KW based on AES </h:td>
+					<h:td><selectables>
+							<selectable>128 bits</selectable>
+							<selectable>192 bits</selectable>
+							<selectable>256 bits</selectable>
+						</selectables></h:td>
+					<h:td>
+						ISO 18033-3 (AES)<h:p/>
+						NIST SP 800-38F, sec. 6.2 (KW)<h:p/>
+						ISO/IEC 19772, clause 7 (key wrap)</h:td>
+					</h:tr>
+
+					<h:tr><depends on-sel="sel=fcs-cop-skc-cam-cbc"/>
+					<h:td>CAM-CBC</h:td>
+					<h:td>Camellia in CBC mode with non-repeating and unpredictable IVs</h:td>
+					<h:td><selectables>
+							<selectable>128 bits</selectable>
+							<selectable>256 bits</selectable>
+						</selectables></h:td>
+					<h:td>
+						ISO 18033-3 (Camellia)<h:p/>
+						ISO 10116 (CBC)<h:p/></h:td>
+					</h:tr>
+
+					<h:tr><depends on-sel="sel=fcs-cop-skc-cam-ccm"/>
+					<h:td>CAM-CCM</h:td>
+					<h:td>Camellia in CCM mode with unpredictable, nonrepeating nonce, minimum size of 64 bits</h:td>
+					<h:td><selectables>
+						<selectable>128 bits</selectable>
+						<selectable>256 bits</selectable>
+					</selectables></h:td>
+					<h:td>
+						ISO 18033-3 (Camellia)<h:p/>
+						ISO 19772, Clause 8 (CCM)<h:p/>
+						NIST SP800-38C (CCM)</h:td>
+					</h:tr>
+
+					<h:tr><depends on-sel="sel=fcs-cop-skc-cam-gcm"/>
+					<h:td>CAM-GCM</h:td>
+					<h:td>Camellia in GCM mode with non-repeating IVs; IV length must be equal to 96
+						bits; the deterministic IV construction method (SP800-38D, Section 8.2.1) must
+						be used; the MAC length t must be one of the values 
+						<selectables>
+							<selectable>96</selectable>
+							<selectable>104</selectable>
+							<selectable>112</selectable>
+							<selectable>120</selectable>
+							<selectable>128</selectable>
+						</selectables></h:td>
+					<h:td><selectables>
+							<selectable>128 bits</selectable>
+							<selectable>256 bits</selectable>
+						</selectables></h:td>
+					<h:td>
+						ISO 18033-3 (Camellia)<h:p/>
+						ISO 19772, Clause 11 (GCM)<h:p/>
+						NIST SP800-38D (GCM)</h:td>
+					</h:tr>
+
+					<h:tr><depends on-sel="sel=fcs-cop-skc-xts-cam"/>
+					<h:td>XTS-CAM</h:td>
+					<h:td>Camellia in XTS mode with unique 
+						<selectables>
+							<selectable>consecutive non-negative integers starting at an
+								arbitrary non-negative integer</selectable>
+							<selectable>data unit sequence numbers</selectable>
+						</selectables> tweak values</h:td>
+					<h:td><selectables>
+							<selectable>256 bits</selectable>
+							<selectable>512 bits</selectable>
+						</selectables></h:td>
+					<h:td>
+						ISO 18033-3 (Camellia)<h:p/>
+						<selectables>
+							<selectable>IEEE 1619</selectable>
+							<selectable>NIST SP800-38E</selectable>
+						</selectables>(XTS)</h:td>
+					</h:tr>
+				</h:table>
+			</title>
+			<aactivity>
+				<no-tests/>
+			</aactivity>
+		</f-element>
+	</f-component>
+		
 		
 		<!-- FCS_ENT_EXT.1 -->
         <f-component cc-id="fcs_ent_ext.1" name="Entropy for Tenant Software">
@@ -1570,6 +2282,174 @@
 				</note>
 			</f-element>
 		</f-component>		
+		
+	<f-component cc-id="fcs_slt_ext.1" name="Cryptographic Salt Generation" status="optional">
+		<f-element id="fcs-slt-ext-1e1">
+			<title>The TSF shall use salts and nonces generated by an RBG as specified in
+				FCS_RBG_EXT.1.
+			</title>
+			<aactivity>
+				<no-tests/>
+			</aactivity>
+		</f-element>
+	</f-component>		
+
+		
+	<f-component cc-id="fcs_stg_ext.1" name="Protected Storage" status="optional">
+		<f-element id="fcs-stg-ext-1e1">
+			<title>
+				The TSF shall provide 
+				<selectables>
+					<selectable>mutable hardware-based</selectable>
+					<selectable>immutable hardware-based</selectable>
+					<selectable>software-based</selectable>
+				</selectables> protected storage for asymmetric private keys and 
+				<selectables>
+					<selectable>symmetric keys</selectable>
+					<selectable>persistent secrets</selectable>
+					<selectable>no other keys</selectable>
+				</selectables>.
+			</title>
+			<note role="application">
+				If the protected storage is implemented in software that is protected as required by
+				FCS_STG_EXT.2, the ST author is expected to select "software-based." If "software-based" is selected,
+				the ST author is expected to select all "software-based key storage" in FCS_STG_EXT.2.<h:p/>
+				Support for protected storage for all symmetric keys and persistent secrets will be required in
+				future revisions.<h:p/>
+			</note>
+		</f-element>
+		<f-element id="fcs-stg-ext-1e2">
+			<title>
+				FCS_STG_EXT.1.2 The TSF shall support the capability of 
+				<selectables>
+					<selectable>importing keys/secrets into the TOE</selectable>
+					<selectable>causing the TOE to generate keys/secrets</selectable>
+				</selectables> upon request of 
+				<selectables>
+					<selectable>a client application</selectable>
+					<selectable>an administrator</selectable>
+				</selectables>.
+			</title>
+		</f-element>
+		<f-element id="fcs-stg-ext-1e3">
+			<title>
+				The TSF shall be capable of destroying keys/secrets in the protected storage
+				upon request of 
+				<selectables>
+					<selectable>a client application</selectable>
+					<selectable>an administrator</selectable>
+				</selectables>.
+			</title>
+		</f-element>
+		<f-element id="fcs-stg-ext-1e4">
+			<title>
+				The TSF shall have the capability to allow only the user that 
+				<selectables>
+					<selectable>imported the key/secret</selectable>
+					<selectable>caused the key/secret to be generated</selectable>
+				</selectables> to use the key/secret. Exceptions
+				may be explicitly authorized only by 
+				<selectables>
+					<selectable>the client application</selectable>
+					<selectable>the administrator</selectable>
+				</selectables>.
+			</title>
+		</f-element>
+		<f-element id="fcs-stg-ext-1e5">
+			<title>
+				The TSF shall allow only the user that 
+				<selectables>
+					<selectable>imported the key/secret</selectable>
+					<selectable>caused the key/secret to be generated</selectable>
+				</selectables> to request that the key/secret be destroyed. Exceptions may
+				only be explicitly authorized by 
+				<selectables>
+					<selectable>the client application</selectable>
+					<selectable>the administrator</selectable>
+				</selectables>.
+			</title>
+			<note role="application">
+				Not all conformant TOEs will have the ability to import pre-generated keys into the TOE. In these
+				cases, the TOE’s ability to receive commands to perform key generation is considered to be its
+				implementation of the Parse service. A subject that caused a key to be generated is considered to
+				be the ‘owner’ of that key in the same manner as they would be if they had imported it directly.
+			</note>
+			<aactivity>
+				<no-tests/>
+			</aactivity>
+		</f-element>
+	</f-component>
+
+	<f-component cc-id="fcs_stg_ext.2" name="Key Storage Encryption" status="optional">
+		<f-element id="fcs-stg-ext-1e1">
+			<title>
+				The TSF shall encrypt [<h:i>AKs, SKs, KEKs, and 
+				<selectables>
+					<selectable>long-term trusted channel key material</selectable>
+					<selectable>all software-based key storage</selectable>
+					<selectable>no other keys</selectable>
+				</selectables></h:i>] using one of the following
+				methods: <assignable>key encryption methods as specified in FCS_COP.1/KeyEnc</assignable>.
+			</title>
+			<aactivity>
+				<no-tests/>
+			</aactivity>
+		</f-element>
+	</f-component>
+	
+	<f-component cc-id="fcs_stg_ext.3" name="Key Integrity Protection" status="optional">
+		<f-element id="fcs-stg-ext-3e1">
+			<title>
+				The TSF shall protect the integrity of any encrypted [<h:i>AKs, SKs, KEKs, and
+				<selectables>
+					<selectable>long-term trusted channel key material</selectable>
+					<selectable>all software-based key storage</selectable>
+					<selectable>no other keys</selectable>
+				</selectables></h:i>] by using 
+				<selectables linebreak="yes">
+					<selectable>Symmetric encryption in 
+						<selectables>
+							<selectable>AES_CCM</selectable>
+							<selectable>AES_GCM</selectable>
+							<selectable>AES_KW</selectable>
+							<selectable>AES_KWP</selectable>
+							<selectable>CAM_CCM</selectable>
+							<selectable>CAM_GCM</selectable>
+						</selectables> mode in accordance with FCS_COP.1/SKC</selectable>
+					<selectable>A hash of the stored key in accordance with FCS_COP.1/Hash</selectable>
+					<selectable>A keyed hash of the stored key in accordance with FCS_COP.1/HMAC</selectable>
+					<selectable>A digital signature of the stored key in accordance with FCS_COP.1/SigGen
+						using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</selectable>
+					<selectable>An immediate application of the key for decrypting the protected data followed 
+						by a successful verification of the decrypted data with previously known information</selectable>
+				</selectables>.
+			</title>
+		</f-element>
+		<f-element id="fcs-stg-ext-3e2">
+			<title>
+				The TSF shall verify the integrity of the 
+					<selectables>
+						<selectable>hash</selectable>
+						<selectable>digital signature</selectable>
+						<selectable>MAC</selectable>
+					</selectables> of the stored key prior to use of the key.
+			</title>
+			<note role="application">
+				This requirement is not applicable to derived keys that are not stored. It is not expected that a
+				single key will be protected from corruption by multiple of these methods; however, a product may
+				use one integrity-protection method for one type of key and a different method for other types of
+				keys.<h:p/>
+				The documentation of the product’s encryption key management should be detailed enough that,
+				after reading, the evaluator will thoroughly understand the product’s key management and how it
+				meets the requirements to ensure the keys are adequately protected. This documentation should
+				include an essay and diagrams. This documentation is not required to be part of the TSS – it can
+				be submitted as a separate document and marked as developer proprietary.
+			</note>
+			<aactivity>
+				<no-tests/>
+			</aactivity>
+		</f-element>
+	</f-component>
 		
 		
 	</section>	 
