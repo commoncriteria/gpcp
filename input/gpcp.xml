@@ -2727,16 +2727,29 @@
 
 	<!-- FPT_PHP_EXT.1: Hardware component integrity
 		 -->
-	<f-component cc-id="fpt_php_ext.1" name="Hardware component integrity" status="optional">
+	<f-component cc-id="fpt_php_ext.1" name="Hardware component integrity" status="objective">
 		<f-element id="fpt-php-ext-1e1">
 			<title>
 				Outside of the integrity root specified in FPT_ROT_EXT.1, the integrity of 
-				<assignable>platform hardware components</assignable>shall be verified 
+				<assignable>critical platform hardware components</assignable>shall be verified 
 				prior to execution or use through: 
 				<assignable>method for ensuring integrity of platform hardware components</assignable>. 
 			</title>
 			<note role="application">
-				The scope of the project is limited to manufacturing and OEM processes that protect against counterfeits, tampering, and insertion of unexpected software and hardware, and the corresponding customer processes that verify that client and server computing devices and components have not been tampered with or otherwise modified. Manufacturing processes that cannot be verified by the customer are explicitly out of scope.
+				The purpose of this objective requirement is to encourage platform and component vendors to adopt mechanisms similar to those
+				defined in upcoming NIST SP 1800-34 for ensuring the integrity of the hardware supply chain. The scope of SP 1800-34 is to cover 
+				"manufacturing and OEM processes that protect against counterfeits, tampering, and insertion of 
+				unexpected software and hardware, and the corresponding customer processes that verify that client and server computing devices and
+				components have not been tampered with or otherwise modified. Manufacturing processes that cannot be verified by the customer are explicitly
+				out of scope."<h:p/>
+				As a basic step, critical platform components should include immutable hardware IDs that can be listed a hardware component  
+				manifest that is provided to the purchaser and signed by the manufacturer. It should then be possible for the TOE to verify 
+				the signature on the manifest and check that each hardware ID in the manifest matches the IDs in the actual hardware.<h:p/>
+				For purposes of this requirement, hardware identities can be verified once on first boot, on every boot, when new hardware is detected, 
+				or during normal operation of the platform - as long as the hardware integrity is verified before the component or device is used.<h:p/>
+				The ST author lists the hardware components for which the integrity is checked, and the methods used for conducting the checks. 
+				"Critical components" generally would include chassis, motherboards, CPUs, network cards, memory chips, hard drives, controllers, 
+				graphics processors, and service controllers.
 			</note>
 		</f-element>
 		<f-element id="fpt-php-ext-1e2">
@@ -2752,10 +2765,10 @@
 					<h:li><selectables linebreak="yes">
 						<selectable>Stop all execution and shut down</selectable>
 						<selectable>Continue execution without the integrity-compromised component</selectable>
+						<selectable>Continue execution</selectable>
 					</selectables></h:li>
 				</h:ol> 
 				<selectables linebreak="yes">
-					<selectable>automatically</selectable>
 					<selectable>in accordance with administrator-configurable policy</selectable>
 					<selectable>by express determination of an administrator/user</selectable>
 				</selectables>.	
