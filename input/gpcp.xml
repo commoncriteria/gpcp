@@ -252,6 +252,11 @@
 	
 <!--   1.4 Use Cases  -->
     <section title="Use Cases" id="usecases">
+	
+		This Protection Profile supports several use cases for general-purpose computing platforms. By default,
+		the PP expresses requirements for portable or desktop clients in a low-risk operational environment.
+		Enterprise server platforms add audit requirements. Use cases involving higher-risk operational 
+		environments add requirements for physical protections. 
 	    
 	<!-- Physical protections are one of the major differences in use cases. There are probably 
 	four levels of physical protections. 
@@ -300,7 +305,7 @@
 				This use case adds only audit requirements the base mandatory requirements.
           	</description>
 			<config>
-				<ref-id>FAU_GEN.1</ref-id>
+				FAU_GEN.1
 			</config>
         </usecase>
 		<usecase title="Server-Class Platform, Enhanced" id="uc-servers-enhanced">
@@ -313,10 +318,10 @@
 				It removes the assumption that the TOE is physically protected by the OE.
           	</description>
 			<config>
-				<ref-id>FAU_GEN.1</ref-id>
-				<ref-id>FPT_PHP.2</ref-id>
-				<ref-id>FPT_PHP.3</ref-id>
-				<ref-id><not>A.PHYSICAL_PROTECTION</not></ref-id>
+				FAU_GEN.1
+				FPT_PHP.2 
+				FPT_PHP.3 
+				<not>A.PHYSICAL_PROTECTION</not>
 			</config>
         </usecase>
 		<usecase title="Portable Clients (laptops, tablets), Basic" id="uc-clients-portable-basic">
@@ -333,8 +338,8 @@
 				devices. It is intended for devices that are used in high-assurance scanrios.
           	</description>
 			<config>
-				<ref-id>FPT_PHP.1</ref-id>
-				<ref-id><not>A.PHYSICAL_PROTECTION</not></ref-id>
+				FPT_PHP.1
+				<not>A.PHYSICAL_PROTECTION</not>
 			</config>
         </usecase>
 		<usecase title="CSfC EUD" id="uc-csfc-eud">
@@ -347,10 +352,10 @@
 				adds requirements for audit and basic tamper detection and reporting.
           	</description>
 			<config>
-				<ref-id>FPT_PHP.1</ref-id>
-				<ref-id>FPT_PHP.2</ref-id>
-				<ref-id>FAU_GEN.1</ref-id>			
-				<ref-id><not>A.PHYSICAL_PROTECTION</not></ref-id>
+				FPT_PHP.1
+				FPT_PHP.2
+				FAU_GEN.1			
+				<not>A.PHYSICAL_PROTECTION</not>
 			</config>
         </usecase>
 		<usecase title="Tactical EUD" id="uc-tactical-eud">
@@ -359,8 +364,8 @@
 				environment. 
           	</description>
 			<config>
-				<ref-id>FPT_PHP.3</ref-id>
-				<ref-id><not>A.PHYSICAL_PROTECTION</not></ref-id>
+				FPT_PHP.3
+				<not>A.PHYSICAL_PROTECTION</not>
 			</config>
         </usecase>
 		<usecase title="Desktop clients" id="uc-clients-desktop">
@@ -370,7 +375,7 @@
 				This use case adds only audit to the base mandatory SFRs.
           	</description>
 			<config>
-				<ref-id>FAU_GEN.1</ref-id>
+				FAU_GEN.1
 			</config>
         </usecase>
 		<usecase title="IoT Devices" id="uc-iot-device">
@@ -381,8 +386,8 @@
 				for a mobile device or network device.
           	</description>
 			<config>
-				<ref-id>FPT_PHP.1</ref-id>
-				<ref-id><not>A.PHYSICAL_PROTECTION</not></ref-id>				
+				FPT_PHP.1
+				<not>A.PHYSICAL_PROTECTION</not>				
 			</config>
         </usecase>
 		</usecases>
