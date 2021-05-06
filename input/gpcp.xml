@@ -27,8 +27,8 @@
   <RevisionHistory>
     <entry>
       <version>1.0</version>
-      <date>2020-11-09</date>
-      <subject>Initial release</subject>
+      <date>2021-05-06</date>
+      <subject>Drafty</subject>
     </entry>
   </RevisionHistory>
 
@@ -66,16 +66,21 @@
 <!--    1.1 Overview   -->
 <section title="Introduction" id="int">
     <section title="Overview" id="ppoverview">
-      
-    The scope of this Protection Profile (PP) is to
-    describe the security functionality of General-Purpose Computing Platforms in terms of <citeCC/>
-    and to define functional and assurance requirements for such products.<h:p/>
-  
-	A platform is a collection of hardware devices and firmware that provide the functional capabilities and services needed by tenant
-	software. Such components typically include embedded controllers, trusted platform modules, management controllers, host processors, network
-	interface controllers, graphics processing units, flash memory, storage controllers, storage devices, boot firmware, runtime firmware,
-	human interface devices, and a power supply.
-    </section>
+		The scope of this Protection Profile (PP) is to describe the security functionality of 
+		General-Purpose Computing Platforms in terms of the Common Ctiteria and
+		to define functional and assurance requirements for such products.<h:p/>
+	  
+		A platform is a collection of hardware devices and firmware that provide the functional capabilities and 
+		services needed by tenant software. Such components typically include embedded controllers, trusted platform 
+		modules, management controllers, host processors, network interface controllers, graphics processing units, 
+		flash memory, storage controllers, storage devices, boot firmware, runtime firmware, human interface devices, 
+		and a power supply.<h:p/>
+		
+		This Protection Profile for General-Purpose Comouting Platforms derives requirements from 
+		the <h:i>NIAP Protection Profile for BIOS Update for PC Client Devices Version 1.0</h:i> and several NIST
+		Publications, including Special Publications 800-147 (BIOS Protection Guidelines), 800-147B (BIOS Protection
+		Guidelines for Servers), and 800-193 (Platform Firmware Resiliency Guidelines). 
+	</section>
 	
 <!--   1.2 Terms   -->
 <!--     1.2.1 Common Criteria Terms (auto-generated) -->
@@ -84,68 +89,62 @@
     <tech-terms>
       <term abbr='AES' full="Advanced Encryption Standard"/>
       <term abbr='API' full="Application Programming Interface"/>
-      <term full="Address Space Layout Randomization" abbr="ASLR">
-	An anti-exploitation feature which loads memory mappings into unpredictable
-	locations. ASLR makes it more difficult for an attacker to redirect control to code
-	that they have introduced into the address space of a process.
-      </term>
       <term full="Administrator">
-	An administrator is responsible for management activities, including setting policies that are 
-	applied by the enterprise on the operating system.
-	This administrator could be acting remotely through a management server, from which the system
-	receives configuration policies.
-	An administrator can enforce settings on the system which cannot be overridden by non-administrator users.
+		An administrator is responsible for management activities, including setting policies that are 
+		applied by the enterprise on the platform. An administrator can act remotely through a management server,
+		from which the platform receives configuration policies and updates. An administrator can enforce
+		settings on the system that cannot be overridden by non-administrator users.
       </term>
       <term full="Application" abbr="app">
-	Software that runs on a platform and performs tasks on behalf of the user
-	or owner of the platform, as well as its supporting documentation. 
+		Software that runs on a platform and performs tasks on behalf of the user
+		or owner of the platform. 
       </term>
       <term full="Application Programming Interface" abbr="API">
-	A specification of routines, data structures, object classes, and variables
-	that allows an application to make use of services provided by another software
-	component, such as a library. APIs are often provided for a set of libraries included
-	with the platform.
+		A specification of routines, data structures, object classes, and variables
+		that allows an application to make use of services provided by another software
+		component, such as a library. APIs are often provided for a set of libraries included
+		with the platform.
       </term>
       <term abbr='CESG' full="Communications-Electronics Security Group"/>
       <term abbr='CMC' full="Certificate Management over CMS"/>
       <term abbr='CMS' full="Cryptographic Message Syntax"/>
       <term abbr='CN' full="Common Names"/>
       <term full="Credential">
-	Data that establishes the identity of a user, e.g. a cryptographic key or
-	password.
+		Data that establishes the identity of a user, e.g. a cryptographic key or
+		password.
       </term>
       <term abbr='CRL' full="Certificate Revocation List"/>
       <term abbr='CSA' full="Computer Security Act"/>
       <term full="Critical Security Parameters" abbr="CSP">
-	Information that is either user or system defined and
-	is used to operate a cryptographic module in processing encryption functions including
-	cryptographic keys and authentication data, such as passwords, the disclosure or modification
-	of which can compromise the security of a cryptographic module or the security of the
-	information protected by the module.
+		Information that is either user or system defined and
+		is used to operate a cryptographic module in processing encryption functions including
+		cryptographic keys and authentication data, such as passwords, the disclosure or modification
+		of which can compromise the security of a cryptographic module or the security of the
+		information protected by the module.
       </term>
       <term full="Data At Rest" abbr="DAR" />
       <term full="DAR Protection">
-	Countermeasures that prevent attackers, even those with physical access,
-	from extracting data from non-volatile storage.
-	Common techniques include data encryption and wiping.
+		Countermeasures that prevent attackers, even those with physical access,
+		from extracting data from non-volatile storage.
+		Common techniques include data encryption and wiping.
       </term>
       <term full="Data Execution Prevention" abbr="DEP">
-	An anti-exploitation feature of modern operating systems executing on
-	modern computer hardware, which enforces a non-execute permission on pages of memory.
-	DEP prevents pages of memory from containing both data and instructions, which makes
-	it more difficult for an attacker to introduce and execute code.
+		An anti-exploitation feature of modern operating systems executing on
+		modern computer hardware, which enforces a non-execute permission on pages of memory.
+		DEP prevents pages of memory from containing both data and instructions, which makes
+		it more difficult for an attacker to introduce and execute code.
       </term>
       <term abbr='DES' full="Data Encryption Standard"/>
       <term full="Developer">
-	An entity that writes OS software. For the purposes of this document,
-	vendors and developers are the same.
+		An entity that writes OS software. For the purposes of this document,
+		vendors and developers are the same.
       </term>
       <term full="General Purpose Operating System">
-	A class of OSes designed to support a wide-variety of workloads consisting of many concurrent applications or services.
-	Typical characteristics for OSes in this class include support for third-party applications,
-	support for multiple users, and security separation between users and their respective resources.
-	General Purpose Operating Systems also lack the real-time constraint that defines Real Time Operating Systems (RTOS).
-	RTOSes typically power routers, switches, and embedded devices.
+		A class of OS designed to support a wide-variety of workloads consisting of many concurrent applications or
+		services. Typical characteristics for OSes in this class include support for third-party applications,
+		support for multiple users, and security separation between users and their respective resources.
+		General-Purpose Operating Systems also lack the real-time constraint that defines Real Time Operating
+		Systems (RTOS). RTOSes typically power routers, switches, and embedded devices.
       </term>
       <term abbr='DHE' full="Diffie-Hellman Ephemeral"/>
       <term abbr='DNS' full="Domain Name System"/>
@@ -158,11 +157,11 @@
       <term abbr='ECDSA' full="Elliptic Curve Digital Signature Algorithm"/>
       <term abbr='EST' full="Enrollment over Secure Transport"/>
       <term abbr='FIPS' full="Federal Information Processing Standards"/>
+	  <term abbr='GPCP' full="General-Purpose Computing Platform">
+		A physical computing platform designed to support general-purpose operating systems, virtualiation 
+		systems, and applications.
+	  </term>
       <term abbr='HMAC' full="Hash-based Message Authentication Code"/>
-      <term full="Host-based Firewall">
-	A software-based firewall implementation running on the OS for filtering inbound and
-	outbound network traffic to and from processes running on the OS.
-      </term>
       <term abbr='HTTP' full="Hypertext Transfer Protocol"/>
       <term abbr='HTTPS' full="Hypertext Transfer Protocol Secure"/>
       <term abbr='DSS' full="Digital Signature Standard"/>
@@ -171,86 +170,83 @@
       <term abbr='ISO' full="International Organization for Standardization"/>
       <term abbr='IT' full="Information Technology"/>
       <term abbr='ITSEF' full="Information Technology Security Evaluation Facility"/>
-      <term abbr='NIAP' full="National Information Assurance Partnership"/>
       <term abbr='NIST' full="National Institute of Standards and Technology"/>
-      <term abbr='OCSP' full="Online Certificate Status Protocol"/>
       <term abbr='OID' full="Object Identifier"/>
-      <term abbr='OMB' full="Office of Management and Budget"/>
       <term full="Operating System" abbr="OS" plural="OSes">
-	Software that manages physical and logical resources and provides services
-	for applications. The terms <h:i>TOE</h:i> and <h:i>OS</h:i> are interchangeable in this
-	document. 
+		Software that manages physical and logical resources and provides services
+		for applications. Operating systems are the generally the primary tenant of a GPCP.
       </term>
       <term abbr='PKI' full="Public Key Infrastructure"/>
-      <term abbr='PP' full="Protection Profile"/>
       <term abbr='RBG' full="Random Bit Generator"/>
       <term abbr='RFC' full="Request for Comment"/>
       <term abbr='RNG' full="Random Number Generator"/>
       <term abbr='RNGVS' full="Random Number Generator Validation System"/>
-      <term full="Personally Identifiable Information" abbr="PII">
-	Any information about an individual maintained by an agency, including, but
-	not limited to, education, financial transactions, medical history, and criminal or
-	employment history and information which can be used to distinguish or trace an
-	individual's identity, such as their name, social security number, date and place of
-	birth, mother's maiden name, biometric records, etc., including any other personal
-	information which is linked or linkable to an individual.<cite linkend="bibOMB"/>
-      </term>
-      <term abbr='SAN' full="Subject Alternative Name"/>
       <term abbr='SHA' full="Secure Hash Algorithm"/>
-      <term abbr='S/MIME' full="Secure/Multi-purpose Internet Mail Extensions"/>
       <term full="Sensitive Data">
-	Sensitive data may include all user or enterprise data or may be specific
-	application data such as PII, emails, messaging, documents, calendar items, and contacts.
-	Sensitive data must minimally include credentials and keys. Sensitive data shall
-	be identified in the OS's TSS by the ST author. 
+		Sensitive data may include all user or enterprise data or may be specific
+		application data such as PII, emails, messaging, documents, calendar items, and contacts.
+		Sensitive data must minimally include credentials and keys. Sensitive data shall
+		be identified in the OS's TSS by the ST author. 
       </term>
-      <term abbr='SIP' full="Session Initiation Protocol"/>
       <term abbr='SWID' full="Software Identification"/>
+	  <term full="Tenant Software">
+		Software that runs on and is supported by a platform. In the case of a GPCP, tenant software generally
+		consists of an operating system, virtualization system, or "bare-metal" application.
+	  </term>
       <term abbr='TLS' full="Transport Layer Security"/>
-      <term abbr='URI' full="Uniform Resource Identifier"/>
-      <term abbr='URL' full="Uniform Resource Locator"/>
       <term abbr='USB' full="Universal Serial Bus"/>
       <term full="User">
-	A user is subject to configuration policies applied
-	to the operating system by administrators.  On some systems under certain
-	configurations, a normal user can temporarily elevate privileges to that of an administrator.
-	At that time, such a user should be considered an administrator.
+		In the context of a GPCP, a User is a person who is physically present and operating the platform.
       </term>
-	  <term abbr="VM" full="Virtual Machine">Blah Blah Blah</term>
-      <term abbr='XCCDF' full="eXtensible Configuration Checklist Description Format"/>
+	  <term abbr="VM" full="Virtual Machine">
+	    A Virtual Machine is a virtualized hardware environment in which an operating system may execute.
+	  </term>
+	  <term abbr="VS" full="Virtualization System">
+		A software product that enables multiple independent computing systems to execute on the same physical
+		hardware platform without interference from one other. For the purposes of this document, the VS consists 
+		of a Virtual Machine Manager (VMM), Virtual Machine abstractions, a management subsystem, and other 
+		components.
+	  </term>
       <term abbr='XOR' full="Exclusive Or"/>
     </tech-terms>   
 	
 <!--   1.3 Compliant Targets of Evaluation -->
     <section title="Compliant Targets of Evaluation" id="TOEdescription">
-  	A general-purpose computing platform is a hardware device that it capable
-	of hosting more than one different operating system, virtualization system,
-	or bare-metal application. Typical platform implementations include--but are not
-	limited to--servers, PC clients, laptops, and tablets.<h:p/>
-	Mobile device platforms as defined in the Protection Profile for Mobile Device Fundamentals and 
-	network device platforms as defined in the collaborative Protection Profile for Network Devices 
-	are out of scope of this PP.  Mobile device and network device platforms must be evaluated 
-	against the more specific requirements in their respective specialized PPs.
+		A general-purpose computing platform is a hardware device that is capable of hosting more than one 
+		different operating system, virtualization system, or bare-metal application. Typical platform 
+		implementations include servers, PC clients, laptops, and tablets.<h:p/>
+		Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and 
+		Network Device platforms as defined in the collaborative Protection Profile for Network Devices 
+		are out of scope of this PP.  Mobile Device and Network Device platforms must be evaluated 
+		against the more specific requirements in their respective specialized PPs.
 
 <!--      1.3.1 TOE Boundary -->	    
-      <section title="TOE Boundary" id="TOEboundary">
-        <figure entity="images/Toe.png" title="General TOE " id="toe"/>
+    <section title="TOE Boundary" id="TOEboundary">
 		The TOE comprises the hardware and firmware necessary for the hosting of tenant software. Generally,
 		tenant software is an operating system or virtualization system, but may also be "bare-metal" applications.
 		Tenant software is outside the TOE boundary.<h:p/>
 		For example, for a PC Client platform, the hardware and firmware responsible for booting the platform and 
 		operation of platform devices (such as BIOS, device controller firmware and plaform management firmware would all 
-		be included in the TOE. Operating systems and application software would be outside the TOE. The chassis 
-		and case could be inside or outside the TOE depending on the use case.<h:p/>
+		be included in the TOE. Operating systems and application software is outside the TOE.<h:p/>
 		For server-class hardware, any management controller responsible for updating platform firmware is expressly
-		included within the TOE.
+		included within the TOE.<h:p/>
+        <figure entity="images/arch.png" title="High-Level Architecture of a Generic Platform" id="toe"/><h:p/>
+		Figure 1 (taken from NIST SP 800-193) shows a high-level system architecture for a generic computing platform.
+		Tenant software (operating system/virtualization system and applications) is shown in orange.
+		The tenant-specific software responsible for booting the tenant (Master Boot Record, etc.) is shown
+		in grey. Platform components are in blue.<h:p/>
+		For purposes of these requirements, the TOE consists of the platform components as represented 
+		by the blue boxes, along with their associated firmware. Any particular platform may have 
+		additional hardware components, or fewer than those illustrated.
       </section>
 
 <!--     1.3.2 TOE Operational Environment -->
       <section title="TOE Operational Environment" id="TOEopenv">
-	      The TOE has no platform since it is itself a platform. But the TOE does have an operational environment. The OE consists of the 
-	      physical environment in which the TOE operates (e.g., data center, vehicle, outdoors) and any networks to which the TOE may be connected.
-		  Different use cases invoke different requirements depending on the operational environment.
+	      The TOE has no platform since it is itself a platform. But the TOE does have an operational
+		  environment. The OE consists of the physical environment in which the TOE operates (e.g., 
+		  data center, enterprise office, vehicle, outdoors) and any networks to which the TOE may
+		  be connected. Different use cases may invoke different requirements depending on the 
+		  operational environment.
       </section>
     </section>
 	
@@ -284,7 +280,7 @@
 		MA-EU-41 The EUD must perform a wipe of all protected data after 10 or less authentication failures. 
 		MA-EU-57 USB debugging capabilities must be disabled on the EUDs.
 		MA-CM-3 All solution components must be configured with a monitoring service that detects all
-				changes to configuration. All O Optional
+				changes to configuration. 
 		MA-AU-9 Solution components must log all actions performed on the audit log (i.e., off-loading,
 				deletion, etc.).		
 		MA-GD-7 Users must periodically inspect the physical attributes of EUDs for signs of tampering or
@@ -296,13 +292,15 @@
 				components.
 	-->
 	<usecases>
-		<usecase title="Server-Class Platform" id="uc-server">
+		<usecase title="Server-Class Platform, Basic" id="uc-server-basic">
         	<description>
-				This use case includes the base requirements for server-class hardware in a data center. There are 
-				no additional physical protections required because the platform us assumed to be protected 
-				by the operational environment. 
+				This use case includes the base requirements for server-class hardware in a data center OE. There are 
+				no additional physical protections required because the platform is assumed to be protected 
+				by the operational environment as indicated by A.PHYSICAL_PROTECTION.<h:p/>
+				This use case adds only audit requirements the base mandatory requirements.
           	</description>
 			<config>
+				<ref-id>FAU_GEN.1</ref-id>
 			</config>
         </usecase>
 		<usecase title="Server-Class Platform, Enhanced" id="uc-servers-enhanced">
@@ -310,14 +308,21 @@
 				This use case adds physical protections to the base requirements for server-class hardware.
 				Additional physical protections required because the platform us assumed to be minimally 
 				protected by the by the operational environment. This use case can also be used for servers in 
-				data centers where there are enhanced security requirements.
+				data centers where there are enhanced security requirements.<h:p/>
+				This use case adds requirements for audit and physical protections to the base mandatory SFRs.
+				It removes the assumption that the TOE is physically protected by the OE.
           	</description>
 			<config>
+				<ref-id>FAU_GEN.1</ref-id>
+				<ref-id>FPT_PHP.2</ref-id>
+				<ref-id>FPT_PHP.3</ref-id>
+				<ref-id><not>A.PHYSICAL_PROTECTION</not></ref-id>
 			</config>
         </usecase>
-		<usecase title="Portable Clients (laptops, tablets)" id="uc-clients-portable">
+		<usecase title="Portable Clients (laptops, tablets), Basic" id="uc-clients-portable-basic">
         	<description>
-				This use case includes the base requirements for portable clients or end-user devices.  
+				This use case includes the base requirements for portable clients or end-user devices. <h:p/>
+				This use case adds no requirements to the base mandatory SFRs.
           	</description>
 			<config>
 			</config>
@@ -325,57 +330,59 @@
 		<usecase title="Portable Clients (laptops, tablets), Enhanced" id="uc-clients-portable-enhanced">
         	<description>
 				This use case adds physical protections to the base requirements for portable clients or end-user 
-				devices. it is intended for devices that are used in high-assurance scanrios.
+				devices. It is intended for devices that are used in high-assurance scanrios.
           	</description>
 			<config>
+				<ref-id>FPT_PHP.1</ref-id>
+				<ref-id><not>A.PHYSICAL_PROTECTION</not></ref-id>
 			</config>
         </usecase>
 		<usecase title="CSfC EUD" id="uc-csfc-eud">
         	<description>
-				EUDs used in accordance with the CSfC Mobile Access Capability Package can include smart phones, tablets, 
-				and laptops. This use case covers the basic CSfC requirements for tablet and laptop EUDs.
+				EUDs used in accordance with the CSfC Mobile Access Capability Package can include 
+				smart phones, tablets, and laptops. This use case covers the basic CSfC requirements 
+				for tablet and laptop EUDs (mobile devices are out of scope for this PP).<h:p/>
+				Although CSfC requires that users maintain physical control of EUDs at all times,
+				this use case removes the assumption that the TOE is protected by the OE and 
+				adds requirements for audit and basic tamper detection and reporting.
           	</description>
 			<config>
-			</config>
-        </usecase>
-		<usecase title="CSfC Hardened EUD" id="uc-csfc-hard-eud">
-        	<description>
-				EUDs used in accordance with the CSfC Mobile Access Capability Package can include smart phones, tablets, 
-				and laptops. This use case adds requirements for the protection of the device to the base CSfC EUD requirements. 
-          	</description>
-			<config>
+				<ref-id>FPT_PHP.1</ref-id>
+				<ref-id>FPT_PHP.2</ref-id>
+				<ref-id>FAU_GEN.1</ref-id>			
+				<ref-id><not>A.PHYSICAL_PROTECTION</not></ref-id>
 			</config>
         </usecase>
 		<usecase title="Tactical EUD" id="uc-tactical-eud">
         	<description>
-				This use case adds requirements for portable end user computing devices in a tactial environment. 
+				This use case adds requirements for portable end user computing devices in a tactial
+				environment. 
           	</description>
 			<config>
+				<ref-id>FPT_PHP.3</ref-id>
+				<ref-id><not>A.PHYSICAL_PROTECTION</not></ref-id>
 			</config>
         </usecase>
 		<usecase title="Desktop clients" id="uc-clients-desktop">
         	<description>
 				This use case covers the requirements for non-portable desktop computing devices in a low-threat
-				physical environment.
+				physical environment.<h:p/>
+				This use case adds only audit to the base mandatory SFRs.
           	</description>
 			<config>
-			</config>
-        </usecase>
-		<usecase title="Thin/Zero Clients" id="uc-clients-thin">
-        	<description>
-				Client platforms that run thin client operating systems.
-				It would be great if we could fold this into one or both of the client platform use cases. At the boot firmware level, are they really 
-				any different. CSfC has a thin client option.
-          	</description>
-			<config>
+				<ref-id>FAU_GEN.1</ref-id>
 			</config>
         </usecase>
 		<usecase title="IoT Devices" id="uc-iot-device">
         	<description>
-				IoT devices are field-located devices without human interfaces when in normal operation. In order to qualify for evaluation 
-				under this PP, the device must meet the basic criteria for a general-purpose platform. 
+				IoT devices are field-located devices without human interfaces when in normal 
+				operation. In order to qualify for evaluation under this PP, the device must meet 
+				the basic criteria for a general-purpose platform, and not meet the requirements
+				for a mobile device or network device.
           	</description>
 			<config>
+				<ref-id>FPT_PHP.1</ref-id>
+				<ref-id><not>A.PHYSICAL_PROTECTION</not></ref-id>				
 			</config>
         </usecase>
 		</usecases>
@@ -5654,26 +5661,27 @@
             Evaluation Methodology for Information Technology Security - Evaluation Methodology</h:a>,
           CCMB-2012-09-004, Version 3.1, Revision 4, September 2012. </description>
       </entry>
-      <entry id="bibCESG">
-        <tag>CESG</tag>
-        <description>CESG - <h:a
-            href="https://www.gov.uk/government/collections/end-user-devices-security-guidance"> End
-            User Devices Security and Configuration Guidance</h:a></description>
-      </entry>
-      <entry id="bibCSA">
-        <tag>CSA</tag>
+      <entry id="bib-NIST-SP800-147">
+        <tag>SP-800-147</tag>
         <description>
-          <h:a href="http://csrc.nist.gov/groups/SMA/ispab/documents/csa_87.txt">Computer Security Act
-            of 1987</h:a>, H.R. 145, June 11, 1987. </description>
+          <h:a href="https://www.nist.gov/publications/bios-protection-guidelines">
+		  NIST SP800-147 BIOS Protection Guidelines</h:a>, NIST SP800-147, April 29, 2011.
+        </description>
       </entry>
-      <entry id="bibOMB">
-        <tag>OMB</tag>
+      <entry id="bib-NIST-SP800-147B">
+        <tag>SP-800-147B</tag>
         <description>
-          <h:a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf"
-            >Reporting Incidents Involving Personally Identifiable Information and Incorporating the
-            Cost for Security in Agency Information Technology Investments</h:a>, OMB M-06-19, July
-          12, 2006. </description>
+          <h:a href="https://csrc.nist.gov/publications/detail/sp/800-147b/final">
+		  NIST SP800-147B BIOS Protection Guidelines for Servers</h:a>, NIST SP800-147B, August 2014.
+        </description>
       </entry>
+      <entry id="bib-NIST-SP800-147B">
+        <tag>SP-800-193</tag>
+        <description>
+          <h:a href="https://csrc.nist.gov/publications/detail/sp/800-193/final">
+		  NIST SP800-193 Platform Firmware Resiliency Guidelines</h:a>, NIST SP800-193, May 2018.
+        </description>
+      </entry>	  
     </bibliography>
   </appendix>
 
