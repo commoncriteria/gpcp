@@ -305,7 +305,7 @@
 				This use case adds only audit requirements the base mandatory requirements.
           	</description>
 			<config>
-				FAU_GEN.1
+				<ref-id>sfr-fau-gen-1</ref-id>
 			</config>
         </usecase>
 		<usecase title="Server-Class Platform, Enhanced" id="uc-servers-enhanced">
@@ -318,10 +318,11 @@
 				It removes the assumption that the TOE is physically protected by the OE.
           	</description>
 			<config>
-				FAU_GEN.1
-				FPT_PHP.2 
-				FPT_PHP.3 
-				<not>A.PHYSICAL_PROTECTION</not>
+				<ref-id>sfr-fau-gen-1</ref-id>
+				<ref-id>sfr-fpt-php-2</ref-d> 
+				<ref-id>sfr-fpt-php-3</ref-d> 
+				<ref-id>t-physical</ref-id>				
+				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
         </usecase>
 		<usecase title="Portable Clients (laptops, tablets), Basic" id="uc-clients-portable-basic">
@@ -338,8 +339,8 @@
 				devices. It is intended for devices that are used in high-assurance scanrios.
           	</description>
 			<config>
-				FPT_PHP.1
-				<not>A.PHYSICAL_PROTECTION</not>
+				<ref-id>sfr-fpt-php-1</ref-d> 
+				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
         </usecase>
 		<usecase title="CSfC EUD" id="uc-csfc-eud">
@@ -352,10 +353,11 @@
 				adds requirements for audit and basic tamper detection and reporting.
           	</description>
 			<config>
-				FPT_PHP.1
-				FPT_PHP.2
-				FAU_GEN.1			
-				<not>A.PHYSICAL_PROTECTION</not>
+				<ref-id>sfr-fpt-php-1</ref-d> 
+				<ref-id>sfr-fpt-php-2</ref-d> 
+				<ref-id>sfr-fau-gen-1</ref-id>
+				<ref-id>t-physical</ref-id>				
+				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
         </usecase>
 		<usecase title="Tactical EUD" id="uc-tactical-eud">
@@ -364,8 +366,8 @@
 				environment. 
           	</description>
 			<config>
-				FPT_PHP.3
-				<not>A.PHYSICAL_PROTECTION</not>
+				<ref-id>sfr-fpt-php-3</ref-d> 
+				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
         </usecase>
 		<usecase title="Desktop clients" id="uc-clients-desktop">
@@ -375,7 +377,7 @@
 				This use case adds only audit to the base mandatory SFRs.
           	</description>
 			<config>
-				FAU_GEN.1
+				<ref-id>sfr-fau-gen-1</ref-id>
 			</config>
         </usecase>
 		<usecase title="IoT Devices" id="uc-iot-device">
@@ -386,8 +388,9 @@
 				for a mobile device or network device.
           	</description>
 			<config>
-				FPT_PHP.1
-				<not>A.PHYSICAL_PROTECTION</not>				
+				<ref-id>sfr-fpt-php-1</ref-d> 
+				<ref-id>t-physical</ref-id>				
+				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
         </usecase>
 		</usecases>
@@ -421,7 +424,7 @@
 	  
     <section title="Threats" id="threats">
       <threats>
-        <threat name="T.PHYSICAL">
+        <threat id="t-physical" name="T.PHYSICAL">
           <description>An attacker with physical access might be able to compromise TOE integrity, subvert
 		  TOE protections, or access tenant data through hardware attacks such as probing, physical
 		  manipulation, fault-injection, side-channel analysis, environmental stress, or activating
@@ -510,7 +513,7 @@
 <!--   3.2 Assumptions  -->
     <section title="Assumptions" id="assumptions">
       <assumptions>
-        <assumption name="A.PHYSICAL_PROTECTION">
+        <assumption id="a-physical-protection" name="A.PHYSICAL_PROTECTION">
           <description>The TOE is assumed to be physically protected in its operational environment and
 		  thus is not subject to physical attacks that could compromise its security or its ability
 		  to support the security of tenant workloads. </description>
@@ -669,12 +672,16 @@
 	<section id="fau" title="Security Audit (FAU)">
 		
 	<!-- FAU_GEN.1 Audit Data Generation-->
-		<f-component cc-id="fau_gen.1" name="Audit Data Generation" status="sel-based">
+		<f-component id="sfr-fau-gen-1" cc-id="fau_gen.1" name="Audit Data Generation" status="sel-based">
 			<depends on-sel="sel-audit-integrity"/>
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
 			<depends on-sel="sel-tud3-audit"/>
+			<depends on-use="uc-server-base"/>
+			<depends on-use="uc-server-enhanced"/>
+			<depends on-use="uc-csfc-eud"/>
+			<depends on-use="uc-clients-desktop"/>
 			<f-element id="fau-gen-1e1">
 				<title>The TSF shall be able to generate an audit record of the following auditable events:<h:br/>
 					<h:ol type="1">
@@ -4508,7 +4515,10 @@
 	
 	<!-- FPT_PHP.1: Passive Detection of Physical Attack.
 		 -->
-	<f-component cc-id="fpt_php.1" name="Passive detection of physical attack" status="optional">
+	<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="optional">
+		<depends on-use="uc-clients-portable-enhanced"/>
+		<depends on-use="uc-csfc-eud"/>
+		<depends on-use="uc-iot-devices"/>
 		<f-element id="fpt-php-1e1">
 			<title>The TSF shall provide unambiguous detection of physical tampering
 				that might compromise the TSF.
@@ -4530,7 +4540,9 @@
 	
 	<!-- FPT_PHP.2: Notification of physical attack
 		 -->
-	<f-component cc-id="fpt_php.2" name="Notification of physical attack" status="optional">
+	<f-component id="sfr-fpt-php-2" cc-id="fpt_php.2" name="Notification of physical attack" status="optional">
+		<depends on-use="uc-server-enhanced"/>
+		<depends on-use="uc-csfc-eud"/>
 		<f-element id="fpt-php-2e1">
 			<title>The TSF shall provide unambiguous detection of physical tampering that
 				might compromise the TSF.
@@ -4560,7 +4572,9 @@
 	
 	<!-- FPT_PHP.3: Resistance to physical attack
 		 -->
-	<f-component cc-id="fpt_php.3" name="Resistance to physical attack" status="optional">
+	<f-component id="sfr-fpt-php-3" cc-id="fpt_php.3" name="Resistance to physical attack" status="optional">
+		<depends on-use="uc-server-enhanced"/>
+		<depends on-use="uc-tactical-eud"/>
 		<f-element id="fpt-php-3e1">
 			<title>The TSF shall resist <assignable>physical tampering scenarios</assignable> to the
 				<assignable>list of TSF devices/elements</assignable> by responding automatically
@@ -4588,8 +4602,7 @@
 		</audit-event>
 	</f-component>
 
-	<!-- FPT_PHP_EXT.1: Hardware component integrity
-		 -->
+	<!-- FPT_PHP_EXT.1: Hardware component integrity 	 -->
 	<f-component cc-id="fpt_php_ext.1" name="Hardware component integrity" status="objective">
 		<f-element id="fpt-php-ext-1e1">
 			<title>
@@ -5069,7 +5082,7 @@
 		</audit-event>
 	</f-component>
 		
-	<!-- FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism QQQQ -->	
+	<!-- FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism -->	
 	<f-component cc-id="fpt_tud_ext.4" title="Secure Local Platform Firmware Update Mechanism" status="sel-based">
 		<depends on-sel="sel-local-update"/>
 		<f-element id="fpt-tud-ext-4e1">
