@@ -156,6 +156,10 @@
       <term abbr='ECDHE' full="Elliptic Curve Diffie-Hellman Ephemeral"/>
       <term abbr='ECDSA' full="Elliptic Curve Digital Signature Algorithm"/>
       <term abbr='EST' full="Enrollment over Secure Transport"/>
+	  <term abbr="EUD" full="End-User Device">
+		A class of computing platform characterized by having a user interface for a single user. Often, EUDs are 
+		portable (e.g., laptop, tablet, mobile device), but this is not necessarily the case (e.g., desktop PC). 
+		</term>
       <term abbr='FIPS' full="Federal Information Processing Standards"/>
 	  <term abbr='GPCP' full="General-Purpose Computing Platform">
 		A physical computing platform designed to support general-purpose operating systems, virtualiation 
@@ -396,6 +400,32 @@
         </usecase>
 		</usecases>
     </section>
+	
+	<!--   1.5 Roles -->
+    <section title="Roles" id="roles">
+		For purposes of these requirements there are three main roles in a general-purpose computing platform: <h:ol type="1">
+			<h:li>Administrators</h:li>
+			<h:li>Users (Non-Administrator)</h:li>
+			<h:li>Tenant Software</h:li></h:ol>
+		Administrators and Users are humans who may be local or remote to the platform. Tenant Software is
+		generally an operating system, virtualization system, or application. Most interaction between
+		Users and the platform are through Tenant Software. For example, Users log in to an 
+		operating system (tenant software) and the OS interacts with the platform on behalf of the User.
+		<h:p/>
+		In this context, Administrators manage the physical platform, not the OS (OS Admins would be classified
+		as Users). Only Administrators need to be authenticated to the platform. For an EUD, this could generally
+		be accomplished through an interface implemented in firmware. For server-class hardware, the management
+		interface could be implemented in a separate computing device or management controller, that is still 
+		part of the platform.
+		<h:p/>
+		Administrators are assumed to be acting in the best interests of the system owner. Users are 
+		generally assumed to be non-hostile to the interests of the system owner, but some use cases may
+		support potentially negligent or hostile users.  The interests of tenant software are assumed to be 
+		closely entwined in the interests of the platform.
+		
+		
+	</section>
+
   </section>
 
 <!-- 2.0 Conformance Claims (this is all boilerplate) -->
