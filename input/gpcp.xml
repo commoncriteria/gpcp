@@ -310,6 +310,8 @@
           	</description>
 			<config>
 				<ref-id>sfr-fau-gen-1</ref-id>
+				<ref-id>sfr-fau-stg-1</ref-id>
+				<ref-id>sfr-fau-stg-4</ref-id>
 			</config>
         </usecase>
 		<usecase title="Server-Class Platform, Enhanced" id="uc-servers-enhanced">
@@ -323,6 +325,8 @@
           	</description>
 			<config>
 				<ref-id>sfr-fau-gen-1</ref-id>
+				<ref-id>sfr-fau-stg-1</ref-id>
+				<ref-id>sfr-fau-stg-4</ref-id>
 				<ref-id>sfr-fpt-php-2</ref-id> 
 				<ref-id>sfr-fpt-php-3</ref-id> 
 				<ref-id>t-physical</ref-id>				
@@ -361,6 +365,8 @@
 				<ref-id>sfr-fpt-php-1</ref-id> 
 				<ref-id>sfr-fpt-php-2</ref-id> 
 				<ref-id>sfr-fau-gen-1</ref-id>
+				<ref-id>sfr-fau-stg-1</ref-id>
+				<ref-id>sfr-fau-stg-4</ref-id>
 				<ref-id>t-physical</ref-id>				
 				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
@@ -383,6 +389,8 @@
           	</description>
 			<config>
 				<ref-id>sfr-fau-gen-1</ref-id>
+				<ref-id>sfr-fau-stg-1</ref-id>
+				<ref-id>sfr-fau-stg-4</ref-id>
 			</config>
         </usecase>
 		<usecase title="IoT Devices" id="uc-iot-device">
@@ -928,7 +936,85 @@
 			</f-element>
 			<audit-event/>
 		</f-component>
+		
+		<f-component id="sfr-fau-stg-1" cc-id="fau_stg.1" name="Audit Storage Protection" status="sel-based">
+			<depends on-sel="sel-audit-integrity"/>
+			<depends on-sel="sel-audit-hw-integrity"/>
+			<depends on-sel="sel-audit-update"/>
+			<depends on-sel="sel-tud2-audit"/>
+			<depends on-sel="sel-tud3-audit"/>
+			<depends on-use="uc-server-base"/>
+			<depends on-use="uc-server-enhanced"/>
+			<depends on-use="uc-csfc-eud"/>
+			<depends on-use="uc-clients-desktop"/>
+			<f-element id="fau-stg-1e1">
+				<title>
+					The TSF shall protect the stored audit records in the audit trail from unauthorized deletion.
+				</title>
+			</f-element>
+			<f-element id="fau-stg-1e2">
+				<title>
+					The TSF shall be able to prevent unauthorized modifications to the stored audit records
+					in the audit trail.
+				</title>
+				<aactivity>
+					<TSS>
+						The evaluator shall ensure that the TSS lists the location of all logs and the access 
+						controls of those files such that unauthorized modification and deletion are prevented.
+					</TSS>
+					<Guidance>
+						There are no guidance evaluation activities for this component.
+					</Guidance>
+					<Tests>
+						<testlist>
+							<test>
+								The evaluator shall attempt to delete the audit trail in a manner that the access 
+								controls should prevent (as an unauthorized user) and shall verify that the attempt
+								fails.
+							</test>
+							<test>
+								The evaluator shall attempt to modify the audit trail in a manner that the access
+								controls should prevent (as an unauthorized application) and shall verify that the 
+								attempt fails.
+							</test>
+						</testlist>
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
     	</section>
+
+		<f-component id="sfr-fau-stg-4" cc-id="fau_stg.4" name="Prevention of Audit Data Loss" status="sel-based">
+			<depends on-sel="sel-audit-integrity"/>
+			<depends on-sel="sel-audit-hw-integrity"/>
+			<depends on-sel="sel-audit-update"/>
+			<depends on-sel="sel-tud2-audit"/>
+			<depends on-sel="sel-tud3-audit"/>
+			<depends on-use="uc-server-base"/>
+			<depends on-use="uc-server-enhanced"/>
+			<depends on-use="uc-csfc-eud"/>
+			<depends on-use="uc-clients-desktop"/>
+			<f-element id="fau-stg-4e1">
+				<title>
+					The TSF shall overwrite the oldest stored audit records if the audit trail is full.
+				</title>
+				<aactivity>
+					<TSS>
+						The evaluator shall examine the TSS to ensure that it describes the size limits on the 
+						audit records, the detection of a full audit trail, and the action(s) taken by the TSF
+						when the audit trail is full. The evaluator shall ensure that the action(s) results in the
+						deletion or overwrite of the oldest stored record.
+					</TSS>
+					<Guidance>
+						There are no guidance evaluation activities for this component.
+					</Guidance>
+					<Tests>
+						There are no test evaluation activities for this component.
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
 
 	<section id="fcs" title="Cryptographic Support (FCS)">
 		
@@ -1145,6 +1231,7 @@
 					</Tests>				
 				</aactivity>
 			</f-element>
+			<audit-event/>
 		</f-component>
 	  
 		<f-component cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="optional">
@@ -1254,6 +1341,7 @@
 					</Tests>				
 				</aactivity>
 			</f-element>
+			<audit-event/>
 		</f-component>
 		
 	<!-- FCS_CKM.1/KEK Cryptographic Key Generation (Key Encryption Key)  -->
@@ -1392,6 +1480,7 @@
 					</Tests>
 				</aactivity>
 			</f-element>
+			<audit-event/>
 		</f-component>
 
 	<f-component cc-id="fcs_ckm.4" name="Cryptographic Key Destruction" status="optional">
@@ -1633,6 +1722,7 @@
 				</Tests>
 		</aactivity>
 	</f-element>
+	<audit-event/>
 	</f-component>
 
 	<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="optional">
@@ -1673,6 +1763,7 @@
 				</Tests>
 			</aactivity>
 		</f-element>
+		<audit-event/>
 	</f-component>
 
 		<f-component cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="optional">
@@ -2210,6 +2301,7 @@
 					</Tests>
 				</aactivity>
 			</f-element>
+			<audit-event/>
 		</f-component>
 
 
@@ -2408,6 +2500,7 @@
 					</Tests>
 				</aactivity>
 			</f-element>
+			<audit-event/>
 		</f-component>
 
 	<f-component cc-id="fcs_cop.1" iteration="KAT" name="Cryptographic Operation (Key Agreement/Transport)" status="optional">
@@ -2735,6 +2828,7 @@
 				</Tests>
 			</aactivity>
 		</f-element>
+			<audit-event/>
 	</f-component>
 		
 
@@ -2855,6 +2949,7 @@
 					</Tests>
 				</aactivity>
 			</f-element>
+			<audit-event/>
 		</f-component>
 
 	<f-component cc-id="fcs_cop.1" iteration="PBKDF" name="Cryptographic Operation (Password-Based Key Derivation Functions)" 
@@ -2922,6 +3017,7 @@
 				</Tests>
 			</aactivity>
 		</f-element>
+			<audit-event/>
 	</f-component>		  
 
 
@@ -3125,6 +3221,7 @@
 				</Tests>
 			</aactivity>
 		</f-element>
+			<audit-event/>
 	</f-component>
  
  
@@ -4148,6 +4245,7 @@
 				</Tests>
 			</aactivity>
 		</f-element>
+		<audit-event/>
 	</f-component>
 		
 		
@@ -4197,6 +4295,7 @@
                     </Tests>
                 </aactivity>
             </f-element>
+			<audit-event/>
         </f-component>
 
 		
@@ -4308,6 +4407,7 @@
 					</Tests>
 				</aactivity>
 			</f-element>
+			<audit-event/>
 		</f-component>		
 		
 	<f-component cc-id="fcs_slt_ext.1" name="Cryptographic Salt Generation" status="optional">
@@ -4335,6 +4435,7 @@
 				</Tests>
 			</aactivity>
 		</f-element>
+		<audit-event/>
 	</f-component>		
 
 		
@@ -4483,6 +4584,7 @@
 				</Tests>
 			</aactivity>
 		</f-element>
+		<audit-event/>
 	</f-component>
 
 	<f-component cc-id="fcs_stg_ext.2" name="Key Storage Encryption" status="optional">
@@ -4513,6 +4615,7 @@
 					</Tests>
 			</aactivity>
 		</f-element>
+			<audit-event/>
 	</f-component>
 	
 	<f-component cc-id="fcs_stg_ext.3" name="Key Integrity Protection" status="optional">
@@ -4579,7 +4682,9 @@
 				</Tests>
 			</aactivity>
 		</f-element>
+			<audit-event/>
 	</f-component>
+
 	</section>	 
 	
 	
@@ -4596,10 +4701,646 @@
 					<no-tests/>
 				</aactivity>
 			</f-element>
+			<audit-event/>
 		</f-component>
-			
-		
+
+	</section>
 	
+	<section id="fia" title="Identification and Authentication (FIA)">
+
+		<f-component id="sfr-fia-afl-ext-1" cc-id="fia_afl_ext.1" name="Authentication Failure Handling" status="optional">
+			<f-element id="fia-afl-ext-1e1">
+				<title>
+					The TSF shall consider password and [no other] as critical authentication mechanisms.
+				</title>
+				<note role="application">
+					A critical authentication mechanism is one in which countermeasures are triggered (i.e. wipe
+					of the device) when the maximum number of unsuccessful authentication attempts is exceeded,
+					rendering the other factors unavailable.<h:p/>
+					If no additional authentication mechanisms are selected in FIA_UAU.5.1, then ‘no other’ must 
+					be selected. If an additional authentication mechanism is selected in FIA_UAU.5.1, then it 
+					must only be selected in FIA_AFL_EXT.1.1 if surpassing the authentication failure threshold 
+					for biometric data causes a countermeasure to be triggered regardless of the failure status of
+					the other authentication mechanisms.<h:p/>
+					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption
+					interface, a lockscreen interface, an auxiliary boot mode interface), this component applies
+					to all available interfaces. For example, a password is a critical authentication mechanism 
+					regardless of if it is being entered at the DAR decryption interface or at a lockscreen
+					interface.
+				</note>
+			</f-element>
+			<f-element id="fia-afl-ext-1e2">
+				<title>
+					The TSF shall detect when a configurable positive integer within [assignment: range of
+					acceptable values for each authentication mechanism] of [selection: unique, non-unique]
+					unsuccessful authentication attempts occur related to last successful authentication for
+					each authentication mechanism.
+				</title>
+				<note role="application">
+					The positive integer(s) is configured according to FMT_SMF_EXT.1.1 function Table 2.<h:p/>
+					An unique authentication attempt is defined as any attempt to verify a password or biometric
+					sample, in which the input is different from a previous attempt. ‘Unique’ must be selected if
+					the authentication system increments the counter only for unique unsuccessful authentication
+					attempts. For example, if the same incorrect password is attempted twice the authentication 
+					system increments the counter once. ‘Non-unique’ must be selected if the authentication system 
+					increments the counter for each unsuccessful authentication attempt, regardless of if the
+					input is unique. For example, if the same incorrect password is attempted twice the
+					authentication system increments the counter twice.<h:p/>
+					If hybrid authentication (i.e. a combination of biometric and pin/password) is supported, a
+					failed authentication attempt can be counted as a single attempt, even if both the biometric
+					and pin/password were incorrect.<h:p/>
+					If the TOE supports multiple authentication mechanisms per FIA_UAU.5.1, this component applies
+					to all authentication mechanisms. It is acceptable for each authentication mechanism to
+					utilize an independent counter or for multiple authentication mechanisms to utilize a shared 
+					counter. The interaction between the authentication factors in regards to the authentication
+					counter must be in accordance with FIA_UAU.5.2.<h:p/>
+					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption 
+					interface, a lockscreen interface, an auxiliary boot mode interface), this component applies
+					to all available interfaces. However, it is acceptable for each Authentication Factor interface
+					to be configurable with a different number of unsuccessful authentication attempts.<h:p/>
+				</note>
+			</f-element>
+			<f-element id="fia-afl-ext-1e3">
+				<title>
+					The TSF shall maintain the number of unsuccessful authentication attempts that have occurred 
+					upon power off.
+				</title>
+				<note role="application">
+					The TOE may implement an Authentication Factor interface that precedes another Authentication
+					Factor interface in the boot sequence (for example, a volume DAR decryption interface which
+					precedes the lockscreen interface) before the user can access the device. In this situation,
+					because the user must successfully authenticate to the first interface to access the second,
+					the number of unsuccessful authentication attempts need not be maintained for the second 
+					interface.
+				</note>
+			</f-element>
+			<f-element id="fia-afl-ext-1e4">
+				<title>
+					When the defined number of unsuccessful authentication attempts has exceeded the maximum
+					allowed for a given authentication mechanism, all future authentication attempts will be
+					limited to other available authentication mechanisms, unless the given mechanism is designated
+					as a critical authentication mechanism.
+				</title>
+				<note role="application">
+					In accordance with FIA_AFL_EXT.1.3, this requirement also applies after the TOE is powered off 
+					and powered back on.
+				</note>
+			</f-element>
+			<f-element id="fia-afl-ext-1e5">
+				<title>
+					When the defined number of unsuccessful authentication attempts for the last available
+					authentication mechanism or single critical authentication mechanism has been surpassed, the 
+					TSF shall perform a wipe of all protected data.
+				</title>
+				<note role="application">
+					Wipe is performed in accordance with FCS_CKM_EXT.5. Protected data is all non-TSF data, 
+					including all user or enterprise data. Some or all of this data may be considered sensitive
+					data as well.<h:p/>
+					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption
+					interface, a lockscreen interface, an auxiliary boot mode interface), this component applies
+					to all available interfaces.
+				</note>
+			</f-element>
+			<f-element id="fia-afl-ext-1e5">
+				<title>
+					The TSF shall increment the number of unsuccessful authentication attempts prior to notifying the 
+					user that the authentication was unsuccessful.
+				</title>
+				<note role="application">
+					This requirement is to ensure that if power is cut to the device directly after an
+					authentication attempt, the counter will be incremented to reflect that attempt.
+				</note>
+				<aactivity>
+					<TSS>
+						The evaluator shall ensure that the TSS describes that a value corresponding to the number 
+						of unsuccessful authentication attempts since the last successful authentication is kept 
+						for each Authentication Factor interface. The evaluator shall ensure that this description
+						also includes if and how this value is maintained when the TOE loses power, either through
+						a graceful powered off or an ungraceful loss of power. The evaluator shall ensure that if 
+						the value is not maintained, the interface is after another interface in the boot sequence 
+						for which the value is maintained.<h:p/>
+						If the TOE supports multiple authentication mechanisms, the evaluator shall ensure that
+						this description also includes how the unsuccessful authentication attempts for each
+						mechanism selected in FIA_UAU.5.1 is handled. The evaluator shall verify that the TSS 
+						describes if each authentication mechanism utilizes its own counter or if multiple 
+						authentication mechanisms utilize a shared counter. If multiple authentication mechanisms
+						utilize a shared counter, the evaluator shall verify that the TSS describes this 
+						interaction.<h:p/>
+						The evaluator shall confirm that the TSS describes how the process used to determine if 
+						the authentication attempt was successful. The evaluator shall ensure that the counter
+						would be updated even if power to the device is cut immediately following notifying the 
+						TOE user if the authentication attempt was successful or not.<h:p/>
+					</TSS>
+					<Guidance>
+						The evaluator shall verify that the AGD guidance describes how the administrator configures
+						the maximum number of unique unsuccessful authentication attempts.
+					</Guidance>
+					<Tests>
+						The evaluator shall configure the device with all authentication mechanisms 
+						selected in FIA_UAU.5.1. The evaluator shall perform the following tests for each
+						available authentication interface:
+						<testlist>
+							<test>
+								The evaluator shall configure the TOE, according to the AGD guidance, with a
+								maximum number of unsuccessful authentication attempts. The evaluator shall enter
+								the locked state and enter incorrect passwords until the wipe occurs. The
+								evaluator shall verify that the number of password entries corresponds to the 
+								configured maximum and that the wipe is implemented.
+							</test>
+							<test>
+								[conditional] If the TOE supports multiple authentication mechanisms the previous
+								test shall be repeated using a combination of authentication mechanisms confirming 
+								that the critical authentication mechanisms will cause the device to wipe and that
+								when the maximum number of unsuccessful authentication attempts for a non-critical
+								authentication mechanism is exceeded, the device limits authentication attempts to
+								other available authentication mechanisms. If multiple authentication mechanisms 
+								utilize a shared counter, then the evaluator shall verify that the maximum number 
+								of unsuccessful authentication attempts can be reached by using each individual
+								authentication mechanism and a combination of all authentication mechanisms that 
+								share the counter.
+							</test>
+						</testlist>
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
+		<f-component id="sfr-fia-pmg-ext-1" cc-id="fia_pmg_ext.1" name="Password Management" status="optional">
+			<f-element id="fia-pmg-ext-1e1">
+				<title>
+					The TSF shall support the following for the Password Authentication Factor:<h:ol type="1">
+					<h:li>Passwords shall be able to be composed of any combination of 
+						<selectables>
+							<selectable>upper and lower case letters</selectable>
+							<selectable><assignable>a character set of at least 52 characters</assignable></selectable>
+						</selectables>, numbers, and special characters: 
+						<selectables>
+							<selectable>"!"</selectable>
+							<selectable>"@"</selectable>
+							<selectable>"#"</selectable>
+							<selectable>"$"</selectable>
+							<selectable>"%"</selectable>
+							<selectable>"^"</selectable>
+							<selectable>"&amp;"</selectable>
+							<selectable>"*"</selectable>
+							<selectable>"("</selectable>
+							<selectable>")"</selectable>
+							<selectable><assignable>other characters</assignable></selectable>
+						</selectables></h:li>
+					<h:li>Password length up to 
+						<assignable>an integer greater than or equal to 14</assignable> characters shall be 
+						supported.</h:li></h:ol>
+				</title>
+				<note role="application">
+					While some corporate policies require passwords of 14 characters or better, the use of a REK 
+					for DAR protection and key storage protection and the anti-hammer requirement (FIA_TRT_EXT.1)
+					addresses the threat of attackers with physical access using much smaller and less complex
+					passwords.<h:p/>
+					The ST author selects the character set: either the upper and lower case Basic Latin letters 
+					or another assigned character set containing at least 52 characters. The assigned character
+					set must be well defined: either according to an international encoding standard (such as
+					Unicode) or defined in the assignment by the ST author. The ST author also selects the special
+					characters that are supported by TOE; they may optionally list additional special characters
+					supported using the assignment.
+				</note>
+				<aactivity>
+					<TSS>
+						There are no TSS evaluation activities for this component.
+					</TSS>
+					<Guidance>
+						The evaluator shall examine the operational guidance to determine that it provides
+						guidance to security administrators on the composition of strong passwords, and that it 
+						provides instructions on setting the minimum password length. The evaluator shall also 
+						perform the following tests. Note that one or more of these tests can be performed with a 
+						single test case.
+					</Guidance>
+					<Tests>
+						<testlist>
+							<test>
+								The evaluator shall compose passwords that either meet the requirements, or fail 
+								to meet the requirements, in some way. For each password, the evaluator shall 
+								verify that the TOE supports the password. While the evaluator is not required
+								(nor is it feasible) to test all possible compositions of passwords, the evaluator 
+								shall ensure that all characters, rule characteristics, and a minimum length
+								listed in the requirement are supported, and justify the subset of those 
+								characters chosen for testing.		
+							</test>
+						</testlist>
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		<f-component>
+		
+		<f-component id="sfr-fia-trt-ext-1" cc-id="fia_trt_ext.1" name="Authentication Throttling" status="optional">
+			<f-element id="fia-trt-ext-1e1">
+				<title>
+					The TSF shall limit automated user authentication attempts by 
+					<selectables>
+						<selectable>preventing authentication via an external port</selectable>
+						<selectable>enforcing a delay between incorrect authentication attempts</selectable>
+					</selectables> for all authentication mechanisms selected in FIA_UAU.5.1. The minimum delay 
+					shall be such that no more than 10 attempts can be attempted per 500 milliseconds.
+				</title>
+				<note role="application">
+					The authentication throttling applies to all authentication mechanisms selected in
+					FIA_UAU.5.1. The user authentication attempts in this requirement are attempts to guess the 
+					Authentication Factor. The developer can implement the timing of the delays in the 
+					requirements using unequal or equal timing of delays. The minimum delay specified in this 
+					requirement provides defense against brute forcing.
+				</note>
+				<aactivity>
+					<TSS>
+						The evaluator shall verify that the TSS describes the method by which authentication 
+						attempts are not able to be automated. The evaluator shall ensure that the TSS describes 
+						either how the TSF disables authentication via external interfaces (other than the 
+						ordinary user interface) or how authentication attempts are delayed in order to slow 
+						automated entry and shall ensure that this delay totals at least 500 milliseconds over 10
+						attempts for all authentication mechanisms selected in FIA_UAU.5.1.
+					</TSS>
+					<Guidance>
+						There are no guidance evaluation activities for this component.
+					<Guidance>
+					<Tests>
+						There are no test evaluation activities for this component.
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
+		<f-component id="sfr-fia-uau-5" cc-id="fia_uau.5" name="Multiple Authentication Mechanisms" status="optional">
+			<f-element id="fia-uau-5e1">
+				<title>
+					The TSF shall provide password and [selection: fingerprint, iris, face, voice, vein, hybrid, 
+					no other mechanism] to support user authentication.
+				</title>
+				<note role="application">
+					The TSF must support a Password Authentication Factor and may optionally implement a BAF, in 
+					the form of a fingerprint, iris, face, voice and (finger/palm) vein. A hybrid authentication 
+					factor is where a user has to submit a combination of PIN/password and biometric sample where 
+					both have to pass and if either fails the user is not made aware of which factor failed.<h:p/>
+					If "hybrid" is selected, a biometric modality does not need to be selected, but should be 
+					selected if the biometric authentication can be used independent of the hybrid authentication, 
+					i.e. without having to enter a PIN/password.<h:p/>
+					If a biometric modality or "hybrid" is selected, then FIA_BMG_EXT.1 and FDP_PBA_EXT.1 must be
+					included in the ST.<h:p/>
+					If "using a PIN as an additional factor" or "using a password as an additional factor" is
+					selected in FDP_PBA_EXT.1.1, then "hybrid" must be selected.<h:p/>
+					The Password Authentication Factor is configured according to FIA_PMG_EXT.1.
+				</note>
+			</f-element>
+			<f-element id="fia-uau-5e2">
+				<title>
+					The TSF shall authenticate any user's claimed identity according to the 
+					[assignment: rules describing how each authentication mechanism selected in FIA_UAU.5.1
+					provides authentication].
+				</title>
+				<note role="application">
+					Rules regarding how the authentication factors interact in terms of unsuccessful authentication
+					are covered in FIA_AFL_EXT.1.
+				</note>
+				<aactivity>
+					<TSS>
+						The evaluator shall ensure that the TSS describes each mechanism provided to support user
+						authentication and the rules describing how the authentication mechanism(s) provide
+						authentication.<h:p/>
+						Specifically, for all authentication mechanisms specified in FIA_UAU.5.1, the evaluator 
+						shall ensure that the TSS describes the rules as to how each authentication mechanism is
+						used. Example rules are how the authentication mechanism authenticates the user (i.e. how 
+						does the TSF verify that the correct password or biometric sample was entered), the result
+						of a successful authentication (i.e. is the user input used to derive or unlock a key) and
+						which authentication mechanism can be used at which authentication factor interfaces
+						(i.e. if there are times, for example, after a reboot, that only specific authentication 
+						mechanisms can be used). If multiple BAFs are supported per FIA_UAU.5.1, the interaction
+						between the BAFs must be described. For example, whether the multiple BAFs can be enabled 
+						at the same time.
+					</TSS>
+					<Guidance>
+						The evaluator shall verify that configuration guidance for each authentication mechanism
+						is addressed in the AGD guidance.
+					</Guidance>
+					<Tests>
+						<testlist>
+							<test>
+								For each authentication mechanism selected in FIA_UAU.5.1, the evaluator shall
+								enable that mechanism and verify that it can be used to authenticate the user at 
+								the specified authentication factor interfaces.
+							</test>
+							<test>
+								For each authentication mechanism rule, the evaluator shall ensure that the 
+								authentication mechanism(s) behave accordingly.
+							</test>
+						</testlist>
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
+		<f-component id="sfr-fia-uau-7" cc-id="fia_uau.7" name="Protected Authentication Feedback" status="optional">
+			<f-element id="fia-uau-7e1">
+				<title>
+					The TSF shall provide only obscured feedback to the device’s display to the user while the 
+					authentication is in progress.
+				</title>
+				<note role="application">
+					This applies to all authentication methods specified in FIA_UAU.5.1. The TSF may briefly 
+					(1 second or less) display each character or provide an option to allow the user to unmask 
+					the password; however, the password must be obscured by default.<h:p/>
+					If a BAF is selected in FIA_UAU.5.1, the TSF must not display sensitive information regarding
+					the biometric that could aid an adversary in identifying and/or spoofing the respective 
+					biometric characteristics of a given human user. While it is true that biometric samples, by
+					themselves, are not secret, the analysis performed by the respective biometric algorithms, as
+					well as output data from these biometric algorithms, is considered sensitive and must be kept
+					secret. Where applicable, the TSF must not reveal or make public the reason(s) for
+					authentication failure.
+				</note>
+				<aactivity>
+					<TSS>
+						The evaluator shall ensure that the TSS describes the means of obscuring the authentication
+						entry, for all authentication methods specified in FIA_UAU.5.1.
+					</TSS>
+					<Guidance>
+						The evaluator shall verify that any configuration of this requirement is addressed in the 
+						AGD guidance and that the password is obscured by default.
+					</Guidance>
+					<Tests>
+						<testlist>
+							<test>
+								The evaluator shall enter passwords on the device, including at least the Password
+								Authentication Factor at lockscreen, and verify that the password is not displayed
+								on the device.
+							</test>
+							<test>
+								[conditional] For each BAF selected in FIA_UAU.5.1, the evaluator shall 
+								authenticate by producing a biometric sample at lockscreen. As the biometric
+								algorithms are performed, the evaluator shall verify that sensitive images, audio, 
+								or other information identifying the user are kept secret and are not revealed to
+								the user. Additionally, the evaluator shall produce a biometric sample that fails
+								to authenticate and verify that the reason(s) for authentication failure (user
+								mismatch, low sample quality, etc.) are not revealed to the user. It is acceptable
+								for the BAF to state that it was unable to physically read the biometric sample,
+								for example, if the sensor is unclean or the biometric sample was removed too
+								quickly. However, specifics regarding why the presented biometric sample failed
+								authentication shall not be revealed to the user.	
+							</test>
+						</testlist>
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
+		
+		<f-component id="sfr-fia-uau-ext-2" cc-id="fia_uau_ext.2" name="Timing of Authentication" status="optional">
+			<f-element id="fia-uau-ext-2e1">
+				<title>
+					The TSF shall allow [selection: [assignment: list of actions], no actions] on behalf of the
+					user to be performed before the user is authenticated.
+				</title>
+			</f-element>
+			<f-element id="fia-uau-ext-2e2">
+				<title>
+					The TSF shall require each user to be successfully authenticated before allowing any other 
+					TSF-mediated actions on behalf of that user.
+				</title>
+				<note role="application">
+					The security relevant actions allowed by unauthorized users in locked state must be listed.
+					At a minimum the actions that correspond to the functions available to the user in 
+					FMT_SMF_EXT.1 and are allowed by unauthorized users in locked state should be listed. For
+					example, if the user can enable/disable the camera per function Table 5 of FMT_SMF_EXT.1 and
+					unauthorized users can take a picture when the device is in locked state, this action must be
+					listed.
+				</note>
+				<aactivity>
+					<TSS>
+						The evaluator shall verify that the TSS describes the actions allowed by unauthorized 
+						users in the locked state.
+					</TSS>
+					<Guidance>
+						There are no guidance evaluation activities for this component.
+					</Guidance>
+					<Tests>
+						The evaluator shall attempt to perform some actions not listed in the selection while the
+						device is in the locked state and verify that those actions do not succeed.
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
+        <f-component id="sfr-fia-x509-ext-1" cc-id="fia_x509_ext.1" name="X.509 Validation of Certificates" status="optional">
+          <f-element id="fia-x509-ext-1e1">
+            <title>The TSF shall validate certificates in accordance with the following rules: <h:ul>
+              <h:li>RFC 5280 certificate validation and certificate path validation.</h:li>              
+              <h:li>The certificate path must terminate with a certificate in the Trust Anchor Database.</h:li>
+              <h:li>The TSF shall validate a certificate path by ensuring the presence of the basicConstraints 
+				extension, that the CA flag is set to TRUE for all CA certificates, and that any path constraints are met.</h:li>
+              <h:li>The TSF shall validate that any CA certificate includes caSigning purpose in the key usage field</h:li>
+              <h:li>The TSF shall validate the revocation status of the certificate using <selectables>
+                <selectable>OCSP as specified in RFC 6960</selectable>
+                <selectable>CRL as specified in RFC 5759</selectable>
+                <selectable>an OCSP TLS Status Request Extension (OCSP stapling) as specified in RFC 6066</selectable>
+                <selectable>OCSP TLS Multi-Certificate Status Request Extension (i.e., OCSP Multi-Stapling) as specified in RFC 6961</selectable>
+              </selectables>.</h:li>
+              <h:li>The TSF shall validate the extendedKeyUsage field according to the following rules:<htm:ul>
+                <h:li>Certificates used for trusted updates and executable code integrity verification shall have the Code Signing Purpose 
+					(id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the extendedKeyUsage field.</h:li>
+                <h:li>Server certificates presented for TLS shall have the Server Authentication purpose (id-kp 1 with OID 1.3.6.1.5.5.7.3.1) 
+					in the extendedKeyUsage field.</h:li>
+                <h:li>Server certificates presented for EST shall have the CMC Registration Authority (RA) purpose 
+					(id-kp-cmcRA with OID 1.3.6.1.5.5.7.3.28) in the EKU field. [conditional]</h:li>
+                <h:li>Client certificates presented for TLS shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) 
+					in the EKU field.</h:li>
+                <h:li>OCSP certificates presented for OCSP responses shall have the OCSP Signing purpose (id-kp 9 with OID 1.3.6.1.5.5.7.3.9)
+					in the EKU field. [conditional]</h:li></h:ul></h:li>
+              </h:ul>
+            </title>
+            <note role="application">FIA_X509_EXT.1.1 lists the rules for validating certificates. The ST author must select whether revocation
+				status is verified using OCSP or CRLs. OCSP stapling and OCSP multi-stapling only support TLS server certificate validation. If other 
+				certificate types are validated, either OCSP or CRL should be claimed. The WLAN Client EP to which a MDF TOE must also conform requires
+				that certificates are used for EAP-TLS; this use requires that the extendedKeyUsage rules are verified. Certificates may optionally be 
+				used for trusted updates of system software and applications (FPT_TUD_EXT.2) and for integrity verification (FPT_TST_EXT.2(1)) and, if 
+				implemented, must be validated to contain the Code Signing purpose extendedKeyUsage.<h:p/>
+				While FIA_X509_EXT.1.1 requires that the TOE perform certain checks on the certificate presented by
+				a TLS server, there are corresponding checks that the authentication server will have to perform on 
+				the certificate presented by the client; namely that the extendedKeyUsage field of the client
+				certificate includes “Client Authentication” and that the key agreement bit (for the Diffie-Hellman
+				ciphersuites) or the key encipherment bit (for RSA ciphersuites) be set. Certificates obtained for
+				use by the TOE will have to conform to these requirements in order to be used in the enterprise. 
+				This check is required to support EAP-TLS for the WLAN Client EP.</note>
+          </f-element>
+          <f-element>
+            <title>The TSF shall only treat a certificate as a CA certificate if the
+              basicConstraints extension is present and the CA flag is set to TRUE. </title>
+            <note role="application">This requirement applies to certificates that are used and
+              processed by the TSF and restricts the certificates that may be added to the Trust
+              Anchor Database.</note>
+            <aactivity>
+              <TSS>The evaluator shall ensure the TSS describes where the check of validity of the certificates 
+			  takes place. The evaluator ensures the TSS also provides a description of the certificate path
+			  validation algorithm.<h:p/></TSS>
+              <Guidance>There are no guidance evaluation activities for this component.<h:p/></Guidance>
+              <Tests> The tests described must be performed in conjunction with the other Certificate Services 
+			  evaluation activities, including the use cases in FIA_X509_EXT.2.1 and FIA_X509_EXT.3. The tests for 
+			  the extendedKeyUsage rules are performed in conjunction with the uses that require those rules. The 
+			  evaluator shall create a chain of at least four certificates: the node certificate to be tested, two 
+			  Intermediate CAs, and the self-signed Root CA.
+                <testlist>             
+                <test> The evaluator shall demonstrate that validating a certificate without a valid certification 
+					path results in the function failing, for each of the following reasons, in turn:<h:ul>
+                  <h:li>by establishing a certificate path in which one of the issuing certificates is not a CA 
+					certificate,</h:li>    
+                  <h:li>by omitting the basicConstraints field in one of the issuing certificates,</h:li>
+                  <h:li>by setting the basicConstraints field in an issuing certificate to have CA=False,</h:li>
+                  <h:li>by omitting the CA signing bit of the key usage field in an issuing certificate, and</h:li>
+                  <h:li>by setting the path length field of a valid CA field to a value strictly less than the 
+					certificate path.</h:li>
+                </h:ul>
+                The evaluator shall then establish a valid certificate path consisting of valid CA certificates, and
+				demonstrate that the function succeeds. The evaluator shall then remove trust in one of the CA 
+				certificates, and show that the function fails.
+                </test><h:br/>
+                <test>The evaluator shall demonstrate that validating an expired certificate results in the function
+					failing.
+                </test><h:br/>
+                <test>The evaluator shall test that the TOE can properly handle revoked certificates-conditional 
+					on whether CRL, OCSP, OSCP stapling, or OCSP multi-stapling is selected; if multiple methods
+					are selected, then the following tests shall be performed for each method:<h:p/>
+					The evaluator shall test revocation of the node certificate.<h:p/>
+					The evaluator shall also test revocation of the intermediate CA certificate (i.e. the
+					intermediate CA certificate should be revoked by the root CA). For the test of the WLAN use 
+					case, only pre-stored CRLs are used. If OCSP stapling per RFC 6066 is the only supported 
+					revocation method, this test is omitted.<h:p/>
+					The evaluator shall ensure that a valid certificate is used, and that the validation function
+					succeeds. The evaluator then attempts the test with a certificate that has been revoked (for
+					each method chosen in the selection) to ensure when the certificate is no longer valid that the
+					validation function fails.<h:br/>
+                  </test><h:br/>
+                <test>If any OCSP option is selected, the evaluator shall configure the OCSP server or use a
+					man-in-the-middle tool to present a certificate that does not have the OCSP signing purpose and
+					verify that validation of the OCSP response fails. If CRL is selected, the evaluator shall
+					configure the CA to sign a CRL with a certificate that does not have the cRLsign key usage bit
+					set, and verify that validation of the CRL fails.
+                </test><h:br/>
+                <test>The evaluator shall modify any byte in the first eight bytes of the certificate and demonstrate
+					that the certificate fails to validate (the certificate will fail to parse correctly).
+                </test> <h:br/>
+                <test>The evaluator shall modify any bit in the last byte of the signature algorithm of the
+					certificate and demonstrate that the certificate fails to validate (the signature on the
+					certificate will not validate).
+                </test><h:br/>
+                <test>The evaluator shall modify any byte in the public key of the certificate and demonstrate that 
+					the certificate fails to validate (the signature on the certificate will not validate).
+                </test> <h:br/>
+                <test>
+                  <testlist>
+                    <test>(Conditional on support for EC certificates as indicated in FCS_COP.1(3)). The evaluator
+						shall establish a valid, trusted certificate chain consisting of an EC leaf certificate, an
+						EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate 
+						designated as a trusted anchor, where the elliptic curve parameters are specified as a 
+						named curve. The evaluator shall confirm that the TOE validates the certificate chain.</test>
+						<h:br/>
+                    <test>(Conditional on support for EC certificates as indicated in FCS_COP.1(3)). The evaluator 
+						shall replace the intermediate certificate in the certificate chain for Test 8a with a
+						modified certificate, where the modified intermediate CA has a public key information field
+						where the EC parameters uses an explicit format version of the Elliptic Curve parameters in 
+						the public key information field of the intermediate CA certificate from Test 8a, and the 
+						modified Intermediate CA certificate is signed by the trusted EC root CA, but having no
+						other changes. The evaluator shall confirm the TOE treats the certificate as invalid.</test>
+						<h:br/>
+                  </testlist>
+                </test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+		  <audit-event/>
+        </f-component>
+		
+		
+        <f-component id="sfr-fia-x509-ext-2" cc-id="fia_x509_ext.2" name="X.509 Certificate Authentication" status="optional">
+          <f-element id="fia-x509-ext-2e1">
+            <title>The TSF shall use X.509v3 certificates as defined by RFC 5280 to support
+              authentication for mutually authenticated TLS as defined in the Package for Transport
+              Layer Security, HTTPS <selectables>
+                <selectable>IPsec in accordance with the PP-Module for VPN Client</selectable>
+                <selectable id="x509_dtls">mutually authenticated DTLS as defined in the Package for
+                  Transport Layer Security</selectable>
+              </selectables>, and <selectables>
+                <selectable id="sel-x509-sys">code signing for system software updates</selectable>
+                <selectable id="sel-x509-firmware">code signing for firmware integrity verification</selectable>
+                <selectable id="sel-x509-hardware">code signing for hardware integrity verification</selectable>
+                <selectable><assignable>other uses</assignable></selectable>
+                <selectable>no additional uses</selectable>
+              </selectables>. </title>
+            <note role="application">The ST author’s first selection must match the selection of
+              FDP_UPC_EXT.1.1/APPS and FTP_ITC_EXT.1.1.<h:p/>
+			  Certificates may optionally be used for trusted updates of system software (FPT_TUD_EXT.2.3) and 
+			  mobile applications (FPT_TUD_EXT.5.1) and for integrity verification (FPT_TST_EXT.2/PREKERNEL). If
+              "code signing for system software updates" or "code signing for mobile applications"
+              is selected FPT_TUD_EXT.4.1 must be included in the ST. <h:p/> 
+			  If FPT_TUD_EXT.5.1 is included in the ST, "code signing for mobile applications" must be
+              included in the selection. </note>
+          </f-element>
+          <f-element id=id="fia-x509-ext-2e2">
+            <title>When the TSF cannot establish a connection to determine the revocation status of
+              a certificate, the TSF shall <selectables>
+                <selectable>allow the administrator to choose whether to accept the certificate in
+                  these cases</selectable>
+                <selectable>allow the user to choose whether to accept the certificate in these
+                  cases</selectable>
+                <selectable>accept the certificate</selectable>
+                <selectable>not accept the certificate</selectable>
+              </selectables>.</title>
+            <note role="application"> The TOE must not accept the certificate if it fails any of the
+              other validation rules in FIA_X509_EXT.1. However, often a connection must be
+              established to perform a verification of the revocation status of a certificate -
+              either to download a CRL or to perform OCSP. The selection is used to describe the
+              behavior in the event that such a connection cannot be established (for example, due
+              to a network error). If the TOE has determined the certificate is valid according to all
+              other rules in FIA_X509_EXT.1, the behavior indicated in the selection must determine
+              the validity. If the administrator-configured or user-configured option is selected,
+              the ST author must also select function <ctr-ref ref-id="certValidity"/> in
+              FMT_SMF_EXT.1. <h:p/>
+			  The TOE may behave differently depending on the
+              trusted channel; for example, in the case of WLAN where connections are unlikely to be
+              established, the TOE may accept the certificate even though certificates are not
+              accepted for other channels. The ST author should select all applicable behaviors. </note>
+            <aactivity>
+              <TSS>The evaluator shall check the TSS to ensure that it describes how the TOE chooses
+                which certificates to use, and any necessary instructions in the administrative
+                guidance for configuring the operating environment so that the TOE can use the
+                certificates. <h:p/>
+				The evaluator shall examine the TSS to confirm that
+                it describes the behavior of the TOE when a connection cannot be established during
+                the validity check of a certificate used in establishing a trusted channel. The
+                evaluator shall verify that any distinctions between trusted channels are described. <h:p/>
+			  </TSS>
+              <Guidance> If the requirement that the administrator is able to specify the default
+                action, then the evaluator shall ensure that the operational guidance contains
+                instructions on how this configuration action is performed.
+                <h:p/></Guidance>
+              <Tests> The evaluator shall perform the following test for each trusted channel: <h:p/>
+                <testlist>
+                  <test>The evaluator shall demonstrate that using a valid certificate that requires
+                    certificate validation checking to be performed in at least some part by
+                    communicating with a non-TOE IT entity. The evaluator shall then manipulate the
+                    environment so that the TOE is unable to verify the validity of the certificate,
+                    and observe that the action selected in FIA_X509_EXT.2.2 is performed. If the
+                    selected action is administrator-configurable, then the evaluator shall follow
+                    the operational guidance to determine that all supported
+                    administrator-configurable options behave in their documented manner.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+		  
+        </f-component>		
+		
+		
 	</section>
 	    
 	<section id="fpt" title="Class: Protection of the TSF (FPT)">
@@ -4630,6 +5371,7 @@
 				</TSS>
 			</aactivity>				
 		</f-element>
+			<audit-event/>
 	</f-component>
 
 	<f-component cc-id="fpt_rot_ext.2" name="Platform Integrity Extension">
