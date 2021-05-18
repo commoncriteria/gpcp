@@ -886,10 +886,6 @@
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
 			<depends on-sel="sel-tud3-audit"/>
-			<depends on-use="uc-server-base"/>
-			<depends on-use="uc-server-enhanced"/>
-			<depends on-use="uc-csfc-eud"/>
-			<depends on-use="uc-clients-desktop"/>
 			<f-element id="fau-gen-1e1">
 				<title>The TSF shall be able to generate an audit record of the following auditable events:<h:br/>
 					<h:ol type="1">
@@ -967,10 +963,6 @@
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
 			<depends on-sel="sel-tud3-audit"/>
-			<depends on-use="uc-server-base"/>
-			<depends on-use="uc-server-enhanced"/>
-			<depends on-use="uc-csfc-eud"/>
-			<depends on-use="uc-clients-desktop"/>
 			<f-element id="fau-stg-1e1">
 				<title>
 					The TSF shall protect the stored audit records in the audit trail from unauthorized deletion.
@@ -1014,10 +1006,6 @@
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
 			<depends on-sel="sel-tud3-audit"/>
-			<depends on-use="uc-server-base"/>
-			<depends on-use="uc-server-enhanced"/>
-			<depends on-use="uc-csfc-eud"/>
-			<depends on-use="uc-clients-desktop"/>
 			<f-element id="fau-stg-4e1">
 				<title>
 					The TSF shall overwrite the oldest stored audit records if the audit trail is full.
@@ -1040,6 +1028,89 @@
 			<audit-event/>
 		</f-component>
 
+        <!-- FAU_STG_EXT.1 -->
+        <f-component cc-id="fau_stg_ext.1" name="Off-Loading of Audit Data" status="optional">
+            <f-element id="fau-stg-ext-1e1">
+                <title>The TSF shall be able to transmit the generated audit data to an external IT entity using a trusted 
+					channel as specified in FTP_ITC_EXT.1.
+                </title>
+                <aactivity level="element">
+                    Protocols used for implementing the trusted channel must be selected in FTP_ITC_EXT.1.
+                    <TSS>
+                        The evaluator shall examine the TSS to ensure it describes the means by which 
+                        the audit data are transferred to the external audit server, and how the trusted channel is 
+                        provided. 
+                    </TSS>
+                    <Guidance>
+                        The evaluator shall examine the operational guidance to ensure it describes how to establish the 
+						trusted channel to the audit server, as well as describe any requirements 
+                        on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
+                        as configuration of the TOE needed to communicate with the audit server.
+                    </Guidance>
+                    <Tests>
+                        Testing of the trusted channel mechanism is to be performed as specified in the evaluation 
+                        activities for FTP_ITC_EXT.1. <h:br></h:br><h:br></h:br>
+                        The evaluator shall perform the following test for this requirement:<h:br></h:br><h:br></h:br>
+                        <testlist>
+                            <test>The evaluator shall establish a session between the TOE and the audit server according
+								to the configuration guidance provided. The evaluator shall then examine the traffic
+								that passes between the audit server and the TOE during several activities of the 
+								evaluator’s choice designed to generate audit data to be transferred to the audit server. 
+								The evaluator shall observe that these data are not able to be viewed in the clear during
+								this transfer, and that they are successfully received by the audit server. The evaluator
+								shall record the particular software (name, version) used on the audit server during 
+								testing.
+							</test>
+                        </testlist>
+                    </Tests>
+                </aactivity>
+            </f-element>
+            <f-element id="fau-stg-ext-1e2">
+                <title>The TSF shall
+                    <selectables>
+                        <selectable>drop new audit data</selectable>
+                        <selectable>overwrite previous audit records according to the following rule:
+                            <assignable>rule for overwriting previous audit records</assignable></selectable>
+                        <selectable><assignable>other action</assignable></selectable>
+                    </selectables>
+                    when the local storage space for audit data is full.
+                </title>
+                <note role="application">An external log server, if available, might be used as alternative storage space
+					in case the local storage space is full. An ‘other action’ could be defined in this case as ‘send the
+					new audit data to an external IT entity’.
+				</note>
+                <aactivity level="element">
+                    <TSS>
+                        The evaluator shall examine the TSS to ensure it describes what happens when the 
+                        local audit data store is full. 
+                    </TSS>
+                    <Guidance>
+                        The evaluator shall also examine the operational guidance to 
+                        determine that it describes the relationship between the local audit data and the audit data that 
+                        are sent to the audit log server. For example, when an audit event is generated, is it simultaneously
+                        sent to the external server and the local store, or is the local store used as a buffer and “cleared”
+                        periodically by sending the data to the audit server.
+                    </Guidance>
+                    <Tests>
+                        The evaluator shall perform operations that generate audit data and verify that this data is 
+                        stored locally. The evaluator shall perform operations that generate audit data until the local 
+                        storage space is exceeded and verifies that the TOE complies with the behavior 
+                        defined in the ST for FAU_STG_EXT.1.2.
+                    </Tests>
+                </aactivity>
+            </f-element>
+			<audit-event>
+                <audit-event-descr>
+					Failure of audit data capture due to lack of disk space or pre-defined limit.
+                </audit-event-descr>
+			</audit-event>
+			<audit-event>
+                <audit-event-descr>
+					On failure of logging function, capture record of failure and record upon restart of logging function.
+                </audit-event-descr>
+			</audit-event>
+        </f-component>         
+				
 	</section>
 
 	<section id="fcs" title="Cryptographic Support (FCS)">
@@ -3053,11 +3124,11 @@
 				The TSF shall perform [<h:i>digital signature generation</h:i>] using the supported methods 
 				for signature generation defined in the following rows of <xref to="fcs-cop-siggen-sels"/>
 				<selectables>
-					<selectable id="sel=fcs-cop-siggen-1">SigGen1</selectable>
-					<selectable id="sel=fcs-cop-siggen-2">SigGen2</selectable>
-					<selectable id="sel=fcs-cop-siggen-3">SigGen3</selectable>
-					<selectable id="sel=fcs-cop-siggen-4">SigGen4</selectable>
-					<selectable id="sel=fcs-cop-siggen-5">SigGen5</selectable>
+					<selectable id="sel-fcs-cop-siggen-1">SigGen1</selectable>
+					<selectable id="sel-fcs-cop-siggen-2">SigGen2</selectable>
+					<selectable id="sel-fcs-cop-siggen-3">SigGen3</selectable>
+					<selectable id="sel-fcs-cop-siggen-4">SigGen4</selectable>
+					<selectable id="sel-fcs-cop-siggen-5">SigGen5</selectable>
 				</selectables>.<h:p/>
 				
 				<h:b><ctr ctr-type='Table' id="fcs-cop-siggen-sels">: Supported Methods for Signature Generation Operation</ctr></h:b><h:br/>	
@@ -3065,7 +3136,7 @@
 					<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
 					<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 					
-					<h:tr><depends on-sel="sel=fcs-cop-siggen-1"/>
+					<h:tr><depends on-sel="sel-fcs-cop-siggen-1"/>
 					<h:td>SigGen1</h:td>
 					<h:td>RSASSA-PKCS1-v1_5 using
 						<selectables>
@@ -3092,7 +3163,7 @@
 						</selectables>(SHA)</h:td>
 				</h:tr>
 
-				<h:tr><depends on-sel="sel=fcs-cop-siggen-2"/>
+				<h:tr><depends on-sel="sel-fcs-cop-siggen-2"/>
 					<h:td>SigGen2</h:td>
 					<h:td>Digital signature scheme 2 using
 						<selectables>
@@ -3115,7 +3186,7 @@
 						</selectables>(SHA)</h:td>
 				</h:tr>
 
-				<h:tr><depends on-sel="sel=fcs-cop-siggen-3"/>
+				<h:tr><depends on-sel="sel-fcs-cop-siggen-3"/>
 					<h:td>SigGen3</h:td>
 					<h:td>Digital signature scheme 3 using
 						<selectables>
@@ -3138,7 +3209,7 @@
 						</selectables>(SHA)</h:td>
 				</h:tr>
 
-				<h:tr><depends on-sel="sel=fcs-cop-siggen-4"/>
+				<h:tr><depends on-sel="sel-fcs-cop-siggen-4"/>
 					<h:td>SigGen4</h:td>
 					<h:td>RSASSA-PSS using
 						<selectables>
@@ -3161,7 +3232,7 @@
 						</selectables>(SHA)</h:td>
 				</h:tr>
 
-				<h:tr><depends on-sel="sel=fcs-cop-siggen-5"/>
+				<h:tr><depends on-sel="sel-fcs-cop-siggen-5"/>
 					<h:td>SigGen5</h:td>
 					<h:td>ECDSA on 
 						<selectables>
@@ -3589,7 +3660,7 @@
 					<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
 					<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 					
-					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-ccm"/>
+					<h:tr><depends on-sel="sel-fcs-cop-skc-aes-ccm"/>
 					<h:td>AES-CCM</h:td>
 					<h:td>AES in CCM mode with unpredictable, nonrepeating nonce, minimum size of 64 bits</h:td>
 					<h:td><selectables>
@@ -3603,7 +3674,7 @@
 						NIST SP800-38C (CCM)</h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-gcm"/>
+					<h:tr><depends on-sel="sel-fcs-cop-skc-aes-gcm"/>
 					<h:td>AES-GCM</h:td>
 					<h:td>AES in GCM mode with non-repeating IVs; IV length must be equal to 96
 						bits; the deterministic IV construction method (SP800-38D, Section 8.2.1) must
@@ -3626,7 +3697,7 @@
 						NIST SP800-38D (GCM)</h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-cbc"/>
+					<h:tr><depends on-sel="sel-fcs-cop-skc-aes-cbc"/>
 					<h:td>AES-CBC</h:td>
 					<h:td>AES in CBC mode with non-repeating and unpredictable IVs</h:td>
 					<h:td><selectables>
@@ -3640,7 +3711,7 @@
 						NIST SP800-38A (CBC)</h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-ctr"/>
+					<h:tr><depends on-sel="sel-fcs-cop-skc-aes-ctr"/>
 					<h:td>AES-CTR</h:td>
 					<h:td>AES in counter mode with a non-repeating initial counter and with no
 						repeated use of counter values across multiple messages with the same
@@ -3656,7 +3727,7 @@
 						NIST SP800-38A (CTR)</h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel=fcs-cop-skc-xts-aes"/>
+					<h:tr><depends on-sel="sel-fcs-cop-skc-xts-aes"/>
 					<h:td>XTS-AES</h:td>
 					<h:td>AES in XTS mode with unique 
 						<selectables>
@@ -3676,7 +3747,7 @@
 						</selectables>(XTS)</h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-kwp"/>
+					<h:tr><depends on-sel="sel-fcs-cop-skc-aes-kwp"/>
 					<h:td>AES-KWP</h:td>
 					<h:td>KWP based on AES </h:td>
 					<h:td><selectables>
@@ -3689,7 +3760,7 @@
 						NIST SP 800-38F, sec. 6.3 (KWP)</h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel=fcs-cop-skc-aes-kw"/>
+					<h:tr><depends on-sel="sel-fcs-cop-skc-aes-kw"/>
 					<h:td>AES-KW</h:td>
 					<h:td>KW based on AES </h:td>
 					<h:td><selectables>
@@ -3703,7 +3774,7 @@
 						ISO/IEC 19772, clause 7 (key wrap)</h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel=fcs-cop-skc-cam-cbc"/>
+					<h:tr><depends on-sel="sel-fcs-cop-skc-cam-cbc"/>
 					<h:td>CAM-CBC</h:td>
 					<h:td>Camellia in CBC mode with non-repeating and unpredictable IVs</h:td>
 					<h:td><selectables>
@@ -3715,7 +3786,7 @@
 						ISO 10116 (CBC)<h:p/></h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel=fcs-cop-skc-cam-ccm"/>
+					<h:tr><depends on-sel="sel-fcs-cop-skc-cam-ccm"/>
 					<h:td>CAM-CCM</h:td>
 					<h:td>Camellia in CCM mode with unpredictable, nonrepeating nonce, minimum size of 64 bits</h:td>
 					<h:td><selectables>
@@ -3728,7 +3799,7 @@
 						NIST SP800-38C (CCM)</h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel=fcs-cop-skc-cam-gcm"/>
+					<h:tr><depends on-sel="sel-fcs-cop-skc-cam-gcm"/>
 					<h:td>CAM-GCM</h:td>
 					<h:td>Camellia in GCM mode with non-repeating IVs; IV length must be equal to 96
 						bits; the deterministic IV construction method (SP800-38D, Section 8.2.1) must
@@ -3750,7 +3821,7 @@
 						NIST SP800-38D (GCM)</h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel=fcs-cop-skc-xts-cam"/>
+					<h:tr><depends on-sel="sel-fcs-cop-skc-xts-cam"/>
 					<h:td>XTS-CAM</h:td>
 					<h:td>Camellia in XTS mode with unique 
 						<selectables>
@@ -4827,7 +4898,7 @@
 					to all available interfaces.
 				</note>
 			</f-element>
-			<f-element id="fia-afl-ext-1e5">
+			<f-element id="fia-afl-ext-1e6">
 				<title>
 					The TSF shall increment the number of unsuccessful authentication attempts prior to notifying the 
 					user that the authentication was unsuccessful.
@@ -6772,9 +6843,6 @@
 	<!-- FPT_PHP.1: Passive Detection of Physical Attack.
 		 -->
 	<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="optional">
-		<depends on-use="uc-clients-portable-enhanced"/>
-		<depends on-use="uc-csfc-eud"/>
-		<depends on-use="uc-iot-devices"/>
 		<f-element id="fpt-php-1e1">
 			<title>The TSF shall provide unambiguous detection of physical tampering
 				that might compromise the TSF.
@@ -6797,8 +6865,6 @@
 	<!-- FPT_PHP.2: Notification of physical attack
 		 -->
 	<f-component id="sfr-fpt-php-2" cc-id="fpt_php.2" name="Notification of physical attack" status="optional">
-		<depends on-use="uc-server-enhanced"/>
-		<depends on-use="uc-csfc-eud"/>
 		<f-element id="fpt-php-2e1">
 			<title>The TSF shall provide unambiguous detection of physical tampering that
 				might compromise the TSF.
@@ -6829,8 +6895,6 @@
 	<!-- FPT_PHP.3: Resistance to physical attack
 		 -->
 	<f-component id="sfr-fpt-php-3" cc-id="fpt_php.3" name="Resistance to physical attack" status="optional">
-		<depends on-use="uc-server-enhanced"/>
-		<depends on-use="uc-tactical-eud"/>
 		<f-element id="fpt-php-3e1">
 			<title>The TSF shall resist <assignable>physical tampering scenarios</assignable> to the
 				<assignable>list of TSF devices/elements</assignable> by responding automatically
@@ -8129,7 +8193,7 @@
 		  NIST SP800-147B BIOS Protection Guidelines for Servers</h:a>, NIST SP800-147B, August 2014.
         </description>
       </entry>
-      <entry id="bib-NIST-SP800-147B">
+      <entry id="bib-NIST-SP800-193">
         <tag>SP-800-193</tag>
         <description>
           <h:a href="https://csrc.nist.gov/publications/detail/sp/800-193/final">
