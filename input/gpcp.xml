@@ -3049,8 +3049,7 @@
 			<audit-event/>
 		</f-component>
 
-	<f-component cc-id="fcs_cop.1" iteration="PBKDF" name="Cryptographic Operation (Password-Based Key Derivation Functions)" 
-		status="optional">
+	<f-component cc-id="fcs_cop.1" iteration="PBKDF" name="Cryptographic Operation (Password-Based Key Derivation Functions)" status="optional">
 		<f-element id="fcs-cop-1e1-pbkdf">
 			<title>The TSF shall perform [<h:i>password-based key derivation functions</h:i>] in
 				accordance with a specified cryptographic algorithm [<h:i>HMAC-</h:i>
@@ -4444,8 +4443,9 @@
 					these in turn depends on underlying cryptographic primitives (hash functions/ciphers). This cPP
 					allows SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512 for Hash_DRBG or HMAC_DRBG
 					and only AES-based implementations for CTR_DRBG. <h:p/>
-					This requirement must be included in the ST only if the TOE generates keys for its
-					own use, or if it provides RNG services for tenant software.
+					This requirement must be included in the ST if the TOE generates keys, signatures, or Salts for its
+					own use or for tenant software (FCS_CKM.1/AK, FCS_CKM.1/SK, FCS_COP.1/SigGen, FCS_SKT_EXT.1) or if it provides 
+					RNG services for tenant software (FCS_RBG_EXT.1).
 				</note>
 				<aactivity>
 					<TSS>
@@ -5269,7 +5269,7 @@
 				use by the TOE will have to conform to these requirements in order to be used in the enterprise. 
 				This check is required to support EAP-TLS for the WLAN Client EP.</note>
           </f-element>
-          <f-element>
+          <f-element id="fia-x509-ext-1e2">
             <title>The TSF shall only treat a certificate as a CA certificate if the
               basicConstraints extension is present and the CA flag is set to TRUE. </title>
             <note role="application">This requirement applies to certificates that are used and
