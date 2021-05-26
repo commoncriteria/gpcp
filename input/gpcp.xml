@@ -2184,9 +2184,7 @@
 							<selectable>256</selectable>
 							</selectables>bits</h:td>
 						<h:td>(NIST-KDRV) sec 4<h:p/>
-							<selectables>
-								<selectable>see List of Standards in FCS_COP.1/Hash and FCS_COP.1/HMAC</selectable>
-								</selectables></h:td></h:tr>
+							<assignable>See List of Standards in FCS_COP.1/Hash and FCS_COP.1/HMAC</assignable></h:td></h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-8"/>
 						<h:td>KeyDrv8</h:td>
@@ -2196,17 +2194,14 @@
 							<selectable>seed</selectable>
 							</selectables></h:td>
 						<h:td>Shared secret, salt, IV, output length, fixed information</h:td>
-						<h:td><selectables>
-							<selectable>keyed hash from FCS_COP.1/HMAC</selectable></selectables></h:td>
+						<h:td><assignable>keyed hash from FCS_COP.1/HMAC</assignable></h:td>
 						<h:td><selectables>
 							<selectable>128</selectable>
 							<selectable>192</selectable>
 							<selectable>256</selectable>
 							</selectables>bits</h:td>
 						<h:td>(NIST-KDRV) sec 5<h:p/>
-							<selectables>
-								<selectable>see List of Standards in FCS_COP.1/Hash and FCS_COP.1/HMAC</selectable>
-								</selectables></h:td></h:tr>
+							<assignable>see List of Standards in FCS_COP.1/Hash and FCS_COP.1/HMAC</assignable></h:td></h:tr>
 					</h:table>
 				</title>
 				<note role="application">
@@ -3402,7 +3397,7 @@
  
 		<!-- FCS_COP.1/SigVer Cryptographic Operation (Signature Verification) --> 
 		<f-component cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" status="sel-based">
-			<selection-depends req="fpt-tud-ext-1e1" ids="sel-tud-update"/>
+			<depends on-sel="sel-tud-update"/>
 			<f-element id="fcs-cop-1e1-sigver">
 				<title><refinement>Refinement:</refinement> The TSF shall perform  
 				The TSF shall perform [<h:i>digital signature verification</h:i>] using the supported methods 
@@ -6290,7 +6285,7 @@
               to a network error). If the TOE has determined the certificate is valid according to all
               other rules in FIA_X509_EXT.1, the behavior indicated in the selection must determine
               the validity. If the administrator-configured or user-configured option is selected,
-              the ST author must also select function <ctr-ref ref-id="certValidity"/> in
+              the ST author must also select function <xref to="certValidity"/> in
               FMT_SMF_EXT.1. <h:p/>
 			  The TOE may behave differently depending on the
               trusted channel; for example, in the case of WLAN where connections are unlikely to be
@@ -6335,7 +6330,7 @@
        <f-component id="sfr-fmt-mof-ext-1" cc-id="fmt_mof_ext.1" name="Management of Security Functions Behavior" status="optional">
           <f-element id="fmt-mof-ext-1e1">
             <title>The TSF shall restrict the ability to perform the functions in column 3 of
-                <ctr-ref ref-id="fmt_smf"/> to the user. </title>
+                <xref to="fmt_smf"/> to the user. </title>
             <note role="application"> The functions that have an "M" in the third column are
               mandatory for this component, thus are restricted to the user, meaning that the
               administrator cannot manage those functions. The functions that have an "O" in the
@@ -6367,7 +6362,7 @@
           </f-element>
           <f-element>
             <title>The TSF shall restrict the ability to perform the functions in column 5 of
-                <ctr-ref ref-id="fmt_smf"/> to the administrator when the device is enrolled and
+                <xref to="fmt_smf"/> to the administrator when the device is enrolled and
               according to the administrator-configured policy. </title>
             <note role="application"> As long as the device is enrolled in management, the
               administrator (of the enterprise) must be guaranteed that minimum security functions
@@ -6849,7 +6844,7 @@
               </management-function-set>
             </title>
             <note role="application">
-              <ctr-ref ref-id="fmt_smf"/> compares the management functions required by this
+              <xref to="fmt_smf"/> compares the management functions required by this
               Protection Profile. <h:p/>
 			  The first column lists the management functions
               identified in the PP. <h:p/>
@@ -6886,17 +6881,17 @@
               basis" sub function and an assignment, the ST author must indicate which assigned
               features are manageable on a per-app basis and which are not by iterating the row. <h:p/>
               <h:b>Function-specific Application Notes:</h:b><h:p/>
-			  For functions <ctr-ref ref-id="vpn"/>, <ctr-ref ref-id="audioVisual"/> and <ctr-ref ref-id="location"
+			  For functions <xref to="vpn"/>, <xref to="audioVisual"/> and <xref to="location"
               />, the function must be implemented on a device-wide basis but may also be
               implemented on a per-app basis or on a per-group of applications basis in which the
               configuration includes the list of applications or groups of applications to which the
               enable/disable applies. <h:p/>
-			  Function <ctr-ref ref-id="vpn"/> addresses
+			  Function <xref to="vpn"/> addresses
               enabling and disabling the IPsec VPN only. The configuration of the VPN Client itself
               (with information such as VPN Gateway, certificates, and algorithms) is addressed by
               the PP-Module for VPN Client. The administrator options should only be listed if the
               administrator can remotely enable/disable the VPN connection. <h:p/>
-              Function <ctr-ref ref-id="vpn"/> optionally allows the VPN to be configured per-app or
+              Function <xref to="vpn"/> optionally allows the VPN to be configured per-app or
               per-groups of apps. If this configuration is selected, it does not void FDP_IFC_EXT.1.
               Instead FDP_IFC_EXT.1 is applied to the application or group of applications the VPN
               is applied to. In other words, all traffic destined for the VPN-enabled application or
@@ -6904,7 +6899,7 @@
               application or group of applications can travel outside the VPN. When the VPN is
               configured across the device FDP_IFC_EXT.1 applies to all traffic and the VPN must not
               split tunnel. <h:p/> 
-              The assignment in function <ctr-ref ref-id="radios"/>
+              The assignment in function <xref to="radios"/>
               consists of all radios present on the TSF, such as Wi-Fi, cellular, NFC,
               Bluetooth BR/EDR, and Bluetooth LE, which can be enabled and disabled. In the future,
               if both Bluetooth BR/EDR and Bluetooth LE are supported, they will be required to be
@@ -6913,7 +6908,7 @@
               not expected that a device in "airplane mode", where all radios are disabled, will
               automatically (without authorization) turn on the cellular radio to place emergency
               calls. <h:p/>
-			  The assignment in function <ctr-ref ref-id="audioVisual"/>
+			  The assignment in function <xref to="audioVisual"/>
               consists of at least one audio and/or visual device, such as camera and microphone,
               which can be enabled and disabled by either the user or administrator. Disablement of
               the microphone does not imply that the microphone may not be enabled in order to place
@@ -6921,8 +6916,7 @@
               (either device-wide, per-app or per-group of applications) and others are able to be
               restricted to users, then this function should be iterated in the table with the
               appropriate table entries. <h:p/>
-			  Regarding functions <ctr-ref
-                ref-id="radios"/> and <ctr-ref ref-id="audioVisual"/>, disablement of a particular
+			  Regarding functions <xref to="radios"/> and <xref to="audioVisual"/>, disablement of a particular
               radio or audio/visual device must be effective as soon as the TOE has power.
               Disablement must also apply when the TOE is booted into auxiliary boot modes, for
               example, associated with updates or backup. If the TOE supports states in which
@@ -6931,10 +6925,10 @@
               are disabled by default while in these states. That these devices are disabled during
               auxiliary boot modes does not imply that the device (particularly the cellular radio)
               may not be enabled in order to perform emergency phone calls. <h:p/>Wipe
-              of the TSF (function <ctr-ref ref-id="wipe"/>) is performed according to FCS_CKM_EXT.5.
+              of the TSF (function <xref to="wipe"/>) is performed according to FCS_CKM_EXT.5.
               Protected data is all non-TSF data, including all user or enterprise data. Some or all
               of this data may be considered sensitive data as well. <h:p/> The
-              selection in function <ctr-ref ref-id="appInstallRules"/> allows the ST author to
+              selection in function <xref to="appInstallRules"/> allows the ST author to
               select which mechanisms are available to the administrator through the MDM Agent to
               restrict the applications which the user may install. The ST author must state if
               application allowlist is applied device-wide or if it can be specified to apply to
@@ -6948,44 +6942,44 @@
                 <h:li>If the administrator can prevent the user from installing additional
                   applications, the ST author selects c. </h:li>
               </h:ul>
-              <h:br/>In the future, function <ctr-ref ref-id="certWipe"/> may require
+              <h:br/>In the future, function <xref to="certWipe"/> may require
               destruction or disabling of any default trusted CA certificates, excepting those CA
               certificates necessary for continued operation of the TSF, such as the developer’s
               certificate. At this time, the ST author must indicate in the assignment whether
               pre-installed or any other category of X.509v3 certificates may be removed from the
               Trust Anchor Database. <h:p/> 
-              For function <ctr-ref ref-id="enroll"/>, the
+              For function <xref to="enroll"/>, the
               enrollment function may be installing an MDM agent and includes the policies to be
               applied to the device. It is acceptable for the user approval notice to require the
               user to intentionally opt to view the policies (for example, by "tapping" on a "View"
               icon) rather than listing the policies in full in the notice. <h:p/> For
-              function <ctr-ref ref-id="update"/>, the administrator capability to update the system
+              function <xref to="update"/>, the administrator capability to update the system
               software may be limited to causing a prompt to the user to update rather than the
               ability to initiate the update itself. As the administrator is likely to be acting
               remotely, he/she would be unaware of inopportune situations, such as low power, which
               may cause the update to fail and the device to become inoperable. The user can refuse
               to accept the update in such situations. It is expected that system architects will be
               cognizant of this limitation and will enforce network access controls in order to
-              enforce enterprise-critical updates. <h:p/> Function <ctr-ref
-                ref-id="appInstall"/> addresses both installation and update. This protection profile
+              enforce enterprise-critical updates. <h:p/> Function <xref
+                to="appInstall"/> addresses both installation and update. This protection profile
               does not distinguish between installation and update of applications because mobile
               devices typically completely overwrite the previous installation with a new
-              installation during an application update. <h:p/> For function <ctr-ref
-                ref-id="entAppRemove"/>, "Enterprise applications" are those applications that belong
+              installation during an application update. <h:p/> For function <xref
+                to="entAppRemove"/>, "Enterprise applications" are those applications that belong
               to the Enterprise application group. Applications installed by the enterprise
               administrator (including automatic installation by the administrator after being
               requested by the user from a catalog of enterprise applications) are by default placed
               in the Enterprise application group unless an exception has been made in function
-                <ctr-ref ref-id="appGroups"/> of FMT_SMF_EXT.1.1. <h:p/> If the display
+                <xref to="appGroups"/> of FMT_SMF_EXT.1.1. <h:p/> If the display
               of notifications in the locked state is supported, the configuration of these
-              notifications (function <ctr-ref ref-id="notifications"/>) must be included in the
-              selection. <h:p/> Function <ctr-ref ref-id="dar"/> must be included in the
+              notifications (function <xref to="notifications"/>) must be included in the
+              selection. <h:p/> Function <xref to="dar"/> must be included in the
               selection if data-at-rest protection is not natively enabled. <h:p/>
-              Function <ctr-ref ref-id="rmediaDar"/> is implicitly met if the TSF does not support
+              Function <xref to="rmediaDar"/> is implicitly met if the TSF does not support
               removable media. <h:p/> 
-              For function <ctr-ref ref-id="location"/>, location
+              For function <xref to="location"/>, location
               services include location information gathered from GPS, cellular, and Wi-Fi.
-              <h:p/> Function <ctr-ref ref-id="authFactors"/> is implicitly met if the
+              <h:p/> Function <xref to="authFactors"/> is implicitly met if the
               TOE does not contain a BAF. This selection must correspond with the selection made in
               FIA_UAU.5.1. If a BAF is selected in FIA_UAU.5.1, "Biometric Authentication Factor"
               must be selected and the user or admin must have the option to disable the use of
@@ -6995,10 +6989,10 @@
               <!-- TODO: Should this be something like for TLS do not approve any exceptions, for HTTP
 			  this is per FCS_HTTPS_EXT.1.3?? How do I force the selection of no exceptions for all 
 			  (non-HTTPS) TLS connections? -->
-              For function <ctr-ref ref-id="certInvalid"/>, the configuration can be different
+              For function <xref to="certInvalid"/>, the configuration can be different
               depending on the specific trusted channel. <h:p/>
               <!-- Start of the optional to include functions --> The assignment in function
-                <ctr-ref ref-id="externalPorts"/> consists of all externally accessible hardware
+                <xref to="externalPorts"/> consists of all externally accessible hardware
               ports, such as USB, the SD card, and HDMI, whose data transfer capabilities can be
               enabled and disabled by either the user or administrator. Disablement of data transfer
               over an external port must be effective during and after boot into the normal
@@ -7008,14 +7002,14 @@
               default while in these states. Each of the ports may be enabled or disabled
               separately. The configuration policy need not disable all ports together. In the case
               of USB, chagrining is still allowed if data transfer capabilities have been disabled.
-              <h:p/> The assignment in function <ctr-ref ref-id="serverProtocols"/>
+              <h:p/> The assignment in function <xref to="serverProtocols"/>
               consists of all protocols where the TSF acts as a server, which can be enabled and
-              disabled by either the user or administrator. <h:p/> Function <ctr-ref
-                ref-id="devModes"/> must be included in the selection if developer modes are
-              supported by the TSF. <h:p/> Function <ctr-ref ref-id="authBypass"/> must
+              disabled by either the user or administrator. <h:p/> Function <xref
+                to="devModes"/> must be included in the selection if developer modes are
+              supported by the TSF. <h:p/> Function <xref to="authBypass"/> must
               be included in the selection if bypass of local user authentication, such as a "Forgot
               Password", password hint, or remote authentication feature, is supported.
-              <h:p/> Function <ctr-ref ref-id="appCert"/> must be included in the
+              <h:p/> Function <xref to="appCert"/> must be included in the
               selection if the TSF allows applications, other than the MDM Agents, to import or
               remove X.509v3 certificates from the Trust Anchor Database. The MDM Agent is
               considered the administrator. This function does not apply to applications trusting a
@@ -7023,25 +7017,25 @@
               application modifies the device-wide Trust Anchor Database, affecting the validations
               performed by the TSF for other applications. The user or administrator may be provided
               the ability to globally allow or deny any application requests in order to meet this
-              requirement. <h:p/> Function <ctr-ref ref-id="certValidity"/> must be
+              requirement. <h:p/> Function <xref to="certValidity"/> must be
               included in the ST if "administrator-configured option" is selection in
-              FIA_X509_EXT.2.2. <h:p/> Function <ctr-ref ref-id="digSign"/> should be
+              FIA_X509_EXT.2.2. <h:p/> Function <xref to="digSign"/> should be
               included in the selection if FPT_TUD_EXT.5.1 is included in the ST and the
-              configurable option is selected. <h:p/> Function <ctr-ref
-                ref-id="sharedKeys"/> should be included in the selection if user or administrator is
-              selected in FCS_STG_EXT.1.4. <h:p/> Function <ctr-ref ref-id="keyWipeRules"
+              configurable option is selected. <h:p/> Function <xref
+                to="sharedKeys"/> should be included in the selection if user or administrator is
+              selected in FCS_STG_EXT.1.4. <h:p/> Function <xref to="keyWipeRules"
               /> should be included in the selection if user or administrator is selected in
-              FCS_STG_EXT.1.5. <h:p/> Function <ctr-ref ref-id="unlockBanner"/> must be
+              FCS_STG_EXT.1.5. <h:p/> Function <xref to="unlockBanner"/> must be
               included in the selection if FTA_TAB.1 is included in the ST. <h:p/>
-              Function <ctr-ref ref-id="auditItems"/> must be included in the selection if FAU_SEL.1
-              is included in the ST. <h:p/> For function <ctr-ref ref-id="hotspot"/>,
+              Function <xref to="auditItems"/> must be included in the selection if FAU_SEL.1
+              is included in the ST. <h:p/> For function <xref to="hotspot"/>,
               hotspot functionality refers to the condition in which the mobile device is serving as
               an access point to other devices, not the connection of the TOE to external hotspots.
-              <h:p/> Functions <ctr-ref ref-id="dataSharing"/> and <ctr-ref
-                ref-id="appGroups"/> correspond to FDP_ACF_EXT.1.2. <h:p/> For function
-                <ctr-ref ref-id="unenroll"/>, FMT_SMF_EXT.2.1 specifies actions to be performed when
-              the TOE is unenrolled from management. <h:p/> For function <ctr-ref
-                ref-id="alwaysOnVPN"/>, must be included in the ST if IPsec is selected in
+              <h:p/> Functions <xref to="dataSharing"/> and <xref
+                to="appGroups"/> correspond to FDP_ACF_EXT.1.2. <h:p/> For function
+                <xref to="unenroll"/>, FMT_SMF_EXT.2.1 specifies actions to be performed when
+              the TOE is unenrolled from management. <h:p/> For function <xref
+                to="alwaysOnVPN"/>, must be included in the ST if IPsec is selected in
               FTP_ITC_EXT.1 and the native IPsec VPN client can be configured to be Always-On.
               Always-On is defined as when the TOE has a network connection the VPN attempts to
               connect, all data leaving the device uses the VPN when the VPN is connected and no
@@ -7064,7 +7058,7 @@
                 underlying mechanism exhibits the configured setting. <h:p/></Guidance>
               <Tests>
                 <testlist>
-                  <h:b>Function <ctr-ref ref-id="pwd"/></h:b><h:br/> The evaluator shall verify
+                  <h:b>Function <xref to="pwd"/></h:b><h:br/> The evaluator shall verify
                   the TSS defines the allowable policy options: the range of values for both
                   password length and lifetime, and a description of complexity to include character
                   set and complexity policies (e.g., configuration and enforcement of number of
@@ -7078,7 +7072,7 @@
                       <h:li>maximum password lifetime</h:li>
                     </h:ul>
                   </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="screenlock"/></h:b><h:br/> The evaluator shall
+                  <h:b>Function <xref to="screenlock"/></h:b><h:br/> The evaluator shall
                   verify the TSS defines the range of values for both timeout period and number of
                   authentication failures for all supported authentication mechanisms.<h:p/>
                   <test> The evaluator shall exercise the TSF configuration as the administrator.
@@ -7091,7 +7085,7 @@
                         FIA_AFL_EXT.1)</h:li>
                     </h:ul>
                   </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="vpn"/></h:b><h:br/>
+                  <h:b>Function <xref to="vpn"/></h:b><h:br/>
                   <test>The evaluator shall perform the following tests: <h:ol type="a">
                       <h:li>The evaluator shall exercise the TSF configuration to enable the VPN
                         protection. These configuration actions must be used for the testing of the
@@ -7116,7 +7110,7 @@
                       </h:li>
                     </h:ol>
                   </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="radios"/></h:b><h:br/> The evaluator shall
+                  <h:b>Function <xref to="radios"/></h:b><h:br/> The evaluator shall
                   verify that the TSS includes a description of each radio and an indication of if
                   the radio can be enabled/disabled along with what role can do so. In addition the
                   evaluator shall verify that the frequency ranges at which each radio operates is
@@ -7134,8 +7128,8 @@
                   802.15, GSM, UMTS, and LTE). This range will not address NFC 13.56MHz, another
                   test should be set up with similar constraints to address NFC.<h:p/>
                   If power above -90 dBm is observed, the Faraday box has too great of signal
-                  leakage and shall not be used to complete the test for Function <ctr-ref
-                    ref-id="radios"/>.<h:p/>
+                  leakage and shall not be used to complete the test for Function <xref
+                    to="radios"/>.<h:p/>
                   <test>The evaluator shall exercise the TSF configuration as the administrator and,
                     if not restricted to the administrator, the user, to enable and disable the
                     state of each radio (e.g. Wi-Fi, cellular, NFC, Bluetooth). Additionally,
@@ -7167,7 +7161,7 @@
                     RF activity for the uplink channel of the specific radio frequency band is
                     observed after the device is fully booted or at an Authentication Factor interface 
                     it is deemed that the radio is enabled. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="audioVisual"/></h:b><h:br/> The evaluator
+                  <h:b>Function <xref to="audioVisual"/></h:b><h:br/> The evaluator
                   shall verify that the TSS includes a description of each collection device and an
                   indication of if it can be enabled/disabled along with what role can do so. The
                   evaluator shall confirm that the AGD guidance describes how to perform the
@@ -7198,17 +7192,17 @@
                         the A/V device. </h:li>
                     </h:ol>
                   </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="lockState"/></h:b><h:br/>
+                  <h:b>Function <xref to="lockState"/></h:b><h:br/>
                   <test>The evaluator shall use the test environment to instruct the TSF, both as a
                     user and as the administrator, to command the device to transition to a locked
                     state, and verify that the device transitions to the locked state upon
                     command.</test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="wipe"/></h:b><h:br/>
+                  <h:b>Function <xref to="wipe"/></h:b><h:br/>
                   <test>The evaluator shall use the test environment to instruct the TSF, both as a
                     user and as the administrator, to command the device to perform a wipe of
                     protected data. The evaluator must ensure that this management setup is used
                     when conducting the Evaluation Activities in FCS_CKM_EXT.5.</test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="appInstallRules"/></h:b><h:br/> The evaluator
+                  <h:b>Function <xref to="appInstallRules"/></h:b><h:br/> The evaluator
                   shall verify the TSS describes the allowable application installation policy
                   options based on the selection included in the ST. If the application allowlist is
                   selected, the evaluator shall verify that the TSS includes a description of each
@@ -7228,13 +7222,13 @@
                         connections to determine that the white list is still adhered to
                       </h:li></h:ol>
                   </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="keyStorage"/> &#38; Function <ctr-ref
-                      ref-id="keyWipe"/></h:b><h:br/> The evaluator shall verify that the TSS
+                  <h:b>Function <xref to="keyStorage"/> &#38; Function <xref
+                      to="keyWipe"/></h:b><h:br/> The evaluator shall verify that the TSS
                   describes each category of keys/secrets that can be imported into the TSF’s secure
                   key storage.<h:p/>
                   <test>The test of these functions is performed in association with FCS_STG_EXT.1. </test><h:br/>
                   <test>The test of these functions is performed in association with FCS_STG_EXT.1. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="certImport"/></h:b><h:br/> The evaluator shall
+                  <h:b>Function <xref to="certImport"/></h:b><h:br/> The evaluator shall
                   review the AGD guidance to determine that it describes the steps needed to import,
                   modify, or remove certificates in the Trust Anchor database, and that the users
                   that have authority to import those certificates (e.g., only administrator, or
@@ -7244,21 +7238,21 @@
                     The evaluator shall verify that no errors occur during import. The evaluator
                     should perform an action requiring use of the X.509v3 certificate to provide
                     assurance that installation was completed properly. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="certWipe"/></h:b><h:br/> The evaluator shall
+                  <h:b>Function <xref to="certWipe"/></h:b><h:br/> The evaluator shall
                   verify that the TSS describes each additional category of X.509 certificates and
                   their use within the TSF.<h:p/>
                   <test>The evaluator shall remove an administrator-imported certificate and any
-                    other categories of certificates included in the assignment of function <ctr-ref
-                      ref-id="appRemove"/> from the Trust Anchor Database according to the AGD
+                    other categories of certificates included in the assignment of function <xref
+                      to="appRemove"/> from the Trust Anchor Database according to the AGD
                     guidance as the user and as the administrator. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="enroll"/></h:b><h:br/> The evaluator shall
+                  <h:b>Function <xref to="enroll"/></h:b><h:br/> The evaluator shall
                   examine the TSS to ensure that it contains a description of each management
                   function that will be enforced by the enterprise once the device is enrolled. The
                   evaluator shall examine the AGD guidance to determine that this same information
                   is present.<h:p/>
                   <test>The evaluator shall verify that user approval is required to enroll the
                     device into management. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="appRemove"/></h:b><h:br/> The evaluator shall
+                  <h:b>Function <xref to="appRemove"/></h:b><h:br/> The evaluator shall
                   verify that the TSS includes an indication of what applications (e.g.,
                   user-installed applications, Administrator-installed applications, or Enterprise
                   applications) can be removed along with what role can do so. The evaluator shall
@@ -7273,40 +7267,40 @@
                   <test>The evaluator shall attempt to remove applications according to the AGD
                     guidance and verify that the TOE no longer permits users to access those
                     applications or their associated data. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="update"/></h:b><h:br/>
+                  <h:b>Function <xref to="update"/></h:b><h:br/>
                   <test>The evaluator shall attempt to update the TSF system software following the
                     procedures in the AGD guidance and verify that updates correctly install and
                     that the version numbers of the system software increase. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="appInstall"/></h:b><h:br/>
+                  <h:b>Function <xref to="appInstall"/></h:b><h:br/>
                   <test>The evaluator shall attempt to install an application following the
                     procedures in the AGD guidance and verify that the application is installed and
                     available on the TOE. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="entAppRemove"/></h:b><h:br/>
+                  <h:b>Function <xref to="entAppRemove"/></h:b><h:br/>
                   <test>The evaluator shall attempt to remove any Enterprise applications from the
                     device by following the administrator guidance. The evaluator shall verify that
                     the TOE no longer permits users to access those applications or their associated
                     data. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="notifications"/></h:b><h:br/> The evaluator
+                  <h:b>Function <xref to="notifications"/></h:b><h:br/> The evaluator
                   shall examine the AGD Guidance to determine that it specifies, for at least each
-                  category of information selected for Function <ctr-ref ref-id="notifications"/>,
+                  category of information selected for Function <xref to="notifications"/>,
                   how to enable and disable display information for that type of information in the
                   locked state.<h:p/>
                   <test>For each category of information listed in the AGD guidance, the evaluator
                     shall verify that when that TSF is configured to limit the information according
                     to the AGD, the information is no longer displayed in the locked state.</test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="dar"/></h:b><h:br/>
+                  <h:b>Function <xref to="dar"/></h:b><h:br/>
                   <test>The evaluator shall exercise the TSF configuration as the administrator and,
                     if not restricted to the administrator, the user, to enable system-wide
                     data-at-rest protection according to the AGD guidance. The evaluator shall
                     ensure that all Evaluation Activities for DAR (FDP_DAR) are conducted with the
                     device in this configuration. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="rmediaDar"/></h:b><h:br/>
+                  <h:b>Function <xref to="rmediaDar"/></h:b><h:br/>
                   <test>The evaluator shall exercise the TSF configuration as the administrator and,
                     if not restricted to the administrator, the user, to enable removable media’s
                     data-at-rest protection according to the AGD guidance. The evaluator shall
                     ensure that all Evaluation Activities for DAR (FDP_DAR) are conducted with the
                     device in this configuration. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="location"/>
+                  <h:b>Function <xref to="location"/>
                   </h:b><h:br/>
                   <test>The evaluator shall perform the following tests. <h:ol type="a">
                       <h:li>The evaluator shall enable location services device-wide and shall
@@ -7323,7 +7317,7 @@
                         able to access the location services. </h:li>
                     </h:ol>
                   </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="authFactors"/></h:b><h:br/>
+                  <h:b>Function <xref to="authFactors"/></h:b><h:br/>
                   <test>The evaluator shall verify that the TSS states if the TOE supports a BAF
                     and/or hybrid authentication. If the TOE does not include a BAF and/or hybrid
                     authentication this test is implicitly met. <h:ol type="a">
@@ -7353,11 +7347,11 @@
                   beside the function number indicates that if the function is not included in the
                   ST, then there is no expectation that the evaluation activity be performed. <h:p/>
                   <!-- TODO: Look AT -->
-                  <h:b>Function <ctr-ref ref-id="certInvalid"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="certInvalid"/> [conditional]</h:b><h:br/>
                   <test>The test of this function is performed in conjunction with FIA_X509_EXT.2.2,
                     FCS_TLSC_EXT.1.3 in the Package for Transport Layer Security. </test><h:br/>
                   <!-- Start of optional to include these functions -->
-                  <h:b>Function <ctr-ref ref-id="externalPorts"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="externalPorts"/> [conditional]</h:b><h:br/>
                   The evaluator shall verify that the TSS includes a list of each externally
                   accessible hardware port and an indication of if data transfer over that port can
                   be enabled/disabled. AGD guidance will describe how to perform the enable/disable function.<h:p/>
@@ -7370,19 +7364,19 @@
                     rebooting the device into the normal operational mode and verifying that the
                     capability is disabled throughout the boot and early execution stage of the
                     device. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="serverProtocols"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="serverProtocols"/> [conditional]</h:b><h:br/>
                   The evaluator shall verify that the TSS describes how the TSF acts as a server in
                   each of the protocols listed in the ST, and the reason for acting as a server.<h:p/>
                   <test>The evaluator shall attempt to disable each listed protocol in the
                     assignment. The evaluator shall verify that remote devices can no longer access
                     the TOE or TOE resources using any disabled protocols. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="devModes"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="devModes"/> [conditional]</h:b><h:br/>
                   <test>The evaluator shall exercise the TSF configuration as the administrator and,
                     if not restricted to the administrator, the user, to enable and disable any
                     developer mode. The evaluator shall test that developer mode access is not
                     available when its configuration is disabled. The evaluator shall verify the
                     developer mode remains disabled during device reboot. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="authBypass"/> [conditional]</h:b><h:br/> The
+                  <h:b>Function <xref to="authBypass"/> [conditional]</h:b><h:br/> The
                   evaluator shall examine the AGD guidance to determine that it describes how to
                   enable and disable any "Forgot Password", password hint, or remote authentication
                   (to bypass local authentication mechanisms) capability.<h:p/>
@@ -7390,11 +7384,11 @@
                     Password" feature or other means where the local authentication process can be
                     bypassed, the evaluator shall disable the feature and ensure that they are not
                     able to bypass the local authentication process. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="wipeEntData"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="wipeEntData"/> [conditional]</h:b><h:br/>
                   <test>The evaluator shall attempt to wipe Enterprise data resident on the device
                     according to the administrator guidance. The evaluator shall verify that the
                     data is no longer accessible by the user. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="appCert"/> [conditional]</h:b><h:br/> The
+                  <h:b>Function <xref to="appCert"/> [conditional]</h:b><h:br/> The
                   evaluator shall verify that the TSS describes how approval for an application to
                   perform the selected action (import, removal) with respect to certificates in the
                   Trust Anchor Database is accomplished (e.g., a pop-up, policy setting, etc.).
@@ -7432,9 +7426,9 @@
                     </h:ol> The evaluator shall repeat the test, allowing the approval to verify
                     that the application is able to remove/modify the certificate and that
                     validation no longer occurs. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="certValidity"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="certValidity"/> [conditional]</h:b><h:br/>
                   <test>The test of this function is performed in conjunction with FIA_X509_EXT.2.2. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="cellular"/> [conditional]</h:b><h:br/> The
+                  <h:b>Function <xref to="cellular"/> [conditional]</h:b><h:br/> The
                   evaluator shall ensure that the TSS describes which cellular protocols can be
                   disabled. The evaluator shall confirm that the AGD guidance describes the
                   procedure for disabling each cellular protocol identified in the TSS.<h:p/>
@@ -7442,31 +7436,31 @@
                     the administrator guidance. The evaluator shall attempt to connect the device to
                     a cellular network and, using network analysis tools, verify that the device
                     does not allow negotiation of the disabled protocols. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="auditLogs"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="auditLogs"/> [conditional]</h:b><h:br/>
                   <test>The evaluator shall attempt to read any device audit logs according to the
                     administrator guidance and verify that the logs may be read. This test may be
                     performed in conjunction with the evaluation activity of FAU_GEN.1. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="digSign"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="digSign"/> [conditional]</h:b><h:br/>
                   <test>The test of this function is performed in conjunction with FPT_TUD_EXT.5.1. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="sharedKeys"/> [conditional]</h:b><h:br/> The
+                  <h:b>Function <xref to="sharedKeys"/> [conditional]</h:b><h:br/> The
                   evaluator shall verify that the TSS describes how the approval for exceptions for
                   shared use of keys/secrets by multiple applications is accomplished (e.g., a
                   pop-up, policy setting, etc.).<h:p/>
                   <test>The test of this function is performed in conjunction with FCS_STG_EXT.1. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="keyWipeRules"/> [conditional]</h:b><h:br/> The
+                  <h:b>Function <xref to="keyWipeRules"/> [conditional]</h:b><h:br/> The
                   evaluator shall verify that the TSS describes how the approval for exceptions for
                   destruction of keys/secrets by applications that did not import the key/secret is
                   accomplished (e.g., a pop-up, policy setting, etc.).<h:p/>
                   <test>The test of this function is performed in conjunction with FCS_STG_EXT.1. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="unlockBanner"/> [conditional] </h:b><h:br/>
+                  <h:b>Function <xref to="unlockBanner"/> [conditional] </h:b><h:br/>
                   The evaluator shall verify that the TSS describes any restrictions in banner
                   settings (e.g., character limitations).<h:p/>
                   <test>The test of this function is performed in conjunction with FTA_TAB.1. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="auditItems"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="auditItems"/> [conditional]</h:b><h:br/>
                   <test>The test of this function is performed in conjunction with FAU_SEL.1. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="integ"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="integ"/> [conditional]</h:b><h:br/>
                   <test>The test of this function is performed in conjunction with FPT_NOT_EXT.2.1. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="USB"/> [conditional]</h:b><h:br/> The
+                  <h:b>Function <xref to="USB"/> [conditional]</h:b><h:br/> The
                   evaluator shall verify that the TSS includes a description of how data transfers
                   can be managed over USB.<h:p/>
                   <test>The evaluator shall perform the following tests based on the selections made
@@ -7489,7 +7483,7 @@
                         that the computer can access TOE data. </h:li>
                     </h:ol>
                   </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="backup"/> [conditional]</h:b><h:br/> The
+                  <h:b>Function <xref to="backup"/> [conditional]</h:b><h:br/> The
                   evaluator shall verify that the TSS includes a description of available backup
                   methods that can be enabled/disabled. If "selected applications or selected groups
                   of applications are selected the TSS shall include which applications of groups of
@@ -7512,11 +7506,11 @@
                     configuration data from occurring. The evaluator shall then enable each selected
                     backup location in turn and verify that the TOE can perform a backup of
                     configuration data. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="hotspot"/> [conditional] </h:b><h:br/> The
+                  <h:b>Function <xref to="hotspot"/> [conditional] </h:b><h:br/> The
                   evaluator shall verify that the TSS includes a description of Hotspot
                   functionality and USB tethering to include any authentication for these. <h:p/>
                   <test>The evaluator shall perform the following tests based on the selections in
-                    Function <ctr-ref ref-id="hotspot"/>. <h:ol type="a">
+                    Function <xref to="hotspot"/>. <h:ol type="a">
                       <h:li>[conditional] The evaluator shall enable hotspot functionality with
                         each of the of the support authentication methods. The evaluator shall
                         connect to the hotspot with another device and verify that the hotspot
@@ -7528,17 +7522,17 @@
                       </h:li>
                     </h:ol>
                   </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="dataSharing"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="dataSharing"/> [conditional]</h:b><h:br/>
                   <test>The test of this function is performed in conjunction with FDP_ACF_EXT.1.2. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="appGroups"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="appGroups"/> [conditional]</h:b><h:br/>
                   <test>The evaluator shall set a policy to cause a designated application to be
                     placed into a particular application group. The evaluator shall then install the
                     designated application and verify that it was placed into the correct group. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="unenroll"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="unenroll"/> [conditional]</h:b><h:br/>
                   <test>The evaluator shall attempt to unenroll the device from management and
                     verify that the steps described in FMT_SMF_EXT.2.1 are performed. This test
                     should be performed in conjunction with the FMT_SMF_EXT.2.1 evaluation activity. </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="alwaysOnVPN"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="alwaysOnVPN"/> [conditional]</h:b><h:br/>
                   <test>The evaluator shall verify that the TSS contains guidance to configure the
                     VPN as Always-On. The evaluator shall configure the VPN as Always-On and perform
                     the following test. <h:ol type="a">
@@ -7560,14 +7554,14 @@
                         automatically reconnects. </h:li>
                     </h:ol>
                   </test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="bioRevoke"/> [conditional]</h:b><h:br/>
+                  <h:b>Function <xref to="bioRevoke"/> [conditional]</h:b><h:br/>
                   <test>The evaluator shall verify that the TSS describes the procedure to revoke a
                     biometric credential stored on the TOE. The evaluator shall configure the TOE to
                     use BAF and confirm that the biometric can be used to authenticate to the
                     device. The evaluator shall revoke the biometric credential’s ability to
                     authenticate to the TOE and confirm that the same BAF cannot be used to
                     authenticate to the device.</test><h:br/>
-                  <h:b>Function <ctr-ref ref-id="other"/></h:b><h:br/> The evaluator shall
+                  <h:b>Function <xref to="other"/></h:b><h:br/> The evaluator shall
                   verify that the TSS describes all assigned security management functions and their
                   intended behavior.<h:p/>
                   <test>The evaluator shall design and perform tests to demonstrate that the
