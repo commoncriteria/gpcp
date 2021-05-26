@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
 
-<PP xmlns="https://niap-ccevs.org/cc/v1"
-    xmlns:sec="https://niap-ccevs.org/cc/v1/section" name="Protection Profile for General-Purpose Computing Platforms"
-    xmlns:h="http://www.w3.org/1999/xhtml" boilerplate='yes'>
+<PP target-products="General-Purpose Computing Platforms" 
+    xmlns="https://niap-ccevs.org/cc/v1"
+    xmlns:cc="https://niap-ccevs.org/cc/v1"
+    xmlns:sec="https://niap-ccevs.org/cc/v1/section"
+    xmlns:h="http://www.w3.org/1999/xhtml" 
+    boilerplate='yes'>
 
   <!-- <inline-comment color='green'> Hello World QQQQ </inline-comment> -->
   <!-- <inline-comment color='blue' linebreak='yes'> Hello World QQQQ </inline-comment> -->
@@ -32,6 +35,23 @@
     </entry>
   </RevisionHistory>
 
+  <!-- Include SSH and TLS packages -->
+  <include-pkg id="tls">
+      <raw-url>https://github.com/commoncriteria/tls/raw/
+                        562626874aacfbb9beb397fca5be128c86ec4ebf
+                        /input/tls.xml</raw-url>
+	<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>
+               <depends on="pizza"/>
+	</include-pkg>
+	    
+    <include-pkg id="ssh">
+                <raw-url>https://github.com/commoncriteria/ssh/raw/
+                         de9b38dc426a4ac14d4016510d1ef477d419f7ae
+                         /input/ssh.xml</raw-url>
+      <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=389&amp;id=389</url>
+   </include-pkg>	
+
+	
     <pp-preferences>
 <!--        <pp-pref name="display-audit-with-sfrs">0</pp-pref> -->
     	<audit-events-in-sfrs/>
@@ -64,7 +84,7 @@
 
 <!-- 1.0 Introduction   -->
 <!--    1.1 Overview   -->
-<section title="Introduction" id="int">
+<sec:Introduction>
     <section title="Overview" id="ppoverview">
 		The scope of this Protection Profile (PP) is to describe the security functionality of 
 		General-Purpose Computing Platforms in terms of the Common Ctiteria and
@@ -435,13 +455,13 @@
 		
 	</section>
 
-  </section>
+  </sec:Introduction>
 
 <!-- 2.0 Conformance Claims (this is all boilerplate) -->
-  <section title="Conformance Claims" id="cclaims"/>
+  <sec:cclaims title="Conformance Claims"/>
 	
 <!-- 3.0 Security Problem Description -->
-  <section title="Security Problem Description" id="spd">
+  <sec:spd title="Security Problem Description">
 	The security problem is described in terms of the threats that the GPCP is expected to address, assumptions 
 	about the operational environment, and any organizational security policies that the GPCP
     	is expected to enforce.<h:p/>
@@ -461,7 +481,7 @@
 
 <!--    3.1 Threats -->
 	  
-    <section title="Threats" id="threats">
+    <sec:Threats>
       <threats>
         <threat id="t-physical" name="T.PHYSICAL">
           <description>An attacker with physical access might be able to compromise TOE integrity, subvert
@@ -566,7 +586,7 @@
           </objective-refer>
         </threat>
       </threats>
-    </section>
+    </sec:Threats>
 	  
 <!--   3.2 Assumptions  -->
     <section title="Assumptions" id="assumptions">
@@ -673,10 +693,10 @@
         </OSP>
       </OSPs>
     </section>
-  </section>
+  </sec:spd>
 	    
 <!-- 4.0 Security Objectives -->
-  <section title="Security Objectives" id="obj">
+  <sec:Security_Objectives>
 	  
 <!--   4.1 Security Objectives for the TOE -->
     <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
@@ -870,14 +890,14 @@
     <section title="Security Objectives Rationale" id="SOR">
       <!-- This section is populated by boilerplates.xsl in transforms. -->
       </section>
-  </section>
+  </sec:Security_Objectives>
 
 <!-- 5.0 Security Requirements -->
-  <section title="Security Requirements" id="req">
+  <sec:Security_Requirements>
   
 	  
 <!--   5.1 Security Functional Requirements -->
-    <section title="Security Functional Requirements" id="SFRs">
+    <sec:SFRs title="Security Functional Requirements">
 
    	<!-- 5.1.1 Auditable Events for Mandatory SFRs -->
 	<section id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
@@ -8611,7 +8631,7 @@
 	</section>
 	
 	    
-    </section>
+    </sec:SFRs>
 	  
 <!--   5.2 Security Assurance Requirements -->
 	  
@@ -9110,7 +9130,7 @@
         </a-component>
       </section>      
     </section>
-  </section>
+  </sec:Security_Requirements>
 
 	    
 <!-- Appendix A and B are auto-generated. -->
