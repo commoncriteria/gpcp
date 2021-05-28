@@ -78,7 +78,7 @@
 	x Store Persistent Secrets FCS_STG_EXT.1-3
 	x Wrap Transient Secrets FCS_STG_EXT.1-3
 	x Get Time Stamp FPT_STM.1
-	Cryptographic Self-Tests FPT_TST.1
+	x Cryptographic Self-Tests FPT_TST.1
 -->
 
 
@@ -125,6 +125,9 @@
 		component, such as a library. APIs are often provided for a set of libraries included
 		with the platform.
       </term>
+    	<term abbr="BMC" full="Baseboard Management Controller">
+		Or Management Controller. A small computer generally found on Server motherboards that performs management tasks 
+		on behalf of an Administrator.</term>
       <term abbr='CESG' full="Communications-Electronics Security Group"/>
       <term abbr='CMC' full="Certificate Management over CMS"/>
       <term abbr='CMS' full="Cryptographic Message Syntax"/>
@@ -194,6 +197,9 @@
       <term abbr='ISO' full="International Organization for Standardization"/>
       <term abbr='IT' full="Information Technology"/>
       <term abbr='ITSEF' full="Information Technology Security Evaluation Facility"/>
+	<term abbr="MC" full="Management Controller">
+		Or Baseboard Management Controller. A small computer generally found on Server motherboards that performs management tasks 
+		on behalf of an Administrator.</term>
       <term abbr='NIST' full="National Institute of Standards and Technology"/>
       <term abbr='OID' full="Object Identifier"/>
       <term full="Operating System" abbr="OS" plural="OSes">
@@ -250,9 +256,10 @@
 		tenant software is an operating system or virtualization system, but may also be "bare-metal" applications.
 		Tenant software is outside the TOE boundary.<h:p/>
 		For example, for a PC Client platform, the hardware and firmware responsible for booting the platform and 
-		operation of platform devices (such as BIOS, device controller firmware and plaform management firmware would all 
+		operation of platform devices (such as BIOS, device controller firmware, and plaform management firmware would all 
 		be included in the TOE. Operating systems and application software is outside the TOE.<h:p/>
-		For server-class hardware, any management controller responsible for updating platform firmware is expressly
+		For server-class hardware, any management controller 
+	        responsible for updating platform firmware (such as a baseboard management controller) is expressly
 		included within the TOE.<h:p/>
         <figure entity="images/arch.png" title="High-Level Architecture of a Generic Platform" id="toe"/><h:p/>
 		Figure 1 (taken from NIST SP 800-193) shows a high-level system architecture for a generic computing platform.
@@ -266,7 +273,7 @@
 
 <!--     1.3.2 TOE Operational Environment -->
       <section title="TOE Operational Environment" id="TOEopenv">
-	      The TOE has no platform since it is itself a platform. But the TOE does have an operational
+	      The TOE has no platform since it is itself a platform, but the TOE does have an operational
 		  environment. The OE consists of the physical environment in which the TOE operates (e.g., 
 		  data center, enterprise office, vehicle, outdoors) and any networks to which the TOE may
 		  be connected. Different use cases may invoke different requirements depending on the 
@@ -278,75 +285,43 @@
     <section title="Use Cases" id="usecases">
 	
 		This Protection Profile supports several use cases for general-purpose computing platforms. The cases
-		enumerated below add requirements to the baseline for GPCP due to additional threats or fewer assumptions
+		enumerated below add requirements to the baseline for GPCP due to additional threats or changes in assumptions
 		about the operational environment. Use cases not listed below (e.g. consumer-grade desktop computers) 
-		need only be evaluated against the baseline requirement.
+		need only be evaluated against the baseline requirements.
 	    
-	<!-- Physical protections are one of the major differences in use cases. There are probably 
-	four levels of physical protections. 
-	    1. None. Physical protection commensurate with the value of the information is assumed to be
-		provided by the operational environment.
-		2. Tamper Detect without Automatic Notification (FPT_PHP.1)
-		3. Tamper Detect with Automtic Notification (FPT_PHP.2)
-		4. Tamper Resistance (FPT_PHP.3)
-		We just have to align these levels with the use cases.
-		
-		CSfC/MACP has some EUD choices:
-		- EUD with DAR 
-		  - Continuous physical control required
-		- Classified EUD 
-		  - Rely on the environment for physical protection
-		  - Continuous physical control required
-		  - DAR required to store keys
-		- Thin EUD
-		  - DAR required to store keys
-		  - Contunous physical control required
-		  
-		MA-EU-10  An EUD must be de-authorized from the network and submitted for Forensic Analysis if
-				suspected of being compromised.
-		MA-EU-11 An EUD must be destroyed if it has been determined to be compromised through
-				Forensic Analysis.
-		MA-EU-41 The EUD must perform a wipe of all protected data after 10 or less authentication failures. 
-		MA-EU-57 USB debugging capabilities must be disabled on the EUDs.
-		MA-CM-3 All solution components must be configured with a monitoring service that detects all
-				changes to configuration. 
-		MA-AU-9 Solution components must log all actions performed on the audit log (i.e., off-loading,
-				deletion, etc.).		
-		MA-GD-7 Users must periodically inspect the physical attributes of EUDs for signs of tampering or
-				other unauthorized changes.		
-		MA-GD-30 All hardware components must be tracked through an AO-approved inventory
-				management process that identifies each component as part of a CSfC Solution. All T=O
-		MA-GD-31 Users must maintain continuous physical control of the EUD as defined by local policy.
-		MA-RP-11 Solution owners must report any evidence of malicious physical tampering with solution
-				components.
-	-->
 	<usecases>
 		<usecase title="Server-Class Platform, Basic" id="uc-server-basic">
         	<description>
-				This use case includes the base requirements for server-class hardware in a data center OE. There are 
+				This use case encompasses server-class hardware in a data center. There are 
 				no additional physical protections required because the platform is assumed to be protected 
-				by the operational environment as indicated by A.PHYSICAL_PROTECTION.<h:p/>
-				This use case adds only audit requirements the base mandatory requirements.
+				by the operational environment as indicated by A.PHYSICAL_PROTECTION.
+				The platform is administered through a management controller 
+				who accesses the MC through a console or remotely.<h:p/>
+				This use case adds only audit requirements to the base mandatory requirements.
           	</description>
 			<config>
 				<ref-id>sfr-fau-gen-1</ref-id>
+				<ref-id>sfr-fau-sar-1</ref-id>
 				<ref-id>sfr-fau-stg-1</ref-id>
 				<ref-id>sfr-fau-stg-4</ref-id>
+				<ref-id>sfr-fau-stg-ext-1</ref-id>
 			</config>
         </usecase>
 		<usecase title="Server-Class Platform, Enhanced" id="uc-servers-enhanced">
         	<description>
 				This use case adds physical protections to the base requirements for server-class hardware.
 				Additional physical protections required because the platform us assumed to be minimally 
-				protected by the by the operational environment. This use case can also be used for servers in 
+				protected by the by the operational environment. This use case can also be invoked for servers in 
 				data centers where there are enhanced security requirements.<h:p/>
 				This use case adds requirements for audit and physical protections to the base mandatory SFRs.
 				It removes the assumption that the TOE is physically protected by the OE.
           	</description>
 			<config>
 				<ref-id>sfr-fau-gen-1</ref-id>
+				<ref-id>sfr-fau-sar-1</ref-id>
 				<ref-id>sfr-fau-stg-1</ref-id>
 				<ref-id>sfr-fau-stg-4</ref-id>
+				<ref-id>sfr-fau-stg-ext-1</ref-id>
 				<ref-id>sfr-fpt-php-2</ref-id> 
 				<ref-id>sfr-fpt-php-3</ref-id> 
 				<ref-id>t-physical</ref-id>				
@@ -364,7 +339,7 @@
 		<usecase title="Portable Clients (laptops, tablets), Enhanced" id="uc-clients-portable-enhanced">
         	<description>
 				This use case adds physical protections to the base requirements for portable clients or end-user 
-				devices. It is intended for devices that are used in high-assurance scanrios.
+				devices. It is intended for devices that are used in high-assurance scenarios.
           	</description>
 			<config>
 				<ref-id>sfr-fpt-php-1</ref-id> 
@@ -385,8 +360,10 @@
 				<ref-id>sfr-fpt-php-1</ref-id> 
 				<ref-id>sfr-fpt-php-2</ref-id> 
 				<ref-id>sfr-fau-gen-1</ref-id>
+				<ref-id>sfr-fau-sar-1</ref-id>
 				<ref-id>sfr-fau-stg-1</ref-id>
 				<ref-id>sfr-fau-stg-4</ref-id>
+				<ref-id>sfr-fau-stg-ext-1</ref-id>
 				<ref-id>t-physical</ref-id>				
 				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
@@ -409,8 +386,10 @@
           	</description>
 			<config>
 				<ref-id>sfr-fau-gen-1</ref-id>
+				<ref-id>sfr-fau-sar-1</ref-id>
 				<ref-id>sfr-fau-stg-1</ref-id>
 				<ref-id>sfr-fau-stg-4</ref-id>
+				<ref-id>sfr-fau-stg-ext-1</ref-id>
 			</config>
         </usecase>
 		<usecase title="IoT Devices" id="uc-iot-device">
@@ -431,28 +410,26 @@
 	
 	<!--   1.5 Roles -->
     <section title="Roles" id="roles">
-		For purposes of these requirements there are three main roles in a general-purpose computing platform: <h:ol type="1">
-			<h:li>Administrators (privileged users)</h:li>
+		For purposes of these requirements there are three main entities that interact with a general-purpose computing platform: <h:ol type="1">
+			<h:li>Tenant Software</h:li>
 			<h:li>Users (non-privileged users)</h:li>
-			<h:li>Tenant Software</h:li></h:ol>
-		Administrators and Users are humans who may be local or remote to the platform. Tenant Software is
-		generally an operating system, virtualization system, or application.  
+	    		<h:li>Administrators (privileged users)</h:li> </h:ol>
+		Tenant Software generally consists of an operating system, virtualization system, or application
+		that uses platform resources to run workloads on behalf of Users. Tenant software is necessarily privileged
+	    	on the platform.<h:p/>
+	    	Users are humans who interact with the platform through user interfaces. They generally have to authenticate 
+	    	thenselves to tenant software (e.g. an operating system), but generally not to the platform itself.<h:p/>
+	    	Administrators are humans who manage the platform through some kind of administrative interface. The interface
+	    	may be local or remote to the platform. 
 		<h:p/>
 		In this context, Administrators manage the physical platform, not the OS (OS Admins would be classified
-		as Users). Only Administrators need to be authenticated to the platform. For an EUD, this could generally
+		as platform Users). Only Administrators need to be authenticated to the platform. For an EUD, this could generally
 		be accomplished through an interface implemented in firmware. For server-class hardware, the management
 		interface could be implemented in a management controller that is part of the platform. Administrators 
 		must authenticate themselves to the platform before the platform can allow them to perform administrative
 		tasks.
 		<h:p/>
-		Administrators are assumed to be acting in the best interests of the system owner. Users are 
-		generally assumed to be non-hostile to the interests of the system owner, but some use cases may
-		support potentially negligent or hostile users.  The interests of tenant software are assumed to be 
-		closely entwined in the interests of the platform.
-		<h:p/>
-		Ordinary, non-privileged users ... Maybe there is only one Role.  Is assertion of physical presence 
-		enough to claim privilege? And thus be an administrator.
-		
+		Administrators are assumed to be acting in the best interests of the platform owner.
 	</section>
 
   </sec:Introduction>
@@ -1135,7 +1112,7 @@
         <!-- FAU_STG_EXT.1 Off-Loading of Audit Data -->
 		<!-- Must be included if FAU_GEN.1 is included. -->
 		<!-- Administrator? -->
-        <f-component cc-id="fau_stg_ext.1" name="Off-Loading of Audit Data" status="sel-based">
+        <f-component id="sfr-fau-stg-ext-1" cc-id="fau_stg_ext.1" name="Off-Loading of Audit Data" status="sel-based">
 			<depends on-sel="sel-audit-integrity"/>
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
