@@ -51,7 +51,8 @@
                         562626874aacfbb9beb397fca5be128c86ec4ebf
                         /input/tls.xml</raw-url>
 	<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>
-               <depends on="pizza"/>
+               <depends on-sel="x509_dtls"/>
+               <depends on-sel="itc_dtls"/>
 	</include-pkg>
 	    
     <include-pkg id="ssh">
@@ -1131,7 +1132,7 @@
             <f-element id="fau-stg-ext-1e1">
                 <title>The TSF shall be able to tranfer generated audit data to an external IT entity using 
 				<selectables linebreak="yes">
-					<selectable>a trusted channel as specified in FTP_ITC_EXT.1</selectable>
+					<selectable id="sel-fau-itc">a trusted channel as specified in FTP_ITC_EXT.1</selectable>
 					<selectable>removeable media requiring physical access to the platform</selectable>
 				</selectables>.
                 </title>
@@ -4455,9 +4456,65 @@
 			<audit-event/>
         </f-component>
 
+                <!-- FCS_HTTPS_EXT.1 -->
+                <!-- Depends on HTTPS being selected for trusted channel -->
+                <f-component cc-id="fcs_https_ext.1" name="HTTPS Protocol"  status="sel-based">
+                    <depends on-sel="sel-itc-https"/>
+					<depends on-sel="sel-x509-2-https"/>
+					<consistency-rationale/>
+					<comp-lev>defines requirements for the implementation of the HTTPS protocol.</comp-lev>
+					<management>No specific management functions are identified.</management>
+					<audit>The following actions should be auditable if FAU_GEN Security audit data 
+						generation is included in the PP/ST:
+						<h:ol type="a">
+							<h:li>Failure to establish an HTTPS session.</h:li>
+							<h:li>Establishment/termination of an HTTPS session.</h:li>
+						</h:ol>
+					</audit>
+					<dependencies>[FCS_TLSC_EXT.1 TLS Client Protocol, or<h:p/>
+								FCS_TLSC_EXT.2 TLS Client Protocol with Mutual Authentication, or<h:p/>
+								FCS_TLSS_EXT.1 TLS Server Protocol, or<h:p/>
+								FCS_TLSS_EXT.2 TLS Server Protocol with Mutual Authentication]</dependencies>
+                    <f-element id="fcs-https-ext-1e1">
+                        <title>The TSF shall implement the HTTPS protocol that complies with RFC 2818.
+                        </title>
+                        <note role="application">This SFR is included in the ST if the ST Author selects "TLS/HTTPS" in FTP_ITC_EXT.1.1.<h:br/><h:br/>
+						The ST author must provide enough detail to determine how the implementation is 
+						complying with the standard(s) identified; this can be done either by adding elements to this 
+						component, or by additional detail in the TSS.</note>
+                    </f-element>
+                    <f-element id="fcs-https-ext-1e2">
+                        <title>The TSF shall implement HTTPS using TLS.
+                        </title>
+                        <aactivity>
+                            <TSS>
+                                The evaluator shall check the TSS to ensure that it is clear on how HTTPS uses 
+                                TLS to establish an administrative session, focusing on any client authentication required by 
+                                the TLS protocol vs. security administrator authentication which may be done at a different 
+                                level of the processing stack. 
+                            </TSS>
+                            <Tests>
+                                Testing for this activity is done as part of the TLS testing; this may result in additional 
+                                testing if the TLS tests are done at the TLS protocol level.
+                            </Tests>
+                        </aactivity>
+                    </f-element>
+					<audit-event>
+					<audit-event-descr>Failure to establish a HTTPS Session.</audit-event-descr>
+                        <audit-event-info>Reason for failure.</audit-event-info>
+                        <audit-event-info>Non-TOE endpoint of connection (IP address) for failures.</audit-event-info>
+					</audit-event>
+					<audit-event>
+					<audit-event-descr>Establishment/Termination of a HTTPS session.</audit-event-descr>
+                        <audit-event-info>Non-TOE endpoint of connection (IP address).</audit-event-info>
+					</audit-event>
+                </f-component>
+
+
         <f-component cc-id="fcs_ipsec_ext.1" name="IPsec Protocol" status="sel-based">
-<!--                    <depends on-sel="sel-itc-ipsec"/>
-					<depends on-sel="sel-x509-2-ipsec"/>  -->
+
+					<depends on-sel="sel-itc-ipsec"/>
+					<depends on-sel="sel-x509-2-ipsec"/>
 					<consistency-rationale/>
 					<comp-lev>requires that IPsec be implemented as specified.</comp-lev>
 					<management>The following actions could be considered for the management 
@@ -8362,107 +8419,110 @@
     </section>		
 
 	<section id="ftp" title="Trusted Path/Channels FTP)">
+	
+	    <ext-comp-def title="Trusted Channel Communications" fam-id="FTP_ITC_EXT">
+			<fam-behavior>This family defines requirements for protection of
+				data in transit between the TOE and its operational environment.</fam-behavior>
+		</ext-comp-def>
 
-        <f-component id="sfr-ftp-itc-ext-1" cc-id="ftp_itc_ext.1" name="Trusted Channel Communication" status="optional">
-          <f-element id="ftp-itc-ext-1e1">
-            <title>The TSF shall use <h:ul>
-                <h:li>802.11-2012 in accordance with the Extended Package for WLAN Clients,</h:li>
-                <h:li>802.1X in accordance with the Extended Package for WLAN Clients,</h:li>
-                <h:li>EAP-TLS in accordance with the Extended Package for WLAN Clients,</h:li>
-                <h:li>mutually authenticated TLS as defined in the Package for Transport Layer Security</h:li>
-              </h:ul> and <selectables linebreak="yes">
-                <selectable>IPsec in accordance with the PP-Module for VPN Client</selectable>
-                <selectable id="itc_dtls">mutually authenticated DTLS as defined in the Package for Transport Layer Security</selectable>
-                <selectable>HTTPS</selectable>
-              </selectables> protocols to provide a communication channel between itself and another trusted IT
-				product that is logically distinct from other communication channels, provides assured 
+		<!-- FTP_ITC_EXT.1 Trusted Channel Communications -->
+		<!-- -->
+        <f-component id="sfr-ftp-itc-ext-1" cc-id="ftp_itc_ext.1" name="Trusted Channel Communication" status="sel-based">
+			<depends on-sel="sel-fau-itc"/>
+			<consistency-rationale/>
+			<comp-lev>requires the TSF to implement one or more cryptographic protocols
+					to secure connectivity between the TSF and various external entities.</comp-lev>
+			<management>The following actions could be considered for the
+				management functions in FMT:
+				<h:ol type="a">
+					<h:li>Ability to configure the cryptographic functionality.</h:li>
+				</h:ol>
+			</management>
+			<audit>The following actions should be auditable if FAU_GEN Security audit data
+				generation is included in the PP/ST:
+				<h:ol type="a">
+					<h:li>Initiation of the trusted channel.</h:li>
+					<h:li>Termination of the trusted channel.</h:li>
+					<h:li>Failures of the trusted path functions.</h:li>
+				</h:ol>
+			</audit>
+			<dependencies>FAU_STG_EXT.1 Off-Loading of Audit Data</dependencies>          
+			<f-element id="ftp-itc-ext-1e1">
+            <title>The TSF shall use
+				<selectables linebreak="yes">
+                    <selectable id="sel-itc-tls">TLS as conforming to the <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">
+						<h:i>Functional Package for Transport Layer Security</h:i></h:a></selectable>
+                    <selectable id="sel-itc-https">TLS/HTTPS as conforming to FCS_HTTPS_EXT.1</selectable>
+                    <selectable id="sel-itc-ipsec">IPsec as conforming to FCS_IPSEC_EXT.1</selectable>
+                    <selectable id="sel-itc-ssh">SSH as conforming to the
+						<h:a href="https://www.niap-ccevs.org/MMO/PP/-389-/"><h:i>Functional Package
+						for Secure Shell</h:i></h:a></selectable>
+				</selectables> 
+				and 
+			    <selectables linebreak="yes">
+				    <selectable id="sel-itc-certauth">certificate-based authentication of the remote peer</selectable>
+				    <selectable>non-certificate-based authentication of the remote peer</selectable>
+				    <selectable>no authentication of the remote peer</selectable>
+				</selectables>				
+				protocols to provide a communication channel between itself and 
+                <selectables linebreak="yes">
+                    <selectable>audit servers (as required by FAU_STG_EXT.1)</selectable>
+                    <selectable>remote administrators (as required by FTP_TRP.1.1 if selected in FMT_MOF_EXT.1)</selectable>
+					<selectable><assignable>other capabilities</assignable></selectable>
+					<selectable>no other capabilities</selectable>
+                </selectables>
+				that is logically distinct from other communication channels, provides assured 
 				identification of its end points, protects channel data from disclosure, and detects modification
-				of the channel data. </title>
+				of the channel data. 
+			</title>
             <note role="application"> 
-              The intent of the mandatory portion of the above requirement is to use the cryptographic protocols 
-			  identified in the requirement to establish and maintain a trusted channel between the TOE and an
-			  access point, VPN Gateway, or other trusted IT product.<h:p/> 
-              The ST author must list which trusted channel protocols are implemented by the Mobile Device.
-			  <h:p/> 
-              The TSF must be validated against the Extended Package for WLAN Clients to satisfy the mandatory 
-			  trusted channels of 802.11-2012, 802.1X, and EAP-TLS. <h:p/> 
-              To satisfy the mandatory trusted channel of TLS and if "mutually authenticated DTLS as defined in the 
-			  Package for Transport Layer Security" is selected, the TSF must be validated against the TLS 
-			  Functional Package, with the following selections made: <h:ul>
-                <h:li>FCS_TLS_EXT.1:</h:li>
-                <h:ul>
-                  <h:li>either TLS or DTLS is selected as appropriate</h:li>
-                  <h:li>client is selected</h:li>
-                </h:ul>
-                <h:li>FCS_TLSC_EXT.1.1 or FCS_DTLSC_EXT.1.1 (as appropriate): </h:li>
-                <h:ul>
-                  <h:li>The cipher suites selected must correspond with the algorithms and hash functions allowed in FCS_COP.1.</h:li>
-                  <h:li>Mutual authentication must be selected</h:li>
-                </h:ul>
-                <h:li>FCS_TLSC_EXT.1.3 or FCS_DTLSC_EXT.1.3 (as appropriate): </h:li>
-                <h:ul>
-                  <h:li>With no exceptions is selected.</h:li>                  
-                </h:ul>
-              </h:ul>
-              <h:br/> 
-              If the ST author selects IPsec, the TSF must be validated against the PP-Module for VPN Client. <h:p/>                    
-              <if-opt-app>
-                <!-- TODO: Looks like appref is broken -->Appendix B - Selection-Based Requirements
-                contains the requirements for implementing each of the other optional trusted
-                channel protocols. </if-opt-app> The ST author must include the security functional
-              requirements for the trusted channel protocol selected in FTP_ITC_EXT.1 in the main
-              body of the ST. <h:p/> Assured identification of endpoints is performed
-              according to the authentication mechanisms used by the listed trusted channel
-              protocols. </note>
+				This SFR is included in the ST if a trusted channel is used to offload audit data 
+				or if the platform is administered remotely.<h:p/>
+                If the ST author selects either TLS or HTTPS, the TSF shall be validated against the 
+                Functional Package for TLS. This PP does not mandate that a product implement TLS with mutual authentication,
+				but if the product includes the capability to perform TLS with mutual authentication, then
+				mutual authentication must be included within the TOE boundary. The TLS Package requires that the X509 
+				requirements be included by the PP, so selection of TLS or HTTPS causes FIA_X509_EXT.* to be selected.<h:p/>
+                If the ST author selects SSH, the TSF shall be validated against the Extended Package for Secure Shell.<h:p/>
+			    If the ST author selects "certificate-based authentication of the remote peer," then FIA_X509_EXT.1 and FIA_X509_EXT.2
+				must be included in the ST. "No authentication of the remote peer" should be selected only if the TOE is acting 
+				as a server in a non-mutual authentication configuration.<h:p/>			    
+			    The ST author must include the security functional requirements for the
+                trusted channel protocol selected in FTP_ITC_EXT.1 in the main body of the ST.<h:p/>
+            </note>
           </f-element>
-          <f-element id="ftp-itc-ext-1e2">
-            <title>The TSF shall permit the TSF to initiate communication via the trusted channel.
-            </title>
-          </f-element>
-          <f-element id="ftp-itc-ext-1e3">
-            <title>The TSF shall initiate communication via the trusted channel for wireless access
-              point connections, administrative communication, configured enterprise connections,
-              and <selectables>
-                <selectable>OTA updates</selectable>
-                <selectable>no other connections</selectable>
-              </selectables>. </title>
             <aactivity>
-              <TSS> The evaluator shall examine the TSS to determine that it describes the details
-                of the TOE connecting to access points, VPN Gateways, and other trusted IT products
-                in terms of the cryptographic protocols specified in the requirement, along with
-                TOE-specific options or procedures that might not be reflected in the
-                specifications. The evaluator shall also confirm that all protocols listed in the
-                TSS are specified and included in the requirements in the ST. <h:p/> If
-                OTA updates are selected, the TSS shall describe which trusted channel protocol is
-                initiated by the TOE and is used for updates.<h:p/>
-              </TSS>
-              <Guidance> The evaluator shall confirm that the operational guidance contains
-                instructions for establishing the connection to access points, VPN Gateways, and
-                other trusted IT products. <h:p/>
-              </Guidance>
-              <Tests> The evaluator shall also perform the following tests for each protocol listed: <testlist>
-                  <test>The evaluator shall ensure, for each communication channel with an
-                    authorized IT entity, the channel data are not sent in plaintext and that a
-                    protocol analyzer identifies the traffic as the protocol under testing.</test><h:br/>
-                  <test>[conditional] If IPsec is selected, the evaluator shall ensure that the TOE 
-                    is able to initiate communications with a VPN Gateway, setting up the 
-                    connections as described in the operational guidance and ensuring that 
-                    communication is successful.</test><h:br/>
-                  <test>[conditional]If OTA updates are selected, the evaluator shall trigger an
-                    update request according to the operational guidance and shall ensure that the
-                    communication is successful.</test><h:br/>
-                  <test>For any other selected protocol (not tested in Test 1, 2, or 3), the
-                    evaluator shall ensure that the TOE is able to initiate communications with a
-                    trusted IT product using the protocol, setting up the connection as described in
-                    the operational guidance and ensuring that the communication is successful.
-                  </test>
-                </testlist>
-              </Tests>
+                <TSS>
+                    The evaluator will review the TSS to determine that it lists all trusted channels 
+                    the TOE uses for remote communications, including both the external entities and/or 
+                    remote users used for the channel as well as the protocol that is used for each.
+                </TSS>
+				<Guidance> The evaluator shall confirm that the operational guidance contains
+					instructions for establishing the connection to access points, VPN Gateways, and
+					other trusted IT products. <h:p/>
+				</Guidance>
+				<Tests>
+					The evaluator will configure the TOE to communicate with each external IT entity 
+                    and type of remote user identified in the TSS. The evaluator will monitor network
+                    traffic while the VS performs communication with each of these destinations. The evaluator will ensure
+                    that for each session a trusted channel was established in conformance with the protocols identified 
+                    in the selection.
+				</Tests>
             </aactivity>
           </f-element>
-		  <audit-event/>
-        </f-component>
-	
+		    <audit-event>
+			<audit-event-descr>Initiation of the trusted channel.</audit-event-descr>
+                        <audit-event-info>User ID and remote source (IP Address) if feasible.</audit-event-info>
+		    </audit-event>    
+		    <audit-event>
+			<audit-event-descr>Termination of the trusted channel.</audit-event-descr>
+                        <audit-event-info>User ID and remote source (IP Address) if feasible.</audit-event-info>
+		    </audit-event>    
+		    <audit-event>
+			<audit-event-descr>Failures of the trusted path functions.</audit-event-descr>
+                        <audit-event-info>User ID and remote source (IP Address) if feasible.</audit-event-info>
+		    </audit-event>    
+        </f-component>	
 	</section>
 	
 	    
