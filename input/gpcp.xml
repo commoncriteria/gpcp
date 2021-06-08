@@ -336,6 +336,7 @@
 				<ref-id>sfr-fau-stg-ext-1</ref-id>
 				<ref-id>sfr-fpt-php-2</ref-id> 
 				<ref-id>sfr-fpt-php-3</ref-id> 
+				<ref-id>fpt-jta-ext-2</ref-id>
 				<ref-id>t-physical</ref-id>				
 				<not><ref-id>a-physical-protection</ref-id></not>
 			</config>
@@ -355,6 +356,7 @@
           	</description>
 			<config>
 				<ref-id>sfr-fpt-php-1</ref-id> 
+				<ref-id>fpt-jta-ext-2</ref-id>
 				<ref-id>t-physical</ref-id>				
 				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
@@ -371,6 +373,7 @@
 			<config>
 				<ref-id>sfr-fpt-php-1</ref-id> 
 				<ref-id>sfr-fpt-php-2</ref-id> 
+				<ref-id>fpt-jta-ext-2</ref-id>
 				<ref-id>sfr-fau-gen-1</ref-id>
 				<ref-id>sfr-fau-sar-1</ref-id>
 				<ref-id>sfr-fau-stg-1</ref-id>
@@ -387,6 +390,7 @@
           	</description>
 			<config>
 				<ref-id>sfr-fpt-php-3</ref-id> 
+				<ref-id>fpt-jta-ext-2</ref-id>
 				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
         </usecase>
@@ -413,6 +417,7 @@
           	</description>
 			<config>
 				<ref-id>sfr-fpt-php-1</ref-id> 
+				<ref-id>fpt-jta-ext-2</ref-id>				
 				<ref-id>t-physical</ref-id>				
 				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
@@ -6124,26 +6129,25 @@
 		<f-component id="sfr-fia-uau-ext-2" cc-id="fia_uau_ext.2" name="Timing of Authentication" status="optional">
 			<f-element id="fia-uau-ext-2e1">
 				<title>
-					The TSF shall allow [selection: [assignment: list of actions], no actions] on behalf of the
-					user to be performed before the user is authenticated.
+					The TSF shall allow 
+						<selectables>
+							<selectable><assignable>list of admnistrative actions</assignable>
+							<selectable>no administrative actions</selectable>
+						</selectables> on behalf of an Administrator to be performed before the Administrator is authenticated.
 				</title>
 			</f-element>
 			<f-element id="fia-uau-ext-2e2">
 				<title>
-					The TSF shall require each user to be successfully authenticated before allowing any other 
-					TSF-mediated actions on behalf of that user.
+					The TSF shall require each Administrator to be successfully authenticated before allowing any other 
+					TSF-mediated actions on behalf of that Administrator. (from the management functions table)
 				</title>
 				<note role="application">
-					The security relevant actions allowed by unauthorized users in locked state must be listed.
-					At a minimum the actions that correspond to the functions available to the user in 
-					FMT_SMF_EXT.1 and are allowed by unauthorized users in locked state should be listed. For
-					example, if the user can enable/disable the camera per function Table 5 of FMT_SMF_EXT.1 and
-					unauthorized users can take a picture when the device is in locked state, this action must be
-					listed.
+					This requirement does not apply to non-administrative functions, i.e., functions that are not listed 
+					in the management funcstions table in FMT_SMF_EXT.1.
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator shall verify that the TSS describes the actions allowed by unauthorized 
+						The evaluator shall verify that the TSS describes the admninistrative actions allowed by non- 
 						users in the locked state.
 					</TSS>
 					<Guidance>
@@ -6158,56 +6162,63 @@
 			<audit-event/>
 		</f-component>
 	
-                <!-- FIA_UIA_EXT.1 -->
-                <f-component cc-id="fia_uia_ext.1" name="Administrator Identification and Authentication">
-					<consistency-rationale/>
-					<comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
-						are identified and authenticated prior to authorizing these actions to be performed.</comp-lev>
-					<management>No specific management functions are identified.</management>
-					<audit>The following actions should be auditable if FAU_GEN Security audit data 
-						generation is included in the PP/ST:
-						<h:ol type="a">
-							<h:li>Administrator authentication attempts.</h:li>
-							<h:li>All use of the identification and authentication mechanism.</h:li>
-							<h:li>Administrator session start time and end time.</h:li>
-						</h:ol>
-					</audit>
-					<dependencies>FIA_UAU.5 Multiple Authentication Mechanisms</dependencies>
-                    <f-element id="fia-uia-ext-1e1">
-                        <title>The TSF shall require Administrators to be successfully identified and authenticated
-                            using one of the methods in FIA_UAU.5 before allowing any TSF-mediated management
-                            function to be performed by that Administrator.
-                        </title>
-                        <note role="application">Users do not have to authenticate, only Administrators need to authenticate.</note>
-                        <aactivity>
-                            <TSS>
-                                The evaluator shall examine the TSS to determine that it describes the logon
-                                process for each logon method (local, remote (HTTPS, SSH, etc.)) supported for the product. 
-                                This description shall contain information pertaining to the credentials allowed/used, any 
-                                protocol transactions that take place, and what constitutes a “successful logon.” The evaluator
-                                shall examine the operational guidance to determine that any necessary preparatory steps (e.g., 
-                                establishing credential material such as pre-shared keys, tunnels, certificates) to logging
-                                in are described. For each supported login method, the evaluator shall ensure the operational
-                                guidance provides clear instructions for successfully logging on. If configuration is necessary
-                                to ensure the services provided before login are limited, the evaluator shall determine that the
-                                operational guidance provides sufficient instruction on limiting the allowed services.
-                            </TSS>
-                        </aactivity>
-                    </f-element>
-					<audit-event> 
-						<audit-event-descr>Administrator authentication attempts.</audit-event-descr>
-						<audit-event-info>Provided user identity, origin of the attempt (e.g. console, remote IP address).</audit-event-info>
-					</audit-event> 
-					<audit-event> 
-						<audit-event-descr>All use of the identification and authentication mechanism.</audit-event-descr>
-                        <audit-event-info>Provided user identity, origin of the attempt (e.g. console, remote IP address).</audit-event-info>
-					</audit-event> 
-					<!-- Below event used to be in Table 3 -->
-					<audit-event type="optional"> 
-						<audit-event-descr>Start and end of administrator session.</audit-event-descr>
-                        <audit-event-info>Start time and end time of administrator session.</audit-event-info>
-					</audit-event> 
-                </f-component>
+        <!-- FIA_UIA_EXT.1 Administrator Identification and Authentication -->
+		<!-- ManFunc: Adding additional Administrators to the system?? -->
+        <f-component cc-id="fia_uia_ext.1" name="Administrator Identification and Authentication">
+			<consistency-rationale/>
+			<comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
+				are identified and authenticated prior to authorizing these actions to be performed.</comp-lev>
+			<management>No specific management functions are identified.</management>
+			<audit>The following actions should be auditable if FAU_GEN Security audit data 
+				generation is included in the PP/ST:
+				<h:ol type="a">
+					<h:li>Administrator authentication attempts.</h:li>
+					<h:li>All use of the identification and authentication mechanism.</h:li>
+					<h:li>Administrator session start time and end time.</h:li>
+				</h:ol>
+			</audit>
+			<dependencies>FIA_UAU.5 Multiple Authentication Mechanisms</dependencies>
+                <f-element id="fia-uia-ext-1e1">
+                    <title>The TSF shall require Administrators to be successfully identified and authenticated
+                        using one of the methods in FIA_UAU.5 before allowing any TSF-mediated management
+                        function to be performed by that Administrator.
+                    </title>
+                    <note role="application">
+						Ordinary unprivileged users of the platform need not authenticate to the platform, though they
+						may well have to authenticate themselves to tenant software such as an Operating System. <h:p/>
+						The TSF-mediated management functions are listed in <xref id="manfunc"/>.
+					</note>
+                    <aactivity>
+						<TSS>
+                            The evaluator shall examine the TSS to determine that it describes the logon
+                            process for each logon method (local, remote (HTTPS, SSH, etc.)) supported for the platform. 
+                            This description shall contain information pertaining to the credentials allowed/used, any 
+                            protocol transactions that take place, and what constitutes a “successful logon.” 
+						</TSS>
+						<Guidance>
+							The evaluator shall examine the operational guidance to determine that any necessary preparatory
+							steps (e.g., establishing credential material such as pre-shared keys, tunnels, certificates) to logging
+                            in are described. For each supported login method, the evaluator shall ensure the operational
+                            guidance provides clear instructions for successfully logging on. If configuration is necessary
+                            to ensure the services provided before login are limited, the evaluator shall determine that the
+                            operational guidance provides sufficient instruction on limiting the allowed services.							
+                        </Guidance>
+                    </aactivity>
+                </f-element>
+				<audit-event> 
+					<audit-event-descr>Administrator authentication attempts.</audit-event-descr>
+					<audit-event-info>Provided user identity, origin of the attempt (e.g. console, remote IP address).</audit-event-info>
+				</audit-event> 
+				<audit-event> 
+					<audit-event-descr>All use of the identification and authentication mechanism.</audit-event-descr>
+                    <audit-event-info>Provided user identity, origin of the attempt (e.g. console, remote IP address).</audit-event-info>
+				</audit-event> 
+				<!-- Below event used to be in Table 3 -->
+				<audit-event type="optional"> 
+					<audit-event-descr>Start and end of administrator session.</audit-event-descr>
+                    <audit-event-info>Start time and end time of administrator session.</audit-event-info>
+				</audit-event> 
+            </f-component>
 
 	
                 <!-- FIA_X509_EXT.1 -->
@@ -6456,6 +6467,46 @@
 	</section>
 	    
 	<section id="fmt" title="Security Management (FMT)">
+	
+		<!-- FMT_CFG_EXT.1 Secure by Default Configuration -->
+		<f-component cc-id="fmt_cfg_ext.1" name="Secure by Default Configuration">
+			<f-element id="fmt-cfg-ext-1e1">
+				<title>
+					The TOE shall provide only enough functionality to set new Administrator credentials when 
+					configured with default credentials or with no credentials.
+				</title>
+				<note role="application">
+					Default credentials are credentials (e.g., passwords, keys) that are pre-installed  
+					(without user interaction) onto the platform, generally by the manufacturer.
+				</note>
+				<aactivity>
+					<TSS>The evaluator shall check the TSS to determine if the platform comes with 
+						pre-installed Administrator credentials. 
+					</TSS>
+					<Guidance>
+						The evaluator shall examine the AGD to ensure that it describes the process for generating
+						or installing new Administrator credentials on first access.
+					</Guidance>
+					<Tests>
+						If the platform uses any default Administrator credentials the evaluator shall run the following tests.
+						<testlist>
+							<test>
+								The evaluator shall reset the platform to factory state and restart the  
+								platform to verify that only the minimal functionality required to set new
+								credentials is available.
+							</test>
+							<test>
+								The evaluator shall log in to the platform as Administrator using the default credentials,
+								establish new credentials, and verify that the original default credentials no longer provide 
+								Administrative access to the platform.
+							</test>
+						</testlist>
+					</Tests>
+				</aactivity>
+          </f-element>
+		  <audit-event/>
+        </f-component>
+	      
 	
 	<!-- FMT_MOF_EXT.1: Management of Security Function Behavior -->
        <f-component cc-id="fmt_mof_ext.1" name="Management of Security Functions Behavior">
@@ -7571,14 +7622,47 @@
 		
 	<section id="fpt" title="Class: Protection of the TSF (FPT)">
 	
-	<f-component cc-id="fpt_jta_ext.1" name="JTAG Disablement">
+		<f-component cc-id="fpt_jta_ext.2" name="JTAG/Debug Port Access">
 		<f-element id="fpt-jta-ext-1e1">
 			<title>
-				The TSF shall [selection: disable access through hardware, control access by a signing key] to JTAG.
+				The TSF shall allow access to JTAG or other debug ports only to an authorized administrator
+				through platform firmware or through assertion of physical presence.
+			</title>
+			<note role="application">
+				This requirement means that JTAG ports may not be accessible to tenant software.<h:p/>
+				For use cases that include the threat T.PHYSICAL, FPT_JTA_EXT.2 should also be included in the ST.
+			</note>
+			<aactivity>
+				<TSS>
+					The evaluator shall examine the TSS to determine how access to the JTAG or debug ports 
+					is denied to tenant software. 
+				</TSS>
+				<Guidance>
+					The evaluator shall examine the guidance to ensure that it describes how administrators assert 
+					physical presence to the TSF.
+				</Guidance>
+				<Tests>
+					TODO: Design a test for determining that tenant software cannot access the ports.
+				</Tests>
+			</aactivity>
+		</f-element>
+		<audit-event/>
+	</f-component>
+
+	<!-- FPT_JTA_EXT.2 JTAG/Debug Port Disablement -->
+	<!-- Should be included for use cases where physical protections are rewquired. -->
+	<f-component id="sfr-fpt-jta-ext-2" cc-id="fpt_jta_ext.2" name="JTAG/Debug Port Disablement" status="optional">
+		<f-element id="fpt-jta-ext-2e1">
+			<title>
+				The TSF shall <selectables>
+					<selectable>disable access through hardware</selectable>
+					<selectable>control access by a signing key</selectable>
+				</selectables> to JTAG or other debug interfaces.
 			</title>
 			<note role="application">
 				This requirement means that access to JTAG must be disabled either through hardware or
-				restricted through the use of a signing key.
+				restricted through the use of a signing key.<h:p/>
+				This requirement should be included in the ST for use cases that include the threat T.PHYSICAL. 
 			</note>
 			<aactivity>
 				<TSS>
@@ -7624,6 +7708,7 @@
 				of subsequently executed platform firmware must be traceable back to this root or to some other root as specified in FPT_ROT_EXT.2.
 				This SFR should be iterated for additional TOE roots (for example, a management controller or firmware executed from 
 				an add-in card).<h:p/>
+				Selection of "a separate management controller..." implies the existance of an Administrator role.
 			</note>
 			<aactivity>
 				<TSS>The evaluator shall verify that the TSS describes the Root of Trust on which initial integrity of platform firmware is anchored, consistent 
@@ -7675,7 +7760,7 @@
 				</h:ol> 
 				<selectables linebreak="yes">
 					<selectable>automatically</selectable>
-					<selectable>in accordance with administrator-configurable policy</selectable>
+					<selectable id="sel-rot2-admin-config">in accordance with administrator-configurable policy</selectable>
 					<selectable>by express determination of an administrator/user</selectable>
 				</selectables>.	
 			</title>				
