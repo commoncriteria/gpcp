@@ -85,9 +85,6 @@
 	x Signature Verification FCS_COP.1/SigVer
 	Factory Reset FDP_FRS_EXT.1, [FDP_FRS_EXT.2]
 	x Destroy Persistent Secrets FCS_CKM.4
-	x Set Root Encryption Key (mutable H/W) FCS_STG_EXT.1
-	x Store Persistent Secrets FCS_STG_EXT.1-3
-	x Wrap Transient Secrets FCS_STG_EXT.1-3
 	x Get Time Stamp FPT_STM.1
 	x Cryptographic Self-Tests FPT_TST.1
 -->
@@ -2541,10 +2538,9 @@
 		
 	<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing) -->
 	<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
-<!-- 		<exportable id="inf-gpcp-fcs-cop-hash"/> -->
-<!-- 		<importable inf-id="inf-dsc-fcs-cop-hash"/> -->
-		<depends on-sel="sel-tud2-hash"/>
-		<!-- FCS_COP.1/KeyedHash -->
+		<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1 -->
+		<depends on-sel="sel-tud2-hash"/> 
+		<depends on-incl="sfr-fcs-cop-1-keyedhash"/>
                 <f-element id="fcs-cop-1e1-hash">
                     <title>The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified cryptographic algorithm
                         <selectables>
@@ -2691,9 +2687,8 @@
             </f-component>
 	
 	<!-- FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash) -->
-	<f-component cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="optional">
-<!--			<exportable id="inf-gpcp-fcs-cop-hmac"/> -->
-<!--			<exportable inf-id="inf-dsc-fcs-cop-hmac"/> -->
+	<f-component cc="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="sel-based">
+		<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1 -->
 			<f-element id="fcs-cop-1e1-hmac">
 				<title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
 					with a specified cryptographic algorithm 
@@ -3081,8 +3076,6 @@
 
 		<!-- FCS_COP.1/KeyEnc Cryptographic Operation (Key Encryption) -->
 		<f-component cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" status="optional">
-<!--			<exportable id="inf-gpcp-fcs-cop-keyenc"/>  -->
-<!--			<importable inf-id="inf-dsc-fcs-cop-keyenc"/>  -->
 			<f-element id="fcs-cop-1e1-keyenc">
 				<title>
 					The TSF shall perform [<h:i>key encryption and decryption</h:i>] using the methods defined in the
@@ -3090,7 +3083,6 @@
 					<selectables>
 						<selectable id="sel-fcs-cop-keyenc-se1">SE1</selectable>
 						<selectable id="sel-fcs-cop-keyenc-ae1">AE1</selectable>
-						<selectable id="sel-fcs-cop-keyenc-se2">SE2</selectable>
 						<selectable id="sel-fcs-cop-keyenc-xor">XOR</selectable>
 					</selectables><h:p/>
 					<h:b><ctr ctr-type='Table' id="fcs-cop-keyenc-sels">: Supported Methods for Key Encryption Operation</ctr></h:b><h:br/>	
@@ -3106,7 +3098,7 @@
 							<selectable>AES-CBC</selectable>
 							<selectable>AES-CTR</selectable>
 							<selectable>AES-KWP</selectable>
-							<selectable>AESKW</selectable>
+							<selectable>AES-KW</selectable>
 							</selectables></h:td>
 							<h:td><selectables>
 								<selectable>128</selectable>
@@ -3120,20 +3112,8 @@
 						<h:td><selectables>
 							<selectable>2048</selectable>
 							<selectable>3072</selectable></selectables> bits</h:td>
-						<h:td>See FCS_COP.1/SKC</h:td></h:tr>
-		
-						<h:tr><depends on-sel="sel-fcs-cop-keyenc-se2"/>
-						<h:td>SE2</h:td>
-						<h:td>Symmetric <selectables>
-							<selectable>CAM-CBC</selectable>
-							<selectable>CAM-CCM</selectable>
-							<selectable>CAM-GCM</selectable>
-							</selectables></h:td>
-						<h:td><selectables>
-							<selectable>128</selectable>
-							<selectable>256</selectable></selectables> bits</h:td>
 						<h:td>See FCS_COP.1/KAT</h:td></h:tr>
-						
+		
 						<h:tr><depends on-sel="sel-fcs-cop-keyenc-xor"/>
 						<h:td>XOR</h:td>
 						<h:td>Exclusive OR operation</h:td>
@@ -3203,8 +3183,8 @@
 		</f-component>
 
 	<!-- FCS_COP.1/PBKDF Cryptographic Operation (Password-Based Key Derivation Functions) -->
-	<f-component cc-id="fcs_cop.1" iteration="PBKDF" name="Cryptographic Operation (Password-Based Key Derivation Functions)" status="optional">
-		<depends on-sel=""/> <!-- FCS_CKM.1/SK -->
+	<f-component cc-id="fcs_cop.1" iteration="PBKDF" name="Cryptographic Operation (Password-Based Key Derivation Functions)" status="sel-based">
+		<depends on-sel="sel-fcs-ckm-sk-pbk"/> <!-- FCS_CKM.1/SK -->
 		<f-element id="fcs-cop-1e1-pbkdf">
 			<title>The TSF shall perform [<h:i>password-based key derivation functions</h:i>] in
 				accordance with a specified cryptographic algorithm [<h:i>HMAC-</h:i>
@@ -3802,7 +3782,8 @@
 		</f-component>	
 		
 	<!-- FCS_COP.1/SKC Cryptographic Operation (Symmetric Key Cryptography) -->	
-	<f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="optional">
+	<f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="sel-based">
+		<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG_EXT.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below
 		<f-element id="fcs-cop-1e1-skc">
 			<title>
 				The TSF shall perform [<h:i>data encryption/decryption</h:i>] using the supported symmetric-key cryptography
@@ -3815,10 +3796,6 @@
 					<selectable id="sel-fcs-cop-skc-xts-aes">XTS-AES</selectable>
 					<selectable id="sel-fcs-cop-skc-aes-kwp">AES-KWP</selectable>
 					<selectable id="sel-fcs-cop-skc-aes-kw">AES-KW</selectable>
-					<selectable id="sel-fcs-cop-skc-cam-cbs">CAM-CBC</selectable>
-					<selectable id="sel-fcs-cop-skc-cam-ccm">CAM-CCM</selectable>
-					<selectable id="sel-fcs-cop-skc-cam-gcm">CAM-GCM</selectable>
-					<selectable id="sel-fcs-cop-skc-xts-cam">XTS-CAM</selectable>
 				</selectables>.<h:p/>
 				<h:b><ctr ctr-type='Table' id="fcs-cop-skc-sels">: Supported Methods for Symmetric Key Cryptography Operation</ctr></h:b><h:br/>	
 				<h:table>
@@ -3937,73 +3914,6 @@
 						ISO 18033-3 (AES)<h:p/>
 						NIST SP 800-38F, sec. 6.2 (KW)<h:p/>
 						ISO/IEC 19772, clause 7 (key wrap)</h:td>
-					</h:tr>
-
-					<h:tr><depends on-sel="sel-fcs-cop-skc-cam-cbc"/>
-					<h:td>CAM-CBC</h:td>
-					<h:td>Camellia in CBC mode with non-repeating and unpredictable IVs</h:td>
-					<h:td><selectables>
-							<selectable>128 bits</selectable>
-							<selectable>256 bits</selectable>
-						</selectables></h:td>
-					<h:td>
-						ISO 18033-3 (Camellia)<h:p/>
-						ISO 10116 (CBC)<h:p/></h:td>
-					</h:tr>
-
-					<h:tr><depends on-sel="sel-fcs-cop-skc-cam-ccm"/>
-					<h:td>CAM-CCM</h:td>
-					<h:td>Camellia in CCM mode with unpredictable, nonrepeating nonce, minimum size of 64 bits</h:td>
-					<h:td><selectables>
-						<selectable>128 bits</selectable>
-						<selectable>256 bits</selectable>
-					</selectables></h:td>
-					<h:td>
-						ISO 18033-3 (Camellia)<h:p/>
-						ISO 19772, Clause 8 (CCM)<h:p/>
-						NIST SP800-38C (CCM)</h:td>
-					</h:tr>
-
-					<h:tr><depends on-sel="sel-fcs-cop-skc-cam-gcm"/>
-					<h:td>CAM-GCM</h:td>
-					<h:td>Camellia in GCM mode with non-repeating IVs; IV length must be equal to 96
-						bits; the deterministic IV construction method (SP800-38D, Section 8.2.1) must
-						be used; the MAC length t must be one of the values 
-						<selectables>
-							<selectable>96</selectable>
-							<selectable>104</selectable>
-							<selectable>112</selectable>
-							<selectable>120</selectable>
-							<selectable>128</selectable>
-						</selectables></h:td>
-					<h:td><selectables>
-							<selectable>128 bits</selectable>
-							<selectable>256 bits</selectable>
-						</selectables></h:td>
-					<h:td>
-						ISO 18033-3 (Camellia)<h:p/>
-						ISO 19772, Clause 11 (GCM)<h:p/>
-						NIST SP800-38D (GCM)</h:td>
-					</h:tr>
-
-					<h:tr><depends on-sel="sel-fcs-cop-skc-xts-cam"/>
-					<h:td>XTS-CAM</h:td>
-					<h:td>Camellia in XTS mode with unique 
-						<selectables>
-							<selectable>consecutive non-negative integers starting at an
-								arbitrary non-negative integer</selectable>
-							<selectable>data unit sequence numbers</selectable>
-						</selectables> tweak values</h:td>
-					<h:td><selectables>
-							<selectable>256 bits</selectable>
-							<selectable>512 bits</selectable>
-						</selectables></h:td>
-					<h:td>
-						ISO 18033-3 (Camellia)<h:p/>
-						<selectables>
-							<selectable>IEEE 1619</selectable>
-							<selectable>NIST SP800-38E</selectable>
-						</selectables>(XTS)</h:td>
 					</h:tr>
 				</h:table>
 			</title>
@@ -4440,7 +4350,7 @@
 					Additionally, the evaluator shall perform the following negative tests:<h:p/>
 					<h:b>Test 1 (invalid plaintext length):</h:b><h:p/>
 					Determine the valid plaintext lengths of the implementation from the TOE
-					specification. Verify that the implementation of KW-AE in the TOE rejects
+					specification. Verify that the implementation of KW-AES in the TOE rejects
 					plaintexts of invalid length by testing plaintext of the following lengths: 1) plaintext
 					length greater than 64 semi-blocks, 2) plaintext bit-length not divisible by 64, 3)
 					plaintext with length 0, and 4) plaintext with one semi-block.<h:p/>
@@ -4452,62 +4362,12 @@
 					divisible by 64, 3) ciphertext with length 0, 4) ciphertext with length of one semiblock, 
 					and 5) ciphertext with length of two semi-blocks.<h:p/>
 					<h:b>Test 3 (invalid ICV1):</h:b><h:p/>
-					222 Test that the implementation detects invalid ICV1 values by encrypting any
+					Test that the implementation detects invalid ICV1 values by encrypting any
 					plaintext value eight times using a different value for ICV1 each time as follows:
 					Start with a base ICV1 of 0xA6A6A6A6A6A6A6A6. For each of the eight tests
 					change a different byte to a different value, so that each of the eight bytes is changed
 					once. Verify that the implementation of KW-AD in the TOE outputs FAIL for each
 					test.<h:p/>
-					<h:b>CAM-CBC:</h:b><h:p/>
-					To test the encrypt and decrypt functionality of Camellia in CBC mode, the
-					evaluator shall perform the tests as specified in 10.2.1.2 of ISO/IEC 18367:2016.<h:p/>
-					<h:b>CAM-CCM:</h:b><h:p/>
-					To test the encrypt functionality of Camellia in CCM mode, the evaluator shall
-					perform the tests as specified in 10.6.1.1 of ISO/IEC 18367:2016.<h:p/>
-					To test the decrypt functionality of Camellia in CCM mode, the evaluator shall
-					perform the tests as specified in 10.6.1.2 of ISO/IEC 18367:2016.<h:p/>
-					As a prerequisite for these tests, the evaluator shall perform the test for encrypt
-					functionality of Camellia in ECB mode as specified in 10.2.1.2 of ISO/IEC
-					18367:2016.<h:p/>
-					<h:b>CAM-GCM:</h:b><h:p/>
-					To test the encrypt functionality of Camellia in GCM, the evaluator shall perform
-					the tests as specified in 10.6.1.1 of ISO/IEC 18367:2016.<h:p/>
-					To test the decrypt functionality of Camellia in GCM, the evaluator shall perform
-					the tests as specified in 10.6.1.2 of ISO/IEC 18367:2016.<h:p/>
-					As a prerequisite for these tests, the evaluator shall perform the test for encrypt
-					functionality of Camellia in ECB mode as specified in 10.2.1.2 of ISO/IEC
-					18367:2016.<h:p/>
-					<h:b>XTS-CAM:</h:b><h:p/>
-					These tests are intended to be equivalent to those described in the IPA document,
-					ATR-01-B, “Specifications of Cryptographic Algorithm Implementation Testing —
-					Symmetric-Key Cryptography“, found at
-					<h:a href="https://www.ipa.go.jp/security/jcmvp/jcmvp_e/documents/atr/atr01b_en.pdf">
-					https://www.ipa.go.jp/security/jcmvp/jcmvp_e/documents/atr/atr01b_en.pdf</h:a>.<h:p/>
-					The evaluator shall generate test values as follows:<h:p/>
-					For each supported key size (256 bit (for Camellia-128) and 512 bit (for Camellia256) keys),
-					the evaluator shall provide up to five data lengths:<h:ul>
-					<h:li>Two data lengths divisible by the 128-bit block size, If data unit lengths of
-						complete block sizes are supported.</h:li>
-					<h:li>Two data lengths not divisible by the 128-bit block size, if data unit lengths
-						of partial block sizes are supported.</h:li>
-					<h:li>The largest data length supported by the implementation, or 2^16 (65536),
-						whichever is larger.</h:li></h:ul><h:p/>
-					The evaluator shall specify whether the implementation supports tweak values of
-					128-bit hexadecimal strings or a data unit sequence numbers, or both.<h:p/>
-					For each combination of key size and data length, the evaluator shall provide 100
-					sets of input data and obtain the ciphertext that results from XTS-Camellia
-					encryption. If both kinds of tweak values are supported, 50 of each 100 sets of input
-					data shall use each type of tweak value. The resulting ciphertext shall be compared
-					to the results of a known-good implementation.<h:p/>
-					As a prerequisite for this test, the evaluator shall perform the test for encrypt
-					functionality of Camellia in ECB mode as specified in 10.2.1.2 of ISO/IEC
-					18367:2016.<h:p/>
-					The evaluator shall test the decrypt functionality of XTS-Camellia using the same
-					test as for encrypt, replacing plaintext values with ciphertext values and XTSCamellia 
-					encrypt with XTS- Camellia decrypt.<h:p/>
-					As a prerequisite for this test, the evaluator shall perform the test for decrypt
-					functionality of Camellia in ECB mode as specified in 10.2.1.2 of ISO/IEC
-					18367:2016.<h:p/>	
 				</Tests>
 			</aactivity>
 		</f-element>
@@ -5387,11 +5247,10 @@
 	
 		<!-- FCS_RBG_EXT.1 Random Bit Generation -->
 		<f-component cc-id="fcs_rbg_ext.1" name="Random Bit Generation" status="sel-based">
-			<depends on-sel="sel-fcs-ckm-sk-rsk"/>  <!-- FCS_CKM.1/SK -->
-			<!-- FCS_CKM.1/AK is included -->
-			<!-- FCS_SLT_EXT is included -->
-<!--			<exportable id="inf-gpcp-fcs-rbg"/>  -->
-<!--			<importable inf-id="inf-dsc-fcs-rbg"/>  -->
+			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
+			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
+			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/SK is included -->
+			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<consistency-rationale/>
 			<comp-lev>requires random bit generation to be performed in accordance with
 				selected standards and seeded by an entropy source.</comp-lev>
@@ -5407,9 +5266,9 @@
 				<title>The TSF shall perform all deterministic random bit generation services in
 					accordance with ISO/IEC 18031:2011 using 
 					<selectables>
-						<selectable>Hash_DRBG (any)</selectable>
-						<selectable>HMAC_DRBG (any)</selectable>
-						<selectable>CTR_DRBG (AES)</selectable>
+						<selectable id="sel-rbg-hash">Hash_DRBG (any)</selectable>
+						<selectable id="sel-rbg-hmac">HMAC_DRBG (any)</selectable>
+						<selectable id="sel-rbg-ctr">CTR_DRBG (AES)</selectable>
 					</selectables>.
 				</title>
 			</f-element>
@@ -5443,7 +5302,7 @@
 			</f-element>
 			<f-element id="fcs-rbg-ext-1e3">
 				<title>
-					The TSF shall be capable of providing output of the RBG to applications running on the TSF
+					The TSF shall be capable of providing output of the RBG to tenant software on the TOE
 					that request random bits.
 				</title>
 				<note role="application">
@@ -5518,7 +5377,7 @@
 		</f-component>		
 		
 	<!-- FCS_SLT_EXT.1 Cryptographic Salt Generation -->
-	<f-component cc-id="fcs_slt_ext.1" name="Cryptographic Salt Generation" status="optional">
+	<f-component id="sfr-fcs-slt-ext-1" cc-id="fcs_slt_ext.1" name="Cryptographic Salt Generation" status="optional">
 		<consistency-rationale/>
 		<comp-lev>requires the TSF to generate salt values in a specified manner.</comp-lev>
 		<management>No specific management functions are identified.</management>
@@ -5554,268 +5413,6 @@
 		</f-element>
 		<audit-event/>
 	</f-component>		
-
-	<!-- FCS_STG_EXT.1 Protected Storage -->	
-	<f-component cc-id="fcs_stg_ext.1" name="Protected Storage" status="optional">
-		<f-element id="fcs-stg-ext-1e1">
-			<title>
-				The TSF shall provide 
-				<selectables>
-					<selectable>mutable hardware-based</selectable>
-					<selectable>immutable hardware-based</selectable>
-					<selectable>software-based</selectable>
-				</selectables> protected storage for asymmetric private keys and 
-				<selectables>
-					<selectable>symmetric keys</selectable>
-					<selectable>persistent secrets</selectable>
-					<selectable>no other keys</selectable>
-				</selectables>.
-			</title>
-			<note role="application">
-				If the protected storage is implemented in software that is protected as required by
-				FCS_STG_EXT.2, the ST author is expected to select "software-based." If "software-based" is selected,
-				the ST author is expected to select all "software-based key storage" in FCS_STG_EXT.2.<h:p/>
-				Support for protected storage for all symmetric keys and persistent secrets will be required in
-				future revisions.<h:p/>
-			</note>
-		</f-element>
-		<f-element id="fcs-stg-ext-1e2">
-			<title>
-				FCS_STG_EXT.1.2 The TSF shall support the capability of 
-				<selectables>
-					<selectable>importing keys/secrets into the TOE</selectable>
-					<selectable>causing the TOE to generate keys/secrets</selectable>
-				</selectables> upon request of 
-				<selectables>
-					<selectable>a client application</selectable>
-					<selectable>an administrator</selectable>
-				</selectables>.
-			</title>
-		</f-element>
-		<f-element id="fcs-stg-ext-1e3">
-			<title>
-				The TSF shall be capable of destroying keys/secrets in the protected storage
-				upon request of 
-				<selectables>
-					<selectable>a client application</selectable>
-					<selectable>an administrator</selectable>
-				</selectables>.
-			</title>
-		</f-element>
-		<f-element id="fcs-stg-ext-1e4">
-			<title>
-				The TSF shall have the capability to allow only the user that 
-				<selectables>
-					<selectable>imported the key/secret</selectable>
-					<selectable>caused the key/secret to be generated</selectable>
-				</selectables> to use the key/secret. Exceptions
-				may be explicitly authorized only by 
-				<selectables>
-					<selectable>the client application</selectable>
-					<selectable>the administrator</selectable>
-				</selectables>.
-			</title>
-		</f-element>
-		<f-element id="fcs-stg-ext-1e5">
-			<title>
-				The TSF shall allow only the user that 
-				<selectables>
-					<selectable>imported the key/secret</selectable>
-					<selectable>caused the key/secret to be generated</selectable>
-				</selectables> to request that the key/secret be destroyed. Exceptions may
-				only be explicitly authorized by 
-				<selectables>
-					<selectable>the client application</selectable>
-					<selectable>the administrator</selectable>
-				</selectables>.
-			</title>
-			<note role="application">
-					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
-					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-				
-				Not all conformant TOEs will have the ability to import pre-generated keys into the TOE. In these
-				cases, the TOE’s ability to receive commands to perform key generation is considered to be its
-				implementation of the Parse service. A subject that caused a key to be generated is considered to
-				be the ‘owner’ of that key in the same manner as they would be if they had imported it directly.
-			</note>
-			<aactivity>
-				<TSS>
-					The evaluator shall review the TSS to determine that the TOE implements the
-					required protected storage. The evaluator shall ensure that the TSS contains a
-					description of the protected storage mechanism that justifies the selection of
-					mutable hardware-based or software-based.<h:p/>
-				</TSS>
-				<Guidance>
-						The evaluator shall examine the operational guidance to ensure that it describes the
-						process for generating keys, importing keys, or both, based on what is claimed by
-						the ST. The evaluator shall also examine the operational guidance to ensure that it
-						describes the process for destroying keys that have been imported or generated.<h:p/>
-				</Guidance>
-				<KMD>
-					There are no KMD evaluation activities for this component.
-				</KMD>
-				<Tests>
-					The evaluator shall test the functionality of each security function as described
-					below. If the TOE supports both import and generation of keys, the evaluator shall
-					repeat the testing as needed to demonstrate that the keys resulting from both
-					operations are treated in the same manner. The devices used with the tooling may
-					need to be non-production devices in order to enable the execution and gathering of
-					evidence.<h:p/>
-					<testlist>
-						<test>
-							The evaluator shall import or generate keys/secrets of each supported type
-							according to the operational guidance. The evaluator shall write, or the developer
-							shall provide access to, an application that generates a key/secret of each supported
-							type and calls the import functions. The evaluator shall verify that no errors occur
-							during import.
-						</test>
-						<test>The evaluator shall write, or the developer shall provide access to, an
-							application that uses a generated or imported key/secret:<h:ul>
-								<h:li>For RSA, the secret shall be used to sign data.</h:li>
-								<h:li>For ECDSA, the secret shall be used to sign data.</h:li></h:ul>
-							The evaluator shall repeat this test with the application-imported or applicationgenerated keys/secrets and a different application’s imported keys/secrets or
-							generated keys/secrets. The evaluator shall verify that the TOE requires approval
-							before allowing the application to use the key/secret imported or generated by the
-							user or by a different application:<h:ul>
-							<h:li>The evaluator shall deny the approvals to verify that the application is not able
-								to use the key/secret as described.</h:li>
-							<h:li>The evaluator shall repeat the test, allowing the approvals to verify that the
-								application is able to use the key/secret as described.</h:li></h:ul>
-							If the ST author has selected common application developer, this test is performed
-							by either using applications from different developers or appropriately (according
-							to API documentation) not authorizing sharing.<h:p/>
-						</test>
-						<test>The evaluator shall destroy keys/secrets of each supported type according
-							to the operational guidance. The evaluator shall write, or the developer shall provide
-							access to, an application that destroys an imported or generated key/secret. The
-							evaluator shall repeat this test with the application-imported or applicationgenerated keys/secrets and a different application’s imported or generated
-							keys/secrets. The evaluator shall verify that the TOE requires approval before
-							allowing the application to destroy the key/secret imported by the administrator or
-							by a different application:<h:ul>
-							<h:li>The evaluator shall deny the approvals and verify that the application is still
-								able to use the key/secret as described.</h:li>
-							<h:li>The evaluator shall repeat the test, allowing the approvals and verifying that
-								the application is no longer able to use the key/secret as described.</h:li></h:ul>
-							If the ST author has selected common application developer, this test is performed
-							by either using applications from different developers or appropriately (according
-							to API documentation) not authorizing sharing.<h:p/>
-						</test>
-					</testlist>
-				</Tests>
-			</aactivity>
-		</f-element>
-		<audit-event/>
-	</f-component>
-
-	<f-component cc-id="fcs_stg_ext.2" name="Key Storage Encryption" status="optional">
-		<f-element id="fcs-stg-ext-2e1">
-			<title>
-				The TSF shall encrypt [<h:i>AKs, SKs, KEKs, and 
-				<selectables>
-					<selectable>long-term trusted channel key material</selectable>
-					<selectable>all software-based key storage</selectable>
-					<selectable>no other keys</selectable>
-				</selectables></h:i>] using one of the following
-				methods: <assignable>key encryption methods as specified in FCS_COP.1/KeyEnc</assignable>.
-					</title>
-			
-			<note role="application">
-				This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
-				or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-			</note>
-					<aactivity>
-					<TSS>
-						The evaluator shall review the TSS to determine that the TSS describes the
-						protection of symmetric keys, KEKs, long-term trusted channel key material, and
-						software-based key storage as claimed in FCS_STG_EXT.2.1. 
-					</TSS>
-					<Guidance>
-						There are no AGD evaluation activities for this component.
-					</Guidance>
-					<KMD>
-						There are no KMD evaluation activities for this component
-					</KMD>
-					<Tests>
-						There are no test evaluation activities for this component.
-					</Tests>
-			</aactivity>
-		</f-element>
-			<audit-event/>
-	</f-component>
-	
-	<f-component cc-id="fcs_stg_ext.3" name="Key Integrity Protection" status="optional">
-		<consistency-rationale/>
-		<comp-lev>defines requirements for ensuring the protection of keys and secrets.</comp-lev>
-		<management>No specific management functions are identified.</management>
-		<audit>There are no auditable events forseen.</audit>
-		<dependencies><h:ul><h:li>FCS_COP.1 Crypotographic Operations</h:li>
-			<h:li>FCS_STG_EXT.2 Key Storage Encryption</h:li></h:ul></dependencies>
-		<f-element id="fcs-stg-ext-3e1">
-			<title>
-				The TSF shall protect the integrity of any encrypted [<h:i>AKs, SKs, KEKs, and
-				<selectables>
-					<selectable>long-term trusted channel key material</selectable>
-					<selectable>all software-based key storage</selectable>
-					<selectable>no other keys</selectable>
-				</selectables></h:i>] by using 
-				<selectables linebreak="yes">
-					<selectable>Symmetric encryption in 
-						<selectables>
-							<selectable id="sel-stg3-aes-ccm">AES_CCM</selectable>
-							<selectable id="sel-stg3-aes-gcm">AES_GCM</selectable>
-							<selectable id="sel-stg3-aes-kw">AES_KW</selectable>
-							<selectable id="sel-stg3-aes-kwp">AES_KWP</selectable>
-						</selectables> mode in accordance with FCS_COP.1/SKC</selectable>
-					<selectable id="sel-stg3-keyedhash">A keyed hash of the stored key in accordance with FCS_COP.1/HMAC</selectable>
-					<selectable id="sel-stg3-digsig">A digital signature of the stored key in accordance with FCS_COP.1/SigGen
-						using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</selectable>
-					<selectable>An immediate application of the key for decrypting the protected data followed 
-						by a successful verification of the decrypted data with previously known information</selectable>
-				</selectables>.
-			</title>
-		</f-element>
-		<f-element id="fcs-stg-ext-3e2">
-			<title>
-				The TSF shall verify the integrity of the 
-					<selectables>
-						<selectable>hash</selectable>
-						<selectable>digital signature</selectable>
-						<selectable>MAC</selectable>
-					</selectables> of the stored key prior to use of the key.
-			</title>
-			<note role="application">
-				This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
-				or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-				
-				
-				This requirement is not applicable to derived keys that are not stored. It is not expected that a
-				single key will be protected from corruption by multiple of these methods; however, a product may
-				use one integrity-protection method for one type of key and a different method for other types of
-				keys.<h:p/>
-				The documentation of the product’s encryption key management should be detailed enough that,
-				after reading, the evaluator will thoroughly understand the product’s key management and how it
-				meets the requirements to ensure the keys are adequately protected. This documentation should
-				include an essay and diagrams. This documentation is not required to be part of the TSS – it can
-				be submitted as a separate document and marked as developer proprietary.
-			</note>
-			<aactivity>
-				<TSS>
-					The evaluator shall examine the TSS and ensure that it contains a description of
-					how the TOE protects the integrity of its keys.
-				</TSS>
-				<Guidance>
-					There are no AGD evaluation activities for this component.
-				</Guidance>
-				<KMD>
-					There are no KMD evaluation activities for this component.
-				</KMD>
-				<Tests>
-					There are no test evaluation activities for this component.
-				</Tests>
-			</aactivity>
-		</f-element>
-			<audit-event/>
-	</f-component>
 
 	</section>	 
 	
