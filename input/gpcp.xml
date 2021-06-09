@@ -1235,7 +1235,7 @@
 		</ext-comp-def>
 		
 		<!-- FCS_CKM.1/AK Gryptographic Key Generation (Assymetric Keys) -->
-		<f-component cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="sel-based">
+		<f-component id="sfr-fcs-ckm-1-ak" cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="sel-based">
 			<depends on-sel="sel-ckm-kek-ak"/> <!-- from FCS_CKM.1/KEK -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
 			<f-element id="fcs-ckm-1e1-ak">
@@ -1451,7 +1451,7 @@
 		</f-component>
 	  
 		<!-- FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key) -->
-		<f-component cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
+		<f-component id="sfr-fcs-ckm-1-sk" cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
 			<depends on-sel="sel-ckm-kek-sk"/> <!-- from FCS_CKM.1/KEK -->
 			<!--			<exportable id="inf-gpcp-fcs-ckm-sk"/> -->
 			<!--			<importable inf-id="inf-dsc-fcs-ckm-sk"/> -->
@@ -1561,9 +1561,7 @@
 		</f-component>
 		
 	<!-- FCS_CKM.1/KEK Cryptographic Key Generation (Key Encryption Key)  -->
-	<f-component cc-id="fcs_ckm.1" iteration="KEK" name="Cryptographic Key Generation (Key Encryption Key)" status="optional">
-<!--			<exportable id="inf-gpcp-fcs-ckm-kek"/>  -->
-<!--			<importable inf-id="inf-dsc-fcs-ckm-kek"/>  -->
+	<f-component id="sfr-fcs-ckm-1-kek" cc-id="fcs_ckm.1" iteration="KEK" name="Cryptographic Key Generation (Key Encryption Key)" status="optional">
 		<f-element id="fcs-ckm-1e1-kek">
 			<title>The TSF shall generate key encryption keys in accordance with a specified
 				cryptographic key generation algorithm corresponding to 
@@ -1629,7 +1627,7 @@
 	</f-component>
 
 	<!-- FCS_CKM.2 Cryptographic Key Establishment -->
-	<f-component cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="sel-based">
+	<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="sel-based">
 		<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
 			<f-element id="fcs-ckm-2e1">
 				<title>The TSF shall establish cryptographic keys in accordance with a specified
@@ -1705,7 +1703,15 @@
 		</f-component>
 
 	<!-- FCS_CKM.4 Cryptographic Key Destruction -->
-	<f-component cc-id="fcs_ckm.4" name="Cryptographic Key Destruction" status="optional">
+	<f-component id="sfr-fcs-ckm-4" cc-id="fcs_ckm.4" name="Cryptographic Key Destruction" status="sel-based">
+		<depends on-incl="sfr-fcs-ckm-1-sk"/>
+		<depends on-incl="sfr-fcs-ckm-1-ak"/>
+		<depends on-incl="sfr-fcs-ckm-1-kek"/>
+		<depends on-incl="sfr-fcs-ckm-2"/>
+		<depends on-incl="sfr-fcs-ckm-ext-5"/>
+		<depends on-incl="sfr-fcs-cop-1-kat"/>
+		<depends on-incl="sfr-fcs-cop-1-pbkdf"/>
+		<depends on-incl="sfr-fcs-cop-1-keyenc"/>
 		<f-element id="fcs-ckm-4e1">
 			<title>The TSF shall destroy cryptographic keys and keying material in accordance
 				with a specified cryptographic key destruction method 
@@ -1950,8 +1956,13 @@
 	</f-component>
 
 	<!-- FCS_CKM_EXT.4 Cryptographic Key and Key Material Destruction Timing -->
-	<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="optional">
-		<!-- depends on FCS_CKM.4 -->
+	<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="sel-based">
+		<depends on-incl="sfr-fcs-ckm-4"/>
+		<consistency-rationale/>
+		<comp-lev>requires the TSF to destroy keys when no longer used.</comp-lev>
+		<management>No specific management functions are identified.</management>
+		<audit>There are no auditable events foreseen.</audit>
+			<dependencies>FCS_CKM.4 Cryptographic Key Destruction</dependencies>
 		<f-element id="fcs-ckm-ext-1e1">
 			<title>
 				The TSF shall destroy all keys and keying material when no longer needed.
@@ -1993,10 +2004,14 @@
 	</f-component>
 
 		<!-- FCS_CKM_EXT.5 Cryptographic Key Derivation -->
-		<f-component cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="sel-based">
+		<f-component id="sfr-fcs-ckm-ext-5" cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="sel-based">
 			<depends on-sel="sel-ckm-kek-drvd"/> <!-- from FCS_CKM.1/KEK -->
-		<!-- <exportable id="inf-gpcp-fcs-ckm-derv"/> -->
-		<!-- <exportable inf-id="inf-dsc-fcs-ckm-derv"/> -->
+			<depends on-sel="sel-fcs-cop-keyenc-xor"/>
+		<consistency-rationale/>
+		<comp-lev>requires the TSF to perform key derivation using a defined method.</comp-lev>
+		<management>No specific management functions are identified.</management>
+		<audit>There are no auditable events foreseen.</audit>
+			<dependencies><h:ul><h:li>FCS_CKM.1 Cryptographic Key Generation</h:li><h:li>FCS_COP.1 Cryptographic Operation</h:li></h:ul></dependencies>
 			<f-element id="fcs-ckm-ext-5e1">
 				<title>The TSF shall generate cryptographic keys using the Key Derivation Functions defined by the following 
 					rows of <xref to="fcs-ckm-keydrv-sels"/>:
@@ -2136,7 +2151,7 @@
 						<h:td>Intermediary keys</h:td>
 						<h:td><selectables>
 							<selectable>exclusive OR (XOR)</selectable>
-							<selectable>SHA256</selectable>
+							<selectable>SHA-256</selectable>
 							<selectable>SHA-512</selectable></selectables></h:td>
 						<h:td><selectables>
 							<selectable>128</selectable>
@@ -2145,7 +2160,7 @@
 							</selectables>bits</h:td>
 						<h:td><selectables>
 							<selectable>ISO-HASH</selectable>
-							<selectable>FIPSSHA</selectable>
+							<selectable>FIPS-SHA</selectable>
 							</selectables></h:td>
 						</h:tr>
 		
@@ -2539,6 +2554,9 @@
 		<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1 -->
 		<depends on-sel="sel-tud2-hash"/> 
 		<depends on-incl="sfr-fcs-cop-1-keyedhash"/>
+		<depends on-incl="sfr-fcs-cop-1-sigver"/>
+		<depends on-incl="sfr-fcs-cop-1-siggen"/>
+		<depends on-sel="sel-fcs-cop-kat-ecies"/>		
                 <f-element id="fcs-cop-1e1-hash">
                     <title>The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified cryptographic algorithm
                         <selectables>
@@ -2687,7 +2705,9 @@
 	<!-- FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash) -->
 	<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="sel-based">
 		<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
+		<depends on-incl="sfr-fcs-cop-1-pbkdf"/>	<!-- FCS_COP.1/PBKDF -->
 		<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1 -->
+		<depends on-sel="sel-fcs-cop-kat-ecies"/>		
 			<f-element id="fcs-cop-1e1-hmac">
 				<title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
 					with a specified cryptographic algorithm 
@@ -2696,8 +2716,8 @@
 						<selectable>HMAC-SHA-256</selectable>
 						<selectable>HMAC-SHA-384</selectable>
 						<selectable>HMAC-SHA-512</selectable>
-						<selectable>KMAC128</selectable>
-						<selectable>KMAC256</selectable>
+						<selectable>KMAC-128</selectable>
+						<selectable>KMAC-256</selectable>
 					</selectables> and cryptographic key sizes <assignable>key size (in bits)</assignable>
 					that meet the following: 
 					<selectables>
@@ -2741,7 +2761,8 @@
 		</f-component>
 
 	<!-- FCS_COP.1/KAT Cryptographic Operation (Key Agreement/Transport) -->
-	<f-component cc-id="fcs_cop.1" iteration="KAT" name="Cryptographic Operation (Key Agreement/Transport)" status="optional">
+	<f-component id="sfr-fcs-cop-1-kat" cc-id="fcs_cop.1" iteration="KAT" name="Cryptographic Operation (Key Agreement/Transport)" status="sel-based">
+		<depends on-sel="sel-fcs-cop-keyenc-ae1"/>  <!-- implies "sel-fcs-cop-kat-kts" -->
 		<f-element id="fcs-cop-1e1-kat">
 			<title>The TSF shall perform [<h:i>cryptographic key agreement/transport</h:i>] using the supported
 			methods for key agreement/transport defined by the following rows of <xref to="fcs-ckm-kat-sels"/>: 
@@ -2907,7 +2928,7 @@
 					If the ST selects ECIES, the TSS shall describe the key sizes and algorithms (e.g.
 					elliptic curve point multiplication, ECDH with either NIST or Brainpool curves,
 					AES in a mode permitted by FCS_COP.1/SKC, a SHA-2 hash algorithm permitted
-					by FCS_COP.1/Hash, and a MAC algorithm permitted by FCS_COP.1/HMAC)
+					by FCS_COP.1/Hash, and a MAC algorithm permitted by FCS_COP.1/KeyedHash)
 					that are supported for the ECIES implementation.<h:p/>
 					The evaluator shall ensure that, for each key agreement/transport scheme, the size
 					of the derived keying material is at least the same as the intended strength of the 
@@ -3074,7 +3095,7 @@
 		
 
 		<!-- FCS_COP.1/KeyEnc Cryptographic Operation (Key Encryption) -->
-		<f-component cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" status="optional">
+		<f-component id="sfr-fcs-cop-1-keyenc" cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" status="optional">
 			<f-element id="fcs-cop-1e1-keyenc">
 				<title>
 					The TSF shall perform [<h:i>key encryption and decryption</h:i>] using the methods defined in the
@@ -3182,7 +3203,7 @@
 		</f-component>
 
 	<!-- FCS_COP.1/PBKDF Cryptographic Operation (Password-Based Key Derivation Functions) -->
-	<f-component cc-id="fcs_cop.1" iteration="PBKDF" name="Cryptographic Operation (Password-Based Key Derivation Functions)" status="sel-based">
+	<f-component id="sfr-fcs-cop-1-pbkdef" cc-id="fcs_cop.1" iteration="PBKDF" name="Cryptographic Operation (Password-Based Key Derivation Functions)" status="sel-based">
 		<depends on-sel="sel-fcs-ckm-sk-pbk"/> <!-- FCS_CKM.1/SK -->
 		<f-element id="fcs-cop-1e1-pbkdf">
 			<title>The TSF shall perform [<h:i>password-based key derivation functions</h:i>] in
@@ -3254,17 +3275,17 @@
 	</f-component>		  
 
 	<!-- FCS_COP.1/SigGen Cryptographic Operation (Signature Generation) -->
- 	<f-component cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation (Signature Generation)" status="optional">
+ 	<f-component id="sfr-fsc-cop-1-siggen" cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation (Signature Generation)" status="optional">
 		<f-element id="fcs-cop-1e1-siggen">
 			<title>
 				The TSF shall perform [<h:i>digital signature generation</h:i>] using the supported methods 
 				for signature generation defined in the following rows of <xref to="fcs-cop-siggen-sels"/>
 				<selectables>
-					<selectable id="sel-fcs-cop-siggen-1">SigGen1</selectable>
-					<selectable id="sel-fcs-cop-siggen-2">SigGen2</selectable>
-					<selectable id="sel-fcs-cop-siggen-3">SigGen3</selectable>
-					<selectable id="sel-fcs-cop-siggen-4">SigGen4</selectable>
-					<selectable id="sel-fcs-cop-siggen-5">SigGen5</selectable>
+					<selectable id="sel-fcs-cop-siggen-1">RSASSA-PKCS1</selectable>
+					<selectable id="sel-fcs-cop-siggen-2">DSS 2</selectable>
+					<selectable id="sel-fcs-cop-siggen-3">DSS 3</selectable>
+					<selectable id="sel-fcs-cop-siggen-4">RSASSA-PSS</selectable>
+					<selectable id="sel-fcs-cop-siggen-5">ECDSA</selectable>
 				</selectables>.<h:p/>
 				
 				<h:b><ctr ctr-type='Table' id="fcs-cop-siggen-sels">: Supported Methods for Signature Generation Operation</ctr></h:b><h:br/>	
@@ -3273,7 +3294,7 @@
 					<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 					
 					<h:tr><depends on-sel="sel-fcs-cop-siggen-1"/>
-					<h:td>SigGen1</h:td>
+					<h:td>RSASSA-PKCS1</h:td>
 					<h:td>RSASSA-PKCS1-v1_5 using
 						<selectables>
 							<selectable>SHA-256</selectable>
@@ -3300,7 +3321,7 @@
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-siggen-2"/>
-					<h:td>SigGen2</h:td>
+					<h:td>DSS 2</h:td>
 					<h:td>Digital signature scheme 2 using
 						<selectables>
 							<selectable>SHA-256</selectable>
@@ -3323,7 +3344,7 @@
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-siggen-3"/>
-					<h:td>SigGen3</h:td>
+					<h:td>DSS 3</h:td>
 					<h:td>Digital signature scheme 3 using
 						<selectables>
 							<selectable>SHA-256</selectable>
@@ -3346,7 +3367,7 @@
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-siggen-4"/>
-					<h:td>SigGen4</h:td>
+					<h:td>RSASSA-PSS</h:td>
 					<h:td>RSASSA-PSS using
 						<selectables>
 							<selectable>SHA-256</selectable>
@@ -3369,7 +3390,7 @@
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-siggen-5"/>
-					<h:td>SigGen5</h:td>
+					<h:td>ECDSA</h:td>
 					<h:td>ECDSA on 
 						<selectables>
 							<selectable>brainpoolP256r1</selectable>
@@ -3463,7 +3484,7 @@
  
  
 		<!-- FCS_COP.1/SigVer Cryptographic Operation (Signature Verification) --> 
-		<f-component cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" status="sel-based">
+		<f-component id="sfr-fcs-cop-1-sigver" cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" status="sel-based">
 			<depends on-sel="sel-tud-update"/>
 			<f-element id="fcs-cop-1e1-sigver">
 				<title><refinement>Refinement:</refinement> The TSF shall perform  
@@ -3783,7 +3804,9 @@
 	<!-- FCS_COP.1/SKC Cryptographic Operation (Symmetric Key Cryptography) -->	
 	<f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="sel-based">
 		<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG_EXT.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
+		<depends on-sel="sel-fcs-cop-keyenc-se1"/>   
 		<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
+		<depends on-sel="sel-fcs-cop-kat-ecies"/>
 		<f-element id="fcs-cop-1e1-skc">
 			<title>
 				The TSF shall perform [<h:i>data encryption/decryption</h:i>] using the supported symmetric-key cryptography
