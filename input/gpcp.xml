@@ -1235,7 +1235,7 @@
 		</ext-comp-def>
 		
 		<!-- FCS_CKM.1/AK Gryptographic Key Generation (Assymetric Keys) -->
-		<f-component cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="optional">
+		<f-component cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="sel-based">
 			<depends on-sel="sel-ckm-kek-ak"/> <!-- from FCS_CKM.1/KEK -->
 			<!--			<exportable id="inf-gpcp-fcs-ckm-ak"/>  -->
 			<!-- 			<importable inf-id="inf-dsc-fcs-ckm-ak"/>  -->
@@ -2687,7 +2687,7 @@
             </f-component>
 	
 	<!-- FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash) -->
-	<f-component cc="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="sel-based">
+	<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="sel-based">
 		<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1 -->
 			<f-element id="fcs-cop-1e1-hmac">
 				<title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
@@ -3783,7 +3783,7 @@
 		
 	<!-- FCS_COP.1/SKC Cryptographic Operation (Symmetric Key Cryptography) -->	
 	<f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="sel-based">
-		<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG_EXT.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below
+		<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG_EXT.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
 		<f-element id="fcs-cop-1e1-skc">
 			<title>
 				The TSF shall perform [<h:i>data encryption/decryption</h:i>] using the supported symmetric-key cryptography
