@@ -900,6 +900,12 @@
 
 	<section id="fau" title="Security Audit (FAU)">
 		
+	    <ext-comp-def title="Off-Loading of Audit Data" fam-id="FAU_STG_EXT">
+		<fam-behavior>This family defines requirements for the TSF to securely 
+			transmit extract audit data from the TOE.</fam-behavior>
+	    </ext-comp-def>
+
+		
 	<!-- FAU_GEN.1 Audit Data Generation-->
 	<!-- Use cases: Server (both), CSfC EUD, Enterprise Desktop  -->
 	<!-- Plus the below selection dependencies -->
@@ -1135,6 +1141,23 @@
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
 			<depends on-sel="sel-tud3-audit"/>
+			<consistency-rationale/>
+			<comp-lev>specifies how audit data may be tramsmitted or removed from the TOE.</comp-lev>
+			<management>The following actions could be considered for the management functions in FMT:
+				<h:ol type="a">
+					<h:li>Ability to configure and manage the audit system and audit data,
+					including the ability to configure name/address of audit/logging server
+					to which to send audit/logging records.</h:li>
+				</h:ol>
+			</management>
+			<audit>The following actions should be auditable if FAU_GEN Security audit data generation 
+				is included in the PP/ST:
+				<h:ol type="a">
+					<h:li>On failure of logging function, capture record of failure and record upon restart of logging function.</h:li>
+				</h:ol>
+			</audit>
+			<dependencies>FAU_GEN.1 Audit Data Generation<h:p/>
+						FTP_ITC_EXT.1 Trusted Channel Communications</dependencies>
             <f-element id="fau-stg-ext-1e1">
                 <title>The TSF shall be able to tranfer generated audit data to an external IT entity using 
 				<selectables linebreak="yes">
@@ -1195,8 +1218,28 @@
 
 	<section id="fcs" title="Cryptographic Support (FCS)">
 		
+	    	<ext-comp-def title="Cryptographic Key Management" fam-id="FCS_CKM_EXT">
+			<fam-behavior>This family defines requirements for management of cryptographic keys.</fam-behavior>
+		</ext-comp-def>
+		<ext-comp-def title="Entropy for Virtual Machines" fam-id="FCS_ENT_EXT">
+			<fam-behavior>This family defines requirements for availability of entropy data
+				generated or collected by the TSF.</fam-behavior>
+		</ext-comp-def>
+	 	<ext-comp-def title="HTTPS Protocol" fam-id="FCS_HTTPS_EXT">
+			<fam-behavior>This family defines requirements for protecting remote management sessions between the TOE and a 
+				Security Administrator. This family describes how HTTPS will be implemented.
+			</fam-behavior>
+		</ext-comp-def>
+		<ext-comp-def title="IPsec Protocol" fam-id="FCS_IPSEC_EXT">
+			<fam-behavior>This family defines requirements for protecting communications using IPsec.</fam-behavior>
+		</ext-comp-def>
+	   	<ext-comp-def title="Cryptographic Operation (Random Bit Generation)" fam-id="FCS_RBG_EXT">
+			<fam-behavior>This family defines requirements for random bit/number generation.</fam-behavior>
+		</ext-comp-def>
+		
 		<!-- FCS_CKM.1/AK Gryptographic Key Generation (Assymetric Keys) -->
 		<f-component cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="optional">
+			<depends on-sel="sel-ckm-kek-ak"/> <!-- from FCS_CKM.1/KEK -->
 			<!--			<exportable id="inf-gpcp-fcs-ckm-ak"/>  -->
 			<!-- 			<importable inf-id="inf-dsc-fcs-ckm-ak"/>  -->
 			<f-element id="fcs-ckm-1e1-ak">
@@ -1204,18 +1247,17 @@
 					the following rows in <xref to="fcs-ckm-1-ak-sels"/>:
 					<!-- [selection: identifier from Supported Methods for Asymmetric Key Generation table] --> 
 					<selectables>
-						<selectable id="sel-fcs-ckm-ak-ak1">AK1</selectable>
-						<selectable id="sel-fcs-ckm-ak-ak2">AK2</selectable>
-						<selectable id="sel-fcs-ckm-ak-ak3">AK3</selectable>
-						<selectable id="sel-fcs-ckm-ak-ak4">AK4</selectable>
-						<selectable id="sel-fcs-ckm-ak-ak5">AK5</selectable>
+						<selectable id="sel-fcs-ckm-ak-rsa">RSA</selectable>
+						<selectable id="sel-fcs-ckm-ak-eccn">ECC-N</selectable>
+						<selectable id="sel-fcs-ckm-ak-eccb">ECC-B</selectable>
+						<selectable id="sel-fcs-ckm-ak-dsa">DSA</selectable>
+						<selectable id="sel-fcs-ckm-ak-curve25519">Curve25519</selectable>
 					</selectables>.<h:p/>
 					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-ak-sels">: Supported Methods for Asymmetric Key Generation</ctr></h:b><h:br/>	
 					<h:table>
-						<h:tr class="header"><h:td>Identifier</h:td><h:td>Key Type</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+						<h:tr class="header"><h:td>Identifier/Key Type</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-ak1"/>
-						<h:td>AK1</h:td>
 						<h:td>RSA</h:td>
 						<h:td><selectables>
 							<selectable id="sel-exp-ak-rsa-2048">2048 bit</selectable>
@@ -1223,7 +1265,6 @@
 						<h:td>FIPS PUB 186-4 (Section B.3)</h:td></h:tr>
 						
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-ak2"/>
-						<h:td>AK2</h:td>
 						<h:td>ECC-N</h:td>
 						<h:td><selectables>
 							<selectable id="sel-exp-ak-eccn-P256">256 (P-256)</selectable>
@@ -1232,16 +1273,14 @@
 						<h:td>FIPS PUB 186-4 (Section B.4 &amp; D.1.2)</h:td></h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-ak3"/>
-						<h:td>AK3</h:td>
 						<h:td>ECC-B</h:td>
 						<h:td><selectables>
-							<selectable id="sel-exp-ak-ecc-bpP256r1">256 (brainpoolP256r1)</selectable>
-							<selectable id="sel-exp-ak-ecc-bpP384r1">384 (brainpoolP384r1)</selectable>
-							<selectable id="sel-exp-ak-ecc-bpP512r1">512 (brainpoolP512r1)</selectable></selectables></h:td>
+							<selectable id="sel-exp-ak-eccb-bpP256r1">256 (brainpoolP256r1)</selectable>
+							<selectable id="sel-exp-ak-eccb-bpP384r1">384 (brainpoolP384r1)</selectable>
+							<selectable id="sel-exp-ak-eccb-bpP512r1">512 (brainpoolP512r1)</selectable></selectables></h:td>
 						<h:td>RFC5639 (Section 3) (Brainpool Curves)</h:td></h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-ak4"/>
-						<h:td>AK4</h:td>
 						<h:td>DSA</h:td>
 						<h:td>DSA Bit lengths of p and q respectively (L, N) 
 							<selectables>
@@ -1252,13 +1291,16 @@
 						<h:td>FIPS 186-4 Appendix B.1</h:td></h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-ak5"/>
-						<h:td>AK5</h:td>
 						<h:td>Curve25519</h:td>
 						<h:td>256 bits</h:td>
 						<h:td>RFC 7748</h:td></h:tr>
 					</h:table>
 				</title>
-				<note role="application">					
+				<note role="application">
+					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					This SFR must be included in the ST if "Asymmetric KEKs..." is selected in FCS_CKM.1/KEK.<h:p/>
+
 					This requirement is included for the purposes of encryption and decryption operations only. To
 					support ITE protected communications requirement for the transfer of encrypted data, this 
 					requirement mandates implementation compliance to FIPS 186-4 only. Implementations
@@ -1413,9 +1455,10 @@
 		</f-component>
 	  
 		<!-- FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key) -->
-		<f-component cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="optional">
-<!--			<exportable id="inf-gpcp-fcs-ckm-sk"/> -->
-<!--			<importable inf-id="inf-dsc-fcs-ckm-sk"/> -->
+		<f-component cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
+			<depends on-sel="sel-ckm-kek-sk"/> <!-- from FCS_CKM.1/KEK -->
+			<!--			<exportable id="inf-gpcp-fcs-ckm-sk"/> -->
+			<!--			<importable inf-id="inf-dsc-fcs-ckm-sk"/> -->
 			<f-element id="fcs-ckm-1e1-sk">
 				<title>The TSF shall generate <h:b>symmetric</h:b> cryptographic keys using the methods defined by 
 					the following rows in <xref to="fcs-ckm-1-sk-sels"/>:
@@ -1465,6 +1508,11 @@
 					</h:table>
 				</title>
 				<note role="application">
+					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					
+					This SFR must be included in the ST if "Symmetric KEKs..." is selected in FCS_CKM.1/KEK.<h:p/>
+					
 					The selection of key size 512 bits is for the case of XTS-AES using AES-256. In the case of XTSAES
 					for both AES-128 and AES-256, the developer is expected to ensure that the full key is
 					generated using direct generation from the RBG as in NIST SP 800-133 section.<h:p/>
@@ -1524,14 +1572,16 @@
 			<title>The TSF shall generate key encryption keys in accordance with a specified
 				cryptographic key generation algorithm corresponding to 
 				<selectables linebreak="yes">
-					<selectable>Asymmetric KEKs generated in accordance with FCS_CKM.1/AK identifier AK1</selectable>
-					<selectable>Symmetric KEKs generated in accordance with FCS_CKM.1/SK</selectable>
-					<selectable>Derived KEKs generated in accordance with FCS_CKM_EXT.5</selectable>
+					<selectable id="sel-ckm-kek-ak">Asymmetric KEKs generated in accordance with FCS_CKM.1/AK identifier AK1</selectable>
+					<selectable id="sel-ckm-kek-sk">Symmetric KEKs generated in accordance with FCS_CKM.1/SK</selectable>
+					<selectable id="sel-ckm-kek-drvd">Derived KEKs generated in accordance with FCS_CKM_EXT.5</selectable>
 				</selectables>
 				and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet the
 				following: <assignable>list of standards</assignable>.
 			</title>
 			<note role="application">
+				This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+				or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 				KEKs protect KEKs and Symmetric Keys (SKs). DSCs should use key strengths commensurate
 				with protecting the chosen symmetric encryption key strengths.<h:p/>
 				If Asymmetric KEKs generated in accordance with FCS_CKM.1/AK is selected, the selection-based
@@ -1619,6 +1669,9 @@
 					</selectables> <h:s>that meets the following: [<h:i>assignment: list of standards</h:i>]</h:s>.
 				</title>
 				<note role="application">
+					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					
 					This is a refinement of the SFR FCS_CKM.2 to deal with key establishment rather than key
 					distribution.<h:p/>
 					The ST author selects all key establishment schemes used for the selected cryptographic protocols.<h:p/>
@@ -1711,6 +1764,8 @@
 				that meets the following: [<h:i>no standard</h:i>].
 			</title>
 			<note role="application">
+				This SFR must be included in the ST if the TOE handles sensitive cryptographic keys. <h:p/>
+				
 				The platform must implement mechanisms to destroy cryptographic keys and key material contained in
 				persistent storage when no longer needed. The term “cryptographic keys” in this SFR includes
 				the authorization data that is the entry point to a key chain and all other cryptographic keys and
@@ -1901,6 +1956,7 @@
 
 	<!-- FCS_CKM_EXT.4 Cryptographic Key and Key Material Destruction Timing -->
 	<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="optional">
+		<!-- depends on FCS_CKM.4 -->
 		<f-element id="fcs-ckm-ext-1e1">
 			<title>
 				The TSF shall destroy all keys and keying material when no longer needed.
@@ -1942,7 +1998,8 @@
 	</f-component>
 
 		<!-- FCS_CKM_EXT.5 Cryptographic Key Derivation -->
-		<f-component cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="optional">
+		<f-component cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="sel-based">
+			<depends on-sel="sel-ckm-kek-drvd"/> <!-- from FCS_CKM.1/KEK -->
 		<!-- <exportable id="inf-gpcp-fcs-ckm-derv"/> -->
 		<!-- <exportable inf-id="inf-dsc-fcs-ckm-derv"/> -->
 			<f-element id="fcs-ckm-ext-5e1">
@@ -2205,6 +2262,11 @@
 					</h:table>
 				</title>
 				<note role="application">
+					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					
+					This SFR must be included in the ST if "Derived KEKs..." is selected in FCS_CKM.1/KEK.<h:p/>
+					
 					Note that Camellia algorithms do not support 192-bit key sizes.<h:p/>
 					The interface referenced in the requirement could take different forms, the most likely of which is
 					an application programming interface to an OS kernel. There may be various levels of abstraction.
@@ -2482,6 +2544,7 @@
 <!-- 		<exportable id="inf-gpcp-fcs-cop-hash"/> -->
 <!-- 		<importable inf-id="inf-dsc-fcs-cop-hash"/> -->
 		<depends on-sel="sel-tud2-hash"/>
+		<!-- FCS_COP.1/KeyedHash -->
                 <f-element id="fcs-cop-1e1-hash">
                     <title>The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified cryptographic algorithm
                         <selectables>
@@ -2500,6 +2563,11 @@
 					</selectables>   
                     </title>
                     <note role="application">
+				This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+				or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+			    	Specifically, this SFR must be included if "Hash TODO" is selected in FPT_TUD_EXT.2, or if
+			    	FCS_COP.1/KeyedHash is included in the ST.<h:p/>
+			    
 				The hash selection should be consistent with the overall strength of the algorithm used for
 				signature generation. For example, the ST Author should choose SHA-256 for 2048-bit RSA or ECC 
 				with P-256, SHA-384 for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 for ECC
@@ -2644,6 +2712,9 @@
 					</selectables>.
 				</title>
 				<note role="application">
+					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					
 					The HMAC key size falls into a range between L1 and L2 defined in ISO/IEC 10118 for the
 					appropriate hash function (for example for SHA-256 L1 = 512, L2 = 256) where L2 ≤ k ≤ L1.
 				</note>
@@ -2827,6 +2898,9 @@
 			</h:table>
 			</title>
 			<note role="application">
+				This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+				or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+
 				The selections in this SFR should be consistent with the algorithms selected in FCS_CKM.2.	
 			</note>
 			<aactivity>
@@ -3071,6 +3145,9 @@
 					</h:table>
 				</title>
 				<note role="application">
+					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+
 					A TOE will use this requirement to specify how the Key Encryption Key (KEK) wraps a
 					symmetric encryption key. A TOE will always need this requirement in order to capture the last
 					stage of the key chain in which the Key Encryption Key (KEK) wraps the symmetric encryption
@@ -3127,6 +3204,7 @@
 
 	<!-- FCS_COP.1/PBKDF Cryptographic Operation (Password-Based Key Derivation Functions) -->
 	<f-component cc-id="fcs_cop.1" iteration="PBKDF" name="Cryptographic Operation (Password-Based Key Derivation Functions)" status="optional">
+		<depends on-sel=""/> <!-- FCS_CKM.1/SK -->
 		<f-element id="fcs-cop-1e1-pbkdf">
 			<title>The TSF shall perform [<h:i>password-based key derivation functions</h:i>] in
 				accordance with a specified cryptographic algorithm [<h:i>HMAC-</h:i>
@@ -3143,6 +3221,9 @@
 				</selectables>bits that meet the following standard: [<h:i>NIST SP 800-132</h:i>].
 			</title>
 			<note role="application">
+				This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+				or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+				
 				The ST must condition a password into a string of bits prior to using it as input to algorithms that
 				form SKs and KEKs. The ST can perform conditioning using one of the identified hash functions
 				or the process described in NIST SP 800-132; the ST author selects the method used. NIST SP
@@ -3348,6 +3429,10 @@
 				</h:tr>
 				</h:table>
 			</title>
+			<note role="application">			
+				This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+				or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+			</note>
 			<aactivity>
 				<TSS>
 					The evaluator shall examine the TSS to ensure that all signature generation
@@ -3555,6 +3640,10 @@
 				</h:table>
 				</title>
 				<note role="application">
+					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					Specifically, this SFR must be included if the ST author chooses "digital signatre TODO" in FPT_TUD_EXT.<h:p/>
+					
 					The ST author should choose the algorithm implemented to perform vertification of digital signatures. 
 					if more than one algorithm is available, this requirement should be iterated to specify the functionality. 
 					For the algorithm chosen, the ST author should make the appropriate assignments/selections to specify the 
@@ -3918,6 +4007,10 @@
 					</h:tr>
 				</h:table>
 			</title>
+			<note role="application">
+				This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+				or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+			</note>
 			<aactivity>
 				<TSS>
 					The evaluator shall check that the TSS includes a description of encryption
@@ -4434,6 +4527,8 @@
 				available to tenant software.
                 </title>
                 <note role="application">
+			This SFR must be included in the ST if the TOE provides an entropy source accessible to tenant software.<h:p/>
+			
                     This requirement ensures that the TOE makes available sufficient entropy to any tenant
 					that requires it. Every entropy source need not provide high-quality entropy, but tenant
 					software must have a means of acquiring sufficient entropy.<h:p/>
@@ -5291,7 +5386,10 @@
     </f-component>
 	
 		<!-- FCS_RBG_EXT.1 Random Bit Generation -->
-		<f-component cc-id="fcs_rbg_ext.1" name="Random Bit Generation" status="optional">
+		<f-component cc-id="fcs_rbg_ext.1" name="Random Bit Generation" status="sel-based">
+			<depends on-sel="sel-fcs-ckm-sk-rsk"/>  <!-- FCS_CKM.1/SK -->
+			<!-- FCS_CKM.1/AK is included -->
+			<!-- FCS_SLT_EXT is included -->
 <!--			<exportable id="inf-gpcp-fcs-rbg"/>  -->
 <!--			<importable inf-id="inf-dsc-fcs-rbg"/>  -->
 			<consistency-rationale/>
@@ -5332,6 +5430,9 @@
 					according to ISO/IEC 18031:2011, of the keys and CSPs that it will generate.
 				</title>
 				<note role="application">
+					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+
 					For the selection in FCS_RBG_EXT.1.2, the ST author selects the appropriate number 
 					of bits of entropy that corresponds to the greatest security strength of the
 					algorithms included in the ST. Security strength is defined in Tables 2 and 3 of 
@@ -5427,6 +5528,10 @@
 			<title>The TSF shall use salts and nonces generated by an RBG as specified in
 				FCS_RBG_EXT.1.
 			</title>
+			<note role="application">
+				This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+				or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+			</note>			
 			<aactivity>
 				<TSS>
 					The evaluator shall ensure the TSS describes how salts are generated using the
@@ -5525,6 +5630,9 @@
 				</selectables>.
 			</title>
 			<note role="application">
+					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+				
 				Not all conformant TOEs will have the ability to import pre-generated keys into the TOE. In these
 				cases, the TOE’s ability to receive commands to perform key generation is considered to be its
 				implementation of the Parse service. A subject that caused a key to be generated is considered to
@@ -5610,6 +5718,11 @@
 				</selectables></h:i>] using one of the following
 				methods: <assignable>key encryption methods as specified in FCS_COP.1/KeyEnc</assignable>.
 					</title>
+			
+			<note role="application">
+				This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+				or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+			</note>
 					<aactivity>
 					<TSS>
 						The evaluator shall review the TSS to determine that the TSS describes the
@@ -5631,6 +5744,12 @@
 	</f-component>
 	
 	<f-component cc-id="fcs_stg_ext.3" name="Key Integrity Protection" status="optional">
+		<consistency-rationale/>
+		<comp-lev>defines requirements for ensuring the protection of keys and secrets.</comp-lev>
+		<management>No specific management functions are identified.</management>
+		<audit>There are no auditable events forseen.</audit>
+		<dependencies><h:ul><h:li>FCS_COP.1 Crypotographic Operations</h:li>
+			<h:li>FCS_STG_EXT.2 Key Storage Encryption</h:li></h:ul></dependencies>
 		<f-element id="fcs-stg-ext-3e1">
 			<title>
 				The TSF shall protect the integrity of any encrypted [<h:i>AKs, SKs, KEKs, and
@@ -5642,16 +5761,13 @@
 				<selectables linebreak="yes">
 					<selectable>Symmetric encryption in 
 						<selectables>
-							<selectable>AES_CCM</selectable>
-							<selectable>AES_GCM</selectable>
-							<selectable>AES_KW</selectable>
-							<selectable>AES_KWP</selectable>
-							<selectable>CAM_CCM</selectable>
-							<selectable>CAM_GCM</selectable>
+							<selectable id="sel-stg3-aes-ccm">AES_CCM</selectable>
+							<selectable id="sel-stg3-aes-gcm">AES_GCM</selectable>
+							<selectable id="sel-stg3-aes-kw">AES_KW</selectable>
+							<selectable id="sel-stg3-aes-kwp">AES_KWP</selectable>
 						</selectables> mode in accordance with FCS_COP.1/SKC</selectable>
-					<selectable>A hash of the stored key in accordance with FCS_COP.1/Hash</selectable>
-					<selectable>A keyed hash of the stored key in accordance with FCS_COP.1/HMAC</selectable>
-					<selectable>A digital signature of the stored key in accordance with FCS_COP.1/SigGen
+					<selectable id="sel-stg3-keyedhash">A keyed hash of the stored key in accordance with FCS_COP.1/HMAC</selectable>
+					<selectable id="sel-stg3-digsig">A digital signature of the stored key in accordance with FCS_COP.1/SigGen
 						using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</selectable>
 					<selectable>An immediate application of the key for decrypting the protected data followed 
 						by a successful verification of the decrypted data with previously known information</selectable>
@@ -5668,6 +5784,10 @@
 					</selectables> of the stored key prior to use of the key.
 			</title>
 			<note role="application">
+				This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+				or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+				
+				
 				This requirement is not applicable to derived keys that are not stored. It is not expected that a
 				single key will be protected from corruption by multiple of these methods; however, a product may
 				use one integrity-protection method for one type of key and a different method for other types of
@@ -6612,7 +6732,33 @@
                 <manager cid="2">User Only</manager>
                 <manager cid="3">Admin</manager>
                 <manager cid="4">Admin Only</manager>
+
+		      Ability to configure and manage the audit system and audit data
+		      
                 <management-function>
+                  <text>
+                    <ctr id="auditMgmt" pre="" ctr-type="function">.</ctr> configure and manage the audit system and audit data</text>
+                  <NA ref="4"/>
+                </management-function>
+
+		<management-function>
+		  <text>
+                    <ctr id="auditServerConfig" pre="" ctr-type="function">.</ctr> configure name/address of audit/logging server
+			  to which to send audit/logging records</text>
+                  <NA ref="4"/>
+                </management-function>
+
+		      
+                <management-function>
+                  <text>
+                    <ctr id="digSign" pre="" ctr-type="function">.</ctr> configure <selectables>
+                      <selectable>certificate</selectable>
+                      <selectable>public-key</selectable>
+                    </selectables> used to validate digital signature on applications </text>
+                </management-function>
+
+		      
+		<management-function>
                   <text>
                     <ctr id="pwd" pre="" ctr-type="function">.</ctr> configure password policy:
                       <h:ol type="a">
@@ -6655,12 +6801,6 @@
                 </management-function>
                 <management-function>
                   <text>
-                    <ctr id="radios" pre="" ctr-type="function">.</ctr> enable/disable
-                      <assignable>list of all radios</assignable></text>
-                  <M ref="1"/>
-                </management-function>
-                <management-function>
-                  <text>
                     <ctr id="audioVisual" pre="" ctr-type="function">.</ctr> enable/disable
                       <assignable>list of audio or visual collection devices</assignable>: <h:ol type="a">
                       <h:li>across device</h:li></h:ol>
@@ -6671,16 +6811,6 @@
                       </selectables></h:div>
                   </text>
                   <M ref="1"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <!-- 6. -->
-                    <ctr id="lockState" pre="" ctr-type="function">.</ctr> transition to the locked
-                    state </text>
-                  <M ref="1"/>
-                  <NA ref="2"/>
-                  <M ref="3"/>
-                  <NA ref="4"/>
                 </management-function>
                 <management-function>
                   <text>
@@ -6827,28 +6957,9 @@
                 </management-function>
                 <management-function>
                   <text>
-                    <ctr id="auditLogs" pre="" ctr-type="function">.</ctr> read audit logs kept by
-                    the TSF </text>
-                  <NA ref="4"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="digSign" pre="" ctr-type="function">.</ctr> configure <selectables>
-                      <selectable>certificate</selectable>
-                      <selectable>public-key</selectable>
-                    </selectables> used to validate digital signature on applications </text>
-                </management-function>
-                <management-function>
-                  <text>
                     <ctr id="keyWipeRules" pre="" ctr-type="function">.</ctr> approve exceptions for
                     destruction of keys/secrets by applications that did not import the key/secret
                   </text>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="auditItems" pre="" ctr-type="function">.</ctr> configure the auditable
-                    items </text>
-                  <NA ref="2"/>
                 </management-function>
                 <management-function>
                   <text>
