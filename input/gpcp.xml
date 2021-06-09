@@ -1237,8 +1237,7 @@
 		<!-- FCS_CKM.1/AK Gryptographic Key Generation (Assymetric Keys) -->
 		<f-component cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="sel-based">
 			<depends on-sel="sel-ckm-kek-ak"/> <!-- from FCS_CKM.1/KEK -->
-			<!--			<exportable id="inf-gpcp-fcs-ckm-ak"/>  -->
-			<!-- 			<importable inf-id="inf-dsc-fcs-ckm-ak"/>  -->
+			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
 			<f-element id="fcs-ckm-1e1-ak">
 				<title>The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys using the methods defined by 
 					the following rows in <xref to="fcs-ckm-1-ak-sels"/>:
@@ -1630,9 +1629,8 @@
 	</f-component>
 
 	<!-- FCS_CKM.2 Cryptographic Key Establishment -->
-	<f-component cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="optional">
-<!--			<exportable id="inf-gpcp-fcs-ckm-est"/>   -->
-<!--			<importable inf-id="inf-dsc-fcs-ckm-est"/>   -->
+	<f-component cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="sel-based">
+		<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
 			<f-element id="fcs-ckm-2e1">
 				<title>The TSF shall establish cryptographic keys in accordance with a specified
 					cryptographic key establishment method: 
@@ -2688,6 +2686,7 @@
 	
 	<!-- FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash) -->
 	<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="sel-based">
+		<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
 		<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1 -->
 			<f-element id="fcs-cop-1e1-hmac">
 				<title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
@@ -3471,11 +3470,11 @@
 				The TSF shall perform [<h:i>digital signature verification</h:i>] using the supported methods 
 				for signature verification defined in the following rows of <xref to="fcs-cop-sigver-sels"/>
 				<selectables>
-					<selectable id="sel-fcs-cop-sigver-1">SigVer1</selectable>
-					<selectable id="sel-fcs-cop-sigver-2">SigVer2</selectable>
-					<selectable id="sel-fcs-cop-sigver-3">SigVer3</selectable>
-					<selectable id="sel-fcs-cop-sigver-4">SigVer4</selectable>
-					<selectable id="sel-fcs-cop-sigver-5">SigVer5</selectable>
+					<selectable id="sel-fcs-cop-sigver-1">RSASSA-PKCS1</selectable>
+					<selectable id="sel-fcs-cop-sigver-2">DSS 2</selectable>
+					<selectable id="sel-fcs-cop-sigver-3">DSS 3</selectable>
+					<selectable id="sel-fcs-cop-sigver-4">RSASSA-PSS</selectable>
+					<selectable id="sel-fcs-cop-sigver-5">ECDSA</selectable>
 				</selectables>.<h:p/>
 				
 				<h:b><ctr ctr-type='Table' id="fcs-cop-sigver-sels">: Supported Methods for Signature Verification Operation</ctr></h:b><h:br/>	
@@ -3484,7 +3483,7 @@
 					<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 					
 					<h:tr><depends on-sel="sel-fcs-cop-sigver-1"/>
-					<h:td>SigVer1</h:td>
+					<h:td>RSASSA-PKCS1</h:td>
 					<h:td>RSASSA-PKCS1-v1_5 using
 						<selectables>
 							<selectable>SHA-256</selectable>
@@ -3511,7 +3510,7 @@
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-sigver-2"/>
-					<h:td>SigVer2</h:td>
+					<h:td>DSS 2</h:td>
 					<h:td>Digital signature scheme 2 using
 						<selectables>
 							<selectable>SHA-256</selectable>
@@ -3534,7 +3533,7 @@
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-sigver-3"/>
-					<h:td>SigVer3</h:td>
+					<h:td>DSS 3</h:td>
 					<h:td>Digital signature scheme 3 using
 						<selectables>
 							<selectable>SHA-256</selectable>
@@ -3557,7 +3556,7 @@
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-sigver-4"/>
-					<h:td>SigVer4</h:td>
+					<h:td>RSASSA-PSS</h:td>
 					<h:td>RSASSA-PSS using
 						<selectables>
 							<selectable>SHA-256</selectable>
@@ -3580,7 +3579,7 @@
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-sigver-5"/>
-					<h:td>SigVer5</h:td>
+					<h:td>ECDSA</h:td>
 					<h:td>ECDSA on 
 						<selectables>
 							<selectable>brainpoolP256r1</selectable>
@@ -3784,6 +3783,7 @@
 	<!-- FCS_COP.1/SKC Cryptographic Operation (Symmetric Key Cryptography) -->	
 	<f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="sel-based">
 		<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG_EXT.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
+		<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
 		<f-element id="fcs-cop-1e1-skc">
 			<title>
 				The TSF shall perform [<h:i>data encryption/decryption</h:i>] using the supported symmetric-key cryptography
@@ -4486,7 +4486,7 @@
                 </f-component>
 
 	<!-- FCS_IPSEC_EXT.1 IPsec Protocol -->
-        <f-component cc-id="fcs_ipsec_ext.1" name="IPsec Protocol" status="sel-based">
+        <f-component id="sfr-fcs-ipsec-ext-1" cc-id="fcs_ipsec_ext.1" name="IPsec Protocol" status="sel-based">
 		<depends on-sel="sel-itc-ipsec"/>
 		<depends on-sel="sel-x509-2-ipsec"/>
 		<consistency-rationale/>
@@ -5247,6 +5247,7 @@
 	
 		<!-- FCS_RBG_EXT.1 Random Bit Generation -->
 		<f-component cc-id="fcs_rbg_ext.1" name="Random Bit Generation" status="sel-based">
+			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
 			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/SK is included -->
@@ -5941,6 +5942,7 @@
                 <!-- FIA_X509_EXT.1 -->
                 <!-- Depends on x509 certificates being used for administrator authentication -->
                 <f-component cc-id="fia_x509_ext.1" name="X.509 Certificate Validation"  status="sel-based">
+		    <depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
                     <depends on-sel="sel-tud-digsign"/>
                     <depends on-sel="sel-uau-x509"/> 
 		    <depends on-sel="sel-itc-certauth"/>
@@ -6086,6 +6088,7 @@
                 <!-- FIA_X509_EXT.2 -->
                 <!-- Depends on digital signatures being used for trusted updates or administrator authentication -->
                 <f-component cc-id="fia_x509_ext.2" name="X.509 Certificate Authentication"  status="sel-based">
+		    <depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
                     <depends on-sel="sel-tud-digsign-cert"/>
                     <depends on-sel="sel-uau-x509" /> 
 					<depends on-sel="sel-itc-certauth"/>
@@ -6330,7 +6333,7 @@
                 <manager cid="3">Admin</manager>
                 <manager cid="4">Admin Only</manager>
 
-		      Ability to configure and manage the audit system and audit data
+	
 		      
                 <management-function>
                   <text>
