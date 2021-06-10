@@ -5735,8 +5735,8 @@
 	<section id="fia" title="Identification and Authentication (FIA)">
 		
 	    <ext-comp-def title="Authentication Failure Handling" fam-id="FIA_AFL_EXT">
-			<fam-behavior>This family defines requirements for detection and prevention
-				of brute force authentication attempts.</fam-behavior>
+			<fam-behavior>This family defines requirements for the TOE’s behavior when repeated failed attempts to gain
+				authorization to access TSF data occur.</fam-behavior>
 		</ext-comp-def>
 	    <ext-comp-def title="Password Management" fam-id="FIA_PMG_EXT">
 			<fam-behavior>This family defines requirements for the composition of
@@ -5746,10 +5746,6 @@
 			<fam-behavior>This family defines requirements for the limiting  
 				administrator authentication attempts.</fam-behavior>
 		</ext-comp-def>
-	    <ext-comp-def title="Administrator Identification and Authentication" fam-id="FIA_UAU_EXT">
-			<fam-behavior>This family defines requirements for ensuring that access to the TSF
-				is not granted to unauthenticated subjects.</fam-behavior>
-		</ext-comp-def>
 	    <ext-comp-def title="Administrator Identification and Authentication" fam-id="FIA_UIA_EXT">
 			<fam-behavior>This family defines requirements for ensuring that access to the TSF
 				is not granted to unauthenticated subjects.</fam-behavior>
@@ -5758,15 +5754,25 @@
 			<fam-behavior>This family defines requirements for the validation and use of X.509 certificates.</fam-behavior>
 		</ext-comp-def>
 
+		<!-- FIA_AFL_EXT.1 Authentication Failure Handling -->
 		<f-component id="sfr-fia-afl-ext-1" cc-id="fia_afl_ext.1" name="Authentication Failure Handling" status="optional">
+			<consistency-rationale/>
+			<comp-lev>requires the TSF to monitor authorization attempts, including counting and limiting the number of 
+				attempts at failed or passed authorizations.</comp-lev>
+			<management>The following actions could be considered for the management functions in FMT:
+				<h:ul><h:li>Set authorization failure parameters</h:li></h:ul></management>
+			<audit>There are no auditable events foreseen.</audit>
+			<dependencies>FIA_UAU.5 Multiple Authentication Mechanisms<h:br/>
+				FIA_SMF_EXT.1 Management Functions Specification<h:br/>
+				FCS_CKM_EXT.4 Key Destruction</dependencies>
 			<f-element id="fia-afl-ext-1e1">
 				<title>
-					The TSF shall consider password and [no other] as critical authentication mechanisms.
+					The TSF shall consider password and [<h:i>no other</h:i>] as critical authentication mechanisms.
 				</title>
 				<note role="application">
 					A critical authentication mechanism is one in which countermeasures are triggered (i.e. wipe
 					of the device) when the maximum number of unsuccessful authentication attempts is exceeded,
-					rendering the other factors unavailable.<h:p/>
+					rendering the other factors unavailable. (TODO: Need to discuss this).<h:p/>
 					If no additional authentication mechanisms are selected in FIA_UAU.5.1, then ‘no other’ must 
 					be selected. If an additional authentication mechanism is selected in FIA_UAU.5.1, then it 
 					must only be selected in FIA_AFL_EXT.1.1 if surpassing the authentication failure threshold 
@@ -5781,24 +5787,25 @@
 			</f-element>
 			<f-element id="fia-afl-ext-1e2">
 				<title>
-					The TSF shall detect when a configurable positive integer within [assignment: range of
-					acceptable values for each authentication mechanism] of [selection: unique, non-unique]
-					unsuccessful authentication attempts occur related to last successful authentication for
+					The TSF shall detect when a configurable positive integer within 
+					<assignable>range of acceptable values for each authentication mechanism</assignable>
+					of <selectables>
+						<selectable>unique</selectable>
+						<selectable>non-unique</selectable>
+					</selectables> unsuccessful authentication attempts occur related to last successful authentication for
 					each authentication mechanism.
 				</title>
 				<note role="application">
-					The positive integer(s) is configured according to FMT_SMF_EXT.1.1 function Table 2.<h:p/>
-					An unique authentication attempt is defined as any attempt to verify a password or biometric
-					sample, in which the input is different from a previous attempt. ‘Unique’ must be selected if
+					The positive integer(s) is configured according to FMT_SMF_EXT.1.1 function Table 2
+					(TODO: Make this an xref).<h:p/>
+					An unique authentication attempt is defined as any attempt to verify a password 
+					in which the input is different from a previous attempt. ‘Unique’ must be selected if
 					the authentication system increments the counter only for unique unsuccessful authentication
 					attempts. For example, if the same incorrect password is attempted twice the authentication 
 					system increments the counter once. ‘Non-unique’ must be selected if the authentication system 
 					increments the counter for each unsuccessful authentication attempt, regardless of if the
 					input is unique. For example, if the same incorrect password is attempted twice the
 					authentication system increments the counter twice.<h:p/>
-					If hybrid authentication (i.e. a combination of biometric and pin/password) is supported, a
-					failed authentication attempt can be counted as a single attempt, even if both the biometric
-					and pin/password were incorrect.<h:p/>
 					If the TOE supports multiple authentication mechanisms per FIA_UAU.5.1, this component applies
 					to all authentication mechanisms. It is acceptable for each authentication mechanism to
 					utilize an independent counter or for multiple authentication mechanisms to utilize a shared 
@@ -5843,7 +5850,7 @@
 					TSF shall perform a wipe of all protected data.
 				</title>
 				<note role="application">
-					Wipe is performed in accordance with FCS_CKM_EXT.5. Protected data is all non-TSF data, 
+					Wipe is performed in accordance with FCS_CKM_EXT.4. Protected data is all non-TSF data, 
 					including all user or enterprise data. Some or all of this data may be considered sensitive
 					data as well.<h:p/>
 					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption
@@ -5916,13 +5923,16 @@
 			<audit-event/>
 		</f-component>
 		
+		<!-- FIA_PMG_EXT.1 Password Mangement -->
 		<f-component id="sfr-fia-pmg-ext-1" cc-id="fia_pmg_ext.1" name="Password Management" status="optional">
 					<consistency-rationale/>
-			<comp-lev></comp-lev>
-			<management></management>
-			<audit></audit>
-			<dependencies></dependencies>
-
+			<comp-lev>requires the TSF to support passwords with varying composition requirements, minimum lengths, 
+				maximum lifetime, and similarity constraints.</comp-lev>
+			<management>>The following actions could be considered for the management functions in FMT:
+				<h:ul><h:li>Ability to configure password composition and length requirements 
+					for authorization of Administrators.</h:li></h:ul></management>
+			<audit>No specific audit requirements are forseen.</audit>
+			<dependencies>No other components.</dependencies>
 			<f-element id="fia-pmg-ext-1e1">
 				<title>
 					The TSF shall support the following for the Password Authentication Factor:<h:ol type="1">
@@ -5989,13 +5999,15 @@
 			<audit-event/>
 		</f-component>
 		
+		<!-- FIA_TRT_EXT.1 Authentication Throttling -->
 		<f-component id="sfr-fia-trt-ext-1" cc-id="fia_trt_ext.1" name="Authentication Throttling" status="optional">
-					<consistency-rationale/>
-			<comp-lev></comp-lev>
-			<management></management>
-			<audit></audit>
-			<dependencies></dependencies>
-
+			<consistency-rationale/>
+			<comp-lev>requires that the TSF enforce a limit on authentication attempts.</comp-lev>
+			<management>The following actions could be considered for the management functions in FMT:
+				<h:ul><h:li>Ability to configure a authentication throttling policy for the TOE.</h:li></h:ul></management>
+			<audit>The following should be considered for auditable events if FAU_GEN.1 is included in the ST:<h:ul>
+				<h:li>Authentication throttling is triggered.</h:li></h:ul></audit>
+			<dependencies>FIA_UAU.5 Multiple Authentication Mechanisms</dependencies>
 			<f-element id="fia-trt-ext-1e1">
 				<title>
 					The TSF shall limit automated user authentication attempts by 
@@ -6029,9 +6041,12 @@
 					</Tests>
 				</aactivity>
 			</f-element>
-			<audit-event/>
+			<audit-event>
+				<audit-event-descr>Authentication throttling triggered.</audit-event-descr>
+			</audit-event>
 		</f-component>
 		
+		<!-- FIA_UAU.5 Multiple Authentication Mechanisms -->
 		<f-component id="sfr-fia-uau-5" cc-id="fia_uau.5" name="Multiple Authentication Mechanisms" status="optional">
 			<f-element id="fia-uau-5e1">
 				<title>
