@@ -1233,6 +1233,9 @@
 	   	<ext-comp-def title="Cryptographic Operation (Random Bit Generation)" fam-id="FCS_RBG_EXT">
 			<fam-behavior>This family defines requirements for random bit/number generation.</fam-behavior>
 		</ext-comp-def>
+	   	<ext-comp-def title="Cryptographic Key Storage" fam-id="FCS_STG_EXT">
+			<fam-behavior>This family defines requirements for ensuring the protection of keys and secrets.</fam-behavior>
+		</ext-comp-def>
 		
 		<!-- FCS_CKM.1/AK Gryptographic Key Generation (Assymetric Keys) -->
 		<f-component id="sfr-fcs-ckm-1-ak" cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="sel-based">
@@ -1712,6 +1715,7 @@
 		<depends on-incl="sfr-fcs-cop-1-kat"/>
 		<depends on-incl="sfr-fcs-cop-1-pbkdf"/>
 		<depends on-incl="sfr-fcs-cop-1-keyenc"/>
+		<depends on-incl="sfr-fcs-stg-ext-1"/>
 		<f-element id="fcs-ckm-4e1">
 			<title>The TSF shall destroy cryptographic keys and keying material in accordance
 				with a specified cryptographic key destruction method 
@@ -2708,6 +2712,7 @@
 		<depends on-incl="sfr-fcs-cop-1-pbkdf"/>	<!-- FCS_COP.1/PBKDF -->
 		<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1 -->
 		<depends on-sel="sel-fcs-cop-kat-ecies"/>		
+		<depends on-sel="sel-stg3-hmac"/>
 			<f-element id="fcs-cop-1e1-hmac">
 				<title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
 					with a specified cryptographic algorithm 
@@ -3095,7 +3100,8 @@
 		
 
 		<!-- FCS_COP.1/KeyEnc Cryptographic Operation (Key Encryption) -->
-		<f-component id="sfr-fcs-cop-1-keyenc" cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" status="optional">
+		<f-component id="sfr-fcs-cop-1-keyenc" cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" status="sel-based">
+			<depends on-incl="sfr-fcs-stg-ext-2"/>
 			<f-element id="fcs-cop-1e1-keyenc">
 				<title>
 					The TSF shall perform [<h:i>key encryption and decryption</h:i>] using the methods defined in the
@@ -3275,7 +3281,8 @@
 	</f-component>		  
 
 	<!-- FCS_COP.1/SigGen Cryptographic Operation (Signature Generation) -->
- 	<f-component id="sfr-fsc-cop-1-siggen" cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation (Signature Generation)" status="optional">
+ 	<f-component id="sfr-fsc-cop-1-siggen" cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation (Signature Generation)" status="sel-based">
+		<depends on-sel="sel-stg3-digsig"/>
 		<f-element id="fcs-cop-1e1-siggen">
 			<title>
 				The TSF shall perform [<h:i>digital signature generation</h:i>] using the supported methods 
@@ -3807,6 +3814,10 @@
 		<depends on-sel="sel-fcs-cop-keyenc-se1"/>   
 		<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
 		<depends on-sel="sel-fcs-cop-kat-ecies"/>
+		<depends on-sel="sel-stg3-aes-ccm"/>  <!-- implies sel-fcs-cop-skc-aes-ccm -->
+		<depends on-sel="sel-stg3-aes-gcm"/>  <!-- implies sel-fcs-cop-skc-aes-gcm -->
+		<depends on-sel="sel-stg3-aes-kw"/>  <!-- implies sel-fcs-cop-skc-aes-kw -->
+		<depends on-sel="sel-stg3-aes-kwp"/>  <!-- implies sel-fcs-cop-skc-aes-kwp -->
 		<f-element id="fcs-cop-1e1-skc">
 			<title>
 				The TSF shall perform [<h:i>data encryption/decryption</h:i>] using the supported symmetric-key cryptography
@@ -5438,20 +5449,282 @@
 		<audit-event/>
 	</f-component>		
 
+	<f-component id="sfr-fcs-stg-ext-1" cc-id="fcs_stg_ext.1" name="Protected Storage" status="optional">
+		<consistency-rationale/>
+		<comp-lev>requires the TSF to enforce protected storage for keys and
+				secrets so that they cannot be accessed or destroyed without authorization.</comp-lev>
+		<management>No specific management functions are identified.</management>
+		<audit>There are no auditable events foreseen.</audit>
+		<dependencies>FCS_CKM.4 Cryptographic Key Destruction</dependencies>
+		<f-element id="fcs-stg-ext-1e1">
+			<title>
+				The TSF shall provide 
+				<selectables>
+					<selectable>mutable hardware-based</selectable>
+					<selectable>immutable hardware-based</selectable>
+					<selectable id="sel-stg1-sw-based">software-based</selectable>
+				</selectables> protected storage for asymmetric private keys and 
+				<selectables>
+					<selectable>symmetric keys</selectable>
+					<selectable>persistent secrets</selectable>
+					<selectable>no other keys</selectable>
+				</selectables>.
+			</title>
+			<note role="application">
+				If the protected storage is implemented in software that is protected as required by
+				FCS_STG_EXT.2, the ST author is expected to select "software-based." If "software-based" is selected,
+				the ST author is expected to select all "software-based key storage" in FCS_STG_EXT.2.<h:p/>
+				Support for protected storage for all symmetric keys and persistent secrets will be required in
+				future revisions.<h:p/>
+			</note>
+		</f-element>
+		<f-element id="fcs-stg-ext-1e2">
+			<title>
+				The TSF shall support the capability of 
+				<selectables>
+					<selectable>importing keys/secrets into the TOE</selectable>
+					<selectable>causing the TOE to generate keys/secrets</selectable>
+				</selectables> upon request of 
+				<selectables>
+					<selectable>a client application</selectable>
+					<selectable>an administrator</selectable>
+				</selectables>.
+			</title>
+		</f-element>
+		<f-element id="fcs-stg-ext-1e3">
+			<title>
+				The TSF shall be capable of destroying keys/secrets in the protected storage
+				upon request of 
+				<selectables>
+					<selectable>a client application</selectable>
+					<selectable>an administrator</selectable>
+				</selectables>.
+			</title>
+<!--		</f-element>
+		<f-element id="fcs-stg-ext-1e4">
+			<title>
+				The TSF shall have the capability to allow only the user that 
+				<selectables>
+					<selectable>imported the key/secret</selectable>
+					<selectable>caused the key/secret to be generated</selectable>
+				</selectables> to use the key/secret. Exceptions
+				may be explicitly authorized only by 
+				<selectables>
+					<selectable>the client application</selectable>
+					<selectable>the administrator</selectable>
+				</selectables>.
+			</title>
+		</f-element>  -->
+<!--		<f-element id="fcs-stg-ext-1e5">
+			<title>
+				The TSF shall allow only the user that 
+				<selectables>
+					<selectable>imported the key/secret</selectable>
+					<selectable>caused the key/secret to be generated</selectable>
+				</selectables> to request that the key/secret be destroyed. Exceptions may
+				only be explicitly authorized by 
+				<selectables>
+					<selectable>the client application</selectable>
+					<selectable>the administrator</selectable>
+				</selectables>.
+			</title>  -->
+<!--			<note role="application">
+				Not all conformant TOEs will have the ability to import pre-generated keys into the TOE. In these
+				cases, the TOE’s ability to receive commands to perform key generation is considered to be its
+				implementation of the Parse service. A subject that caused a key to be generated is considered to
+				be the ‘owner’ of that key in the same manner as they would be if they had imported it directly.
+			</note>  -->
+			<aactivity>
+			<TSS>
+				The evaluator shall review the TSS to determine that the TOE implements the
+				required protected storage. The evaluator shall ensure that the TSS contains a
+				description of the protected storage mechanism that justifies the selection of
+				mutable hardware-based or software-based.<h:p/>
+			</TSS>
+			<Guidance>
+					The evaluator shall examine the operational guidance to ensure that it describes the
+					process for generating keys, importing keys, or both, based on what is claimed by
+					the ST. The evaluator shall also examine the operational guidance to ensure that it
+					describes the process for destroying keys that have been imported or generated.<h:p/>
+			</Guidance>
+			<KMD>
+				There are no KMD evaluation activities for this component.
+			</KMD>
+			<Tests>
+				The evaluator shall test the functionality of each security function as described
+				below. If the TOE supports both import and generation of keys, the evaluator shall
+				repeat the testing as needed to demonstrate that the keys resulting from both
+				operations are treated in the same manner. The devices used with the tooling may
+				need to be non-production devices in order to enable the execution and gathering of
+				evidence.<h:p/>
+				<testlist>
+					<test>
+						The evaluator shall import or generate keys/secrets of each supported type
+						according to the operational guidance. The evaluator shall write, or the developer
+						shall provide access to, an application that generates a key/secret of each supported
+						type and calls the import functions. The evaluator shall verify that no errors occur
+						during import.
+					</test>
+					<test>The evaluator shall write, or the developer shall provide access to, 
+						tenant software that uses a generated or imported key/secret:<h:ul>
+							<h:li>For RSA, the secret shall be used to sign data.</h:li>
+							<h:li>For ECDSA, the secret shall be used to sign data.</h:li></h:ul>
+						    The evaluator shall verify that the tenant software is able to access and 
+							use the key/secret as described.
+					</test>
+					<test>The evaluator shall destroy keys/secrets of each supported type according
+						to the operational guidance. The evaluator shall write, or the developer shall provide
+						access to, tenant software that destroys an imported or generated key/secret. The evalutor
+						shall verify that the tenant software is able to cause the deletion of only keys that 
+						were created or imported on its behalf.
+					 <h:p/>
+					</test>
+				</testlist>
+			</Tests>
+			</aactivity>
+		</f-element>
+	</f-component>
+
+	<f-component id="sfr-fcs-stg-ext-2" cc-id="fcs_stg_ext.2" name="Key Storage Encryption" status="sel-based">
+		<depends on-sel="sel-stg1-sw-based"/>  <!-- implies sel-stg2-sw-based -->
+		<consistency-rationale/>
+		<comp-lev>requires the TSF to ensure the confidentiality of stored
+			data using a specified method.</comp-lev>
+		<management>No specific management functions are identified.</management>
+		<audit>There are no auditable events foreseen.</audit>
+		<dependencies></dependencies>
+		<f-element id="fcs-stg-ext-2e1">
+			<title>
+				The TSF shall encrypt [<h:i>AKs, SKs, KEKs, and 
+				<selectables>
+					<selectable>long-term trusted channel key material</selectable>
+					<selectable id="sel-stg2-sw-based">all software-based key storage</selectable>
+					<selectable>no other keys</selectable>
+				</selectables></h:i>] using key encryption methods as specified in FCS_COP.1/KeyEnc.
+			</title>
+			<aactivity>
+			<TSS>
+				The evaluator shall review the TSS to determine that the TSS describes the
+				protection of symmetric keys, KEKs, long-term trusted channel key material, and
+				software-based key storage as claimed in FCS_STG_EXT.2.1. 
+			</TSS>
+			<Guidance>
+				There are no AGD evaluation activities for this component.
+			</Guidance>
+			<KMD>
+				There are no KMD evaluation activities for this component
+			</KMD>
+			<Tests>
+				There are no test evaluation activities for this component.
+			</Tests>			
+			</aactivity>
+		</f-element>
+	</f-component>
+	
+	<f-component cc-id="fcs_stg_ext.3" name="Key Integrity Protection" status="sel-based">
+		<depends on-sel="sel-stg1-sw-based"/>
+		<consistency-rationale/>
+		<comp-lev>requires the TSF to ensure the integrity of stored data
+			using a specified method.
+		</comp-lev>
+		<management>No specific management functions are identified.</management>
+		<audit>There are no auditable events foreseen.</audit>
+		<dependencies>FCS_COP.1: Cryptographic Operations</dependencies>
+		<f-element id="fcs-stg-ext-3e1">
+			<title>
+				The TSF shall protect the integrity of any encrypted [<h:i>AKs, SKs, KEKs, and
+				<selectables>
+					<selectable>long-term trusted channel key material</selectable>
+					<selectable>all software-based key storage</selectable>
+					<selectable>no other keys</selectable>
+				</selectables></h:i>] by using 
+				<selectables linebreak="yes">
+					<selectable>Symmetric encryption in 
+						<selectables>
+							<selectable id="sel-stg3-aes-ccm">AES_CCM</selectable>
+							<selectable id="sel-stg3-aes-gcm">AES_GCM</selectable>
+							<selectable id="sel-stg3-aes-kw">AES_KW</selectable>
+							<selectable id="sel-stg3-aes-kwp">AES_KWP</selectable>
+						</selectables> mode in accordance with FCS_COP.1/SKC</selectable>
+<!--					<selectable id="sel-stg3-hash">A hash of the stored key in accordance with FCS_COP.1/Hash</selectable>  -->
+					<selectable id="sel-stg3-hmac">A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</selectable>
+					<selectable id="sel-stg3-digsig">A digital signature of the stored key in accordance with FCS_COP.1/SigGen
+						using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</selectable>
+					<selectable>An immediate application of the key for decrypting the protected data followed 
+						by a successful verification of the decrypted data with previously known information</selectable>
+				</selectables>.
+			</title>
+		</f-element>
+		<f-element id="fcs-stg-ext-3e2">
+			<title>
+				The TSF shall verify the integrity of the 
+					<selectables>
+<!--						<selectable>hash</selectable>   -->
+						<selectable>digital signature</selectable>
+						<selectable>MAC</selectable>
+					</selectables> of the stored key prior to use of the key.
+			</title>
+			<note role="application">
+				This requirement is not applicable to derived keys that are not stored. It is not expected that a
+				single key will be protected from corruption by multiple of these methods; however, a product may
+				use one integrity-protection method for one type of key and a different method for other types of
+				keys.<h:p/>
+				The documentation of the product’s encryption key management should be detailed enough that,
+				after reading, the evaluator will thoroughly understand the product’s key management and how it
+				meets the requirements to ensure the keys are adequately protected. This documentation should
+				include an essay and diagrams. This documentation is not required to be part of the TSS – it can
+				be submitted as a separate document and marked as developer proprietary.
+			</note>
+			<aactivity>
+				<TSS>
+					The evaluator shall examine the TSS and ensure that it contains a description of
+					how the TOE protects the integrity of its keys.
+				</TSS>
+				<Guidance>
+					There are no AGD evaluation activities for this component.
+				</Guidance>
+				<KMD>
+					There are no KMD evaluation activities for this component.
+				</KMD>
+				<Tests>
+					There are no test evaluation activities for this component.
+				</Tests>
+			</aactivity>
+		</f-element>
+	</f-component>
+
+
 	</section>	 
 	
 	
 	<section id="fdp" title="User Data Protection (FDP)">
 	
 		<f-component cc-id="fdp_tee_ext.1" name="Trusted execution environment for tenant software" status="optional">
+		<consistency-rationale/>
+		<comp-lev>requires the TSF to implement a trusted execution environment for the use of tenant software.
+		</comp-lev>
+		<management>No specific management functions are identified.</management>
+		<audit>There are no auditable events foreseen.</audit>
+		<dependencies>No dependencies.</dependencies>
 			<f-element id="fdp-tee-ext-1e1">
 				<title>
 					The TSF shall implement a trusted execution environment that conforms to the following
 					standard: [<h:i>Advanced Trusted Environment: OMTP TR1 v1.1</h:i>] 
 					and make this TEE available to tenant software.
 				</title>
+				<note role="application">
+					This SFR should be claimed in the ST if the TOE includes a trusted execution environment 
+					for the use of tenant software.
+				</note>
 				<aactivity>
-					<no-tests/>
+					<TSS>
+						The evaluator shall examine the TSS to ensure that it describes the protections provided by the 
+						TOE's TEE implementation.
+					</TSS>
+					<Guidance>
+						The evaluator shall examine the guidance to ensure that it describes the steps 
+						required for tenant software to invoke the TEE.
+					</Guidance>	
 				</aactivity>
 			</f-element>
 			<audit-event/>
@@ -5472,6 +5745,10 @@
 	    <ext-comp-def title="Authentication Throttling" fam-id="FIA_TRT_EXT">
 			<fam-behavior>This family defines requirements for the limiting  
 				administrator authentication attempts.</fam-behavior>
+		</ext-comp-def>
+	    <ext-comp-def title="Administrator Identification and Authentication" fam-id="FIA_UAU_EXT">
+			<fam-behavior>This family defines requirements for ensuring that access to the TSF
+				is not granted to unauthenticated subjects.</fam-behavior>
 		</ext-comp-def>
 	    <ext-comp-def title="Administrator Identification and Authentication" fam-id="FIA_UIA_EXT">
 			<fam-behavior>This family defines requirements for ensuring that access to the TSF
@@ -5640,6 +5917,12 @@
 		</f-component>
 		
 		<f-component id="sfr-fia-pmg-ext-1" cc-id="fia_pmg_ext.1" name="Password Management" status="optional">
+					<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
+
 			<f-element id="fia-pmg-ext-1e1">
 				<title>
 					The TSF shall support the following for the Password Authentication Factor:<h:ol type="1">
@@ -5707,6 +5990,12 @@
 		</f-component>
 		
 		<f-component id="sfr-fia-trt-ext-1" cc-id="fia_trt_ext.1" name="Authentication Throttling" status="optional">
+					<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
+
 			<f-element id="fia-trt-ext-1e1">
 				<title>
 					The TSF shall limit automated user authentication attempts by 
@@ -5866,15 +6155,12 @@
 			<audit-event/>
 		</f-component>
 		
-		
-		<f-component id="sfr-fia-uau-ext-2" cc-id="fia_uau_ext.2" name="Timing of Authentication" status="optional">
-			<f-element id="fia-uau-ext-2e1">
+		<!-- FIA_UAU.2 User Authentication before any action -->
+		<f-component id="sfr-fia-uau-2" cc-id="fia_uau_ext.2" name="User Authentication Before any Action" status="optional">
+			<f-element id="fia-uau-2e1">
 				<title>
-					The TSF shall allow 
-						<selectables>
-							<selectable><assignable>list of admnistrative actions</assignable></selectable>
-							<selectable>no administrative actions</selectable>
-						</selectables> on behalf of an Administrator to be performed before the Administrator is authenticated.
+					The TSF shall require each [<h:i>Administrator</h:i>] to be successfully authenticated
+					before performing any TSF-mediated actions on behalf of that [<h:i>Administrator</h:i>].
 				</title>
 			</f-element>
 			<f-element id="fia-uau-ext-2e2">
@@ -6213,6 +6499,12 @@
 	
 		<!-- FMT_CFG_EXT.1 Secure by Default Configuration -->
 		<f-component cc-id="fmt_cfg_ext.1" name="Secure by Default Configuration">
+					<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
+
 			<f-element id="fmt-cfg-ext-1e1">
 				<title>
 					The TOE shall provide only enough functionality to set new Administrator credentials when 
@@ -6253,6 +6545,12 @@
 	
 	<!-- FMT_MOF_EXT.1: Management of Security Function Behavior -->
        <f-component cc-id="fmt_mof_ext.1" name="Management of Security Functions Behavior">
+	   			<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
+
           <f-element id="fmt-mof-ext-1e1">
             <title>The TSF shall restrict the ability to perform the functions in column 3 of
                 <xref to="fmt_smf"/> to the user. </title>
@@ -6343,6 +6641,12 @@
 		
 	<!-- FMT_SMF_EXT.1: Specification of Management Functions -->
         <f-component cc-id="fmt_smf_ext.1" name="Specification of Management Functions">
+					<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
+
           <f-element id="fmt-smf-est-1e1">
             <title>The TSF shall be capable of performing the following management functions: <h:p/>
               <h:b><ctr id="fmt_smf" ctr-type="Table">: Management Functions</ctr></h:b><h:p/> 
@@ -7356,7 +7660,13 @@
 		
 	<section id="fpt" title="Class: Protection of the TSF (FPT)">
 	
-		<f-component cc-id="fpt_jta_ext.2" name="JTAG/Debug Port Access">
+		<f-component cc-id="fpt_jta_ext.1" name="JTAG/Debug Port Access">
+					<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
+
 		<f-element id="fpt-jta-ext-1e1">
 			<title>
 				The TSF shall allow access to JTAG or other debug ports only to an authorized administrator
@@ -7386,6 +7696,12 @@
 	<!-- FPT_JTA_EXT.2 JTAG/Debug Port Disablement -->
 	<!-- Should be included for use cases where physical protections are rewquired. -->
 	<f-component id="sfr-fpt-jta-ext-2" cc-id="fpt_jta_ext.2" name="JTAG/Debug Port Disablement" status="optional">
+				<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
+
 		<f-element id="fpt-jta-ext-2e1">
 			<title>
 				The TSF shall <selectables>
@@ -7425,6 +7741,12 @@
 	
 	<!-- FPT_ROT_EXT.1: Platform Integrity Root -->
 	<f-component cc-id="fpt_rot_ext.1" name="Platform Integrity Root">
+				<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
+
 		<f-element id="fpt-rot-ext-1e1">
 			<title>The integrity of platform firmware shall be rooted in 
 				<selectables linebreak="yes">
@@ -7456,6 +7778,12 @@
 
 	<!-- FPT_ROT_EXT.2: Platform Integrity Extension -->
 	<f-component cc-id="fpt_rot_ext.2" name="Platform Integrity Extension">
+				<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
+
 		<f-element id="fpt-rot-ext-2e1">
 			<title>The integrity of all mutable platform firmware outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
 				prior to execution or use through:
@@ -7618,6 +7946,11 @@
 
 	<!-- FPT_PHP_EXT.1: Hardware component integrity 	 -->
 	<f-component cc-id="fpt_php_ext.1" name="Hardware component integrity" status="objective">
+				<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
 		<f-element id="fpt-php-ext-1e1">
 			<title>
 				Outside of the integrity root specified in FPT_ROT_EXT.1, the integrity of 
@@ -7682,6 +8015,11 @@
 		
 	<!-- FPT_PPF_EXT.1 Protection of Platform Firmware -->
 	<f-component cc-id="fpt_ppf_ext.1" name="Protection of Platform Firmware and Critical Data">
+			<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
 		<f-element id="fpt-ppf-ext-1e1">
 			<title>The TSF shall allow modification of platform firmware only through the update mechanisms described in FPT_TUD_EXT.1.
 			</title>
@@ -7729,6 +8067,11 @@
 		<depends on-sel="sel-rot-recovery"/>
 		<depends on-sel="sel-tud-2-recovery"/>
 		<depends on-sel="sel-tud-3-recovery"/>
+			<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
 		<f-element id="fpt-rvr-ext-1e1">
 			<title>
 				The TSF shall implement a mechanism for recovering from boot firmware failure consisting of 
@@ -7784,6 +8127,11 @@
 
 	<!-- FPT_STM.1 Reliable Time Stamps -->
 	<f-component cc-id="fpt_stm.1" name="Reliable Time Stamps">
+			<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
 		<f-element id="fpt-stm-1e1">
 			<title>The TSF shall be able to provide reliable time stamps.</title>
 			<note role="application">
@@ -7827,6 +8175,11 @@
 	</f-component>
 		
     <f-component id="fpt-tst-ext-1" cc-id="fpt_tst_ext.1" name="TSF Cryptographic Functionality Testing" status="optional">
+			<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
           <f-element id="sfr-fpt-tst-ext-1e1">
             <title>The TSF shall run a suite of self-tests during initial start-up (on power on) to
               demonstrate the correct operation of all cryptographic functionality. </title>
@@ -7859,6 +8212,11 @@
 		
 	<!-- FPT_TUD_EXT.1 Platform Firmware Update -->
 	<f-component cc-id="fpt_tud_ext.1" name="TOE Firmware Update">
+			<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
 		<f-element id="fpt-tud-ext-1e1">
 			<title>The TSF shall 
 				<selectables linebreak="yes">
@@ -7913,6 +8271,11 @@
 	<!-- FPT_TUD_EXT.2 Platform Firmware Authenticated Update Mechanism -->
 	<f-component cc-id="fpt_tud_ext.2" name="Platform Firmware Authenticated Update Mechanism" status="sel-based">
 		<depends on-sel="sel-auth-update"/>
+			<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
 		<f-element id="fpt-tud-ext-2e1">
 			<title>The TSF shall authenticate the source of all platform firmware updates using a 
 				digital signature algorithm specified in FCS_COP.1/SigVer and using a key store 
@@ -8054,6 +8417,11 @@
 		meaning all the other requirements are met. Especially FPT_ROT_EXT.2. -->
 	<f-component cc-id="fpt_tud_ext.3" name="Platform Firmware Delayed-Authentication Update Mechanism" status="sel-based">
 		<depends on-sel="sel-unauth-update"/>
+			<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
 		<f-element id="fpt-tud-ext-3e1">
 			<title>
 				The TSF shall allow execution or use of platform firmware updates only if new platform firmware
@@ -8176,6 +8544,11 @@
 	<!-- FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism -->	
 	<f-component cc-id="fpt_tud_ext.4" name="Secure Local Platform Firmware Update Mechanism" status="sel-based">
 		<depends on-sel="sel-local-update"/>
+			<consistency-rationale/>
+			<comp-lev></comp-lev>
+			<management></management>
+			<audit></audit>
+			<dependencies></dependencies>
 		<f-element id="fpt-tud-ext-4e1">
 			<title>The TSF shall provide a secure local update mechanism that requires an assertion of physical access to the TOE
 				before installation of an update.
