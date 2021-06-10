@@ -6567,22 +6567,25 @@
 			<management>No additional management functions are envisioned.</management>
 			<audit>No auditable events are forseen.</audit>
 			<dependencies>FMT_SMF_EXT.1 Specification of Management Function</dependencies>
-          <f-element id="fmt-mof-ext-1e1">
-            <title>The TSF shall restrict the ability to perform the functions in column 5 of
-                <xref to="t-manfunc"/> to an authenticated administrator. </title>
+			<f-element id="fmt-mof-ext-1e1">
+               	<title>The TSF shall be capable of supporting 
+                  	<selectables>
+	                   	<selectable>local</selectable>
+        	           	<selectable id="sel-mof-remote-admin">remote</selectable>
+                    </selectables> administration.
+                </title>
+			</f-element>
+			<f-element id="fmt-mof-ext-1e2">
+            <title>The TSF shall restrict the ability to perform the functions in column 3 of
+                <xref to="t-manfunc"/> to an authenticated administrator. 
+			</title>
             <note role="application"> There are three roles defined in this PP for general-purpose 
 				computing platforms: 1) Administrator, 2) User, and 3) tenant software. 
 				Only Administrators can perform management functions on the platform, and only
 				Administrators authenticate themselves to the platform.<h:p/>
 			  The ST author may not select the same function in both FMT_MOF_EXT.1.1 and FMT_MOF_EXT.1.2. <h:p/>
-
 			  The ST author should select those security management functions that the administrator may 
-			  exercise. The ST author may use a table in the ST, indicating with clear demarcations (to be accompanied by an
-              index) those functions that are and are not implemented with APIs for the
-              administrator (as in column 4). Additionally, the ST author should demarcate which
-              functions the user is prevented from accessing or performing (as in column 5). The ST
-              author should iterate a row to indicate any variations in the selectable sub-functions
-              or assigned values with respect to the values in the columns. <h:p/>
+			  exercise. <h:p/>
 			  For functions that are mandatory, any sub-functions not in a selection are also mandatory
               and any assignments must contain at least one assigned value. For non-selectable
               sub-functions in an optional function, all sub-functions outside the selection must be
@@ -6590,11 +6593,11 @@
             <aactivity>
               <TSS>The evaluator shall verify that the TSS describes those management functions that
                 may be performed by the Administrator, to include how the user is prevented from
-                accessing, performing, or relaxing the function (if applicable), and how
-                applications/APIs are prevented from modifying the Administrator configuration. The
+                accessing, performing, or relaxing the function (if applicable). The
                 TSS also describes any functionality that is affected by administrator-configured
                 policy and how. This activity will be performed in conjunction with
-                FMT_SMF_EXT.1.<h:p/></TSS>
+                FMT_SMF_EXT.1.<h:p/>
+				</TSS>
               <Guidance>There are no guidance evaluation activities for this component.<h:p/></Guidance>
               <Tests>
                 <testlist>
@@ -6625,20 +6628,261 @@
 			<management>No additional management functions are envisioned</management>
 			<audit>No auditable events are forseen.</audit>
 			<dependencies>FMT_MOF_EXT: Management of Security Functions Behavior</dependencies>
-          <f-element id="fmt-smf-est-1e1">
+        <f-element id="fmt-smf-est-1e1">
             <title>The TSF shall be capable of performing the following management functions: <h:p/>
               <h:b><ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b><h:p/> 
               Status Markers:<h:br/> M - Mandatory<h:br/> O - Optional/Objective<h:br/>
               <!-- NOTE: management-function uses ctr variables crt-type=functions in the MOOO table, so that 
 			  they do not have to be renumbered when one is added or removed. However app notes and AAs need 
 			  to be in the same order as the functions. The list of IDs for each function is at the end of the xml.-->
+				<htm:div class="table-key" style="border-style: solid; padding: 5px;">
+				X = Mandatory (TOE must provide that function to that role)<htm:br/>
+				O = Optional (TOE may or may not provide that function to that role)<htm:br/>
+				N = Not Permitted (TOE must not provide that function to that role)<htm:br/>
+				S = Selection-Based (TOE must provide that function to that role if the TOE claims a particular selection-based SFR)<htm:br/>
+			    </htm:div>
+                    <htm:table>
+                        <htm:tr>
+							<htm:th>Number</htm:th> 
+                            <htm:th>Function</htm:th> 
+                            <htm:th>Admin</htm:th> 
+                            <htm:th>Notes</htm:th> 
+                        </htm:tr>
+				<!--
+				ability to configure the cryptographic functionality - FTP_ITC_EXT.1
+				initiate a trusted channel for remote administration - FTP_TRP.1
+				configure the audit functionality - FAU_GEN.1
+				review of audit records - FAU_SAR.1
+				configure the audit server address - FAU_STG_EXT.1
+				set parameters for allowable authentication failures - FIA_AFL_EXT.1
+				configure password length and complexity - FIA_PMG_EXT.1
+				configure authentication throttling policy - FIA_TRT_EXT.1
+				configuration of certificate revocation ch... method - FIA_X509_EXT.1
+				configuration of TSF behavior when certificate revocation status cannot be determined - FIA_X509_EXT.2
+				configuration of action to take on integrity failure - FPT_ROT_EXT.2/3, FPT_RVR_EXT.1
+				initiation of update process - FPT_TUD_EXT.1
+				configuration of action to take on update failure - FPT_TUD_EXT.2/3
+				
+				
+				
+				-->
+						
+                            <htm:tr>
+                                    <htm:td>1</htm:td> 
+                                    <htm:td>Ability to initiate the update process</htm:td> 
+                                    <htm:td>M</htm:td> 
+                                    <htm:td>See FPT_TUD_EXT.1</htm:td> 
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>2</htm:td>
+                                    <htm:td><selectables>
+					    <selectable id="sel-mf-pwd-policy">Ability to configure Administrator password policy as defined in FIA_PMG_EXT.1</selectable>
+					    <selectable>Not applicable.</selectable></selectables></htm:td>
+                                    <htm:td>S</htm:td>
+                                    <htm:td>N</htm:td>
+                                    <htm:td>Must be selected if ST includes FIA_PMG_EXT.1.</htm:td>
+				    <!-- sel "sel-mf-2" if req="fia-uau-5e1" ids="sel-uau-pwd"  -->
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>3</htm:td>
+                                    <htm:td>Ability to create, configure and delete VMs</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>4</htm:td>
+                                    <htm:td>Ability to set default initial VM configurations</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>5</htm:td>
+                                    <htm:td>Ability to configure virtual networks including VM</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>See FDP_VNC_EXT.1</htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>6</htm:td>
+                                    <htm:td>Ability to configure and manage the audit system and audit data</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>N</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>7</htm:td>
+                                    <htm:td>Ability to configure VM access to physical devices</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>See FDP_PPR_EXT.1</htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>8</htm:td>
+                                    <htm:td>Ability to configure inter-VM data sharing</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>See FDP_VMS_EXT.1</htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>9</htm:td>
+                                    <htm:td><htm:s>Ability to enable/disable VM access to Hypercall functions</htm:s></htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>Management function 9 is no longer required</htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>10</htm:td>
+                                    <htm:td>Ability to configure removable media policy</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>See FPT_RDM_EXT.1</htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>11</htm:td>
+                                    <htm:td>Ability to configure the cryptographic functionality</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>See FCS_CKM.1, FCS_CKM.2, and FCS_COP.1/HASH. See also, the Functional Packages
+					    for Transport Layer Security (TLS) and for Secure Shell (SSH) if claimed for methods
+					    to configure their respective cryptographic functionality.</htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>12</htm:td>
+                                    <htm:td>Ability to change default authorization factors</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>N</htm:td>
+                                    <htm:td>See FIA_PMG_EXT.1</htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>13</htm:td>
+                                    <htm:td>Ability to enable/disable screen lock</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>14</htm:td>
+                                    <htm:td>Ability to configure screen lock inactivity timeout</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>15</htm:td>
+                                    <htm:td>Ability to configure remote connection inactivity timeout</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>N</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>16</htm:td>
+                                    <htm:td>Ability to configure lockout policy for unsuccessful authentication attempts through 
+                                        <selectables>
+                                            <selectable>timeouts between attempts</selectable>
+                                            <selectable>limiting number of attempts during a time period</selectable>
+                                        </selectables></htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>N</htm:td>
+                                    <htm:td>See FIA_AFL_EXT.1</htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>17</htm:td>
+                                    <htm:td><selectables>
+					    <selectable id="sel-mf-dir-server">Ability to configure name/address of directory server to bind with</selectable>
+					    <selectable>Not applicable</selectable></selectables></htm:td>
+                                    <htm:td>S</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>Must be selected if "directory-based" is selected anywhere in FIA_UAU.5.1 in the base Virtualization PP.</htm:td>
+				    <!-- sel "sel-mf-17" if req="fia-uau-5e1" ids="sel-uau-ssh-dirbased;sel-uau-pwd-dirbased; sel-uau-x509-dirbased"  -->
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>18</htm:td>
+                                    <htm:td>Ability to configure name/address of audit/logging server to which to send audit/logging records</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>N</htm:td>
+                                    <htm:td>See FAU_STG_EXT.1.</htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>19</htm:td>
+                                    <htm:td>Ability to configure name/address of network time server</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>20</htm:td>
+                                    <htm:td>Ability to configure banner</htm:td>
+                                    <htm:td>X</htm:td>
+                                    <htm:td>N</htm:td>
+                                    <htm:td>See FTA_TAB.1</htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>21</htm:td>
+                                    <htm:td>Ability to connect/disconnect removable devices to/from a VM</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>See FPT_RDM_EXT.1</htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>22</htm:td>
+                                    <htm:td>Ability to start a VM</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>23</htm:td>
+                                    <htm:td>Ability to stop/halt a VM</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>24</htm:td>
+                                    <htm:td>Ability to checkpoint a VM</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>25</htm:td>
+                                    <htm:td>Ability to suspend a VM</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>26</htm:td>
+                                    <htm:td>Ability to resume a VM</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td>O</htm:td>
+                                    <htm:td> </htm:td>
+                                </htm:tr>
+                                <htm:tr>
+                                    <htm:td>27</htm:td>
+                                    <htm:td><selectables>
+					    <selectable id="sel-mf-cert-no-validity-action">Ability to configure action taken if unable to determine the validity of a certificate</selectable>
+					    <selectable>Not applicable</selectable></selectables>
+				    </htm:td>
+                                    <htm:td>S</htm:td>
+                                    <htm:td>N</htm:td>
+                                    <htm:td>This function must be selected if "allow the administrator to choose whether to accept the certificate in these cases"
+					    in FIA_X509_EXT.2.2 in the Base-PP.</htm:td>
+				    <!-- sel "sel-mf-27" if req="fia-x509-ext-2e2" ids="sel-x509-adminset"  -->
+                                </htm:tr>
+                            </htm:table>
+							<htm:br/>]
+<!--
+
               <management-function-set default="O">
                 <manager cid="1">Impl.</manager>
                 <manager cid="2">Admin Only</manager>
 
                 <management-function>
-                  <text>
-                    <ctr id="auditMgmt" pre="" ctr-type="function">.</ctr> configure and manage the audit system and audit data</text>
+                  <text><ctr id="auditMgmt" pre="" ctr-type="function">.</ctr> 
+					configure and manage the audit system and audit data</text>
                   <NA ref="4"/>
                 </management-function>
 
@@ -6715,7 +6959,6 @@
                 </management-function>
                 <management-function>
                   <text>
-                    <!-- 7. -->
                     <ctr id="wipe" pre="" ctr-type="function">.</ctr> TSF wipe of protected data </text>
                   <M ref="1"/>
                   <NA ref="2"/>
@@ -6724,7 +6967,6 @@
                 </management-function>
                 <management-function>
                   <text>
-                    <!--8. -->
                     <ctr id="appInstallRules" pre="" ctr-type="function">.</ctr> configure
                     application installation policy by <h:div><selectables linebreak="yes">
                         <selectable>a. restricting the sources of applications</selectable>
@@ -6740,7 +6982,6 @@
                 </management-function>
                 <management-function>
                   <text>
-                    <!-- 9. -->
                     <ctr id="keyStorage" pre="" ctr-type="function">.</ctr> import keys/secrets into
                     the secure key storage </text>
                   <M ref="1"/>
@@ -6748,7 +6989,6 @@
                 </management-function>
                 <management-function>
                   <text>
-                    <!-- 10. -->
                     <ctr id="keyWipe" pre="" ctr-type="function">.</ctr> destroy imported
                     keys/secrets and <selectables>
                       <selectable>no other keys/secrets</selectable>
@@ -6760,7 +7000,6 @@
                 </management-function>
                 <management-function>
                   <text>
-                    <!-- 11. -->
                     <ctr id="certImport" pre="" ctr-type="function">.</ctr> import X.509v3
                     certificates into the Trust Anchor Database </text>
                   <M ref="1"/>
@@ -6769,7 +7008,6 @@
                 </management-function>
                 <management-function>
                   <text>
-                    <!-- 12. -->
                     <ctr id="certWipe" pre="" ctr-type="function">.</ctr> remove imported X.509v3
                     certificates and <selectables>
                       <selectable>no other X.509v3 certificates</selectable>
@@ -6781,7 +7019,6 @@
                 </management-function>
                 <management-function>
                   <text>
-                    <!-- 13. -->
                     <ctr id="enroll" pre="" ctr-type="function">.</ctr> enroll the TOE in management </text>
                   <M ref="1"/>
                   <O ref="2"/>
@@ -6790,7 +7027,6 @@
                 </management-function>
                 <management-function>
                   <text>
-                    <!-- 15 -->
                     <ctr id="update" pre="" ctr-type="function">.</ctr> update system software </text>
                   <M ref="1"/>
                   <NA ref="2"/>
@@ -6813,7 +7049,6 @@
                     is deemed invalid.</text>
                   <M ref="1"/>
                 </management-function>
-                <!-- Start of the Optional to implement functions -->
                 <management-function>
                   <text>
                     <ctr id="externalPorts" pre="" ctr-type="function">.</ctr> enable/disable all
@@ -6896,7 +7131,7 @@
                     <assignable>list of other management functions to be provided by the
                       TSF</assignable></text>
                 </management-function>
-              </management-function-set>
+              </management-function-set>   -->
             </title>
             <note role="application">
               <xref to="fmt_smf"/> compares the management functions required by this
@@ -8692,6 +8927,83 @@
                         <audit-event-info>User ID and remote source (IP Address) if feasible.</audit-event-info>
 		    </audit-event>    
         </f-component>	
+		
+                <!-- FTP_TRP.1 -->
+                <!-- Included in th ST if "remote" is selected in FMT_MOF_EXT.1.1 in the server or client PP-Module. -->
+        <f-component cc-id="ftp_trp.1" name="Trusted Path" status="sel-based">
+				<depends on-sel="sel-mof-remote-admin"/> 
+                <f-element id="ftp-trp-1e1">
+			    <title>The TSF shall <refinement>use a trusted channel as specified in FTP_ITC_EXT.1 to</refinement> 
+				    provide a <refinement>trusted</refinement> communication path between itself and 
+				    [<h:i>remote</h:i>] <refinement>administrators</refinement> that is logically distinct from
+				    other communication paths and provides assured identification of its end points and 
+				    protection of the communicated data from [<h:i>modification, disclosure</h:i>].
+                        </title>
+                    </f-element>
+                    <f-element id="ftp-trp-1e2">
+			    <title>The TSF shall permit [<h:i>remote administrators</h:i>] to initiate communication via the trusted path.
+                        </title>
+                    </f-element>
+			<f-element id="ftp-trp-1e3">
+                        <title>The TSF shall require the use of the trusted path for [<h:i>[all remote administration actions]</h:i>].
+                        </title>
+                        <note role="application">
+				This SFR is included in the ST if "remote" is selected in FMT_MOF_EXT.1.1 of the client or server PP-Module.<h:p/>
+				Protocols used to implement the remote administration trusted channel must be
+				selected in FTP_ITC_EXT.1.<h:br/><h:br/>
+                            This requirement ensures that authorized remote administrators initiate all communication with the
+				TOE via a trusted path, and that all communications with the TOE by remote administrators is performed
+				over this path. The data passed in this trusted communication channel are encrypted as defined the 
+				protocol chosen in the first selection in FTP_ITC_EXT.1. The ST author chooses the mechanism or mechanisms supported by
+				the TOE, and then ensures that the detailed requirements in Appendix B corresponding to their selection
+				are copied to the ST if not already present.</note>
+                        <aactivity>
+                            <TSS>
+                                The evaluator shall examine the TSS to determine that the methods of remote 
+                                TOE administration are indicated, along with how those communications are protected.
+                                The evaluator shall also confirm that all protocols listed in the TSS in support of 
+                                TOE administration are consistent with those specified in the requirement, and are 
+                                included in the requirements in the ST. 
+                            </TSS>
+                            <Guidance>
+                                The evaluator shall confirm that the 
+                                operational guidance contains instructions for establishing the remote administrative sessions for
+                                each supported method. 
+                            </Guidance>
+                            <Tests>
+                                The evaluator shall also perform the following tests:
+                                <testlist>
+                                    <test>The evaluators shall ensure that communications using each specified (in the operational
+					    guidance) remote administration method is tested during the course of the evaluation,
+					    setting up the connections as described in the operational guidance and ensuring that
+					    communication is successful.</test>
+                                    <test>For each method of remote administration supported, the evaluator shall follow the 
+					    operational guidance to ensure that there is no available interface that can be used by
+					    a remote user to establish remote administrative sessions without invoking the trusted 
+					    path.</test>
+                                    <test>The evaluator shall ensure, for each method of remote administration, the channel data is
+					    not sent in plaintext.</test>
+                                    <test>The evaluator shall ensure, for each method of remote administration, modification of the 
+					    channel data is detected by the TOE.</test>
+                             </testlist>
+                            Additional evaluation activities are associated with the specific protocols.
+                            </Tests>
+                        </aactivity>
+                    </f-element>
+		    <audit-event>
+			<audit-event-descr>Initiation of the trusted channel.</audit-event-descr>
+                        <audit-event-info>User ID and remote source (IP Address) if feasible.</audit-event-info>
+		    </audit-event>    
+		    <audit-event>
+			<audit-event-descr>Termination of the trusted channel.</audit-event-descr>
+                        <audit-event-info>User ID and remote source (IP Address) if feasible.</audit-event-info>
+		    </audit-event>    
+		    <audit-event>
+			<audit-event-descr>Failures of the trusted path functions.</audit-event-descr>
+                        <audit-event-info>User ID and remote source (IP Address) if feasible.</audit-event-info>
+		    </audit-event>    
+        </f-component>	
+		
 	</section>
 	
 	    
