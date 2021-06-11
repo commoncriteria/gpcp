@@ -23,9 +23,9 @@
   <PPReference>
     <ReferenceTable>
       <PPTitle>Protection Profile for General-Purpose Computing Platforms</PPTitle>
-      <PPVersion>1.0</PPVersion>
+      <PPVersion>1.0-DRAFT</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2021-02-17</PPPubDate>
+      <PPPubDate>2021-06-11</PPPubDate>
       <Keywords>General-Purpose Computing Platforms</Keywords>
     </ReferenceTable>
   </PPReference>
@@ -39,9 +39,9 @@
   </RevisionHistory>
   <RevisionHistory>
     <entry>
-      <version>1.0</version>
-      <date>2021-05-06</date>
-      <subject>Drafty</subject>
+      <version>1.0-DRAFT</version>
+      <date>2021-06-11</date>
+      <subject>First Draft of the First Draft</subject>
     </entry>
   </RevisionHistory>
 
@@ -5454,7 +5454,9 @@
 		<consistency-rationale/>
 		<comp-lev>requires the TSF to enforce protected storage for keys and
 				secrets so that they cannot be accessed or destroyed without authorization.</comp-lev>
-		<management>No specific management functions are identified.</management>
+		<management>Management functions:
+			<h:ul><h:li>Ability to manage import and export keys/secrets to and from protected storage.</h:li></h:ul>
+		</management>
 		<audit>There are no auditable events foreseen.</audit>
 		<dependencies>FCS_CKM.4 Cryptographic Key Destruction</dependencies>
 		<f-element id="fcs-stg-ext-1e1">
@@ -5623,7 +5625,7 @@
 		</f-element>
 	</f-component>
 	
-	<!-- FCS_STG_EXT.1 Key Integrity Protection  -->
+	<!-- FCS_STG_EXT.3 Key Integrity Protection  -->
 	<f-component cc-id="fcs_stg_ext.3" name="Key Integrity Protection" status="sel-based">
 		<depends on-sel="sel-stg1-sw-based"/>
 		<consistency-rationale/>
@@ -6636,9 +6638,8 @@
 			  they do not have to be renumbered when one is added or removed. However app notes and AAs need 
 			  to be in the same order as the functions. The list of IDs for each function is at the end of the xml.-->
 				<h:div class="table-key" style="border-style: solid; padding: 5px;">
-				X = Mandatory (TOE must provide that function to that role)<h:br/>
+				M = Mandatory (TOE must provide that function to that role)<h:br/>
 				O = Optional (TOE may or may not provide that function to that role)<h:br/>
-				N = Not Permitted (TOE must not provide that function to that role)<h:br/>
 				S = Selection-Based (TOE must provide that function to that role if the TOE claims a particular selection-based SFR)<h:br/>
 			    </h:div>
                     <h:table>
@@ -6648,1219 +6649,141 @@
                             <h:th>Admin</h:th> 
                             <h:th>Notes</h:th> 
                         </h:tr>
-				<!--
-				ability to configure the cryptographic functionality - FTP_ITC_EXT.1
-				initiate a trusted channel for remote administration - FTP_TRP.1
-				configure the audit functionality - FAU_GEN.1
-				review of audit records - FAU_SAR.1
-				configure the audit server address - FAU_STG_EXT.1
-				set parameters for allowable authentication failures - FIA_AFL_EXT.1
-				configure password length and complexity - FIA_PMG_EXT.1
-				configure authentication throttling policy - FIA_TRT_EXT.1
-				configuration of certificate revocation ch... method - FIA_X509_EXT.1
-				configuration of TSF behavior when certificate revocation status cannot be determined - FIA_X509_EXT.2
-				configuration of action to take on integrity failure - FPT_ROT_EXT.2/3, FPT_RVR_EXT.1
-				initiation of update process - FPT_TUD_EXT.1
-				configuration of action to take on update failure - FPT_TUD_EXT.2/3
-				
-				
-				
-				-->
-						
-                            <h:tr>
-                                    <h:td>1</h:td> 
-                                    <h:td>Ability to initiate the update process</h:td> 
-                                    <h:td>M</h:td> 
-                                    <h:td>See FPT_TUD_EXT.1</h:td> 
+			    
+                                <h:tr>
+                                    <h:td>1</h:td>
+                                    <h:td>Ability to configure and manage the audit functionality and audit data</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FAU_GEN.1.</h:td>
                                 </h:tr>
                                 <h:tr>
                                     <h:td>2</h:td>
-                                    <h:td><selectables>
-					    <selectable id="sel-mf-pwd-policy">Ability to configure Administrator password policy as defined in FIA_PMG_EXT.1</selectable>
-					    <selectable>Not applicable.</selectable></selectables></h:td>
-                                    <h:td>S</h:td>
-                                    <h:td>N</h:td>
-                                    <h:td>Must be selected if ST includes FIA_PMG_EXT.1.</h:td>
-				    <!-- sel "sel-mf-2" if req="fia-uau-5e1" ids="sel-uau-pwd"  -->
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>3</h:td>
-                                    <h:td>Ability to create, configure and delete VMs</h:td>
-                                    <h:td>X</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td> </h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>4</h:td>
-                                    <h:td>Ability to set default initial VM configurations</h:td>
-                                    <h:td>X</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td> </h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>5</h:td>
-                                    <h:td>Ability to configure virtual networks including VM</h:td>
-                                    <h:td>X</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>See FDP_VNC_EXT.1</h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>6</h:td>
-                                    <h:td>Ability to configure and manage the audit system and audit data</h:td>
-                                    <h:td>X</h:td>
-                                    <h:td>N</h:td>
-                                    <h:td> </h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>7</h:td>
-                                    <h:td>Ability to configure VM access to physical devices</h:td>
-                                    <h:td>X</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>See FDP_PPR_EXT.1</h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>8</h:td>
-                                    <h:td>Ability to configure inter-VM data sharing</h:td>
-                                    <h:td>X</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>See FDP_VMS_EXT.1</h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>9</h:td>
-                                    <h:td><h:s>Ability to enable/disable VM access to Hypercall functions</h:s></h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>Management function 9 is no longer required</h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>10</h:td>
-                                    <h:td>Ability to configure removable media policy</h:td>
-                                    <h:td>X</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>See FPT_RDM_EXT.1</h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>11</h:td>
-                                    <h:td>Ability to configure the cryptographic functionality</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>See FCS_CKM.1, FCS_CKM.2, and FCS_COP.1/HASH. See also, the Functional Packages
-					    for Transport Layer Security (TLS) and for Secure Shell (SSH) if claimed for methods
-					    to configure their respective cryptographic functionality.</h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>12</h:td>
-                                    <h:td>Ability to change default authorization factors</h:td>
-                                    <h:td>X</h:td>
-                                    <h:td>N</h:td>
-                                    <h:td>See FIA_PMG_EXT.1</h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>13</h:td>
-                                    <h:td>Ability to enable/disable screen lock</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td> </h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>14</h:td>
-                                    <h:td>Ability to configure screen lock inactivity timeout</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td> </h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>15</h:td>
-                                    <h:td>Ability to configure remote connection inactivity timeout</h:td>
-                                    <h:td>X</h:td>
-                                    <h:td>N</h:td>
-                                    <h:td> </h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>16</h:td>
-                                    <h:td>Ability to configure lockout policy for unsuccessful authentication attempts through 
-                                        <selectables>
-                                            <selectable>timeouts between attempts</selectable>
-                                            <selectable>limiting number of attempts during a time period</selectable>
-                                        </selectables></h:td>
-                                    <h:td>X</h:td>
-                                    <h:td>N</h:td>
-                                    <h:td>See FIA_AFL_EXT.1</h:td>
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>17</h:td>
-                                    <h:td><selectables>
-					    <selectable id="sel-mf-dir-server">Ability to configure name/address of directory server to bind with</selectable>
-					    <selectable>Not applicable</selectable></selectables></h:td>
-                                    <h:td>S</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>Must be selected if "directory-based" is selected anywhere in FIA_UAU.5.1 in the base Virtualization PP.</h:td>
-				    <!-- sel "sel-mf-17" if req="fia-uau-5e1" ids="sel-uau-ssh-dirbased;sel-uau-pwd-dirbased; sel-uau-x509-dirbased"  -->
-                                </h:tr>
-                                <h:tr>
-                                    <h:td>18</h:td>
                                     <h:td>Ability to configure name/address of audit/logging server to which to send audit/logging records</h:td>
                                     <h:td>X</h:td>
-                                    <h:td>N</h:td>
                                     <h:td>See FAU_STG_EXT.1.</h:td>
                                 </h:tr>
                                 <h:tr>
-                                    <h:td>19</h:td>
-                                    <h:td>Ability to configure name/address of network time server</h:td>
+                                    <h:td>3</h:td>
+                                    <h:td>Ability to review audit records.</h:td>
                                     <h:td>X</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td> </h:td>
+                                    <h:td>See FAU_SAR.1.</h:td>
                                 </h:tr>
                                 <h:tr>
-                                    <h:td>20</h:td>
-                                    <h:td>Ability to configure banner</h:td>
+                                    <h:td>4</h:td>
+                                    <h:td>Ability to configure the cryptographic functionality.</h:td>
                                     <h:td>X</h:td>
-                                    <h:td>N</h:td>
-                                    <h:td>See FTA_TAB.1</h:td>
+                                    <h:td>See FTP_ITC_EXT.1.</h:td>
                                 </h:tr>
                                 <h:tr>
-                                    <h:td>21</h:td>
-                                    <h:td>Ability to connect/disconnect removable devices to/from a VM</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>See FPT_RDM_EXT.1</h:td>
+                                    <h:td>5</h:td>
+                                    <h:td>Ability to initiate a trusted channel for remote administration.</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FTP_TRP.1.</h:td>
                                 </h:tr>
                                 <h:tr>
-                                    <h:td>22</h:td>
-                                    <h:td>Ability to start a VM</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td> </h:td>
+                                    <h:td>6</h:td>
+                                    <h:td>Ability to set parameters for allowable number of authentication failures.</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FIA_AFL_EXT.1.</h:td>
                                 </h:tr>
                                 <h:tr>
-                                    <h:td>23</h:td>
-                                    <h:td>Ability to stop/halt a VM</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td> </h:td>
+                                    <h:td>7</h:td>
+                                    <h:td>Ability to configure password length and complexity.</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FIA_PMG_EXT.1.</h:td>
                                 </h:tr>
                                 <h:tr>
-                                    <h:td>24</h:td>
-                                    <h:td>Ability to checkpoint a VM</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td> </h:td>
+                                    <h:td>8</h:td>
+                                    <h:td>Ability to configure authentication throttling policy.</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FIA_TRT_EXT.1.</h:td>
                                 </h:tr>
                                 <h:tr>
-                                    <h:td>25</h:td>
-                                    <h:td>Ability to suspend a VM</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td> </h:td>
+                                    <h:td>9</h:td>
+                                    <h:td>Ability to manage authentication methods and change default authorization factors</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FIA_PMG_EXT.1</h:td>
                                 </h:tr>
                                 <h:tr>
-                                    <h:td>26</h:td>
-                                    <h:td>Ability to resume a VM</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td>O</h:td>
-                                    <h:td> </h:td>
+                                    <h:td>10</h:td>
+                                    <h:td>Ability to configure of certificate revocation checking methods.</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FIA_X509_EXT.1.</h:td>
                                 </h:tr>
                                 <h:tr>
-                                    <h:td>27</h:td>
-                                    <h:td><selectables>
-					    <selectable id="sel-mf-cert-no-validity-action">Ability to configure action taken if unable to determine the validity of a certificate</selectable>
-					    <selectable>Not applicable</selectable></selectables>
-				    </h:td>
-                                    <h:td>S</h:td>
-                                    <h:td>N</h:td>
-                                    <h:td>This function must be selected if "allow the administrator to choose whether to accept the certificate in these cases"
-					    in FIA_X509_EXT.2.2 in the Base-PP.</h:td>
-				    <!-- sel "sel-mf-27" if req="fia-x509-ext-2e2" ids="sel-x509-adminset"  -->
+                                    <h:td>11</h:td>
+                                    <h:td>Ability to configure TSF behavior when certificate revocation status cannot be determined.</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FIA_X509_EXT.2.</h:td>
                                 </h:tr>
-                            </h:table>
+                                <h:tr>
+                                    <h:td>12</h:td>
+                                    <h:td>Ability to configure action to take on integrity failure.</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FPT_ROT_EXT.2, FPT_ROT_EXT.3, and FPT_RVR_EXT.1.</h:td>
+                                </h:tr>
+                                <h:tr>
+                                    <h:td>13</h:td>
+                                    <h:td>Ability to initiate the update process.</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FPT_TUD_EXT.1.</h:td>
+                                </h:tr>
+                                <h:tr>
+                                    <h:td>14</h:td>
+                                    <h:td>Ability to action to take on update failure.</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FPT_TUD_EXT.2 and FPT_TUD_EXT.3.</h:td>
+                                </h:tr>
+                                <h:tr>
+                                    <h:td>15</h:td>
+                                    <h:td>Ability to manage import and export keys/secrets to and from protected storage.</h:td>
+                                    <h:td>X</h:td>
+                                    <h:td>See FCS_STG_EXT.1.</h:td>
+                                </h:tr>
+                           </h:table>
 							<h:br/>]
-<!--
-
-              <management-function-set default="O">
-                <manager cid="1">Impl.</manager>
-                <manager cid="2">Admin Only</manager>
-
-                <management-function>
-                  <text><ctr id="auditMgmt" pre="" ctr-type="function">.</ctr> 
-					configure and manage the audit system and audit data</text>
-                  <NA ref="4"/>
-                </management-function>
-
-		<management-function>
-		  <text>
-                    <ctr id="auditServerConfig" pre="" ctr-type="function">.</ctr> configure name/address of audit/logging server
-			  to which to send audit/logging records</text>
-                  <NA ref="4"/>
-                </management-function>
-
-		      
-                <management-function>
-                  <text>
-                    <ctr id="digSign" pre="" ctr-type="function">.</ctr> configure <selectables>
-                      <selectable>certificate</selectable>
-                      <selectable>public-key</selectable>
-                    </selectables> used to validate digital signature on applications </text>
-                </management-function>
-
-		      
-		<management-function>
-                  <text>
-                    <ctr id="pwd" pre="" ctr-type="function">.</ctr> configure password policy:
-                      <h:ol type="a">
-                      <h:li>minimum password length</h:li>
-                      <h:li>minimum password complexity</h:li>
-                      <h:li>maximum password lifetime</h:li>
-                    </h:ol>
-                  </text>
-                  <M ref="1"/>
-                  <NA ref="2"/>
-                  <M ref="3"/>
-                  <M ref="4"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="screenlock" pre="" ctr-type="function">.</ctr> configure session
-                    locking policy: <h:ol type="a">
-                      <h:li>screen-lock enabled/disabled</h:li>
-                      <h:li>screen lock timeout </h:li>
-                      <h:li>number of authentication failures</h:li>
-                    </h:ol>
-                  </text>
-                  <M ref="1"/>
-                  <NA ref="2"/>
-                  <M ref="3"/>
-                  <M ref="4"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="vpn" pre="" ctr-type="function">.</ctr> enable/disable the VPN
-                    protection: <h:ol type="a">
-                      <h:li>across device</h:li></h:ol>
-                    <h:div><selectables linebreak="yes">
-                        <selectable>b. on a per-app basis</selectable>
-                        <selectable>c. on a per-group of applications processes basis</selectable>
-                        <selectable>d. no other method</selectable>
-                      </selectables></h:div>
-                  </text>
-                  <M ref="1"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="audioVisual" pre="" ctr-type="function">.</ctr> enable/disable
-                      <assignable>list of audio or visual collection devices</assignable>: <h:ol type="a">
-                      <h:li>across device</h:li></h:ol>
-                    <h:div><selectables linebreak="yes">
-                        <selectable>b. on a per-app basis</selectable>
-                        <selectable>c. on a per-group of applications processes basis</selectable>
-                        <selectable>d. no other method</selectable>
-                      </selectables></h:div>
-                  </text>
-                  <M ref="1"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="wipe" pre="" ctr-type="function">.</ctr> TSF wipe of protected data </text>
-                  <M ref="1"/>
-                  <NA ref="2"/>
-                  <M ref="3"/>
-                  <NA ref="4"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="appInstallRules" pre="" ctr-type="function">.</ctr> configure
-                    application installation policy by <h:div><selectables linebreak="yes">
-                        <selectable>a. restricting the sources of applications</selectable>
-                        <selectable>b. specifying a set of allowed applications based on
-                            <assignable>application characteristics</assignable> (an application allowlist)</selectable>
-                        <selectable>c. denying installation of applications</selectable>
-                      </selectables></h:div>
-                  </text>
-                  <M ref="1"/>
-                  <NA ref="2"/>
-                  <M ref="3"/>
-                  <M ref="4"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="keyStorage" pre="" ctr-type="function">.</ctr> import keys/secrets into
-                    the secure key storage </text>
-                  <M ref="1"/>
-                  <NA ref="4"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="keyWipe" pre="" ctr-type="function">.</ctr> destroy imported
-                    keys/secrets and <selectables>
-                      <selectable>no other keys/secrets</selectable>
-                      <selectable><assignable>list of other categories of
-                        keys/secrets</assignable></selectable>
-                    </selectables> in the secure key storage </text>
-                  <M ref="1"/>
-                  <NA ref="4"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="certImport" pre="" ctr-type="function">.</ctr> import X.509v3
-                    certificates into the Trust Anchor Database </text>
-                  <M ref="1"/>
-                  <NA ref="2"/>
-                  <M ref="3"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="certWipe" pre="" ctr-type="function">.</ctr> remove imported X.509v3
-                    certificates and <selectables>
-                      <selectable>no other X.509v3 certificates</selectable>
-                      <selectable><assignable>list of other categories of X.509v3
-                          certificates</assignable></selectable>
-                    </selectables> in the Trust Anchor Database </text>
-                  <M ref="1"/>
-                  <NA ref="4"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="enroll" pre="" ctr-type="function">.</ctr> enroll the TOE in management </text>
-                  <M ref="1"/>
-                  <O ref="2"/>
-                  <O ref="3"/>
-                  <O ref="4"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="update" pre="" ctr-type="function">.</ctr> update system software </text>
-                  <M ref="1"/>
-                  <NA ref="2"/>
-                  <M ref="3"/>
-                </management-function>
-                 <management-function>
-                  <text>
-                    <ctr id="authFactors" pre="" ctr-type="function">.</ctr> enable/disable the use
-                    of <selectables>
-                      <selectable>Biometric Authentication Factor</selectable>
-                      <selectable>Hybrid Authentication Factor</selectable>
-                    </selectables>
-                  </text>
-                  <M ref="1"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="certInvalid" pre="" ctr-type="function">.</ctr> configure whether to
-                    allow/disallow establishment of a trusted channel if the peer/server certificate
-                    is deemed invalid.</text>
-                  <M ref="1"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="externalPorts" pre="" ctr-type="function">.</ctr> enable/disable all
-                    data signaling over <assignable>list of externally accessible hardware
-                      ports</assignable>
-                  </text>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="serverProtocols" pre="" ctr-type="function">.</ctr> enable/disable
-                      <assignable>list of protocols where the device acts as a server</assignable>
-                  </text>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="devModes" pre="" ctr-type="function">.</ctr> enable/disable developer
-                    modes </text>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="authBypass" pre="" ctr-type="function">.</ctr> enable/disable bypass of
-                    local user authentication </text>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="wipeEntData" pre="" ctr-type="function">.</ctr> wipe Enterprise data </text>
-                  <NA ref="4"/>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="appCert" pre="" ctr-type="function">.</ctr> approve <selectables>
-                      <selectable>import</selectable>
-                      <selectable>removal</selectable>
-                    </selectables> by applications of X.509v3 certificates in the Trust Anchor
-                    Database </text>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="certValidity" pre="" ctr-type="function">.</ctr> configure whether to
-                    allow/disallow establishment of a trusted channel if the TSF cannot establish a
-                    connection to determine the validity of a certificate</text>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="keyWipeRules" pre="" ctr-type="function">.</ctr> approve exceptions for
-                    destruction of keys/secrets by applications that did not import the key/secret
-                  </text>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="integ" pre="" ctr-type="function">.</ctr> retrieve TSF-software
-                    integrity verification values </text>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="USB" pre="" ctr-type="function">.</ctr> enable/disable <selectables linebreak="yes">
-                      <selectable>USB mass storage mode</selectable>
-                      <selectable>USB data transfer without user authentication</selectable>
-                      <selectable>USB data transfer without authentication of the connecting
-                        system</selectable>
-                    </selectables>
-                  </text>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="alwaysOnVPN" pre="" ctr-type="function">.</ctr> enable/disable the
-                    Always On VPN protection:
-                    <h:ol type="a">
-                      <h:li>across device</h:li></h:ol>
-                    <h:div><selectables linebreak="yes">
-                      <selectable>b. on a per-app basis</selectable>
-                      <selectable>c. on a per-group of applications processes basis</selectable>
-                      <selectable>d. no other method</selectable>
-                    </selectables></h:div>                
-                  </text>
-                </management-function>
-                <management-function>
-                  <text>
-                    <ctr id="other" pre="" ctr-type="function">.</ctr>
-                    <assignable>list of other management functions to be provided by the
-                      TSF</assignable></text>
-                </management-function>
-              </management-function-set>   -->
             </title>
             <note role="application">
-              <xref to="fmt_smf"/> compares the management functions required by this
-              Protection Profile. <h:p/>
-			  The first column lists the management functions
-              identified in the PP. <h:p/>
-			  In the following columns: <h:ul>
+		Administration is considered “local” if the Administrator is physically present at the machine on which the VS is installed.<h:p/>
+		Administration is considered “remote” if communications between the Administrator and the Management Subsystem travel on a network. <h:p/>
+		The first column lists the management function number. The second column lists the management functions
+              	identified in the PP. <h:p/>
+		  In the following columns: <h:ul>
                 <h:li>‘M’ means Mandatory</h:li>
                 <h:li>‘O’ means Optional/Objective</h:li>
-                <h:li>'-' means that no value (M or O) can be assigned</h:li>
+                <h:li>‘S’ means Selection-based</h:li>
               </h:ul>
-              <h:p/>The second column (FMT_SMF_EXT.1) indicates whether the function is
-              to be implemented. The ST author should select which Optional functions are
-              implemented. <h:p/>
-			  The third column (FMT_MOF_EXT.1.1) indicates functions
-              that are to be restricted to the user (i.e. not available to the administrator).
-              <h:p/>
-			  The fourth column (Administrator) indicates functions that are
-              available to the administrator. The functions restricted to the user (column 3) cannot
-              also be available to the administrator. Functions available to the administrator can
-              still be available to the user, as long as the function is not restricted to the
-              administrator (column 5). Thus, if the TOE must offer these functions to the
-              administrator to perform the fourth column must be selected. <h:p/>
-			  The fifth column (FMT_MOF_EXT.1.2) indicates whether the function is to be restricted to
-              the administrator when the device is enrolled and the administrator applies the
-              indicated policy. If the function is restricted to the administrator the function is
-              not available to the user. This does not prevent the user from modifying a setting to
-              make the function stricter, but the user cannot undo the configuration enforced by the
-              administrator. <h:p/>
-			  The ST author may use a table in the ST, listing
-              only those functions that are implemented. For functions that are mandatory, any
-              sub-functions not in a selection are also mandatory and any assignments must contain
-              at least one assigned value. For functions that are optional and contain an assignment
-              or selection, at least one value must be assigned/selected to be included in the ST.
-              For non-selectable sub-functions in an optional function, all sub-functions must be
-              implemented in order for the function to be included. For functions with a "per-app
-              basis" sub function and an assignment, the ST author must indicate which assigned
-              features are manageable on a per-app basis and which are not by iterating the row. <h:p/>
-              <h:b>Function-specific Application Notes:</h:b><h:p/>
-			  For functions <xref to="vpn"/>, <xref to="audioVisual"/> and <xref to="location"
-              />, the function must be implemented on a device-wide basis but may also be
-              implemented on a per-app basis or on a per-group of applications basis in which the
-              configuration includes the list of applications or groups of applications to which the
-              enable/disable applies. <h:p/>
-			  Function <xref to="vpn"/> addresses
-              enabling and disabling the IPsec VPN only. The configuration of the VPN Client itself
-              (with information such as VPN Gateway, certificates, and algorithms) is addressed by
-              the PP-Module for VPN Client. The administrator options should only be listed if the
-              administrator can remotely enable/disable the VPN connection. <h:p/>
-              Function <xref to="vpn"/> optionally allows the VPN to be configured per-app or
-              per-groups of apps. If this configuration is selected, it does not void FDP_IFC_EXT.1.
-              Instead FDP_IFC_EXT.1 is applied to the application or group of applications the VPN
-              is applied to. In other words, all traffic destined for the VPN-enabled application or
-              group of applications, must travel through the VPN, but traffic not destined for that
-              application or group of applications can travel outside the VPN. When the VPN is
-              configured across the device FDP_IFC_EXT.1 applies to all traffic and the VPN must not
-              split tunnel. <h:p/> 
-              The assignment in function <xref to="radios"/>
-              consists of all radios present on the TSF, such as Wi-Fi, cellular, NFC,
-              Bluetooth BR/EDR, and Bluetooth LE, which can be enabled and disabled. In the future,
-              if both Bluetooth BR/EDR and Bluetooth LE are supported, they will be required to be
-              enabled and disabled separately. Disablement of the cellular radio does not imply that
-              the radio may not be enabled in order to place emergency phone calls; however, it is
-              not expected that a device in "airplane mode", where all radios are disabled, will
-              automatically (without authorization) turn on the cellular radio to place emergency
-              calls. <h:p/>
-			  The assignment in function <xref to="audioVisual"/>
-              consists of at least one audio and/or visual device, such as camera and microphone,
-              which can be enabled and disabled by either the user or administrator. Disablement of
-              the microphone does not imply that the microphone may not be enabled in order to place
-              emergency phone calls. If certain devices are able to be restricted to the enterprise
-              (either device-wide, per-app or per-group of applications) and others are able to be
-              restricted to users, then this function should be iterated in the table with the
-              appropriate table entries. <h:p/>
-			  Regarding functions <xref to="radios"/> and <xref to="audioVisual"/>, disablement of a particular
-              radio or audio/visual device must be effective as soon as the TOE has power.
-              Disablement must also apply when the TOE is booted into auxiliary boot modes, for
-              example, associated with updates or backup. If the TOE supports states in which
-              security management policy is inaccessible, for example, due to data-at-rest
-              protection, it is acceptable to meet this requirement by ensuring that these devices
-              are disabled by default while in these states. That these devices are disabled during
-              auxiliary boot modes does not imply that the device (particularly the cellular radio)
-              may not be enabled in order to perform emergency phone calls. <h:p/>Wipe
-              of the TSF (function <xref to="wipe"/>) is performed according to FCS_CKM_EXT.5.
-              Protected data is all non-TSF data, including all user or enterprise data. Some or all
-              of this data may be considered sensitive data as well. <h:p/> The
-              selection in function <xref to="appInstallRules"/> allows the ST author to
-              select which mechanisms are available to the administrator through the MDM Agent to
-              restrict the applications which the user may install. The ST author must state if
-              application allowlist is applied device-wide or if it can be specified to apply to
-              either the Enterprise and/or Personal applications. <h:ul>
-                <h:li>If the administrator can restrict the sources from which applications can be
-                  installed, the ST author selects option a. </h:li>
-                <h:li>If the administrator can specify a allowlist of allowed applications, the ST
-                  author selects option b. The ST author should list any application characteristics
-                  (e.g. name, version, or developer) based on which the allowlist can be
-                  formed.</h:li>
-                <h:li>If the administrator can prevent the user from installing additional
-                  applications, the ST author selects c. </h:li>
-              </h:ul>
-              <h:br/>In the future, function <xref to="certWipe"/> may require
-              destruction or disabling of any default trusted CA certificates, excepting those CA
-              certificates necessary for continued operation of the TSF, such as the developer’s
-              certificate. At this time, the ST author must indicate in the assignment whether
-              pre-installed or any other category of X.509v3 certificates may be removed from the
-              Trust Anchor Database. <h:p/> 
-              For function <xref to="enroll"/>, the
-              enrollment function may be installing an MDM agent and includes the policies to be
-              applied to the device. It is acceptable for the user approval notice to require the
-              user to intentionally opt to view the policies (for example, by "tapping" on a "View"
-              icon) rather than listing the policies in full in the notice. <h:p/> For
-              function <xref to="update"/>, the administrator capability to update the system
-              software may be limited to causing a prompt to the user to update rather than the
-              ability to initiate the update itself. As the administrator is likely to be acting
-              remotely, he/she would be unaware of inopportune situations, such as low power, which
-              may cause the update to fail and the device to become inoperable. The user can refuse
-              to accept the update in such situations. It is expected that system architects will be
-              cognizant of this limitation and will enforce network access controls in order to
-              enforce enterprise-critical updates. <h:p/> Function <xref
-                to="appInstall"/> addresses both installation and update. This protection profile
-              does not distinguish between installation and update of applications because mobile
-              devices typically completely overwrite the previous installation with a new
-              installation during an application update. <h:p/> For function <xref
-                to="entAppRemove"/>, "Enterprise applications" are those applications that belong
-              to the Enterprise application group. Applications installed by the enterprise
-              administrator (including automatic installation by the administrator after being
-              requested by the user from a catalog of enterprise applications) are by default placed
-              in the Enterprise application group unless an exception has been made in function
-                <xref to="appGroups"/> of FMT_SMF_EXT.1.1. <h:p/> If the display
-              of notifications in the locked state is supported, the configuration of these
-              notifications (function <xref to="notifications"/>) must be included in the
-              selection. <h:p/> Function <xref to="dar"/> must be included in the
-              selection if data-at-rest protection is not natively enabled. <h:p/>
-              Function <xref to="rmediaDar"/> is implicitly met if the TSF does not support
-              removable media. <h:p/> 
-              For function <xref to="location"/>, location
-              services include location information gathered from GPS, cellular, and Wi-Fi.
-              <h:p/> Function <xref to="authFactors"/> is implicitly met if the
-              TOE does not contain a BAF. This selection must correspond with the selection made in
-              FIA_UAU.5.1. If a BAF is selected in FIA_UAU.5.1, "Biometric Authentication Factor"
-              must be selected and the user or admin must have the option to disable the use of
-              it. If multiple BAFs are selected in FIA_UAU.5.1, this applies to all different
-              modalities. If "hybrid" is selected in FIA_UAU.5.1 it must be selected and the user
-              or admin must have the option to disable the use of it. <h:p/>
-              <!-- TODO: Should this be something like for TLS do not approve any exceptions, for HTTP
-			  this is per FCS_HTTPS_EXT.1.3?? How do I force the selection of no exceptions for all 
-			  (non-HTTPS) TLS connections? -->
-              For function <xref to="certInvalid"/>, the configuration can be different
-              depending on the specific trusted channel. <h:p/>
-              <!-- Start of the optional to include functions --> The assignment in function
-                <xref to="externalPorts"/> consists of all externally accessible hardware
-              ports, such as USB, the SD card, and HDMI, whose data transfer capabilities can be
-              enabled and disabled by either the user or administrator. Disablement of data transfer
-              over an external port must be effective during and after boot into the normal
-              operative mode of the device. If the TOE supports states in which configured security
-              management policy is inaccessible, for example, due to data-at-rest protection, it is
-              acceptable to meet this requirement by ensuring that data transfer is disabled by
-              default while in these states. Each of the ports may be enabled or disabled
-              separately. The configuration policy need not disable all ports together. In the case
-              of USB, chagrining is still allowed if data transfer capabilities have been disabled.
-              <h:p/> The assignment in function <xref to="serverProtocols"/>
-              consists of all protocols where the TSF acts as a server, which can be enabled and
-              disabled by either the user or administrator. <h:p/> Function <xref
-                to="devModes"/> must be included in the selection if developer modes are
-              supported by the TSF. <h:p/> Function <xref to="authBypass"/> must
-              be included in the selection if bypass of local user authentication, such as a "Forgot
-              Password", password hint, or remote authentication feature, is supported.
-              <h:p/> Function <xref to="appCert"/> must be included in the
-              selection if the TSF allows applications, other than the MDM Agents, to import or
-              remove X.509v3 certificates from the Trust Anchor Database. The MDM Agent is
-              considered the administrator. This function does not apply to applications trusting a
-              certificate for its own validations. The function only applies to situations where the
-              application modifies the device-wide Trust Anchor Database, affecting the validations
-              performed by the TSF for other applications. The user or administrator may be provided
-              the ability to globally allow or deny any application requests in order to meet this
-              requirement. <h:p/> Function <xref to="certValidity"/> must be
-              included in the ST if "administrator-configured option" is selection in
-              FIA_X509_EXT.2.2. <h:p/> Function <xref to="digSign"/> should be
-              included in the selection if FPT_TUD_EXT.5.1 is included in the ST and the
-              configurable option is selected. <h:p/> Function <xref
-                to="sharedKeys"/> should be included in the selection if user or administrator is
-              selected in FCS_STG_EXT.1.4. <h:p/> Function <xref to="keyWipeRules"
-              /> should be included in the selection if user or administrator is selected in
-              FCS_STG_EXT.1.5. <h:p/> Function <xref to="unlockBanner"/> must be
-              included in the selection if FTA_TAB.1 is included in the ST. <h:p/>
-              Function <xref to="auditItems"/> must be included in the selection if FAU_SEL.1
-              is included in the ST. <h:p/> For function <xref to="hotspot"/>,
-              hotspot functionality refers to the condition in which the mobile device is serving as
-              an access point to other devices, not the connection of the TOE to external hotspots.
-              <h:p/> Functions <xref to="dataSharing"/> and <xref
-                to="appGroups"/> correspond to FDP_ACF_EXT.1.2. <h:p/> For function
-                <xref to="unenroll"/>, FMT_SMF_EXT.2.1 specifies actions to be performed when
-              the TOE is unenrolled from management. <h:p/> For function <xref
-                to="alwaysOnVPN"/>, must be included in the ST if IPsec is selected in
-              FTP_ITC_EXT.1 and the native IPsec VPN client can be configured to be Always-On.
-              Always-On is defined as when the TOE has a network connection the VPN attempts to
-              connect, all data leaving the device uses the VPN when the VPN is connected and no
-              data leaves that device when the VPN is disconnected. The configuration of the VPN
-              Client itself (with information such as VPN Gateway, certificates, and algorithms) is
-              addressed by the PP-Module for VPN Client. </note>
             <aactivity>
-              <TSS>The evaluator shall verify that the TSS describes all management functions, what
-                role(s) can perform each function, and how these functions are (or can be)
-                restricted to the roles identified by FMT_MOF_EXT.1. <h:p/> The
-                following activities are organized according to the function number in the table.
-                These activities include TSS Evaluation Activities, AGD Evaluation Activities, and
-                test activities. <h:p/> Test activities specified below shall take place
-                in the test environment described in the evaluation activity for FPT_TUD_EXT.1.<h:p/></TSS>
-              <Guidance> The evaluator shall consult the AGD guidance to perform each of the
-                specified tests, iterating each test as necessary if both the user and administrator
-                may perform the function. The evaluator shall verify that the AGD guidance describes
-                how to perform each management function, including any configuration details. For
-                each specified management function tested, the evaluator shall confirm that the
-                underlying mechanism exhibits the configured setting. <h:p/></Guidance>
-              <Tests>
-                <testlist>
-                  <h:b>Function <xref to="pwd"/></h:b><h:br/> The evaluator shall verify
-                  the TSS defines the allowable policy options: the range of values for both
-                  password length and lifetime, and a description of complexity to include character
-                  set and complexity policies (e.g., configuration and enforcement of number of
-                  uppercase, lowercase, and special characters per password).<h:p/>
-                  <test>The evaluator shall exercise the TSF configuration as the administrator and
-                    perform positive and negative tests, with at least two values set for each
-                    variable setting, for each of the following: <h:p/>
-                    <h:ul>
-                      <h:li>minimum password length</h:li>
-                      <h:li>minimum password complexity</h:li>
-                      <h:li>maximum password lifetime</h:li>
-                    </h:ul>
-                  </test><h:br/>
-                  <h:b>Function <xref to="screenlock"/></h:b><h:br/> The evaluator shall
-                  verify the TSS defines the range of values for both timeout period and number of
-                  authentication failures for all supported authentication mechanisms.<h:p/>
-                  <test> The evaluator shall exercise the TSF configuration as the administrator.
-                    The evaluator shall perform positive and negative tests, with at least two
-                    values set for each variable setting, for each of the following: <h:br/>
-                    <h:ul>
-                      <h:li>screen-lock enabled/disabled</h:li>
-                      <h:li>screen lock timeout</h:li>
-                      <h:li>number of authentication failures (may be combined with test for
-                        FIA_AFL_EXT.1)</h:li>
-                    </h:ul>
-                  </test><h:br/>
-                  <h:b>Function <xref to="vpn"/></h:b><h:br/>
-                  <test>The evaluator shall perform the following tests: <h:ol type="a">
-                      <h:li>The evaluator shall exercise the TSF configuration to enable the VPN
-                        protection. These configuration actions must be used for the testing of the
-                        FDP_IFC_EXT.1.1 requirement. </h:li>
-                      <h:li>[conditional] If "per-app basis" is selected, the evaluator shall
-                        create two applications and enable one to use the VPN and the other to not
-                        use the VPN. The evaluator shall exercise each application (attempting to
-                        access network resources; for example, by browsing different websites)
-                        individually while capturing packets from the TOE. The evaluator shall
-                        verify from the packet capture that the traffic from the VPN-enabled
-                        application is encapsulated in IPsec and that the traffic from the
-                        VPN-disabled application is not encapsulated in IPsec. </h:li>
-                      <h:li>[conditional] If "per-groups of application basis" is selected, the
-                        evaluator shall create two applications and the applications shall be placed
-                        into different groups. Enable one application group to use the VPN and the
-                        other to not use the VPN. The evaluator shall exercise each application
-                        (attempting to access network resources; for example, by browsing different
-                        websites) individually while capturing packets from the TOE. The evaluator
-                        shall verify from the packet capture that the traffic from the application
-                        in the VPN-enabled group is encapsulated in IPsec and that the traffic from
-                        the application in the VPN-disabled group is not encapsulated in IPsec.
-                      </h:li>
-                    </h:ol>
-                  </test><h:br/>
-                  <h:b>Function <xref to="radios"/></h:b><h:br/> The evaluator shall
-                  verify that the TSS includes a description of each radio and an indication of if
-                  the radio can be enabled/disabled along with what role can do so. In addition the
-                  evaluator shall verify that the frequency ranges at which each radio operates is
-                  included in the TSS. The evaluator shall verify that the TSS includes at what point 
-                  in the boot sequence the radios are powered on and indicates if the radios are used 
-                  as part of the initialization of the device.            
-                  The evaluator shall confirm that the AGD guidance describes
-                  how to perform the enable/disable function for each radio.<h:p/> The
-                  evaluator shall ensure that minimal signal leakage enters the RF shielded
-                  enclosure (i.e. Faraday bag, Faraday box, RF shielded room) by performing the
-                  following steps:<h:p/> Step 1: Place the antenna of the spectrum
-                  analyzer inside the RF shielded enclosure.<h:p/> Step 2: Enable "Max
-                  Hold" on the spectrum analyzer and perform a spectrum sweep of the frequency range
-                  between 300MHz – 6000MHz, in I KHz steps (this range should encompass 802.11,
-                  802.15, GSM, UMTS, and LTE). This range will not address NFC 13.56MHz, another
-                  test should be set up with similar constraints to address NFC.<h:p/>
-                  If power above -90 dBm is observed, the Faraday box has too great of signal
-                  leakage and shall not be used to complete the test for Function <xref
-                    to="radios"/>.<h:p/>
-                  <test>The evaluator shall exercise the TSF configuration as the administrator and,
-                    if not restricted to the administrator, the user, to enable and disable the
-                    state of each radio (e.g. Wi-Fi, cellular, NFC, Bluetooth). Additionally,
-                    the evaluator shall repeat the steps below, booting into any auxiliary boot mode
-                    supported by the device. For each radio, the evaluator shall:<h:p/>
-                    Step 1: Place the antenna of the spectrum analyzer inside the RF shielded
-                    enclosure. Configure the spectrum analyzer to sweep desired frequency range for
-                    the radio to be tested (based on range provided in the TSS)). The ambient noise
-                    floor shall be set to -110dBm. Place the TOE into the RF shielded enclosure to
-                    isolate them from all other RF traffic. <h:p/> Step 2: The evaluator
-                    shall create a baseline of the expected behavior of RF signals. The evaluator
-                    shall power on the device, ensure the radio in question is enabled, power off
-                    the device, enable "Max Hold" on the spectrum analyzer and power on the device.
-                    The evaluator shall wait 2 minutes at each Authentication Factor interface prior
-                    to entering the necessary password to complete the boot process, waiting 5
-                    minutes after the device is fully booted. The evaluator shall observe that RF
-                    spikes are present at the expected uplink channel frequency. The evaluator shall
-                    clear the "Max Hold" on the spectrum analyzer. <h:p/> Step 3: The
-                    evaluator shall verify the absence of RF activity for the uplink channel when
-                    the radio in question is disabled. The evaluator shall complete the following
-                    test five times. The evaluator shall power on the device, ensure the radio in
-                    question is disabled, power off the device, enable "Max Hold" on the spectrum
-                    analyzer and power on the device. The evaluator shall wait 2 minutes at each
-                    Authentication Factor interface prior to entering the necessary password to
-                    complete the boot process, waiting 5 minutes after the device is fully booted.
-                    The evaluator shall clear the "Max Hold" on the spectrum analyzer. If the radios 
-                    are used for device initialization, then a spike of RF activity for the uplink channel
-                    can be observed initially at device boot. However, if a spike of
-                    RF activity for the uplink channel of the specific radio frequency band is
-                    observed after the device is fully booted or at an Authentication Factor interface 
-                    it is deemed that the radio is enabled. </test><h:br/>
-                  <h:b>Function <xref to="audioVisual"/></h:b><h:br/> The evaluator
-                  shall verify that the TSS includes a description of each collection device and an
-                  indication of if it can be enabled/disabled along with what role can do so. The
-                  evaluator shall confirm that the AGD guidance describes how to perform the
-                  enable/disable function. <h:p/>
-                  <test>The evaluator shall perform the following test(s): <h:ol type="a">
-                      <h:li>The evaluator shall exercise the TSF configuration as the
-                        administrator and, if not restricted to the administrator, the user, to
-                        enable and disable the state of each audio or visual collection devices
-                        (e.g. camera, microphone) listed by the ST author. For each collection
-                        device, the evaluator shall disable the device and then attempt to use its
-                        functionality. The evaluator shall reboot the TOE and verify that disabled
-                        collection devices may not be used during or early in the boot process.
-                        Additionally, the evaluator shall boot the device into each available
-                        auxiliary boot mode and verify that the collection device cannot be used. </h:li>
-                      <h:li>[conditional] If "per-app basis" is selected, the evaluator shall
-                        create two applications and enable one to use access the A/V device and the
-                        other to not access the A/V device. The evaluator shall exercise each
-                        application attempting to access the A/V device individually. The evaluator
-                        shall verify that the enabled application is able to access the A/V device
-                        and the disabled application is not able to access the A/V device. </h:li>
-                      <h:li>[conditional] If "per-groups of application basis" is selected, the
-                        evaluator shall create two applications and the applications shall be placed
-                        into different groups. Enable one group to access the A/V device and the
-                        other to not access the A/V device. The evaluator shall exercise each
-                        application attempting to access the A/V device individually. The evaluator
-                        shall verify that the application in the enabled group is able to access the
-                        A/V device and the application in the disabled group is not able to access
-                        the A/V device. </h:li>
-                    </h:ol>
-                  </test><h:br/>
-                  <h:b>Function <xref to="lockState"/></h:b><h:br/>
-                  <test>The evaluator shall use the test environment to instruct the TSF, both as a
-                    user and as the administrator, to command the device to transition to a locked
-                    state, and verify that the device transitions to the locked state upon
-                    command.</test><h:br/>
-                  <h:b>Function <xref to="wipe"/></h:b><h:br/>
-                  <test>The evaluator shall use the test environment to instruct the TSF, both as a
-                    user and as the administrator, to command the device to perform a wipe of
-                    protected data. The evaluator must ensure that this management setup is used
-                    when conducting the Evaluation Activities in FCS_CKM_EXT.5.</test><h:br/>
-                  <h:b>Function <xref to="appInstallRules"/></h:b><h:br/> The evaluator
-                  shall verify the TSS describes the allowable application installation policy
-                  options based on the selection included in the ST. If the application allowlist is
-                  selected, the evaluator shall verify that the TSS includes a description of each
-                  application characteristic upon which the allowlist may be based.<h:p/>
-                  <test> The evaluator shall exercise the TSF configuration as the administrator to
-                    restrict particular applications, sources of applications, or application
-                    installation according to the AGD guidance. The evaluator shall attempt to
-                    install unauthorized applications and ensure that this is not possible. The
-                    evaluator shall, in conjunction, perform the following specific tests: <h:ol
-                      type="a">
-                      <h:li>[conditional] The evaluator shall attempt to connect to an
-                        unauthorized repository in order to install applications. </h:li>
-                      <h:li>[conditional] The evaluator shall attempt to install two applications
-                        (one allowlisted, and one not) from a known allowed repository and verify
-                        that the application not on the allowlist is rejected. The evaluator shall
-                        also attempt to side-load executables or installation packages via USB
-                        connections to determine that the white list is still adhered to
-                      </h:li></h:ol>
-                  </test><h:br/>
-                  <h:b>Function <xref to="keyStorage"/> &#38; Function <xref
-                      to="keyWipe"/></h:b><h:br/> The evaluator shall verify that the TSS
-                  describes each category of keys/secrets that can be imported into the TSF’s secure
-                  key storage.<h:p/>
-                  <test>The test of these functions is performed in association with FCS_STG_EXT.1. </test><h:br/>
-                  <test>The test of these functions is performed in association with FCS_STG_EXT.1. </test><h:br/>
-                  <h:b>Function <xref to="certImport"/></h:b><h:br/> The evaluator shall
-                  review the AGD guidance to determine that it describes the steps needed to import,
-                  modify, or remove certificates in the Trust Anchor database, and that the users
-                  that have authority to import those certificates (e.g., only administrator, or
-                  both administrators and users) are identified. <h:p/>
-                  <test>The evaluator shall import certificates according to the AGD guidance as the
-                    user and/or as the administrator, as determined by the administrative guidance.
-                    The evaluator shall verify that no errors occur during import. The evaluator
-                    should perform an action requiring use of the X.509v3 certificate to provide
-                    assurance that installation was completed properly. </test><h:br/>
-                  <h:b>Function <xref to="certWipe"/></h:b><h:br/> The evaluator shall
-                  verify that the TSS describes each additional category of X.509 certificates and
-                  their use within the TSF.<h:p/>
-                  <test>The evaluator shall remove an administrator-imported certificate and any
-                    other categories of certificates included in the assignment of function <xref
-                      to="appRemove"/> from the Trust Anchor Database according to the AGD
-                    guidance as the user and as the administrator. </test><h:br/>
-                  <h:b>Function <xref to="enroll"/></h:b><h:br/> The evaluator shall
-                  examine the TSS to ensure that it contains a description of each management
-                  function that will be enforced by the enterprise once the device is enrolled. The
-                  evaluator shall examine the AGD guidance to determine that this same information
-                  is present.<h:p/>
-                  <test>The evaluator shall verify that user approval is required to enroll the
-                    device into management. </test><h:br/>
-                  <h:b>Function <xref to="appRemove"/></h:b><h:br/> The evaluator shall
-                  verify that the TSS includes an indication of what applications (e.g.,
-                  user-installed applications, Administrator-installed applications, or Enterprise
-                  applications) can be removed along with what role can do so. The evaluator shall
-                  examine the AGD guidance to determine that it details, for each type of
-                  application that can be removed, the procedures necessary to remove those
-                  applications and their associated data. For the purposes of this Evaluation
-                  Activity, "associated data" refers to data that are created by the app during its
-                  operation that do not exist independent of the app's existence, for instance,
-                  configuration data, or e-mail information that’s part of an e-mail client. It does
-                  not, on the other hand, refer to data such as word processing documents (for a
-                  word processing app) or photos (for a photo or camera app). <h:p/>
-                  <test>The evaluator shall attempt to remove applications according to the AGD
-                    guidance and verify that the TOE no longer permits users to access those
-                    applications or their associated data. </test><h:br/>
-                  <h:b>Function <xref to="update"/></h:b><h:br/>
-                  <test>The evaluator shall attempt to update the TSF system software following the
-                    procedures in the AGD guidance and verify that updates correctly install and
-                    that the version numbers of the system software increase. </test><h:br/>
-                  <h:b>Function <xref to="appInstall"/></h:b><h:br/>
-                  <test>The evaluator shall attempt to install an application following the
-                    procedures in the AGD guidance and verify that the application is installed and
-                    available on the TOE. </test><h:br/>
-                  <h:b>Function <xref to="entAppRemove"/></h:b><h:br/>
-                  <test>The evaluator shall attempt to remove any Enterprise applications from the
-                    device by following the administrator guidance. The evaluator shall verify that
-                    the TOE no longer permits users to access those applications or their associated
-                    data. </test><h:br/>
-                  <h:b>Function <xref to="notifications"/></h:b><h:br/> The evaluator
-                  shall examine the AGD Guidance to determine that it specifies, for at least each
-                  category of information selected for Function <xref to="notifications"/>,
-                  how to enable and disable display information for that type of information in the
-                  locked state.<h:p/>
-                  <test>For each category of information listed in the AGD guidance, the evaluator
-                    shall verify that when that TSF is configured to limit the information according
-                    to the AGD, the information is no longer displayed in the locked state.</test><h:br/>
-                  <h:b>Function <xref to="dar"/></h:b><h:br/>
-                  <test>The evaluator shall exercise the TSF configuration as the administrator and,
-                    if not restricted to the administrator, the user, to enable system-wide
-                    data-at-rest protection according to the AGD guidance. The evaluator shall
-                    ensure that all Evaluation Activities for DAR (FDP_DAR) are conducted with the
-                    device in this configuration. </test><h:br/>
-                  <h:b>Function <xref to="rmediaDar"/></h:b><h:br/>
-                  <test>The evaluator shall exercise the TSF configuration as the administrator and,
-                    if not restricted to the administrator, the user, to enable removable media’s
-                    data-at-rest protection according to the AGD guidance. The evaluator shall
-                    ensure that all Evaluation Activities for DAR (FDP_DAR) are conducted with the
-                    device in this configuration. </test><h:br/>
-                  <h:b>Function <xref to="location"/>
-                  </h:b><h:br/>
-                  <test>The evaluator shall perform the following tests. <h:ol type="a">
-                      <h:li>The evaluator shall enable location services device-wide and shall
-                        verify that an application (such as a mapping application) is able to access
-                        the TOE’s location information. The evaluator shall disable location
-                        services device-wide and shall verify that an application (such as a mapping
-                        application) is unable to access the TOE’s location information. </h:li>
-                      <h:li>[conditional] If "per-app basis" is selected, the evaluator shall
-                        create two applications and enable one to use access the location services
-                        and the other to not access the location services. The evaluator shall
-                        exercise each application attempting to access location services
-                        individually. The evaluator shall verify that the enabled application is
-                        able to access the location services and the disabled application is not
-                        able to access the location services. </h:li>
-                    </h:ol>
-                  </test><h:br/>
-                  <h:b>Function <xref to="authFactors"/></h:b><h:br/>
-                  <test>The evaluator shall verify that the TSS states if the TOE supports a BAF
-                    and/or hybrid authentication. If the TOE does not include a BAF and/or hybrid
-                    authentication this test is implicitly met. <h:ol type="a">
-                      <h:li>[conditional] If a BAF is selected the evaluator shall verify that the
-                        TSS describes the procedure to enable/disable the BAF. If the TOE includes
-                        multiple BAFs, the evaluator shall verify that the TSS describes how to
-                        enable/disable each BAF, specifically if the different modalities can be
-                        individually enabled/disabled. The evaluator shall configure the TOE to
-                        allow each supported BAF to authenticate and verify that successful
-                        authentication can be achieved using the BAF. The evaluator shall configure
-                        the TOE to disable the use of each supported BAF for authentication and
-                        confirm that the BAF cannot be used to authenticate. </h:li>
-                      <h:li>[conditional] If "Hybrid" is selected the evaluator shall verify that
-                        the TSS describes the procedure to enable/disable the hybrid (biometric
-                        credential and PIN/password) authentication. The evaluator shall configure
-                        the TOE to allow hybrid authentication to authenticate and confirm that
-                        successful authentication can be achieved using the hybrid authentication.
-                        The evaluator shall configure the TOE to disable the use of hybrid
-                        authentication and confirm that the hybrid authentication cannot be used to
-                        authenticate. </h:li>
-                    </h:ol>
-                  </test><h:br/>
-                  <h:br/>
-                  <h:b>Evaluation Activity Note:</h:b> It should be noted that the following
-                  functions are optional capabilities, if the function is implemented, then the
-                  following Evaluation Activities shall be performed. The notation of "[conditional]
-                  beside the function number indicates that if the function is not included in the
-                  ST, then there is no expectation that the evaluation activity be performed. <h:p/>
-                  <!-- TODO: Look AT -->
-                  <h:b>Function <xref to="certInvalid"/> [conditional]</h:b><h:br/>
-                  <test>The test of this function is performed in conjunction with FIA_X509_EXT.2.2,
-                    FCS_TLSC_EXT.1.3 in the Package for Transport Layer Security. </test><h:br/>
-                  <!-- Start of optional to include these functions -->
-                  <h:b>Function <xref to="externalPorts"/> [conditional]</h:b><h:br/>
-                  The evaluator shall verify that the TSS includes a list of each externally
-                  accessible hardware port and an indication of if data transfer over that port can
-                  be enabled/disabled. AGD guidance will describe how to perform the enable/disable function.<h:p/>
-                  <test>The evaluator shall exercise the TSF configuration to enable and disable
-                    data transfer capabilities over each externally accessible hardware ports (e.g.
-                    USB, SD card, HDMI) listed by the ST author. The evaluator shall use test
-                    equipment for the particular interface to ensure that no low-level signaling is
-                    occurring on all pins used for data transfer when they are disabled. For each
-                    disabled data transfer capability, the evaluator shall repeat this test by
-                    rebooting the device into the normal operational mode and verifying that the
-                    capability is disabled throughout the boot and early execution stage of the
-                    device. </test><h:br/>
-                  <h:b>Function <xref to="serverProtocols"/> [conditional]</h:b><h:br/>
-                  The evaluator shall verify that the TSS describes how the TSF acts as a server in
-                  each of the protocols listed in the ST, and the reason for acting as a server.<h:p/>
-                  <test>The evaluator shall attempt to disable each listed protocol in the
-                    assignment. The evaluator shall verify that remote devices can no longer access
-                    the TOE or TOE resources using any disabled protocols. </test><h:br/>
-                  <h:b>Function <xref to="devModes"/> [conditional]</h:b><h:br/>
-                  <test>The evaluator shall exercise the TSF configuration as the administrator and,
-                    if not restricted to the administrator, the user, to enable and disable any
-                    developer mode. The evaluator shall test that developer mode access is not
-                    available when its configuration is disabled. The evaluator shall verify the
-                    developer mode remains disabled during device reboot. </test><h:br/>
-                  <h:b>Function <xref to="authBypass"/> [conditional]</h:b><h:br/> The
-                  evaluator shall examine the AGD guidance to determine that it describes how to
-                  enable and disable any "Forgot Password", password hint, or remote authentication
-                  (to bypass local authentication mechanisms) capability.<h:p/>
-                  <test>For each mechanism listed in the AGD guidance that provides a "Forgot
-                    Password" feature or other means where the local authentication process can be
-                    bypassed, the evaluator shall disable the feature and ensure that they are not
-                    able to bypass the local authentication process. </test><h:br/>
-                  <h:b>Function <xref to="wipeEntData"/> [conditional]</h:b><h:br/>
-                  <test>The evaluator shall attempt to wipe Enterprise data resident on the device
-                    according to the administrator guidance. The evaluator shall verify that the
-                    data is no longer accessible by the user. </test><h:br/>
-                  <h:b>Function <xref to="appCert"/> [conditional]</h:b><h:br/> The
-                  evaluator shall verify that the TSS describes how approval for an application to
-                  perform the selected action (import, removal) with respect to certificates in the
-                  Trust Anchor Database is accomplished (e.g., a pop-up, policy setting, etc.).
-                  <h:p/> The evaluator shall also verify that the API documentation
-                  provided according to <xref to="adv"/> includes any security functions
-                  (import, modification, or destruction of the Trust Anchor Database) allowed by applications.<h:p/>
-                  <test>The evaluator shall perform one of the following tests: <h:ol type="a">
-                      <h:li>[conditional] If applications may import certificates to the Trust
-                        Anchor Database, the evaluator shall write, or the developer shall provide
-                        access to, an application that imports a certificate into the Trust Anchor
-                        Database. The evaluator shall verify that the TOE requires approval before
-                        allowing the application to import the certificate: <h:ul>
-                          <h:li>The evaluator shall deny the approvals to verify that the
-                            application is not able to import the certificate. Failure of import
-                            shall be tested by attempting to validate a certificate that chains to
-                            the certificate whose import was attempted (as described in the
-                            evaluation activity for FIA_X509_EXT.1). </h:li>
-                          <h:li>The evaluator shall repeat the test, allowing the approval to
-                            verify that the application is able to import the certificate and that
-                            validation occurs. </h:li>
-                        </h:ul>
-                      </h:li>
-                      <h:li>[conditional] If applications may remove certificates in the Trust
-                        Anchor Database, the evaluator shall write, or the developer shall provide
-                        access to, an application that removes certificates from the Trust Anchor
-                        Database. The evaluator shall verify that the TOE requires approval before
-                        allowing the application to remove the certificate: <h:ul>
-                          <h:li>The evaluator shall deny the approvals to verify that the
-                            application is not able to remove the certificate. Failure of removal
-                            shall be tested by attempting to validate a certificate that chains to
-                            the certificate whose removal was attempted (as described in the
-                            evaluation activity for FIA_X509_EXT.1). </h:li>
-                        </h:ul>
-                      </h:li>
-                    </h:ol> The evaluator shall repeat the test, allowing the approval to verify
-                    that the application is able to remove/modify the certificate and that
-                    validation no longer occurs. </test><h:br/>
-                  <h:b>Function <xref to="certValidity"/> [conditional]</h:b><h:br/>
-                  <test>The test of this function is performed in conjunction with FIA_X509_EXT.2.2. </test><h:br/>
-                  <h:b>Function <xref to="cellular"/> [conditional]</h:b><h:br/> The
-                  evaluator shall ensure that the TSS describes which cellular protocols can be
-                  disabled. The evaluator shall confirm that the AGD guidance describes the
-                  procedure for disabling each cellular protocol identified in the TSS.<h:p/>
-                  <test>The evaluator shall attempt to disable each cellular protocol according to
-                    the administrator guidance. The evaluator shall attempt to connect the device to
-                    a cellular network and, using network analysis tools, verify that the device
-                    does not allow negotiation of the disabled protocols. </test><h:br/>
-                  <h:b>Function <xref to="auditLogs"/> [conditional]</h:b><h:br/>
-                  <test>The evaluator shall attempt to read any device audit logs according to the
-                    administrator guidance and verify that the logs may be read. This test may be
-                    performed in conjunction with the evaluation activity of FAU_GEN.1. </test><h:br/>
-                  <h:b>Function <xref to="digSign"/> [conditional]</h:b><h:br/>
-                  <test>The test of this function is performed in conjunction with FPT_TUD_EXT.5.1. </test><h:br/>
-                  <h:b>Function <xref to="sharedKeys"/> [conditional]</h:b><h:br/> The
-                  evaluator shall verify that the TSS describes how the approval for exceptions for
-                  shared use of keys/secrets by multiple applications is accomplished (e.g., a
-                  pop-up, policy setting, etc.).<h:p/>
-                  <test>The test of this function is performed in conjunction with FCS_STG_EXT.1. </test><h:br/>
-                  <h:b>Function <xref to="keyWipeRules"/> [conditional]</h:b><h:br/> The
-                  evaluator shall verify that the TSS describes how the approval for exceptions for
-                  destruction of keys/secrets by applications that did not import the key/secret is
-                  accomplished (e.g., a pop-up, policy setting, etc.).<h:p/>
-                  <test>The test of this function is performed in conjunction with FCS_STG_EXT.1. </test><h:br/>
-                  <h:b>Function <xref to="unlockBanner"/> [conditional] </h:b><h:br/>
-                  The evaluator shall verify that the TSS describes any restrictions in banner
-                  settings (e.g., character limitations).<h:p/>
-                  <test>The test of this function is performed in conjunction with FTA_TAB.1. </test><h:br/>
-                  <h:b>Function <xref to="auditItems"/> [conditional]</h:b><h:br/>
-                  <test>The test of this function is performed in conjunction with FAU_SEL.1. </test><h:br/>
-                  <h:b>Function <xref to="integ"/> [conditional]</h:b><h:br/>
-                  <test>The test of this function is performed in conjunction with FPT_NOT_EXT.2.1. </test><h:br/>
-                  <h:b>Function <xref to="USB"/> [conditional]</h:b><h:br/> The
-                  evaluator shall verify that the TSS includes a description of how data transfers
-                  can be managed over USB.<h:p/>
-                  <test>The evaluator shall perform the following tests based on the selections made
-                    in the table: <h:ol type="a">
-                      <h:li>[conditional] The evaluator shall disable USB mass storage mode,
-                        attach the device to a computer, and verify that the computer cannot mount
-                        the TOE as a drive. The evaluator shall reboot the TOE and repeat this test
-                        with other supported auxiliary boot modes. </h:li>
-                      <h:li>[conditional] The evaluator shall disable USB data transfer without
-                        user authentication, attach the device to a computer, and verify that the
-                        TOE requires user authentication before the computer can access TOE data.
-                        The evaluator shall reboot the TOE and repeat this test with other supported
-                        auxiliary boot modes. </h:li>
-                      <h:li>[conditional] The evaluator shall disable USB data transfer without
-                        connecting system authentication, attach the device to a computer, and
-                        verify that the TOE requires connecting system authentication before the
-                        computer can access TOE data. The evaluator shall then connect the TOE to
-                        another computer and verify that the computer cannot access TOE data. The
-                        evaluator shall then connect the TOE to the original computer and verify
-                        that the computer can access TOE data. </h:li>
-                    </h:ol>
-                  </test><h:br/>
-                  <h:b>Function <xref to="backup"/> [conditional]</h:b><h:br/> The
-                  evaluator shall verify that the TSS includes a description of available backup
-                  methods that can be enabled/disabled. If "selected applications or selected groups
-                  of applications are selected the TSS shall include which applications of groups of
-                  applications backup can be enabled/disabled.<h:p/>
-                  <test>If "all applications" is selected, the evaluator shall disable each selected
-                    backup location in turn and verify that the TOE cannot complete a backup. The
-                    evaluator shall then enable each selected backup location in turn and verify
-                    that the TOE can perform a backup. <h:p/> If "selected applications"
-                    is selected, the evaluator shall disable each selected backup location in turn
-                    and verify that for the selected application the TOE prevents backup from
-                    occurring. The evaluator shall then enable each selected backup location in turn
-                    and verify that for the selected application the TOE can perform a backup.
-                    <h:p/> If "selected groups of applications" is selected, the
-                    evaluator shall disable each selected backup location in turn and verify that
-                    for a group of applications the TOE prevents the backup from occurring. The
-                    evaluator shall then enable each selected backup location in turn and verify for
-                    the group of application the TOE can perform a backup. <h:p/> If
-                    "configuration data" is selected, the evaluator shall disable each selected
-                    backup location in turn and verify that the TOE prevents the backup of
-                    configuration data from occurring. The evaluator shall then enable each selected
-                    backup location in turn and verify that the TOE can perform a backup of
-                    configuration data. </test><h:br/>
-                  <h:b>Function <xref to="hotspot"/> [conditional] </h:b><h:br/> The
-                  evaluator shall verify that the TSS includes a description of Hotspot
-                  functionality and USB tethering to include any authentication for these. <h:p/>
-                  <test>The evaluator shall perform the following tests based on the selections in
-                    Function <xref to="hotspot"/>. <h:ol type="a">
-                      <h:li>[conditional] The evaluator shall enable hotspot functionality with
-                        each of the of the support authentication methods. The evaluator shall
-                        connect to the hotspot with another device and verify that the hotspot
-                        functionality requires the configured authentication method. </h:li>
-                      <h:li>[conditional] The evaluator shall enable USB tethering functionality
-                        with each of the of the support authentication methods. The evaluator shall
-                        connect to the TOE over USB with another device and verify that the
-                        tethering functionality requires the configured authentication method.
-                      </h:li>
-                    </h:ol>
-                  </test><h:br/>
-                  <h:b>Function <xref to="dataSharing"/> [conditional]</h:b><h:br/>
-                  <test>The test of this function is performed in conjunction with FDP_ACF_EXT.1.2. </test><h:br/>
-                  <h:b>Function <xref to="appGroups"/> [conditional]</h:b><h:br/>
-                  <test>The evaluator shall set a policy to cause a designated application to be
-                    placed into a particular application group. The evaluator shall then install the
-                    designated application and verify that it was placed into the correct group. </test><h:br/>
-                  <h:b>Function <xref to="unenroll"/> [conditional]</h:b><h:br/>
-                  <test>The evaluator shall attempt to unenroll the device from management and
-                    verify that the steps described in FMT_SMF_EXT.2.1 are performed. This test
-                    should be performed in conjunction with the FMT_SMF_EXT.2.1 evaluation activity. </test><h:br/>
-                  <h:b>Function <xref to="alwaysOnVPN"/> [conditional]</h:b><h:br/>
-                  <test>The evaluator shall verify that the TSS contains guidance to configure the
-                    VPN as Always-On. The evaluator shall configure the VPN as Always-On and perform
-                    the following test. <h:ol type="a">
-                      <h:li>The evaluator shall verify that when the VPN is connected all traffic
-                        is routed through the VPN. This test is performed in conjunction with
-                        FDP_IFC_EXT.1.1. </h:li>
-                      <h:li>The evaluator shall verify that when the VPN is not established, that
-                        no traffic leaves the device. The evaluator shall ensure that the TOE has
-                        network connectivity and that the VPN is established. The evaluator shall
-                        use a packet sniffing tool to capture the traffic leaving the TOE. The
-                        evaluator shall disable the VPN connection on the server side. The evaluator
-                        shall perform actions with the device such as navigating to websites, using
-                        provided applications, and accessing other Internet resources and verify
-                        that no traffic leaves the device. </h:li>
-                      <h:li>The evaluator shall verify that the TOE has network connectivity and
-                        that the VPN is established. The evaluator shall disable network
-                        connectivity (i.e. Airplane Mode) and verify that the VPN disconnects. The
-                        evaluator shall re-establish network connectivity and verify that the VPN
-                        automatically reconnects. </h:li>
-                    </h:ol>
-                  </test><h:br/>
-                  <h:b>Function <xref to="bioRevoke"/> [conditional]</h:b><h:br/>
-                  <test>The evaluator shall verify that the TSS describes the procedure to revoke a
-                    biometric credential stored on the TOE. The evaluator shall configure the TOE to
-                    use BAF and confirm that the biometric can be used to authenticate to the
-                    device. The evaluator shall revoke the biometric credential’s ability to
-                    authenticate to the TOE and confirm that the same BAF cannot be used to
-                    authenticate to the device.</test><h:br/>
-                  <h:b>Function <xref to="other"/></h:b><h:br/> The evaluator shall
-                  verify that the TSS describes all assigned security management functions and their
-                  intended behavior.<h:p/>
-                  <test>The evaluator shall design and perform tests to demonstrate that the
-                    function may be configured and that the intended behavior of the function is
-                    enacted by the TOE.</test><h:br/>
-                </testlist>
-              </Tests>
-            </aactivity>
+		   <TSS>
+                       	The evaluator shall examine the TSS and Operational Guidance to ensure
+			that it describes which security management functions require 
+			Administrator privilege and the actions associated with each
+			management function. The evaluator shall verify that for each 
+			management function and role specified in 
+                        <xref to="t-manfunc"/> the defined 
+			role is able to perform all mandatory functions as well as all 
+			optional or selection-based functions claimed in the ST.
+			<h:p/>
+		</TSS>
+		<Guidance>
+                       	The evaluator shall examine the Operational Guidance to ensure that it
+			describes how the Administrator and User are able to perform
+			each management function that the ST claims the TOE supports.<h:p/>
+                        The evaluator shall verify for each claimed management function that 
+			the Operational Guidance is sufficiently detailed to allow the 
+			function to be performed and that the function can be performed.<h:p/>
+		</Guidance>
+		<Tests>
+			The evaluator shall test each management function for each role listed in <xref to="t-manfunc"/>
+                        in the ST to demonstrate that the function can be performed by the roles that are authorized to do so and the result
+			of the function is demonstrated. The evaluator shall also verify for each claimed management function
+			in <xref to="t-manfunc"/>
+                        that if the TOE claims not to provide a particular role with access to the function, then it is not possible to access the 
+			TOE as that role and perform that function.<h:p/>
+		</Tests>
+              </aactivity>			   
           </f-element>
+	  <audit-event/>
         </f-component>
 		
 	
@@ -9513,12 +8436,347 @@
 <!-- Appendix A includes optional, objective, and implementation-dependent requirements -->
 <!-- Appendix B is selection-based requirements -->
 	    
-	    
-  <!-- 
-       Do NOT put SFRs in this section. All SFR belong up above in SFR section. 
-       To make an SFR optional tag it above as status="optional" 
-  -->
+  <!-- Annex E: Entropy Documentation and Assessment -->
+    <appendix id="appendix-entropy" title="Entropy Documentation and Assessment">
+        <section id="s-design" title="Design Description">
+            Documentation shall include the design of the entropy source as a whole, including the interaction of all entropy source
+		components. It will describe the operation of the entropy source to include how it works, how entropy is produced, and
+		how unprocessed (raw) data can be obtained from within the entropy source for testing purposes. The documentation 
+		should walk through the entropy source design indicating where the random comes from, where it is passed next, any
+		post-processing of the raw outputs (hash, XOR, etc.), if/where it is stored, and finally, how it is output from the
+		entropy source. Any conditions placed on the process (e.g., blocking) should also be described in the entropy source 
+		design. Diagrams and examples are encouraged.<h:p/>
+            This design must also include a description of the content of the security boundary of the entropy source and a 
+		description of how the security boundary ensures that an adversary outside the boundary cannot affect the entropy
+		rate.
+        </section>
+        <section id="s-justification" title="Entropy Justification">
+            There should be a technical argument for where the unpredictability in the source comes from and why there is confidence 
+		in the entropy source exhibiting probabilistic behavior (an explanation of the probability distribution and
+		justification for that distribution given the particular source is one way to describe this). This argument will
+		include a description of the expected entropy rate and explain how you ensure that sufficient entropy is going into 
+		the TOE randomizer seeding process. This discussion will be part of a justification for why the entropy source can be
+		relied upon to produce bits with entropy.
+        </section>
+        <section id="s-oc" title="Operating Conditions">
+            Documentation will also include the range of operating conditions under which the entropy source is expected to generate 
+		random data. It will clearly describe the measures that have been taken in the system design to ensure the entropy
+		source continues to operate under those conditions. Similarly, documentation shall describe the conditions under which
+		the entropy source is known to malfunction or become inconsistent. Methods used to detect failure or degradation of
+		the source shall be included.
+        </section>
+        <section id="s-health" title="Health Testing">
+            More specifically, all entropy source health tests and their rationale will be documented. This will include a description
+		of the health tests, the rate and conditions under which each health test is performed (e.g., at startup,
+		continuously, or on-demand), the expected results for each health test, and rationale indicating why each test is
+		believed to be appropriate for detecting one or more failures in the entropy source.
+        </section>
+    </appendix>
+	  
+   <!-- Appendix F: Equivalency Guidelines -->
+    <appendix id="appendix-equiv" title="Equivalency Guidelines">
+        <section id="s-vm-intro" title="Introduction">
+		<h:b>PLACEHOLDER</h:b><h:p/>
+          The purpose of equivalence in PP-based evaluations is to find a balance between evaluation rigor and commercial
+          practicability--to ensure that evaluations meet customer expectations while recognizing that there is little to be gained
+            from requiring that every variation in a product or platform be fully tested. If a product is found to be compliant with
+            a PP on one platform, then all equivalent products on equivalent platforms are also considered to be compliant with the PP.
+        <h:br />
+        <h:br />
+        A Vendor can make a claim of equivalence if the Vendor believes that a particular instance of their Product implements
+            PP-specified security functionality in a way equivalent to the implementation of the same functionality on another
+            instance of their Product on which the functionality was tested. The Product instances can differ in version number or
+            feature level (model), or the instances may run on different platforms. Equivalency can be used to reduce the testing
+            required across claimed evaluated configurations. It can also be used during Assurance Maintenance to reduce testing
+            needed to add more evaluated configurations to a certification.
+      <h:br />
+      <h:br />
+      These equivalency guidelines do not replace Assurance Maintenance requirements or NIAP Policy #5 requirements for CAVP
+            certificates. Nor may equivalency be used to leverage evaluations with expired certifications.
+      <h:br />
+      <h:br />
+      This document provides guidance for determining whether Products and Platforms are equivalent for purposes of
+            evaluation against the Protection Profile for Virtualization (VPP) when instantiated with either the Client or Server
+            PP-Module.
+      <h:br />
+      <h:br />
+      Equivalence has two aspects:
+      <h:br />
+      <h:ol>
+        <h:li><h:b><h:i>Product Equivalence:</h:i></h:b> Products may be considered equivalent if there are no
+          differences between Product Models and Product Versions with respect to PP-specified security functionality.</h:li>
+        <h:li><h:b><h:i>Platform Equivalence:</h:i></h:b> Platforms may be considered equivalent if there are no
+          significant differences in the services they provide to the Product--or in the way the platforms
+          provide those services--with respect to PP-specified security functionality.</h:li>
+      </h:ol>
+      The equivalency determination is made in accordance with these guidelines by the Validator and Scheme using information
+            provided by the Evaluator/Vendor.
+    </section>
+    <section id="s-approach" title="Approach to Equivalency Analysis">
+      There are two scenarios for performing equivalency analysis. One is when a product has been certified and the vendor
+      wants to show that a later product should be considered certified due to equivalence with the earlier product. The
+      other is when multiple product variants are going though evaluation together and the vendor would like to reduce
+      the amount of testing that must be done. The basic rules for determining equivalence are the same in both cases.
+      But there is one additional consideration that applies to equivalence with previously certified products. That is,
+      the product with which equivalence is being claimed must have a valid certification in accordance with scheme rules
+      and the Assurance Maintenance process must be followed. If a product’s certification has expired, then equivalence
+      cannot be claimed with that product.
+      <h:br /><h:br />
+      When performing equivalency analysis, the Evaluator/Vendor should first use the factors and guidelines for Product
+      Model equivalence to determine the set of Product Models to be evaluated. In general, Product Models that do not differ
+      in PP-specified security functionality are considered equivalent for purposes of evaluation against the VPP.
+      <h:br /><h:br />
+      If multiple revision levels of Product Models are to be evaluated--or to determine whether a revision of an evaluated
+      product needs re-evaluation--the Evaluator/Vendor and Validator should use the factors and guidelines for Product
+      Version equivalence to determine whether Product Versions are equivalent.
+      <h:br /><h:br />
+      Having determined the set of Product Models and Versions to be evaluated, the next step is to determine the set of
+      Platforms that the Products must be tested on.
+      <h:br /><h:br />
+      Each non-equivalent Product for which compliance is claimed must be fully tested on each non-equivalent platform
+      for which compliance is claimed. For non-equivalent Products on equivalent platforms, only the differences that
+      affect PP-specified security functionality must be tested for each product.
+      <h:br /><h:br />
+      If the set of equivalent Products includes only bare-metal installations, then the equivalency analysis is complete.
+        But if any members of the set include hosted installations or installations that integrate with an existing host operating
+        system or control domain, then software platform equivalence must be taken into consideration. The Evaluator/Vendor and
+        Validator should use the factors and guidance for software platform equivalence to determine whether different models or
+        versions of host or control domain operating systems require separate testing.<h:br /><h:br />
+      <h:b><h:i>“Differences in PP-Specified Security Functionality” Defined</h:i></h:b>
+      <h:br />
+      If PP-specified security functionality is implemented by the TOE, then differences in the actual implementation
+      between versions or product models break equivalence for that feature. Likewise, if the TOE implements the
+      functionality in one version or model and the functionality is implemented by the platform in another version
+      or model, then equivalence is broken. If the functionality is implemented by the platform in multiple models or
+      versions on equivalent platforms, then the functionality is considered different if the product invokes the platform
+      differently to perform the function.
+    </section>
+    <section id="s-modelequiv" title="Specific Guidance for Determining Product Model Equivalence">
+      Product Model equivalence attempts to determine whether different feature levels of the same product across
+      a product line are equivalent for purposes of PP testing. For example, if a product has a “basic” edition and an “enterprise”
+      edition, is it necessary to test both models? Or does testing one model provide sufficient confidence that both models
+      are compliant?
+      <h:br />
+      <h:br />
+      <xref to="equiv-prod-model"/>, below, lists the factors for determining Product Model equivalence.
+      <h:br />
+      <h:br />
+      
+      <h:b><ctr ctr-type="Table" pre="Table " id="equiv-prod-model">: Factors for Determining Product Model Equivalence</ctr></h:b><h:br/>
+      <h:table border="1">
+        <h:tr class="header" bgcolor="#cccccc">
+          <h:td valign="top">Factor</h:td>
+          <h:td valign="top">Same/Different</h:td>
+          <h:td valign="top">Guidance</h:td>
+        </h:tr>
+        <h:tr>
+          <h:td valign="top">Target Platform</h:td>
+          <h:td valign="top">Different</h:td>
+          <h:td valign="top">Product Models that virtualize different instruction sets (e.g., x86, ARM, POWER, SPARC, MIPS)
+              are not equivalent.</h:td>
+        </h:tr>
+        <h:tr>
+          <h:td valign="top">Installation Types</h:td>
+          <h:td valign="top">Different</h:td>
+          <h:td valign="top">If a Product can be installed either on bare metal or onto an operating system 
+		  and the vendor wants to claim that both installation types constitute a single Model, then see the guidance
+              for “PP-Specified Functionality,” below.</h:td>
+        </h:tr>
+        <h:tr>
+          <h:td valign="top">Software Platform</h:td>
+          <h:td valign="top">Different</h:td>
+          <h:td valign="top">Product Models that run on substantially different software environments, such as different host
+              operating systems, are not equivalent. Models that install on different versions of the same software environment
+              may be equivalent depending on the below factors.</h:td>
+        </h:tr>
+        <h:tr>
+          <h:td rowspan="2" valign="top">PP-Specified Functionality</h:td>
+          <h:td valign="top">Same</h:td>
+          <h:td valign="top">If the differences between Models affect only non-PP-specified functionality, then the Models are
+		  equivalent. </h:td>
+        </h:tr>
+        <h:tr>
+          <h:td valign="top">Different</h:td>
+          <h:td valign="top">If PP-specified security functionality is affected by the differences between Models,
+            then the Models are not equivalent and must be tested separately. It is necessary to test only the functionality
+            affected by the software differences. If only differences are tested, then the differences must be enumerated,
+            and for each difference the Vendor must provide an explanation of why each difference does or does not affect
+            PP-specified functionality. If the Product Models are fully tested separately, then there is no need to document the 
+		  differences.
+          </h:td>
+        </h:tr>
+      </h:table>
+      <h:br />
+      <h:br />
+    </section>
+  <section id="s-versionequiv" title="Specific Guidance for Determining Product Version Equivalence">
+      In cases of version equivalence, differences are expressed in terms of changes implemented in revisions
+      of an evaluated Product. In general, versions are equivalent if the changes have no effect on any
+      security-relevant claims about the TOE or evaluation evidence. Non-security-relevant changes to TOE
+      functionality or the addition of non-security-relevant functionality does not affect equivalence.
+      <h:br /><h:br />
 
+      <h:b><ctr ctr-type="Table" pre="Table " id="equiv-version">: Factors for Determining Product Version Equivalence</ctr></h:b><h:br/>      
+      <h:table border="1">
+        <h:tr class="header" bgcolor="#cccccc">
+          <h:td valign="top">Factor</h:td>
+          <h:td valign="top">Same/Different</h:td>
+          <h:td valign="top">Guidance</h:td>
+        </h:tr>
+        <h:tr valign="top">
+          <h:td valign="top">Product Models</h:td>
+          <h:td valign="top">Different</h:td>
+          <h:td valign="top">Versions of different Product Models are not equivalent unless the Models are equivalent as defined in
+		  Section 3.</h:td>
+        </h:tr>
+        <h:tr>
+          <h:td rowspan="2" valign="top">PP-Specified Functionality</h:td>
+          <h:td valign="top">Same</h:td>
+          <h:td valign="top">If the differences affect only non-PP-specified functionality, then the Versions are equivalent. </h:td>
+        </h:tr>
+        <h:tr>
+          <h:td valign="top">Different</h:td>
+          <h:td valign="top">If PP-specified security functionality is affected by the differences, then the
+            Versions are considered to be not equivalent and must be tested separately. It is necessary only to test
+            the functionality affected by the changes. If only the differences are tested, then for each
+            difference the Vendor must provide an explanation of why the difference does or does not affect
+            PP-specified functionality. If the Product Versions are fully tested separately, then there is
+            no need to document the differences. </h:td>
+        </h:tr>
+      </h:table>
+      <h:br />
+      <h:br />
+    </section>
+	    
+    <section id="s-platformequiv" title="Specific Guidance for Determining Platform Equivalence">
+      Platform equivalence is used to determine the platforms that a product must be tested on. These guidelines are divided
+        into sections for determining hardware equivalence and software (host OS/control domain) equivalence. If the Product is
+        installed onto bare metal, then only hardware equivalence is relevant. If the Product is installed onto an OS—or is integrated
+        into an OS—then both hardware and software equivalence are required. Likewise, if the Product can be installed either on bare
+        metal or on an operating system, both hardware and software equivalence are relevant.
+      <h:br /><h:br />
+      <section id="ss-hardware-equiv" title="Hardware Platform Equivalence">
+        If a Virtualization Solution runs directly on hardware without an operating system, then platform equivalence is based primarily
+          on processor architecture and instruction sets.
+        <h:br /><h:br />
+        Platforms with different processor architectures and instruction sets are not equivalent. This is probably
+          not an issue because there is likely to be a different product model for different hardware environments.
+        <h:br /><h:br />
+        Equivalency analysis becomes important when comparing platforms with the same processor architecture. Processors
+          with the same architecture that have instruction sets that are subsets or supersets of each other are not disqualified
+          from being equivalent for purposes of a VPP evaluation. If the VS takes the same code paths when executing PP-specified
+          security functionality on different processors of the same family, then the processors can be considered equivalent with
+          respect to that application.
+        <h:br /><h:br />
+        For example, if a VS follows one code path on platforms that support the AES-NI instruction and another on platforms that do
+          not, then those two platforms are not equivalent with respect to that VS functionality. But if the VS follows the same code
+          path whether or not the platform supports AES-NI, then the platforms are equivalent with respect to that functionality.
+        <h:br /><h:br />
+        The platforms are equivalent with respect to the VS if the platforms are equivalent with respect to all PP-specified
+        security functionality.<h:br/><h:br/>
+	      
+        <h:b><ctr ctr-type="Table" pre="Table " id="equiv-hw-platform">: Factors for Determining Hardware Platform Equivalence</ctr></h:b><h:br/>
+        <h:table border="1">
+          <h:tr class="header" bgcolor="#cccccc">
+            <h:td valign="top">Factor</h:td>
+            <h:td valign="top">Same/Different/None</h:td>
+            <h:td valign="top">Guidance</h:td>
+          </h:tr>
+          <h:tr valign="top">
+            <h:td valign="top">Platform Architectures</h:td>
+            <h:td valign="top">Different</h:td>
+            <h:td valign="top">Hardware platforms that implement different processor architectures and instruction sets are not 
+		    equivalent.</h:td>
+          </h:tr>
+          <h:tr>
+            <h:td valign="top">PP-Specified Functionality</h:td>
+            <h:td valign="top">Same</h:td>
+            <h:td valign="top">For platforms with the same processor architecture, the platforms are equivalent with
+              respect to the application if execution of all PP-specified security functionality follows the same code path on
+                both platforms.</h:td>
+          </h:tr>
+        </h:table>
+        <h:br />
+        <h:br />
+      </section>
+	    
+      <section id="ss-os-equiv" title="Software Platform Equivalence">
+        If the Product installs onto or integrates with an operating system that is not installed with the product--and thus
+          is not part of the TOE--then the Product must be tested on all non-equivalent Software Platforms.
+        <h:br />
+        <h:br />
+        The guidance for Product Model (Section 3) specifies that Products intended for use on substantially different operating
+          systems (e.g., Windows vs. Linux vs. SunOS) are different Models. Therefore, platforms running substantially different
+          operating systems are not equivalent. Likewise, operating systems with different major version numbers are not
+          equivalent for purposes of this PP.
+        <h:br />
+        <h:br />
+          As a result, Software Platform equivalence is largely concerned with revisions and variations of operating systems that
+          are substantially the same (e.g., different versions and revision levels of Windows or Linux).<h:br/><h:br/>
+	
+	      <h:b><ctr ctr-type="Table" pre="Table " id="equiv-sw-platform">: Factors for Determining Software Platform Equivalence</ctr></h:b><h:br/>
+	      <h:table border="1">
+          <h:tr class="header" bgcolor="#cccccc">
+            <h:td valign="top">Factor</h:td>
+            <h:td valign="top">Same/Different/None</h:td>
+            <h:td valign="top">Guidance</h:td>
+          </h:tr>
+          <h:tr valign="top">
+            <h:td valign="top">Platform Type/Vendor</h:td>
+            <h:td valign="top">Different</h:td>
+            <h:td valign="top">Operating systems that are substantially different or come from different vendors are not equivalent.</h:td>
+          </h:tr>
+          <h:tr valign="top">
+            <h:td valign="top">Platform Versions</h:td>
+            <h:td valign="top">Different</h:td>
+            <h:td valign="top">Operating systems are not equivalent if they have different major version numbers.</h:td>
+          </h:tr>
+         <h:tr>
+          <h:td rowspan="2" valign="top">PP-Specified Functionality</h:td>
+          <h:td valign="top">Same</h:td>
+          <h:td valign="top">If the differences between software platform models or versions affect only
+              non-PP-specified functionality, then the software platforms are equivalent. </h:td>
+        </h:tr>
+        <h:tr>
+          <h:td valign="top">Different</h:td>
+          <h:td valign="top">If PP-specified security functionality is affected by the differences between software platform
+              versions or models, then the software platforms are not considered equivalent and must be tested separately. It is
+              necessary only to test the functionality affected by the changes. If only the differences are tested, then for each
+              difference the Vendor must provide an explanation of why the difference does or does not affect PP-specified
+              functionality. If the Products are fully tested on each platform, then there is no need to document the differences. </h:td>
+        </h:tr>
+        </h:table>
+        <h:br />
+        <h:br />
+    </section>
+  </section>
+	    
+    <section id="s-specificity" title="Level of Specificity for Tested and Claimed Equivalent Configurations">
+      In order to make equivalency determinations, the vendor and evaluator must agree on the equivalency claims. They must
+      then provide the scheme with sufficient information about the TOE instances and platforms that were evaluated, and the
+      TOE instances and platforms that are claimed to be equivalent.
+      <h:br /><h:br />
+      The ST must describe all configurations evaluated down to processor manufacturer, model number, and microarchitecture version.
+      <h:br /><h:br />
+      The information regarding claimed equivalent configurations depends on the platform that the VS was developed for and runs on.
+      <h:br /><h:br />
+      <h:b>Bare-Metal VS</h:b>
+      <h:br /><h:br />
+      For VSes that run without an operating system on bare-metal or virtual bare-metal, the claimed configuration must
+      describe the platform down to the specific processor manufacturer, model number, and microarchitecture version. The Vendor
+      must describe the differences in the TOE with respect to PP-specified security functionality and how the TOE operates
+      differently to leverage platform differences (e.g., instruction set extensions) in the tested configuration versus the
+      claimed equivalent configuration.
+      <h:br /><h:br />
+      <h:b>VS with OS Support</h:b>
+      <h:br /><h:br />
+      For VSes that run on an OS host or with the assistance of an OS, then the claimed configuration must describe the OS down to
+        its specific model and version number. The Vendor must describe the differences in the TOE with respect to PP-specified
+        security functionality and how the TOE functions differently to leverage platform differences in the tested configuration
+        versus the claimed equivalent configuration.
+    </section>	    
+  	    
+	  </appendix>	  
 
     <bibliography>
       <entry id="bibCEM">
