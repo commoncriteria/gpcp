@@ -322,7 +322,7 @@
 				<ref-id>sfr-fau-stg-ext-1</ref-id>
 			</config>
         </usecase>
-		<usecase title="Server-Class Platform, Enhanced" id="uc-servers-enhanced">
+		<usecase title="Server-Class Platform, Enhanced" id="uc-server-enhanced">
         	<description>
 				This use case adds physical protections to the base requirements for server-class hardware.
 				Additional physical protections required because the platform us assumed to be minimally 
@@ -344,7 +344,7 @@
 				<not><ref-id>a-physical-protection</ref-id></not>
 			</config>
         </usecase>
-		<usecase title="Portable Clients (laptops, tablets), Basic" id="uc-clients-portable-basic">
+		<usecase title="Portable Clients (laptops, tablets), Basic" id="uc-client-portable-basic">
         	<description>
 				This use case includes the base requirements for portable clients or end-user devices. <h:p/>
 				This use case adds no requirements to the base mandatory SFRs.
@@ -352,7 +352,7 @@
 			<config>
 			</config>
         </usecase>
-		<usecase title="Portable Clients (laptops, tablets), Enhanced" id="uc-clients-portable-enhanced">
+		<usecase title="Portable Clients (laptops, tablets), Enhanced" id="uc-client-portable-enhanced">
         	<description>
 				This use case adds physical protections to the base requirements for portable clients or end-user 
 				devices. It is intended for devices that are used in high-assurance scenarios.
@@ -913,11 +913,12 @@
 	<!-- Use cases: Server (both), CSfC EUD, Enterprise Desktop  -->
 	<!-- Plus the below selection dependencies -->
 		<f-component id="sfr-fau-gen-1" cc-id="fau_gen.1" name="Audit Data Generation" status="sel-based">
-			<depends on-sel="sel-audit-integrity"/>
+			<depends on-sel="sel-rot2-audit"/>
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
 			<depends on-sel="sel-tud3-audit"/>
+			<!-- Should we have <depends on-uc="use case id"/>  ? -->
 			<f-element id="fau-gen-1e1">
 				<title>The TSF shall be able to generate an audit record of the following auditable events:<h:br/>
 					<h:ol type="1">
@@ -1032,7 +1033,7 @@
 		<!-- Must be included if FAU_GEN.1 is included. -->
 		<!-- Requires that there be an Administrator. -->
         <f-component id="sfr-fau-sar-1" cc-id="fau_sar.1" name="Audit Review" status="sel-based">
-			<depends on-sel="sel-audit-integrity"/>
+			<depends on-sel="sel-rot2-audit"/>
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
@@ -1062,7 +1063,7 @@
 		<!-- Requires that there be an Administrator. -->
 		<!-- Management function: deletion of audit records? -->
 		<f-component id="sfr-fau-stg-1" cc-id="fau_stg.1" name="Audit Storage Protection" status="sel-based">
-			<depends on-sel="sel-audit-integrity"/>
+			<depends on-sel="sel-rot2-audit"/>
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
@@ -1108,7 +1109,7 @@
 		<!-- FAU_STG.4 Prevention of Audit Data Loss -->
 		<!-- Must be included if FAU_GEN.1 is included. -->
 		<f-component id="sfr-fau-stg-4" cc-id="fau_stg.4" name="Prevention of Audit Data Loss" status="sel-based">
-			<depends on-sel="sel-audit-integrity"/>
+			<depends on-sel="sel-rot2-audit"/>
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
@@ -1139,7 +1140,7 @@
 		<!-- Must be included if FAU_GEN.1 is included. -->
 		<!-- Administrator? -->
         <f-component id="sfr-fau-stg-ext-1" cc-id="fau_stg_ext.1" name="Off-Loading of Audit Data" status="sel-based">
-			<depends on-sel="sel-audit-integrity"/>
+			<depends on-sel="sel-rot2-audit"/>
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
@@ -5773,7 +5774,7 @@
 
 		<!-- FIA_AFL_EXT.1 Authentication Failure Handling -->
 		<f-component id="sfr-fia-afl-ext-1" cc-id="fia_afl_ext.1" name="Authentication Failure Handling" status="sel-based">
-			<depends on-incl="sfr-fia-uia-ext-1"/>
+			<depends on-incl="sfr-fia-uau-5"/>
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to monitor authorization attempts, including counting and limiting the number of 
 				attempts at failed or passed authorizations.</comp-lev>
@@ -5946,7 +5947,7 @@
 		
 		<!-- FIA_PMG_EXT.1 Password Mangement -->
 		<f-component id="sfr-fia-pmg-ext-1" cc-id="fia_pmg_ext.1" name="Password Management" status="sel-based">
-			<depends on-incl="sfr-fia-uia-ext-1"/>
+			<depends on-incl="sfr-fia-uau-5"/>
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to support passwords with varying composition requirements, minimum lengths, 
 				maximum lifetime, and similarity constraints.</comp-lev>
@@ -6070,13 +6071,18 @@
 		
 		<!-- FIA_UAU.5 Multiple Authentication Mechanisms -->
 		<f-component id="sfr-fia-uau-5" cc-id="fia_uau.5" name="Multiple Authentication Mechanisms" status="sel-based">
+			<depends on-sel="sel-rot2-admin-config"/>
+			<depends on-sel="sel-rot2-admin-det"/>
+			<depends on-sel="sel-rot2-admin-notify"/>			
 			<f-element id="fia-uau-5e1">
 				<title>
 					The TSF shall provide password and 
 					<selectables>
-						<selectable>biometric</selectable>
-						<selectable>hyrid</selectable>
-						<selectable>no other mechanism</selectable>
+						<selectable id="sel-uau5-x509">X.509 certificate-based authentication</selectable>
+						<selectable id="sel-uau5-ssh">SSH certificate-based authentication</selectable>
+						<selectable>biometric authentication</selectable>
+						<selectable>hyrid authentication</selectable>
+						<selectable>no other authentication mechanism</selectable>
 					</selectables> to support user authentication.
 				</title>
 				<note role="application">
@@ -6140,7 +6146,7 @@
 		
 		<!-- FIA_UAU.7 Protected Authentication Feedback -->
 		<f-component id="sfr-fia-uau-7" cc-id="fia_uau.7" name="Protected Authentication Feedback" status="sel-based">
-			<depends on-incl="sfr-fia-uia-ext-1"/>
+			<depends on-incl="sfr-fia-uau-5"/>
 			<f-element id="fia-uau-7e1">
 				<title>
 					The TSF shall provide only obscured feedback to the device’s display to the user while the 
@@ -6198,14 +6204,15 @@
         <!-- FIA_UIA_EXT.1 Administrator Identification and Authentication -->
 		<!-- ManFunc: Adding additional Administrators to the system?? -->
         <f-component id="sfr-fia-uia-ext-1" cc-id="fia_uia_ext.1" name="Administrator Identification and Authentication" status="sel-based"> 
-			<depends on-sel="sel-auth-update"/>
+			<depends on-incl="sfr-fia-uau-5"/>
+<!--			<depends on-sel="sel-auth-update"/>
 			<depends on-sel="sel-unauth-update"/>
 			<depends on-sel="sel-auth-update"/>
 			<depends on-sel="sel-local-update"/>
 			<depends on-sel="sel-rot2-admin-config"/>
 			<depends on-sel="sel-rot3-admin-config"/>
 			<depends on-sel="sel-rot2-admin-det"/>
-			<depends on-sel="sel-rot3-admin-det"/>		
+			<depends on-sel="sel-rot3-admin-det"/>	-->	
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
 				are identified and authenticated prior to authorizing these actions to be performed.</comp-lev>
@@ -6952,8 +6959,8 @@
 			<title>The integrity of all mutable platform firmware outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
 				prior to execution or use through:
 				<selectables linebreak="yes">
-					<selectable id="sel-fpt-rot-2-hash">computation and verification of a hash by trusted code/data</selectable>
-					<selectable id="sel-fpt-rot-2-digsig">verification of a digital signature by trusted code/data</selectable>
+					<selectable id="sel-rot2-hash">computation and verification of a hash by trusted code/data</selectable>
+					<selectable id="sel-rot2-digsig">verification of a digital signature by trusted code/data</selectable>
 					<selectable>measurement and verification by trusted code/data</selectable>
 					<selectable>measurement and verification by an on-platform dedicated security component</selectable>
 					<selectable>measurement and verification by an off-platform entity</selectable>
@@ -6976,16 +6983,16 @@
 					<h:li>Halt,</h:li>
 					<h:li>Notify an 
 						<selectables>
-							<selectable id="sel-fpt-rot-2-admin-notify">administrator</selectable>
+							<selectable id="sel-rot2-admin-notify">administrator</selectable>
 							<selectable>user</selectable>
 						</selectables> by
 						<selectables>
-							<selectable id="sel-audit-integrity">generating an audit event</selectable>
+							<selectable id="sel-rot2-audit">generating an audit event</selectable>
 							<selectable><assignable>other notification method(s)</assignable></selectable>
 						</selectables>, and</h:li>
 					<h:li><selectables linebreak="yes">
 						<selectable>Stop all execution and shut down</selectable>
-						<selectable id="sel-rot-recovery">Initiate a Recovery process as specified in FPT_RVR_EXT.1</selectable>
+						<selectable id="sel-rot2-recovery">Initiate a Recovery process as specified in FPT_RVR_EXT.1</selectable>
 					</selectables></h:li>
 				</h:ol> 
 				<selectables linebreak="yes">
