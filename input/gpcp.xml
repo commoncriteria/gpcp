@@ -216,6 +216,12 @@
 		for applications. Operating systems are the generally the primary tenant of a GPCP.
       </term>
       <term abbr='PKI' full="Public Key Infrastructure"/>
+      <term full="Physical Presence">
+	      A user or administrator having physical access to the TOE. An assertion of physical presence
+	      can take the form, for example, of requiring entry of a password at a boot screen, unlocking 
+	      of a physical lock (e.g., a motherboard jumper), or inserting a USB cable before permitting
+	      platform firmware to be updated.
+      </term>
       <term abbr='RBG' full="Random Bit Generator"/>
       <term abbr='RFC' full="Request for Comment"/>
       <term abbr='RNG' full="Random Number Generator"/>
@@ -6835,7 +6841,17 @@
 					physical presence to the TSF.
 				</Guidance>
 				<Tests>
-					TODO: Design a test for determining that tenant software cannot access the ports.
+					<testlist>
+						<test>
+							The evaluator shall attempt to access the debug port without authenticating
+							as an administrator. The attempt should fail.
+						</test>
+						<test>
+							[conditional] If the TOE supports an Administrator role, the evaluator 
+							shall autenticate as an Administrator and then attempt to access
+							the debug port. The attempt should succeed.
+						</test>
+					</testlist>
 				</Tests>
 			</aactivity>
 		</f-element>
