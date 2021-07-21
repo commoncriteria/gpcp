@@ -6952,8 +6952,8 @@
 			<title>The integrity of all mutable platform firmware outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
 				prior to execution or use through:
 				<selectables linebreak="yes">
-					<selectable>computation and verification of a hash by trusted code/data</selectable>
-					<selectable>verification of a digital signature by trusted code/data</selectable>
+					<selectable id="sel-fpt-rot-2-hash">computation and verification of a hash by trusted code/data</selectable>
+					<selectable id="sel-fpt-rot-2-digsig">verification of a digital signature by trusted code/data</selectable>
 					<selectable>measurement and verification by trusted code/data</selectable>
 					<selectable>measurement and verification by an on-platform dedicated security component</selectable>
 					<selectable>measurement and verification by an off-platform entity</selectable>
@@ -6974,7 +6974,11 @@
 			<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.2.1 fails:
 				<h:ol type="1">
 					<h:li>Halt,</h:li>
-					<h:li>Notify an administrator/user by
+					<h:li>Notify an 
+						<selectables>
+							<selectable id="sel-fpt-rot-2-admin-notify">administrator</selectable>
+							<selectable>user</selectable>
+						</selectables> by
 						<selectables>
 							<selectable id="sel-audit-integrity">generating an audit event</selectable>
 							<selectable><assignable>other notification method(s)</assignable></selectable>
@@ -6987,14 +6991,24 @@
 				<selectables linebreak="yes">
 					<selectable>automatically</selectable>
 					<selectable id="sel-rot2-admin-config">in accordance with administrator-configurable policy</selectable>
-					<selectable id="sel-rot2-admin-det">by express determination of an administrator/user</selectable>
+					<selectable>by express determination of an 
+						<selectables>
+							<selectable id="sel-rot2-admin-det">administrator</selectable>
+							<selectable>user</selectable>
+						</selectables>
+					</selectable>
 				</selectables>.	
 			</title>				
 			<note role="application">
 				Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 				of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
 				example, by blinking lights, beep codes, screen indications, or local logging.<h:p/>
-				If "<h:i>generating an audit event</h:i>" is selected then FAU_GEN.1 must be included in the ST.
+				If "<h:i>generating an audit event</h:i>" is selected then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
+				If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected then FCS_COP.1/Hash must be included in the ST.<h:p/>
+				If "<h:i>verification of a digital signature by trusted code/data</h:i>" is selected then FCS_COP.1/SigVer must be included in the ST.<h:p/>
+				If "<h:i>Initiate a Recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
+				If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected then FMT_MOF_EXT.1, FMT_SMF_EXT.1,
+					and Administrator authentication requirements must be included in the ST.<h:p/>
 			</note>
 			<aactivity>
 				<TSS>
@@ -7037,7 +7051,7 @@
 			<audit>The following actions should be auditable if FAU_GEN Security audit data generation is
 				included in the PP/ST:<h:ul><h:li>Detection of attempted intrusion.</h:li></h:ul></audit>
 			<dependencies>FPT_ROT_EXT.1 Platform Integrity Root</dependencies>
-		<f-element id="fpt-rot-ext-1e1">
+		<f-element id="fpt-rot-ext-3e1">
 			<title>
 				Outside of the integrity root specified in FPT_ROT_EXT.1, the integrity of 
 				<assignable>critical platform hardware components</assignable>shall be verified 
@@ -7061,7 +7075,7 @@
 				graphics processors, and service controllers.
 			</note>
 		</f-element>
-		<f-element id="fpt-rot-ext-1e2">
+		<f-element id="fpt-rot-ext-3e2">
 			<title>
 				The TOE shall take the following actions if an integrity check specified in FPT_PHP_EXT.1.1 fails:
 				<h:ol type="1">
