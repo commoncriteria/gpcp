@@ -917,7 +917,7 @@
 			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
-			<depends on-sel="sel-tud2-audit"/>
+			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2 -->
 			<depends on-sel="sel-tud3-audit"/>
 			<!-- Should we have <depends on-uc="use case id"/>  ? -->
 			<f-element id="fau-gen-1e1">
@@ -1038,7 +1038,7 @@
 			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
-			<depends on-sel="sel-tud2-audit"/>
+			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2 -->
 			<depends on-sel="sel-tud3-audit"/>
           <f-element id="fau-sar-1e1">
             <title>The TSF shall provide <refinement>the administrator</refinement> with the
@@ -1069,7 +1069,7 @@
 			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
-			<depends on-sel="sel-tud2-audit"/>
+			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2 -->
 			<depends on-sel="sel-tud3-audit"/>
 			<f-element id="fau-stg-1e1">
 				<title>
@@ -1116,7 +1116,7 @@
 			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
-			<depends on-sel="sel-tud2-audit"/>
+			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2 -->
 			<depends on-sel="sel-tud3-audit"/>
 			<f-element id="fau-stg-4e1">
 				<title>
@@ -1148,7 +1148,7 @@
 			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
-			<depends on-sel="sel-tud2-audit"/>
+			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2 -->
 			<depends on-sel="sel-tud3-audit"/>
 			<consistency-rationale/>
 			<comp-lev>specifies how audit data may be tramsmitted or removed from the TOE.</comp-lev>
@@ -2569,7 +2569,7 @@
 	<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
 		<depends on-sel="sel-rot2-hash"/>  <!-- FPT_ROT_EXT.2 -->
 		<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1 -->
-		<depends on-sel="sel-tud2-hash"/> 
+		<depends on-sel="sel-tud2-hash"/>  <!-- FPT_TUD_EXT.2 -->
 		<depends on-incl="sfr-fcs-cop-1-keyedhash"/>
 		<depends on-incl="sfr-fcs-cop-1-sigver"/>
 		<depends on-incl="sfr-fcs-cop-1-siggen"/>
@@ -3506,7 +3506,7 @@
 		<!-- FCS_COP.1/SigVer Cryptographic Operation (Signature Verification) --> 
 		<f-component id="sfr-fcs-cop-1-sigver" cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" status="sel-based">
 			<depends on-sel="sel-rot2-digsig"/>  <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-tud-update"/>
+			<depends on-sel="sel-tud2-update"/>
 			<f-element id="fcs-cop-1e1-sigver">
 				<title><refinement>Refinement:</refinement> The TSF shall perform  
 				The TSF shall perform [<h:i>digital signature verification</h:i>] using the supported methods 
@@ -7477,7 +7477,7 @@
 
 	<!-- FPT_TUD_EXT.2 Platform Firmware Authenticated Update Mechanism -->
 	<f-component cc-id="fpt_tud_ext.2" name="Platform Firmware Authenticated Update Mechanism" status="sel-based">
-		<depends on-sel="sel-tud1-auth-update"/>
+		<depends on-sel="sel-tud1-auth-update"/>  <!-- FPT_TUD_EXT.1 -->
 		<consistency-rationale/>
 		<comp-lev>specifies the requirements for authenticated update of platform firmware.</comp-lev>
 		<management>The following actions could be considered for the management functions:<h:ul>
@@ -7539,7 +7539,11 @@
 				or rollback-prevention check fails, or a platform firmware update fails for any other reason: 
 				<h:ul>
 					<h:li>Do not install the update,</h:li>
-					<h:li>Notify an administrator/user by 
+					<h:li>Notify an 
+					<selectables>
+						<selectable id="sel-tud2-admin-notify">administrator</selectable>
+						<selectable>user</selectable>
+					</selectables> by 
 						<selectables>
 							<selectable id="sel-tud2-audit">generating an audit event</selectable>
 							<selectable><assignable>notification method</assignable></selectable>
@@ -7550,15 +7554,25 @@
 					<selectable>Continue execution</selectable>
 					<selectable>Halt</selectable>
 					<selectable>Stop all execution and shut down</selectable>
-					<selectable id="sel-tud-2-recovery">Initiate recovery as specified in FPT_RVR_EXT.1</selectable>
+					<selectable id="sel-tud2-recovery">Initiate recovery as specified in FPT_RVR_EXT.1</selectable>
 				</selectables>			
 				<selectables linebreak="yes">
 					<selectable>automatically</selectable>
-					<selectable>in accordance with administrator-configurable policy</selectable>
-					<selectable>by express determination of an administrator/user</selectable>
+					<selectable id="sel-tud2-admin-config">in accordance with administrator-configurable policy</selectable>
+					<selectable>by express determination of an <selectables>
+						<selectable id="sel-tud2-admin-det">administrator</selectable>
+						<selectable>user</selectable>
+						</selectables></selectable>
 				</selectables>.
 			</title>
 			<note role="application">
+				If "administrator" is selected anywhere or if "in accordance with administrator-configurable
+				policy" is selected, then all administrator authentication requirements must be included in the ST
+				(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
+				If "<h:i>generating an audit event</h:i>" is selected then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
+				If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
+				must be included in the ST.<h:p/>
+				If "Initiate recovery as specified in FPT_RVR_EXT.1" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 				The platform firmware authenticated update mechanism employs digital signatures to ensure the authenticity of the
 				firmware update image. The TSF includes a signature verification algorithm and a key
 				store containing the public key needed to verify the signature on the firmware update image. <h:p/>
@@ -7628,7 +7642,7 @@
 		whatever do the check. As long as it is done before the code is executed it's okay...
 		meaning all the other requirements are met. Especially FPT_ROT_EXT.2. -->
 	<f-component cc-id="fpt_tud_ext.3" name="Platform Firmware Delayed-Authentication Update Mechanism" status="sel-based">
-		<depends on-sel="sel-tud1-unauth-update"/>
+		<depends on-sel="sel-tud1-unauth-update"/>   <!-- FPT_TUD_EXT.1 -->
 		<consistency-rationale/>
 		<comp-lev>specifies the requirements for delayed-authention update of platform firmware.</comp-lev>
 		<management>The following actions could be considered for the management functions:<h:ul>
@@ -7650,6 +7664,7 @@
 				</selectables>.
 			</title>
 			<note role="application">
+				This requirement must be included in the ST if "" is selected in FPT_TUD_EXT.1.<h:p/>
 				This update mechanism does not require an integrity or authenticity check prior to installation, but the
 				newly installed platform firmware must have its integrity and authenticity verified prior to 
 				being executed or used. This update mechanism takes advantage of the existing FPT_ROT_EXT.2
@@ -7759,8 +7774,8 @@
 		
 	<!-- FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism -->	
 	<f-component cc-id="fpt_tud_ext.4" name="Secure Local Platform Firmware Update Mechanism" status="sel-based">
-		<depends on-sel="sel-tud1-local-update"/>
-		<depends on-sel="sel-rvr-local-update"/>
+		<depends on-sel="sel-tud1-local-update"/>   <!-- FPT_TUD_EXT.1 -->
+		<depends on-sel="sel-rvr-local-update"/>    <!-- FPT_RVR_EXT.1 -->
 		<consistency-rationale/>
 		<comp-lev>specifies the requirements for secure local update of platform firmware.</comp-lev>
 		<management>No management functions.</management>
@@ -7782,6 +7797,10 @@
 				</selectables>
 			</title>
 			<note role="application">
+				The requirement included in the ST if "the secure local update mechanism described in FPT_TUD_EXT.4" 
+				is selected in FPT_RVR_EXT.1 or 
+				"implement a secure local platform firmware update mechanism described in FPT_TUD_EXT.4" is selected
+				in FPT_TUD_EXT.1.<h:p/>
 				This requirement pertains to platform firmware update mechanisms that do not use the 
 				authentication-based update mechanism described in FPT_TUD_EXT.2 or the delayed-authentication
 				described in FPT_TUD_EXT.3. The secure local update 
