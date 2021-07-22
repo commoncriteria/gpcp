@@ -6910,6 +6910,139 @@
 		<audit-event/>
 	</f-component>
 	
+	
+	
+	<!-- FPT_PHP.1: Passive Detection of Physical Attack.
+		 -->
+	<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="optional">
+		<f-element id="fpt-php-1e1">
+			<title>The TSF shall provide unambiguous detection of physical tampering
+				that might compromise the TSF.
+			</title>
+		</f-element>
+		<f-element id="fpt-php-1e2">
+			<title>
+				The TSF shall provide the capability to determine whether physical
+				tampering with the TSF's devices or TSF's elements has occurred. 
+			</title>
+			<aactivity>
+				<no-tests/>
+			</aactivity>
+		</f-element>
+		<audit-event>
+			<audit-event-descr>Detection of intrusion.</audit-event-descr>
+		</audit-event>
+	</f-component>
+	
+	<!-- FPT_PHP.2: Notification of physical attack  -->
+	<f-component id="sfr-fpt-php-2" cc-id="fpt_php.2" name="Notification of physical attack" status="optional">
+		<f-element id="fpt-php-2e1">
+			<title>The TSF shall provide unambiguous detection of physical tampering that
+				might compromise the TSF.
+			</title>
+		</f-element>
+		<f-element id="fpt-php-2e2">
+			<title>
+				The TSF shall provide the capability to determine whether physical
+				tampering with the TSF's devices or TSF's elements has occurred. 
+			</title>
+		</f-element>
+		<f-element id="fpt-php-2e3">
+			<title>
+				For <assignable>list of TSF devices/elements for which active detection is
+				required</assignable>, the TSF shall monitor the devices and elements and notify
+				<assignable>a designated user or role</assignable> when physical tampering with the
+				TSF's devices or TSF's elements has occurred. 
+			</title>
+		<aactivity>
+			<no-tests/>
+		</aactivity>
+		</f-element>
+		<audit-event>
+			<audit-event-descr>Detection of intrusion.</audit-event-descr>
+		</audit-event>
+	</f-component>
+	
+	<!-- FPT_PHP.3: Resistance to physical attack  -->
+	<f-component id="sfr-fpt-php-3" cc-id="fpt_php.3" name="Resistance to physical attack" status="optional">
+		<f-element id="fpt-php-3e1">
+			<title>The TSF shall resist <assignable>physical tampering scenarios</assignable> to the
+				<assignable>list of TSF devices/elements</assignable> by responding automatically
+				such that the SFRs are always enforced. 
+			</title>
+		<aactivity>
+			<TSS>
+				The evaluator shall examine the TSS to ensure it describes the methods used by the
+				TOE to detect physical tampering and how the TOE will respond when physical
+				tampering has been detected.<h:p/>
+			</TSS>
+			<Guidance>
+				There are no AGD evaluation activities for this component.
+			</Guidance>
+			<KMD>
+				There are no KMD evaluation activities for this component.
+			</KMD>
+			<Tests>
+				Need to design a test to detect and resist tamper.
+			</Tests>
+		</aactivity>
+		</f-element>
+		<audit-event>
+			<audit-event-descr>Detection of attempted intrusion.</audit-event-descr>
+		</audit-event>
+	</f-component>
+
+		
+	<!-- FPT_PPF_EXT.1 Protection of Platform Firmware -->
+	<f-component cc-id="fpt_ppf_ext.1" name="Protection of Platform Firmware and Critical Data">
+			<consistency-rationale/>
+			<comp-lev>requires that the TSF revent platform firmware from being modified outside 
+				of the update mechanisms defined in FPT_TUD_EXT.</comp-lev>
+			<management>No management functions.</management>
+			<audit>No audit events.</audit>
+			<dependencies>No dependencies.</dependencies>
+		<f-element id="fpt-ppf-ext-1e1">
+			<title>The TSF shall allow modification of platform firmware only through the update mechanisms described in FPT_TUD_EXT.1.
+			</title>
+			<note role="application">
+				Platform firmware must be modifiable only through one of the secure update mechanisms 
+				specified in FPT_TUD_EXT.1. If the update mechanism itself is implemented in platform 
+				firmware, then naturally, it must itself also be modifiable only through the secure update
+				mechanism. Configuration data used by platform firmware that is stored in nonvolatile
+				memory is not included in these protections. Software portions of TSF and data critical
+				for ensuring the integrity of the TSF are included in these protections. Specifically,
+				this includes the key store and the signature verification algorithm used by the update
+				mechanisms. 
+			</note>
+			<aactivity>
+				<TSS>
+					The evaluator shall examine the TSS to ensure that it explains how the various areas of platform firmware and critical data 
+					are protected from modification outside of the platform firmware update mechanism described in FPT_TUD_EXT.1. 
+					If the TOE implements an authenticated update mechanism as specified in FPT_TUD_EXT.2, then the evauator shall ensure
+					that the TSS describes specifically how the signature verification code and key store is protected from update
+					outside of the secure platform firmware update mechanism.
+				</TSS>
+				<Guidance>
+					The evaluator shall check the operational guidance to ensure that there are instructions for how to
+					securely modify the platform firmware and critical data using a mechanism specified in 
+					FPT_TUD_EXT.1.
+				</Guidance>
+				<Tests>
+					<testlist>
+						<test>The evaluator shall attempt to overwrite or modify the platform firmware without invoking one of
+							the update mechanisms specified in FPT_TUD_EXT.1 (e.g., using a modified Linux boot loader such 
+							as GRUB that attempts to write to the memory where platform firmware is stored). The test succeeds
+							if the attempts to overwrite platform firmware fail. The evaluator shall attempt at least two 
+							such tests--one that attempts to overwrite the first platform firmware that executes after boot,
+							and one that targets the secure update mechanism (if implemented), and one that targets firmware that
+							has been integrity-checked since the last boot.</test>
+					</testlist>
+				</Tests>
+			</aactivity>
+		</f-element>
+		<audit-event/>
+	</f-component>
+	
 	<!-- FPT_ROT_EXT.1: Platform Integrity Root -->
 	<f-component cc-id="fpt_rot_ext.1" name="Platform Integrity Root">
 		<consistency-rationale/>
@@ -7118,138 +7251,6 @@
 		</audit-event>
 	</f-component>
 	
-	
-	
-	<!-- FPT_PHP.1: Passive Detection of Physical Attack.
-		 -->
-	<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="optional">
-		<f-element id="fpt-php-1e1">
-			<title>The TSF shall provide unambiguous detection of physical tampering
-				that might compromise the TSF.
-			</title>
-		</f-element>
-		<f-element id="fpt-php-1e2">
-			<title>
-				The TSF shall provide the capability to determine whether physical
-				tampering with the TSF's devices or TSF's elements has occurred. 
-			</title>
-			<aactivity>
-				<no-tests/>
-			</aactivity>
-		</f-element>
-		<audit-event>
-			<audit-event-descr>Detection of intrusion.</audit-event-descr>
-		</audit-event>
-	</f-component>
-	
-	<!-- FPT_PHP.2: Notification of physical attack  -->
-	<f-component id="sfr-fpt-php-2" cc-id="fpt_php.2" name="Notification of physical attack" status="optional">
-		<f-element id="fpt-php-2e1">
-			<title>The TSF shall provide unambiguous detection of physical tampering that
-				might compromise the TSF.
-			</title>
-		</f-element>
-		<f-element id="fpt-php-2e2">
-			<title>
-				The TSF shall provide the capability to determine whether physical
-				tampering with the TSF's devices or TSF's elements has occurred. 
-			</title>
-		</f-element>
-		<f-element id="fpt-php-2e3">
-			<title>
-				For <assignable>list of TSF devices/elements for which active detection is
-				required</assignable>, the TSF shall monitor the devices and elements and notify
-				<assignable>a designated user or role</assignable> when physical tampering with the
-				TSF's devices or TSF's elements has occurred. 
-			</title>
-		<aactivity>
-			<no-tests/>
-		</aactivity>
-		</f-element>
-		<audit-event>
-			<audit-event-descr>Detection of intrusion.</audit-event-descr>
-		</audit-event>
-	</f-component>
-	
-	<!-- FPT_PHP.3: Resistance to physical attack  -->
-	<f-component id="sfr-fpt-php-3" cc-id="fpt_php.3" name="Resistance to physical attack" status="optional">
-		<f-element id="fpt-php-3e1">
-			<title>The TSF shall resist <assignable>physical tampering scenarios</assignable> to the
-				<assignable>list of TSF devices/elements</assignable> by responding automatically
-				such that the SFRs are always enforced. 
-			</title>
-		<aactivity>
-			<TSS>
-				The evaluator shall examine the TSS to ensure it describes the methods used by the
-				TOE to detect physical tampering and how the TOE will respond when physical
-				tampering has been detected.<h:p/>
-			</TSS>
-			<Guidance>
-				There are no AGD evaluation activities for this component.
-			</Guidance>
-			<KMD>
-				There are no KMD evaluation activities for this component.
-			</KMD>
-			<Tests>
-				Need to design a test to detect and resist tamper.
-			</Tests>
-		</aactivity>
-		</f-element>
-		<audit-event>
-			<audit-event-descr>Detection of attempted intrusion.</audit-event-descr>
-		</audit-event>
-	</f-component>
-
-		
-	<!-- FPT_PPF_EXT.1 Protection of Platform Firmware -->
-	<f-component cc-id="fpt_ppf_ext.1" name="Protection of Platform Firmware and Critical Data">
-			<consistency-rationale/>
-			<comp-lev>requires that the TSF revent platform firmware from being modified outside 
-				of the update mechanisms defined in FPT_TUD_EXT.</comp-lev>
-			<management>No management functions.</management>
-			<audit>No audit events.</audit>
-			<dependencies>No dependencies.</dependencies>
-		<f-element id="fpt-ppf-ext-1e1">
-			<title>The TSF shall allow modification of platform firmware only through the update mechanisms described in FPT_TUD_EXT.1.
-			</title>
-			<note role="application">
-				Platform firmware must be modifiable only through one of the secure update mechanisms 
-				specified in FPT_TUD_EXT.1. If the update mechanism itself is implemented in platform 
-				firmware, then naturally, it must itself also be modifiable only through the secure update
-				mechanism. Configuration data used by platform firmware that is stored in nonvolatile
-				memory is not included in these protections. Software portions of TSF and data critical
-				for ensuring the integrity of the TSF are included in these protections. Specifically,
-				this includes the key store and the signature verification algorithm used by the update
-				mechanisms. 
-			</note>
-			<aactivity>
-				<TSS>
-					The evaluator shall examine the TSS to ensure that it explains how the various areas of platform firmware and critical data 
-					are protected from modification outside of the platform firmware update mechanism described in FPT_TUD_EXT.1. 
-					If the TOE implements an authenticated update mechanism as specified in FPT_TUD_EXT.2, then the evauator shall ensure
-					that the TSS describes specifically how the signature verification code and key store is protected from update
-					outside of the secure platform firmware update mechanism.
-				</TSS>
-				<Guidance>
-					The evaluator shall check the operational guidance to ensure that there are instructions for how to
-					securely modify the platform firmware and critical data using a mechanism specified in 
-					FPT_TUD_EXT.1.
-				</Guidance>
-				<Tests>
-					<testlist>
-						<test>The evaluator shall attempt to overwrite or modify the platform firmware without invoking one of
-							the update mechanisms specified in FPT_TUD_EXT.1 (e.g., using a modified Linux boot loader such 
-							as GRUB that attempts to write to the memory where platform firmware is stored). The test succeeds
-							if the attempts to overwrite platform firmware fail. The evaluator shall attempt at least two 
-							such tests--one that attempts to overwrite the first platform firmware that executes after boot,
-							and one that targets the secure update mechanism (if implemented), and one that targets firmware that
-							has been integrity-checked since the last boot.</test>
-					</testlist>
-				</Tests>
-			</aactivity>
-		</f-element>
-		<audit-event/>
-	</f-component>
 	
 	<!-- FPT_RVR_EXT.1 Platform Firmware Recovery -->
 	<f-component cc-id="fpt_rvr_ext.1" name="Platform Firmware Recovery" status="sel-based">
