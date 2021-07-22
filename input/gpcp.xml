@@ -913,7 +913,7 @@
 	<!-- Use cases: Server (both), CSfC EUD, Enterprise Desktop  -->
 	<!-- Plus the below selection dependencies -->
 		<f-component id="sfr-fau-gen-1" cc-id="fau_gen.1" name="Audit Data Generation" status="sel-based">
-			<depends on-sel="sel-rot2-audit"/>
+			<depends on-sel="sel-rot2-audit"/>  <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
@@ -1033,7 +1033,7 @@
 		<!-- Must be included if FAU_GEN.1 is included. -->
 		<!-- Requires that there be an Administrator. -->
         <f-component id="sfr-fau-sar-1" cc-id="fau_sar.1" name="Audit Review" status="sel-based">
-			<depends on-sel="sel-rot2-audit"/>
+			<depends on-sel="sel-rot2-audit"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
@@ -1063,7 +1063,7 @@
 		<!-- Requires that there be an Administrator. -->
 		<!-- Management function: deletion of audit records? -->
 		<f-component id="sfr-fau-stg-1" cc-id="fau_stg.1" name="Audit Storage Protection" status="sel-based">
-			<depends on-sel="sel-rot2-audit"/>
+			<depends on-sel="sel-rot2-audit"/>  <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
@@ -1109,7 +1109,7 @@
 		<!-- FAU_STG.4 Prevention of Audit Data Loss -->
 		<!-- Must be included if FAU_GEN.1 is included. -->
 		<f-component id="sfr-fau-stg-4" cc-id="fau_stg.4" name="Prevention of Audit Data Loss" status="sel-based">
-			<depends on-sel="sel-rot2-audit"/>
+			<depends on-sel="sel-rot2-audit"/>  <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
@@ -1140,7 +1140,7 @@
 		<!-- Must be included if FAU_GEN.1 is included. -->
 		<!-- Administrator? -->
         <f-component id="sfr-fau-stg-ext-1" cc-id="fau_stg_ext.1" name="Off-Loading of Audit Data" status="sel-based">
-			<depends on-sel="sel-rot2-audit"/>
+			<depends on-sel="sel-rot2-audit"/>  <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-audit-hw-integrity"/>
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>
@@ -2562,6 +2562,7 @@
 		
 	<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing) -->
 	<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
+		<depends on-sel="sel-rot2-hash"/>  <!-- FPT_ROT_EXT.2 -->
 		<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1 -->
 		<depends on-sel="sel-tud2-hash"/> 
 		<depends on-incl="sfr-fcs-cop-1-keyedhash"/>
@@ -3499,6 +3500,7 @@
  
 		<!-- FCS_COP.1/SigVer Cryptographic Operation (Signature Verification) --> 
 		<f-component id="sfr-fcs-cop-1-sigver" cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" status="sel-based">
+			<depends on-sel="sel-rot2-digsig"/>  <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-tud-update"/>
 			<f-element id="fcs-cop-1e1-sigver">
 				<title><refinement>Refinement:</refinement> The TSF shall perform  
@@ -5775,6 +5777,9 @@
 		<!-- FIA_AFL_EXT.1 Authentication Failure Handling -->
 		<f-component id="sfr-fia-afl-ext-1" cc-id="fia_afl_ext.1" name="Authentication Failure Handling" status="sel-based">
 			<depends on-incl="sfr-fia-uau-5"/>
+			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
+			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
+			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to monitor authorization attempts, including counting and limiting the number of 
 				attempts at failed or passed authorizations.</comp-lev>
@@ -5947,6 +5952,9 @@
 		
 		<!-- FIA_PMG_EXT.1 Password Mangement -->
 		<f-component id="sfr-fia-pmg-ext-1" cc-id="fia_pmg_ext.1" name="Password Management" status="sel-based">
+			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
+			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
+			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-incl="sfr-fia-uau-5"/>
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to support passwords with varying composition requirements, minimum lengths, 
@@ -6071,9 +6079,9 @@
 		
 		<!-- FIA_UAU.5 Multiple Authentication Mechanisms -->
 		<f-component id="sfr-fia-uau-5" cc-id="fia_uau.5" name="Multiple Authentication Mechanisms" status="sel-based">
-			<depends on-sel="sel-rot2-admin-config"/>
-			<depends on-sel="sel-rot2-admin-det"/>
-			<depends on-sel="sel-rot2-admin-notify"/>			
+			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
+			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
+			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
 			<f-element id="fia-uau-5e1">
 				<title>
 					The TSF shall provide password and 
@@ -6147,6 +6155,9 @@
 		<!-- FIA_UAU.7 Protected Authentication Feedback -->
 		<f-component id="sfr-fia-uau-7" cc-id="fia_uau.7" name="Protected Authentication Feedback" status="sel-based">
 			<depends on-incl="sfr-fia-uau-5"/>
+			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
+			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
+			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
 			<f-element id="fia-uau-7e1">
 				<title>
 					The TSF shall provide only obscured feedback to the device’s display to the user while the 
@@ -6205,13 +6216,14 @@
 		<!-- ManFunc: Adding additional Administrators to the system?? -->
         <f-component id="sfr-fia-uia-ext-1" cc-id="fia_uia_ext.1" name="Administrator Identification and Authentication" status="sel-based"> 
 			<depends on-incl="sfr-fia-uau-5"/>
+			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
+			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
+			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
 <!--			<depends on-sel="sel-auth-update"/>
 			<depends on-sel="sel-unauth-update"/>
 			<depends on-sel="sel-auth-update"/>
 			<depends on-sel="sel-local-update"/>
-			<depends on-sel="sel-rot2-admin-config"/>
 			<depends on-sel="sel-rot3-admin-config"/>
-			<depends on-sel="sel-rot2-admin-det"/>
 			<depends on-sel="sel-rot3-admin-det"/>	-->	
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
@@ -6577,6 +6589,7 @@
 	<!-- FMT_MOF_EXT.1: Management of Security Function Behavior -->
        <f-component cc-id="fmt_mof_ext.1" name="Management of Security Functions Behavior" status="sel-based">
    			<depends on-incl="sfr-fia-uia-ext-1"/>
+			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
    			<consistency-rationale/>
 			<comp-lev>requires that management functions be assigned to user roles.</comp-lev>
 			<management>No additional management functions are envisioned.</management>
@@ -6637,6 +6650,7 @@
 		
 	<!-- FMT_SMF_EXT.1: Specification of Management Functions -->
         <f-component cc-id="fmt_smf_ext.1" name="Specification of Management Functions" status="sel-based">
+			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-incl="sfr-fia-uia-ext-1"/>
 			<consistency-rationale/>
 			<comp-lev>requires that certain security functionality be configurable.</comp-lev>
@@ -7143,12 +7157,15 @@
 				Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 				of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
 				example, by blinking lights, beep codes, screen indications, or local logging.<h:p/>
+				If "administrator" is selected anywhere in FPT_ROT_EXT.2.2, of if "in accordance with administrator-configurable
+				policy" is selected, then aall administrator authentication requirements shall be included in the ST
+				(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 				If "<h:i>generating an audit event</h:i>" is selected then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
 				If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected then FCS_COP.1/Hash must be included in the ST.<h:p/>
 				If "<h:i>verification of a digital signature by trusted code/data</h:i>" is selected then FCS_COP.1/SigVer must be included in the ST.<h:p/>
 				If "<h:i>Initiate a Recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
-				If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected then FMT_MOF_EXT.1, FMT_SMF_EXT.1,
-					and Administrator authentication requirements must be included in the ST.<h:p/>
+				If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
+				must be included in the ST.<h:p/>
 			</note>
 			<aactivity>
 				<TSS>
@@ -7254,7 +7271,7 @@
 	
 	<!-- FPT_RVR_EXT.1 Platform Firmware Recovery -->
 	<f-component cc-id="fpt_rvr_ext.1" name="Platform Firmware Recovery" status="sel-based">
-		<depends on-sel="sel-rot-recovery"/>
+		<depends on-sel="sel-rot2-recovery"/>   <!-- FPT_ROT_EXT.2 -->
 		<depends on-sel="sel-tud-2-recovery"/>
 		<depends on-sel="sel-tud-3-recovery"/>
 		<consistency-rationale/>
