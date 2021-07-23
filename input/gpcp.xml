@@ -3506,7 +3506,8 @@
 		<!-- FCS_COP.1/SigVer Cryptographic Operation (Signature Verification) --> 
 		<f-component id="sfr-fcs-cop-1-sigver" cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" status="sel-based">
 			<depends on-sel="sel-rot2-digsig"/>  <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-tud2-update"/>
+			<depends on-sel="sel-tud1-auth-update"/>  <!-- FPT_TUD_EXT.1 (covers TUD2, which requires SigVer) -->
+			<depends on-sel="sel-tud1-unauth-update"/> <!-- FPT_TUD_EXT.1 -->
 			<f-element id="fcs-cop-1e1-sigver">
 				<title><refinement>Refinement:</refinement> The TSF shall perform  
 				The TSF shall perform [<h:i>digital signature verification</h:i>] using the supported methods 
@@ -3663,7 +3664,10 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					Specifically, this SFR must be included if the ST author chooses "digital signatre TODO" in FPT_TUD_EXT.<h:p/>
+					Specifically, this SFR must be included if the ST author chooses "implement an authenticated platform
+					firmware update mechanism as described in FPT_TUD_EXT.2" or "implement a delayed-authentication platform
+					firmware update mechanism as described in FPT_TUD_EXT.3."
+					in FPT_TUD_EXT.1.<h:p/>
 					
 					The ST author should choose the algorithm implemented to perform vertification of digital signatures. 
 					if more than one algorithm is available, this requirement should be iterated to specify the functionality. 
@@ -5788,6 +5792,9 @@
 			<depends on-sel="sel-rot3-admin-notify"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-rot3-admin-det"/>   <!-- FPT_ROT_EXT.3 -->
+			<depends on-sel="sel-tud2-admin-notify"/>  <!-- FPT_TUD_EXT.2 -->
+			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->
+			<depends on-sel="sel-tud2-admin-det"/>   <!-- FPT_TUD_EXT.2 -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to monitor authorization attempts, including counting and limiting the number of 
 				attempts at failed or passed authorizations.</comp-lev>
@@ -5966,7 +5973,10 @@
 			<depends on-sel="sel-rot3-admin-notify"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-rot3-admin-det"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-incl="sfr-fia-uau-5"/>
+			<depends on-sel="sel-tud2-admin-notify"/>  <!-- FPT_TUD_EXT.2 -->
+			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->
+			<depends on-sel="sel-tud2-admin-det"/>   <!-- FPT_TUD_EXT.2 -->
+<!--			<depends on-incl="sfr-fia-uau-5"/>  -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to support passwords with varying composition requirements, minimum lengths, 
 				maximum lifetime, and similarity constraints.</comp-lev>
@@ -6096,6 +6106,9 @@
 			<depends on-sel="sel-rot3-admin-notify"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-rot3-admin-det"/>   <!-- FPT_ROT_EXT.3 -->
+			<depends on-sel="sel-tud2-admin-notify"/>  <!-- FPT_TUD_EXT.2 -->
+			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->
+			<depends on-sel="sel-tud2-admin-det"/>   <!-- FPT_TUD_EXT.2 -->
 			<f-element id="fia-uau-5e1">
 				<title>
 					The TSF shall provide password and 
@@ -6175,6 +6188,9 @@
 			<depends on-sel="sel-rot3-admin-notify"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-rot3-admin-det"/>   <!-- FPT_ROT_EXT.3 -->
+			<depends on-sel="sel-tud2-admin-notify"/>  <!-- FPT_TUD_EXT.2 -->
+			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->
+			<depends on-sel="sel-tud2-admin-det"/>   <!-- FPT_TUD_EXT.2 -->
 			<f-element id="fia-uau-7e1">
 				<title>
 					The TSF shall provide only obscured feedback to the device’s display to the user while the 
@@ -6239,6 +6255,10 @@
 			<depends on-sel="sel-rot3-admin-notify"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-rot3-admin-det"/>   <!-- FPT_ROT_EXT.3 -->
+			<depends on-sel="sel-tud2-admin-notify"/>  <!-- FPT_TUD_EXT.2 -->
+			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->
+			<depends on-sel="sel-tud2-admin-det"/>   <!-- FPT_TUD_EXT.2 -->
+		
 <!--			<depends on-sel="sel-auth-update"/>
 			<depends on-sel="sel-unauth-update"/>
 			<depends on-sel="sel-auth-update"/>
@@ -6611,6 +6631,7 @@
    			<depends on-incl="sfr-fia-uia-ext-1"/>
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
+			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->	       		
    			<consistency-rationale/>
 			<comp-lev>requires that management functions be assigned to user roles.</comp-lev>
 			<management>No additional management functions are envisioned.</management>
@@ -6673,6 +6694,7 @@
         <f-component cc-id="fmt_smf_ext.1" name="Specification of Management Functions" status="sel-based">
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
+			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->	       		
 			<depends on-incl="sfr-fia-uia-ext-1"/>
 			<consistency-rationale/>
 			<comp-lev>requires that certain security functionality be configurable.</comp-lev>
@@ -7307,7 +7329,7 @@
 	<!-- FPT_RVR_EXT.1 Platform Firmware Recovery -->
 	<f-component cc-id="fpt_rvr_ext.1" name="Platform Firmware Recovery" status="sel-based">
 		<depends on-sel="sel-rot2-recovery"/>   <!-- FPT_ROT_EXT.2 -->
-		<depends on-sel="sel-tud-2-recovery"/>
+		<depends on-sel="sel-tud2-recovery"/>   <!-- FPT_TUD_EXT.2 -->  
 		<depends on-sel="sel-tud-3-recovery"/>
 		<consistency-rationale/>
 		<comp-lev>defines mechanisms for recovering from a platform firmware integrity failure.</comp-lev>
