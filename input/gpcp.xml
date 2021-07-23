@@ -5785,7 +5785,7 @@
 
 		<!-- FIA_AFL_EXT.1 Authentication Failure Handling -->
 		<f-component id="sfr-fia-afl-ext-1" cc-id="fia_afl_ext.1" name="Authentication Failure Handling" status="sel-based">
-			<depends on-incl="sfr-fia-uau-5"/>
+<!--			<depends on-incl="sfr-fia-uau-5"/>  -->
 			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
@@ -5798,6 +5798,7 @@
 			<depends on-sel="sel-tud3-admin-notify"/>  <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-det"/>   <!-- FPT_TUD_EXT.3 -->
+			<depends on-sel="sel-tud4-admin-assert"/>   <!-- FPT_TUD_EXT.4 -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to monitor authorization attempts, including counting and limiting the number of 
 				attempts at failed or passed authorizations.</comp-lev>
@@ -5982,6 +5983,7 @@
 			<depends on-sel="sel-tud3-admin-notify"/>  <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-det"/>   <!-- FPT_TUD_EXT.3 -->
+			<depends on-sel="sel-tud4-admin-assert"/>   <!-- FPT_TUD_EXT.4 -->
 <!--			<depends on-incl="sfr-fia-uau-5"/>  -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to support passwords with varying composition requirements, minimum lengths, 
@@ -6118,6 +6120,7 @@
 			<depends on-sel="sel-tud3-admin-notify"/>  <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-det"/>   <!-- FPT_TUD_EXT.3 -->
+			<depends on-sel="sel-tud4-admin-assert"/>   <!-- FPT_TUD_EXT.4 -->
 			<f-element id="fia-uau-5e1">
 				<title>
 					The TSF shall provide password and 
@@ -6190,7 +6193,7 @@
 		
 		<!-- FIA_UAU.7 Protected Authentication Feedback -->
 		<f-component id="sfr-fia-uau-7" cc-id="fia_uau.7" name="Protected Authentication Feedback" status="sel-based">
-			<depends on-incl="sfr-fia-uau-5"/>
+	<!--		<depends on-incl="sfr-fia-uau-5"/>  -->
 			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
@@ -6203,6 +6206,7 @@
 			<depends on-sel="sel-tud3-admin-notify"/>  <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-det"/>   <!-- FPT_TUD_EXT.3 -->
+			<depends on-sel="sel-tud4-admin-assert"/>   <!-- FPT_TUD_EXT.4 -->
 			<f-element id="fia-uau-7e1">
 				<title>
 					The TSF shall provide only obscured feedback to the device’s display to the user while the 
@@ -6260,7 +6264,7 @@
         <!-- FIA_UIA_EXT.1 Administrator Identification and Authentication -->
 		<!-- ManFunc: Adding additional Administrators to the system?? -->
         <f-component id="sfr-fia-uia-ext-1" cc-id="fia_uia_ext.1" name="Administrator Identification and Authentication" status="sel-based"> 
-			<depends on-incl="sfr-fia-uau-5"/>
+<!--			<depends on-incl="sfr-fia-uau-5"/>  -->
 			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
@@ -6273,7 +6277,7 @@
 			<depends on-sel="sel-tud3-admin-notify"/>  <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-det"/>   <!-- FPT_TUD_EXT.3 -->
-		
+			<depends on-sel="sel-tud4-admin-assert"/>   <!-- FPT_TUD_EXT.4 -->		
 <!--			<depends on-sel="sel-auth-update"/>
 			<depends on-sel="sel-unauth-update"/>
 			<depends on-sel="sel-auth-update"/>
@@ -7843,7 +7847,11 @@
 		</f-element>
 		<f-element id="fpt-tud-ext-4e2">
 			<title>
-				The Administrator/User shall assert physical presence to the TSF through: 
+				The 
+				<selectables>
+					<selectable id="sel-tud4-admin-assert">Administrator</selectable>
+					<selectable>User</selectable>
+				</selectables>shall assert physical presence to the TSF through: 
 				<selectables linebreak="yes">
 					<selectable>login to the TOE from a physically connected console or terminal</selectable>
 					<selectable>physical connection of a jumper or cable</selectable>
@@ -7856,6 +7864,8 @@
 				is selected in FPT_RVR_EXT.1 or 
 				"implement a secure local platform firmware update mechanism described in FPT_TUD_EXT.4" is selected
 				in FPT_TUD_EXT.1.<h:p/>
+				If "<h:i>Administrator</h:i>" is selected then all administrator authentication 
+				requirements must be included in the ST (FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 				This requirement pertains to platform firmware update mechanisms that do not use the 
 				authentication-based update mechanism described in FPT_TUD_EXT.2 or the delayed-authentication
 				described in FPT_TUD_EXT.3. The secure local update 
