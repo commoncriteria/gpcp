@@ -339,7 +339,7 @@
 				<ref-id>sfr-fau-stg-ext-1</ref-id>
 				<ref-id>sfr-fpt-php-2</ref-id> 
 				<ref-id>sfr-fpt-php-3</ref-id> 
-				<ref-id>fpt-jta-ext-2</ref-id>
+				<ref-id>sfr-fpt-jta-ext-2</ref-id>
 				<ref-id>t-physical</ref-id>				
 				<not><ref-id>a-physical-protection</ref-id></not>
 			</config>
@@ -359,7 +359,7 @@
           	</description>
 			<config>
 				<ref-id>sfr-fpt-php-1</ref-id> 
-				<ref-id>fpt-jta-ext-2</ref-id>
+				<ref-id>sfr-fpt-jta-ext-2</ref-id>
 				<ref-id>t-physical</ref-id>				
 				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
@@ -376,7 +376,7 @@
 			<config>
 				<ref-id>sfr-fpt-php-1</ref-id> 
 				<ref-id>sfr-fpt-php-2</ref-id> 
-				<ref-id>fpt-jta-ext-2</ref-id>
+				<ref-id>sfr-fpt-jta-ext-2</ref-id>
 				<ref-id>sfr-fau-gen-1</ref-id>
 				<ref-id>sfr-fau-sar-1</ref-id>
 				<ref-id>sfr-fau-stg-1</ref-id>
@@ -393,7 +393,7 @@
           	</description>
 			<config>
 				<ref-id>sfr-fpt-php-3</ref-id> 
-				<ref-id>fpt-jta-ext-2</ref-id>
+				<ref-id>sfr-fpt-jta-ext-2</ref-id>
 				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
         </usecase>
@@ -420,7 +420,7 @@
           	</description>
 			<config>
 				<ref-id>sfr-fpt-php-1</ref-id> 
-				<ref-id>fpt-jta-ext-2</ref-id>				
+				<ref-id>sfr-fpt-jta-ext-2</ref-id>				
 				<ref-id>t-physical</ref-id>				
 				<not><ref-id>a-physical-protection</ref-id></not>				
 			</config>
@@ -919,6 +919,10 @@
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2 -->
 			<depends on-sel="sel-tud3-audit"/>  <!-- FPT_TUD_EXT.3 -->
+			<depends on-use="uc-server-basic"/>
+			<depends on-use="uc-server-enhanced"/>
+			<depends on-use="uc-csfc-eud"/>
+			<depends on-use="uc-ent-clients-desktop"/>
 			<!-- Should we have <depends on-uc="use case id"/>  ? -->
 			<f-element id="fau-gen-1e1">
 				<title>The TSF shall be able to generate an audit record of the following auditable events:<h:br/>
@@ -1040,6 +1044,9 @@
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2 -->
 			<depends on-sel="sel-tud3-audit"/>  <!-- FPT_TUD_EXT.3 -->
+			<depends on-use="uc-server-enhanced"/>
+			<depends on-use="uc-csfc-eud"/>
+			<depends on-use="uc-ent-clients-desktop"/>
           <f-element id="fau-sar-1e1">
             <title>The TSF shall provide <refinement>the administrator</refinement> with the
               capability to read <refinement>all audited events and record contents</refinement>
@@ -1071,6 +1078,9 @@
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2 -->
 			<depends on-sel="sel-tud3-audit"/>  <!-- FPT_TUD_EXT.3 -->
+			<depends on-use="uc-server-enhanced"/>
+			<depends on-use="uc-csfc-eud"/>
+			<depends on-use="uc-ent-clients-desktop"/>
 			<f-element id="fau-stg-1e1">
 				<title>
 					The TSF shall protect the stored audit records in the audit trail from unauthorized deletion.
@@ -1118,6 +1128,9 @@
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2 -->
 			<depends on-sel="sel-tud3-audit"/>  <!-- FPT_TUD_EXT.3 -->
+			<depends on-use="uc-server-enhanced"/>
+			<depends on-use="uc-csfc-eud"/>
+			<depends on-use="uc-ent-clients-desktop"/>
 			<f-element id="fau-stg-4e1">
 				<title>
 					The TSF shall overwrite the oldest stored audit records if the audit trail is full.
@@ -1150,6 +1163,9 @@
 			<depends on-sel="sel-audit-update"/>
 			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2 -->
 			<depends on-sel="sel-tud3-audit"/>  <!-- FPT_TUD_EXT.3 -->
+			<depends on-use="uc-server-enhanced"/>
+			<depends on-use="uc-csfc-eud"/>
+			<depends on-use="uc-ent-clients-desktop"/>
 			<consistency-rationale/>
 			<comp-lev>specifies how audit data may be tramsmitted or removed from the TOE.</comp-lev>
 			<management>The following actions could be considered for the management functions in FMT:
@@ -6947,7 +6963,12 @@
 	<!-- FPT_JTA_EXT.2 JTAG/Debug Port Disablement -->
 	<!-- Should be included for use cases where physical protections are required. -->
 	<f-component id="sfr-fpt-jta-ext-2" cc-id="fpt_jta_ext.2" name="JTAG/Debug Port Disablement" status="optional">
-			<consistency-rationale/>
+		<depends id="uc-server-enhanced"/>
+		<depends id="uc-client-portable-enhanced"/>
+		<depends id="uc-csfc-eud"/>
+		<depends id="uc-tactical-eud"/>
+		<depends id="uc-iot-devices"/>		
+		<consistency-rationale/>
 			<comp-lev>requires that debug ports be disabled.</comp-lev>
 			<management>No management functions.</management>
 			<audit>No audit events are forseen.</audit>
@@ -6994,6 +7015,9 @@
 	<!-- FPT_PHP.1: Passive Detection of Physical Attack.
 		 -->
 	<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="optional">
+		<depends id="uc-client-portable-enhanced"/>
+		<depends id="uc-csfc-eud"/>
+		<depends id="uc-iot-devices"/>		
 		<f-element id="fpt-php-1e1">
 			<title>The TSF shall provide unambiguous detection of physical tampering
 				that might compromise the TSF.
@@ -7015,6 +7039,8 @@
 	
 	<!-- FPT_PHP.2: Notification of physical attack  -->
 	<f-component id="sfr-fpt-php-2" cc-id="fpt_php.2" name="Notification of physical attack" status="optional">
+		<depends id="uc-server-enhanced"/>
+		<depends id="uc-csfc-eud"/>
 		<f-element id="fpt-php-2e1">
 			<title>The TSF shall provide unambiguous detection of physical tampering that
 				might compromise the TSF.
@@ -7044,6 +7070,8 @@
 	
 	<!-- FPT_PHP.3: Resistance to physical attack  -->
 	<f-component id="sfr-fpt-php-3" cc-id="fpt_php.3" name="Resistance to physical attack" status="optional">
+		<depends id="uc-server-enhanced"/>
+		<depends id="uc-tactical-eud"/>
 		<f-element id="fpt-php-3e1">
 			<title>The TSF shall resist <assignable>physical tampering scenarios</assignable> to the
 				<assignable>list of TSF devices/elements</assignable> by responding automatically
