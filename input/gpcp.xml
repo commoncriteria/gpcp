@@ -210,6 +210,7 @@
 		Or Baseboard Management Controller. A small computer generally found on Server motherboards that performs management tasks 
 		on behalf of an Administrator.</term>
       <term abbr='NIST' full="National Institute of Standards and Technology"/>
+      <term abbr='NIST' full="National Institute of Standards and Technology"/>
       <term abbr='OID' full="Object Identifier"/>
       <term full="Operating System" abbr="OS" plural="OSes">
 		Software that manages physical and logical resources and provides services
@@ -4499,10 +4500,10 @@
 			<audit-event/>
         </f-component>
 
-                <!-- FCS_HTTPS_EXT.1 -->
-                <!-- Depends on HTTPS being selected for trusted channel -->
-                <f-component cc-id="fcs_https_ext.1" name="HTTPS Protocol"  status="sel-based">
-                    <depends on-sel="sel-itc-https"/>
+        <!-- FCS_HTTPS_EXT.1 -->
+        <!-- Depends on HTTPS being selected for trusted channel -->
+        <f-component cc-id="fcs_https_ext.1" name="HTTPS Protocol"  status="sel-based">
+            <depends on-sel="sel-itc-https"/>
 			<depends on-sel="sel-x509-2-https"/>
 			<consistency-rationale/>
 			<comp-lev>defines requirements for the implementation of the HTTPS protocol.</comp-lev>
@@ -5801,7 +5802,7 @@
 
 		<!-- FIA_AFL_EXT.1 Authentication Failure Handling -->
 		<f-component id="sfr-fia-afl-ext-1" cc-id="fia_afl_ext.1" name="Authentication Failure Handling" status="sel-based">
-<!--			<depends on-incl="sfr-fia-uau-5"/>  -->
+			<depends on-incl="sfr-fia-uau-5"/> 
 			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
@@ -6000,7 +6001,7 @@
 			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-det"/>   <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud4-admin-assert"/>   <!-- FPT_TUD_EXT.4 -->
-<!--			<depends on-incl="sfr-fia-uau-5"/>  -->
+			<depends on-incl="sfr-fia-uau-5"/>  
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to support passwords with varying composition requirements, minimum lengths, 
 				maximum lifetime, and similarity constraints.</comp-lev>
@@ -6209,7 +6210,7 @@
 		
 		<!-- FIA_UAU.7 Protected Authentication Feedback -->
 		<f-component id="sfr-fia-uau-7" cc-id="fia_uau.7" name="Protected Authentication Feedback" status="sel-based">
-	<!--		<depends on-incl="sfr-fia-uau-5"/>  -->
+			<depends on-incl="sfr-fia-uau-5"/>  
 			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
@@ -6280,7 +6281,7 @@
         <!-- FIA_UIA_EXT.1 Administrator Identification and Authentication -->
 		<!-- ManFunc: Adding additional Administrators to the system?? -->
         <f-component id="sfr-fia-uia-ext-1" cc-id="fia_uia_ext.1" name="Administrator Identification and Authentication" status="sel-based"> 
-<!--			<depends on-incl="sfr-fia-uau-5"/>  -->
+			<depends on-incl="sfr-fia-uau-5"/> 
 			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
@@ -6963,11 +6964,11 @@
 	<!-- FPT_JTA_EXT.2 JTAG/Debug Port Disablement -->
 	<!-- Should be included for use cases where physical protections are required. -->
 	<f-component id="sfr-fpt-jta-ext-2" cc-id="fpt_jta_ext.2" name="JTAG/Debug Port Disablement" status="optional">
-<!--		<depends id="uc-server-enhanced"/>
-		<depends id="uc-client-portable-enhanced"/>
-		<depends id="uc-csfc-eud"/>
-		<depends id="uc-tactical-eud"/>
-		<depends id="uc-iot-devices"/>		-->
+		<depends on-use="uc-server-enhanced"/>
+		<depends on-use="uc-client-portable-enhanced"/>
+		<depends on-use="uc-csfc-eud"/>
+		<depends on-use="uc-tactical-eud"/>
+		<depends on-use="uc-iot-devices"/>
 		<consistency-rationale/>
 			<comp-lev>requires that debug ports be disabled.</comp-lev>
 			<management>No management functions.</management>
@@ -7015,9 +7016,9 @@
 	<!-- FPT_PHP.1: Passive Detection of Physical Attack.
 		 -->
 	<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="optional">
-<!--		<depends id="uc-client-portable-enhanced"/>
-		<depends id="uc-csfc-eud"/>
-		<depends id="uc-iot-devices"/>		-->
+		<depends on-use="uc-client-portable-enhanced"/>
+		<depends on-use="uc-csfc-eud"/>
+		<depends on-use="uc-iot-devices"/>
 		<f-element id="fpt-php-1e1">
 			<title>The TSF shall provide unambiguous detection of physical tampering
 				that might compromise the TSF.
@@ -7039,8 +7040,8 @@
 	
 	<!-- FPT_PHP.2: Notification of physical attack  -->
 	<f-component id="sfr-fpt-php-2" cc-id="fpt_php.2" name="Notification of physical attack" status="optional">
-<!--		<depends id="uc-server-enhanced"/>
-		<depends id="uc-csfc-eud"/>   -->
+		<depends on-use="uc-server-enhanced"/>
+		<depends on-use="uc-csfc-eud"/>  
 		<f-element id="fpt-php-2e1">
 			<title>The TSF shall provide unambiguous detection of physical tampering that
 				might compromise the TSF.
@@ -7070,8 +7071,8 @@
 	
 	<!-- FPT_PHP.3: Resistance to physical attack  -->
 	<f-component id="sfr-fpt-php-3" cc-id="fpt_php.3" name="Resistance to physical attack" status="optional">
-<!--		<depends id="uc-server-enhanced"/>
-		<depends id="uc-tactical-eud"/>   -->
+		<depends on-use="uc-server-enhanced"/>
+		<depends on-use="uc-tactical-eud"/> 
 		<f-element id="fpt-php-3e1">
 			<title>The TSF shall resist <assignable>physical tampering scenarios</assignable> to the
 				<assignable>list of TSF devices/elements</assignable> by responding automatically
