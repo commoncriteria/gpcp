@@ -51,8 +51,8 @@
                         562626874aacfbb9beb397fca5be128c86ec4ebf
                         /input/tls.xml</raw-url>
 	<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>
-               <depends on-sel="x509_dtls"/>
-               <depends on-sel="itc_dtls"/>
+               <depends on-sel="sel-itc-tls"/>
+               <depends on-sel="sek-itc-https"/>
 	</include-pkg>
 	    
     <include-pkg id="ssh">
@@ -60,6 +60,7 @@
                          de9b38dc426a4ac14d4016510d1ef477d419f7ae
                          /input/ssh.xml</raw-url>
       <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=389&amp;id=389</url>
+		<depends on-sel="sel-itc-ssh"/>
    </include-pkg>	
 
 	
@@ -1049,7 +1050,7 @@
 			<depends on-use="uc-csfc-eud"/>
 			<depends on-use="uc-ent-clients-desktop"/>
           <f-element id="fau-sar-1e1">
-            <title>The TSF shall provide <refinement>the administrator</refinement> with the
+            <title>The TSF shall provide <refinement>the Administrator</refinement> with the
               capability to read <refinement>all audited events and record contents</refinement>
               from the audit records.</title>
           </f-element>
@@ -1269,7 +1270,7 @@
 		<!-- FCS_CKM.1/AK Gryptographic Key Generation (Assymetric Keys) -->
 		<f-component id="sfr-fcs-ckm-1-ak" cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="sel-based">
 			<depends on-sel="sel-ckm-kek-ak"/> <!-- from FCS_CKM.1/KEK -->
-			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
+			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<f-element id="fcs-ckm-1e1-ak">
 				<title>The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys using the methods defined by 
 					the following rows in <xref to="fcs-ckm-1-ak-sels"/>:
@@ -1485,8 +1486,6 @@
 		<!-- FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key) -->
 		<f-component id="sfr-fcs-ckm-1-sk" cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
 			<depends on-sel="sel-ckm-kek-sk"/> <!-- from FCS_CKM.1/KEK -->
-			<!--			<exportable id="inf-gpcp-fcs-ckm-sk"/> -->
-			<!--			<importable inf-id="inf-dsc-fcs-ckm-sk"/> -->
 			<f-element id="fcs-ckm-1e1-sk">
 				<title>The TSF shall generate <h:b>symmetric</h:b> cryptographic keys using the methods defined by 
 					the following rows in <xref to="fcs-ckm-1-sk-sels"/>:
@@ -1660,7 +1659,7 @@
 
 	<!-- FCS_CKM.2 Cryptographic Key Establishment -->
 	<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="sel-based">
-		<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
+		<depends on-incl="sfr-fcs-ipsec-ext-1"/> 	<!-- FCS_IPSEC_EXT.1 -->
 			<f-element id="fcs-ckm-2e1">
 				<title>The TSF shall establish cryptographic keys in accordance with a specified
 					cryptographic key establishment method: 
@@ -1744,7 +1743,7 @@
 		<depends on-incl="sfr-fcs-cop-1-kat"/>
 		<depends on-incl="sfr-fcs-cop-1-pbkdf"/>
 		<depends on-incl="sfr-fcs-cop-1-keyenc"/>
-		<depends on-incl="sfr-fcs-stg-ext-1"/>
+		<depends on-incl="sfr-fcs-stg-ext-1"/> 
 		<f-element id="fcs-ckm-4e1">
 			<title>The TSF shall destroy cryptographic keys and keying material in accordance
 				with a specified cryptographic key destruction method 
@@ -2590,7 +2589,7 @@
 		<depends on-incl="sfr-fcs-cop-1-keyedhash"/>
 		<depends on-incl="sfr-fcs-cop-1-sigver"/>
 		<depends on-incl="sfr-fcs-cop-1-siggen"/>
-		<depends on-sel="sel-fcs-cop-kat-ecies"/>		
+		<depends on-sel="sel-fcs-cop-kat-ecies"/>
                 <f-element id="fcs-cop-1e1-hash">
                     <title>The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified cryptographic algorithm
                         <selectables>
@@ -2739,7 +2738,7 @@
 	<!-- FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash) -->
 	<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="sel-based">
 		<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
-		<depends on-incl="sfr-fcs-cop-1-pbkdf"/>	<!-- FCS_COP.1/PBKDF -->
+		<depends on-incl="sfr-fcs-cop-1-pbkdf"/> 	<!-- FCS_COP.1/PBKDF -->
 		<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1 -->
 		<depends on-sel="sel-fcs-cop-kat-ecies"/>		
 		<depends on-sel="sel-stg3-hmac"/>
@@ -4523,6 +4522,8 @@
                         <title>The TSF shall implement the HTTPS protocol that complies with RFC 2818.
                         </title>
                         <note role="application">This SFR is included in the ST if the ST Author selects "TLS/HTTPS" in FTP_ITC_EXT.1.1.<h:br/><h:br/>
+						If this SFR is included in the ST, then the <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">
+						<h:i>Functional Package for Transport Layer Security</h:i></h:a> must also be included.<h:p/>
 						The ST author must provide enough detail to determine how the implementation is 
 						complying with the standard(s) identified; this can be done either by adding elements to this 
 						component, or by additional detail in the TSS.</note>
@@ -6322,8 +6323,8 @@
                     <note role="application">
 						Ordinary unprivileged users of the platform need not authenticate to the platform, though they
 						may well have to authenticate themselves to tenant software such as an Operating System. <h:p/>
-						The TSF-mediated management functions are listed in the management functions table in FMT_SMF_EXT.1. 
-						<!-- <xref id="manfunc"/> --> 
+						The TSF-mediated management functions are listed in the management functions table 
+						(<xref to="t-manfunc"/>) in FMT_SMF_EXT.1.  
 					</note>
                     <aactivity>
 						<TSS>
@@ -6361,10 +6362,13 @@
             <!-- FIA_X509_EXT.1 -->
             <!-- Depends on x509 certificates being used for administrator authentication -->
             <f-component cc-id="fia_x509_ext.1" name="X.509 Certificate Validation"  status="sel-based">
-				<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
+<!--				<depends on-incl="sfr-fcs-ipsec-ext-1"/>  -->  <!-- FCS_IPSEC_EXT.1 -->
                 <depends on-sel="sel-tud-digsign"/>
                 <depends on-sel="sel-uau-x509"/> 
 				<depends on-sel="sel-itc-certauth"/>
+				<depends on-sel="sel-itc-tls"/>
+				<depends on-sel="sel-itc-https"/>
+				<depends on-sel="sel-itc-ipsec"/>
 				<consistency-rationale/>
 				<comp-lev>defines how the TSF must validate X.509 certificates that are presented to it.</comp-lev>
 				<management>The following actions could be considered for the management functions in FMT:
@@ -6378,7 +6382,10 @@
 						<h:li>Failure to validate a certificate.</h:li>
 					</h:ol>
 				</audit>
-				<dependencies>FPT_STM.1 Reliable Time Stamps</dependencies>
+				<dependencies>FPT_STM.1 Reliable Time Stamps<h:p/>
+					FCS_COP.1 Cryptographic Operations<h:p/>
+					FCS_RBG_EXT.1 Random Bit Generation
+				</dependencies>
                 <f-element id="fia-x509-ext-1e1">
                         <title>The TSF shall validate certificates in accordance with the following rules:
                             <h:ul>
@@ -6696,7 +6703,8 @@
 			  For functions that are mandatory, any sub-functions not in a selection are also mandatory
               and any assignments must contain at least one assigned value. For non-selectable
               sub-functions in an optional function, all sub-functions outside the selection must be
-              implemented in order for the function to be listed. </note>
+              implemented in order for the function to be listed.<h:p/> 
+			  If the ST author selects "remote" then FTP_ITC_EXT.1 must be included in the ST.</note>
             <aactivity>
               <TSS>The evaluator shall verify that the TSS describes those management functions that
                 may be performed by the Administrator, to include how the user is prevented from
@@ -7959,8 +7967,9 @@
 		</ext-comp-def>
 
 		<!-- FTP_ITC_EXT.1 Trusted Channel Communications -->
-	        <f-component id="sfr-ftp-itc-ext-1" cc-id="ftp_itc_ext.1" name="Trusted Channel Communication" status="sel-based">
+	    <f-component id="sfr-ftp-itc-ext-1" cc-id="ftp_itc_ext.1" name="Trusted Channel Communication" status="sel-based">
 			<depends on-sel="sel-fau-itc"/>
+			<depemds on-sel="sel-mof-remote-admin"/>
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to implement one or more cryptographic protocols
 					to secure connectivity between the TSF and various external entities.</comp-lev>
@@ -7992,7 +8001,7 @@
 				</selectables> 
 				and 
 			    <selectables linebreak="yes">
-				    <selectable id="sel-itc-certauth">certificate-based authentication of the remote peer</selectable>
+				    <selectable id="sel-itc-certauth">X.509 certificate-based authentication of the remote peer</selectable>
 				    <selectable>non-certificate-based authentication of the remote peer</selectable>
 				    <selectable>no authentication of the remote peer</selectable>
 				</selectables>				
@@ -8009,7 +8018,8 @@
 			</title>
             <note role="application"> 
 				This SFR is included in the ST if a trusted channel is used to offload audit data 
-				or if the platform is administered remotely.<h:p/>
+				or if the platform is administered remotely. That is, if "a trusted channel as specified in FTP_ITC_EXT.1" 
+				is selected in FAU_STG_EXT.1 or "remote" is selected in FMT_MOF_EXT.1.<h:p/>
                 If the ST author selects either TLS or HTTPS, the TSF shall be validated against the 
                 Functional Package for TLS. This PP does not mandate that a product implement TLS with mutual authentication,
 				but if the product includes the capability to perform TLS with mutual authentication, then
@@ -8019,8 +8029,6 @@
 			    If the ST author selects "certificate-based authentication of the remote peer," then FIA_X509_EXT.1 and FIA_X509_EXT.2
 				must be included in the ST. "No authentication of the remote peer" should be selected only if the TOE is acting 
 				as a server in a non-mutual authentication configuration.<h:p/>			    
-			    The ST author must include the security functional requirements for the
-                trusted channel protocol selected in FTP_ITC_EXT.1 in the main body of the ST.<h:p/>
             </note>
             <aactivity>
                 <TSS>
