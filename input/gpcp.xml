@@ -941,7 +941,7 @@
                 </title>		
 				<note role="application">
 					The ST Author should include this SFR in the ST if the TOE generates audit events for integrity verification or boot failures
-					as indicated by the appropriate selections in FPT_PHP_EXT.1.2, FPR_ROT_EXT.2.2, FPT_TUD_EXT.2.5,
+					as indicated by the appropriate selections in FPT_PHP.1.2, FPT_ROT_EXT.2.2, FPT_TUD_EXT.2.5,
 					or FPT_TUD_EXT.3.4; or if the TOE supports the Server (basic or enhanced), CSfC EUD, or Enterprise Desktop use 
 					cases.<h:p/>
 					Appropriate entries from <xref g="t-audit-optional"/>, <xref g="t-audit-objective"/>, and
@@ -1708,7 +1708,7 @@
 		</f-component>
 
 		<!-- FCS_CKM.4 Cryptographic Key Destruction -->
-		<f-component id="sfr-fcs-ckm-4" cc-id="fcs_ckm.4" name="Cryptographic Key Destruction" status="sel-based">
+		<f-component id="sfr-fcs-ckm-4" cc-id="fcs_ckm.4" name="Cryptographic Key Destruction" status="optional">
 			<depends on-incl="sfr-fcs-ckm-1-sk"/>
 			<depends on-incl="sfr-fcs-ckm-1-ak"/>
 			<depends on-incl="sfr-fcs-ckm-1-kek"/>
@@ -1771,7 +1771,8 @@
 					that meets the following: [<h:i>no standard</h:i>].
 				</title>
 				<note role="application">
-					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys. <h:p/>
+					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
+					In particular, if the TOE creates or stores keys, it must be able to destroy them.<h:p/>
 					The platform must implement mechanisms to destroy cryptographic keys and key material contained in
 					persistent storage when no longer needed. The term “cryptographic keys” in this SFR includes
 					the authorization data that is the entry point to a key chain and all other cryptographic keys and
@@ -1961,7 +1962,7 @@
 		</f-component>
 
 		<!-- FCS_CKM_EXT.4 Cryptographic Key and Key Material Destruction Timing -->
-		<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="sel-based">
+		<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="optional">
 			<depends on-incl="sfr-fcs-ckm-4"/>
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to destroy keys when no longer used.</comp-lev>
@@ -1973,6 +1974,7 @@
 					The TSF shall destroy all keys and keying material when no longer needed.
 				</title>
 				<note role="application">
+					This SFR must be included in the ST if FCS_CKM.4 is included in the ST.<h:p/>
 					The platform will have mechanisms to destroy keys, including intermediate keys and key material, by
 					using an approved method, FCS_CKM.4. Examples of keys include intermediate keys, leaf keys,
 					encryption keys, signing keys, verification keys, authentication tokens, and submasks. The DSC
@@ -7022,6 +7024,11 @@
 			<title>The TSF shall provide unambiguous detection of physical tampering
 				that might compromise the TSF.
 			</title>
+			<note role="application">
+				This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
+				<h:li>Portable Clients (laptops, tablets), Enhanced</h:li>
+				<h:li>CSfC EUD</h:li></h:ol>
+			</note>
 		</f-element>
 		<f-element id="fpt-php-1e2">
 			<title>
@@ -7045,6 +7052,11 @@
 			<title>The TSF shall provide unambiguous detection of physical tampering that
 				might compromise the TSF.
 			</title>
+			<note role="application">
+				This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
+				<h:li>Server-Class Platform, Enhanced</h:li>
+				<h:li>CSfC EUD</h:li></h:ol>
+			</note>
 		</f-element>
 		<f-element id="fpt-php-2e2">
 			<title>
@@ -7077,6 +7089,11 @@
 				<assignable>list of TSF devices/elements</assignable> by responding automatically
 				such that the SFRs are always enforced. 
 			</title>
+			<note role="application">
+				This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
+				<h:li>Server-Class Platform, Enhanced</h:li>
+				<h:li>Tactical EUD</h:li></h:ol>
+			</note>
 		<aactivity>
 			<TSS>
 				The evaluator shall examine the TSS to ensure it describes the methods used by the
@@ -7327,7 +7344,7 @@
 		</f-element>
 		<f-element id="fpt-rot-ext-3e2">
 			<title>
-				The TOE shall take the following actions if an integrity check specified in FPT_PHP_EXT.1.1 fails:
+				The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.3.1 fails:
 				<h:ol type="1">
 					<h:li>Halt,</h:li>
 					<h:li>Notify an 
