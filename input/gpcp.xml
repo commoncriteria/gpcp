@@ -105,10 +105,20 @@
 		flash memory, storage controllers, storage devices, boot firmware, runtime firmware, human interface devices, 
 		and a power supply.<h:p/>
 		
-		This Protection Profile for General-Purpose Comouting Platforms derives requirements from 
-		the <h:i>NIAP Protection Profile for BIOS Update for PC Client Devices Version 1.0</h:i> and several NIST
-		Publications, including Special Publications 800-147 (BIOS Protection Guidelines), 800-147B (BIOS Protection
-		Guidelines for Servers), and 800-193 (Platform Firmware Resiliency Guidelines). 
+		This Protection Profile for General-Purpose Computing Platforms derives requirements from the following documents:
+		<h:ul>
+			<h:li>NIAP, <h:i>BIOS Update for PC Client Devices protection Profile</h:i>, Version 1.0, 12 Feb 2013</h:li>
+			<h:li>NIST SP800-147 <h:i>BIOS Protection Guidelines</h:i>, April 2011</h:li>
+			<h:li>NIST SP800-147B <h:i>BIOS Protection Guidelines for Servers</h:i>, August 2014</h:li>
+			<h:li>NIST SP800-193 <h:i>Platform Firmware Resiliency Guidelines</h:i></h:li></h:ul><h:p/>
+		Additionally, the following specifications and standards may be relevant to requirements in this PP:
+		<h:ul>
+			<h:li>NIST SP800-155 (Draft) <h:i>BIOS Integrity Measurement Guidelines (Draft)</h:i>, December 2011</h:li>
+			<h:li>Trusted Computing Group, <h:i>TCG PC Client Platform Firmware Integrity Measurement</h:i> Version 1.0 
+				Revision Specification 43 Family 2.0, May 7, 2021</h:li>
+			<h:li>IEEE Std 802.1AR-2018, <h:i>Secure Device Identity</h:i></h:li>		
+		</h:ul>
+		
 	</section>
 	
 	<!--   1.2 Terms   -->
@@ -1579,8 +1589,9 @@
 					following: <assignable>list of standards</assignable>.
 				</title>
 				<note role="application">
-					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
-					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					This SFR must be included in the ST if key encryption key generation is a service provided by the
+					TOE to tenant software, or if the TOE generates key encryption keys to support or implement 
+					PP-specified security functionality.<h:p/> 
 					KEKs protect KEKs and Symmetric Keys (SKs). DSCs should use key strengths commensurate
 					with protecting the chosen symmetric encryption key strengths.<h:p/>
 					If Asymmetric KEKs generated in accordance with FCS_CKM.1/AK is selected, the selection-based
@@ -1667,9 +1678,9 @@
 					</selectables> <h:s>that meets the following: [<h:i>assignment: list of standards</h:i>]</h:s>.
 				</title>
 				<note role="application">
-					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
-					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					
+					This SFR must be included in the ST if key establishment is a service provided by the TOE to tenant
+					software, or if key establishment is used by the TOE itself to support or implement PP-specified 
+					security functionality.<h:p/> 
 					This is a refinement of the SFR FCS_CKM.2 to deal with key establishment rather than key
 					distribution.<h:p/>
 					The ST author selects all key establishment schemes used for the selected cryptographic protocols.<h:p/>
@@ -1718,6 +1729,7 @@
 			<depends on-incl="sfr-fcs-cop-1-pbkdf"/>
 			<depends on-incl="sfr-fcs-cop-1-keyenc"/>
 			<depends on-incl="sfr-fcs-stg-ext-1"/> 
+			<depends on-incl="sfr-fia-afl-ext-1"/>   <!-- Required for wipe on multiple suth failures -->
 			<f-element id="fcs-ckm-4e1">
 				<title>The TSF shall destroy cryptographic keys and keying material in accordance
 					with a specified cryptographic key destruction method 
@@ -2279,7 +2291,7 @@
 					</h:table>
 				</title>
 				<note role="application">
-					This SFR must be included in the ST key derivation is a service provided by the TOE to tenant software,
+					This SFR must be included in the ST if key derivation is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR must be included in the ST if "Derived KEKs..." is selected in FCS_CKM.1/KEK, or if
 					"XOR" is selected in FCS_COP.1/KeyEnc.<h:p/>
@@ -2584,8 +2596,8 @@
                 <note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-			    	Specifically, this SFR must be included if "Hash TODO" is selected in FPT_TUD_EXT.2, or if
-			    	FCS_COP.1/KeyedHash is included in the ST.<h:p/>			    
+			    	Specifically, this SFR must be included if "hash value of the public key" is selected in 
+					FPT_TUD_EXT.2, or if FCS_COP.1/KeyedHash is included in the ST.<h:p/>			    
 					The hash selection should be consistent with the overall strength of the algorithm used for
 					signature generation. For example, the ST Author should choose SHA-256 for 2048-bit RSA or ECC 
 					with P-256, SHA-384 for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 for ECC
@@ -5500,6 +5512,10 @@
 				</selectables>.
 			</title>
 			<note role="application">
+				This SFR should be included in the ST if the TOE provides protected storage as a service for
+				tenant software, or if it stores keys or other persistent secrets for its own use.<h:p/>
+				This SFR must be claimed if the TOE includes a Dedicated Security Component that provides 
+				storage services, such as a TPM.<h:p/>
 				If the protected storage is implemented in software that is protected as required by
 				FCS_STG_EXT.2, the ST author is expected to select "software-based." If "software-based" is selected,
 				the ST author is expected to select all "software-based key storage" in FCS_STG_EXT.2.<h:p/>
@@ -5851,8 +5867,7 @@
 					each authentication mechanism.
 				</title>
 				<note role="application">
-					The positive integer(s) is configured according to FMT_SMF_EXT.1.1 function Table 2
-					(TODO: Make this an xref).<h:p/>
+					The positive integer(s) is configured according to <xref to="t-manfunc"/> in FMT_SMF_EXT.1.1.<h:p/>
 					An unique authentication attempt is defined as any attempt to verify a password 
 					in which the input is different from a previous attempt. ‘Unique’ must be selected if
 					the authentication system increments the counter only for unique unsuccessful authentication
@@ -6089,6 +6104,8 @@
 					shall be such that no more than 10 attempts can be attempted per 500 milliseconds.
 				</title>
 				<note role="application">
+					This SFT should be included in the ST if the TOE implements a mechanism for limiting the 
+					number or frequency of Administrator authentication attempts.<h:p/>
 					The authentication throttling applies to all authentication mechanisms selected in
 					FIA_UAU.5.1. The user authentication attempts in this requirement are attempts to guess the 
 					Authentication Factor. The developer can implement the timing of the delays in the 
@@ -7332,9 +7349,10 @@
 				unexpected software and hardware, and the corresponding customer processes that verify that client and server computing devices and
 				components have not been tampered with or otherwise modified. Manufacturing processes that cannot be verified by the customer are explicitly
 				out of scope."<h:p/>
-				As a basic step, critical platform components should include immutable hardware IDs that can be listed a hardware component  
+				As a basic step, critical platform components should include immutable hardware IDs that can be listed in a hardware component  
 				manifest that is provided to the purchaser and signed by the manufacturer. It should then be possible for the TOE to verify 
-				the signature on the manifest and check that each hardware ID in the manifest matches the IDs in the actual hardware.<h:p/>
+				the signature on the manifest and check that each hardware ID in the manifest matches the IDs in the actual hardware.
+				The component manifest and hardware IDs provide proof of provenance for the TOE and its hardware components.<h:p/>
 				For purposes of this requirement, hardware identities can be verified once on first boot, on every boot, when new hardware is detected, 
 				or during normal operation of the platform - as long as the hardware integrity is verified before the component or device is used.<h:p/>
 				The ST author lists the hardware components for which the integrity is checked, and the methods used for conducting the checks. 
