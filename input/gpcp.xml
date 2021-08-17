@@ -5841,9 +5841,6 @@
 					The TSF shall consider password and [<h:i>no other</h:i>] as critical authentication mechanisms.
 				</title>
 				<note role="application">
-					A critical authentication mechanism is one in which countermeasures are triggered (i.e. wipe
-					of the device) when the maximum number of unsuccessful authentication attempts is exceeded,
-					rendering the other factors unavailable. (TODO: Need to discuss this).<h:p/>
 					If no additional authentication mechanisms are selected in FIA_UAU.5.1, then ‘no other’ must 
 					be selected. If an additional authentication mechanism is selected in FIA_UAU.5.1, then it 
 					must only be selected in FIA_AFL_EXT.1.1 if surpassing the authentication failure threshold 
@@ -6156,7 +6153,7 @@
 						<selectable id="sel-uau5-x509">X.509 certificate-based authentication</selectable>
 						<selectable id="sel-uau5-ssh">SSH certificate-based authentication</selectable>
 						<selectable>biometric authentication</selectable>
-						<selectable>hyrid authentication</selectable>
+						<selectable>hybrid authentication</selectable>
 						<selectable>no other authentication mechanism</selectable>
 					</selectables> to support user authentication.
 				</title>
@@ -6643,12 +6640,15 @@
 			<dependencies>No dependencies.</dependencies>
 			<f-element id="fmt-cfg-ext-1e1">
 				<title>
-					The TOE shall provide only enough functionality to set new Administrator credentials when 
-					configured with default credentials or with no credentials.
+					<h:b>TODO: Old: The TOE shall provide only enough functionality to set new Administrator credentials when 
+					configured with default credentials or with no credentials.<h:p/>
+					New (and much weaker): The TSF shall enforce that default Administrator credentials be changed immediately
+					after first use.</h:b>			
 				</title>
 				<note role="application">
 					Default credentials are credentials (e.g., passwords, keys) that are pre-installed  
-					(without user interaction) onto the platform, generally by the manufacturer.
+					(without user interaction) onto the platform, generally by the manufacturer, whether 
+					they are default values or randomly generated.<h:p/>
 				</note>
 				<aactivity>
 					<TSS>The evaluator shall check the TSS to determine if the platform comes with 
@@ -7037,7 +7037,7 @@
 		 -->
 	<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="optional">
 		<depends on-use="uc-client-portable-enhanced"/>
-		<depends on-use="uc-csfc-eud"/>
+		<depends on-use="uc-csfc-eud"/> 
 		<depends on-use="uc-iot-devices"/>
 		<f-element id="fpt-php-1e1">
 			<title>The TSF shall provide unambiguous detection of physical tampering
@@ -7046,7 +7046,8 @@
 			<note role="application">
 				This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
 				<h:li>Portable Clients (laptops, tablets), Enhanced</h:li>
-				<h:li>CSfC EUD</h:li></h:ol>
+				<h:li>CSfC EUD</h:li> 
+				<h:li>IoT Devices</h:li></h:ol>
 			</note>
 		</f-element>
 		<f-element id="fpt-php-1e2">
@@ -7068,7 +7069,10 @@
 				There are no KMD evaluation activities for this component.
 			</KMD>
 			<Tests>
-				TODO: Need to design a test to detect and resist tamper.
+				<h:b>TODO: The evaluator shall verify that attempts to open the TOE enclosure  
+						result in indications consistent with the operational guidance. Such indications 
+						could include damaged tamper seals, logged events, or other physical or 
+						electronic manifestations.</h:b>						
 			</Tests>
 			</aactivity>
 		</f-element>
@@ -7118,7 +7122,19 @@
 				There are no KMD evaluation activities for this component.
 			</KMD>
 			<Tests>
-				TODO: Need to design a test to detect and resist tamper.
+				<testlist>
+					<test>
+						<h:b>TODO: The evaluator shall verify that attempts to open the TOE enclosure  
+						result in indications consistent with the operational guidance. Such indications 
+						could include damaged tamper seals, logged events, or other physical or 
+						electronic manifestations.</h:b>						
+					</test>
+					<test>
+						<h:b>TODO: For each device/element listed in FPT_PHP.2.3, the evaluator shall verify that 
+						attempts to physically tamper with the device/element results in notification
+						to the designated users or roles consistent with the operational guidance.</h:b>
+					</test>
+				</testlist>	
 			</Tests>
 		</aactivity>
 		</f-element>
@@ -7138,14 +7154,14 @@
 			</title>
 			<note role="application">
 				This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
-				<h:li>Server-Class Platform, Enhanced</h:li>
+				<h:li>Server-Class Platform, Enhanced (TODO: <h:b>if supported</h:b>)</h:li>
 				<h:li>Tactical EUD</h:li></h:ol>
 			</note>
 		<aactivity>
 			<TSS>
 				The evaluator shall examine the TSS to ensure it describes the methods used by the
 				TOE to detect physical tampering and how the TOE will respond when physical
-				tampering has been detected.<h:p/>
+				tampering has been detected such that SFRs are always enforced.<h:p/>
 			</TSS>
 			<Guidance>
 				There are no AGD evaluation activities for this component.
@@ -7154,7 +7170,13 @@
 				There are no KMD evaluation activities for this component.
 			</KMD>
 			<Tests>
-				TODO: Need to design a test to detect and resist tamper.
+				<testlist>
+					<test>
+						<h:b>TODO: For each physical tampering scenario and device/element 
+						listed in FPT_PHP.3.1, the evaluator shall verify that tampering attempts
+						shall result in a response from the TSF consistent with the operational guidance.</h:b>						
+					</test>
+				</testlist>	
 			</Tests>
 		</aactivity>
 		</f-element>
