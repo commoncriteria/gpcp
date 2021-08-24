@@ -55,6 +55,7 @@
         <depends on-sel="sek-itc-https"/>
 	</include-pkg>
 	    
+	<!-- TODO: Update this to SSH 1.0 FP -->
     <include-pkg id="ssh">
         <raw-url>https://github.com/commoncriteria/ssh/raw/
                          de9b38dc426a4ac14d4016510d1ef477d419f7ae
@@ -6640,36 +6641,39 @@
 			<dependencies>No dependencies.</dependencies>
 			<f-element id="fmt-cfg-ext-1e1">
 				<title>
-					<h:b>TODO: Old: The TOE shall provide only enough functionality to set new Administrator credentials when 
-					configured with default credentials or with no credentials.<h:p/>
-					New (and much weaker): The TSF shall enforce that default Administrator credentials be changed immediately
-					after first use.</h:b>			
+					<h:b>The TSF shall enforce that Administrator credentials be changed immediately
+					after first use when configured with default Administrator credentials or with no 
+					Administrator credentials.</h:b>
 				</title>
 				<note role="application">
 					Default credentials are credentials (e.g., passwords, keys) that are pre-installed  
 					(without user interaction) onto the platform, generally by the manufacturer, whether 
-					they are default values or randomly generated.<h:p/>
+					they are default values or randomly generated. This requirement appplies only to credentials
+					used by an Administrator for logging in to the TOE, and not to other platform credentials that might come
+					pre-installed.<h:p/>
 				</note>
 				<aactivity>
-					<TSS>The evaluator shall check the TSS to determine if the platform comes with 
-						pre-installed Administrator credentials. 
+					<TSS>The evaluator shall check the TSS to determine whether the platform comes  
+						pre-installed with default Administrator credentials, or does not require credentials for
+						initial Administrator access.
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the AGD to ensure that it describes the process for generating
-						or installing new Administrator credentials on first access.
+						The evaluator shall examine the AGD to ensure that it describes the process for 
+						replacing or specifying Administrator credentials on first use.
 					</Guidance>
 					<Tests>
-						If the platform uses any default Administrator credentials the evaluator shall run the following tests.
+						If the platform uses default Administrator credentials or no Administrator credentials 
+						on first use the evaluator shall run the following tests:
 						<testlist>
 							<test>
 								The evaluator shall reset the platform to factory state and restart the  
-								platform to verify that only the minimal functionality required to set new
-								credentials is available.
+								platform to verify that only the functionality required to set new Administrator
+								credentials is available immediately after Administrator login.
 							</test>
 							<test>
 								The evaluator shall log in to the platform as Administrator using the default credentials,
-								establish new credentials, and verify that the original default credentials no longer provide 
-								Administrative access to the platform.
+								establish new credentials, and verify that the original default credentials no longer
+								provide Administrative access to the platform.
 							</test>
 						</testlist>
 					</Tests>
