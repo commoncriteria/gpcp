@@ -8797,8 +8797,8 @@
 				significant differences in the services they provide to the Product--or in the way the platforms
 				provide those services--with respect to PP-specified security functionality.</h:li>
 		</h:ol>
-		Even though a GPCP is itself a platform, both aspects of equivalence still apply. They are handled differently, however, 
-		as documented in the following sections. 
+		But since the GPCP is itself a platform, these aspects of equivalence are effectively merged into the single 
+		aspect of Product Equivalence as documented below. 
 		<h:p/>
 		The equivalency determination is made in accordance with these guidelines by the Validator and Scheme using information
         provided by the Evaluator/Vendor.
@@ -8822,9 +8822,6 @@
       product needs re-evaluation--the Evaluator/Vendor and Validator should use the factors and guidelines for Product
       Version equivalence to determine whether Product Versions are equivalent.
       <h:p/>
-      Having determined the set of Product Models and Versions to be evaluated, the next step is to determine the set of
-      Platforms that the Products must be tested on.
-      <h:p/>
       Each non-equivalent Product for which compliance is claimed must be fully tested.
       <h:p/>
       <h:b><h:i>“Differences in PP-Specified Security Functionality” Defined</h:i></h:b>
@@ -8833,14 +8830,13 @@
       between versions or product models break equivalence for that functionality. Likewise, the TOE invokes 
 	  PP-specified security functionality differently in different versions or models of the TOE, then 
 	  equivalence is broken for that functionality.
-	  
-	  
-	  
-	  
-	  
     </section>
 	
     <section id="s-modelequiv" title="Specific Guidance for Determining Product Model Equivalence">
+      Product Model equivalence attempts to determine whether different feature levels of the same product across
+      a product line are equivalent for purposes of PP testing. For example, if a product has a “basic” edition and an “enterprise”
+      edition, is it necessary to test both models? Or does testing one model provide sufficient confidence that both models
+      are compliant?
 	
 		Factors:
 		<h:ol>
@@ -8853,11 +8849,6 @@
 			<h:li>Firmware versions: If same, equiv. If not same, show differences matter or don't</h:li>
 		</h:ol>
 	
-	
-      Product Model equivalence attempts to determine whether different feature levels of the same product across
-      a product line are equivalent for purposes of PP testing. For example, if a product has a “basic” edition and an “enterprise”
-      edition, is it necessary to test both models? Or does testing one model provide sufficient confidence that both models
-      are compliant?
       <h:p/>
       <xref to="equiv-prod-model"/>, below, lists the factors for determining Product Model equivalence.
       <h:p/>
@@ -8867,6 +8858,12 @@
           <h:td valign="top">Factor</h:td>
           <h:td valign="top">Same/Different</h:td>
           <h:td valign="top">Guidance</h:td>
+        </h:tr>
+        <h:tr>
+          <h:td rowspan="2" valign="top">Product Class</h:td>
+          <h:td valign="top">Same</h:td>
+          <h:td valign="top">Products must be of the same class to be equivalent. Servers, EUDs, and IoT devices are not equivalent.
+			</h:td>
         </h:tr>
         <h:tr>
           <h:td rowspan="2" valign="top">PP-Specified Functionality</h:td>
