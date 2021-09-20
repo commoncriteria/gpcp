@@ -8767,85 +8767,68 @@
 	
     <section id="s-vm-intro" title="Introduction">
         The purpose of equivalence in PP-based evaluations is to find a balance between evaluation rigor and commercial
-        practicability--to ensure that evaluations meet customer expectations while recognizing that there is little to be gained
-        from requiring that every variation of a product. If a product is found to be compliant with
-        a PP, then all equivalent products are also considered to be compliant with the PP.
+	    practicability--to ensure that evaluations meet customer expectations while recognizing that there is little 
+	    to be gained from requiring that every variation in a product or platform be fully tested. If a product is 
+	    found to be compliant with a PP on one platform, then all equivalent products on equivalent platforms are also
+	    considered to be compliant with the PP.
         <h:p/>
         A Vendor can make a claim of equivalence if the Vendor believes that a particular instance of their Product implements
-        PP-specified security functionality in a way equivalent to the implementation of the same functionality on another
-        instance of their Product on which the functionality was tested. The Product instances can differ in version number or
-        feature level (model). Equivalence can be used to reduce the testing
-        required across claimed evaluated configurations. It can also be used during Assurance Maintenance to reduce testing
-        needed to add more evaluated configurations to a certification.
+	    PP-specified security functionality in a way equivalent to the implementation of the same functionality on another 
+	    instance of their Product on which the functionality was tested. The Product instances can differ in version number 
+	    or feature level (model). Equivalence can be used to reduce the testing required across claimed evaluated configurations.
+	    It can also be used during Assurance Maintenance to reduce testing needed to add more evaluated configurations to a
+	    certification.
 		<h:p/>
 		These equivalency guidelines do not replace Assurance Maintenance requirements or NIAP Policy #5 requirements for CAVP
         certificates. Nor may equivalence be used to leverage evaluations with expired certifications.
 		<h:p/>
-		This document provides guidance for determining whether Products are equivalent for purposes of
-            evaluation against the Protection Profile for General-Purpose Computing Platforms (GPCP).
+		This Appendix provides guidance for determining whether Products are equivalent for purposes of evaluation against 
+	    the Protection Profile for General-Purpose Computing Platforms (GPCP). This guidance differs from that provided in other
+	    PPs in that a GPCP is itself a Platform, and thus the distinction between Product and Platform is somewhat blurred.
+	    This equivalency analysis is adjusted to reflect this.
 		<h:p/>
-		Since a GPCP is itself a platform, equivalence analysis has only two aspects:
+		For a GPCP, equivalence has two aspects:
 		<h:br />
 		<h:ol>
-			<h:li><h:b><h:i>Product Equivalence:</h:i></h:b> Products may be considered equivalent if there are no
-				differences between Product Models (or Versions) with respect to PP-specified security functionality.</h:li>
-			<h:li><h:b><h:i>Technical Equivalence:</h:i></h:b> Platforms may be considered equivalent if there are no
-				significant differences in the way they implement PP-specified security functionality services they provide to tenant software the Product--or in the way the platforms
-				provide those services--with respect to PP-specified security functionality.</h:li>
+			<h:li><h:b><h:i>Product Equivalence:</h:i></h:b> To be considered for Equivalence, GPCPs must be produced 
+				by the same vendor and support the same tenant software.</h:li>
+			<h:li><h:b><h:i>Technical Equivalence:</h:i></h:b> GPCPs may be considered equivalent if there are no 
+				differences between them with respect to their implementations of PP-specified security 
+				functionality.</h:li>
 		</h:ol>
-		But since the GPCP is itself a platform, these aspects of equivalence are effectively merged into the single 
-		aspect of Product Equivalence as documented below. 
 		<h:p/>
 		The equivalency determination is made in accordance with these guidelines by the Validator and Scheme using information
         provided by the Evaluator/Vendor.
     </section>
 	
     <section id="s-approach" title="Approach to Equivalency Analysis">
-      There are two scenarios for performing equivalence analysis. One is when a product has been certified and the vendor
-      wants to show that a later product should be considered certified due to equivalence with the earlier product. The
-      other is when multiple product variants are going though evaluation together and the vendor would like to reduce
-      the amount of testing that must be done. The basic rules for determining equivalence are the same in both cases.
-      But there is one additional consideration that applies to equivalence with previously certified products. That is,
-      the product with which equivalence is being claimed must have a valid certification in accordance with scheme rules
-      and the Assurance Maintenance process must be followed. If a product’s certification has expired, then equivalence
-      cannot be claimed with that product.
+      There are two scenarios for performing equivalency analysis. One is when a product has been certified and the vendor
+	    wants to show that a later product should be considered certified due to equivalence with the earlier product. 
+	    The other is when multiple product variants are going though evaluation together and the vendor would like to reduce
+	    the amount of testing that must be done. The basic rules for determining equivalence are the same in both cases. But
+	    there is one additional consideration that applies to equivalence with previously certified products. That is, the
+	    product with which equivalence is being claimed must have a valid certification in accordance with scheme rules and
+	    the Assurance Maintenance process must be followed. If a product’s certification has expired, then equivalence cannot
+	    be claimed with that product.
       <h:p/>
-      When performing equivalence analysis, the Evaluator/Vendor should first use the factors and guidelines for Product
-      Model equivalence to determine the set of Product Models to be evaluated. In general, Product Models that do not differ
-      in PP-specified security functionality are considered equivalent.
-      <h:p/>
-      If multiple revision levels of Product Models are to be evaluated--or to determine whether a revision of an evaluated
-      product needs re-evaluation--the Evaluator/Vendor and Validator should use the factors and guidelines for Product
-      Version equivalence to determine whether Product Versions are equivalent.
+    	 When performing equivalency analysis for a GPCP, the Evaluator/Vendor should first use the factors and guidelines for 
+	    Product Equivalence to determine the set of Products to be further considered.
       <h:p/>
       Each non-equivalent Product for which compliance is claimed must be fully tested.
       <h:p/>
       <h:b><h:i>“Differences in PP-Specified Security Functionality” Defined</h:i></h:b>
       <h:br />
-      PP-specified security functionality implemented by the TOE that differs in actual implementation
-      between versions or product models break equivalence for that functionality. Likewise, the TOE invokes 
-	  PP-specified security functionality differently in different versions or models of the TOE, then 
-	  equivalence is broken for that functionality.
+     PP-specified security functionality implemented by the TOE that differs in actual implementation between versions or product
+	    models break equivalence for that functionality. Likewise, the TOE invokes PP-specified security functionality
+	    differently in different versions or models of the TOE, then equivalence is broken for that functionality.
     </section>
 	
-    <section id="s-modelequiv" title="Specific Guidance for Determining Product Model Equivalence">
-      Product Model equivalence attempts to determine whether different feature levels of the same product across
-      a product line are equivalent for purposes of PP testing. For example, if a product has a “basic” edition and an “enterprise”
-      edition, is it necessary to test both models? Or does testing one model provide sufficient confidence that both models
-      are compliant?
-	
-		Factors:
-		<h:ol>
-			<h:li>Different main processor vendors not equivalent. Intel v. AMD ?? </h:li>
-			<h:li>Different processor/chipset architectures are not equivalent. ARM ne x86 ne PowerPC. </h:li>
-
-			<h:li>Firmware versions: If same, equiv. If not same, show differences matter or don't</h:li>
-		</h:ol>
-	
+    <section id="s-modelequiv" title="Specific Guidance for Determining Product Equivalence">
+      Product Equivalence attempts to determine whether different feature levels or versions of the same product are equivalent 
+	    for purposes of PP testing. For example, if a product has a “basic” edition and an “enterprise” edition, is it necessary
+	    to test both models? Or does testing one model provide sufficient confidence that both models are compliant?
       <h:p/>
-      <xref to="equiv-prod-model"/>, below, lists the factors for determining Product Model equivalence.
-      <h:p/>
-      <h:b><ctr ctr-type="Table" pre="Table " id="equiv-prod-model">: Factors for Determining Product Model Equivalence</ctr></h:b><h:br/>
+      <h:b><ctr ctr-type="Table" pre="Table " id="equiv-prod-model">: Factors for Determining Product Equivalence</ctr></h:b><h:br/>
       <h:table border="1">
         <h:tr class="header" bgcolor="#cccccc">
           <h:td valign="top">Factor</h:td>
@@ -8861,16 +8844,6 @@
           <h:td valign="top">Product Vendors</h:td>
           <h:td valign="top">Different</h:td>
           <h:td valign="top">Products manufactured by different vendors are not equivalent.</h:td>
-        </h:tr>
-        <h:tr>
-          <h:td valign="top">Processor Vendors</h:td>
-          <h:td valign="top">Different</h:td>
-          <h:td valign="top">Products with main processors manufactured by different vendors are not equivalent.</h:td>
-        </h:tr>
-        <h:tr>
-          <h:td valign="top">Processor/Chipset Architecture</h:td>
-          <h:td valign="top">Different</h:td>
-          <h:td valign="top">Products with different main processor and chipset architectures are not equivalent.</h:td>
         </h:tr>
         <h:tr>
           <h:td rowspan="2" valign="top">PP-Specified Functionality</h:td>
@@ -8893,102 +8866,67 @@
     </section>
 
 	    
-    <section id="s-platformequiv" title="Specific Guidance for Determining Platform Equivalence">
-	
-		Generally, Platform Equivalence is used to determine the platforms that a product must be tested on. But in this case
-		the platform is the TOE.
-		
-      <h:p/>
-      <section id="ss-hardware-equiv" title="Hardware Platform Equivalence">
+      <section id="ss-hardware-equiv" title="Technical Equivalence">
         Platform equivalence is based primarily on processor architecture and instruction sets.
         <h:p/>
-        Platforms with different processor architectures and instruction sets are not equivalent. This is probably
-          not an issue because there is likely to be a different product model for different hardware environments.
+        Technical equivalence is based primarily on processor architecture, instruction sets, and firmware versions. It is determined
+	      on a per-SFR basis.
         <h:p/>
-        Equivalency analysis becomes important when comparing platforms with the same processor architecture. Processors
-          with the same architecture that have instruction sets that are subsets or supersets of each other are not disqualified
-          from being equivalent for purposes of a VPP evaluation. If the VS takes the same code paths when executing PP-specified
-          security functionality on different processors of the same family, then the processors can be considered equivalent with
-          respect to that application.
+        Platforms with different processor architectures and instruction sets are not equivalent. Processors with the same
+	      architecture that have instruction sets that are subsets or supersets of each other are not disqualified from
+	      being equivalent. If PP-specified security functionality takes the same code paths when executing on different 
+	      processors of the same family, then the processors can be considered equivalent with respect to that functionality.
         <h:p/>
-        For example, if a VS follows one code path on platforms that support the AES-NI instruction and another on platforms that do
-          not, then those two platforms are not equivalent with respect to that VS functionality. But if the VS follows the same code
-          path whether or not the platform supports AES-NI, then the platforms are equivalent with respect to that functionality.
+        For example, if for some PP-specified security functionality, one code path is followed on platforms that support the
+	      AES-NI instruction and another on platforms that do not, then those two platforms are not equivalent with respect
+	      to that functionality. But if the same path is followed whether or not the platform supports AES-NI, then the
+	      platforms are equivalent with respect to that functionality.
         <h:p/>
-        The platforms are equivalent with respect to the VS if the platforms are equivalent with respect to all PP-specified
-        security functionality.<h:p/>
-	      
-        <h:b><ctr ctr-type="Table" pre="Table " id="equiv-hw-platform">: Factors for Determining Hardware Platform Equivalence</ctr></h:b><h:br/>
+	      Platforms that run the same versions of the same firmware are considered equivalent with respect to any PP-specified 
+	      security functionality implemented by that firmware. If firmware versions are different, then more in-depth analysis 
+	      is required to determine whether the security functionality is implemented equivalently. 
+	<h:p/>
+        The platforms are equivalent if they are equivalent with respect to all PP-specified security functionality.<h:p/>
+	      <h:b><ctr ctr-type="Table" pre="Table " id="equiv-hw-platform">: Factors for Determining Technical Equivalence</ctr></h:b><h:br/>
         <h:table border="1">
           <h:tr class="header" bgcolor="#cccccc">
             <h:td valign="top">Factor</h:td>
             <h:td valign="top">Same/Different/None</h:td>
             <h:td valign="top">Guidance</h:td>
           </h:tr>
-          <h:tr valign="top">
-            <h:td valign="top">Platform Architectures</h:td>
-            <h:td valign="top">Different</h:td>
-            <h:td valign="top">Hardware platforms that implement different processor architectures and instruction sets are not 
-		    equivalent.</h:td>
-          </h:tr>
+        <h:tr>
+          <h:td valign="top">Processor Vendors</h:td>
+          <h:td valign="top">Different</h:td>
+          <h:td valign="top">Functionality implemented through processors manufactured by different vendors is not equivalent.</h:td>
+        </h:tr>
+        <h:tr>
+          <h:td valign="top">Processor/Chipset Architecture</h:td>
+          <h:td valign="top">Different</h:td>
+          <h:td valign="top">Functionality implemented through processors with different processor and chipset architectures are not equivalent.</h:td>
+        </h:tr>
+        <h:tr>
+          <h:td valign="top">Firmware Versions</h:td>
+          <h:td valign="top">Same</h:td>
+          <h:td valign="top">Functionality implemented through equivalent processors by the same version of firmware is considered equivalent.</h:td>
+        </h:tr>
           <h:tr>
             <h:td valign="top">PP-Specified Functionality</h:td>
             <h:td valign="top">Same</h:td>
-            <h:td valign="top">For platforms with the same processor architecture, the platforms are equivalent with
-              respect to the application if execution of all PP-specified security functionality follows the same code path on
-                both platforms.</h:td>
+            <h:td valign="top">For PP-specified security functionality implemented through equivalent processors and different 
+		    firmware versions, the platforms are equivalent with respect to the functionality if execution of the
+		    functionality follows the same code paths on both platforms.</h:td>
+          </h:tr>
+          <h:tr>
+            <h:td valign="top">PP-Specified Functionality</h:td>
+            <h:td valign="top">Different</h:td>
+            <h:td valign="top">For PP-specified security functionality implemented through equivalent processors and different
+		    firmware versions, the platforms are not equivalent with respect to the functionality if execution of the
+		    functionality follows different code paths on both platforms.</h:td>
           </h:tr>
         </h:table>
         <h:p/>
       </section>
 	    
-      <section id="ss-os-equiv" title="Software Platform Equivalence">
-        If the Product installs onto or integrates with an operating system that is not installed with the product--and thus
-          is not part of the TOE--then the Product must be tested on all non-equivalent Software Platforms.
-        <h:p/>
-        The guidance for Product Model (Section 3) specifies that Products intended for use on substantially different operating
-          systems (e.g., Windows vs. Linux vs. SunOS) are different Models. Therefore, platforms running substantially different
-          operating systems are not equivalent. Likewise, operating systems with different major version numbers are not
-          equivalent for purposes of this PP.
-        <h:p/>
-          As a result, Software Platform equivalence is largely concerned with revisions and variations of operating systems that
-          are substantially the same (e.g., different versions and revision levels of Windows or Linux).<h:br/><h:br/>
-	
-	      <h:b><ctr ctr-type="Table" pre="Table " id="equiv-sw-platform">: Factors for Determining Software Platform Equivalence</ctr></h:b><h:br/>
-	      <h:table border="1">
-          <h:tr class="header" bgcolor="#cccccc">
-            <h:td valign="top">Factor</h:td>
-            <h:td valign="top">Same/Different/None</h:td>
-            <h:td valign="top">Guidance</h:td>
-          </h:tr>
-          <h:tr valign="top">
-            <h:td valign="top">Platform Type/Vendor</h:td>
-            <h:td valign="top">Different</h:td>
-            <h:td valign="top">Operating systems that are substantially different or come from different vendors are not equivalent.</h:td>
-          </h:tr>
-          <h:tr valign="top">
-            <h:td valign="top">Platform Versions</h:td>
-            <h:td valign="top">Different</h:td>
-            <h:td valign="top">Operating systems are not equivalent if they have different major version numbers.</h:td>
-          </h:tr>
-         <h:tr>
-          <h:td rowspan="2" valign="top">PP-Specified Functionality</h:td>
-          <h:td valign="top">Same</h:td>
-          <h:td valign="top">If the differences between software platform models or versions affect only
-              non-PP-specified functionality, then the software platforms are equivalent. </h:td>
-        </h:tr>
-        <h:tr>
-          <h:td valign="top">Different</h:td>
-          <h:td valign="top">If PP-specified security functionality is affected by the differences between software platform
-              versions or models, then the software platforms are not considered equivalent and must be tested separately. It is
-              necessary only to test the functionality affected by the changes. If only the differences are tested, then for each
-              difference the Vendor must provide an explanation of why the difference does or does not affect PP-specified
-              functionality. If the Products are fully tested on each platform, then there is no need to document the differences. </h:td>
-        </h:tr>
-        </h:table>
-        <h:p/>
-    </section>
-  </section>
 	    
     <section id="s-specificity" title="Level of Specificity for Tested and Claimed Equivalent Configurations">
       In order to make equivalency determinations, the vendor and evaluator must agree on the equivalency claims. They must
