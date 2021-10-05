@@ -1510,21 +1510,28 @@
 		<f-component id="sfr-fcs-ckm-1-sk" cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
 			<depends on-sel="sel-ckm-kek-sk"/> <!-- from FCS_CKM.1/KEK -->
 			<f-element id="fcs-ckm-1e1-sk">
-				<title>The TSF shall generate <h:b>symmetric</h:b> cryptographic keys using the methods defined by 
-					the following rows in <xref to="fcs-ckm-1-sk-sels"/>:
+				<title>The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with a specified 
+				cryptographic key generation algorithm <assignable>cryptographic key generation algorithm</assignable>
+				and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> 
+				that meet the following: <assignable>list of standards</assignable>. <h:p/>
+				The rows of <xref to="fcs-ckm-1-sk-sels"/> provide the allowable values for completion of the 
+				assignments for FCS_CKM.1.1/SK.<h:p/>
+				
+<!--				The TSF shall generate <h:b>symmetric</h:b> cryptographic keys using the methods defined by 
+					the following rows in <xref to="fcs-ckm-1-sk-sels"/>:  -->
 					<!-- [selection: identifier from Supported Methods for Symmetric Encryption Key Generation table] -->
-					<selectables>
+<!--					<selectables>
 						<selectable id="sel-fcs-ckm-sk-rsk">RSK</selectable>
 						<selectable id="sel-fcs-ckm-sk-dsk">DSK</selectable>
 						<selectable id="sel-fcs-ckm-sk-pbk">PBK</selectable>
-					</selectables>.<h:p/>
+					</selectables>.<h:p/>  -->
 					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-sk-sels">: Supported Methods for Symmetric Key Generation</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Key Type</h:td>
 							<h:td>Cryptographic Key Generation Algorithm</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-ckm-sk-rsk"/>
-							<h:td>RSK</h:td>
+						<h:tr> <!--<depends on-sel="sel-fcs-ckm-sk-rsk"/> -->
+						<h:td>RSK</h:td>
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>submask</selectable>
@@ -1538,7 +1545,7 @@
 						<h:td>NIST SP 800-133 (Section 7.1) with ISO 18031 as an approved RBG in addition
 							to those in NIST SP 800-133 (Section 5).</h:td></h:tr>
 							
-						<h:tr><depends on-sel="sel-fcs-ckm-sk-dsk"/>
+						<h:tr><!--<depends on-sel="sel-fcs-ckm-sk-dsk"/>-->
 							<h:td>DSK <assignable>Identifier from Table 16: Key Derivation Functions</assignable></h:td>
 						<h:td><assignable>Key Type from Table 16: Key Derivation Functions</assignable></h:td>
 						<h:td>Derived from a Key Derivation Function as specified in FCS_CKM_EXT.5 
@@ -1546,7 +1553,7 @@
 						<h:td><assignable>Key sizes from Table 16: Key Derivation Functions</assignable></h:td>
 						<h:td><assignable>List of Standards from Table 16: Key Derivation Functions</assignable></h:td></h:tr>
 						
-						<h:tr><depends on-sel="sel-fcs-ckm-sk-pbk"/>
+						<h:tr><!--<depends on-sel="sel-fcs-ckm-sk-pbk"/>-->
 							<h:td>PBK</h:td>
 						<h:td><selectables>
 							<selectable>submask</selectable>
@@ -2071,7 +2078,14 @@
 			<audit>There are no auditable events foreseen.</audit>
 			<dependencies><h:ul><h:li>FCS_CKM.1 Cryptographic Key Generation</h:li><h:li>FCS_COP.1 Cryptographic Operation</h:li></h:ul></dependencies>
 			<f-element id="fcs-ckm-ext-5e1">
-				<title>The TSF shall generate cryptographic keys using the Key Derivation Functions defined by the following 
+				<title>The TSF shall derive cryptographic keys <assignable>key type</assignable>
+					from <assignable>input parameters</assignable>
+					in accordance with a specified key derivation algorithm	<assignable>key derivation algorithm</assignable>
+					and specified cryptographic key sizes <assignable>list of key sizes</assignable>
+					that meet the following: <assignable>list of standards</assignable>.<h:p/>
+					The rows of <xref to="fcs-ckm-keydrv-sels"/> provide the allowable values for completion of the 
+					assignments for FCS_CKM_EXT.5.1.<h:p/>
+<!-- 					The TSF shall generate cryptographic keys using the Key Derivation Functions defined by the following 
 					rows of <xref to="fcs-ckm-keydrv-sels"/>:
 					<selectables>
 						<selectable id="sel-fcs-ckm-keydrv-1">KeyDrv1</selectable>
@@ -2082,13 +2096,13 @@
 						<selectable id="sel-fcs-ckm-keydrv-6">KeyDrv6</selectable>
 						<selectable id="sel-fcs-ckm-keydrv-7">KeyDrv7</selectable>
 						<selectable id="sel-fcs-ckm-keydrv-8">KeyDrv8</selectable>
-					</selectables>.<h:p/>
+					</selectables>.<h:p/>  -->
 					<h:b><ctr ctr-type='Table' id="fcs-ckm-keydrv-sels">: Key Derivation Functions</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Key Type</h:td><h:td>Input Parameters</h:td>
 						<h:td>Key Derivation Algorithm</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-1"/>
+						<h:tr><!-- <depends on-sel="sel-fcs-ckm-keydrv-1"/>-->
 							<h:td>KeyDrv1</h:td>
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
@@ -2124,7 +2138,7 @@
 								</selectables></h:td>
 						</h:tr>
 		
-						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-2"/>
+						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-2"/>-->
 						<h:td>KeyDrv2</h:td>
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
@@ -2160,7 +2174,7 @@
 								</selectables></h:td>
 						</h:tr>
 		
-						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-3"/>
+						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-3"/>-->
 						<h:td>KeyDrv3</h:td>
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
@@ -2196,7 +2210,7 @@
 								</selectables></h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-4"/>
+						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-4"/>-->
 						<h:td>KeyDrv4</h:td>
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
@@ -2222,7 +2236,7 @@
 							</selectables></h:td>
 						</h:tr>
 		
-						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-5"/>
+						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-5"/>-->
 						<h:td>KeyDrv5</h:td>
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
@@ -2264,7 +2278,7 @@
 								</selectables></h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-6"/>
+						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-6"/>-->
 						<h:td>KeyDrv6</h:td>
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
@@ -2291,7 +2305,7 @@
 							</selectables>bits</h:td>
 						<h:td>[selection: see List of Standards in FCS_COP.1/SKC Symmetric Key table]</h:td></h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-7"/>
+						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-7"/>-->
 						<h:td>KeyDrv7</h:td>
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
@@ -2311,7 +2325,7 @@
 						<h:td>(NIST-KDRV) sec 4<h:p/>
 							<assignable>See List of Standards in FCS_COP.1/Hash and FCS_COP.1/HMAC</assignable></h:td></h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-ckm-keydrv-8"/>
+						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-8"/>-->
 						<h:td>KeyDrv8</h:td>
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
@@ -2616,7 +2630,8 @@
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>
             <f-element id="fcs-cop-1e1-hash">
-                <title>The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified cryptographic algorithm
+                <title>
+				The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified cryptographic algorithm
                     <selectables>
                         <selectable id="sel-cop1-sha1">SHA-1</selectable>
                         <selectable id="sel-cop1-sha256">SHA-256</selectable>
