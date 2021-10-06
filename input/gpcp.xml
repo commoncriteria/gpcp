@@ -1201,10 +1201,10 @@
 				</selectables>.
                 </title>
 				<note role="application">
-					The ST author must select "trusted channel" and include FTP_ITC_EXT.1 in the ST if the TOE offloads
+					The ST author must select "<h:i>trusted channel</h:i>" and include FTP_ITC_EXT.1 in the ST if the TOE offloads
 					audit data to external IT entity over a network connection. Protocols used for implementing the trusted
 					channel must be selected in FTP_ITC_EXT.1. <h:p/>
-					The ST author must select "removeable media" if the TOE supports offload of audit data using 
+					The ST author must select "<h:i>removeable media</h:i>" if the TOE supports offload of audit data using 
 					removeable media such as thumb drives or disks.
 				</note>
                 <aactivity level="element">
@@ -1343,8 +1343,7 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					This SFR must be included in the ST if "Asymmetric KEKs..." is selected in FCS_CKM.1/KEK.<h:p/>
-
+					This SFR must be included in the ST if "<h:i>Asymmetric KEKs...</h:i>" is selected in FCS_CKM.1/KEK.<h:p/>
 					This requirement is included for the purposes of encryption and decryption operations only. To
 					support ITE protected communications requirement for the transfer of encrypted data, this 
 					requirement mandates implementation compliance to FIPS 186-4 only. Implementations
@@ -1560,18 +1559,20 @@
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					
-					This SFR must be included in the ST if "Symmetric KEKs..." is selected in FCS_CKM.1/KEK.<h:p/>
+					This SFR must be included in the ST if "<h:i>Symmetric KEKs...</h:i>" is selected in FCS_CKM.1/KEK.<h:p/>
 					
 					The selection of key size 512 bits is for the case of XTS-AES using AES-256. In the case of XTSAES
 					for both AES-128 and AES-256, the developer is expected to ensure that the full key is
 					generated using direct generation from the RBG as in NIST SP 800-133 section.<h:p/>
+					
 					The ST author selects at least one algorithm from the RSK row if the ST supports creating keys
 					directly from the output of the RBG without further conditioning, at least one algorithm from the
 					DSK row should be selected if the ST supports key derivation functions which are usually seeded
 					from RBG and then further conditioned to the appropriate key size, and at least one algorithm
 					from the PBK row should be selected if the ST supports keys derived from passwords.<h:p/>
-					If DSK is selected, the selection-based SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
-					If PBK is selected, the selection-based SFR FCS_COP.1/PBKDF must be claimed by the TOE.<h:p/>
+					
+					If "<h:i>DSK</h:i>" is selected, the selection-based SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
+					If "<h:i>PBK</h:i>" is selected, the selection-based SFR FCS_COP.1/PBKDF must be claimed by the TOE.<h:p/>
 					This requirement must be claimed by the TOE if at least one of FCS_CKM.1 or FCS_CKM.1/KEK
 					chooses a selection related to generation of symmetric keys.<h:p/>
 				</note>
@@ -1632,11 +1633,11 @@
 					PP-specified security functionality.<h:p/> 
 					KEKs protect KEKs and Symmetric Keys (SKs). DSCs should use key strengths commensurate
 					with protecting the chosen symmetric encryption key strengths.<h:p/>
-					If Asymmetric KEKs generated in accordance with FCS_CKM.1/AK is selected, the selection-based
+					If "<h:i>Asymmetric KEKs generated in accordance with FCS_CKM.1/AK</h:i>" is selected, the selection-based
 					SFR FCS_CKM.1/AK must be claimed by the TOE.<h:p/>
-					If Symmetric KEKs generated in accordance with FCS_CKM.1/SK is selected, the selection-based
+					If "<h:i>Symmetric KEKs generated in accordance with FCS_CKM.1/SK</h:i>" is selected, the selection-based
 					SFR FCS_CKM.1/SK must be claimed by the TOE.<h:p/>
-					If Derived KEKs generated in accordance with FCS_CKM_EXT.5 is selected, the selection-based
+					If "<h:i>Derived KEKs generated in accordance with FCS_CKM_EXT.5</h:i>" is selected, the selection-based
 					SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
 				</note>
 				<aactivity>
@@ -1829,8 +1830,8 @@
 					keying material (whether in plaintext or encrypted form). This SFR does not apply to the public
 					component of asymmetric key pairs, or to keys that are permitted to remain stored such as device
 					identification keys.<h:p/>
-					In the case of volatile memory, the selection “removal of all references to the key directly followed
-					by a request for garbage collection” is used in a situation where the TSF cannot address the
+					In the case of volatile memory, the selection “<h:i>removal of all references to the key directly followed
+					by a request for garbage collection</h:i>” is used in a situation where the TSF cannot address the
 					specific physical memory locations holding the data to be erased and therefore relies on
 					addressing logical addresses (which frees the relevant physical addresses holding the old data)
 					and then requesting the platform to ensure that the data in the physical addresses is no longer
@@ -2338,14 +2339,14 @@
 				<note role="application">
 					This SFR must be included in the ST if key derivation is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					This SFR must be included in the ST if "Derived KEKs..." is selected in FCS_CKM.1/KEK, or if
-					"XOR" is selected in FCS_COP.1/KeyEnc.<h:p/>
+					This SFR must be included in the ST if "<h:i>Derived KEKs...</h:i>" is selected in FCS_CKM.1/KEK, or if
+					"<h:i>XOR</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/>
 					Note that Camellia algorithms do not support 192-bit key sizes.<h:p/>
 					The interface referenced in the requirement could take different forms, the most likely of which is
 					an application programming interface to an OS kernel. There may be various levels of abstraction.
 					For Authorization Factor Submasks, the key size to be used in the HMAC falls into a range between
 					L1 and L2 defined in ISO/IEC 10118 for the appropriate hash function (for example for SHA-256
-					L1 = 512, L2 =256) where L2 = k = L1.<h:p/>
+					L1 = 512, L2 = 256) where L2 = k = L1.<h:p/>
 					General note: in order to use a NIST SP 800-108 conformant method of key derivation, the TOE
 					is permitted to implement this with keys as derived as indicated in Key Derivation Functions table
 					above, and with the algorithms as indicated in the same table.<h:p/>
@@ -2363,7 +2364,8 @@
 					meets the requirements to ensure the keys are adequately protected. This documentation should
 					include an essay and diagrams. This documentation is not required to be part of the TSS; it can be
 					submitted as a separate document and marked as developer proprietary.<h:p/>
-					SP 800-56C specifies a two-step key derivation procedure that employs an extraction-thenexpansion technique for deriving keying material from a shared secret generated during a key
+					SP 800-56C specifies a two-step key derivation procedure that employs an extraction-then 
+					expansion technique for deriving keying material from a shared secret generated during a key
 					establishment scheme. The Randomness Extraction step as described in Section 5 of SP 800-56C
 					is followed by Key Expansion using the key derivation functions defined in SP 800-108.<h:p/>
 					This requirement must be claimed by the TOE if at least one of FCS_CKM.1/KEK,
@@ -2641,7 +2643,7 @@
                 <note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-			    	Specifically, this SFR must be included if "hash value of the public key" is selected in 
+			    	Specifically, this SFR must be included if "<h:i>hash value of the public key</h:i>" is selected in 
 					FPT_TUD_EXT.2, or if FCS_COP.1/KeyedHash is included in the ST.<h:p/>			    
 					The hash selection should be consistent with the overall strength of the algorithm used for
 					signature generation. For example, the ST Author should choose SHA-256 for 2048-bit RSA or ECC 
@@ -2973,7 +2975,7 @@
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
 					functionality.<h:p/> 
-					Specifically, this SFR must be included if "AE1" is selected in FCS_COP.1/KeyEnc.<h:p/>
+					Specifically, this SFR must be included if "<h:i>AE1</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/>
 					The selections in this SFR should be consistent with the algorithms selected in FCS_CKM.2.	
 				</note>
 				<aactivity>
@@ -3206,12 +3208,12 @@
 				<note role="application">
 					This SFR must be included in the ST if key encryption is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					Specifically, this SFR must be included in the ST if "software-based" is selected in FCS_STG_EXT.1.<h:p/>
+					Specifically, this SFR must be included in the ST if "<h:i>software-based</h:i>" is selected in FCS_STG_EXT.1.<h:p/>
 					A TOE will use this requirement to specify how the Key Encryption Key (KEK) wraps a
 					symmetric encryption key. A TOE will always need this requirement in order to capture the last
 					stage of the key chain in which the Key Encryption Key (KEK) wraps the symmetric encryption
 					key.<h:p/>
-					If XOR is selected, the selection-based SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
+					If "<h:i>XOR</h:i>" is selected, the selection-based SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
 				</note>
 				<aactivity>
 					<TSS>
@@ -3493,8 +3495,8 @@
 					This SFR must be included in the ST if digital signature generation is a service provided by the TOE to 
 					tenant software, or if digital signature generation is used by the TOE itself to support or implement 
 					PP-specified security functionality.<h:p/> 
-					Specifically, this SFR must be included if "A digital signature of the stored key in accordance with FCS_COP.1/SigGen
-					using an asymmetric key that is protected in accordance with FCS_STG_EXT.2" is selected in FCS_STG_EXT.3.
+					Specifically, this SFR must be included if "<h:i>A digital signature of the stored key in accordance with FCS_COP.1/SigGen
+					using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</h:i>" is selected in FCS_STG_EXT.3.
 				</note>
 				<aactivity>
 					<TSS>
@@ -3707,13 +3709,12 @@
 					This SFR must be included in the ST if digital signature verification is a service provided by 
 					the TOE to tenant software, or if digital signature verification is used by the TOE itself to 
 					support or implement PP-specified security functionality.<h:p/> 
-					Specifically, this SFR must be included if the ST author chooses "implement an authenticated platform
-					firmware update mechanism as described in FPT_TUD_EXT.2" or "implement a delayed-authentication platform
-					firmware update mechanism as described in FPT_TUD_EXT.3."
-					in FPT_TUD_EXT.1; or if the ST author selects "verification of a digital signature by trusted code/data"
-					in FPT_ROT_EXT.2.<h:p/>				
+					Specifically, this SFR must be included if the ST author chooses "<h:i>implement an authenticated platform
+					firmware update mechanism as described in FPT_TUD_EXT.2</h:i>" or "<h:i>implement a delayed-authentication platform
+					firmware update mechanism as described in FPT_TUD_EXT.3</h:i>" in FPT_TUD_EXT.1; or if the ST author 
+					selects "<h:i>verification of a digital signature by trusted code/data</h:i>" in FPT_ROT_EXT.2.<h:p/>				
 					The ST author should choose the algorithm implemented to perform vertification of digital signatures. 
-					if more than one algorithm is available, this requirement should be iterated to specify the functionality. 
+					If more than one algorithm is available, this requirement should be iterated to specify the functionality. 
 					For the algorithm chosen, the ST author should make the appropriate assignments/selections to specify the 
 					parameters that are implemented for that algorithm. In particular, if ECDSA is selected as one of the signature
 					algorithms, the key size specified must match the selection for the curve used in the algorithm.<h:p/>
@@ -4018,10 +4019,10 @@
 					functionality.<h:p/> 
 					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1, or includes any of the
 					following selections: <h:ul>
-						<h:li>"CTR_DRBG (AES)" in FCS_RBG_EXT.1</h:li>
-						<h:li>"SE1" in FCS_COP.1/KeyEnc</h:li>
-						<h:li>"ECIES" in FCS_COP.1/KAT</h:li>
-						<h:li>"AES-*" in FCS_STG_EXT.3</h:li>
+						<h:li>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG_EXT.1</h:li>
+						<h:li>"<h:i>SE1</h:i>" in FCS_COP.1/KeyEnc</h:li>
+						<h:li>"<h:i>ECIES</h:i>" in FCS_COP.1/KAT</h:li>
+						<h:li>"<h:i>AES-*</h:i>" in FCS_STG_EXT.3</h:li>
 					</h:ul>
 				</note>
 				<aactivity>
@@ -4557,8 +4558,8 @@
                 <title>The TSF shall implement the HTTPS protocol that complies with RFC 2818.
                 </title>
                 <note role="application">
-					This SFR is included in the ST if the ST Author selects "TLS/HTTPS" in 
-					FTP_ITC_EXT.1.1 or if "HTTPS" is selected in FIA_X509_EXT.2.<h:p/>
+					This SFR is included in the ST if the ST Author selects "<h:i>TLS/HTTPS</h:i>" in 
+					FTP_ITC_EXT.1.1 or if "<h:i>HTTPS</h:i>" is selected in FIA_X509_EXT.2.<h:p/>
 					If this SFR is included in the ST, then the <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">
 					<h:i>Functional Package for Transport Layer Security</h:i></h:a> must also be included.<h:p/>
 					The ST author must provide enough detail to determine how the implementation is 
@@ -4623,7 +4624,7 @@
                 <title>The TSF shall implement the IPsec architecture as specified in RFC 4301.
                 </title>
                 <note role="application">
-					This SFR is included in the ST if the ST Author selected "IPsec" in FTP_ITC_EXT.1.1.<h:p/>
+					This SFR is included in the ST if the ST Author selected "<h:i>IPsec</h:i>" in FTP_ITC_EXT.1.1.<h:p/>
 					RFC 4301 calls for an IPsec implementation to protect IP traffic through the use
 					of a Security Policy Database (SPD). The SPD is used to define how IP packets are
 					to be handled: PROTECT the packet (e.g., encrypt the packet), BYPASS the IPsec
@@ -5143,7 +5144,7 @@
 					that the TSS will elaborate on the way in which these algorithms are to be used 
 					(for example, 2409 specifies three authentication methods using public keys;
 					each one supported will be described in the TSS).<h:p/>
-					If “pre-shared keys” is selected, the selection-based requirement FIA_PSK_EXT.1
+					If “<h:i>pre-shared keys</h:i>” is selected, the selection-based requirement FIA_PSK_EXT.1
 					must be claimed.
 				</note>
                 <aactivity level="element">
@@ -5559,8 +5560,8 @@
 					This SFR must be claimed if the TOE includes a Dedicated Security Component that provides 
 					storage services, such as a TPM.<h:p/>
 					If the protected storage is implemented in software that is protected as required by
-					FCS_STG_EXT.2, the ST author is expected to select "software-based." If "software-based" is selected,
-					the ST author is expected to select all "software-based key storage" in FCS_STG_EXT.2.<h:p/>
+					FCS_STG_EXT.2, the ST author is expected to select "<h:i>software-based</h:i>." If "<h:i>software-based</h:i>" is selected,
+					the ST author is expected to select all "<h:i>software-based key storage</h:i>" in FCS_STG_EXT.2.<h:p/>
 					Support for protected storage for all symmetric keys and persistent secrets will be required in
 					future revisions.<h:p/>
 				</note>
@@ -5629,10 +5630,10 @@
 					mutable hardware-based or software-based.<h:p/>
 				</TSS>
 				<Guidance>
-						The evaluator shall examine the operational guidance to ensure that it describes the
-						process for generating keys, importing keys, or both, based on what is claimed by
-						the ST. The evaluator shall also examine the operational guidance to ensure that it
-						describes the process for destroying keys that have been imported or generated.<h:p/>
+					The evaluator shall examine the operational guidance to ensure that it describes the
+					process for generating keys, importing keys, or both, based on what is claimed by
+					the ST. The evaluator shall also examine the operational guidance to ensure that it
+					describes the process for destroying keys that have been imported or generated.<h:p/>
 				</Guidance>
 				<KMD>
 					There are no KMD evaluation activities for this component.<h:p/>
@@ -5883,7 +5884,7 @@
 					The TSF shall consider password and [<h:i>no other</h:i>] as critical authentication mechanisms.
 				</title>
 				<note role="application">
-					If no additional authentication mechanisms are selected in FIA_UAU.5.1, then ‘no other’ must 
+					If no additional authentication mechanisms are selected in FIA_UAU.5.1, then "<h:i>no other</h:i>" must 
 					be selected. If an additional authentication mechanism is selected in FIA_UAU.5.1, then it 
 					must only be selected in FIA_AFL_EXT.1.1 if surpassing the authentication failure threshold 
 					for biometric data causes a countermeasure to be triggered regardless of the failure status of
@@ -5911,7 +5912,7 @@
 					in which the input is different from a previous attempt. ‘Unique’ must be selected if
 					the authentication system increments the counter only for unique unsuccessful authentication
 					attempts. For example, if the same incorrect password is attempted twice the authentication 
-					system increments the counter once. ‘Non-unique’ must be selected if the authentication system 
+					system increments the counter once. "<h:i>Non-unique</h:i>" must be selected if the authentication system 
 					increments the counter for each unsuccessful authentication attempt, regardless of if the
 					input is unique. For example, if the same incorrect password is attempted twice the
 					authentication system increments the counter twice.<h:p/>
@@ -6468,9 +6469,9 @@
                         </h:li>
                     </h:ul>
                 </title>
-                <note role="application"> This SFR must be included in the ST if the selection for FPT_TUD_EXT.1.3 is “digital
-					signature mechanism,” if "certificate-based authentication of the remote peer" is
-					selected in FTP_ITC_EXT.1.1, or if "authentication based on X.509 certificates"
+                <note role="application"> This SFR must be included in the ST if the selection for FPT_TUD_EXT.1.3 is “<h:i>digital
+					signature mechanism</h:i>,” if "<h:i>certificate-based authentication of the remote peer</h:i>" is
+					selected in FTP_ITC_EXT.1.1, or if "<h:i>authentication based on X.509 certificates</h:i>"
 					is selected in FIA_UAU.5.1.<h:p/>
                     FIA_X509_EXT.1.1 lists the rules for validating certificates. The ST author shall select whether revocation
 					status is verified using OCSP or CRLs. FIA_X509_EXT.2 requires that certificates are used for IPsec;
@@ -7052,10 +7053,10 @@
 				</note>
 				<aactivity>
 					<TSS>
-						If "disable access through hardware" is selected:<h:br/>
+						If "<h:i>disable access through hardware</h:i>" is selected:<h:br/>
 						The evaluator shall examine the TSS to determine the location of the JTAG ports on the TSF, to
 						include the order of the ports (i.e. Data In, Data Out, Clock, etc.).<h:p/>
-						If "control access by a signing key" is selected:<h:br/>
+						If "<h:i>control access by a signing key</h:i>" is selected:<h:br/>
 						The evaluator shall examine the TSS to determine how access to the JTAG is controlled by a
 						signing key. The evaluator shall examine the TSS to determine when the JTAG can be accessed,
 						i.e. what has the access to the signing key.<h:p/>
@@ -7066,7 +7067,7 @@
 					<Tests>
 						The following test requires the developer to provide access to a test platform that provides 
 						the evaluator with chip level access.<h:p/>
-						If "disable access through hardware" is selected:<h:br/>
+						If "<h:i>disable access through hardware</h:i>" is selected:<h:br/>
 						The evaluator shall connect a packet analyzer to the JTAG ports. The evaluator shall query 
 						the JTAG port for its device ID and confirm that the device ID cannot be retrieved.
 					</Tests>
@@ -7098,24 +7099,24 @@
 					tampering with the TSF's devices or TSF's elements has occurred. 
 				</title>
 				<aactivity>
-				<TSS>
-					The evaluator shall examine the TSS to ensure it describes the methods used by the
-					TOE to detect physical tampering and how the TOE will respond when physical
-					tampering has been detected.<h:p/>
-				</TSS>
-				<Guidance>
-					The evaluator shall ensure that the Guidance describes how the TOE indicates to Users
-					and Administrators that it has detected tampering.  <h:p/>
-				</Guidance>
-				<KMD>
-					There are no KMD evaluation activities for this component.<h:p/>
-				</KMD>
-				<Tests>
-					<h:b>TODO: The evaluator shall verify that attempts to open the TOE enclosure  
-							result in indications consistent with the operational guidance. Such indications 
-							could include damaged tamper seals, logged events, or other physical or 
-							electronic manifestations.</h:b>						
-				</Tests>
+					<TSS>
+						The evaluator shall examine the TSS to ensure it describes the methods used by the
+						TOE to detect physical tampering and how the TOE will respond when physical
+						tampering has been detected.<h:p/>
+					</TSS>
+					<Guidance>
+						The evaluator shall ensure that the Guidance describes how the TOE indicates to Users
+						and Administrators that it has detected tampering.  <h:p/>
+					</Guidance>
+					<KMD>
+						There are no KMD evaluation activities for this component.<h:p/>
+					</KMD>
+					<Tests>
+						The evaluator shall verify that attempts to open the TOE enclosure  
+						result in indications consistent with the operational guidance. Such indications 
+						could include damaged tamper seals, logged events, or other physical or 
+						electronic manifestations.						
+					</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event>
@@ -7166,15 +7167,15 @@
 				<Tests>
 					<testlist>
 						<test>
-							<h:b>TODO: The evaluator shall verify that attempts to open the TOE enclosure  
+							The evaluator shall verify that attempts to open the TOE enclosure  
 							result in indications consistent with the operational guidance. Such indications 
 							could include damaged tamper seals, logged events, or other physical or 
-							electronic manifestations.</h:b>						
+							electronic manifestations.						
 						</test>
 						<test>
-							<h:b>TODO: For each device/element listed in FPT_PHP.2.3, the evaluator shall verify that 
+							For each device/element listed in FPT_PHP.2.3, the evaluator shall verify that 
 							attempts to physically tamper with the device/element results in notification
-							to the designated users or roles consistent with the operational guidance.</h:b>
+							to the designated users or roles consistent with the operational guidance.
 						</test>
 					</testlist>	
 				</Tests>
@@ -7214,9 +7215,9 @@
 				<Tests>
 					<testlist>
 						<test>
-							<h:b>TODO: For each physical tampering scenario and device/element 
+							For each physical tampering scenario and device/element 
 							listed in FPT_PHP.3.1, the evaluator shall verify that tampering attempts
-							shall result in a response from the TSF consistent with the operational guidance.</h:b>						
+							shall result in a response from the TSF consistent with the operational guidance.					
 						</test>
 					</testlist>	
 				</Tests>
@@ -7302,7 +7303,7 @@
 					of subsequently executed platform firmware must be traceable back to this root or to some other root as specified in FPT_ROT_EXT.2.
 					This SFR should be iterated for additional TOE roots (for example, a management controller or firmware executed from 
 					an add-in card).<h:p/>
-					Selection of "a separate management controller..." implies the existance of an Administrator role.
+					Selection of "<h:i>a separate management controller...</h:i>" implies the existance of an Administrator role.
 				</note>
 				<aactivity>
 					<TSS>The evaluator shall verify that the TSS describes the Root of Trust on which initial integrity of platform firmware is anchored, consistent 
@@ -7489,8 +7490,8 @@
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
 					example, by blinking lights, beep codes, screen indications, or local logging.<h:p/>
-					If "administrator" is selected anywhere in FPT_ROT_EXT.3.2, of if "in accordance with administrator-configurable
-					policy" is selected, then all administrator authentication requirements must be included in the ST
+					If "<h:i>administrator</h:i>" is selected anywhere in FPT_ROT_EXT.3.2, of if "<h:i>in accordance with administrator-configurable
+					policy</h:i>" is selected, then all administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 					If "<h:i>generating an audit event</h:i>" is selected then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
 					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
@@ -7530,12 +7531,12 @@
 				<note role="application">
 					This SFR must be included in the ST if:
 					<h:ul>
-						<h:li>"Initiate a Recovery process as specified in FPT_RVR_EXT.1" is selected in FPT_ROT_EXT.2.2,</h:li>
-						<h:li>"Initiate a Recovery process as specified in FPT_RVR_EXT.1" is selected in FPT_TUD_EXT.2.5,</h:li>
+						<h:li>"<h:i>Initiate a Recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected in FPT_ROT_EXT.2.2,</h:li>
+						<h:li>"<h:i>Initiate a Recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected in FPT_TUD_EXT.2.5,</h:li>
 						<h:li>The TOE implements a recovery mechanism for firmware corruption not necessarily related to 
 							integrity or update failure.</h:li>
 					</h:ul>
-					If the ST author selects "the secure local update mechanism described in FPT_TUD_EXT.4" then FPT_TUD_EXT.4
+					If the ST author selects "<h:i>the secure local update mechanism described in FPT_TUD_EXT.4</h:i>" then FPT_TUD_EXT.4
 					must be included in the ST.<h:p/>
 					As indicated above, in addition to integrity or update failure, the TOE may use a recovery 
 					mechanism to deal with non-security-related failures, such as a power outage during update or a 
@@ -7644,20 +7645,20 @@
 					The purpose of the platform firmware update mechanism is to ensure the authenticity and integrity of
 					platform firmware updates. <h:p/>
 					If platform firmware is immutable (not updateable by any non-destructive means) then the ST author must select 
-					"make no provision for platform firmware update."<h:p/>
+					"<h:i>make no provision for platform firmware update</h:i>."<h:p/>
 					If platform firmware is modifiable only through a
-					local update requiring physical presence at the platform, then the ST author must select "implement a secure
-					local update process..." and include FPT_TUD_EXT.4 in the ST.<h:p/>
+					local update requiring physical presence at the platform, then the ST author must select "<h:i>implement a secure
+					local update process...</h:i>" and include FPT_TUD_EXT.4 in the ST.<h:p/>
 					If the platform implements an update mechanism 
 					that does not require physical presence at the platform, and that authenticates firmware updates prior to installing them,
-					then the ST author selects "implement an authenticated platform update mechanism..." and include FPT_TUD_EXT.2 in the ST.<h:p/>
+					then the ST author selects "<h:i>implement an authenticated platform update mechanism...</h:i>" and include FPT_TUD_EXT.2 in the ST.<h:p/>
 					If the platform implements an update mechanism that does not require physical presence at the
 					platform, and that does not authenticate firmware updates prior to installing them,
-					then the ST author selects "implement an unauthenticated platform update mechanism..." and include FPT_TUD_EXT.3 in the ST.
+					then the ST author selects "<h:i>implement an unauthenticated platform update mechanism...</h:i>" and include FPT_TUD_EXT.3 in the ST.
 				</note>
 				<aactivity>
 					<TSS>
-						If the ST author selects "make no provision for platform firmware update," then the 
+						If the ST author selects "<h:i>make no provision for platform firmware update</h:i>," then the 
 						evaluator shall examine the TSS to ensure that it explains all ways of modifying platform 
 						firmware in the absence of any provided mechanism. For example, breaking open the case
 						and prying a chip off the motherboard and then reprogramming the chip. The purpose of this
@@ -7666,11 +7667,11 @@
 						This requirement is met if the platform implements no means for updating platform firmware
 						and the TSS describes a method for updating or replacing platform firmware that involves
 						potentially destroying or damaging the TOE or some of its components.<h:p/>
-						If the ST author selects "implement an authenticated platform firmware update mechanism..." then this requirement is 
+						If the ST author selects "<h:i>implement an authenticated platform firmware update mechanism...</h:i>" then this requirement is 
 						satisfied if FPT_TUD_EXT.2 is satisfied. <h:p/>
-						If the ST author selects "implement an unauthenticated platform firmware update mechanism..." then this requirement is 
+						If the ST author selects "<h:i>implement an unauthenticated platform firmware update mechanism...</h:i>" then this requirement is 
 						satisfied if FPT_TUD_EXT.3 is satisfied. <h:p/>
-						If the ST author selects "implement a secure local platform update mechanism..." then this requirement is 
+						If the ST author selects "<h:i>implement a secure local platform update mechanism...</h:i>" then this requirement is 
 						satisfied if FPT_TUD_EXT.4 is satisfied. <h:p/>
 					</TSS>
 					<Guidance>None.<h:p/></Guidance>
@@ -7704,7 +7705,7 @@
 					</selectables>.
 				</title>
 				<note role="application">
-					The ST must include FCS_COP.1/Hash if "hash value of the public key" is selected.
+					The ST must include FCS_COP.1/Hash if "<h:i>hash value of the public key</h:i>" is selected.
 				</note>
 			</f-element>
 			<f-element id="fpt-tud-ext-2e2">
@@ -7772,13 +7773,13 @@
 					</selectables>.
 				</title>
 				<note role="application">
-					If "administrator" is selected anywhere or if "in accordance with administrator-configurable
-					policy" is selected, then all administrator authentication requirements must be included in the ST
+					If "<h:i>administrator</h:i>" is selected anywhere or if "<h:i>in accordance with administrator-configurable
+					policy</h:i>" is selected, then all administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 					If "<h:i>generating an audit event</h:i>" is selected then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
 					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
 					must be included in the ST.<h:p/>
-					If "Initiate recovery as specified in FPT_RVR_EXT.1" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
+					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					The platform firmware authenticated update mechanism employs digital signatures to ensure the authenticity of the
 					firmware update image. The TSF includes a signature verification algorithm and a key
 					store containing the public key needed to verify the signature on the firmware update image. <h:p/>
@@ -7870,15 +7871,15 @@
 					</selectables>.
 				</title>
 				<note role="application">
-					This requirement must be included in the ST if "implement a delayed-authentication platform firmware
-					update mechanism as described in FPT_TUD_EXT.3" is selected in FPT_TUD_EXT.1.<h:p/>
+					This requirement must be included in the ST if "<h:i>implement a delayed-authentication platform firmware
+					update mechanism as described in FPT_TUD_EXT.3</h:i>" is selected in FPT_TUD_EXT.1.<h:p/>
 					This update mechanism does not require an integrity or authenticity check prior to installation, but the
 					newly installed platform firmware must have its integrity and authenticity verified prior to 
 					being executed or used. This update mechanism takes advantage of the existing FPT_ROT_EXT.2
 					requirement to avoid having to verify the integrity and authenticity of an update package
 					at install time.<h:p/>
-					The ST author should select "the version number of the platform firmware update is more recent than 
-					the version number of the previously installed platform firmware" if the TSF supports rollback prevention.
+					The ST author should select "<h:i>the version number of the platform firmware update is more recent than 
+					the version number of the previously installed platform firmware</h:i>" if the TSF supports rollback prevention.
 				</note>
 			</f-element>
 			<f-element id="fpt-tud-ext-3e2">
@@ -8023,9 +8024,9 @@
 					</selectables>
 				</title>
 				<note role="application">
-					The requirement included in the ST if "the secure local update mechanism described in FPT_TUD_EXT.4" 
+					The requirement included in the ST if "<h:i>the secure local update mechanism described in FPT_TUD_EXT.4</h:i>" 
 					is selected in FPT_RVR_EXT.1 or 
-					"implement a secure local platform firmware update mechanism described in FPT_TUD_EXT.4" is selected
+					"<h:i>implement a secure local platform firmware update mechanism described in FPT_TUD_EXT.4</h:i>" is selected
 					in FPT_TUD_EXT.1.<h:p/>
 					If "<h:i>Administrator</h:i>" is selected then all administrator authentication 
 					requirements must be included in the ST (FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
@@ -8144,16 +8145,16 @@
 				</title>
 				<note role="application"> 
 					This SFR is included in the ST if a trusted channel is used to offload audit data 
-					or if the platform is administered remotely. That is, if "a trusted channel as specified in FTP_ITC_EXT.1" 
+					or if the platform is administered remotely. That is, if "<h:i>a trusted channel as specified in FTP_ITC_EXT.1</h:i>" 
 					is selected in FAU_STG_EXT.1 or "remote" is selected in FMT_MOF_EXT.1.<h:p/>
-					If the ST author selects either TLS or HTTPS, the TSF shall be validated against the 
+					If the ST author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TSF shall be validated against the 
 					Functional Package for TLS. This PP does not mandate that a product implement TLS with mutual authentication,
 					but if the product includes the capability to perform TLS with mutual authentication, then
 					mutual authentication must be included within the TOE boundary. The TLS Package requires that the X509 
 					requirements be included by the PP, so selection of TLS or HTTPS causes FIA_X509_EXT.* to be selected.<h:p/>
-					If the ST author selects SSH, the TSF shall be validated against the Extended Package for Secure Shell.<h:p/>
-					If the ST author selects "certificate-based authentication of the remote peer," then FIA_X509_EXT.1 and FIA_X509_EXT.2
-					must be included in the ST. "No authentication of the remote peer" should be selected only if the TOE is acting 
+					If the ST author selects "<h:i>SSH</h:i>," the TSF shall be validated against the Extended Package for Secure Shell.<h:p/>
+					If the ST author selects "<h:i>certificate-based authentication of the remote peer</h:i>," then FIA_X509_EXT.1 and FIA_X509_EXT.2
+					must be included in the ST. "<h:i>No authentication of the remote peer</h:i>" should be selected only if the TOE is acting 
 					as a server in a non-mutual authentication configuration.<h:p/>			    
 				</note>
 				<aactivity>
@@ -8209,7 +8210,7 @@
                 <title>The TSF shall require the use of the trusted path for [<h:i>[all remote administration actions]</h:i>].
                 </title>
                 <note role="application">
-					This SFR is included in the ST if "remote" is selected in FMT_MOF_EXT.1.1.<h:p/>
+					This SFR is included in the ST if "<h:i>remote</h:i>" is selected in FMT_MOF_EXT.1.1.<h:p/>
 					Protocols used to implement the remote administration trusted channel must be
 					selected in FTP_ITC_EXT.1.<h:p/>
                     This requirement ensures that authorized remote administrators initiate all communication with the
