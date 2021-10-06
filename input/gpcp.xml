@@ -18,14 +18,12 @@
     xmlns:h="http://www.w3.org/1999/xhtml" 
     boilerplate='yes'>
 
-	<!-- <inline-comment color='green'> Hello World QQQQ </inline-comment> -->
-	<!-- <inline-comment color='blue' linebreak='yes'> Hello World QQQQ </inline-comment> -->
 	<PPReference>
 		<ReferenceTable>
 			<PPTitle>Protection Profile for General-Purpose Computing Platforms</PPTitle>
-			<PPVersion>1.0-DRAFT</PPVersion>
+			<PPVersion>0.9</PPVersion>
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2021-09-21</PPPubDate>
+			<PPPubDate>2021-10-06</PPPubDate>
 			<Keywords>General-Purpose Computing Platforms</Keywords>
 		</ReferenceTable>
 	</PPReference>
@@ -39,16 +37,9 @@
 	</RevisionHistory>
 	<RevisionHistory>
 		<entry>
-			<version>0.8</version>
-			<date>2021-06-11</date>
-			<subject>First Draft of the First Draft</subject>
-		</entry>
-	</RevisionHistory>
-	<RevisionHistory>
-		<entry>
 			<version>0.9</version>
-			<date>2021-09-21</date>
-			<subject>First Draft for Public Comments</subject>
+			<date>2021-10-06</date>
+			<subject>Latest draft</subject>
 		</entry>
 	</RevisionHistory>
 
@@ -60,7 +51,6 @@
         <depends on-sel="sek-itc-https"/>
 	</include-pkg>
 	    
-	<!-- TODO: Update this to SSH 1.0 FP -->
     <include-pkg id="pkg-ssh">
 	         <raw-url>https://raw.githubusercontent.com/commoncriteria/ssh/v1.0-fp/input/ssh.xml</raw-url>
 		<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=389&amp;id=389</url>
@@ -1075,11 +1065,13 @@
 				<aactivity>
 					<TSS>There are no TSS evaluation activities for this component.<h:p/></TSS>
 					<Guidance>The evaluator shall review the operational guidance for the procedure on how to review the audit 
-						records.<h:p/></Guidance>
+						records.<h:p/>
+					</Guidance>
 					<Tests> The evaluator shall verify that the audit records provide all of the information specified in 
 						FAU_GEN.1 and that this information is suitable for human interpretation. The evaluation 
 						activity for this requirement is performed in conjunction with the evaluation activity for 
-						FAU_GEN.1. </Tests>
+						FAU_GEN.1. 
+					</Tests>
 				</aactivity>
 			</f-element>
         </f-component>
@@ -1157,10 +1149,10 @@
 						The evaluator shall examine the TSS to ensure that it describes the size limits on the 
 						audit records, the detection of a full audit trail, and the action(s) taken by the TSF
 						when the audit trail is full. The evaluator shall ensure that the action(s) results in the
-						deletion or overwrite of the oldest stored record.
+						deletion or overwrite of the oldest stored record.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.
+						There are no guidance evaluation activities for this component.<h:p/>
 					</Guidance>
 					<Tests>
 						There are no test evaluation activities for this component.
@@ -1218,7 +1210,7 @@
                 <aactivity level="element">
                     <TSS>
                         The evaluator shall examine the TSS to ensure it describes the means by which 
-                        the audit data are transferred to the external audit server. 
+                        the audit data are transferred to the external audit server.<h:p/> 
                     </TSS>
                     <Guidance>
                         If "trusted channel" is selected above, the evaluator shall examine the operational guidance to ensure it describes how to establish the 
@@ -1368,11 +1360,11 @@
 						examine the TSS to verify that it describes how the TOE invokes the methods
 						selected in the ST from the same table. The evaluator shall examine the TSS to
 						verify that it identifies the usage for each row identifier (key type, key size, and list
-						of standards) selected in the ST.
+						of standards) selected in the ST.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall verify that the AGD guidance instructs the administrator how
-						to configure the TOE to use the selected key types for all uses identified in the ST.
+						to configure the TOE to use the selected key types for all uses identified in the ST.<h:p/>
 					</Guidance>
 					<KMD>
 						If the TOE uses the generated key in a key chain/hierarchy then the evaluator shall
@@ -1595,11 +1587,11 @@
 						FCS_RBG_EXT.1 is invoked. The evaluator uses the description of the RBG
 						functionality in FCS_RBG_EXT.1 or documentation available for the operational
 						environment to determine that the key size being requested is greater than or equal
-						to the key size and mode to be used for the encryption/decryption of the data.
+						to the key size and mode to be used for the encryption/decryption of the data.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall verify that the AGD guidance instructs the administrator how
-						to configure the TOE to use the selected key types for all uses identified in the ST.
+						to configure the TOE to use the selected key types for all uses identified in the ST.<h:p/>
 					</Guidance>
 					<KMD>
 						The evaluator shall confirm that the KMD describes, as applicable:<h:ul>
@@ -1673,11 +1665,11 @@
 						FCS_CKM_EXT.5.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.
+						There are no guidance evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						The evaluator shall iterate through each of the methods selected by the ST and
-						confirm that the KMD describes the applicable selected methods.
+						confirm that the KMD describes the applicable selected methods.<h:p/>
 					</KMD>
 					<Tests>
 						The evaluator shall iterate through each of the methods selected by the ST and
@@ -1750,10 +1742,10 @@
 					</TSS>
 					<Guidance>
 						The evaluator shall verify that the guidance instructs the administrator how to
-						configure the TOE to use the selected key establishment scheme.
+						configure the TOE to use the selected key establishment scheme.<h:p/>
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.
+						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
 						Testing for this SFR is performed under the corresponding functions in
@@ -2046,10 +2038,10 @@
 					<TSS>
 						The evaluator shall verify the TSS provides a high-level description of what it
 						means for keys and key material to be no longer needed and when this data should
-						be expected to be destroyed.
+						be expected to be destroyed.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.
+						There are no guidance evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						The evaluator shall verify that the KMD includes a description of the areas where
@@ -2426,7 +2418,7 @@
 					</TSS>
 					<Guidance>
 						The evaluator shall verify that the AGD guidance instructs the administrator how
-						to configure the TOE to use the selected key types for all uses identified in the ST.
+						to configure the TOE to use the selected key types for all uses identified in the ST.<h:p/>
 					</Guidance>
 					<KMD>
 						The evaluator shall examine the KMD to ensure that:<h:ul>
@@ -2800,13 +2792,13 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to ensure that it specifies the following values
-						used by the HMAC and KMAC functions: output MAC length used.
+						used by the HMAC and KMAC functions: output MAC length used.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.
+						There are no guidance evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.
+						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
 						The following test requires the developer to provide access to a test platform that
@@ -3004,10 +2996,10 @@
 						that can be used for the various key agreement/transport schemes.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.
+						There are no guidance evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.
+						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
@@ -3262,7 +3254,7 @@
 						uses a different implementation, (where “different implementation” includes the use
 						of different key lengths or modes), then the evaluator shall additionally test the key
 						encryption implementation using the corresponding tests specified for
-						FCS_COP.1/SKC or FCS_COP.1/KAT.<h:p/>
+						FCS_COP.1/SKC or FCS_COP.1/KAT.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -3316,13 +3308,13 @@
 						the evaluator shall ensure that the TSS describes the actions and provides assurance
 						that the TSF does not negatively impact the entropy of the PBKDF output.<h:p/>
 						If any manipulation of the key is performed in forming the submask that will be
-						used to form the KEK, that process shall be described in the TSS.
+						used to form the KEK, that process shall be described in the TSS.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no AGD evaluation activities for this component.
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.
+						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
 						No explicit testing of the formation of the submask from the input password is
@@ -3507,13 +3499,13 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to ensure that all signature generation
-						functions use the approved algorithms and key sizes.
+						functions use the approved algorithms and key sizes.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no AGD evaluation activities for this component.
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.
+						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
@@ -3739,13 +3731,13 @@
 					location 0x00007A4B") of the data to be used in verifying the digital signature; how
 					the data received from the operational environment are brought onto the device; and
 					any processing that is performed that is not part of the digital signature algorithm
-					(for instance, checking of certificate revocation lists).
+					(for instance, checking of certificate revocation lists).<h:p/>
 				</TSS>
 				<Guidance>
-					There are no AGD evaluation activities for this component.
+					There are no AGD evaluation activities for this component.<h:p/>
 				</Guidance>
 				<KMD>
-					There are no KMD evaluation activities for this component.
+					There are no KMD evaluation activities for this component.<h:p/>
 				</KMD>
 				<Tests>
 					The following tests require the developer to provide access to a test platform that
@@ -4046,7 +4038,7 @@
 					<Guidance>
 						If the product supports multiple modes, the evaluator shall examine the vendor’s
 						documentation to determine that the method of choosing a specific mode/key size
-						by the end user is described.
+						by the end user is described.<h:p/>
 					</Guidance>
 					<KMD>
 						The evaluator shall examine the KMD to ensure that the points at which symmetric
@@ -4520,11 +4512,11 @@
                     <TSS>
                         The evaluator shall verify that the TSS documents the entropy sources implemented by the TOE.
 						It is not necessary to document all the platform features that can be used by tenant software to 
-						contribute to entropy, rather only those features expressly provided as entropy sources. 
+						contribute to entropy, rather only those features expressly provided as entropy sources.<h:p/> 
                     </TSS>
 					<Guidance>
 						The evaluator shall examine the AGD to ensure that it describes how to configure 
-						entropy sources (if applicable) and how tenant software can access the sources. 
+						entropy sources (if applicable) and how tenant software can access the sources. <h:p/>
 					</Guidance>
                     <Tests>
                         The evaluator shall perform the following tests:
@@ -4582,8 +4574,9 @@
                         The evaluator shall check the TSS to ensure that it is clear on how HTTPS uses 
                         TLS to establish an administrative session, focusing on any client authentication required by 
                         the TLS protocol vs. security administrator authentication which may be done at a different 
-                        level of the processing stack. 
+                        level of the processing stack. <h:p/>
                     </TSS>
+					<Guidance>None.<h:p/></Guidance>
                     <Tests>
                         Testing for this activity is done as part of the TLS testing; this may result in additional 
                         testing if the TLS tests are done at the TLS protocol level.
@@ -4700,7 +4693,7 @@
 						inbound and outbound packets) is sufficient to determine the action that will be applied, especially in the
 						case where two different rules may apply. This description shall cover both the initial packets (that is, no
 						SA is established on the interface or for that particular packet) as well as packets that are part of an
-						established SA. <h:p/>
+						established SA. <h:br/>
                     </TSS>
                     <Guidance>
                         The evaluator shall examine the operational guidance to verify it instructs the Administrator how 
@@ -4710,7 +4703,7 @@
                         that the description in the operational guidance is consistent with the description in the 
                         TSS, and that the level of detail in the operational guidance is sufficient to
                         allow the administrator to set up the SPD in an unambiguous fashion. This includes a discussion 
-                        of how ordering of rules impacts the processing of an IP packet.<h:p/>
+                        of how ordering of rules impacts the processing of an IP packet.<h:br/>
                     </Guidance>
                     <Tests>
                         The evaluator uses the operational guidance to configure the TOE to carry out the following tests:<h:br></h:br><h:br></h:br>
@@ -4757,13 +4750,13 @@
                 <aactivity level="element">
                     <TSS>
                         The evaluator checks the TSS to ensure it states that am IPsec VPN can be 
-                        established to operate in tunnel mode or transport mode (as selected).<h:p/>
+                        established to operate in tunnel mode or transport mode (as selected).<h:br/>
                     </TSS>
                     <Guidance>
                         The evaluator shall confirm that the operational guidance contains instructions on how to 
                         configure the connection in each mode selected.<h:p/>
 						If both transport mode and tunnel mode are implemented, the evaluator shall review the operational
-						guidance to determine how the use of a given mode is specified.<h:p/>
+						guidance to determine how the use of a given mode is specified.<h:br/>
                     </Guidance>
                     <Tests>
                         The evaluator shall perform the following test(s) based on the selections chosen:
@@ -4795,11 +4788,11 @@
                 <aactivity level="element">
 					<TSS>
 						 If both transport mode and tunnel mode are implemented, the evaluator shall review the
-						 operational guidance to determine how the use of a given mode is specified.<h:p/>
+						 operational guidance to determine how the use of a given mode is specified.<h:br/>
 					</TSS>
 					<Guidance>
 						The evaluator shall check that the operational guidance provides instructions on how to construct or
-						acquire the SPD and uses the guidance to configure the TOE for the following test.<h:p/>
+						acquire the SPD and uses the guidance to configure the TOE for the following test.<h:br/>
 					</Guidance>
                     <Tests>
                         The evaluator shall perform the following test:
@@ -4832,13 +4825,13 @@
                         AES-CBC-128 or AES-CBC-256 in the requirement, then the evaluator verifies the
                         TSS describes these as well. In addition, the evaluator ensures that the 
                         SHA-based HMAC algorithm conforms to the algorithms specified in FCS_COP.1/KeyHash Cryptographic 
-                        Operations (Keyed Hash Algorithms).<h:p/>
+                        Operations (Keyed Hash Algorithms).<h:br/>
                     </TSS>
                     <Guidance>
                         The evaluator checks the operational guidance to ensure it provides instructions on how the TOE is
 						configured to use the algorithms selected in this component and whether this is performed through direct
 						configuration, defined during initial installation, or defined by acquiring configuration settings from an
-						environmental component.<h:p/>
+						environmental component.<h:br/>
                     </Guidance>
                     <Tests>
                         <testlist>
@@ -4883,13 +4876,13 @@
                         The evaluator shall examine the TSS to verify that IKEv1 and/or IKEv2 are implemented. If IKEv1 is
 						implemented, the evaluator shall verify that the TSS indicates whether or not XAUTH is supported, and
 						that aggressive mode is not used for IKEv1 Phase 1 exchanges (i.e. only main mode is used). It may be that
-						these are configurable options.<h:p/>
+						these are configurable options.<h:br/>
                     </TSS>
                     <Guidance>
                         The evaluator shall check the operational guidance to ensure it instructs the administrator how to
 						configure the TOE to use IKEv1 and/or IKEv2 (as selected), and uses the guidance to configure the TOE to
 						perform NAT traversal for the test below. If XAUTH is implemented, the evaluator shall verify that the
-						operational guidance provides instructions on how it is enabled or disabled.<h:p/>
+						operational guidance provides instructions on how it is enabled or disabled.<h:br/>
 						If the TOE supports IKEv1, the evaluator shall verify that the operational guidance either asserts that only
 						main mode is used for Phase 1 exchanges, or provides instructions for disabling aggressive mode.<h:p/>
                     </Guidance>
@@ -4930,13 +4923,13 @@
                     <TSS>
                         The evaluator shall ensure the TSS identifies the algorithms used for encrypting the IKEv1 and/or IKEv2
 						payload, and that the algorithms AES-CBC-128, AES-CBC-256 are specified, and if others are chosen in the
-						selection of the requirement, those are included in the TSS discussion.<h:p/>
+						selection of the requirement, those are included in the TSS discussion.<h:br/>
                     </TSS>
                     <Guidance>
                         The evaluator checks the operational guidance to ensure it provides instructions on how the TOE is
 						configured to use the algorithms selected in this component and whether this is performed through direct
 						configuration, defined during initial installation, or defined by acquiring configuration settings from an
-						environmental component. <h:p/>
+						environmental component. <h:br/>
                     </Guidance>
                     <Tests>
 						The evaluator shall use the operational guidance to configure the TOE (or to configure the Operational
@@ -5011,7 +5004,7 @@
 				</note>
                 <aactivity level="element">
 					<TSS>
-						There are no TSS EAs for this requirement.<h:p/>
+						There are no TSS EAs for this requirement.<h:br/>
 					</TSS>
                     <Guidance>
                         The evaluator shall check the operational guidance to ensure it provides instructions on how the TOE
@@ -5019,7 +5012,7 @@
 						option for either the Administrator or VPN Gateway to configure Phase 1 SAs if time-based limits are
 						supported. Currently there are no values mandated for the number of packets or number of bytes, the
 						evaluator shall simply check the operational guidance to ensure that this can be configured if selected in
-						the requirement.
+						the requirement.<h:br/>
                     </Guidance>
                     <Tests>
                         When testing this functionality, the evaluator needs to ensure that both sides are configured
@@ -5081,10 +5074,10 @@
 					<TSS>
 						The evaluator shall check to ensure that the DH groups specified in the requirement are listed as being
 						supported in the TSS. If there is more than one DH group supported, the evaluator checks to ensure the
-						TSS describes how a particular DH group is specified/negotiated with a peer.
+						TSS describes how a particular DH group is specified/negotiated with a peer.<h:br/>
 					</TSS>
                     <Guidance>
-                        There are no AGD EAs for this requirement.
+                        There are no AGD EAs for this requirement.<h:br/>
 					</Guidance>
                     <Tests>
 						The evaluator shall perform the following test: <h:p/>
@@ -5109,13 +5102,13 @@
                         The evaluator shall check to ensure that, for each DH group supported, the TSS describes the process for
 						generating "x" (as defined in FCS_IPSEC_EXT.1.9) and each nonce. The evaluator shall verify that the TSS
 						indicates that the random number generated that meets the requirements in this EP is used, and that the
-						length of "x" and the nonces meet the stipulations in the requirement.<h:p/>
+						length of "x" and the nonces meet the stipulations in the requirement.<h:br/>
                     </TSS>
 					<Guidance>
-						There are no AGD EAs for this requirement.<h:p/>
+						There are no AGD EAs for this requirement.<h:br/>
 					</Guidance>
 					<Tests>
-						There are no test EAs for this requirement.<h:p/>
+						There are no test EAs for this requirement.
 					</Tests>
                 </aactivity>
             </f-element>
@@ -5166,7 +5159,7 @@
 						compared to the ID payload presented identifier, which field(s) of the certificate are used as the presented
 						identifier (DN, Common Name, or SAN) and, if multiple fields are supported, the logical order comparison.
 						If the ST author assigned an additional identifier type, the TSS description shall also include a description
-						of that type and the method by which that type is compared to the peer’s presented certificate.<h:p/>
+						of that type and the method by which that type is compared to the peer’s presented certificate.<h:br/>
                     </TSS>
 					<Guidance>
 						The evaluator shall check that the operational guidance describes how pre-shared keys are to be
@@ -5177,7 +5170,7 @@
 						ensure that the operational guidance also describes how to configure the TOE to connect to a trusted CA,
 						and ensure a valid certificate for that CA is loaded into the TOE as a trusted CA.<h:p/>
 						The evaluator shall also ensure that the operational guidance includes the configuration of the reference
-						identifier(s) for the peer.<h:p/>
+						identifier(s) for the peer.<h:br/>
 					</Guidance>
 					<Tests>
 						For efficiency’s sake, the testing that is performed here has been combined with the testing for
@@ -5328,10 +5321,10 @@
 						the symmetric key) of the algorithms that are allowed for the IKE and ESP exchanges. The TSS shall also
 						describe the checks that are done when negotiating IKEv1 Phase 2 and/or IKEv2 CHILD_SA suites to ensure
 						that the strength (in terms of the number of bits of key in the symmetric algorithm) of the negotiated
-						algorithm is less than or equal to that of the IKE SA this is protecting the negotiation.
+						algorithm is less than or equal to that of the IKE SA this is protecting the negotiation.<h:br/>
                     </TSS>
 					<Guidance>
-						There are no AGD EAs for this requirement.
+						There are no AGD EAs for this requirement.<h:br/>
 					</Guidance>
                     <Tests>
                         The evaluator follows the guidance to configure the TOE to perform the following tests:<h:p/>
@@ -5447,10 +5440,10 @@
 						[DSCcPP].<h:p/>
 					</TSS>
 					<Guidance>
-						There are no AGD evaluation activities for this component.
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.
+						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
@@ -5516,13 +5509,13 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall ensure the TSS describes how salts are generated using the
-						RBG.
+						RBG.<h:p/>
 					</TSS>	
 					<Guidance>
-						There are no AGD evaluation activities for this component.
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.
+						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
 						The evaluator shall confirm by testing that the salts obtained in the cryptographic
@@ -5642,7 +5635,7 @@
 						describes the process for destroying keys that have been imported or generated.<h:p/>
 				</Guidance>
 				<KMD>
-					There are no KMD evaluation activities for this component.
+					There are no KMD evaluation activities for this component.<h:p/>
 				</KMD>
 				<Tests>
 					The evaluator shall test the functionality of each security function as described
@@ -5704,13 +5697,13 @@
 				<TSS>
 					The evaluator shall review the TSS to determine that the TSS describes the
 					protection of symmetric keys, KEKs, long-term trusted channel key material, and
-					software-based key storage as claimed in FCS_STG_EXT.2.1. 
+					software-based key storage as claimed in FCS_STG_EXT.2.1. <h:p/>
 				</TSS>
 				<Guidance>
-					There are no AGD evaluation activities for this component.
+					There are no AGD evaluation activities for this component.<h:p/>
 				</Guidance>
 				<KMD>
-					There are no KMD evaluation activities for this component
+					There are no KMD evaluation activities for this component<h:p/>
 				</KMD>
 				<Tests>
 					There are no test evaluation activities for this component.
@@ -5777,13 +5770,13 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS and ensure that it contains a description of
-						how the TOE protects the integrity of its keys.
+						how the TOE protects the integrity of its keys.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no AGD evaluation activities for this component.
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.
+						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
 						There are no test evaluation activities for this component.
@@ -5823,12 +5816,13 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to ensure that it describes the protections provided by the 
-						TOE's TEE implementation.
+						TOE's TEE implementation.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall examine the guidance to ensure that it describes the steps 
-						required for tenant software to invoke the TEE.
+						required for tenant software to invoke the TEE.<h:p/>
 					</Guidance>	
+					<Tests>None.</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event/>
@@ -6005,7 +5999,7 @@
 					</TSS>
 					<Guidance>
 						The evaluator shall verify that the AGD guidance describes how the administrator configures
-						the maximum number of unique unsuccessful authentication attempts.
+						the maximum number of unique unsuccessful authentication attempts.<h:p/>
 					</Guidance>
 					<Tests>
 						The evaluator shall configure the device with all authentication mechanisms 
@@ -6103,14 +6097,14 @@
 				</note>
 				<aactivity>
 					<TSS>
-						There are no TSS evaluation activities for this component.
+						There are no TSS evaluation activities for this component.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall examine the operational guidance to determine that it provides
 						guidance to security administrators on the composition of strong passwords, and that it 
 						provides instructions on setting the minimum password length. The evaluator shall also 
 						perform the following tests. Note that one or more of these tests can be performed with a 
-						single test case.
+						single test case.<h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
@@ -6164,10 +6158,10 @@
 						either how the TSF disables authentication via external interfaces (other than the 
 						ordinary user interface) or how authentication attempts are delayed in order to slow 
 						automated entry and shall ensure that this delay totals at least 500 milliseconds over 10
-						attempts for all authentication mechanisms selected in FIA_UAU.5.1.
+						attempts for all authentication mechanisms selected in FIA_UAU.5.1.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.
+						There are no guidance evaluation activities for this component.<h:p/>
 					</Guidance>
 					<Tests>
 						There are no test evaluation activities for this component.
@@ -6240,11 +6234,11 @@
 						(i.e. if there are times, for example, after a reboot, that only specific authentication 
 						mechanisms can be used). If multiple BAFs are supported per FIA_UAU.5.1, the interaction
 						between the BAFs must be described. For example, whether the multiple BAFs can be enabled 
-						at the same time.
+						at the same time.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall verify that configuration guidance for each authentication mechanism
-						is addressed in the AGD guidance.
+						is addressed in the AGD guidance.<h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
@@ -6300,11 +6294,11 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall ensure that the TSS describes the means of obscuring the authentication
-						entry, for all authentication methods specified in FIA_UAU.5.1.
+						entry, for all authentication methods specified in FIA_UAU.5.1.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall verify that any configuration of this requirement is addressed in the 
-						AGD guidance and that the password is obscured by default.
+						AGD guidance and that the password is obscured by default.<h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
@@ -6386,7 +6380,7 @@
                         The evaluator shall examine the TSS to determine that it describes the logon
                         process for each logon method (local, remote (HTTPS, SSH, etc.)) supported for the platform. 
                         This description shall contain information pertaining to the credentials allowed/used, any 
-                        protocol transactions that take place, and what constitutes a “successful logon.” 
+                        protocol transactions that take place, and what constitutes a “successful logon.” <h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall examine the operational guidance to determine that any necessary preparatory
@@ -6394,8 +6388,9 @@
                         in are described. For each supported login method, the evaluator shall ensure the operational
                         guidance provides clear instructions for successfully logging on. If configuration is necessary
                         to ensure the services provided before login are limited, the evaluator shall determine that the
-                        operational guidance provides sufficient instruction on limiting the allowed services.							
+                        operational guidance provides sufficient instruction on limiting the allowed services.<h:p/>							
                     </Guidance>
+					<Tests>None.</Tests>
                 </aactivity>
             </f-element>
 			<audit-event> 
@@ -6507,8 +6502,9 @@
 						connection cannot be established during the validity check of a certificate used in establishing 
 						a trusted channel. If the requirement that the administrator is able to specify the default
 						action, then the evaluator shall ensure that the operational guidance contains instructions on how 
-						this configuration action is performed.
+						this configuration action is performed.<h:p/>
 					</TSS>
+					<Guidance>None.<h:p/></Guidance>
                     <Tests>
                         The tests described must be performed in conjunction with the other Certificate Services evaluation 
 						activities, including the uses listed in FIA_X509_EXT.2.1. The tests for the extendedKeyUsage rules 
@@ -6639,8 +6635,9 @@
                         TOE when a connection cannot be established during the validity check of a
                         certificate used in establishing a trusted channel. If the requirement that the administrator is able
                         to specify the default action, then the evaluator shall ensure that the operational guidance contains
-                        instructions on how this configuration action is performed.
+                        instructions on how this configuration action is performed.<h:p/>
                     </TSS>
+					<Guidance>None.<h:p/></Guidance>
                     <Tests>
                         The evaluator shall perform Test 1 for each function listed in FIA_X509_EXT.2.1 that requires the
 						use of certificates:<h:p/>
@@ -6701,11 +6698,11 @@
 				<aactivity>
 					<TSS>The evaluator shall check the TSS to determine whether the platform comes  
 						pre-installed with default Administrator credentials, or does not require credentials for
-						initial Administrator access.
+						initial Administrator access.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall examine the AGD to ensure that it describes the process for 
-						replacing or specifying Administrator credentials on first use.
+						replacing or specifying Administrator credentials on first use.<h:p/>
 					</Guidance>
 					<Tests>
 						If the platform uses default Administrator credentials or no Administrator credentials 
@@ -7004,11 +7001,11 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to determine how access to the JTAG or debug ports 
-						is denied to tenant software. 
+						is denied to tenant software. <h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall examine the guidance to ensure that it describes how administrators assert 
-						physical presence to the TSF.
+						physical presence to the TSF.<h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
@@ -7064,7 +7061,7 @@
 						i.e. what has the access to the signing key.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.
+						There are no guidance evaluation activities for this component.<h:p/>
 					</Guidance>
 					<Tests>
 						The following test requires the developer to provide access to a test platform that provides 
@@ -7108,10 +7105,10 @@
 				</TSS>
 				<Guidance>
 					The evaluator shall ensure that the Guidance describes how the TOE indicates to Users
-					and Administrators that it has detected tampering.  
+					and Administrators that it has detected tampering.  <h:p/>
 				</Guidance>
 				<KMD>
-					There are no KMD evaluation activities for this component.
+					There are no KMD evaluation activities for this component.<h:p/>
 				</KMD>
 				<Tests>
 					<h:b>TODO: The evaluator shall verify that attempts to open the TOE enclosure  
@@ -7161,10 +7158,10 @@
 				</TSS>
 				<Guidance>
 					The evaluator shall ensure that the Guidance describes how the TOE notifies Users
-					or Administrators that it has detected tampering.  
+					or Administrators that it has detected tampering.<h:p/>  
 				</Guidance>
 				<KMD>
-					There are no KMD evaluation activities for this component.
+					There are no KMD evaluation activities for this component.<h:p/>
 				</KMD>
 				<Tests>
 					<testlist>
@@ -7209,10 +7206,10 @@
 					tampering has been detected such that SFRs are always enforced.<h:p/>
 				</TSS>
 				<Guidance>
-					There are no AGD evaluation activities for this component.
+					There are no AGD evaluation activities for this component.<h:p/>
 				</Guidance>
 				<KMD>
-					There are no KMD evaluation activities for this component.
+					There are no KMD evaluation activities for this component.<h:p/>
 				</KMD>
 				<Tests>
 					<testlist>
@@ -7258,12 +7255,12 @@
 						are protected from modification outside of the platform firmware update mechanism described in FPT_TUD_EXT.1. 
 						If the TOE implements an authenticated update mechanism as specified in FPT_TUD_EXT.2, then the evauator shall ensure
 						that the TSS describes specifically how the signature verification code and key store is protected from update
-						outside of the secure platform firmware update mechanism.
+						outside of the secure platform firmware update mechanism.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall check the operational guidance to ensure that there are instructions for how to
 						securely modify the platform firmware and critical data using a mechanism specified in 
-						FPT_TUD_EXT.1.
+						FPT_TUD_EXT.1.<h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
@@ -7310,8 +7307,10 @@
 				<aactivity>
 					<TSS>The evaluator shall verify that the TSS describes the Root of Trust on which initial integrity of platform firmware is anchored, consistent 
 						with the selection above. The description shall include means by which the Root of Trust is protected from 
-						modification.
+						modification.<h:p/>
 					</TSS>
+					<Guidance>None.<h:p/></Guidance>
+					<Tests>None.</Tests>
 				</aactivity>				
 			</f-element>
 				<audit-event/>
@@ -7396,12 +7395,12 @@
 						The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware is
 						extended to other platform components, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.2.
 						The TSF shall also describe how the TOE responds to failure of verification consistent with the selections in
-						FPT_ROT_EXT.2.2.
+						FPT_ROT_EXT.2.2.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall examine the operational guidance to ensure that it describes the actions taken and notification
 						methods used in case of failure to establish the integrity of the platform firmware root. If the actions are 
-						configurable, the guidance shall explain how they are configured.
+						configurable, the guidance shall explain how they are configured.<h:p/>
 					</Guidance>
 					<Tests>
 						The evaluator shall modify the platform firmware in a way that should cause a failure of the integrity check. 
@@ -7548,11 +7547,11 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS section to confirm that it describes how the platform 
-						firmware recovery mechanism works and the conditions under which it is invoked. 
+						firmware recovery mechanism works and the conditions under which it is invoked. <h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall examine the guidance to ensure that is describes how to configure the 
-						conditions under which the recovery mechanism is initiated (if configurable).
+						conditions under which the recovery mechanism is initiated (if configurable).<h:p/>
 					</Guidance>
 					<Tests>
 						The evaluators shall perform the following tests:
@@ -7587,15 +7586,15 @@
 					The evaluator shall examine the TSS to ensure that it lists each security function
 					that makes use of time. The TSS provides a description of how the time is
 					maintained and considered reliable in the context of each of the time related
-					functions.
+					functions.<h:p/>
 				</TSS>
 				<Guidance>
 					The evaluator shall examine the guidance documentation to ensure it instructs the
 					administrator how to set the time or indicates any configuration steps required for
-					the TSF to receive time data from an external source.
+					the TSF to receive time data from an external source.<h:p/>
 				</Guidance>
 				<KMD>
-					There are no KMD evaluation activities for this component.
+					There are no KMD evaluation activities for this component.<h:p/>
 				</KMD>
 				<Tests>
 					The evaluator shall perform the following tests:
@@ -7674,6 +7673,8 @@
 						If the ST author selects "implement a secure local platform update mechanism..." then this requirement is 
 						satisfied if FPT_TUD_EXT.4 is satisfied. <h:p/>
 					</TSS>
+					<Guidance>None.<h:p/></Guidance>
+					<Tests>None.</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event/>
@@ -8159,7 +8160,7 @@
 					<TSS>
 						The evaluator will review the TSS to determine that it lists all trusted channels 
 						the TOE uses for remote communications, including both the external entities and/or 
-						remote users used for the channel as well as the protocol that is used for each.
+						remote users used for the channel as well as the protocol that is used for each.<h:p/>
 					</TSS>
 					<Guidance> The evaluator shall confirm that the operational guidance contains
 						instructions for establishing the connection to access points, VPN Gateways, and
@@ -8222,11 +8223,11 @@
                         TOE administration are indicated, along with how those communications are protected.
                         The evaluator shall also confirm that all protocols listed in the TSS in support of 
                         TOE administration are consistent with those specified in the requirement, and are 
-                        included in the requirements in the ST. 
+                        included in the requirements in the ST. <h:p/>
                     </TSS>
                     <Guidance>
                         The evaluator shall confirm that the operational guidance contains instructions for 
-						establishing the remote administrative sessions for each supported method. 
+						establishing the remote administrative sessions for each supported method. <h:p/>
                     </Guidance>
                     <Tests>
                         The evaluator shall also perform the following tests:
@@ -8274,11 +8275,11 @@
 		in <xref to="SFRs"/> are a formal instantiation of the Security Objectives. The PP
 		identifies the Security Assurance Requirements (SARs) to frame the extent to
 		which the evaluator assesses the documentation applicable for the evaluation and performs
-		independent testing. <h:br/> This section lists the set of SARs from CC part 3
-		that are required in evaluations against this PP. Individual Assurance Activities
-		<!--(AAs). Never use these again --> to be performed are specified both in <xref to="req"/> 
-		as well as in this section. <h:br/> 
-		The general model for evaluation of OSs against STs written to conform to this PP is as follows: <h:br/> 
+		independent testing. <h:p/>
+		This section lists the set of SARs from CC part 3 that are required in evaluations against this PP. 
+		Individual Evaluation Activities to be performed are specified both in <xref to="req"/> 
+		as well as in this section. <h:p/> 
+		The general model for evaluation of OSs against STs written to conform to this PP is as follows: <h:p/> 
 		After the ST has been approved for evaluation, the ITSEF will obtain the
         TOE, supporting environmental IT, and the administrative/user guides for
 		the TOE. The ITSEF is expected to perform actions mandated by the Common Evaluation
