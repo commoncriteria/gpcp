@@ -108,6 +108,7 @@
 		Additionally, the following specifications and standards may be relevant to requirements in this PP:
 		<h:ul>
 			<h:li>NIST SP800-155 (Draft) <h:i>BIOS Integrity Measurement Guidelines (Draft)</h:i>, December 2011</h:li>
+			<h:li>NIST SP1800-34 (Draft) <h:i>Validating the Integrity of Computing Devices (Preliminary Draft)</h:i>, August 2021</h:li>
 			<h:li>Trusted Computing Group, <h:i>TCG PC Client Platform Firmware Integrity Measurement</h:i> Version 1.0 
 				Revision Specification 43 Family 2.0, May 7, 2021</h:li>
 			<h:li>IEEE Std 802.1AR-2018, <h:i>Secure Device Identity</h:i></h:li>		
@@ -268,11 +269,11 @@
 			baseboard management controller) is expressly included within the TOE.<h:p/>
 			<figure entity="images/arch.png" title="High-Level Architecture of a Generic Platform" id="toe"/><h:p/>
 			Figure 1 (taken from <h:a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-193.pdf">
-			NIST SP 800-193</h:a>) shows a high-level system architecture for a generic computing platform.
+			NIST SP 800-193</h:a>) shows a high-level system architecture for a typical generic computing platform.
 			Tenant software (operating system/virtualization system and applications) is shown in orange.
 			The tenant-specific software responsible for booting the tenant (Master Boot Record, etc.) is shown
 			in grey. Platform components are in blue.<h:p/>
-			For purposes of these requirements, the TOE consists of the platform components as represented 
+			For purposes of these requirements, the TOE consists of the platform components represented 
 			by the blue boxes, along with their associated firmware. Any particular platform may have 
 			additional hardware components, or fewer than those illustrated.
       </section>
@@ -1280,23 +1281,24 @@
 			<depends on-sel="sel-ckm-kek-ak"/> <!-- from FCS_CKM.1/KEK -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<f-element id="fcs-ckm-1e1-ak">
-				<title>The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified 
+				<title>
+<!--				The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified 
 				cryptographic key generation algorithm <assignable>cryptographic key generation algorithm</assignable>
 				and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> 
 				that meet the following: <assignable>list of standards</assignable>. <h:p/>
 				The rows of <xref to="fcs-ckm-1-ak-sels"/> provide the allowable values for completion of the 
-				assignments for FCS_CKM.1.1/AK.<h:p/>
+				assignments for FCS_CKM.1.1/AK.<h:p/>  -->
 				
-<!--				The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys using the methods defined by 
-					the following rows in <xref to="fcs-ckm-1-ak-sels"/>:  -->
-					<!-- [selection: identifier from Supported Methods for Asymmetric Key Generation table] --> 
-<!--					<selectables>
+					The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys using the methods defined by 
+					the following rows in <xref to="fcs-ckm-1-ak-sels"/>: 
+					[selection: identifier from Supported Methods for Asymmetric Key Generation table] 
+					<selectables>
 						<selectable id="sel-fcs-ckm-ak-rsa">RSA</selectable>
 						<selectable id="sel-fcs-ckm-ak-eccn">ECC-N</selectable>
 						<selectable id="sel-fcs-ckm-ak-eccb">ECC-B</selectable>
 						<selectable id="sel-fcs-ckm-ak-dsa">DSA</selectable>
 						<selectable id="sel-fcs-ckm-ak-curve25519">Curve25519</selectable>
-					</selectables>.<h:p/>  -->
+					</selectables>.<h:p/>
 					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-ak-sels">: Supported Methods for Asymmetric Key Generation</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier/Key Type</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
@@ -1501,21 +1503,21 @@
 		<f-component id="sfr-fcs-ckm-1-sk" cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
 			<depends on-sel="sel-ckm-kek-sk"/> <!-- from FCS_CKM.1/KEK -->
 			<f-element id="fcs-ckm-1e1-sk">
-				<title>The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with a specified 
+				<title>
+<!--				The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with a specified 
 				cryptographic key generation algorithm <assignable>cryptographic key generation algorithm</assignable>
 				and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> 
 				that meet the following: <assignable>list of standards</assignable>. <h:p/>
 				The rows of <xref to="fcs-ckm-1-sk-sels"/> provide the allowable values for completion of the 
-				assignments for FCS_CKM.1.1/SK.<h:p/>
-				
-<!--				The TSF shall generate <h:b>symmetric</h:b> cryptographic keys using the methods defined by 
-					the following rows in <xref to="fcs-ckm-1-sk-sels"/>:  -->
-					<!-- [selection: identifier from Supported Methods for Symmetric Encryption Key Generation table] -->
-<!--					<selectables>
+				assignments for FCS_CKM.1.1/SK.<h:p/>  -->
+					The TSF shall generate <h:b>symmetric</h:b> cryptographic keys using the methods defined by 
+					the following rows in <xref to="fcs-ckm-1-sk-sels"/>:
+					[selection: identifier from Supported Methods for Symmetric Encryption Key Generation table]
+					<selectables>
 						<selectable id="sel-fcs-ckm-sk-rsk">RSK</selectable>
 						<selectable id="sel-fcs-ckm-sk-dsk">DSK</selectable>
 						<selectable id="sel-fcs-ckm-sk-pbk">PBK</selectable>
-					</selectables>.<h:p/>  -->
+					</selectables>.<h:p/> 
 					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-sk-sels">: Supported Methods for Symmetric Key Generation</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Key Type</h:td>
@@ -1617,7 +1619,7 @@
 		<!-- FCS_CKM.1/KEK Cryptographic Key Generation (Key Encryption Key)  -->
 		<f-component id="sfr-fcs-ckm-1-kek" cc-id="fcs_ckm.1" iteration="KEK" name="Cryptographic Key Generation (Key Encryption Key)" status="optional">
 			<f-element id="fcs-ckm-1e1-kek">
-				<title>The TSF shall generate key encryption keys in accordance with a specified
+				<title>The TSF shall generate <h:b>key encryption keys</h:b> in accordance with a specified
 					cryptographic key generation algorithm corresponding to 
 					<selectables linebreak="yes">
 						<selectable id="sel-ckm-kek-ak">Asymmetric KEKs generated in accordance with FCS_CKM.1/AK identifier AK1</selectable>
@@ -2624,7 +2626,8 @@
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>
             <f-element id="fcs-cop-1e1-hash">
                 <title>
-				The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified cryptographic algorithm
+				The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified 
+				cryptographic algorithm
                     <selectables>
                         <selectable id="sel-cop1-sha1">SHA-1</selectable>
                         <selectable id="sel-cop1-sha256">SHA-256</selectable>
