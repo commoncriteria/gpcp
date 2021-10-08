@@ -2015,7 +2015,7 @@
 		</f-component>
 
 		<!-- FCS_CKM_EXT.4 Cryptographic Key and Key Material Destruction Timing -->
-		<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="optional">
+		<f-component id="sfr-fcs-ckm-ext-4" cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="optional">
 			<depends on-incl="sfr-fcs-ckm-4"/>
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to destroy keys when no longer used.</comp-lev>
@@ -2616,7 +2616,7 @@
 
 
 		<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing) -->
-		<f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
+		<f-component id="sfr-fcs-cop-1-hash" cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
 			<depends on-sel="sel-rot2-hash"/>  <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1 -->
 			<depends on-sel="sel-tud2-hash"/>  <!-- FPT_TUD_EXT.2 -->
@@ -3874,7 +3874,7 @@
 		</f-component>	
 		
 		<!-- FCS_COP.1/SKC Cryptographic Operation (Symmetric Key Cryptography) -->	
-		<f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="sel-based">
+		<f-component id="sfr-fcs-cop-1-skc" cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="sel-based">
 			<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG_EXT.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
 			<depends on-sel="sel-fcs-cop-keyenc-se1"/>   
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
@@ -4483,7 +4483,7 @@
 		
 		
 		<!-- FCS_ENT_EXT.1 Entropy for Tenant Software -->
-        <f-component cc-id="fcs_ent_ext.1" name="Entropy for Tenant Software" status="optional">
+        <f-component id="sfr-fcs-ent-ext-1" cc-id="fcs_ent_ext.1" name="Entropy for Tenant Software" status="optional">
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to provide entropy data to tenant software in a specified manner.</comp-lev>
 			<management>No specific management functions are identified.</management>
@@ -4539,7 +4539,7 @@
 
         <!-- FCS_HTTPS_EXT.1 -->
         <!-- Depends on HTTPS being selected for trusted channel -->
-        <f-component cc-id="fcs_https_ext.1" name="HTTPS Protocol"  status="sel-based">
+        <f-component id="sfr-fcs-https-ext-1" cc-id="fcs_https_ext.1" name="HTTPS Protocol"  status="sel-based">
             <depends on-sel="sel-itc-https"/>
 			<depends on-sel="sel-x509-2-https"/>
 			<consistency-rationale/>
@@ -5362,7 +5362,7 @@
 		</f-component>
 	
 		<!-- FCS_RBG_EXT.1 Random Bit Generation -->
-		<f-component cc-id="fcs_rbg_ext.1" name="Random Bit Generation" status="sel-based">
+		<f-component id="sfr-fcs-rbg-ext-1" cc-id="fcs_rbg_ext.1" name="Random Bit Generation" status="sel-based">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
@@ -5717,7 +5717,7 @@
 		</f-component>
 	
 		<!-- FCS_STG_EXT.3 Key Integrity Protection  -->
-		<f-component cc-id="fcs_stg_ext.3" name="Key Integrity Protection" status="sel-based">
+		<f-component id="sfr-fcs-stg-ext-3" cc-id="fcs_stg_ext.3" name="Key Integrity Protection" status="sel-based">
 			<depends on-sel="sel-stg1-sw-based"/>
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to ensure the integrity of stored data
@@ -5799,8 +5799,8 @@
 				for the use of tenant software.</fam-behavior>
 		</ext-comp-def>
 	
-	
-		<f-component cc-id="fdp_tee_ext.1" name="Trusted execution environment for tenant software" status="optional">
+		<!-- FDP_TEE_EXT.1 Trusted Execution Environment for Tenant Software -->
+		<f-component id="sfr-fdp-tee-ext-1" cc-id="fdp_tee_ext.1" name="Trusted execution environment for tenant software" status="optional">
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to implement a trusted execution environment for the use of tenant software.
 			</comp-lev>
@@ -6415,8 +6415,8 @@
 	
         <!-- FIA_X509_EXT.1 -->
         <!-- Depends on x509 certificates being used for administrator authentication -->
-        <f-component cc-id="fia_x509_ext.1" name="X.509 Certificate Validation"  status="sel-based">
-<!--		<depends on-incl="sfr-fcs-ipsec-ext-1"/>  -->  <!-- FCS_IPSEC_EXT.1 -->
+        <f-component id="sfr-fia-x509-ext-1" cc-id="fia_x509_ext.1" name="X.509 Certificate Validation"  status="sel-based">
+	<!--	<depends on-incl="sfr-fcs-ipsec-ext-1"/>   -->  <!-- FCS_IPSEC_EXT.1 -->
             <depends on-sel="sel-tud-digsign"/>
             <depends on-sel="sel-uau-x509"/> 
 			<depends on-sel="sel-itc-certauth"/>
@@ -6566,7 +6566,7 @@
 
         <!-- FIA_X509_EXT.2 -->
         <!-- Depends on digital signatures being used for trusted updates or administrator authentication -->
-        <f-component cc-id="fia_x509_ext.2" name="X.509 Certificate Authentication"  status="sel-based">
+        <f-component id="sfr-fia-x509-ext-2" cc-id="fia_x509_ext.2" name="X.509 Certificate Authentication"  status="sel-based">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
             <depends on-sel="sel-tud-digsign-cert"/>
             <depends on-sel="sel-uau-x509" /> 
@@ -6680,7 +6680,7 @@
 		</ext-comp-def>
 	
 		<!-- FMT_CFG_EXT.1 Secure by Default Configuration -->
-		<f-component cc-id="fmt_cfg_ext.1" name="Secure by Default Configuration">
+		<f-component id="sfr-fmt-cfg-ext-1" cc-id="fmt_cfg_ext.1" name="Secure by Default Configuration">
 			<consistency-rationale/>
 			<comp-lev>requires that default Admnistrator credentials be changed immediately after first use.</comp-lev>
 			<management>No management functions.</management>
@@ -6731,7 +6731,7 @@
 	      
 	
 	<!-- FMT_MOF_EXT.1: Management of Security Function Behavior -->
-       <f-component cc-id="fmt_mof_ext.1" name="Management of Security Functions Behavior" status="sel-based">
+       <f-component id="sfr-fmt-mof-ext-1" cc-id="fmt_mof_ext.1" name="Management of Security Functions Behavior" status="sel-based">
    			<depends on-incl="sfr-fia-uia-ext-1"/>
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
@@ -6800,7 +6800,7 @@
         </f-component>
 		
 		<!-- FMT_SMF_EXT.1: Specification of Management Functions -->
-        <f-component cc-id="fmt_smf_ext.1" name="Specification of Management Functions" status="sel-based">
+        <f-component id="sfr-fmt-smf-ext-1" cc-id="fmt_smf_ext.1" name="Specification of Management Functions" status="sel-based">
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->	       		
@@ -6987,7 +6987,7 @@
 		</ext-comp-def>
 		
 		<!-- FPT_JTA_EXT.1 JTAG/Debug Port Access -->
-		<f-component cc-id="fpt_jta_ext.1" name="JTAG/Debug Port Access">
+		<f-component id="sfr-fpt-jta-ext-1" cc-id="fpt_jta_ext.1" name="JTAG/Debug Port Access">
 			<consistency-rationale/>
 			<comp-lev>requires that debug ports be accessible only to authorized Administrators.</comp-lev>
 			<management>No management functions.</management>
@@ -7233,7 +7233,7 @@
 
 		
 		<!-- FPT_PPF_EXT.1 Protection of Platform Firmware -->
-		<f-component cc-id="fpt_ppf_ext.1" name="Protection of Platform Firmware and Critical Data">
+		<f-component id="sfr-fpt-ppf-ext-1" cc-id="fpt_ppf_ext.1" name="Protection of Platform Firmware and Critical Data">
 				<consistency-rationale/>
 				<comp-lev>requires that the TSF revent platform firmware from being modified outside 
 					of the update mechanisms defined in FPT_TUD_EXT.</comp-lev>
@@ -7283,7 +7283,7 @@
 		</f-component>
 	
 		<!-- FPT_ROT_EXT.1: Platform Integrity Root -->
-		<f-component cc-id="fpt_rot_ext.1" name="Platform Integrity Root">
+		<f-component id="sfr-fpt-rot-ext-1" cc-id="fpt_rot_ext.1" name="Platform Integrity Root">
 			<consistency-rationale/>
 			<comp-lev>requires that the platform integrity be anchored in a root of trust.</comp-lev>
 			<management>No management functions.</management>
@@ -7321,7 +7321,7 @@
 		</f-component>
 
 		<!-- FPT_ROT_EXT.2: Platform Integrity Extension -->
-		<f-component cc-id="fpt_rot_ext.2" name="Platform Integrity Extension">
+		<f-component id="sfr-fpt-rot-ext-2" cc-id="fpt_rot_ext.2" name="Platform Integrity Extension">
 				<consistency-rationale/>
 				<comp-lev>specifies how platform integrity is extended from the integrity root to other platform firmware.</comp-lev>
 				<management>The following actions could be considered for the management functions:<h:ul>
@@ -7427,7 +7427,7 @@
 		</f-component>	
 	
 		<!-- FPT_ROT_EXT.3: Hardware component integrity 	 -->
-		<f-component cc-id="fpt_rot_ext.3" name="Hardware component integrity" status="objective">
+		<f-component id="sfr-fpt-rot-ext-3" cc-id="fpt_rot_ext.3" name="Hardware component integrity" status="objective">
 				<consistency-rationale/>
 				<comp-lev>requires that the TOE support hardware supply chain integrity.</comp-lev>
 				<management>The following actions could be considered for the management functions:<h:ul>
@@ -7511,7 +7511,7 @@
 	
 	
 		<!-- FPT_RVR_EXT.1 Platform Firmware Recovery -->
-		<f-component cc-id="fpt_rvr_ext.1" name="Platform Firmware Recovery" status="sel-based">
+		<f-component id="sfr-fpt-rvr-ext-1" cc-id="fpt_rvr_ext.1" name="Platform Firmware Recovery" status="sel-based">
 			<depends on-sel="sel-rot2-recovery"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-tud2-recovery"/>   <!-- FPT_TUD_EXT.2 -->  
 			<depends on-sel="sel-tud-3-recovery"/>  <!-- FPT_TUD_EXT.3 -->
@@ -7577,7 +7577,7 @@
 		</f-component>
 
 		<!-- FPT_STM.1 Reliable Time Stamps -->
-		<f-component cc-id="fpt_stm.1" name="Reliable Time Stamps">
+		<f-component id="sfr-fpt-stm-1" cc-id="fpt_stm.1" name="Reliable Time Stamps">
 			<f-element id="fpt-stm-1e1">
 				<title>The TSF shall be able to provide reliable time stamps.</title>
 				<note role="application">
@@ -7622,7 +7622,7 @@
 		
 		
 		<!-- FPT_TUD_EXT.1 Platform Firmware Update -->
-		<f-component cc-id="fpt_tud_ext.1" name="TOE Firmware Update">
+		<f-component id="sfr-fpt-tud-ext-1" cc-id="fpt_tud_ext.1" name="TOE Firmware Update">
 				<consistency-rationale/>
 				<comp-lev>requires that the TSF support update of platform firmware.</comp-lev>
 				<management>The following management functions may be associated with this SFR:<h:ul>
@@ -7686,7 +7686,7 @@
 
 
 		<!-- FPT_TUD_EXT.2 Platform Firmware Authenticated Update Mechanism -->
-		<f-component cc-id="fpt_tud_ext.2" name="Platform Firmware Authenticated Update Mechanism" status="sel-based">
+		<f-component id="sfr-fpt-tud-ext-2" cc-id="fpt_tud_ext.2" name="Platform Firmware Authenticated Update Mechanism" status="sel-based">
 			<depends on-sel="sel-tud1-auth-update"/>  <!-- FPT_TUD_EXT.1 -->
 			<consistency-rationale/>
 			<comp-lev>specifies the requirements for authenticated update of platform firmware.</comp-lev>
@@ -7851,7 +7851,7 @@
 		<!-- In this case, we install the update and then let the boot-time integrity check or 
 			whatever do the check. As long as it is done before the code is executed it's okay...
 			meaning all the other requirements are met. Especially FPT_ROT_EXT.2. -->
-		<f-component cc-id="fpt_tud_ext.3" name="Platform Firmware Delayed-Authentication Update Mechanism" status="sel-based">
+		<f-component id="sfr-fpt-tud-ext-3" cc-id="fpt_tud_ext.3" name="Platform Firmware Delayed-Authentication Update Mechanism" status="sel-based">
 			<depends on-sel="sel-tud1-unauth-update"/>   <!-- FPT_TUD_EXT.1 -->
 			<consistency-rationale/>
 			<comp-lev>specifies the requirements for delayed-authention update of platform firmware.</comp-lev>
@@ -7999,7 +7999,7 @@
 		</f-component>
 		
 		<!-- FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism -->	
-		<f-component cc-id="fpt_tud_ext.4" name="Secure Local Platform Firmware Update Mechanism" status="sel-based">
+		<f-component id="sfr-fpt-tud-ext-4" cc-id="fpt_tud_ext.4" name="Secure Local Platform Firmware Update Mechanism" status="sel-based">
 			<depends on-sel="sel-tud1-local-update"/>   <!-- FPT_TUD_EXT.1 -->
 			<depends on-sel="sel-rvr-local-update"/>    <!-- FPT_RVR_EXT.1 -->
 			<consistency-rationale/>
@@ -8195,7 +8195,7 @@
 		
         <!-- FTP_TRP.1 -->
         <!-- Included in th ST if "remote" is selected in FMT_MOF_EXT.1. -->
-        <f-component cc-id="ftp_trp.1" name="Trusted Path" status="sel-based">
+        <f-component id="sfr-ftp-trp-1" cc-id="ftp_trp.1" name="Trusted Path" status="sel-based">
 			<depends on-sel="sel-mof-remote-admin"/> 
             <f-element id="ftp-trp-1e1">
 			    <title>The TSF shall <refinement>use a trusted channel as specified in FTP_ITC_EXT.1 to</refinement> 
