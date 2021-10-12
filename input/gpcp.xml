@@ -1284,7 +1284,7 @@
 					and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> 
 					that meet the following: <assignable>list of standards</assignable>. <h:p/>
 					The rows of <xref to="fcs-ckm-1-ak-sels"/> provide the allowable values for completion of the 
-					assignments for FCS_CKM.1.1/AK.<h:p/>
+					assignments and selections for FCS_CKM.1.1/AK.<h:p/>
 				
 <!--					The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys using the methods defined by 
 					the following rows in <xref to="fcs-ckm-1-ak-sels"/>: 
@@ -1306,7 +1306,7 @@
 						<h:td><selectables>
 							<selectable id="sel-exp-ak-rsa-2048">2048 bit</selectable>
 							<selectable id="sel-exp-ak-rsa-3072">3072-bit</selectable></selectables></h:td>
-						<h:td>FIPS PUB 186-4 (Section B.3)</h:td></h:tr>
+						<h:td>FIPS PUB 186-4 (Section B.3) [key generation]</h:td></h:tr>
 						
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-eccn"/>
 						<h:td>ECC-N</h:td>
@@ -1314,7 +1314,8 @@
 							<selectable id="sel-exp-ak-eccn-P256">256 (P-256)</selectable>
 							<selectable id="sel-exp-ak-eccn-P384">384 (P-384)</selectable>
 							<selectable id="sel-exp-ak-eccn-P521">521 (P-521)</selectable></selectables></h:td>
-						<h:td>FIPS PUB 186-4 (Section B.4 &amp; D.1.2)</h:td></h:tr>
+						<h:td>FIPS PUB 186-4 (Section B.4 &amp; D.1.2) [NIST curves]<h:p/>
+							FIPS PUB 186-4 (Section B.4) [key generation]</h:td></h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-eccb"/>
 						<h:td>ECC-B</h:td>
@@ -1322,7 +1323,8 @@
 							<selectable id="sel-exp-ak-eccb-bpP256r1">256 (brainpoolP256r1)</selectable>
 							<selectable id="sel-exp-ak-eccb-bpP384r1">384 (brainpoolP384r1)</selectable>
 							<selectable id="sel-exp-ak-eccb-bpP512r1">512 (brainpoolP512r1)</selectable></selectables></h:td>
-						<h:td>RFC5639 (Section 3) (Brainpool Curves)</h:td></h:tr>
+						<h:td>RFC5639 (Section 3) [Brainpool Curves]<h:p/>
+							FIPS PUB 186-4 (Section B.4) [Key generation]</h:td></h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-dsa"/>
 						<h:td>DSA</h:td>
@@ -1332,12 +1334,14 @@
 								<selectable id="sel-exp-ak-dsa-2048-224">(2048, 224)</selectable>
 								<selectable id="sel-exp-ak-dsa-2048-256">(2048, 256)</selectable>
 								<selectable id="sel-exp-ak-dsa-3027-256">(3027, 256)</selectable></selectables></h:td>
-						<h:td>FIPS 186-4 Appendix B.1</h:td></h:tr>
+						<h:td>FIPS 186-4 Appendix B.1 [key generation]</h:td></h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-curve25519"/>
 						<h:td>Curve25519</h:td>
 						<h:td>256 bits</h:td>
-						<h:td>RFC 7748</h:td></h:tr>
+						<h:td>RFC 7748 [Curve25519]<h:p/>
+							FIPS PUB 186-4 (Section B.4) [key generation]
+						</h:td></h:tr>
 					</h:table>
 				</title>
 				<note role="application">
@@ -1347,12 +1351,14 @@
 					Specifically, this SFR must be included in the ST if "<h:i>Asymmetric KEKs generated in
 					accordance with FCS_CKM.1/AK</h:i>" is selected in FCS_CKM.1/KEK, or if FCS_IPSEC_EXT.1 is 
 					included in the ST.<h:p/>
+					For Curve25519, see also, final draft NIST FIPS-186-5, Oct 2019.<h:p/>
+					DSA will be deprecated by NIST PUB 186-5, when published.
 				</note>
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to verify that it describes how the TOE
 						generates an asymmetric key based on the methods selected from <xref to="fcs-ckm-1-ak-sels"/>:
-						“Supported Methods for Asymmetric Key Generation”. The evaluator shall
+						“Supported Methods for Asymmetric Key Generation.” The evaluator shall
 						examine the TSS to verify that it describes how the TOE invokes the methods
 						selected in the ST from the table. The evaluator shall examine the TSS to
 						verify that it identifies the usage for each row identifier (key type, key size, and list
@@ -1496,34 +1502,39 @@
 	  
 		<!-- FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key) -->
 		<f-component id="sfr-fcs-ckm-1-sk" cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
-			<depends on-sel="sel-ckm-kek-sk"/> <!-- from FCS_CKM.1/KEK -->
+			<depends on-sel="sel-ckm-kek-sk"/> <!-- from FCS_CKM.1.1/KEK -->
 			<f-element id="fcs-ckm-1e1-sk">
 				<title>
-<!--				The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with a specified 
-				cryptographic key generation algorithm <assignable>cryptographic key generation algorithm</assignable>
+				The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with a specified 
+				cryptographic key generation algorithm 
+				<selectables>
+					<selectable id="sel-fcs-ckm-sk-rsk">RSK</selectable>
+					<selectable id="sel-fcs-ckm-sk-dsk">DSK</selectable>
+					<selectable id="sel-fcs-ckm-sk-pbk">PBK</selectable>
+				</selectables>
 				and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> 
 				that meet the following: <assignable>list of standards</assignable>. <h:p/>
 				The rows of <xref to="fcs-ckm-1-sk-sels"/> provide the allowable values for completion of the 
-				assignments for FCS_CKM.1.1/SK.<h:p/>  -->
-					The TSF shall generate <h:b>symmetric</h:b> cryptographic keys using the methods defined by 
+				assignments and selections for FCS_CKM.1.1/SK.<h:p/>
+<!--					The TSF shall generate <h:b>symmetric</h:b> cryptographic keys using the methods defined by 
 					the following rows in <xref to="fcs-ckm-1-sk-sels"/>:
 					[selection: identifier from Supported Methods for Symmetric Encryption Key Generation table]
 					<selectables>
 						<selectable id="sel-fcs-ckm-sk-rsk">RSK</selectable>
 						<selectable id="sel-fcs-ckm-sk-dsk">DSK</selectable>
 						<selectable id="sel-fcs-ckm-sk-pbk">PBK</selectable>
-					</selectables>.<h:p/> 
+					</selectables>.<h:p/>  --> 
 					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-sk-sels">: Supported Methods for Symmetric Key Generation</ctr></h:b><h:br/>	
 					<h:table>
-						<h:tr class="header"><h:td>Identifier</h:td><h:td>Key Type</h:td>
-							<h:td>Cryptographic Key Generation Algorithm</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+						<h:tr class="header"><h:td>Identifier</h:td><!--<h:td>Key Type</h:td>-->
+							<h:td>Cryptographic key generation algorithm</h:td><h:td>Key sizes</h:td><h:td>List of standards</h:td></h:tr>
 
-						<h:tr> <!--<depends on-sel="sel-fcs-ckm-sk-rsk"/> -->
+						<h:tr><depends on-sel="sel-fcs-ckm-sk-rsk"/>
 						<h:td>RSK</h:td>
-						<h:td><selectables>
+						<!--<h:td><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>submask</selectable>
-							<selectable>authorization value</selectable></selectables></h:td>
+							<selectable>authorization value</selectable></selectables></h:td>-->
 						<h:td>Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</h:td>
 						<h:td><selectables>
 							<selectable>128</selectable>
@@ -1533,20 +1544,20 @@
 						<h:td>NIST SP 800-133 (Section 7.1) with ISO 18031 as an approved RBG in addition
 							to those in NIST SP 800-133 (Section 5).</h:td></h:tr>
 							
-						<h:tr><!--<depends on-sel="sel-fcs-ckm-sk-dsk"/>-->
-							<h:td>DSK <assignable>Identifier from Table 16: Key Derivation Functions</assignable></h:td>
-						<h:td><assignable>Key Type from Table 16: Key Derivation Functions</assignable></h:td>
-						<h:td>Derived from a Key Derivation Function as specified in FCS_CKM_EXT.5 
-							<assignable>Key Derivation Algorithm from Table 16: Key Derivation Function</assignable></h:td>
-						<h:td><assignable>Key sizes from Table 16: Key Derivation Functions</assignable></h:td>
-						<h:td><assignable>List of Standards from Table 16: Key Derivation Functions</assignable></h:td></h:tr>
+						<h:tr><depends on-sel="sel-fcs-ckm-sk-dsk"/>
+							<h:td>DSK <!--<assignable>Identifier from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Functions</assignable>--></h:td>
+						<!--<h:td><assignable>Key Type from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Functions</assignable></h:td>-->
+						<h:td>Derived from a Key Derivation Function as specified in FCS_CKM_EXT.5 <!--
+							<assignable>Key Derivation Algorithm from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Function</assignable>--></h:td>
+						<h:td><assignable>Key sizes from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Functions</assignable></h:td>
+						<h:td><assignable>List of Standards from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Functions</assignable></h:td></h:tr>
 						
-						<h:tr><!--<depends on-sel="sel-fcs-ckm-sk-pbk"/>-->
+						<h:tr><depends on-sel="sel-fcs-ckm-sk-pbk"/>
 							<h:td>PBK</h:td>
-						<h:td><selectables>
+						<!--<h:td><selectables>
 							<selectable>submask</selectable>
 							<selectable>authentication token</selectable>
-							<selectable>authorization value</selectable></selectables></h:td>
+							<selectable>authorization value</selectable></selectables></h:td>-->
 						<h:td>Derived from a Password Based Key Derivation Function as specified in FCS_COP.1/PBKDF</h:td>
 						<h:td><assignable>Key sizes as specified in FCS_COP.1/PBKDF</assignable></h:td>
 						<h:td><assignable>Standards as specified in FCS_COP.1/PBKDF</assignable></h:td></h:tr>
@@ -1555,19 +1566,17 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					
-					This SFR must be included in the ST if "<h:i>Symmetric KEKs...</h:i>" is selected in FCS_CKM.1/KEK.<h:p/>
-					
-					The selection of key size 512 bits is for the case of XTS-AES using AES-256. In the case of XTSAES
+					This SFR must be included in the ST if "<h:i>Symmetric KEKs generated in accordance with FCS_CKM.1/SK</h:i>"
+					is selected in FCS_CKM.1/KEK.<h:p/>
+					The selection of key size 512 bits is for the case of XTS-AES using AES-256. In the case of XTS-AES
 					for both AES-128 and AES-256, the developer is expected to ensure that the full key is
-					generated using direct generation from the RBG as in NIST SP 800-133 section.<h:p/>
-					
+					generated using direct generation from the RBG as in NIST SP 800-133.<h:p/>
 					The ST author selects at least one algorithm from the RSK row if the ST supports creating keys
 					directly from the output of the RBG without further conditioning, at least one algorithm from the
 					DSK row should be selected if the ST supports key derivation functions which are usually seeded
 					from RBG and then further conditioned to the appropriate key size, and at least one algorithm
-					from the PBK row should be selected if the ST supports keys derived from passwords.<h:p/>
-					
+					from the PBK row should be selected if the ST supports keys derived from passwords.<h:p/>					
+					If "<h:i>RSK</h:i>" is selected, the selection-based SFR FCS_RBG_EXT.1 must be claimed by the TOE.<h:p/>
 					If "<h:i>DSK</h:i>" is selected, the selection-based SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
 					If "<h:i>PBK</h:i>" is selected, the selection-based SFR FCS_COP.1/PBKDF must be claimed by the TOE.<h:p/>
 					This requirement must be claimed by the TOE if at least one of FCS_CKM.1 or FCS_CKM.1/KEK
