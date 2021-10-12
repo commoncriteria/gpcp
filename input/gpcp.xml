@@ -1915,17 +1915,17 @@
 						master file table.<h:p/>
 					</Guidance>
 					<KMD>
-							The evaluator shall examine the KMD to verify that it identifies and describes the
-							interfaces that are used to service commands to read/write memory. The evaluator
-							shall examine the interface description for each different media type to ensure that
-							the interface supports the selections made by the ST author.<h:p/>
-							45 The evaluator shall examine the KMD to ensure that all keys and keying material
-							identified in the TSS and KMD have been accounted for.<h:p/>
-							46 Note that where selections include ‘destruction of reference to the key directly
-							followed by a request for garbage collection’ (for volatile memory) then the
-							evaluator shall examine the KMD to ensure that it explains the nature of the
-							destruction of the reference, the request for garbage collection, and of the garbage
-							collection process itself.<h:p/>
+						The evaluator shall examine the KMD to verify that it identifies and describes the
+						interfaces that are used to service commands to read/write memory. The evaluator
+						shall examine the interface description for each different media type to ensure that
+						the interface supports the selections made by the ST author.<h:p/>
+						The evaluator shall examine the KMD to ensure that all keys and keying material
+						identified in the TSS and KMD have been accounted for.<h:p/>
+						Note that where selections include "<h:i>destruction of reference to the key directly
+						followed by a request for garbage collection</h:i>" (for volatile memory) then the
+						evaluator shall examine the KMD to ensure that it explains the nature of the
+						destruction of the reference, the request for garbage collection, and of the garbage
+						collection process itself.<h:p/>
 					</KMD>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
@@ -2032,14 +2032,12 @@
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if FCS_CKM.4 is included in the ST.<h:p/>
-					The platform will have mechanisms to destroy keys, including intermediate keys and key material, by
-					using an approved method, FCS_CKM.4. Examples of keys include intermediate keys, leaf keys,
-					encryption keys, signing keys, verification keys, authentication tokens, and submasks. The DSC
-					will have mechanisms to destroy keys and key material contained in persistent storage when no
-					longer needed. Based on their implementation, vendors will explain when certain keys are no
-					longer needed. An example in which key is no longer necessary includes a wrapped key whose
-					password has changed. However, there are instances when keys are allowed to remain in memory,
-					for example, a device identification key.
+					The TOE must have mechanisms to destroy keys and key material in persistent storage using an 
+					approved method as speified in FCS_CKM.4. Examples of keys and key material include intermediate
+					keys, encryption keys, signing keys, verification keys, authentication tokens, and submasks. <h:p/>
+					The TOE will have mechanisms to destroy keys and key material when the keys and key material 
+					is no longer needed. Based on their implementations, vendors will explain when certain keys are no
+					longer needed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -2052,10 +2050,10 @@
 					</Guidance>
 					<KMD>
 						The evaluator shall verify that the KMD includes a description of the areas where
-						keys and key material reside and when this data is no longer needed.<h:p/>
+						keys and key material reside and when this material is no longer needed.<h:p/>
 						The evaluator shall verify that the KMD includes a key lifecycle that includes a
 						description where key materials reside, how the key materials are used, how it is 
-						determined that keys and key material are no longer needed, and how the data is
+						determined that keys and key material are no longer needed, and how the material is
 						destroyed once it is no longer needed. The evaluator shall also verify that all key
 						destruction operations are performed in a manner specified by FCS_CKM.4.<h:p/>
 					</KMD>
