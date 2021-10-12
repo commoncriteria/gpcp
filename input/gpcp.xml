@@ -1687,25 +1687,25 @@
 		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="optional">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/> 	<!-- FCS_IPSEC_EXT.1 -->
 			<f-element id="fcs-ckm-2e1">
-				<title>The TSF shall establish cryptographic keys in accordance with a specified
+				<title>The TSF shall <h:b>establish</h:b> cryptographic keys in accordance with a specified
 					cryptographic key establishment method: 
 					<selectables linebreak="yes">
-						<selectable>RSA-based key establishment schemes that meet the following: NIST Special
+						<selectable id="sel-fcs-ckm-2-rsa">RSA-based key establishment schemes that meet the following: NIST Special
 							Publication 800-56B Revision 2, “Recommendation for Pair-Wise Key Establishment
 							Schemes Using Integer Factorization Cryptography”</selectable>
-						<selectable>RSA-based key establishment schemes that meet the following: RSAES-PKCS1-v1_5
+						<selectable id="sel-fcs-ckm-2-rsaaes">RSA-based key establishment schemes that meet the following: RSAES-PKCS1-v1_5
 							as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards
 							(PKCS) #1: RSA Cryptography Specifications Version 2.2”</selectable>
-						<selectable>Elliptic curve-based key establishment schemes that meet the following: 
+						<selectable id="sel-fcs-ckm-2-ecc">Elliptic curve-based key establishment schemes that meet the following: 
 							<selectables linebreak="yes">
 								<selectable>NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise
 									Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
 								<selectable>RFC 7748, “Elliptic Curves for Security”</selectable>
 							</selectables></selectable>
-						<selectable>Finite field-based key establishment schemes that meet the following: NIST Special
+						<selectable id="sel-fcs-ckm-2-ffc">Finite field-based key establishment schemes that meet the following: NIST Special
 							Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment
 							Schemes Using Discrete Logarithm Cryptography”</selectable>
-						<selectable>Elliptic Curve Integrated Encryption Scheme (ECIES) that meets the following:
+						<selectable id="sel-fcs-ckm-2-ecies">Elliptic Curve Integrated Encryption Scheme (ECIES) that meets the following:
 							<selectables linebreak="yes">
 								<selectable>ANSI X9.63 - Public Key Cryptography for the Financial Services Industry
 									Key Agreement and Key Transport Using Elliptic Curve Cryptography</selectable>
@@ -1725,23 +1725,27 @@
 					This is a refinement of the SFR FCS_CKM.2 to deal with key establishment rather than key
 					distribution.<h:p/>
 					The ST author selects all key establishment schemes used for the selected cryptographic protocols.<h:p/>
-					The RSA-based key establishment schemes are described in Section 8 of NIST SP 800-56B Revision
-					2 [NIST-RSA]; however, Section 8 relies on implementation of other sections in SP 800-56B Revision 2.<h:p/>
+				<!--	The RSA-based key establishment schemes are described in Section 8 of NIST SP 800-56B Revision
+					2 [NIST-RSA]; however, Section 8 relies on implementation of other sections in SP 800-56B Revision 2.<h:p/> -->
 					The elliptic curves used for the key establishment scheme correlate with the curves specified in
 					FCS_CKM.1/AK.<h:p/>
-					The selections in this SFR must be consistent with those for FCS_COP.1/KAT.<h:p/>
+					The selections in this SFR must be consistent with those for FCS_COP.1/KAT. Specifically:
+					<h:ul>
+						<h:li>If the first RSA scheme is selected, then "<h:i>KAS1</h:i>," "<h:i>KAS2</h:i>," or	
+							"<h:i>KTS_OAEP</h:i>" must be selected in FCS_COP.1/KAT.</h:li>
+						<h:li>If the second RSA scheme is selected, then "<h:i>RSAES-PKCS1-v1_5</h:i>" must be selected
+							in FCS_COP.1/KAT.</h:li>
+						<h:li>If ECC schemes is selected, then "<h:i>ECDH-NIST</h:i>," "<h:i>ECDH-BPC</h:i>," or 
+							"<h:i>Curve25519</h:i>" must be selected in FCS_COP.1/KAT.</h:li>
+						<h:li>If ECIES is selected, then "<h:i>ECIES</h:i>" must be selected in FCS_COP.1/KAT.</h:li>
+					</h:ul>
 				</note>
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to ensure that ST supports at least one key
 						establishment scheme. The evaluator also ensures that for each key establishment
 						scheme selected by the ST in FCS_CKM.2.1 it also supports one or more
-						corresponding methods selected in FCS_COP.1/KAT. If the ST selects RSA in
-						FCS_CKM.2.1, then the TOE must support one or more of “KAS1,” or “KAS2,”
-						“KTS-OAEP,” from FCS_COP.1/KAT. If the ST selects elliptic curve-based, then
-						the TOE must support one or more of “ECDH-NIST” or “ECDH-BPC” from
-						FCS_COP.1/KAT. If the ST selects Diffie-Hellman-based key establishment, then
-						the TOE must support “DH” from FCS_COP.1/KAT.<h:p/>
+						corresponding methods selected in FCS_COP.1/KAT.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall verify that the guidance instructs the administrator how to
@@ -2826,6 +2830,10 @@
 		<!-- FCS_COP.1/KAT Cryptographic Operation (Key Agreement/Transport) -->
 		<f-component id="sfr-fcs-cop-1-kat" cc-id="fcs_cop.1" iteration="KAT" name="Cryptographic Operation (Key Agreement/Transport)" status="sel-based">
 			<depends on-sel="sel-fcs-cop-keyenc-ae1"/>  <!-- implies "sel-fcs-cop-kat-kts" -->
+			<depends on-sel="sel-fcs-ckm-2-rsa"/>  		<!-- FCS_CKM.2 -->
+			<depends on-sel="sel-fcs-ckm-2-rsaaes"/> 	<!-- FCS_CKM.2 -->
+			<depends on-sel="sel-fcs-ckm-2-ecc"/>  		<!-- FCS_CKM.2 -->
+			<depends on-sel="sel-fcs-ckm-2-ecies"/>  	<!-- FCS_CKM.2 -->
 			<f-element id="fcs-cop-1e1-kat">
 				<title>The TSF shall perform [<h:i>cryptographic key agreement/transport</h:i>] using the supported
 					methods for key agreement/transport defined by the following rows of <xref to="fcs-ckm-kat-sels"/>: 
