@@ -2101,7 +2101,7 @@
 						<h:td>Key Derivation Algorithm</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 
 						<h:tr><!-- <depends on-sel="sel-fcs-ckm-keydrv-1"/>-->
-							<h:td>KeyDrv1</h:td>
+							<h:td>KDF-CTR</h:td>  <!-- KeyDrv1 -->
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
@@ -2137,7 +2137,7 @@
 						</h:tr>
 		
 						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-2"/>-->
-						<h:td>KeyDrv2</h:td>
+						<h:td>KDF-FB</h:td>  <!-- KeyDrv2  -->
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
@@ -2173,7 +2173,7 @@
 						</h:tr>
 		
 						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-3"/>-->
-						<h:td>KeyDrv3</h:td>
+						<h:td>KDF-DPI</h:td> <!-- KeyDrv3  -->
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
@@ -2209,7 +2209,7 @@
 						</h:tr>
 
 						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-4"/>-->
-						<h:td>KeyDrv4</h:td>
+						<h:td>KDF-XOR</h:td>  <!-- KeyDrv4  -->
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
@@ -2234,8 +2234,10 @@
 							</selectables></h:td>
 						</h:tr>
 		
+						<!-- This is the same as the first three above using concatenated keys	
+							so it can be removed if we allow concatenated keys as input to the three above -->
 						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-5"/>-->
-						<h:td>KeyDrv5</h:td>
+						<h:td>KeyDrv5</h:td>  <!-- KeyDrv5  -->
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
@@ -2277,7 +2279,7 @@
 						</h:tr>
 
 						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-6"/>-->
-						<h:td>KeyDrv6</h:td>
+						<h:td>KDF_ENC</h:td>  <!-- KeyDrv6 -->
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
@@ -2303,8 +2305,9 @@
 							</selectables>bits</h:td>
 						<h:td>[selection: see List of Standards in FCS_COP.1/SKC Symmetric Key table]</h:td></h:tr>
 
+						<!-- Keyed Hashes can be removed from this one or it's redundant with KDF-MAC -->
 						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-7"/>-->
-						<h:td>KeyDrv7</h:td>
+						<h:td>KDF-HASH</h:td>  <!-- KeyDrv7 -->
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>secret IV</selectable>
@@ -2313,7 +2316,7 @@
 						<h:td>Shared secret, salt, output length, fixed information</h:td>
 						<h:td><selectables>
 							<selectable>hash function from FCS_COP.1/Hash</selectable>
-							<selectable>keyed hash from FCS_COP.1/HMAC</selectable>
+							<selectable>keyed hash from FCS_COP.1/KeyedHash</selectable>
 							</selectables></h:td>
 						<h:td><selectables>
 							<selectable>128</selectable>
@@ -2321,24 +2324,24 @@
 							<selectable>256</selectable>
 							</selectables>bits</h:td>
 						<h:td>(NIST-KDRV) sec 4<h:p/>
-							<assignable>See List of Standards in FCS_COP.1/Hash and FCS_COP.1/HMAC</assignable></h:td></h:tr>
+							<assignable>See List of Standards in FCS_COP.1/Hash and FCS_COP.1/KeyedHash</assignable></h:td></h:tr>
 
 						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-8"/>-->
-						<h:td>KeyDrv8</h:td>
+						<h:td>KDF-MAC</h:td>  <!-- KeyDrv8 -->
 						<h:td><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>secret IV</selectable>
 							<selectable>seed</selectable>
 							</selectables></h:td>
 						<h:td>Shared secret, salt, IV, output length, fixed information</h:td>
-						<h:td><assignable>keyed hash from FCS_COP.1/HMAC</assignable></h:td>
+						<h:td><assignable>keyed hash from FCS_COP.1/KeyedHash</assignable></h:td>
 						<h:td><selectables>
 							<selectable>128</selectable>
 							<selectable>192</selectable>
 							<selectable>256</selectable>
 							</selectables>bits</h:td>
 						<h:td>(NIST-KDRV) sec 5<h:p/>
-							<assignable>see List of Standards in FCS_COP.1/Hash and FCS_COP.1/HMAC</assignable></h:td></h:tr>
+							<assignable>see List of Standards in FCS_COP.1/Hash and FCS_COP.1/KeyedHash</assignable></h:td></h:tr>
 					</h:table>
 				</title>
 				<note role="application">
