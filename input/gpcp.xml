@@ -1616,6 +1616,7 @@
 		</f-component>
 		
 		<!-- FCS_CKM.1/KEK Cryptographic Key Generation (Key Encryption Key)  -->
+		<!-- Removed selection of FCS_CKM_EXT.5 since you can get there through FCS_CKM.1/SK -->
 		<f-component id="sfr-fcs-ckm-1-kek" cc-id="fcs_ckm.1" iteration="KEK" name="Cryptographic Key Generation (Key Encryption Key)" status="optional">
 			<f-element id="fcs-ckm-1e1-kek">
 				<title>The TSF shall generate <h:b>key encryption keys</h:b> in accordance with a specified
@@ -1623,7 +1624,7 @@
 					<selectables linebreak="yes">
 						<selectable id="sel-ckm-kek-ak">Asymmetric KEKs generated in accordance with FCS_CKM.1/AK</selectable>
 						<selectable id="sel-ckm-kek-sk">Symmetric KEKs generated in accordance with FCS_CKM.1/SK</selectable>
-						<selectable id="sel-ckm-kek-drvd">Derived KEKs generated in accordance with FCS_CKM_EXT.5</selectable>
+				<!--		<selectable id="sel-ckm-kek-drvd">Derived KEKs generated in accordance with FCS_CKM_EXT.5</selectable>  -->
 					</selectables>
 					and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet the
 					following: <assignable>list of standards</assignable>.
@@ -1638,15 +1639,15 @@
 					SFR FCS_CKM.1/AK must be claimed by the TOE.<h:p/>
 					If "<h:i>Symmetric KEKs generated in accordance with FCS_CKM.1/SK</h:i>" is selected, the selection-based
 					SFR FCS_CKM.1/SK must be claimed by the TOE.<h:p/>
-					If "<h:i>Derived KEKs generated in accordance with FCS_CKM_EXT.5</h:i>" is selected, the selection-based
-					SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
+					<!-- If "<h:i>Derived KEKs generated in accordance with FCS_CKM_EXT.5</h:i>" is selected, the selection-based
+					SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>  -->
 				</note>
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the key hierarchy section of the TSS to ensure that the
 						formation of all KEKs is described and that the key sizes match that described by
-						the ST author. The evaluator shall examine the key hierarchy section of the TSS to
-						ensure that each KEK encrypts keys of equal or lesser security strength using one
+						the ST author. The evaluator shall examine the key hierarchy section of the TSS, 
+						if applicable, to ensure that each KEK encrypts keys of equal or lesser security strength using one
 						of the selected methods.<h:p/>
 						[conditional] If the KEK is generated according to an asymmetric key scheme, the
 						evaluator shall review the TSS to determine that it describes how the functionality
@@ -1662,9 +1663,9 @@
 						generation method claimed, to determine that the key size being requested is greater
 						than or equal to the key size and mode to be used for the encryption/decryption of
 						the data.<h:p/>
-						[conditional] If the KEK is formed from derivation, the evaluator shall verify that
+					<!--	[conditional] If the KEK is formed from derivation, the evaluator shall verify that
 						the TSS describes the method of derivation and that this method is consistent with
-						FCS_CKM_EXT.5.<h:p/>
+						FCS_CKM_EXT.5.<h:p/>  -->
 					</TSS>
 					<Guidance>
 						There are no guidance evaluation activities for this component.<h:p/>
@@ -1683,7 +1684,7 @@
 		</f-component>
 
 		<!-- FCS_CKM.2 Cryptographic Key Establishment -->
-		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="sel-based">
+		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="optional">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/> 	<!-- FCS_IPSEC_EXT.1 -->
 			<f-element id="fcs-ckm-2e1">
 				<title>The TSF shall establish cryptographic keys in accordance with a specified
@@ -2064,7 +2065,8 @@
 
 		<!-- FCS_CKM_EXT.5 Cryptographic Key Derivation -->
 		<f-component id="sfr-fcs-ckm-ext-5" cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="sel-based">
-			<depends on-sel="sel-ckm-kek-drvd"/> <!-- from FCS_CKM.1/KEK -->
+		<!--	<depends on-sel="sel-ckm-kek-drvd"/> --> <!-- from FCS_CKM.1/KEK -->
+			<depends on-sel="sel-fcs-ckm-sk-dsk"/>  <!-- from FCS_CKM.1.1/SK -->
 			<depends on-sel="sel-fcs-cop-keyenc-xor"/>
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to perform key derivation using a defined method.</comp-lev>
