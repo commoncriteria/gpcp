@@ -1341,23 +1341,20 @@
 					</h:table>
 				</title>
 				<note role="application">
-					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
-					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					This SFR must be included in the ST if "<h:i>Asymmetric KEKs...</h:i>" is selected in FCS_CKM.1/KEK.<h:p/>
-					This requirement is included for the purposes of encryption and decryption operations only. To
-					support ITE protected communications requirement for the transfer of encrypted data, this 
-					requirement mandates implementation compliance to FIPS 186-4 only. Implementations
-					according to FIPS 186-2 or FIPS 186-3 will not be accepted.<h:p/>
-					This requirement must be claimed by the TOE if at least one of FCS_CKM.1 or FCS_CKM.1/KEK
-					chooses a selection related to generation of asymmetric keys.
+					This SFR must be included in the ST if asymmetric key generation is a service provided by 
+					the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
+					security functionality.<h:p/> 
+					Specifically, this SFR must be included in the ST if "<h:i>Asymmetric KEKs generated in
+					accordance with FCS_CKM.1/AK</h:i>" is selected in FCS_CKM.1/KEK, or if FCS_IPSEC_EXT.1 is 
+					included in the ST.<h:p/>
 				</note>
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to verify that it describes how the TOE
-						generates an asymmetric key based on the methods selected from cPP Table 13:
+						generates an asymmetric key based on the methods selected from <xref to="fcs-ckm-1-ak-sels"/>:
 						“Supported Methods for Asymmetric Key Generation”. The evaluator shall
 						examine the TSS to verify that it describes how the TOE invokes the methods
-						selected in the ST from the same table. The evaluator shall examine the TSS to
+						selected in the ST from the table. The evaluator shall examine the TSS to
 						verify that it identifies the usage for each row identifier (key type, key size, and list
 						of standards) selected in the ST.<h:p/>
 					</TSS>
@@ -1368,14 +1365,14 @@
 					<KMD>
 						If the TOE uses the generated key in a key chain/hierarchy then the evaluator shall
 						confirm that the KMD describes:<h:ul>
-						<h:li>If <h:u>AK1</h:u> is selected, then the KMD describes which methods for generating p
+						<h:li>If "<h:i>RSA</h:i>" is selected, then the KMD describes which methods for generating p
 							and q are used</h:li>
 						<h:li>How the key is used as part of the key chain/hierarchy. </h:li></h:ul>
 					</KMD>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
-						<h:b>AK1: RSA Key Generation</h:b><h:br/>
+						<h:b>RSA: RSA Key Generation</h:b><h:br/>
 						The below tests are derived from The 186-4 RSA Validation System (RSA2VS),
 						Updated 8 July 2014, Section 6.2, from the National Institute of Standards and
 						Technology.<h:p/>
@@ -1420,7 +1417,7 @@
 						<h:li>q >= squareroot(2)*( 2^(nlen/2 -1) )</h:li>
 						<h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li>
 						<h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/>
-						<h:b>AK2 &amp; AK3: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
+						<h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
 						These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
 						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/>
 						<h:b>ECC Key Generation Test</h:b><h:p/>
@@ -1439,7 +1436,7 @@
 						(i.e., correct). To determine correctness, the evaluator shall submit the 12 key pairs
 						to the public key validation (PKV) function of the TOE and shall confirm that the
 						results correspond as expected to the modified and unmodified values.<h:p/>
-						<h:b>AK4: DSA Key Generation using Finite-Field Cryptography (FFC)</h:b><h:p/>
+						<h:b>DSA: DSA Key Generation using Finite-Field Cryptography (FFC)</h:b><h:p/>
 						The evaluator shall verify the implementation of the Parameters Generation and the
 						Key Generation for FFC by the TOE using the Parameter Generation and Key
 						Generation test. This test verifies the ability of the TSF to correctly produce values
@@ -1471,7 +1468,7 @@
 						<h:li>g^q mod p = 1</h:li>
 						<h:li>g^x mod p = y</h:li></h:ul>
 						for each FFC parameter set and key pair.<h:p/>
-						<h:b>AK5: Curve25519 Key Generation</h:b><h:p/>
+						<h:b>Curve25519: Curve25519 Key Generation</h:b><h:p/>
 						The evaluator shall require the implementation under test (IUT) to generate 10
 						private/public key pairs. The private key shall be generated as specified in RFC
 						7748 using an approved random bit generator (RBG) and shall be written in littleendian order (least significant byte first. To determine correctness, the evaluator
@@ -1620,7 +1617,7 @@
 				<title>The TSF shall generate <h:b>key encryption keys</h:b> in accordance with a specified
 					cryptographic key generation algorithm corresponding to 
 					<selectables linebreak="yes">
-						<selectable id="sel-ckm-kek-ak">Asymmetric KEKs generated in accordance with FCS_CKM.1/AK identifier AK1</selectable>
+						<selectable id="sel-ckm-kek-ak">Asymmetric KEKs generated in accordance with FCS_CKM.1/AK</selectable>
 						<selectable id="sel-ckm-kek-sk">Symmetric KEKs generated in accordance with FCS_CKM.1/SK</selectable>
 						<selectable id="sel-ckm-kek-drvd">Derived KEKs generated in accordance with FCS_CKM_EXT.5</selectable>
 					</selectables>
