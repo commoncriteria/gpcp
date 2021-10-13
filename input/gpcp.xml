@@ -3369,10 +3369,23 @@
 
 		<!-- FCS_COP.1/SigGen Cryptographic Operation (Signature Generation) -->
 		<f-component id="sfr-fcs-cop-1-siggen" cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation (Signature Generation)" status="sel-based">
-			<depends on-sel="sel-stg3-digsig"/>	
+			<depends on-sel="sel-stg3-digsig"/>	<!-- FCS_STG_EXT.3.1 -->
 			<f-element id="fcs-cop-1e1-siggen">
-				<title>
-					The TSF shall perform [<h:i>digital signature generation</h:i>] using the supported methods 
+				<title> The TSF shall perform <h:b>digital signature generation</h:b> in accordance with a specified 
+					cryptographic algorithm 
+					<selectables>
+						<selectable id="sel-fcs-cop-siggen-1">RSASSA-PKCS1</selectable>
+						<selectable id="sel-fcs-cop-siggen-2">DSS 2</selectable>
+						<selectable id="sel-fcs-cop-siggen-3">DSS 3</selectable>
+						<selectable id="sel-fcs-cop-siggen-4">RSASSA-PSS</selectable>
+						<selectable id="sel-fcs-cop-siggen-5">ECDSA</selectable>
+					</selectables> 				
+					and cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet
+					the following: <assignable>list of standards</assignable>.<h:p/>
+					<xref to="tab-fcs-cop-siggen-sels"/> provides the allowed choices for completion of the selection
+					and assignments for FCS_COP.1/SigGen.<h:p/>
+
+<!--					The TSF shall perform [<h:i>digital signature generation</h:i>] using the supported methods 
 					for signature generation defined in the following rows of <xref to="fcs-cop-siggen-sels"/>
 					<selectables>
 						<selectable id="sel-fcs-cop-siggen-1">RSASSA-PKCS1</selectable>
@@ -3381,8 +3394,8 @@
 						<selectable id="sel-fcs-cop-siggen-4">RSASSA-PSS</selectable>
 						<selectable id="sel-fcs-cop-siggen-5">ECDSA</selectable>
 					</selectables>.<h:p/>
-					
-					<h:b><ctr ctr-type='Table' id="fcs-cop-siggen-sels">: Supported Methods for Signature Generation Operation</ctr></h:b><h:br/>	
+-->					
+					<h:b><ctr ctr-type='Table' id="tab-fcs-cop-siggen-sels">: Supported Methods for Signature Generation Operation</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
 						<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
@@ -3585,7 +3598,21 @@
 			<depends on-sel="sel-tud1-auth-update"/>  <!-- FPT_TUD_EXT.1 (covers TUD2, which requires SigVer) -->
 			<depends on-sel="sel-tud1-unauth-update"/> <!-- FPT_TUD_EXT.1 -->
 			<f-element id="fcs-cop-1e1-sigver">
-				<title><refinement>Refinement:</refinement> The TSF shall perform  
+				<title> The TSF shall perform <h:b>digital signature generation</h:b> in accordance with a specified 
+					cryptographic algorithm 
+					<selectables>
+						<selectable id="sel-fcs-cop-sigver-1">RSASSA-PKCS1</selectable>
+						<selectable id="sel-fcs-cop-sigver-2">DSS 2</selectable>
+						<selectable id="sel-fcs-cop-sigver-3">DSS 3</selectable>
+						<selectable id="sel-fcs-cop-sigver-4">RSASSA-PSS</selectable>
+						<selectable id="sel-fcs-cop-sigver-5">ECDSA</selectable>
+					</selectables> 				
+					and cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet
+					the following: <assignable>list of standards</assignable>.<h:p/>
+					<xref to="tab-fcs-cop-sigver-sels"/> provides the allowed choices for completion of the selection
+					and assignments for FCS_COP.1/SigGen.<h:p/>
+					
+<!--					<refinement>Refinement:</refinement> The TSF shall perform  
 				The TSF shall perform [<h:i>digital signature verification</h:i>] using the supported methods 
 				for signature verification defined in the following rows of <xref to="fcs-cop-sigver-sels"/>
 				<selectables>
@@ -3595,8 +3622,8 @@
 					<selectable id="sel-fcs-cop-sigver-4">RSASSA-PSS</selectable>
 					<selectable id="sel-fcs-cop-sigver-5">ECDSA</selectable>
 				</selectables>.<h:p/>
-				
-				<h:b><ctr ctr-type='Table' id="fcs-cop-sigver-sels">: Supported Methods for Signature Verification Operation</ctr></h:b><h:br/>	
+--?				
+				<h:b><ctr ctr-type='Table' id="tab-fcs-cop-sigver-sels">: Supported Methods for Signature Verification Operation</ctr></h:b><h:br/>	
 				<h:table>
 					<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
 					<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
