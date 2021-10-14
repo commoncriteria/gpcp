@@ -2991,8 +2991,8 @@
 						</h:tr>
 						
 						<h:tr><depends on-sel="sel-fcs-cop-kat-curve25519"/>
-							<h:td>Curve25519</h:td>
-							<h:td>ECDH</h:td>
+							<h:td>ECDH-25519</h:td>
+							<h:td>ECDH with Curve25519</h:td>
 							<h:td>256 bits</h:td>
 							<h:td>RFC 7748</h:td>
 						</h:tr>
@@ -3314,9 +3314,13 @@
 				<title>The TSF shall perform [<h:i>password-based key derivation functions</h:i>] in
 					accordance with a specified cryptographic algorithm
 					<selectables>
+						<selectable>HMAC-SHA-1</selectable>
+						<selectable>HMAC-SHA-224</selectable>
 						<selectable>HMAC-SHA-256</selectable>
 						<selectable>HMAC-SHA-384</selectable>
 						<selectable>HMAC-SHA-512</selectable>
+						<selectable>HMAC-SHA-512/224</selectable>
+						<selectable>HMAC-SHA-512/256</selectable>
 					</selectables> with <assignable>integer number greater than or equal to 1000</assignable>
 					iterations, and output cryptographic key sizes 
 					<selectables>
@@ -3328,7 +3332,9 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					
+					The TOE must claim this requirement if it claims FCS_CKM.1/SK and selects an algorithm in the
+					PBK row or claims FCS_CKM_EXT.5 and selects at least one of KDF-XOR or KDF-ENC
+					AND uses password-based key derivation to create at least one of the inputs.<h:p/>
 					The ST must condition a password into a string of bits prior to using it as input to algorithms that
 					form SKs and KEKs. The ST can perform conditioning using one of the identified hash functions
 					or the process described in NIST SP 800-132; the ST author selects the method used. NIST SP
@@ -3337,9 +3343,7 @@
 					Appendix A of NIST SP 800-132 recommends setting the iteration count in order to increase the
 					computation needed to derive a key from a password and, therefore, increase the workload of
 					performing a dictionary attack.<h:p/>
-					The TOE must claim this requirement if it claims FCS_CKM.1/SK and selects an algorithm in the
-					PBK row or claims FCS_CKM_EXT.5 and selects at least one of KeyDrv4, KeyDrv5, or KeyDrv6
-					AND uses password-based key derivation to create at least one of the inputs.<h:p/>
+					If the ST includes this SFR, then it must also include FCS_COP.1/KeyedHash.
 				</note>
 				<aactivity>
 					<TSS>
