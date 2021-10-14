@@ -1548,8 +1548,8 @@
 						<!--<h:td><assignable>Key Type from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Functions</assignable></h:td>-->
 						<h:td>Derived from a Key Derivation Function as specified in FCS_CKM_EXT.5 <!--
 							<assignable>Key Derivation Algorithm from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Function</assignable>--></h:td>
-						<h:td>Key sizes as specified in FCS_CKM_EXT.1</h:td>
-						<h:td>List of Standards as specified in FCS_CKM_EXT.1</h:td></h:tr>
+						<h:td>Key sizes as specified in FCS_CKM_EXT.5</h:td>
+						<h:td>List of Standards as specified in FCS_CKM_EXT.5</h:td></h:tr>
 						
 						<h:tr><depends on-sel="sel-fcs-ckm-sk-pbk"/>
 							<h:td>PBK</h:td>
@@ -2144,7 +2144,7 @@
 								<selectable>ISO/IEC 9797-2:2011 (HMAC)</selectable> 
 								<selectable>FIPS PUB 198-1 (HMAC)</selectable>
 								<selectable>ISO/IEC 10118-3:2018 (SHA)</selectable>
-								<selectable>FIPS-SHA</selectable>
+								<selectable>FIPS PUB 180-4 (SHA)</selectable>
 								</selectables></h:td>
 						</h:tr>
 		
@@ -2307,18 +2307,33 @@
 							<selectable>KMAC key</selectable>
 							</selectables></h:td>
 						<h:td>Two keys</h:td>
-						<h:td><selectables>
+						<h:td>Encryption using <selectables>
 							<selectable>AES-CCM</selectable>
 							<selectable>AES-GCM</selectable>
 							<selectable>AES-CBC</selectable>
 							<selectable>AES-KWP</selectable>
-							<selectable>AES-KW</selectable></selectables> from FCS_COP.1/SKC Symmetric Key table</h:td>
+							<selectable>AES-KW</selectable></selectables></h:td>
 						<h:td><selectables>
 							<selectable>128</selectable>
 							<selectable>192</selectable>
 							<selectable>256</selectable>
 							</selectables>bits</h:td>
-						<h:td>[selection: see List of Standards in FCS_COP.1/SKC Symmetric Key table]</h:td></h:tr>
+						<h:td><selectables>
+							<selection>ISO/IEC 18033-3:2010 (subclause 5.2) (AES)</selection>
+							<selection>FIPS PUB 197 (AES)</selection>
+							<selection>ISO/IEC 10116:2017 (clause 7) (CBC)</selection>
+							<selection>NIST SP800-38A sec. 6.2 (CBC)</selection>
+							<selection>ISO/IEC 19772:2009 (clause 8) (CCM)</selection>
+							<selection>NIST SP800-38C (CCM)</selection>
+							<selection>ISO/IEC 19772:2009 (clause 11) (GCM)</selection>
+							<selection>NIST SP800-38D (GCM)</selection>
+							<selection>IEEE Std. 1619-2007 (XTS)</selection>
+							<selection>NIST SP800-38E (XTS)</selection>
+							<selection>ISO/IEC 19772:2009, clause 7 (Key wrap)</selection>
+							<selection>NIST SP800-38F sec. 6.2 (KW)</selection>
+							<selection>NIST SP800-38F sec. 6.3 (KWP)</selection>
+							</selectables>
+							</h:td></h:tr>
 
 						<!-- Keyed Hashes can be removed from this one or it's redundant with KDF-MAC -->
 						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-7"/>-->
