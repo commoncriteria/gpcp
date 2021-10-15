@@ -1306,7 +1306,7 @@
 						<h:td><selectables>
 							<selectable id="sel-exp-ak-rsa-2048">2048 bit</selectable>
 							<selectable id="sel-exp-ak-rsa-3072">3072-bit</selectable></selectables></h:td>
-						<h:td>FIPS PUB 186-4 (Section B.3) [key generation]</h:td></h:tr>
+						<h:td>FIPS PUB 186-4 sec. B.3 [key generation]</h:td></h:tr>
 						
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-eccn"/>
 						<h:td>ECC-N</h:td>
@@ -1314,8 +1314,8 @@
 							<selectable id="sel-exp-ak-eccn-P256">256 (P-256)</selectable>
 							<selectable id="sel-exp-ak-eccn-P384">384 (P-384)</selectable>
 							<selectable id="sel-exp-ak-eccn-P521">521 (P-521)</selectable></selectables></h:td>
-						<h:td>FIPS PUB 186-4 (Section B.4 &amp; D.1.2) [NIST curves]<h:p/>
-							FIPS PUB 186-4 (Section B.4) [key generation]</h:td></h:tr>
+						<h:td>FIPS PUB 186-4 sec. D.1.2 [NIST curves]<h:p/>
+							FIPS PUB 186-4 sec. B.4 [key generation]</h:td></h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-eccb"/>
 						<h:td>ECC-B</h:td>
@@ -1323,24 +1323,24 @@
 							<selectable id="sel-exp-ak-eccb-bpP256r1">256 (brainpoolP256r1)</selectable>
 							<selectable id="sel-exp-ak-eccb-bpP384r1">384 (brainpoolP384r1)</selectable>
 							<selectable id="sel-exp-ak-eccb-bpP512r1">512 (brainpoolP512r1)</selectable></selectables></h:td>
-						<h:td>RFC5639 (Section 3) [Brainpool Curves]<h:p/>
-							FIPS PUB 186-4 (Section B.4) [Key generation]</h:td></h:tr>
+						<h:td>RFC 5639 sec. 3 [Brainpool Curves]<h:p/>
+							FIPS PUB 186-4 sec. B.4 [key generation]</h:td></h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-dsa"/>
 						<h:td>DSA</h:td>
 						<h:td>DSA Bit lengths of p and q respectively (L, N) 
 							<selectables>
-								<selectable id="sel-exp-ak-dsa-1024-160">(1024, 160)</selectable>
+<!--								<selectable id="sel-exp-ak-dsa-1024-160">(1024, 160)</selectable> -->
 								<selectable id="sel-exp-ak-dsa-2048-224">(2048, 224)</selectable>
 								<selectable id="sel-exp-ak-dsa-2048-256">(2048, 256)</selectable>
 								<selectable id="sel-exp-ak-dsa-3027-256">(3027, 256)</selectable></selectables></h:td>
-						<h:td>FIPS 186-4 Appendix B.1 [key generation]</h:td></h:tr>
+						<h:td>FIPS PUB 186-4 sec. B.1 [key generation]</h:td></h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-ckm-ak-curve25519"/>
 						<h:td>Curve25519</h:td>
 						<h:td>256 bits</h:td>
 						<h:td>RFC 7748 [Curve25519]<h:p/>
-							FIPS PUB 186-4 (Section B.4) [key generation]
+							FIPS PUB 186-4 sec. B.4 [key generation]
 						</h:td></h:tr>
 					</h:table>
 				</title>
@@ -1351,8 +1351,9 @@
 					Specifically, this SFR must be included in the ST if "<h:i>Asymmetric KEKs generated in
 					accordance with FCS_CKM.1/AK</h:i>" is selected in FCS_CKM.1/KEK, or if FCS_IPSEC_EXT.1 is 
 					included in the ST.<h:p/>
+					DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
+					by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
 					For Curve25519, see also, final draft NIST FIPS-186-5, Oct 2019.<h:p/>
-					DSA will be deprecated by NIST PUB 186-5, when published.
 				</note>
 				<aactivity>
 					<TSS>
@@ -1378,7 +1379,7 @@
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
-						<h:b>RSA: RSA Key Generation</h:b><h:br/>
+						<h:b>RSA: RSA Key Generation</h:b><h:p/>
 						The below tests are derived from The 186-4 RSA Validation System (RSA2VS),
 						Updated 8 July 2014, Section 6.2, from the National Institute of Standards and
 						Technology.<h:p/>
@@ -1426,7 +1427,7 @@
 						<h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
 						These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
 						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/>
-						<h:b>ECC Key Generation Test</h:b><h:p/>
+						<h:b>  ECC Key Generation Test</h:b><h:br/>
 						For each selected curve, and for each key pair generation method as described in
 						FIPS 186-4, section B.4, the evaluator shall require the implementation under test
 						to generate 10 private/public key pairs (d, Q). The private key, d, shall be generated 
@@ -1435,7 +1436,7 @@
 						(where n is the order of the group), and the computed value Q’ is then compared to
 						the generated public/private key pairs’ public key, Q, to confirm that Q is equal to
 						Q’.<h:p/>
-						<h:b>Public Key Validation (PKV) Test</h:b><h:p/>
+						<h:b>  Public Key Validation (PKV) Test</h:b><h:br/>
 						For each supported curve, the evaluator shall generate 12 private/public key pairs
 						using the key generation function of a known good implementation and modify six
 						of the public key values so that they are incorrect, leaving six values unchanged
@@ -1443,6 +1444,7 @@
 						to the public key validation (PKV) function of the TOE and shall confirm that the
 						results correspond as expected to the modified and unmodified values.<h:p/>
 						<h:b>DSA: DSA Key Generation using Finite-Field Cryptography (FFC)</h:b><h:p/>
+						<!-- Apparently not based on DSA2VS? -->
 						The evaluator shall verify the implementation of the Parameters Generation and the
 						Key Generation for FFC by the TOE using the Parameter Generation and Key
 						Generation test. This test verifies the ability of the TSF to correctly produce values
