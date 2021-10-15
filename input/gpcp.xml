@@ -1379,7 +1379,7 @@
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
-						<h:b>RSA: RSA Key Generation</h:b><h:p/>
+						<h:br/><h:b>RSA: RSA Key Generation</h:b><h:p/>
 						The below tests are derived from The 186-4 RSA Validation System (RSA2VS),
 						Updated 8 July 2014, Section 6.2, from the National Institute of Standards and
 						Technology.<h:p/>
@@ -1424,7 +1424,7 @@
 						<h:li>q >= squareroot(2)*( 2^(nlen/2 -1) )</h:li>
 						<h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li>
 						<h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/>
-						<h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
+						<h:br/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
 						These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
 						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/>
 						<h:b>  ECC Key Generation Test</h:b><h:br/>
@@ -1443,7 +1443,7 @@
 						(i.e., correct). To determine correctness, the evaluator shall submit the 12 key pairs
 						to the public key validation (PKV) function of the TOE and shall confirm that the
 						results correspond as expected to the modified and unmodified values.<h:p/>
-						<h:b>DSA: DSA Key Generation using Finite-Field Cryptography (FFC)</h:b><h:p/>
+						<h:br/><h:b>DSA: DSA Key Generation using Finite-Field Cryptography (FFC)</h:b><h:p/>
 						<!-- Apparently not based on DSA2VS? -->
 						The evaluator shall verify the implementation of the Parameters Generation and the
 						Key Generation for FFC by the TOE using the Parameter Generation and Key
@@ -1476,7 +1476,7 @@
 						<h:li>g^q mod p = 1</h:li>
 						<h:li>g^x mod p = y</h:li></h:ul>
 						for each FFC parameter set and key pair.<h:p/>
-						<h:b>Curve25519: Curve25519 Key Generation</h:b><h:p/>
+						<h:br/><h:b>Curve25519: Curve25519 Key Generation</h:b><h:p/>
 						The evaluator shall require the implementation under test (IUT) to generate 10
 						private/public key pairs. The private key shall be generated as specified in RFC
 						7748 using an approved random bit generator (RBG) and shall be written in littleendian order (least significant byte first. To determine correctness, the evaluator
@@ -1543,7 +1543,7 @@
 							<selectable>192</selectable>
 							<selectable>256</selectable>
 							<selectable>512</selectable></selectables> bits</h:td>
-						<h:td>NIST SP 800-133 Rev 2 (Section 6.1).</h:td></h:tr>
+						<h:td>NIST SP 800-133 Rev 2 sec. 6.1.</h:td></h:tr>
 							
 						<h:tr><depends on-sel="sel-fcs-ckm-sk-dsk"/>
 							<h:td>DSK <!--<assignable>Identifier from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Functions</assignable>--></h:td>
@@ -1569,14 +1569,12 @@
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR must be included in the ST if "<h:i>Symmetric KEKs generated in accordance with FCS_CKM.1/SK</h:i>"
 					is selected in FCS_CKM.1/KEK.<h:p/>
-					The selection of key size 512 bits is for the case of XTS-AES using AES-256. In the case of XTS-AES
-					for both AES-128 and AES-256, the developer is expected to ensure that the full key is
+					The ST author selects RSK if the TOE supports creating keys directly from the output of the RBG without 
+					further conditioning. The selection of key size 512 bits is for the case of XTS-AES using AES-256. 
+					In the case of XTS-AES for both AES-128 and AES-256, the developer is expected to ensure that the full key is
 					generated using direct generation from the RBG as in NIST SP 800-133.<h:p/>
-					The ST author selects the RSK row if the ST supports creating symmetric keys
-					directly from the output of the RBG without further conditioning.<h:p/>
-					The DSK row should be selected if the ST supports key derivation functions which are usually seeded
-					from RBG and then further conditioned to the appropriate key size. <h:p/>
-					The PBK row should be selected if the ST supports symmetric keys derived from passwords.<h:p/>					
+					The ST author selects DSK if the TOE supports keys derived from other keys.<h:p/>
+					The PBK row should be selected if the ST supports keys derived from passwords.<h:p/>					
 					If "<h:i>RSK</h:i>" is selected, the selection-based SFR FCS_RBG_EXT.1 must be claimed by the TOE.<h:p/>
 					If "<h:i>DSK</h:i>" is selected, the selection-based SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
 					If "<h:i>PBK</h:i>" is selected, the selection-based SFR FCS_COP.1/PBKDF must be claimed by the TOE.<h:p/>
