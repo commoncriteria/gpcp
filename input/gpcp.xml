@@ -2120,7 +2120,7 @@
 							<selectable>KMAC key</selectable>
 							</selectables></h:td>
 						<h:td><selectables>
-							<selectable>Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
+							<selectable id="sel-fcs-ckm-5-kdf-ctr-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
 							<selectable>Concatenated keys</selectable>
 							</selectables></h:td>
 						<h:td>KDF in Counter Mode using <selectables>
@@ -2159,7 +2159,7 @@
 							<selectable>KMAC key</selectable>
 							</selectables></h:td>
 						<h:td><selectables>
-							<selectable>Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
+							<selectable id="sel-fcs-ckm-5-kdf-fb-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
 							<selectable>Concatenated keys</selectable>
 							</selectables></h:td>
 						<h:td>KDF in Feedback Mode using <selectables>
@@ -2198,7 +2198,7 @@
 							<selectable>KMAC key</selectable>
 							</selectables></h:td>
 						<h:td><selectables>
-							<selectable>Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
+							<selectable id="sel-fcs-ckm-5-kdf-dpi-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
 							<selectable>Concatenated keys</selectable>
 							</selectables></h:td>
 						<h:td>KDF in Double Pipeline Iteration Mode using <selectables>
@@ -2344,17 +2344,17 @@
 							<selectable>seed</selectable>
 							</selectables></h:td>
 						<h:td>Shared secret, salt, output length, fixed information</h:td>
-						<h:td><selectables>
+<!--						<h:td><selectables>
 							<selectable>hash function from FCS_COP.1/Hash</selectable>
-							<selectable>keyed hash from FCS_COP.1/KeyedHash</selectable>
-							</selectables></h:td>
+							<selectable>keyed hash from FCS_COP.1/KeyedHash</selectable> -->
+							</selectables></h:td>  -->
+					<h:td><assignable>Hash function from FCS_COP.1/Hash</assignable></h:td> 
 						<h:td><selectables>
 							<selectable>128</selectable>
 							<selectable>192</selectable>
 							<selectable>256</selectable>
 							</selectables>bits</h:td>
-						<h:td>NIST SP 800-56C, sec. 4<h:p/>
-							<assignable>See List of Standards in FCS_COP.1/Hash and FCS_COP.1/KeyedHash</assignable></h:td></h:tr>
+						<h:td>NIST SP 800-56C rev2, sec. 4</h:td></h:tr>
 
 						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-8"/>-->
 						<h:td>KDF-MAC</h:td>  <!-- KeyDrv8 -->
@@ -2370,8 +2370,7 @@
 							<selectable>192</selectable>
 							<selectable>256</selectable>
 							</selectables>bits</h:td>
-						<h:td>NIST SP 800-56C, sec. 5<h:p/>
-							<assignable>see List of Standards in FCS_COP.1/Hash and FCS_COP.1/KeyedHash</assignable></h:td></h:tr>
+						<h:td>NIST SP 800-56C rev2, sec. 4</h:td></h:tr>
 					</h:table>
 				</title>
 				<note role="application">
@@ -2654,9 +2653,10 @@
 			<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1.1 -->
 			<depends on-sel="sel-tud2-hash"/>  <!-- FPT_TUD_EXT.2.1 -->
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>  <!-- FCS_COP.1.1/KAT -->
-			<depends on-incl="sfr-fcs-cop-1-keyedhash"/>
-			<depends on-incl="sfr-fcs-cop-1-sigver"/>
-			<depends on-incl="sfr-fcs-cop-1-siggen"/>
+			<depends on-sel="sel-fcs-ckm-ext-5-kdf-hash"/> <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-incl="sfr-fcs-cop-1-keyedhash"/>   <!-- FCS_COP.1/KeyedHash -->
+			<depends on-incl="sfr-fcs-cop-1-sigver"/>    <!-- FCS_COP.1/SigVer -->
+			<depends on-incl="sfr-fcs-cop-1-siggen"/>    <!-- FCS_COP.1/SigGen -->
             <f-element id="fcs-cop-1e1-hash">
                 <title>
 				The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified 
@@ -2804,6 +2804,7 @@
 			<depends on-sel="sel-rbg-hmac"/>  		<!-- FCS_RBG_EXT.1.1 -->
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>	<!-- FCS_COP.1.1/KAT -->	
 			<depends on-sel="sel-stg3-hmac"/>		<!-- FCS_STG_EXT.3.1 -->
+			<depends on-sel="sel-fcs-ckm-ext-5-kdf-mac"/>   <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-cop-1-pbkdf"/> 	<!-- FCS_COP.1/PBKDF -->
 			<f-element id="fcs-cop-1e1-hmac">
@@ -2895,7 +2896,7 @@
 								<selectable>6144</selectable>
 								<selectable>8192</selectable>
 							</selectables>bits</h:td>
-							<h:td>NIST SP800-56B rev2 section 8.2</h:td>
+							<h:td>NIST SP800-56B rev2 sec. 8.2</h:td>
 						</h:tr>
 					
 						<h:tr><depends on-sel="sel-fcs-cop-kat-kas2"/>
@@ -2908,7 +2909,7 @@
 								<selectable>6144</selectable>
 								<selectable>8192</selectable>
 							</selectables>bits</h:td>
-							<h:td>NIST SP800-56B rev2 section 8.3</h:td>
+							<h:td>NIST SP800-56B rev2 sec. 8.3</h:td>
 						</h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-cop-kat-kts"/>
@@ -2921,7 +2922,7 @@
 								<selectable>6144</selectable>
 								<selectable>8192</selectable>
 							</selectables>bits</h:td>
-							<h:td>NIST SP800-56B rev2 section 9</h:td>
+							<h:td>NIST SP800-56B rev2 sec. 9</h:td>
 						</h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-cop-kat-rsaes"/>
@@ -2934,7 +2935,7 @@
 								<selectable>6144</selectable>
 								<selectable>8192</selectable>
 							</selectables>bits</h:td>
-							<h:td>RFC 8017 Section 7.2</h:td>
+							<h:td>RFC 8017 sec. 7.2</h:td>
 						</h:tr>
 						
 						<h:tr><depends on-sel="sel-fcs-cop-kat-ecdh-nist"/>
@@ -2971,7 +2972,7 @@
 							</selectables>bits</h:td>
 							<h:td>NIST SP800-56A rev3,
 								<selectables>
-									<selectable>RFC 3526 Section 
+									<selectable>RFC 3526 sec. 
 										<selectables>
 											<selectable>3</selectable>
 											<selectable>4</selectable>
@@ -2979,7 +2980,7 @@
 											<selectable>6</selectable>
 											<selectable>7</selectable>
 											</selectables></selectable>
-									<selectable>RFC 7919 Appendices 
+									<selectable>RFC 7919 App.  
 										<selectables>
 											<selectable>A.1</selectable>
 											<selectable>A.2</selectable>
@@ -3010,7 +3011,7 @@
 									<selectable>ANSI X9.63</selectable>
 									<selectable>IEEE 1363a</selectable>
 									<selectable>ISO/IEC 18033-2 Part 2</selectable>
-									<selectable>SECG SEC1 sec 5.1</selectable>
+									<selectable>SECG SEC1 sec. 5.1</selectable>
 								</selectables></h:td>
 						</h:tr>
 					</h:table>
@@ -3434,13 +3435,14 @@
 						<h:td>
 							<selectables>
 								<selectable>RFC 8017</selectable>
-								<selectable>PKCS #1 v2.2 (Section 8.2)</selectable>
-								<selectable>FIPS186-4, (Section 5.5)</selectable>
+								<selectable>PKCS #1 v2.2 (sec. 8.2)</selectable>
+								<selectable>FIPS186-4, (sec. 5.5)</selectable>
 							</selectables>(RSASSA-PKCS1-v1_5)<h:p/>
 							<selectables>
-								<selectable>ISO10118-3 (Clause 10, 11)</selectable>
-								<selectable>FIPS180-4 (Section 6)</selectable>
-							</selectables>(SHA)</h:td>
+								<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
+								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
+								<selectable>FIPS PUB 202 [SHA3]</selectable>
+							</selectables></h:td>
 					</h:tr>
 
 					<h:tr><depends on-sel="sel-fcs-cop-siggen-2"/>
@@ -3459,11 +3461,12 @@
 							<selectable>3072 bit</selectable>
 						</selectables></h:td>
 						<h:td>
-							ISO9796-2, (Clause 9) (Digital signature scheme 2)<h:p/>
+							ISO9796-2 (cl. 9) [Digital signature scheme 2]<h:p/>
 							<selectables>
-								<selectable>ISO10118-3 (Clause 10, 11)</selectable>
-								<selectable>FIPS180-4 (Section 6)</selectable>
-							</selectables>(SHA)</h:td>
+								<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
+								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
+								<selectable>FIPS PUB 202 [SHA3]</selectable>
+							</selectables></h:td>
 					</h:tr>
 
 					<h:tr><depends on-sel="sel-fcs-cop-siggen-3"/>
@@ -3482,11 +3485,12 @@
 							<selectable>3072 bit</selectable>
 						</selectables></h:td>
 						<h:td>
-							ISO9796-2, (Clause 10) (Digital signature scheme 3)<h:p/>
+							ISO9796-2 (cl. 10) [Digital signature scheme 3]<h:p/>
 							<selectables>
-								<selectable>ISO10118-3 (Clause 10, 11)</selectable>
-								<selectable>FIPS180-4 (Section 6)</selectable>
-							</selectables>(SHA)</h:td>
+								<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
+								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
+								<selectable>FIPS PUB 202 [SHA3]</selectable>
+							</selectables></h:td>
 					</h:tr>
 
 					<h:tr><depends on-sel="sel-fcs-cop-siggen-4"/>
@@ -3505,11 +3509,12 @@
 							<selectable>3072 bit</selectable>
 						</selectables></h:td>
 						<h:td>
-							[RFC8017, PKCS#1v2.2 (Section 8.1)] (RSASSAPSS)<h:p/>
+							RFC8017, PKCS#1v2.2 sec. 8.1 [RSASSAPSS]<h:p/>
 							<selectables>
-								<selectable>ISO10118-3 (Clause 10, 11)</selectable>
-								<selectable>FIPS180-4 (Section 6)</selectable>
-							</selectables>(SHA)</h:td>
+								<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
+								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
+								<selectable>FIPS PUB 202 [SHA3]</selectable>
+							</selectables></h:td>
 					</h:tr>
 
 					<h:tr><depends on-sel="sel-fcs-cop-siggen-5"/>
@@ -3540,15 +3545,16 @@
 								<selectable>
 									<selectables>
 										<selectable>ISO14888-3</selectable>
-										<selectable>FIPS186-4 (Section 6)</selectable>
+										<selectable>FIPS186-4 (sec. 6)</selectable>
 									</selectables>(EDCSA)</selectable>
-								<selectable>RFC5639 (Section 3)(Brainpool Curves)</selectable>
-								<selectable>FIPS186-4 (Appendix D.1.2) (NIST Curves)</selectable>
+								<selectable>RFC5639 (sec. 3) [Brainpool Curves]</selectable>
+								<selectable>FIPS186-4 (app. D.1.2) [NIST Curves]</selectable>
 							</selectables><h:p/>
 							<selectables>
-								<selectable>ISO10118-3 (Clause 10, 11)</selectable>
-								<selectable>FIPS180-4 (Section 6)</selectable>
-							</selectables>(SHA)</h:td>
+								<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
+								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
+								<selectable>FIPS PUB 202 [SHA3]</selectable>
+							</selectables></h:td>
 					</h:tr>
 					</h:table>
 				</title>
@@ -3580,7 +3586,7 @@
 						The following tests require the developer to provide access to a test platform that
 						provides the evaluator with tools that are not found on the TOE in its evaluated
 						configuration.<h:p/>
-						<h:b>If SigGen1: RSASSA-PKCS1-v1_5or SigGen4: RSASSA-PSS is claimed:</h:b><h:p/>
+						<h:b>If RSASSA-PKCS1-v1_5 or RSASSA-PSS is claimed:</h:b><h:p/>
 						The below test is derived from The 186-4 RSA Validation System (RSA2VS).
 						Updated 8 July 2014, Section 6.3, from the National Institute of Standards and
 						Technology.<h:p/>
@@ -3588,13 +3594,12 @@
 						system under test to generate signatures for 10 messages for each combination of
 						modulus size and SHA algorithm. The evaluator then uses a known-good
 						implementation and the associated public keys to verify the signatures.<h:p/>
-						<h:b>If SigGen2: Digital Signature Scheme 2 (DSS2) or SigGen3: Digital Signature
-						Scheme 3 (DSS3):</h:b><h:p/>
+						<h:b>If Digital Signature Scheme 2 (DSS2) or Digital Signature Scheme 3 (DSS3) is claimed:</h:b><h:p/>
 						To test the implementation of DSS2/3 signature generation the evaluator uses the
 						system under test to generate signatures for 10 messages for each combination of
 						SHA algorithm, hash size and key size. The evaluator them uses a known-good
 						implementation and the associated public keys to verify the signatures.<h:p/>
-						<h:b>If SigGen5: ECDSA is claimed:</h:b><h:p/>
+						<h:b>If ECDSA is claimed:</h:b><h:p/>
 						The below test is derived from The FIPS 186-4 Elliptic Curve Digital Signature
 						Algorithm Validation System (ECDSA2VS). Updated 18 March 2014, Section 6.4,
 						from the National Institute of Standards and Technology.<h:p/>
@@ -3662,13 +3667,14 @@
 					<h:td>
 						<selectables>
 							<selectable>RFC 8017</selectable>
-							<selectable>PKCS #1 v2.2 (Section 8.2)</selectable>
-							<selectable>FIPS186-4, (Section 5.5)</selectable>
-						</selectables>(RSASSA-PKCS1-v1_5)<h:p/>
+							<selectable>PKCS #1 v2.2 (sec. 8.2)</selectable>
+							<selectable>FIPS186-4, (sec 5.5)</selectable>
+						</selectables>[RSASSA-PKCS1-v1_5]<h:p/>
 						<selectables>
-							<selectable>ISO10118-3 (Clause 10, 11)</selectable>
-							<selectable>FIPS180-4 (Section 6)</selectable>
-						</selectables>(SHA)</h:td>
+							<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
+							<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
+							<selectable>FIPS PUB 202 [SHA3]</selectable>
+						</selectables></h:td>
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-sigver-2"/>
@@ -3687,11 +3693,12 @@
 						<selectable>3072 bit</selectable>
 					</selectables></h:td>
 					<h:td>
-						ISO9796-2, (Clause 9) (Digital signature scheme 2)<h:p/>
+						ISO9796-2 (cl. 9) [Digital signature scheme 2]<h:p/>
 						<selectables>
-							<selectable>ISO10118-3 (Clause 10, 11)</selectable>
-							<selectable>FIPS180-4 (Section 6)</selectable>
-						</selectables>(SHA)</h:td>
+							<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
+							<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
+							<selectable>FIPS PUB 202 [SHA3]</selectable>
+						</selectables></h:td>
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-sigver-3"/>
@@ -3712,9 +3719,10 @@
 					<h:td>
 						ISO9796-2, (Clause 10) (Digital signature scheme 3)<h:p/>
 						<selectables>
-							<selectable>ISO10118-3 (Clause 10, 11)</selectable>
-							<selectable>FIPS180-4 (Section 6)</selectable>
-						</selectables>(SHA)</h:td>
+							<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
+							<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
+							<selectable>FIPS PUB 202 [SHA3]</selectable>
+						</selectables></h:td>
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-sigver-4"/>
@@ -3735,9 +3743,10 @@
 					<h:td>
 						[RFC8017, PKCS#1v2.2 (Section 8.1)] (RSASSAPSS)<h:p/>
 						<selectables>
-							<selectable>ISO10118-3 (Clause 10, 11)</selectable>
-							<selectable>FIPS180-4 (Section 6)</selectable>
-						</selectables>(SHA)</h:td>
+							<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
+							<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
+							<selectable>FIPS PUB 202 [SHA3]</selectable>
+						</selectables></h:td>
 				</h:tr>
 
 				<h:tr><depends on-sel="sel-fcs-cop-sigver-5"/>
@@ -3774,9 +3783,10 @@
 							<selectable>FIPS186-4 (Appendix D.1.2) (NIST Curves)</selectable>
 						</selectables><h:p/>
 						<selectables>
-							<selectable>ISO10118-3 (Clause 10, 11)</selectable>
-							<selectable>FIPS180-4 (Section 6)</selectable>
-						</selectables>(SHA)</h:td>
+							<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
+							<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
+							<selectable>FIPS PUB 202 [SHA3]</selectable>
+						</selectables></h:td>
 				</h:tr>
 				</h:table>
 				</title>
@@ -3825,7 +3835,7 @@
 					The following tests require the developer to provide access to a test platform that
 					provides the evaluator with tools that are not found on the TOE in its evaluated
 					configuration.<h:p/>
-					<h:b><h:i>SigVer1: RSASSA-PKCS1-v1_5 and SigVer4: RSASSA-PSS</h:i></h:b><h:p/>
+					<h:b><h:i>RSASSA-PKCS1-v1_5 and RSASSA-PSS</h:i></h:b><h:p/>
 					These tests are derived from The 186-4 RSA Validation System (RSA2VS),
 					updated 8 Jul 2014, Section 6.4.<h:p/>
 					The FIPS 186-4 RSA Signature Verification Test tests the ability of the TSF to
@@ -3837,7 +3847,7 @@
 					should fail. The test passes only if all the signatures made using unaltered
 					parameters result in successful signature verification, and all the signatures made
 					using altered parameters result in unsuccessful signature verification.<h:p/>
-					<h:b><h:i>SigVer5: ECDSA on NIST and Brainpool Curves</h:i></h:b><h:p/>
+					<h:b><h:i>ECDSA on NIST and Brainpool Curves</h:i></h:b><h:p/>
 					These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
 					Algorithm Validation System (ECDSA2VS), updated 18 Mar 2014, Section 6.5.<h:p/>
 					The FIPS 186-4 ECC Signature Verification Test tests the ability of the TSF to
@@ -3849,7 +3859,7 @@
 					passes only if all the signatures made using unaltered parameters result in successful
 					signature verification, and all the signatures made using altered parameters result in
 					unsuccessful signature verification.<h:p/>
-					<h:b><h:i>SigVer2: Digital Signature Scheme 2</h:i></h:b><h:p/>
+					<h:b><h:i>Digital Signature Scheme 2</h:i></h:b><h:p/>
 					The following or equivalent steps shall be taken to test the TSF.<h:p/>
 					For each supported modulus size, underlying hash algorithm, and length of the
 					trailer field (1- or 2-byte), the evaluator shall generate NT sets of recoverable
@@ -3936,8 +3946,8 @@
 					Verification-Success, each recovered message (M 1*) is equal to corresponding M 
 					1 in the unaltered sets, and all the signatures made using altered sets result in
 					Verification-Fail.<h:p/>
-					<h:b><h:i>SigVer3: Digital Signature Scheme 3</h:i></h:b><h:p/>
-					The evaluator shall perform the test described in SigVer2: Digital Signature Scheme
+					<h:b><h:i>Digital Signature Scheme 3</h:i></h:b><h:p/>
+					The evaluator shall perform the test described for Digital Signature Scheme
 					2 while using a fixed salt for NT sets.<h:p/>
 				</Tests>
 				</aactivity>
@@ -3982,9 +3992,8 @@
 							<selectable>256 bits</selectable>
 						</selectables></h:td>
 						<h:td>
-							ISO 18033-3 (AES)<h:p/>
-							ISO 19772, Clause 8 (CCM)<h:p/>
-							NIST SP800-38C (CCM)</h:td>
+							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							ISO 19772 cl. 8, NIST SP800-38C [CCM]</h:td>
 						</h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-cop-skc-aes-gcm"/>
@@ -4005,9 +4014,8 @@
 								<selectable>256 bits</selectable>
 							</selectables></h:td>
 						<h:td>
-							ISO 18033-3 (AES)<h:p/>
-							ISO 19772, Clause 11 (GCM)<h:p/>
-							NIST SP800-38D (GCM)</h:td>
+							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							ISO 19772 cl. 11, NIST SP800-38D [GCM]</h:td>
 						</h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-cop-skc-aes-cbc"/>
@@ -4019,9 +4027,8 @@
 								<selectable>256 bits</selectable>
 							</selectables></h:td>
 						<h:td>
-							ISO 18033-3 (AES)<h:p/>
-							ISO 10116 (CBC)<h:p/>
-							NIST SP800-38A (CBC)</h:td>
+							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							ISO 10116, NIST SP800-38A [CBC]</h:td>
 						</h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-cop-skc-aes-ctr"/>
@@ -4035,9 +4042,8 @@
 								<selectable>256 bits</selectable>
 							</selectables></h:td>
 						<h:td>
-							ISO 18033-3 (AES)<h:p/>
-							ISO 10116 (CTR)<h:p/>
-							NIST SP800-38A (CTR)</h:td>
+							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							ISO 10116, NIST SP800-38A [CTR]</h:td>
 						</h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-cop-skc-xts-aes"/>
@@ -4053,11 +4059,8 @@
 								<selectable>512 bits</selectable>
 							</selectables></h:td>
 						<h:td>
-							ISO 18033-3 (AES)<h:p/>
-							<selectables>
-								<selectable>IEEE 1619</selectable>
-								<selectable>NIST SP800-38E</selectable>
-							</selectables>(XTS)</h:td>
+							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							IEEE 1619, NIST SP800-38E [XTS]</h:td>
 						</h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-cop-skc-aes-kwp"/>
@@ -4069,8 +4072,9 @@
 								<selectable>256 bits</selectable>
 							</selectables></h:td>
 						<h:td>
-							ISO 18033-3 (AES)<h:p/>
-							NIST SP 800-38F, sec. 6.3 (KWP)</h:td>
+							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							ISO/IEC 19772 cl. 7 [key wrap]<h:p/>
+							NIST SP800-38F sec. 6.3 [KWP]</h:td>
 						</h:tr>
 
 						<h:tr><depends on-sel="sel-fcs-cop-skc-aes-kw"/>
@@ -4082,9 +4086,9 @@
 								<selectable>256 bits</selectable>
 							</selectables></h:td>
 						<h:td>
-							ISO 18033-3 (AES)<h:p/>
-							NIST SP 800-38F, sec. 6.2 (KW)<h:p/>
-							ISO/IEC 19772, clause 7 (key wrap)</h:td>
+							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							ISO/IEC 19772 cl. 7 [key wrap]<h:p/>
+							NIST SP800-38F, sec. 6.2 (KW)<h:p/></h:td>
 						</h:tr>
 					</h:table>
 				</title>
@@ -5435,10 +5439,13 @@
 	
 		<!-- FCS_RBG_EXT.1 Random Bit Generation -->
 		<f-component id="sfr-fcs-rbg-ext-1" cc-id="fcs_rbg_ext.1" name="Random Bit Generation" status="sel-based">
+			<depends on-sel="sel-fcs-ckm-sk-rsk"/>   <!-- FCS_CKM.1/SK makes randomly generated keys -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
-			<depends on-sel="sel-fcs-ckm-sk-rsk"/>   <!-- FCS_CKM.1/SK makes randomly generated keys -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<consistency-rationale/>
 			<comp-lev>requires random bit generation to be performed in accordance with
