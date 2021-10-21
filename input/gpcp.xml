@@ -23,7 +23,7 @@
 			<PPTitle>Protection Profile for General-Purpose Computing Platforms</PPTitle>
 			<PPVersion>0.9</PPVersion>
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2021-10-06</PPPubDate>
+			<PPPubDate>2021-10-21</PPPubDate>
 			<Keywords>General-Purpose Computing Platforms</Keywords>
 		</ReferenceTable>
 	</PPReference>
@@ -38,7 +38,7 @@
 	<RevisionHistory>
 		<entry>
 			<version>0.9</version>
-			<date>2021-10-06</date>
+			<date>2021-10-21</date>
 			<subject>Latest draft</subject>
 		</entry>
 	</RevisionHistory>
@@ -301,8 +301,9 @@
 					no additional physical protections required because the platform is assumed to be protected 
 					by the operational environment as indicated by A.PHYSICAL_PROTECTION.
 					The platform is administered through a management controller 
-					who accesses the MC through a console or remotely.<h:p/>
-					This use case adds only audit requirements to the base mandatory requirements.
+					that accesses the MC through a console or remotely.<h:p/>
+					This use case adds audit requirements and Administrator authentication requirements to 
+					the base mandatory requirements.
 				</description>
 				<config>
 					<ref-id>sfr-fau-gen-1</ref-id>
@@ -318,7 +319,8 @@
 					Additional physical protections required because the platform us assumed to be minimally 
 					protected by the by the operational environment. This use case can also be invoked for servers in 
 					data centers where there are enhanced security requirements.<h:p/>
-					This use case adds requirements for audit and physical protections to the base mandatory SFRs.
+					This use case adds requirements for audit, physical protections, and Administrator 
+					authentication to the base mandatory SFRs. 
 					It removes the assumption that the TOE is physically protected by the OE.
 				</description>
 				<config>
@@ -1684,7 +1686,7 @@
 		</f-component>
 
 		<!-- FCS_CKM.2 Cryptographic Key Establishment -->
-		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="optional">
+		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="sel-based">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/> 	<!-- FCS_IPSEC_EXT.1 -->
 			<f-element id="fcs-ckm-2e1">
 				<title>The TSF shall <h:b>establish</h:b> cryptographic keys in accordance with a specified
@@ -1764,7 +1766,7 @@
 		</f-component>
 
 		<!-- FCS_CKM.4 Cryptographic Key Destruction -->
-		<f-component id="sfr-fcs-ckm-4" cc-id="fcs_ckm.4" name="Cryptographic Key Destruction" status="optional">
+		<f-component id="sfr-fcs-ckm-4" cc-id="fcs_ckm.4" name="Cryptographic Key Destruction" status="sel-based">
 			<depends on-incl="sfr-fcs-ckm-1-sk"/>
 			<depends on-incl="sfr-fcs-ckm-1-ak"/>
 			<depends on-incl="sfr-fcs-ckm-1-kek"/>
@@ -2019,7 +2021,7 @@
 		</f-component>
 
 		<!-- FCS_CKM_EXT.4 Cryptographic Key and Key Material Destruction Timing -->
-		<f-component id="sfr-fcs-ckm-ext-4" cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="optional">
+		<f-component id="sfr-fcs-ckm-ext-4" cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="sel-based">
 			<depends on-incl="sfr-fcs-ckm-4"/>
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to destroy keys when no longer used.</comp-lev>
@@ -5937,20 +5939,9 @@
 
 		<!-- FIA_AFL_EXT.1 Authentication Failure Handling -->
 		<f-component id="sfr-fia-afl-ext-1" cc-id="fia_afl_ext.1" name="Authentication Failure Handling" status="sel-based">
-			<depends on-incl="sfr-fia-uau-5"/> 
-			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot3-admin-notify"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-rot3-admin-det"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-tud2-admin-notify"/>  <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud2-admin-det"/>   <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud3-admin-notify"/>  <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud3-admin-det"/>   <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud4-admin-assert"/>   <!-- FPT_TUD_EXT.4 -->
+			<depends on-uc="uc-server-basic"/>		<!-- Server, basic use case-->
+			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
+			<depends on-incl="sfr-fia-uau-5"/>  <!-- FIA_UAU.5 -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to monitor authorization attempts, including counting and limiting the number of 
 				attempts at failed or passed authorizations.</comp-lev>
@@ -5966,6 +5957,7 @@
 					The TSF shall consider password and [<h:i>no other</h:i>] as critical authentication mechanisms.
 				</title>
 				<note role="application">
+					This SFR is included in the ST if FIA_UAU.5 is included in the ST.<h:p/>
 					If no additional authentication mechanisms are selected in FIA_UAU.5.1, then "<h:i>no other</h:i>" must 
 					be selected. If an additional authentication mechanism is selected in FIA_UAU.5.1, then it 
 					must only be selected in FIA_AFL_EXT.1.1 if surpassing the authentication failure threshold 
@@ -6119,20 +6111,9 @@
 		
 		<!-- FIA_PMG_EXT.1 Password Mangement -->
 		<f-component id="sfr-fia-pmg-ext-1" cc-id="fia_pmg_ext.1" name="Password Management" status="sel-based">
-			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot3-admin-notify"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-rot3-admin-det"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-tud2-admin-notify"/>  <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud2-admin-det"/>   <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud3-admin-notify"/>  <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud3-admin-det"/>   <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud4-admin-assert"/>   <!-- FPT_TUD_EXT.4 -->
-			<depends on-incl="sfr-fia-uau-5"/>  
+			<depends on-uc="uc-server-basic"/>		<!-- Server, basic use case-->
+			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
+			<depends on-incl="sfr-fia-uau-5"/>  <!-- FIA_UAU.5 -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to support passwords with varying composition requirements, minimum lengths, 
 				maximum lifetime, and similarity constraints.</comp-lev>
@@ -6167,6 +6148,7 @@
 						supported.</h:li></h:ol>
 				</title>
 				<note role="application">
+					This SFR is included in the ST if FIA_UAU.5 is included in the ST.<h:p/>
 					While some corporate policies require passwords of 14 characters or better, the use of a REK 
 					for DAR protection and key storage protection and the anti-hammer requirement (FIA_TRT_EXT.1)
 					addresses the threat of attackers with physical access using much smaller and less complex
@@ -6258,6 +6240,8 @@
 		
 		<!-- FIA_UAU.5 Multiple Authentication Mechanisms -->
 		<f-component id="sfr-fia-uau-5" cc-id="fia_uau.5" name="Multiple Authentication Mechanisms" status="sel-based">
+			<depends on-uc="uc-server-basic"/>		<!-- Server, basic use case-->
+			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
 			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
@@ -6283,6 +6267,9 @@
 					</selectables> to support user authentication.
 				</title>
 				<note role="application">
+					This SFR is included in the ST based on use cases and selections throughout the PP that depend
+					on there being an Administrator role for the TOE.<h:p/>
+					A "user" in the context of this PP is an Administrator.<h:p/>
 					The TSF must support a Password Authentication Factor and may optionally implement a biometric
 					authentication factor. A hybrid authentication 
 					factor is where a user has to submit a combination of PIN/password and biometric sample where 
@@ -6343,26 +6330,16 @@
 		
 		<!-- FIA_UAU.7 Protected Authentication Feedback -->
 		<f-component id="sfr-fia-uau-7" cc-id="fia_uau.7" name="Protected Authentication Feedback" status="sel-based">
-			<depends on-incl="sfr-fia-uau-5"/>  
-			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot3-admin-notify"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-rot3-admin-det"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-tud2-admin-notify"/>  <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud2-admin-det"/>   <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud3-admin-notify"/>  <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud3-admin-det"/>   <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud4-admin-assert"/>   <!-- FPT_TUD_EXT.4 -->
+			<depends on-uc="uc-server-basic"/>		<!-- Server, basic use case-->
+			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
+			<depends on-incl="sfr-fia-uau-5"/>          <!-- FIA_UAU.5 -->
 			<f-element id="fia-uau-7e1">
 				<title>
 					The TSF shall provide only obscured feedback to the device’s display to the user while the 
 					authentication is in progress.
 				</title>
 				<note role="application">
+					This SFR is included in the ST if FIA_UAU.5 is included in the ST. <h:p/>
 					This applies to all authentication methods specified in FIA_UAU.5.1. The TSF may briefly 
 					(1 second or less) display each character or provide an option to allow the user to unmask 
 					the password; however, the password must be obscured by default.<h:p/>
@@ -6414,26 +6391,9 @@
         <!-- FIA_UIA_EXT.1 Administrator Identification and Authentication -->
 		<!-- ManFunc: Adding additional Administrators to the system?? -->
         <f-component id="sfr-fia-uia-ext-1" cc-id="fia_uia_ext.1" name="Administrator Identification and Authentication" status="sel-based"> 
-			<depends on-incl="sfr-fia-uau-5"/> 
-			<depends on-sel="sel-rot2-admin-notify"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot2-admin-det"/>   <!-- FPT_ROT_EXT.2 -->
-			<depends on-sel="sel-rot3-admin-notify"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-rot3-admin-det"/>   <!-- FPT_ROT_EXT.3 -->
-			<depends on-sel="sel-tud2-admin-notify"/>  <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud2-admin-det"/>   <!-- FPT_TUD_EXT.2 -->
-			<depends on-sel="sel-tud3-admin-notify"/>  <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud3-admin-det"/>   <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud4-admin-assert"/>   <!-- FPT_TUD_EXT.4 -->		
-<!--			<depends on-sel="sel-auth-update"/>
-			<depends on-sel="sel-unauth-update"/>
-			<depends on-sel="sel-auth-update"/>
-			<depends on-sel="sel-local-update"/>
-			<depends on-sel="sel-rot3-admin-config"/>
-			<depends on-sel="sel-rot3-admin-det"/>	-->	
+			<depends on-uc="uc-server-basic"/>		<!-- Server, basic use case-->
+			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
+			<depends on-incl="sfr-fia-uau-5"/>      <!-- FIA_UAU.5 -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
 				are identified and authenticated prior to authorizing these actions to be performed.</comp-lev>
@@ -6453,6 +6413,7 @@
                     function to be performed by that Administrator.
                 </title>
                 <note role="application">
+					This SFR is included in the ST if FIA_UAU.5 is included in the ST. <h:p/>
 					Ordinary unprivileged users of the platform need not authenticate to the platform, though they
 					may well have to authenticate themselves to tenant software such as an Operating System. <h:p/>
 					The TSF-mediated management functions are listed in the management functions table 
@@ -7074,7 +7035,7 @@
 			<dependencies>No dependencies.</dependencies>
 			<f-element id="fpt-jta-ext-1e1">
 				<title>
-					The TSF shall allow access to JTAG or other debug ports only to an authorized administrator
+					The TSF shall allow access to JTAG or other debug ports only to an authorized Administrator
 					through platform firmware or through assertion of physical presence.
 				</title>
 				<note role="application">
@@ -7087,18 +7048,17 @@
 						is denied to tenant software. <h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the guidance to ensure that it describes how administrators assert 
+						The evaluator shall examine the guidance to ensure that it describes how Administrators assert 
 						physical presence to the TSF.<h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
 							<test>
 								The evaluator shall attempt to access the debug port without authenticating
-								as an administrator. The attempt should fail.
+								as an Administrator. The attempt should fail.
 							</test>
 							<test>
-								[conditional] If the TOE supports an Administrator role, the evaluator 
-								shall autenticate as an Administrator and then attempt to access
+								The evaluator shall autenticate as an Administrator and then attempt to access
 								the debug port. The attempt should succeed.
 							</test>
 						</testlist>
@@ -7110,7 +7070,7 @@
 
 		<!-- FPT_JTA_EXT.2 JTAG/Debug Port Disablement -->
 		<!-- Should be included for use cases where physical protections are required. -->
-		<f-component id="sfr-fpt-jta-ext-2" cc-id="fpt_jta_ext.2" name="JTAG/Debug Port Disablement" status="optional">
+		<f-component id="sfr-fpt-jta-ext-2" cc-id="fpt_jta_ext.2" name="JTAG/Debug Port Disablement" status="sel-based">
 			<depends on-use="uc-server-enhanced"/>
 			<depends on-use="uc-client-portable-enhanced"/>
 			<depends on-use="uc-csfc-eud"/>
@@ -7160,7 +7120,7 @@
 	
 	
 		<!-- FPT_PHP.1: Passive Detection of Physical Attack.  -->
-		<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="optional">
+		<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="sel-based">
 			<depends on-use="uc-client-portable-enhanced"/>
 			<depends on-use="uc-csfc-eud"/> 
 			<depends on-use="uc-iot-devices"/>
@@ -7207,7 +7167,7 @@
 		</f-component>
 	
 		<!-- FPT_PHP.2: Notification of physical attack  -->
-		<f-component id="sfr-fpt-php-2" cc-id="fpt_php.2" name="Notification of physical attack" status="optional">
+		<f-component id="sfr-fpt-php-2" cc-id="fpt_php.2" name="Notification of physical attack" status="sel-based">
 			<depends on-use="uc-server-enhanced"/>
 			<depends on-use="uc-csfc-eud"/>  
 			<f-element id="fpt-php-2e1">
@@ -7269,7 +7229,7 @@
 		</f-component>
 	
 		<!-- FPT_PHP.3: Resistance to physical attack  -->
-		<f-component id="sfr-fpt-php-3" cc-id="fpt_php.3" name="Resistance to physical attack" status="optional">
+		<f-component id="sfr-fpt-php-3" cc-id="fpt_php.3" name="Resistance to physical attack" status="sel-based">
 			<depends on-use="uc-server-enhanced"/>
 			<depends on-use="uc-tactical-eud"/> 
 			<f-element id="fpt-php-3e1">
