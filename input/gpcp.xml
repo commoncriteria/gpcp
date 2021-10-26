@@ -252,15 +252,15 @@
 		This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements 
 		for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more 
 		general-purpose operating systems as defined by the Protection Profile for General Purpose 
-		General Purpose Operating Systems, one or more virtualization systems as defined by the Protection Profile for 
-		Virtualization, or more than one bare-metal application. Typical platform 
+		Operating Systems, one or more virtualization systems as defined by the Protection Profile for 
+		Virtualization, or more than one application. Typical platform 
 		implementations include servers, PC clients, laptops, and tablets.<h:p/>
 		Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and 
 		Network Device platforms as defined in the collaborative Protection Profile for Network Devices 
 		are out of scope of this PP.  Mobile Device and Network Device platforms must be evaluated 
 		against the more specific requirements in their respective specialized PPs.<h:p/>
-		The core security features of GPCPs include protected firmware and assured boot processes. Platform firmware must be 
-		protected such that it is not permitted to execute if it has been modified outside of authorized and
+		The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware
+		must be protected such that it is not permitted to execute if it has been modified outside of authorized and
 		authenticated update processes. Other use-case-specific features include audit capabilities, Administrator
 		authentication, and protections against physical tampering.
 
@@ -453,7 +453,35 @@
 </sec:Introduction>
 
 <!-- 2.0 Conformance Claims (this is all boilerplate) -->
-<sec:cclaims title="Conformance Claims"/>
+<!-- <sec:cclaims title="Conformance Claims"/>  -->
+<section title="Conformance Claims" id="ccl" boilerplate="no">
+	<cclaims>
+		<cclaim name="Conformance Statement">
+			<description>
+				A Security Target must claim exact conformance to this Protection Profile, 
+				as defined in the CC and CEM addenda for Exact Conformance, Selection-Based SFRs, and 
+					Optional SFRs (dated May 2017).<h:p/>
+			</description>
+		</cclaim>
+		<cclaim name="CC Conformance Claims">
+			<description>
+				This PP is conformant to Parts 2 (extended) and 3 (extended) of Common Criteria Version 3.1, 
+				Release 5 [CC].
+			</description>
+		</cclaim>
+		<cclaim name="PP Claim">
+			<description>This PP does not claim conformance to any other PP. </description>
+		</cclaim>
+		<cclaim name="Package Claim">
+			<description>
+				This PP is Functional Package for Transport Layer Security (TLS), version 1.1 Conformant and 
+				Functional Package for Secure Shell (SSH), version 1.0 Conformant. 
+			</description>
+		</cclaim>
+	</cclaims>
+<!--	</sec:cclaims>  -->
+</section>  	
+
 	
 <!-- 3.0 Security Problem Description -->
 <sec:spd title="Security Problem Description">
@@ -712,6 +740,7 @@
 				<addressed-by>FPT_TUD_EXT.4</addressed-by><rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>		  
 				<addressed-by>FPT_JTA_EXT.1</addressed-by><rationale>Supports the objective through restricting access to debug ports.</rationale>		  
 				<addressed-by>FPT_JTA_EXT.2</addressed-by><rationale>Supports the objective through requiring debug ports to be disabled.</rationale>		  
+				<addressed-by>FPT_ROT_EXT.3</addressed-by><rationale>Supports the objective through requiring supply chain traceability.</rationale>		  
 			</SO>
 			<SO name="O.ATTACK_DETECTION_AND_RESPONSE">
 				<description>Detected attempts to compromise the physical or logical integrity of the TOE must
@@ -884,21 +913,21 @@
 	<!--   4.2 Security Objectives for the Operational Environment -->
     <section title="Security Objectives for the Operational Environment"
 		id="SecurityObjectivesTOEorEnvironment">
-		The following security objectives for the operational environment assist the OS in correctly providing its security functionality.
-		These track with the assumptions about the environment. 
+		The following security objectives for the operational environment assist the GPCP in correctly providing its
+		security functionality. These track with the assumptions about the environment. 
 		<SOEs>
-			<SOE name="OE.PLATFORM">
-				<description>The OS relies on being installed on trusted
+			<SOE name="OE.PHYSICAL_PROTECTION">
+				<description>The GPCP relies on being installed on trusted
 					hardware.</description>
 			</SOE>
-			<SOE name="OE.PROPER_USER">
-				<description> The user of the OS is not willfully negligent or hostile,
+			<SOE name="OE.ROT_INTEGRITY">
+				<description> The user of the GPCP is not willfully negligent or hostile,
 					and uses the software within compliance of the applied enterprise security policy.
 					Standard user accounts are provisioned in accordance with the least privilege model.
 					Users requiring higher levels of access should have a separate account dedicated for
 					that use. </description>
 			</SOE>
-			<SOE name="OE.PROPER_ADMIN">
+			<SOE name="OE.TRUSTED_ADMIN">
 				<description> The administrator of the OS is not careless, willfully
 					negligent or hostile, and administers the OS within compliance of the applied enterprise
 					security policy. </description>
