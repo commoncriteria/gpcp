@@ -90,10 +90,9 @@
 <sec:Introduction>
     <section title="Overview" id="ppoverview">
 		The scope of this Protection Profile (PP) is to describe the security functionality of 
-		General-Purpose Computing Platforms in terms of the Common Ctiteria and
+		General-Purpose Computing Platforms in terms of the Common Criteria and
 		to define functional and assurance requirements for such products.<h:p/>
-	  
-		A platform is a collection of hardware devices and firmware that provide the functional capabilities and 
+	  	A platform is a collection of hardware devices and firmware that provide the functional capabilities and 
 		services needed by tenant software. Such components typically include embedded controllers, trusted platform 
 		modules, management controllers, host processors, network interface controllers, graphics processing units, 
 		flash memory, storage controllers, storage devices, boot firmware, runtime firmware, human interface devices, 
@@ -155,8 +154,8 @@
 			of which can compromise the security of a cryptographic module or the security of the
 			information protected by the module.
 		</term>
-		<term full="Data At Rest" abbr="DAR" />
-		<term full="DAR Protection">
+		<term full="Data-at-Rest" abbr="DAR" />
+		<term full="Data-at-Rest (DAR) Protection">
 			Countermeasures that prevent attackers, even those with physical access, from extracting data from non-volatile storage.
 			Common techniques include data encryption and wiping.
 		</term>
@@ -220,8 +219,7 @@
 		<term full="Sensitive Data">
 			Sensitive data may include all user or enterprise data or may be specific
 			application data such as PII, emails, messaging, documents, calendar items, and contacts.
-			Sensitive data must minimally include credentials and keys. Sensitive data shall
-			be identified in the OS's TSS by the ST author. 
+			Sensitive data must minimally include credentials and keys. 
 		</term>
 		<term abbr='SWID' full="Software Identification"/>
 		<term full="Tenant Software">
@@ -236,7 +234,7 @@
 			software such as on Operating System.
 		</term>
 		<term abbr="VM" full="Virtual Machine">
-			A Virtual Machine is a virtualized hardware environment in which an operating system may execute.
+			A Virtual Machine is a abstracted hardware environment in which an operating system may execute.
 		</term>
 		<term abbr="VS" full="Virtualization System">
 			A software product that enables multiple independent computing systems to execute on the same physical
@@ -280,7 +278,7 @@
 			Tenant software (operating system/virtualization system and applications) is shown in orange.
 			The tenant-specific software responsible for booting the tenant (Master Boot Record, etc.) is shown
 			in grey. Platform components are in blue.<h:p/>
-			For purposes of these requirements, the TOE consists of the platform components represented 
+			In general, the TOE consists of the platform components represented 
 			by the blue boxes, along with their associated firmware. Any particular platform may have 
 			additional hardware components, or fewer than those illustrated.
       </section>
@@ -625,7 +623,7 @@
 				<description>The TOE includes one or more Roots of Trust composed of TOE firmware, hardware, and
 					pre-installed credentials. Roots of Trust are assumed to be free of malicious capabilities as
 					their integrity cannot be verified. </description>
-				<objective-refer ref="OE.ROT_INTEGRITY">
+				<objective-refer ref="OE.SUPPLY_CHAIN">
 					<rationale>The operational environment objective OE.SUPPLY_CHAIN is realized through
 					A.ROT_INTEGRITY.</rationale>
 				</objective-refer>
@@ -917,19 +915,19 @@
 		security functionality. These track with the assumptions about the environment. 
 		<SOEs>
 			<SOE name="OE.PHYSICAL_PROTECTION">
-				<description>The GPCP relies on being installed on trusted
-					hardware.</description>
+				<description>Platforms that operate within data centers or in other access-controlled environments are 
+				expected to receive a considerable degree of protection from these environments. In addition to physical 
+				protection, these environments often provide malware-detection and behavior-monitoring services
+				for networked computing assets.</description>
 			</SOE>
-			<SOE name="OE.ROT_INTEGRITY">
-				<description> The user of the GPCP is not willfully negligent or hostile,
-					and uses the software within compliance of the applied enterprise security policy.
-					Standard user accounts are provisioned in accordance with the least privilege model.
-					Users requiring higher levels of access should have a separate account dedicated for
-					that use. </description>
+			<SOE name="OE.SUPPLY_CHAIN">
+				<description>The manufacturer is expected to implement processes to ensure that TOE hardware and
+					firmware is not compromised between time of TOE manufacture and delivery to its operational site. 
+				</description>
 			</SOE>
 			<SOE name="OE.TRUSTED_ADMIN">
-				<description> The administrator of the OS is not careless, willfully
-					negligent or hostile, and administers the OS within compliance of the applied enterprise
+				<description> The administrator of the GPCP is not careless, willfully
+					negligent or hostile, and administers the platform within compliance of enterprise
 					security policy. </description>
 			</SOE>
 		</SOEs>
@@ -1283,7 +1281,11 @@
 	<section id="fcs" title="Cryptographic Support (FCS)">
 		
 	    <ext-comp-def title="Cryptographic Key Management" fam-id="FCS_CKM_EXT">
-			<fam-behavior>This family defines requirements for management of cryptographic keys.</fam-behavior>
+			<fam-behavior>This family defines requirements for management of cryptographic keys.
+				FCS_CKM_EXT.5 is necessary to express requirements for key derivation, which are missing from Part 2. 
+				FCS_CKM_EXT.4 is necessary because FCS_CKM.4 does not include a requirement for the timing of 
+				key destruction.
+				</fam-behavior>
 		</ext-comp-def>
 		<ext-comp-def title="Entropy for Virtual Machines" fam-id="FCS_ENT_EXT">
 			<fam-behavior>This family defines requirements for availability of entropy data
@@ -7473,7 +7475,7 @@
 					<TSS>
 						The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware is
 						extended to other platform components, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.2.
-						The TSF shall also describe how the TOE responds to failure of verification consistent with the selections in
+						The TSS shall also describe how the TOE responds to failure of verification consistent with the selections in
 						FPT_ROT_EXT.2.2.<h:p/>
 					</TSS>
 					<Guidance>
@@ -7576,7 +7578,20 @@
 					must be included in the ST.<h:p/>				
 				</note>
 				<aactivity>
-				<no-tests/>
+					<TSS>
+						The evaluator shall verify that the TSS describes the means by which integrity of platform hardware and
+						firmware is maintained from TOE manufacture to delivery of the TOE to its operational site.
+						The TSS shall also describe how the TOE responds to failure of an integrity check consistent with the 
+						selections in FPT_ROT_EXT.3.2.<h:p/><h:p/>
+					</TSS>
+					<Guidance>
+						The evaluator shall examine the operational guidance to ensure that it describes the actions taken and notification
+						methods used in case of detection of a platform integrity violation. If the actions are 
+						configurable, the guidance shall explain how they are configured.<h:p/>
+					</Guidance>
+					<Tests>
+						There are no tests for this requirement.
+					</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event>
@@ -8362,10 +8377,10 @@
 		After the ST has been approved for evaluation, the ITSEF will obtain the
         TOE, supporting environmental IT, and the administrative/user guides for
 		the TOE. The ITSEF is expected to perform actions mandated by the Common Evaluation
-		Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the Assurance Activities
+		Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the Evaluation Activities
 		contained within <xref to="req"/>, which are intended to be an interpretation of the
 		other CEM assurance requirements as they apply to the specific technology instantiated in the
-		TOE. The Assurance Activities that are captured in <xref to="req"/> also provide
+		TOE. The Evaluation Activities that are captured in <xref to="req"/> also provide
 		clarification as to what the developer needs to provide to demonstrate the TOE is compliant
 		with the PP. 
 		
@@ -8375,7 +8390,7 @@
 		
 		<section title="Class ADV: Development" id="adv">The information about the TOE is contained in the guidance documentation
 			available to the end user as well as the TSS portion of the ST. The TOE developer must concur with the description
-			of the product that is contained in the TSS as it relates to the functional requirements. The Assurance Activities
+			of the product that is contained in the TSS as it relates to the functional requirements. The Evaluation Activities
 			contained in <xref to="SFRs"/> should provide the ST authors with
 			sufficient information to determine the appropriate content for the TSS section.
 			
@@ -8389,9 +8404,9 @@
 				the activities for this family should focus on understanding the interfaces presented in
 				the TSS in response to the functional requirements and the interfaces
 				presented in the AGD documentation. No additional “functional specification” documentation
-				is necessary to satisfy the assurance activities specified. The interfaces that need to be
-				evaluated are characterized through the information needed to perform the assurance
-				activities listed, rather than as an independent, abstract list. 
+				is necessary to satisfy the Evaluation Activities specified. The interfaces that need to be
+				evaluated are characterized through the information needed to perform the Evaluation
+				Activities listed, rather than as an independent, abstract list. 
 				<a-element type="D">
 					<title>The developer shall provide a functional specification.</title>
 				</a-element>
@@ -8401,7 +8416,7 @@
 					<note role="application">As indicated in the introduction to this section, the
 						functional specification comprises the information contained in the AGD_OPE and
 						AGD_PRE documentation. The developer may reference a website accessible to application
-						developers and the evaluator. The assurance activities in the functional requirements
+						developers and the evaluator. The Evaluation Activities in the functional requirements
 						point to evidence that should exist in the documentation and TSS
 						section; since these are directly associated with the SFRs, the tracing in element
 						ADV_FSP.1.2D is implicitly already done and no additional documentation is
@@ -8430,12 +8445,12 @@
 				<a-element type="E">
 					<title>The evaluator shall determine that the functional specification is an accurate
 						and complete instantiation of the SFRs.</title>
-					<aactivity>There are no specific assurance activities associated with these SARs, except
+					<aactivity>There are no specific Evaluation Activities associated with these SARs, except
 						ensuring the information is provided. The functional specification documentation is
 						provided to support the evaluation activities described in <xref to="SFRs"/>, and
 						other activities described for AGD, ATE, and AVA SARs. The requirements on the content
 						of the functional specification information is implicitly assessed by virtue of the
-						other assurance activities being performed; if the evaluator is unable to perform an
+						other Evaluation Activities being performed; if the evaluator is unable to perform an
 						activity because there is insufficient interface information, then an adequate
 						functional specification has not been provided.
 					</aactivity>
@@ -8452,7 +8467,7 @@
 			successfully install the TSF in that environment; and Instructions to
 			manage the security of the TSF as a product and as a component of the
 			larger operational environment. Guidance pertaining to particular security functionality is
-			also provided; requirements on such guidance are contained in the assurance activities
+			also provided; requirements on such guidance are contained in the Evaluation Activities
 			specified with each requirement. 
 			
 			<a-component cc-id="agd_ope.1" name="Operational User Guidance (AGD_OPE.1)">
@@ -8461,7 +8476,7 @@
 					<note role="application">The operational user guidance does not have to be contained in a
 						single document. Guidance to users, administrators and application developers can be
 						spread among documents or web pages. Rather than repeat information here, the developer should
-						review the assurance activities for this component to ascertain the specifics of the
+						review the Evaluation Activities for this component to ascertain the specifics of the
 						guidance that the evaluator will be checking for. This will provide the necessary
 						information for the preparation of acceptable guidance.</note>
 				</a-element>
@@ -8514,7 +8529,7 @@
 					<title>The evaluator shall confirm that the information provided meets all requirements
 						for content and presentation of evidence. </title>
 					<aactivity>Some of the contents of the operational guidance are verified by the
-						assurance activities in <xref to="SFRs"/> and evaluation of the TOE according to the <xref to="bibCEM"/>. 
+						Evaluation Activities in <xref to="SFRs"/> and evaluation of the TOE according to the <xref to="bibCEM"/>. 
 						The following additional information is also required. If cryptographic functions are provided by the TOE, 
 						the operational guidance shall contain instructions for configuring
 						the cryptographic engine associated with the evaluated configuration of the TOE. It shall provide a 
@@ -8538,7 +8553,7 @@
 				<a-element type="D">
 					<title>The developer shall provide the TOE, including its preparative procedures.</title>
 					<note role="application">As with the operational guidance, the developer should look to
-						the assurance activities to determine the required content with respect to preparative
+						the Evaluation Activities to determine the required content with respect to preparative
 						procedures.</note>
 				</a-element>	  
 				<a-element type="C">
@@ -8610,8 +8625,8 @@
 		
 			<a-component cc-id="alc_cms.1" name="TOE CM Coverage (ALC_CMS.1)">
 				Given the scope of the TOE and its associated evaluation 
-				evidence requirements, this component’s assurance activities are covered 
-				by the assurance activities listed for ALC_CMC.1.
+				evidence requirements, this component’s Evaluation Activities are covered 
+				by the Evaluation Activities listed for ALC_CMC.1.
 				<a-element type="D">
 					<title>The developer shall provide a configuration list for the TOE.</title>
 				</a-element>
@@ -8630,7 +8645,7 @@
 						information in the ST coupled with the guidance provided to
 						administrators and users under the AGD requirements. By ensuring that the OS is specifically identified 
 						and that this identification is consistent in the ST and in the AGD guidance (as done in the
-						assurance activity for ALC_CMC.1), the evaluator implicitly confirms the information
+						Evaluation Activity for ALC_CMC.1), the evaluator implicitly confirms the information
 						required by this component. Life-cycle support is targeted aspects of the developer’s
 						life-cycle and instructions to providers of applications for the developer’s devices,
 						rather than an in-depth examination of the TSF manufacturer’s
@@ -8719,11 +8734,11 @@
 				(including configuration and operational) documentation provided. The focus of the testing
 				is to confirm that the requirements specified in <xref to="SFRs"/> being met,
 				although some additional testing is specified for SARs in <xref to="SARs"/>. The
-				Assurance Activities identify the additional testing activities associated with these
+				Evaluation Activities identify the additional testing activities associated with these
 				components. The evaluator produces a test report documenting the plan for and results of
 				testing, as well as coverage arguments focused on the hardware configurations
 				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s assurance activities are covered by the assurance activities listed for ALC_CMC.1.
+				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
 				<a-element type="D">
 					<title>The developer shall provide the TOE for testing.</title>
 				</a-element>
