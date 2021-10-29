@@ -2452,8 +2452,7 @@
 					<TSS>
 						The evaluator shall check that the TSS includes a description of the key derivation
 						functions and shall check that this uses a key derivation algorithm and key sizes
-						according to the specification selected in the ST out of the table as provided in the
-						cPP table per row. The evaluator shall confirm that the TSS supports the selected
+						according to the specification selected in <xref to="fcs-ckm-keydrv-sels"/>. The evaluator shall confirm that the TSS supports the selected
 						methods.<h:p/>
 <!--						If <h:u>KeyDrv5</h:u> is selected, the evaluator shall verify that the TSS shows that the total
 						length of the concatenated keys used as input to the KDF is greater than or equal to
@@ -2500,7 +2499,7 @@
 						The evaluator shall examine the KMD to ensure that:<h:ul>
 						<h:li>The KMD describes the complete key derivation chain and the description
 							must be consistent with the description in the TSS. For all key derivations the
-							TOE must use a method as described in the cPP table. There should be no
+							TOE must use a method as described in the PP table. There should be no
 							uncertainty about how a key is derived from another in the chain.</h:li>
 						<h:li>The length of the key derivation key is defined by the PRF. The evaluator
 							should check whether the key derivation key length is consistent with the
@@ -3307,8 +3306,7 @@
 						lengths and modes) is an implementation that is tested in FCS_COP.1/SKC.<h:p/>
 						The evaluator shall check that the TSS includes a description of the key wrap
 						functions and shall check that this uses a key wrap algorithm and key sizes
-						according to the specification selected in the ST out of the table as provided in the
-						cPP table. <h:p/>
+						according to the specification selected in the ST from <xref to="fcs-cop-keyenc-sels"/>.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator checks the AGD documents to confirm that the instructions for
@@ -3321,7 +3319,7 @@
 						The evaluator shall examine the KMD to ensure that it describes when the key
 						wrapping occurs, that the KMD description is consistent with the description in the
 						TSS, and that for all keys that are wrapped the TOE uses a method as described in
-						the cPP table. No uncertainty should be left over which is the wrapping key and the
+						<xref to="fcs-cop-keyenc-sels"/>. No uncertainty should be left over which is the wrapping key and the
 						key to be wrapped and where the wrapping key potentially comes from i.e. is
 						derived from.<h:p/>
 						If “AES-GCM” or “AES-CCM” is used the evaluator shall examine the KMD to
@@ -3332,8 +3330,8 @@
 					</KMD>
 					<Tests>
 						Refer to FCS_COP.1/SKC for the required testing for each symmetric key wrapping
-						method selected from the table and to FCS_COP.1/KAT for the required testing for
-						each asymmetric key wrapping method selected from the table. Each distinct
+						method selected from <xref to="fcs-cop-skc-sels"/> and to FCS_COP.1/KAT for the required testing for
+						each asymmetric key wrapping method selected from <xref to="fcs-cop-kat-sels"/>. Each distinct
 						implementation shall be tested separately.<h:p/>
 						If the implementation of the key encryption operation is the same implementation
 						tested under FCS_COP.1/SKC or FCS_COP.1/KAT, and it has been tested with the
@@ -4149,8 +4147,7 @@
 						The evaluator shall check that the TSS includes a description of encryption
 						functions used for symmetric key encryption. The evaluator should check that this
 						description of the selected encryption function includes the key sizes and modes of
-						operations as specified in the cPP table 9 “Supported Methods for Symmetric Key
-						Cryptography Operation.”<h:p/>
+						operations as specified in <xref to="fcs-cop-skc-sels"/>.<h:p/>
 						The evaluator shall check that the TSS describes the means by which the TOE
 						satisfies constraints on algorithm parameters included in the selections made for
 						‘cryptographic algorithm’ and ‘list of standards’.<h:p/> 
@@ -5545,7 +5542,7 @@
 				</title>
 				<note role="application">
 					ISO/IEC 18031:2011 contains three different methods of generating random numbers. Each of
-					these in turn depends on underlying cryptographic primitives (hash functions/ciphers). This cPP
+					these in turn depends on underlying cryptographic primitives (hash functions/ciphers). This PP
 					allows SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512 for Hash_DRBG or HMAC_DRBG
 					and only AES-based implementations for CTR_DRBG. <h:p/>
 					This requirement must be included in the ST if the TOE generates keys, signatures, or Salts for its
@@ -5559,8 +5556,8 @@
 						calculated min-entropy supplied either separately by each source or the min-entropy
 						contained in the combined seed value.<h:p/>
 						In addition to the materials below, documentation shall be produced—and the
-						evaluator shall perform the activities—in accordance with Appendix D of
-						[DSCcPP].<h:p/>
+						evaluator shall perform the activities—in accordance with 
+						<xref to="appendix-entropy"/>.<h:p/>
 					</TSS>
 					<Guidance>
 						There are no AGD evaluation activities for this component.<h:p/>
