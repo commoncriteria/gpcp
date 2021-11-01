@@ -463,12 +463,12 @@
 		</cclaim>
 		<cclaim name="CC Conformance Claims">
 			<description>
-				This PP is conformant to Parts 2 (extended) and 3 (extended) of Common Criteria Version 3.1, 
+				This PP is conformant to Parts 2 (Extended) and 3 (Extended) of Common Criteria Version 3.1, 
 				Release 5 [CC].
 			</description>
 		</cclaim>
 		<cclaim name="PP Claim">
-			<description>This PP does not claim conformance to any other PP. </description>
+			<description>This PP does not claim conformance to any other PP.</description>
 		</cclaim>
 		<cclaim name="Package Claim">
 			<description>
@@ -506,7 +506,9 @@
 				<description>An attacker with physical access might be able to compromise TOE integrity, subvert
 					TOE protections, or access tenant data through hardware attacks such as probing, physical
 					manipulation, fault-injection, side-channel analysis, environmental stress, or activating
-					disabled features or pre-delivery services. This threat is included only in the following 
+					disabled features or pre-delivery services. This threat is addressed by TOE Objectives 
+					for the use cases listed below. For other use cases, this threat is mitigated by Operational 
+					Environment Objectives as mapped to Assumptions. 
 					use cases:<h:ul>
 						<h:li>Server-Class Platform, Enhanced</h:li>
 						<h:li>Portable Clients (laptops, tablets), Enhanced</h:li>
@@ -572,9 +574,9 @@
 			<threat name="T.TENANT_BASED_ATTACK">
 				<description>An attacker running software as a tenant can attempt to access or modify
 					TOE firmware or functionality. Note that direct tenant attacks against other
-					tenants are not encompassed by this threat as they out of scope.</description>
+					tenants are not encompassed by this threat as they are out of scope.</description>
 				<objective-refer ref="O.TENANT_SECURITY">
-					<rationale>The threat T.TENANT-BASED_ATTACK is countered by O.TENANT_SECURITY as this
+					<rationale>The threat T.TENANT_BASED_ATTACK is countered by O.TENANT_SECURITY as this
 						objective supports tenant-based security mechanisms to prevent tenant compromise.</rationale>
 				</objective-refer>
 			</threat>
@@ -583,7 +585,7 @@
 					through a network interface connected to an active TOE component, such
 					as a management subsystem.</description>
 				<objective-refer ref="O.TRUSTED_CHANNELS">
-					<rationale>The threat T.REMOTE_ATTACK is countered by O.TRUSTED_CHANNELS as this
+					<rationale>The threat T.NETWORK_BASED_ATTACK is countered by O.TRUSTED_CHANNELS as this
 						provides for integrity and confidentiality of transmitted data.</rationale>
 				</objective-refer>
 			</threat>
@@ -699,9 +701,9 @@
 	  
 	<!-- 3.3 Organizational Security Policies -->
     <section title="Organizational Security Policies" id="OSPs">
-		<OSPs>
-			<OSP name="P.ENTERPRISE">
-				<description>If the OS is bound to a directory or management server, the configuration of
+		<OSPs/>
+<!--			<OSP name="P.ENTERPRISE">
+				<description>If the GPCP is bound to a directory or management server, the configuration of
 					the OS software must be capable of adhering to the enterprise security policies
 					distributed by them.</description>
 				<objective-refer ref="O.MANAGEMENT">
@@ -710,7 +712,7 @@
 						management over the OS.</rationale>
 				</objective-refer>
 			</OSP>
-		</OSPs>
+		</OSPs>   -->
     </section>
 </sec:spd>
 	    
@@ -721,7 +723,7 @@
     <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
 		<SOs>
 			<SO name="O.PHYSICAL_INTEGRITY">
-				<description>Protect the physical platform and interfaces from access by physical means such as
+				<description>The TOE must be able to protect the physical platform and interfaces from access by physical means such as
 					probing, physical manipulation, fault-injection, side-channel analysis, environmental stress, or 
 					activating disabled features or pre-delivery services. This includes specification of:<h:ul>
 					<h:li>Requirements for tamper detection</h:li>
@@ -741,9 +743,9 @@
 				<addressed-by>FPT_ROT_EXT.3</addressed-by><rationale>Supports the objective through requiring supply chain traceability.</rationale>		  
 			</SO>
 			<SO name="O.ATTACK_DETECTION_AND_RESPONSE">
-				<description>Detected attempts to compromise the physical or logical integrity of the TOE must
-					be indicated to a user or reported to an enterprise security authority. This includes
-					specification of:<h:ul>
+				<description>The TOE must be capable of detecting attempts to compromise the physical or logical integrity
+					of the TOE and respond by notifying a user or reporting the attempt to an enterprise security
+					authority. This includes specification of:<h:ul>
 					<h:li>Requirements for responses to particular detected events. (resilience, secure state, etc.)</h:li>
 					<h:li>Requirements for basic auditing capabilities and protection of audit records.</h:li>
 					<h:li>Requirements for secure transmission of audit records (if applicable)</h:li></h:ul>
@@ -769,9 +771,10 @@
 				<addressed-by>FPT_TUD_EXT.4</addressed-by><rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>		  
 			</SO>
 			<SO name="O.PROTECTED_FIRMWARE">
-				<description>TOE firmware can be modified only through a non-bypassable trusted update process. This ensures the
-					integrity of firmware both during the update process and while at rest. This includes specification
-					of:<h:ul>
+				<description>TOE must ensure that its firmware cannot be modified other than through 
+					a non-bypassable trusted update process. This ensures the integrity of firmware
+					both during the update process and while at rest. This includes
+					specification of:<h:ul>
 					<h:li>Requirements for invocation of the trusted update process</h:li>
 					<h:li>Requirements for non-bypassability of the update process</h:li>
 					<h:li>Requirements for detection and reporting of attempts to modify TOE 
@@ -787,7 +790,8 @@
 				<addressed-by>FPT_RVR_EXT.1</addressed-by><rationale>Supports the objective by specifying a means for recovery from a boot firmware failure.</rationale>
 			</SO>
 			<SO name="O.UPDATE_INTEGRITY">
-				<description>Updates to TOE firmware must be authorized, authenticated, and properly validated prior
+				<description>The TOE must ensure that updates to TOE firmware are authorized, 
+					authenticated, and properly validated prior
 					to installation. This includes specification of:<h:ul>
 					<h:li>Requirements for protection of updates</h:li>
 					<h:li>Requirements for authentication of update packages</h:li>
@@ -858,7 +862,7 @@
 				<addressed-by>FDP_TEE_EXT.1</addressed-by><rationale>Supports the objective by specifying the requirements for a trusted execution environment.</rationale>
 			</SO>
 			<SO name="O.TRUSTED_CHANNELS">
-				<description>Certain types of network communications with the TOE must be protected with guaranteed 
+				<description>The TOE must protect certain network communications through guaranteed 
 					confidentiality, integrity, and authenticity. Such traffic includes communications with remote 
 					administrators, audit servers, update servers, and credential managers. This objective includes 
 					specification of:<h:ul>
