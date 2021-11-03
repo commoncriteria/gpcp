@@ -1074,11 +1074,11 @@
                     </TSS>
                     <Guidance>
                         The evaluator shall also make a determination of the administrative actions that are relevant in the 
-                        context of this PP-Configuration. The evaluator shall examine the administrative guide and make a determination of which 
+                        context of this PP-Configuration. The evaluator shall examine the AGD and make a determination of which 
                         administrative commands, including subcommands, scripts, and configuration files, are related to the 
                         configuration (including enabling or disabling) of the mechanisms implemented in the TOE 
                         that are necessary to enforce the requirements specified in the PP and PP-Module(s). The evaluator shall document the 
-                        methodology or approach taken while determining which actions in the administrative guide are 
+                        methodology or approach taken while determining which actions in the AGD are 
                         security-relevant with respect to this PP-Configuration.<h:p/>
                     </Guidance>
 					<KMD>
@@ -1122,7 +1122,7 @@
 					<TSS>
 						There are no TSS evaluation activities for this component.<h:p/>
 					</TSS>
-					<Guidance>The evaluator shall review the operational guidance for the procedure on how to review the audit 
+					<Guidance>The evaluator shall review the AGD for the procedure on how to review the audit 
 						records.<h:p/>
 					</Guidance>
 					<KMD>
@@ -1212,7 +1212,7 @@
 						deletion or overwrite of the oldest stored record.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.<h:p/>
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -1274,11 +1274,11 @@
                         the audit data are transferred to the external audit server.<h:p/> 
                     </TSS>
                     <Guidance>
-                        If "trusted channel" is selected above, the evaluator shall examine the operational guidance to ensure it describes how to establish the 
+                        If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
 						trusted channel to the audit server, as well as describe any requirements 
                         on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
                         as configuration of the TOE needed to communicate with the audit server.<h:p/>
-						If "removeable media" is selected, the evaluator shall ensure that the guidance describes the process for
+						If "removeable media" is selected, the evaluator shall ensure that the AGD describes the process for
 						accessing audit data and copying it to media.<h:p/>
                     </Guidance>
 					<KMD>
@@ -1748,7 +1748,7 @@
 						FCS_CKM_EXT.5.<h:p/>  -->
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.<h:p/>
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						The evaluator shall iterate through each of the methods selected by the ST and
@@ -1829,7 +1829,7 @@
 						corresponding methods selected in FCS_COP.1/KAT.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that the guidance instructs the administrator how to
+						The evaluator shall verify that the AGD instructs the administrator how to
 						configure the TOE to use the selected key establishment scheme.<h:p/>
 					</Guidance>
 					<KMD>
@@ -1902,7 +1902,7 @@
 											<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
 										</selectables> followed by a read-verify. If the read-verification of the overwritten data fails,
 										the process shall be repeated again up to <assignable>number of times to attempt overwrite</assignable> times, 
-										whereupon an error is returned.</selectable>
+										whereupon an error is returned</selectable>
 									<selectable>block erase</selectable>
 								</selectables></selectable>
 						</selectables></h:li></h:ul>
@@ -1923,12 +1923,11 @@
 					addressing logical addresses (which frees the relevant physical addresses holding the old data)
 					and then requesting the platform to ensure that the data in the physical addresses is no longer
 					available for reading (i.e. the “garbage collection” referred to in the SFR text).
-					Guidance documentation for the TOE requires users not to allow the TOE to leave the user’s
+					The AGD for the TOE requires users not to allow the TOE to leave the user’s
 					control while a session is active (and hence while the DEK is likely to be in plaintext in volatile
 					memory).<h:p/>
 					The selection for destruction of data in non-volatile memory includes block erase as an option,
 					and this option applies only to flash memory. A block erase does not require a read verify, since 
-					collaborative Protection Profile for Dedicated Security Components
 					the mappings of logical addresses to the erased memory locations are erased as well as the data
 					itself.<h:p/>
 					Where different destruction methods are used for different data or different destruction situations
@@ -1944,7 +1943,7 @@
 					requirements, and not being any of the particular values listed as other selection options. The point
 					of the phrase “does not contain any sensitive data” is to ensure that the overwritten data is
 					carefully selected, and not taken from a general pool that might contain current or residual data
-					(e.g. SDOs or intermediate key chain values) that itself requires confidentiality protection.<h:p/>
+					that itself requires confidentiality protection.<h:p/>
 				</note>
 				<aactivity>
 					<TSS>
@@ -1971,26 +1970,26 @@
 						does not contain any sensitive data. <h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall check that the guidance documentation for the TOE requires
+						The evaluator shall check that the AGD for the TOE requires
 						users to ensure that the TOE remains under the user’s control while a session is
 						active.<h:p/>
 						A TOE may be subject to situations that could prevent or delay data destruction in
-						some cases. The evaluator shall check that the guidance documentation identifies
+						some cases. The evaluator shall check that the AGD identifies
 						configurations or circumstances that may not strictly conform to the key destruction
 						requirement, and that this description is consistent with the relevant parts of the TSS
-						(and KMD). The evaluator shall check that the guidance documentation provides
+						(and KMD). The evaluator shall check that the AGD provides
 						guidance on situations where key destruction may be delayed at the physical layer,
 						identifying any additional mitigation actions for the user (e.g. there might be some
 						operation the user can invoke, or the user might be advised to retain control of the
 						device for some particular time to maximise the probability that garbage collection
 						will have occurred).<h:p/>
 						For example, when the TOE does not have full access to the physical memory, it is
-						possible that the storage may implement wear-levelling and garbage collection. This
+						possible that the storage may implement wear-leveling and garbage collection. This
 						may result in additional copies of the data that are logically inaccessible but persist
 						physically. Where available, the TOE might then describe use of the TRIM
 						command	and garbage collection to destroy these persistent copies upon their
-						deletion (this would be explained in TSS and guidance documentation). <h:p/>
-						Where TRIM is used then the TSS or guidance documentation is also expected to describe how
+						deletion (this would be explained in TSS and AGD). <h:p/>
+						Where TRIM is used then the TSS or AGD is also expected to describe how
 						the keys are stored such that they are not inaccessible to TRIM, (e.g. they would need not
 						to be contained in a file less than 982 bytes which would be completely contained in the
 						master file table.<h:p/>
@@ -2076,7 +2075,7 @@
 								(e.g., some random bits that happen to match). If this is the case the test should be
 								repeated with a different key in Step #1. If a fragment is also found in this
 								repeated run then the test fails unless the developer provides a reasonable
-								explanation for the collision, then the evaluator may give a pass on this test.
+								explanation for the collision, then the evaluator may give a pass on this test.<h:p/>
 							</test>
 							<test>
 								Applied to each key and keying material held in non-volatile memory and
@@ -2114,7 +2113,7 @@
 				<note role="application">
 					This SFR must be included in the ST if FCS_CKM.4 is included in the ST.<h:p/>
 					The TOE must have mechanisms to destroy keys and key material in persistent storage using an 
-					approved method as speified in FCS_CKM.4. Examples of keys and key material include intermediate
+					approved method as specified in FCS_CKM.4. Examples of keys and key material include intermediate
 					keys, encryption keys, signing keys, verification keys, authentication tokens, and submasks. <h:p/>
 					The TOE will have mechanisms to destroy keys and key material when the keys and key material 
 					is no longer needed. Based on their implementations, vendors will explain when certain keys are no
@@ -2127,7 +2126,7 @@
 						be expected to be destroyed.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.<h:p/>
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						The evaluator shall verify that the KMD includes a description of the areas where
@@ -2139,7 +2138,7 @@
 						destruction operations are performed in a manner specified by FCS_CKM.4.<h:p/>
 					</KMD>
 					<Tests>
-						There are no test evaluation activities for this component
+						There are no test evaluation activities for this component.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -2534,7 +2533,7 @@
 						</h:ul>
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that the AGD guidance instructs the administrator how
+						The evaluator shall verify that the AGD instructs the administrator how
 						to configure the TOE to use the selected key types for all uses identified in the ST.<h:p/>
 					</Guidance>
 					<KMD>
@@ -2782,7 +2781,7 @@
                         in the TSS.<h:p/>
                     </TSS>
                     <Guidance>
-                        The evaluator checks the AGD documents to determine that any configuration that is required to 
+                        The evaluator checks the AGD to determine that any configuration that is required to 
                         be done to configure the functionality for the required hash sizes is present. <h:p/>
                     </Guidance>
 					<KMD>
@@ -2925,7 +2924,7 @@
 						used by the HMAC and KMAC functions: output MAC length used.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.<h:p/>
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -3131,7 +3130,7 @@
 						that can be used for the various key agreement/transport schemes.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.<h:p/>
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -3359,10 +3358,10 @@
 						according to the specification selected in the ST from <xref to="fcs-cop-keyenc-sels"/>.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator checks the AGD documents to confirm that the instructions for
+						The evaluator checks the AGD to confirm that the instructions for
 						establishing the evaluated configuration use only those key wrap functions selected
 						in the ST. If multiple key access modes are supported, the evaluator shall examine
-						the guidance documentation to determine that the method of choosing a specific
+						the AGD to determine that the method of choosing a specific
 						mode/key size by the end user is described.<h:p/>
 					</Guidance>
 					<KMD>
@@ -4207,8 +4206,8 @@
 						‘cryptographic algorithm’ and ‘list of standards’.<h:p/> 
 					</TSS>
 					<Guidance>
-						If the product supports multiple modes, the evaluator shall examine the vendor’s
-						documentation to determine that the method of choosing a specific mode/key size
+						If the product supports multiple modes, the evaluator shall examine the AGD
+						to determine that the method of choosing a specific mode/key size
 						by the end user is described.<h:p/>
 					</Guidance>
 					<KMD>
@@ -4751,7 +4750,7 @@
                         level of the processing stack. <h:p/>
                     </TSS>
 					<Guidance>
-						There are no Guidance evaluation activities for this component..<h:p/>
+						There are no AGD evaluation activities for this component..<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -4826,11 +4825,11 @@
 						with the platform itself or whether it is a separate executable that is bundled with the platform.<h:p/>
 					</TSS>
 					<Guidance>
-						In addition to the Operational Guidance EAs for the individual FCS_IPSEC_EXT.1 elements below, the
+						In addition to the AGD EAs for the individual FCS_IPSEC_EXT.1 elements below, the
 						evaluator shall perform the following:<h:p/>
 						If the configuration of the IPsec behavior is from an environmental source, most notably a VPN gateway
 						(e.g through receipt of required connection parameters from a VPN gateway), the evaluator shall ensure
-						that the operational guidance contains any appropriate information for ensuring that this configuration
+						that the AGD contains any appropriate information for ensuring that this configuration
 						can be properly applied.<h:p/>
 						Note in this case that the implementation of the IPsec protocol must be enforced entirely within the TOE
 						boundary; i.e. it is not permissible for a software application TOE to be a graphical front-end for IPsec
@@ -4878,12 +4877,12 @@
 						established SA. <h:br/>
                     </TSS>
                     <Guidance>
-                        The evaluator shall examine the operational guidance to verify it instructs the Administrator how 
+                        The evaluator shall examine the AGD to verify it instructs the Administrator how 
                         to construct entries into the SPD that specify a rule for processing a packet. The description 
                         includes all three cases – a rule that ensures packets are encrypted/decrypted, dropped, and 
                         flow through the TOE without being encrypted. The evaluator shall determine 
-                        that the description in the operational guidance is consistent with the description in the 
-                        TSS, and that the level of detail in the operational guidance is sufficient to
+                        that the description in the AGD is consistent with the description in the 
+                        TSS, and that the level of detail in the AGD is sufficient to
                         allow the administrator to set up the SPD in an unambiguous fashion. This includes a discussion 
                         of how ordering of rules impacts the processing of an IP packet.<h:br/>
                     </Guidance>
@@ -4938,10 +4937,10 @@
                         established to operate in tunnel mode or transport mode (as selected).<h:br/>
                     </TSS>
                     <Guidance>
-                        The evaluator shall confirm that the operational guidance contains instructions on how to 
+                        The evaluator shall confirm that the AGD contains instructions on how to 
                         configure the connection in each mode selected.<h:p/>
-						If both transport mode and tunnel mode are implemented, the evaluator shall review the operational
-						guidance to determine how the use of a given mode is specified.<h:br/>
+						If both transport mode and tunnel mode are implemented, the evaluator shall review the AGD
+						to determine how the use of a given mode is specified.<h:br/>
                     </Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this element.<h:p/>
@@ -4979,8 +4978,8 @@
 						 operational guidance to determine how the use of a given mode is specified.<h:br/>
 					</TSS>
 					<Guidance>
-						The evaluator shall check that the operational guidance provides instructions on how to construct or
-						acquire the SPD and uses the guidance to configure the TOE for the following test.<h:br/>
+						The evaluator shall check that the AGD provides instructions on how to construct or
+						acquire the SPD and uses the AGD to configure the TOE for the following test.<h:br/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this element.<h:p/>
@@ -5019,7 +5018,7 @@
                         Operations (Keyed Hash Algorithms).<h:br/>
                     </TSS>
                     <Guidance>
-                        The evaluator checks the operational guidance to ensure it provides instructions on how the TOE is
+                        The evaluator checks the AGD to ensure it provides instructions on how the TOE is
 						configured to use the algorithms selected in this component and whether this is performed through direct
 						configuration, defined during initial installation, or defined by acquiring configuration settings from an
 						environmental component.<h:br/>
@@ -5073,11 +5072,11 @@
 						these are configurable options.<h:br/>
                     </TSS>
                     <Guidance>
-                        The evaluator shall check the operational guidance to ensure it instructs the administrator how to
+                        The evaluator shall check the AGD to ensure it instructs the administrator how to
 						configure the TOE to use IKEv1 and/or IKEv2 (as selected), and uses the guidance to configure the TOE to
 						perform NAT traversal for the test below. If XAUTH is implemented, the evaluator shall verify that the
-						operational guidance provides instructions on how it is enabled or disabled.<h:br/>
-						If the TOE supports IKEv1, the evaluator shall verify that the operational guidance either asserts that only
+						AGD provides instructions on how it is enabled or disabled.<h:br/>
+						If the TOE supports IKEv1, the evaluator shall verify that the AGD either asserts that only
 						main mode is used for Phase 1 exchanges, or provides instructions for disabling aggressive mode.<h:p/>
                     </Guidance>
 					<KMD>
@@ -5123,7 +5122,7 @@
 						selection of the requirement, those are included in the TSS discussion.<h:br/>
                     </TSS>
                     <Guidance>
-                        The evaluator checks the operational guidance to ensure it provides instructions on how the TOE is
+                        The evaluator checks the AGD to ensure it provides instructions on how the TOE is
 						configured to use the algorithms selected in this component and whether this is performed through direct
 						configuration, defined during initial installation, or defined by acquiring configuration settings from an
 						environmental component. <h:br/>
@@ -5207,11 +5206,11 @@
 						There are no TSS EAs for this requirement.<h:br/>
 					</TSS>
                     <Guidance>
-                        The evaluator shall check the operational guidance to ensure it provides instructions on how the TOE
-						configures the values for SA lifetimes. In addition, the evaluator shall check that the guidance has the
+                        The evaluator shall check the AGD to ensure it provides instructions on how the TOE
+						configures the values for SA lifetimes. In addition, the evaluator shall check that the AGD has the
 						option for either the Administrator or VPN Gateway to configure Phase 1 SAs if time-based limits are
 						supported. Currently there are no values mandated for the number of packets or number of bytes, the
-						evaluator shall simply check the operational guidance to ensure that this can be configured if selected in
+						evaluator shall simply check the AGD to ensure that this can be configured if selected in
 						the requirement.<h:br/>
                     </Guidance>
 					<KMD>
@@ -5371,14 +5370,14 @@
 						of that type and the method by which that type is compared to the peer’s presented certificate.<h:br/>
                     </TSS>
 					<Guidance>
-						The evaluator shall check that the operational guidance describes how pre-shared keys are to be
+						The evaluator shall check that the AGD describes how pre-shared keys are to be
 						generated and established.<h:p/>
-						The evaluator ensures the operational guidance describes how to set up the TOE to use the cryptographic
+						The evaluator ensures the AGD describes how to set up the TOE to use the cryptographic
 						algorithms RSA and/or ECDSA.<h:p/>
 						In order to construct the environment and configure the TOE for the following tests, the evaluator will
-						ensure that the operational guidance also describes how to configure the TOE to connect to a trusted CA,
+						ensure that the AGD also describes how to configure the TOE to connect to a trusted CA,
 						and ensure a valid certificate for that CA is loaded into the TOE as a trusted CA.<h:p/>
-						The evaluator shall also ensure that the operational guidance includes the configuration of the reference
+						The evaluator shall also ensure that the AGD includes the configuration of the reference
 						identifier(s) for the peer.<h:br/>
 					</Guidance>
 					<KMD>
@@ -5741,7 +5740,7 @@
 						The evaluator shall confirm by testing that the salts obtained in the cryptographic
 						operations that use the salts are of the length specified in FCS_SLT_EXT.1, are
 						obtained from the RBG, and are fresh on each invocation.<h:p/>
-						Note: in general these tests may be carried out as part of the tests of the relevant
+						This testing may be carried out as part of the testing for the relevant
 						cryptographic operations.<h:p/>
 					</Tests>
 				</aactivity>
@@ -5807,34 +5806,6 @@
 						<selectable>an administrator</selectable>
 					</selectables>.
 				</title>
-	<!--		</f-element>
-			<f-element id="fcs-stg-ext-1e4">
-				<title>
-					The TSF shall have the capability to allow only the user that 
-					<selectables>
-						<selectable>imported the key/secret</selectable>
-						<selectable>caused the key/secret to be generated</selectable>
-					</selectables> to use the key/secret. Exceptions
-					may be explicitly authorized only by 
-					<selectables>
-						<selectable>the client application</selectable>
-						<selectable>the administrator</selectable>
-					</selectables>.
-				</title>
-			</f-element>  -->
-	<!--		<f-element id="fcs-stg-ext-1e5">
-				<title>
-					The TSF shall allow only the user that 
-					<selectables>
-						<selectable>imported the key/secret</selectable>
-						<selectable>caused the key/secret to be generated</selectable>
-					</selectables> to request that the key/secret be destroyed. Exceptions may
-					only be explicitly authorized by 
-					<selectables>
-						<selectable>the client application</selectable>
-						<selectable>the administrator</selectable>
-					</selectables>.
-				</title>  -->
 	<!--			<note role="application">
 					Not all conformant TOEs will have the ability to import pre-generated keys into the TOE. In these
 					cases, the TOE’s ability to receive commands to perform key generation is considered to be its
@@ -5849,9 +5820,9 @@
 					mutable hardware-based or software-based.<h:p/>
 				</TSS>
 				<Guidance>
-					The evaluator shall examine the operational guidance to ensure that it describes the
+					The evaluator shall examine the AGD to ensure that it describes the
 					process for generating keys, importing keys, or both, based on what is claimed by
-					the ST. The evaluator shall also examine the operational guidance to ensure that it
+					the ST. The evaluator shall also examine the AGD to ensure that it
 					describes the process for destroying keys that have been imported or generated.<h:p/>
 				</Guidance>
 				<KMD>
@@ -6040,7 +6011,7 @@
 						TOE's TEE implementation.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the guidance to ensure that it describes the steps 
+						The evaluator shall examine the AGD to ensure that it describes the steps 
 						required for tenant software to invoke the TEE.<h:p/>
 					</Guidance>	
 					<KMD>
@@ -6214,7 +6185,7 @@
 						TOE user if the authentication attempt was successful or not.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that the AGD guidance describes how the administrator configures
+						The evaluator shall verify that the AGD describes how the administrator configures
 						the maximum number of unique unsuccessful authentication attempts.<h:p/>
 					</Guidance>
 					<KMD>
@@ -6310,7 +6281,7 @@
 						There are no TSS evaluation activities for this component.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the operational guidance to determine that it provides
+						The evaluator shall examine the AGD to determine that it provides
 						guidance to security administrators on the composition of strong passwords, and that it 
 						provides instructions on setting the minimum password length. The evaluator shall also 
 						perform the following tests. Note that one or more of these tests can be performed with a 
@@ -6374,7 +6345,7 @@
 						attempts for all authentication mechanisms selected in FIA_UAU.5.1.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.<h:p/>
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -6459,7 +6430,7 @@
 						at the same time.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that configuration guidance for each authentication mechanism
+						The evaluator shall verify that configuration information for each authentication mechanism
 						is addressed in the AGD guidance.<h:p/>
 					</Guidance>
 					<KMD>
@@ -6585,12 +6556,12 @@
                         protocol transactions that take place, and what constitutes a “successful logon.” <h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the operational guidance to determine that any necessary preparatory
+						The evaluator shall examine the AGD to determine that any necessary preparatory
 						steps (e.g., establishing credential material such as pre-shared keys, tunnels, certificates) to logging
-                        in are described. For each supported login method, the evaluator shall ensure the operational
-                        guidance provides clear instructions for successfully logging on. If configuration is necessary
+                        in are described. For each supported login method, the evaluator shall ensure the AGD
+                        provides clear instructions for successfully logging on. If configuration is necessary
                         to ensure the services provided before login are limited, the evaluator shall determine that the
-                        operational guidance provides sufficient instruction on limiting the allowed services.<h:p/>							
+                        AGD provides sufficient instruction on limiting the allowed services.<h:p/>							
                     </Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -6712,7 +6683,7 @@
 						this configuration action is performed.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no Guidance evaluation activities for this component.<h:p/>
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -6850,7 +6821,7 @@
                         instructions on how this configuration action is performed.<h:p/>
                     </TSS>
 					<Guidance>
-						There are no Guidance evaluation activities for this component.<h:p/>
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -6993,7 +6964,7 @@
 						policy and how. This activity will be performed in conjunction with
 						FMT_SMF_EXT.1.<h:p/>
 					</TSS>
-					<Guidance>There are no guidance evaluation activities for this component.<h:p/></Guidance>
+					<Guidance>There are no AGD evaluation activities for this component.<h:p/></Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
@@ -7157,19 +7128,19 @@
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator shall examine the TSS and Operational Guidance to ensure
-						that it describes which security management functions require Administrator privilege and the actions 
+						The evaluator shall examine the TSS and AGD to ensure
+						that they describes which security management functions require Administrator privilege and the actions 
 						associated with each management function. The evaluator shall verify that for each 
 						management function and role specified in <xref to="t-manfunc"/> the defined 
 						role is able to perform all mandatory functions as well as all optional or selection-based functions claimed
 						in the ST.	<h:p/>
 					</TSS>
 					<Guidance>
-                       	The evaluator shall examine the Operational Guidance to ensure that it
+                       	The evaluator shall examine the AGD to ensure that it
 						describes how the Administrator and User are able to perform
 						each management function that the ST claims the TOE supports.<h:p/>
                         The evaluator shall verify for each claimed management function that 
-						the Operational Guidance is sufficiently detailed to allow the 
+						the guidance is sufficiently detailed to allow the 
 						function to be performed and that the function can be performed.<h:p/>
 					</Guidance>
 					<KMD>
@@ -7230,7 +7201,7 @@
 						is denied to tenant software. <h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the guidance to ensure that it describes how Administrators assert 
+						The evaluator shall examine the AGD to ensure that it describes how Administrators assert 
 						physical presence to the TSF.<h:p/>
 					</Guidance>
 					<KMD>
@@ -7289,7 +7260,7 @@
 						i.e. what has the access to the signing key.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component.<h:p/>
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -7335,7 +7306,7 @@
 						tampering has been detected.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall ensure that the Guidance describes how the TOE indicates to Users
+						The evaluator shall ensure that the AGD describes how the TOE indicates to Users
 						and Administrators that it has detected tampering.  <h:p/>
 					</Guidance>
 					<KMD>
@@ -7389,7 +7360,7 @@
 					tampering has been detected for each device/element specified in FPT_PHP.2.3.<h:p/>
 				</TSS>
 				<Guidance>
-					The evaluator shall ensure that the Guidance describes how the TOE notifies Users
+					The evaluator shall ensure that the AGD describes how the TOE notifies Users
 					or Administrators that it has detected tampering.<h:p/>  
 				</Guidance>
 				<KMD>
@@ -7492,7 +7463,7 @@
 						outside of the secure platform firmware update mechanism.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall check the operational guidance to ensure that there are instructions for how to
+						The evaluator shall check the AGD to ensure that there are instructions for how to
 						securely modify the platform firmware and critical data using a mechanism specified in 
 						FPT_TUD_EXT.1.<h:p/>
 					</Guidance>
@@ -7547,7 +7518,7 @@
 						modification.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no Guidance evaluation activities for this component.<h:p/>
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -7642,9 +7613,9 @@
 						FPT_ROT_EXT.2.2.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the operational guidance to ensure that it describes the actions taken and notification
+						The evaluator shall examine the AGD to ensure that it describes the actions taken and notification
 						methods used in case of failure to establish the integrity of the platform firmware root. If the actions are 
-						configurable, the guidance shall explain how they are configured.<h:p/>
+						configurable, the AGD shall explain how they are configured.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -7752,9 +7723,9 @@
 						selections in FPT_ROT_EXT.3.2.<h:p/><h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the operational guidance to ensure that it describes the actions taken and notification
+						The evaluator shall examine the AGD to ensure that it describes the actions taken and notification
 						methods used in case of detection of a platform integrity violation. If the actions are 
-						configurable, the guidance shall explain how they are configured.<h:p/>
+						configurable, the AGD shall explain how they are configured.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -7815,7 +7786,7 @@
 						firmware recovery mechanism works and the conditions under which it is invoked. <h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the guidance to ensure that is describes how to configure the 
+						The evaluator shall examine the AGD to ensure that is describes how to configure the 
 						conditions under which the recovery mechanism is initiated (if configurable).<h:p/>
 					</Guidance>
 					<KMD>
@@ -7857,7 +7828,7 @@
 					functions.<h:p/>
 				</TSS>
 				<Guidance>
-					The evaluator shall examine the guidance documentation to ensure it instructs the
+					The evaluator shall examine the AGD to ensure it instructs the
 					administrator how to set the time or indicates any configuration steps required for
 					the TSF to receive time data from an external source.<h:p/>
 				</Guidance>
@@ -7942,7 +7913,7 @@
 						satisfied if FPT_TUD_EXT.4 is satisfied. <h:p/>
 					</TSS>
 					<Guidance>
-						There are no Guidance evaluation activities for this component.<h:p/>
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -8079,9 +8050,9 @@
 						an update image fails authentication.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the operational guidance to ensure that it describes the process for 
+						The evaluator shall examine the AGD to ensure that it describes the process for 
 						updating the platform firmware.<h:p/>
-						The evaluator shall examine the operational guidance to ensure that it documents the observable indications
+						The evaluator shall examine the AGD to ensure that it documents the observable indications
 						of update success or failure, and that it describes how to access the platform firmware version indicators.<h:p/>
 					</Guidance>
 					<KMD>
@@ -8235,9 +8206,9 @@
 						an update image fails authentication, integrity, or rollback-prevention checks.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the operational guidance to ensure that it describes the process for 
+						The evaluator shall examine the AGD to ensure that it describes the process for 
 						updating the platform firmware.<h:p/>
-						The evaluator shall examine the operational guidance to ensure that it documents the observable indications
+						The evaluator shall examine the AGD to ensure that it documents the observable indications
 						of update success or failure, and that it describes how to access the platform firmware version indicators.<h:p/>
 					</Guidance>
 					<KMD>
@@ -8345,7 +8316,7 @@
 					secure local update functionality is implemented.<h:p/>
 				</TSS>
 				<Guidance>
-					The evaluator shall examine the operational guidance to ensure that it describes instructions for 
+					The evaluator shall examine the AGD to ensure that it describes instructions for 
 					using the local update mechanism, and how to validate that the update was succesful.<h:p/>		
 				</Guidance>
 					<KMD>
@@ -8446,7 +8417,7 @@
 						the TOE uses for remote communications, including both the external entities and/or 
 						remote users used for the channel as well as the protocol that is used for each.<h:p/>
 					</TSS>
-					<Guidance> The evaluator shall confirm that the operational guidance contains
+					<Guidance> The evaluator shall confirm that the AGD contains
 						instructions for establishing the connection to access points, VPN Gateways, and
 						other trusted IT products. <h:p/>
 					</Guidance>
@@ -8513,7 +8484,7 @@
                         included in the requirements in the ST. <h:p/>
                     </TSS>
                     <Guidance>
-                        The evaluator shall confirm that the operational guidance contains instructions for 
+                        The evaluator shall confirm that the AGD contains instructions for 
 						establishing the remote administrative sessions for each supported method. <h:p/>
                     </Guidance>
 					<KMD>
