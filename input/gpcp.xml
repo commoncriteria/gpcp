@@ -1172,6 +1172,7 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
+						The evaluator shall perform the following tests:
 						<testlist>
 							<test>
 								The evaluator shall attempt to delete the audit trail in a manner that the access 
@@ -1274,11 +1275,11 @@
                         the audit data are transferred to the external audit server.<h:p/> 
                     </TSS>
                     <Guidance>
-                        If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
+                        [conditional] If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
 						trusted channel to the audit server, as well as describe any requirements 
                         on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
                         as configuration of the TOE needed to communicate with the audit server.<h:p/>
-						If "removeable media" is selected, the evaluator shall ensure that the AGD describes the process for
+						[conditional] If "removeable media" is selected, the evaluator shall ensure that the AGD describes the process for
 						accessing audit data and copying it to media.<h:p/>
                     </Guidance>
 					<KMD>
@@ -1288,8 +1289,7 @@
                         If "trusted channel" is selected above, testing of the trusted channel mechanism itself is to be performed 
 						as specified in the evaluation activities for FTP_ITC_EXT.1. In addition, the evaluator must 
                         perform the following test:<h:p/>
-                        <testlist>
-                            <test>The evaluator shall establish a session between the TOE and the audit server according
+                        The evaluator shall establish a session between the TOE and the audit server according
 								to the configuration guidance provided. The evaluator shall then examine the traffic
 								that passes between the audit server and the TOE during several activities of the 
 								evaluator’s choice designed to generate audit data to be transferred to the audit server. 
@@ -1297,8 +1297,7 @@
 								this transfer, and that they are successfully received by the audit server. The evaluator
 								shall record the particular software (name, version) used on the audit server during 
 								testing.
-							</test>
-                        </testlist><h:p/>
+                        <h:p/>
 						If "removeable media" is selected above, the evaluator must run the system for a time long enough to generate
 						some audit data and then collect audit data onto removable media for transfer to another machine. On another 
 						machine, the evaluator shall examine the audit data to ensure that it appears to be complete and correct. This test
@@ -1680,7 +1679,7 @@
 						<h:li>The RBG interface and how the ST uses it in symmetric key generation</h:li>
 						<h:li>The KDF interface and how the ST uses it in symmetric key generation</h:li>
 						<h:li>The PBKDF interface and how the ST uses it in symmetric key generation</h:li>
-						<h:li>If the TOE uses the generated key in a key chain/hierarchy then the KMD
+						<h:li>[conditional] If the TOE uses the generated key in a key chain/hierarchy then the KMD
 							shall describe how the ST uses the key as part of the key chain/hierarchy.</h:li></h:ul>		
 					</KMD>
 					<Tests>
@@ -2495,7 +2494,7 @@
 						functions and shall check that this uses a key derivation algorithm and key sizes
 						according to the specification selected in <xref to="fcs-ckm-keydrv-sels"/>. The evaluator shall confirm that the TSS supports the selected
 						methods.<h:p/>
-<!--						If <h:u>KeyDrv5</h:u> is selected, the evaluator shall verify that the TSS shows that the total
+<!--						[conditional] If <h:u>KeyDrv5</h:u> is selected, the evaluator shall verify that the TSS shows that the total
 						length of the concatenated keys used as input to the KDF is greater than or equal to
 						the length of the output from the KDF.<h:p/>  -->
 						[conditional] If key combination is used to form a KEK, the evaluator shall verify
@@ -3371,7 +3370,7 @@
 						<xref to="fcs-cop-keyenc-sels"/>. No uncertainty should be left over which is the wrapping key and the
 						key to be wrapped and where the wrapping key potentially comes from i.e. is
 						derived from.<h:p/>
-						If “AES-GCM” or “AES-CCM” is used the evaluator shall examine the KMD to
+						[conditional] If “AES-GCM” or “AES-CCM” is used the evaluator shall examine the KMD to
 						ensure that it describes how the IV is generated and that the same IV is never reused
 						to encrypt different plaintext pairs under the same key. Moreover in the case of
 						GCM, he must ensure that, at each invocation of GCM, the length of the plaintext
@@ -3442,11 +3441,11 @@
 						TOE ensures that the output of the PBKDF is at least the same length as that
 						specified in FCS_CKM.1/SK and for the KeyDrv4, KeyDrv5, or KeyDrv6 in
 						FCS_CKM_EXT.5.<h:p/>
-						If the ST performs additional conditioning, whitening, or manipulation of the
+						[conditional] If the ST performs additional conditioning, whitening, or manipulation of the
 						password or passphrase before applying the PBKDF, or to the output of the PBKDF,
 						the evaluator shall ensure that the TSS describes the actions and provides assurance
 						that the TSF does not negatively impact the entropy of the PBKDF output.<h:p/>
-						If any manipulation of the key is performed in forming the submask that will be
+						[conditional] If any manipulation of the key is performed in forming the submask that will be
 						used to form the KEK, that process shall be described in the TSS.<h:p/>
 					</TSS>
 					<Guidance>
@@ -4206,7 +4205,7 @@
 						‘cryptographic algorithm’ and ‘list of standards’.<h:p/> 
 					</TSS>
 					<Guidance>
-						If the product supports multiple modes, the evaluator shall examine the AGD
+						[conditional] If the product supports multiple modes, the evaluator shall examine the AGD
 						to determine that the method of choosing a specific mode/key size
 						by the end user is described.<h:p/>
 					</Guidance>
@@ -4228,7 +4227,7 @@
 						buffering of the data should be identified and distinguished from the final
 						destination in non-volatile memory (the latter represents the location from which
 						the host will expect to retrieve the data in future).<h:p/>
-						If support for AES-CTR is claimed and the counter value source is internal to the
+						[conditional] If support for AES-CTR is claimed and the counter value source is internal to the
 						TOE, the evaluator shall verify that the KMD describes the internal counter
 						mechanism used to ensure that it provides unique counter block values.<h:p/>
 					</KMD>
@@ -4692,14 +4691,10 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
                     <Tests>
-                        The evaluator shall perform the following tests:
-                        <testlist>
-                            <test>
+                        The evaluator shall perform the following test:<h:p/>
                                 The evaluator shall invoke the entropy source(s) from tenant software.
 								The evaluator shall verify that the tenant acquires values from the 
 								interface.
-                            </test>
-                        </testlist>
                     </Tests>
                 </aactivity>
             </f-element>
@@ -4820,7 +4815,7 @@
 					<TSS>
 						In addition to the TSS EAs for the individual FCS_IPSEC_EXT.1 elements below, the
 						evaluator shall perform the following:<h:p/>
-						If the TOE boundary includes a general-purpose operating system or mobile device, the evaluator shall
+						[conditional] If the TOE boundary includes a general-purpose operating system or mobile device, the evaluator shall
 						examine the TSS to ensure that it describes whether the VPN client capability is architecturally integrated
 						with the platform itself or whether it is a separate executable that is bundled with the platform.<h:p/>
 					</TSS>
@@ -4939,7 +4934,7 @@
                     <Guidance>
                         The evaluator shall confirm that the AGD contains instructions on how to 
                         configure the connection in each mode selected.<h:p/>
-						If both transport mode and tunnel mode are implemented, the evaluator shall review the AGD
+						[conditional] If both transport mode and tunnel mode are implemented, the evaluator shall review the AGD
 						to determine how the use of a given mode is specified.<h:br/>
                     </Guidance>
 					<KMD>
@@ -4948,7 +4943,7 @@
                     <Tests>
                         The evaluator shall perform the following test(s) based on the selections chosen:
                         <testlist>
-                            <test>(conditional): If tunnel mode is selected, the evaluator uses the operational guidance to 
+                            <test>[conditional] If tunnel mode is selected, the evaluator uses the operational guidance to 
 								configure the TOE/platform to operate in tunnel mode and also configures 
 								a VPN peer to operate in tunnel mode. The evaluator configures the TOE/platform and the
 								VPN peer to use any of the allowable cryptographic algorithms, authentication methods,
@@ -4956,7 +4951,7 @@
 								connection from the TOE/Platform to the VPN peer. The evaluator observes (for example,
 								in the audit trail and the captured packets) that a successful connection was established
 								using the tunnel mode.</test>
-                            <test>(conditional): If transport mode is selectted, the evaluator uses the operational guidance to
+                            <test>[conditional] If transport mode is selectted, the evaluator uses the operational guidance to
 								configure the TOE/platform to operate in 
 								transport mode and also configures a VPN peer to operate in transport mode. The evaluator 
 								configures the TOE/platform and the VPN peer to use any of the allowed cryptographic
@@ -4974,28 +4969,27 @@
                 </title>
                 <aactivity level="element">
 					<TSS>
-						 If both transport mode and tunnel mode are implemented, the evaluator shall review the
-						 operational guidance to determine how the use of a given mode is specified.<h:br/>
+						There are no TSS evaluation activities for this element.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall check that the AGD provides instructions on how to construct or
 						acquire the SPD and uses the AGD to configure the TOE for the following test.<h:br/>
+						[conditional] If both transport mode and tunnel mode are implemented, the evaluator shall review the
+						AGD to determine how the use of a given mode is specified.<h:br/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this element.<h:p/>
 					</KMD>
                     <Tests>
-                        The evaluator shall perform the following test:
-                        <testlist>
-                            <test>The evaluator shall configure the SPD such that it has entries that contain operations that DISCARD,
+                        The evaluator shall perform the following test:<h:p/>
+                            The evaluator shall configure the SPD such that it has entries that contain operations that DISCARD,
 								PROTECT, and (if applicable) BYPASS network packets. The evaluator may use the SPD that was created
 								for verification of FCS_IPSEC_EXT.1.1. The evaluator shall construct a network packet that matches a
 								BYPASS entry and send that packet. The evaluator should observe that the network packet is passed to
 								the proper destination interface with no modification. The evaluator shall then modify a field in the packet
 								header; such that it no longer matches the evaluator-created entries (there may be a “TOE-created” final
 								entry that discards packets that do not match any previous entries). The evaluator sends the packet, and
-								observes that the packet was not permitted to flow to any of the TOE’s interfaces.</test>
-                        </testlist>
+								observes that the packet was not permitted to flow to any of the TOE’s interfaces.
                     </Tests>
                 </aactivity>
             </f-element>
@@ -5027,12 +5021,10 @@
 						There are no KMD evaluation activities for this element.<h:p/>
 					</KMD>
                     <Tests>
-                        <testlist>
-							<test>The evaluator shall configure the TOE/platform as indicated in the 
+			The evaluator shall perform the following test:<h:p/>
+							The evaluator shall configure the TOE/platform as indicated in the 
                                 operational guidance configuring the TOE/platform to use each of the supported
                                 algorithms, attempt to establish a connection using ESP, and verify that the attempt succeeds.
-							</test>
-						</testlist>
                     </Tests>
                 </aactivity>
             </f-element>
@@ -5084,7 +5076,7 @@
 					</KMD>
                     <Tests>
                         Tests are performed in conjunction with the other IPsec evaluation activities with the exception
-                        of the activities below:<h:br></h:br><h:br></h:br>
+                        of the activities below:<h:p/>
                         <testlist>
                             <test>The evaluator shall configure the TOE so that it will perform NAT traversal processing as described
 								in the TSS and RFC 7296, section 2.23. The evaluator shall initiate an IPsec connection and determine that
@@ -5093,7 +5085,7 @@
 								by the operational guidance. If the TOE only supports IKEv1 with XAUTH, the evaluator shall verify that
 								connections not using XAUTH are unsuccessful. If the TOE only supports IKEv1 without XAUTH, the
 								evaluator shall verify that connections using XAUTH are unsuccessful.</test>
-                            <test>(conditional) If the TOE supports IKEv1, the evaluator shall perform any applicable operational
+                            <test>[conditional] If the TOE supports IKEv1, the evaluator shall perform any applicable operational
 								guidance steps to disable the use of aggressive mode and then attempt to establish a connection using an
 								IKEv1 Phase 1 connection in aggressive mode. This attempt should fail. The evaluator shall show that the
 								TOE will reject a VPN gateway from initiating an IKEv1 Phase 1 connection in aggressive mode. The
@@ -5134,14 +5126,12 @@
 						The evaluator shall use the operational guidance to configure the TOE (or to configure the Operational
 						Environment to have the TOE receive configuration) to perform the following test for each ciphersuite
 						selected:<h:p/>
-						<testlist>
-							<test>The evaluator shall configure the TOE to use the ciphersuite under test to encrypt the IKEv1 and/or
+							The evaluator shall configure the TOE to use the ciphersuite under test to encrypt the IKEv1 and/or
 								IKEv2 payload and establish a connection with a peer device, which is configured to only accept the
 								payload encrypted using the indicated ciphersuite. The evaluator will confirm the algorithm was that used
 								in the negotiation. The evaluator will confirm that the connection is successful by confirming that data
 								can be passed through the connection once it is established. For example, the evaluator may connect to
-								a webpage on the remote network and verify that it can be reached.</test>
-						</testlist>
+								a webpage on the remote network and verify that it can be reached.
                     </Tests>
                 </aactivity>
             </f-element>
@@ -5227,17 +5217,17 @@
                         Each of the following tests shall be performed for each version of IKE selected in the
 						FCS_IPSEC_EXT.1.5 protocol selection:
                         <testlist>
-                            <test>(Conditional) The evaluator shall configure a maximum lifetime in terms of the # of packets (or
+                            <test>[conditional] The evaluator shall configure a maximum lifetime in terms of the # of packets (or
 								bytes) allowed following the operational guidance. The evaluator shall establish an SA and determine that
 								once the allowed # of packets (or bytes) through this SA is exceeded, the connection is closed.</test>
-                            <test>(Conditional): The evaluator shall construct a test where a Phase 1 SA is established and attempted
+                            <test>[conditional] The evaluator shall construct a test where a Phase 1 SA is established and attempted
 								to be maintained for more than 24 hours before it is renegotiated. The evaluator shall observe that this
 								SA is closed or renegotiated in 24 hours or less. If such an action requires that the TOE be configured in a
 								specific way, the evaluator shall implement tests demonstrating that the configuration capability of the
 								TOE works as documented in the operational guidance.</test>
 							<test> [conditional] The evaluator shall perform a test similar to Test 2 
 								for Phase 2 SAs, except that the lifetime will be 8 hours or less instead of 24 hours or less.</test>
-							<test> [conditional]: If a fixed limit for IKEv1 SAs is supported, the evaluator	
+							<test> [conditional] If a fixed limit for IKEv1 SAs is supported, the evaluator	
 								shall establish an SA and observe that the connection is closed after
 								the fixed traffic and/or time value is reached.</test>
 						</testlist>				    
@@ -5286,10 +5276,8 @@
 					</KMD>
                     <Tests>
 						The evaluator shall perform the following test: <h:p/>
-						<testlist>
-							<test>For each supported DH group, the evaluator shall test to ensure that all supported IKE protocols
-								can be successfully completed using that particular DH group.</test>
-						</testlist>
+							For each supported DH group, the evaluator shall test to ensure that all supported IKE protocols
+								can be successfully completed using that particular DH group.
                     </Tests>
                 </aactivity>
             </f-element>
@@ -5833,7 +5821,7 @@
 					below. If the TOE supports both import and generation of keys, the evaluator shall
 					repeat the testing as needed to demonstrate that the keys resulting from both
 					operations are treated in the same manner. The devices used with the tooling may
-					need to be non-production devices in order to enable the execution and gathering of
+					need to be non-production devices in order to enable the execution of testing and gathering of
 					evidence.<h:p/>
 					<testlist>
 						<test>
@@ -6291,8 +6279,7 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
-						<testlist>
-							<test>
+						The evaluator shall perform the following test:<h:p/>
 								The evaluator shall compose passwords that either meet the requirements, or fail 
 								to meet the requirements, in some way. For each password, the evaluator shall 
 								verify that the TOE supports the password. While the evaluator is not required
@@ -6300,8 +6287,6 @@
 								shall ensure that all characters, rule characteristics, and a minimum length
 								listed in the requirement are supported, and justify the subset of those 
 								characters chosen for testing.		
-							</test>
-						</testlist>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -6437,6 +6422,7 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
+						The evaluator shall perform the following tests:
 						<testlist>
 							<test>
 								For each authentication mechanism selected in FIA_UAU.5.1, the evaluator shall
@@ -6490,6 +6476,7 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
+						The evaluator shall perform the following tests:
 						<testlist>
 							<test>
 								The evaluator shall enter passwords on the device, including at least the Password
@@ -6720,13 +6707,13 @@
 								and verify that validation of the OCSP response fails. If CRL is selected, the evaluator
 								shall configure the CA to sign a CRL with a certificate that does not have the cRLsign key 
 								usage bit set and verify that validation of the CRL fails.</test>
-                            <test>(Conditional on support for EC certificates as indicated in FCS_COP.1/SIG). The evaluator
+                            <test>[conditional] If the TOE supports EC certificates as indicated in FCS_COP.1/SIG, then the evaluator
 								shall establish a valid, trusted certificate chain consisting of an EC leaf certificate, 
 								an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate
 								designated as a trusted anchor, where the elliptic curve parameters are specified as a
 								named curve. The evaluator shall confirm that the TOE validates the certificate chain..</test>
-							<test>(Conditional on support for EC certificates as indicated in FCS_COP.1/SIG). The evaluator shall
-								replace the intermediate certificate in the certificate chain for Test 5 with a modified 
+							<test>[conditional] If the TOE supports EC certificates as indicated in FCS_COP.1/SIG, then the 
+								evaluator shall replace the intermediate certificate in the certificate chain for Test 5 with a modified 
 								certificate, where the modified intermediate CA has a public key information field where
 								the EC parameters uses an explicit format version of the Elliptic Curve parameters in the
 								public key information field of the intermediate CA certificate from Test 5, and the
@@ -6969,6 +6956,7 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
+						The evaluator shall perform the following tests:
 						<testlist>
 							<test>The evaluator shall use the test environment to deploy policies to Mobile
 								Devices. </test><h:br/>
@@ -7208,6 +7196,7 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
+						The evaluator shall perform the following tests:
 						<testlist>
 							<test>
 								The evaluator shall attempt to access the debug port without authenticating
@@ -7367,6 +7356,7 @@
 					There are no KMD evaluation activities for this component.<h:p/>
 				</KMD>
 				<Tests>
+						The evaluator shall perform the following tests:
 					<testlist>
 						<test>
 							The evaluator shall verify that attempts to open the TOE enclosure  
@@ -7416,13 +7406,10 @@
 					There are no KMD evaluation activities for this component.<h:p/>
 				</KMD>
 				<Tests>
-					<testlist>
-						<test>
+						The evaluator shall perform the following test:<h:p/>
 							For each physical tampering scenario and device/element 
 							listed in FPT_PHP.3.1, the evaluator shall verify that tampering attempts
 							shall result in a response from the TSF consistent with the operational guidance.					
-						</test>
-					</testlist>	
 				</Tests>
 			</aactivity>
 			</f-element>
@@ -7471,15 +7458,14 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
-						<testlist>
-							<test>The evaluator shall attempt to overwrite or modify the platform firmware without invoking one of
+						The evaluator shall perform the following test:<h:p/>
+							The evaluator shall attempt to overwrite or modify the platform firmware without invoking one of
 								the update mechanisms specified in FPT_TUD_EXT.1 (e.g., using a modified Linux boot loader such 
 								as GRUB that attempts to write to the memory where platform firmware is stored). The test succeeds
 								if the attempts to overwrite platform firmware fail. The evaluator shall attempt at least two 
 								such tests--one that attempts to overwrite the first platform firmware that executes after boot,
 								and one that targets the secure update mechanism (if implemented), and one that targets firmware that
-								has been integrity-checked since the last boot.</test>
-						</testlist>
+								has been integrity-checked since the last boot.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -7838,12 +7824,12 @@
 				<Tests>
 					The evaluator shall perform the following tests:
 					<testlist>
-						<test>[conditional]: If the TSF provides a mechanism to manually set the time, the
+						<test>[conditional] If the TSF provides a mechanism to manually set the time, the
 							evaluator shall use the guidance documentation to set the time. The evaluator shall
 							then use an available interface to observe that the time was set correctly.
 						</test>
 						<test>
-							[conditional]: If the TSF receives time data from some source outside the
+							[conditional] If the TSF receives time data from some source outside the
 							TOE, the evaluator shall use the guidance documentation to configure the external
 							time source (if applicable). The evaluator shall observe that the time has been set to
 							the expected value.
@@ -8059,6 +8045,7 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
+						The evaluator shall perform the following tests:
 						<testlist>
 							<test>The evaluator determines the current version of the platform firmware, and obtains or 
 								produces a valid, authentic, and permissible update image of platform firmware. The evaluator 
@@ -8215,6 +8202,7 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
+						The evaluator shall perform the following tests:
 						<testlist>
 							<test>The evaluator determines the current version of the platform firmware, and obtains or 
 								produces a valid, authentic, and permissible update image of platform firmware. The evaluator 
@@ -8323,6 +8311,7 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 				<Tests> 
+						The evaluator shall perform the following tests:
 					<testlist>
 						<test>The evaluator tests the secure local update by following the instructions provided in the operational 
 					guidance to update the platform firmware image. The update must succeed.<h:p/>
