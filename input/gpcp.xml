@@ -1137,11 +1137,11 @@
 			</f-element>
         </f-component>
 
-		<!-- FAU_STG.1 Audit Storage Protection -->
+		<!-- FAU_STG.1 Protectd Audit Trail Storage -->
 		<!-- Must be included if FAU_GEN.1 is included -->
 		<!-- Requires that there be an Administrator. -->
 		<!-- Management function: deletion of audit records? -->
-		<f-component id="sfr-fau-stg-1" cc-id="fau_stg.1" name="Audit Storage Protection" status="sel-based">
+		<f-component id="sfr-fau-stg-1" cc-id="fau_stg.1" name="Protected Audit Trail Storage" status="sel-based">
 			<depends on-sel="sel-rot2-audit"/>  <!-- FPT_ROT_EXT.2.2 -->
 			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3.2 -->
 			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2.5 -->
@@ -1259,31 +1259,31 @@
                 <title>The TSF shall be able to tranfer generated audit data to an external IT entity using 
 				<selectables linebreak="yes">
 					<selectable id="sel-fau-itc">a trusted channel as specified in FTP_ITC_EXT.1</selectable>
-					<selectable>removeable media requiring physical access to the platform</selectable>
+					<selectable>removable media requiring physical access to the platform</selectable>
 				</selectables>.
                 </title>
 				<note role="application">
 					The ST author must select "<h:i>trusted channel</h:i>" and include FTP_ITC_EXT.1 in the ST if the TOE offloads
 					audit data to external IT entity over a network connection. Protocols used for implementing the trusted
 					channel must be selected in FTP_ITC_EXT.1. <h:p/>
-					The ST author must select "<h:i>removeable media</h:i>" if the TOE supports offload of audit data using 
-					removeable media such as thumb drives or disks.
+					The ST author must select "<h:i>removable media</h:i>" if the TOE supports offload of audit data using 
+					removable media such as thumb drives or disks.
 				</note>
                 <aactivity level="element">
                     <TSS>
                         The evaluator shall examine the TSS to ensure it describes the means by which 
-                        the audit data are transferred to the external audit server.<h:p/> 
+                        the audit data are transferred to the external audit server.<h:br/> 
                     </TSS>
                     <Guidance>
                         If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
 						trusted channel to the audit server, as well as describe any requirements 
                         on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
                         as configuration of the TOE needed to communicate with the audit server.<h:p/>
-						If "removeable media" is selected, the evaluator shall ensure that the AGD describes the process for
-						accessing audit data and copying it to media.<h:p/>
+						If "removable media" is selected, the evaluator shall ensure that the AGD describes the process for
+						accessing audit data and copying it to media.<h:br/>
                     </Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.<h:p/>
+						There are no KMD evaluation activities for this component.<h:br/>
 					</KMD>
                     <Tests>
                         If "trusted channel" is selected above, testing of the trusted channel mechanism itself is to be performed 
@@ -1298,10 +1298,10 @@
 								shall record the particular software (name, version) used on the audit server during 
 								testing.
                         <h:p/>
-						If "removeable media" is selected above, the evaluator must run the system for a time long enough to generate
+						If "removable media" is selected above, the evaluator must run the system for a time long enough to generate
 						some audit data and then collect audit data onto removable media for transfer to another machine. On another 
 						machine, the evaluator shall examine the audit data to ensure that it appears to be complete and correct. This test
-						may be performed in conjunction with any other requirement that generates audit events.<h:p/>
+						may be performed in conjunction with any other requirement that generates audit events.<h:br/>
                     </Tests>
                 </aactivity>
             </f-element>
