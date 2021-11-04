@@ -23,7 +23,7 @@
 			<PPTitle>Protection Profile for General-Purpose Computing Platforms</PPTitle>
 			<PPVersion>0.9</PPVersion>
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2021-10-21</PPPubDate>
+			<PPPubDate>2021-11-04</PPPubDate>
 			<Keywords>General-Purpose Computing Platforms</Keywords>
 		</ReferenceTable>
 	</PPReference>
@@ -38,7 +38,7 @@
 	<RevisionHistory>
 		<entry>
 			<version>0.9</version>
-			<date>2021-10-21</date>
+			<date>2021-11-04</date>
 			<subject>Latest draft</subject>
 		</entry>
 	</RevisionHistory>
@@ -1364,7 +1364,7 @@
 					that meet the following: <assignable>list of standards</assignable>. <h:p/>
 			
 					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-ak-sels">: Choices for completion of the assignment 
-					operations in FCS_CKM.1.1/AKG.</ctr></h:b><h:br/>	
+					operations in FCS_CKM.1.1/AKG.</ctr></h:b>	
 					<h:table>
 						<h:tr class="header"><h:td>Cryptographic key generation algorithm</h:td>
 							<h:td>Cryptographic key sizes</h:td><h:td>List of standards</h:td></h:tr>
@@ -1586,11 +1586,9 @@
 				</selectables>  -->
 				and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> 
 				that meet the following: <assignable>list of standards</assignable>. <h:p/>
-				The rows of <xref to="fcs-ckm-1-sk-sels"/> provide the allowable values for completion of the 
-				assignments and selections for FCS_CKM.1.1/SK.<h:p/>
 
 					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-sk-sels">: Choices for completion of the assignment 
-					operations in FCS_CKM.1.1/SK</ctr></h:b><h:br/>	
+					operations in FCS_CKM.1.1/SK</ctr></h:b>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><!--<h:td>Key Type</h:td>-->
 							<h:td>Cryptographic key generation algorithm</h:td><h:td>Key sizes</h:td><h:td>List of standards</h:td></h:tr>
@@ -2133,7 +2131,7 @@
 		<f-component id="sfr-fcs-ckm-ext-5" cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="sel-based">
 		<!--	<depends on-sel="sel-ckm-kek-drvd"/> --> <!-- from FCS_CKM.1/KEK -->
 			<depends on-sel="sel-fcs-ckm-sk-dsk"/>  <!-- from FCS_CKM.1.1/SK -->
-			<depends on-sel="sel-fcs-cop-keyenc-xor"/>
+<!--			<depends on-sel="sel-fcs-cop-keyenc-xor"/>  -->
 			<depends><manual/></depends>    		<!-- May be also included optionally -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to perform key derivation using a defined method.</comp-lev>
@@ -2156,11 +2154,9 @@
 					</selectables>  -->
 					and specified cryptographic key sizes <assignable>list of key sizes</assignable>
 					that meet the following: <assignable>list of standards</assignable>.<h:p/>
-					The rows of <xref to="fcs-ckm-keydrv-sels"/> provide the allowable values for completion of the 
-					assignments for FCS_CKM_EXT.5.1.<h:p/>
 
 					<h:b><ctr ctr-type='Table' id="fcs-ckm-keydrv-sels">: Choices for completion of the assignment
-					operations in FCS_CKM_EXT.5.1.</ctr></h:b><h:br/>	
+					operations in FCS_CKM_EXT.5.1.</ctr></h:b>
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Key Type</h:td><h:td>Input Parameters</h:td>
 						<h:td>Key Derivation Algorithm</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
@@ -2903,7 +2899,7 @@
 					</selectables>-->.<h:p/>
 					
 					<h:b><ctr ctr-type='Table' id="fcs-ckm-kat-sels">: Choices for completion of the assignments
-					in FCS_COP.1.1/KAT.</ctr></h:b><h:br/>	
+					in FCS_COP.1.1/KAT.</ctr></h:b>
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td><h:td>Key Sizes</h:td>
 							<h:td>List of Standards</h:td></h:tr>
@@ -3236,14 +3232,13 @@
 						<selectable id="sel-fcs-cop-keyenc-xor">XOR</selectable>
 					</selectables>--><h:p/>
 					<h:b><ctr ctr-type='Table' id="fcs-cop-keyenc-sels">: Choices for completion of the assignments in 
-					FCS_COP.1.1/KeyEnc</ctr></h:b><h:br/>	
+					FCS_COP.1.1/KeyEnc</ctr></h:b>
 					<h:table>
-						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
+						<h:tr class="header"><h:td>Cryptographic Algorithm</h:td>
 						<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 
 						<h:tr><!--<depends on-sel="sel-fcs-cop-keyenc-se1"/>-->
-						<h:td>SE1</h:td>
-						<h:td>Symmetric <selectables>
+						<h:td><selectables>
 							<selectable>AES-CCM</selectable>
 							<selectable>AES-GCM</selectable>
 							<selectable>AES-CBC</selectable>
@@ -3255,24 +3250,31 @@
 								<selectable>128</selectable>
 								<selectable>192</selectable>
 								<selectable>256</selectable></selectables> bits</h:td>
-						<h:td>See FCS_COP.1/SKC</h:td></h:tr>
+						<h:td>ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							<selectables>
+								<selectable>ISO 19772 cl. 8, NIST SP800-38C [CCM]</selectable>
+								<selectable>ISO 19772 cl. 11, NIST SP800-38D [GCM]</selectable>
+								<selectable>ISO 10116, NIST SP800-38A [CBC]</selectable>
+								<selectable>ISO 10116, NIST SP800-38A [CTR]</selectable>
+								<selectable>ISO/IEC 19772 cl. 7 [key wrap]; NIST SP800-38F sec. 6.3 [KWP]</selectable>
+								<selectable>ISO/IEC 19772 cl. 7 [key wrap]; NIST SP800-38F, sec. 6.2 [KW]</selectable>
+							</selectables>
+						</h:td></h:tr>
 					
 						<h:tr><!--<depends on-sel="sel-fcs-cop-keyenc-ae1"/>-->
-						<h:td>AE1</h:td>
-						<h:td>Asymmetric KTS-OAEP</h:td>
+						<h:td>KTS-OAEP</h:td>
 						<h:td><selectables>
 							<selectable>2048</selectable>
 							<selectable>3072</selectable></selectables> bits</h:td>
-						<h:td>See FCS_COP.1/KAT</h:td></h:tr>
+						<h:td>NIST SP800-56B rev2 sec. 9</h:td></h:tr>
 		
 						<h:tr><!--<depends on-sel="sel-fcs-cop-keyenc-xor"/>-->
-						<h:td>XOR</h:td>
-						<h:td>Exclusive OR operation</h:td>
+						<h:td>XOR (Exclusive OR operation)</h:td>
 							<h:td><selectables>
 								<selectable>128</selectable>
 								<selectable>192</selectable>
 								<selectable>256</selectable></selectables> bits</h:td>
-						<h:td>See FCS_CKM_EXT.5</h:td></h:tr>
+						<h:td>No standard.</h:td></h:tr>
 					</h:table>
 				</title>
 				<note role="application">
@@ -3283,7 +3285,6 @@
 					symmetric encryption key. A TOE will always need this requirement in order to capture the last
 					stage of the key chain in which the Key Encryption Key (KEK) wraps the symmetric encryption
 					key.<h:p/>
-					If "<h:i>XOR</h:i>" is selected, the selection-based SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
 				</note>
 				<aactivity>
 					<TSS>
@@ -3427,7 +3428,7 @@
 					the following: <assignable>list of standards</assignable>.<h:p/>
 					
 					<h:b><ctr ctr-type='Table' id="tab-fcs-cop-siggen-sels">: Choices for completion of the assignments in 
-					FCS_COP.1.1/SigGen.</ctr></h:b><h:br/>	
+					FCS_COP.1.1/SigGen.</ctr></h:b>
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
 						<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
@@ -3648,7 +3649,7 @@
 					the following: <assignable>list of standards</assignable>.<h:p/>
 		
 				<h:b><ctr ctr-type='Table' id="tab-fcs-cop-sigver-sels">: Choices for completion of the assignments 
-				in FCS_COP.1.1/SigVer.</ctr></h:b><h:br/>	
+				in FCS_COP.1.1/SigVer.</ctr></h:b>	
 				<h:table>
 					<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
 					<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
@@ -3987,7 +3988,7 @@
 						<selectable id="sel-fcs-cop-skc-aes-kw">AES-KW</selectable>
 					</selectables>.--><h:p/>
 					<h:b><ctr ctr-type='Table' id="fcs-cop-skc-sels">: Choices for completion of the assignments 
-					in FCS_COP.1.1/SKC.</ctr></h:b><h:br/>	
+					in FCS_COP.1.1/SKC.</ctr></h:b>
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
 						<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
