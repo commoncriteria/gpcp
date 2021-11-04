@@ -1426,9 +1426,8 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to verify that it describes how the TOE
-						generates an asymmetric key based on the methods selected from <xref to="fcs-ckm-1-ak-sels"/>:
-						“Supported Methods for Asymmetric Key Generation.” The evaluator shall
-						examine the TSS to verify that it describes how the TOE invokes the methods
+						generates an asymmetric key based on the methods selected from <xref to="fcs-ckm-1-ak-sels"/>.
+						The evaluator shall examine the TSS to verify that it describes how the TOE invokes the methods
 						selected in the ST from the table. The evaluator shall examine the TSS to
 						verify that it identifies the usage for each row identifier (key type, key size, and list
 						of standards) selected in the ST.<h:p/>
@@ -1578,68 +1577,20 @@
 				<title>
 				The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with a specified 
 				cryptographic key generation algorithm 
-				<assignable>cryptographic key generation algorithm</assignable>
-<!-- 				<selectables>
-					<selectable id="sel-fcs-ckm-sk-rsk">RSK</selectable>
-					<selectable id="sel-fcs-ckm-sk-dsk">DSK</selectable>
-					<selectable id="sel-fcs-ckm-sk-pbk">PBK</selectable>
-				</selectables>  -->
-				and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> 
-				that meet the following: <assignable>list of standards</assignable>. <h:p/>
-
-					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-sk-sels">: Choices for completion of the assignment 
-					operations in FCS_CKM.1.1/SK</ctr></h:b>	
-					<h:table>
-						<h:tr class="header"><h:td>Identifier</h:td><!--<h:td>Key Type</h:td>-->
-							<h:td>Cryptographic key generation algorithm</h:td><h:td>Key sizes</h:td><h:td>List of standards</h:td></h:tr>
-
-						<h:tr><!-- <depends on-sel="sel-fcs-ckm-sk-rsk"/>  -->
-						<h:td>RSK</h:td>
-						<!--<h:td><selectables>
-							<selectable>symmetric key</selectable>
-							<selectable>submask</selectable>
-							<selectable>authorization value</selectable></selectables></h:td>-->
-						<h:td>Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</h:td>
-						<h:td><selectables>
-							<selectable>128</selectable>
-							<selectable>192</selectable>
-							<selectable>256</selectable>
-							<selectable>512</selectable></selectables> bits</h:td>
-						<h:td>NIST SP 800-133 Rev 2 sec. 6.1.</h:td></h:tr>
-							
-						<h:tr><!-- <depends on-sel="sel-fcs-ckm-sk-dsk"/>  -->
-							<h:td>DSK <!--<assignable>Identifier from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Functions</assignable>--></h:td>
-						<!--<h:td><assignable>Key Type from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Functions</assignable></h:td>-->
-						<h:td>Derived from a Key Derivation Function as specified in FCS_CKM_EXT.5 <!--
-							<assignable>Key Derivation Algorithm from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Function</assignable>--></h:td>
-						<h:td>Key sizes as specified in FCS_CKM_EXT.5</h:td>
-						<h:td>List of Standards as specified in FCS_CKM_EXT.5</h:td></h:tr>
-						
-						<h:tr><!-- <depends on-sel="sel-fcs-ckm-sk-pbk"/> -->
-							<h:td>PBK</h:td>
-						<!--<h:td><selectables>
-							<selectable>submask</selectable>
-							<selectable>authentication token</selectable>
-							<selectable>authorization value</selectable></selectables></h:td>-->
-						<h:td>Derived from a Password Based Key Derivation Function as specified in FCS_COP.1/PBKDF</h:td>
-						<h:td>Key sizes as specified in FCS_COP.1/PBKDF</h:td>
-						<h:td>List of standards as specified in FCS_COP.1/PBKDF</h:td></h:tr>
-					</h:table>
+				<h:i>[Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1]</h:i>
+				and specified cryptographic key sizes 
+				<selectables>
+					<selectable>128 bits</selectable>
+					<selectable>192 bits</selectable>
+					<selectable>256 bits</selectable>
+					</selectables> that meet the following: 
+				[<h:i>NIST SP 800-133 Rev 2 sec. 6.1</h:i>].
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR must be included in the ST if "<h:i>Symmetric KEKs generated in accordance with FCS_CKM.1/SK</h:i>"
 					is selected in FCS_CKM.1/KEK.<h:p/>
-					The ST author selects RSK if the TOE supports creating keys directly from the output of the RBG without 
-					further conditioning. The selection of key size 512 bits is for the case of XTS-AES using AES-256. 
-					In the case of XTS-AES for both AES-128 and AES-256, the developer is expected to ensure that the full key is
-					generated using direct generation from the RBG as in NIST SP 800-133.<h:p/>
-					The ST author selects DSK if the TOE supports keys derived from other keys.<h:p/>
-					The PBK row should be selected if the ST supports keys derived from passwords.<h:p/>					
-					If "<h:i>RSK</h:i>" is selected, the selection-based SFR FCS_RBG_EXT.1 must be claimed by the TOE.<h:p/>
-					If "<h:i>DSK</h:i>" is selected, the selection-based SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
-					If "<h:i>PBK</h:i>" is selected, the selection-based SFR FCS_COP.1/PBKDF must be claimed by the TOE.<h:p/>
 				</note>
 				<aactivity>
 					<TSS>
@@ -2128,11 +2079,10 @@
 		</f-component>
 
 		<!-- FCS_CKM_EXT.5 Cryptographic Key Derivation -->
-		<f-component id="sfr-fcs-ckm-ext-5" cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="sel-based">
+		<f-component id="sfr-fcs-ckm-ext-5" cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="optional">
 		<!--	<depends on-sel="sel-ckm-kek-drvd"/> --> <!-- from FCS_CKM.1/KEK -->
-			<depends on-sel="sel-fcs-ckm-sk-dsk"/>  <!-- from FCS_CKM.1.1/SK -->
 <!--			<depends on-sel="sel-fcs-cop-keyenc-xor"/>  -->
-			<depends><manual/></depends>    		<!-- May be also included optionally -->
+<!--			<depends><manual/></depends>    -->		<!-- May be also included optionally -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to perform key derivation using a defined method.</comp-lev>
 			<management>No specific management functions are identified.</management>
@@ -3334,9 +3284,9 @@
 		</f-component>
 
 		<!-- FCS_COP.1/PBKDF Cryptographic Operation (Password-Based Key Derivation Functions) -->
-		<f-component id="sfr-fcs-cop-1-pbkdf" cc-id="fcs_cop.1" iteration="PBKDF" name="Cryptographic Operation (Password-Based Key Derivation Functions)" status="sel-based">
-			<depends on-sel="sel-fcs-ckm-sk-pbk"/> <!-- FCS_CKM.1/SK -->
-			<depends><manual/></depends>    		<!-- May be also included optionally -->
+		<f-component id="sfr-fcs-cop-1-pbkdf" cc-id="fcs_cop.1" iteration="PBKDF" name="Cryptographic Operation (Password-Based Key Derivation Functions)" status="optional">
+<!--			<depends on-sel="sel-fcs-ckm-sk-pbk"/> --> <!-- FCS_CKM.1/SK -->  
+<!--			<depends><manual/></depends>   --> 		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-pbkdf">
 				<title>The TSF shall perform [<h:i>password-based key derivation functions</h:i>] in accordance
 				with a specified cryptographic algorithm 
@@ -3359,9 +3309,6 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					The TOE must claim this requirement if it claims FCS_CKM.1/SK and selects an algorithm in the
-					PBK row or claims FCS_CKM_EXT.5 and selects at least one of KDF-XOR or KDF-ENC
-					AND uses password-based key derivation to create at least one of the inputs.<h:p/>
 					The ST must condition a password into a string of bits prior to using it as input to algorithms that
 					form SKs and KEKs. The ST can perform conditioning using one of the identified hash functions
 					or the process described in NIST SP 800-132; the ST author selects the method used. NIST SP
@@ -3376,10 +3323,7 @@
 					<TSS>
 						The evaluator shall review the TSS to verify that it contains a description of the
 						PBKDF. The evaluator shall also confirm the ST supports the selected hash function
-						itself. The evaluator shall confirm that the TSS contains a description of how the
-						TOE ensures that the output of the PBKDF is at least the same length as that
-						specified in FCS_CKM.1/SK and for the KeyDrv4, KeyDrv5, or KeyDrv6 in
-						FCS_CKM_EXT.5.<h:p/>
+						itself.<h:p/>
 						If the ST performs additional conditioning, whitening, or manipulation of the
 						password or passphrase before applying the PBKDF, or to the output of the PBKDF,
 						the evaluator shall ensure that the TSS describes the actions and provides assurance
@@ -5481,10 +5425,10 @@
 	
 		<!-- FCS_RBG_EXT.1 Random Bit Generation -->
 		<f-component id="sfr-fcs-rbg-ext-1" cc-id="fcs_rbg_ext.1" name="Random Bit Generation" status="sel-based">
-			<depends on-sel="sel-fcs-ckm-sk-rsk"/>   <!-- FCS_CKM.1/SK makes randomly generated keys -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-incl="sfr-fcs-ckm-1-sk"/>   <!-- FCS_CKM.1/SK -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
