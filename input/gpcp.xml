@@ -1347,7 +1347,7 @@
 		<f-component id="sfr-fcs-ckm-1-ak" cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="sel-based">
 			<depends on-sel="sel-ckm-kek-ak"/> 			<!-- from FCS_CKM.1.1/KEK -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  	<!-- FCS_IPSEC_EXT.1 -->
-			<depends><manual/></depends>		<!-- May also be optionally added -->
+			<depends><optional/></depends>		<!-- May also be optionally added -->
 			<f-element id="fcs-ckm-1e1-ak">
 				<title>
 					The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified 
@@ -1572,7 +1572,7 @@
 		<!-- FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key) -->
 		<f-component id="sfr-fcs-ckm-1-sk" cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
 			<depends on-sel="sel-ckm-kek-sk"/> <!-- from FCS_CKM.1.1/KEK -->
-			<depends><manual/></depends>		<!-- May be manually added -->
+			<depends><optional/></depends>		<!-- May be manually added -->
 			<f-element id="fcs-ckm-1e1-sk">
 				<title>
 				The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with a specified 
@@ -1692,11 +1692,11 @@
 		</f-component>
 
 		<!-- FCS_CKM.2 Cryptographic Key Establishment -->
-		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment" status="sel-based">
+		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment (Refinement)" status="sel-based">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/> 	<!-- FCS_IPSEC_EXT.1 -->
-			<depends><manual/></depends>    		<!-- May be also included optionally -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-ckm-2e1">
-				<title>The TSF shall <h:b>establish</h:b> cryptographic keys in accordance with a specified
+				<title><h:b>Refinement:</h:b> The TSF shall <h:b>establish</h:b> cryptographic keys in accordance with a specified
 					cryptographic key establishment method: 
 					<selectables linebreak="yes">
 						<selectable id="sel-fcs-ckm-2-rsa">RSA-based key establishment schemes that meet the following: NIST Special
@@ -2077,7 +2077,7 @@
 		<f-component id="sfr-fcs-ckm-ext-5" cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="sel-based">
 			<depends on-sel="sel-ckm-kek-drvd"/> <!-- from FCS_CKM.1/KEK -->
 <!--			<depends on-sel="sel-fcs-cop-keyenc-xor"/>  -->
-			<depends><manual/></depends>    	<!-- May be also included optionally -->
+			<depends><optional/></depends>    	<!-- May be also included optionally -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to perform key derivation using a defined method.</comp-lev>
 			<management>No specific management functions are identified.</management>
@@ -2609,7 +2609,7 @@
 			<depends on-incl="sfr-fcs-cop-1-keyedhash"/>   <!-- FCS_COP.1/KeyedHash -->
 			<depends on-incl="sfr-fcs-cop-1-sigver"/>    <!-- FCS_COP.1/SigVer -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>    <!-- FCS_COP.1/SigGen -->
-			<depends><manual/></depends>    		<!-- May be also included optionally -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
             <f-element id="fcs-cop-1e1-hash">
                 <title>
 				The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified 
@@ -2764,7 +2764,7 @@
 			<depends on-sel="sel-fcs-ckm-ext-5-kdf-mac"/>   <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-cop-1-pbkdf"/> 	<!-- FCS_COP.1/PBKDF -->
-			<depends><manual/></depends>    		<!-- May be also included optionally -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-hmac">
 				<title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
 					with a specified cryptographic algorithm 
@@ -2825,7 +2825,7 @@
 			<depends on-sel="sel-fcs-ckm-2-rsaaes"/> 	<!-- FCS_CKM.2 -->
 			<depends on-sel="sel-fcs-ckm-2-ecc"/>  		<!-- FCS_CKM.2 -->
 			<depends on-sel="sel-fcs-ckm-2-ecies"/>  	<!-- FCS_CKM.2 -->
-			<depends><manual/></depends>    		<!-- May be also included optionally -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-kat">
 				<title>The TSF shall perform [<h:i>cryptographic key agreement/transport</h:i>] in accordance
 				with a specified cryptographic algorithm <assignable>cryptographic algorithm</assignable> and
@@ -2858,7 +2858,7 @@
 								<selectable>4096</selectable>
 								<selectable>6144</selectable>
 								<selectable>8192</selectable>
-							</selectables>bits</h:td>
+							</selectables> bits</h:td>
 							<h:td>NIST SP800-56B rev2 sec. 8.2</h:td>
 						</h:tr>
 					
@@ -2871,7 +2871,7 @@
 								<selectable>4096</selectable>
 								<selectable>6144</selectable>
 								<selectable>8192</selectable>
-							</selectables>bits</h:td>
+							</selectables> bits</h:td>
 							<h:td>NIST SP800-56B rev2 sec. 8.3</h:td>
 						</h:tr>
 
@@ -2884,7 +2884,7 @@
 								<selectable>4096</selectable>
 								<selectable>6144</selectable>
 								<selectable>8192</selectable>
-							</selectables>bits</h:td>
+							</selectables> bits</h:td>
 							<h:td>NIST SP800-56B rev2 sec. 9</h:td>
 						</h:tr>
 
@@ -2897,7 +2897,7 @@
 								<selectable>4096</selectable>
 								<selectable>6144</selectable>
 								<selectable>8192</selectable>
-							</selectables>bits</h:td>
+							</selectables> bits</h:td>
 							<h:td>RFC 8017 sec. 7.2</h:td>
 						</h:tr>
 						
@@ -2932,7 +2932,7 @@
 								<selectable>4096</selectable>
 								<selectable>6144</selectable>
 								<selectable>8192</selectable>
-							</selectables>bits</h:td>
+							</selectables> bits</h:td>
 							<h:td>NIST SP800-56A rev3,
 								<selectables>
 									<selectable>RFC 3526 sec. 
@@ -2968,7 +2968,7 @@
 								<selectable>256</selectable>
 								<selectable>384</selectable>
 								<selectable>512</selectable>
-							</selectables>bits</h:td>
+							</selectables> bits</h:td>
 							<h:td>
 								<selectables>
 									<selectable>ANSI X9.63</selectable>
@@ -3165,7 +3165,7 @@
 		<!-- FCS_COP.1/KeyEnc Cryptographic Operation (Key Encryption) -->
 		<f-component id="sfr-fcs-cop-1-keyenc" cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" status="sel-based">
 			<depends on-sel="sel-stg1-sw-based"/>  <!-- implies sel-stg2-sw-based -->
-			<depends><manual/></depends>    		<!-- May be also included optionally -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-keyenc">
 				<title>The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance
 				with a specified cryptographic algorithm <assignable>cryptographic algorithm</assignable> and
@@ -3283,7 +3283,7 @@
 			name="Cryptographic Operation (Password-Based Key Derivation Functions)" status="sel-based">
 <!--			<depends on-sel="sel-fcs-ckm-sk-pbk"/> --> <!-- FCS_CKM.1/SK -->  
 			<depends on-sel="sel-fcs-ckm-kek-pbkdf"/>  <!-- FCS_CKM.1/KEK -->  
-			<depends><manual/></depends>   		<!-- May be also included optionally -->
+			<depends><optional/></depends>   		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-pbkdf">
 				<title>The TSF shall perform [<h:i>password-based key derivation functions</h:i>] in accordance
 				with a specified cryptographic algorithm 
@@ -3301,18 +3301,18 @@
 						<selectable>128</selectable>
 						<selectable>192</selectable>
 						<selectable>256</selectable>
-					</selectables>bits that meet the following standard: [<h:i>NIST SP800-132</h:i>].
+					</selectables> bits that meet the following standard: [<h:i>NIST SP800-132</h:i>].
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					The ST must condition a password into a string of bits prior to using it as input to algorithms that
-					form SKs and KEKs. The ST can perform conditioning using one of the identified hash functions
+					The TSF must condition a password into a string of bits prior to using it as input to algorithms that
+					form SKs and KEKs. The TSF can perform conditioning using one of the identified hash functions
 					or the process described in NIST SP 800-132; the ST author selects the method used. NIST SP
 					800-132 requires the use of a pseudo-random function (PRF) consisting of HMAC with an
 					approved hash function.<h:p/>
 					Appendix A of NIST SP 800-132 recommends setting the iteration count in order to increase the
-					computation needed to derive a key from a password and, therefore, increase the workload of
+					computation needed to derive a key from a password and therefore increase the workload of
 					performing a dictionary attack.<h:p/>
 					If the ST includes this SFR, then it must also include FCS_COP.1/KeyedHash.
 				</note>
@@ -3354,7 +3354,7 @@
 		<!-- FCS_COP.1/SigGen Cryptographic Operation (Signature Generation) -->
 		<f-component id="sfr-fcs-cop-1-siggen" cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation (Signature Generation)" status="sel-based">
 			<depends on-sel="sel-stg3-digsig"/>	<!-- FCS_STG_EXT.3.1 -->
-			<depends><manual/></depends>    		<!-- May be also included optionally -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-siggen">
 				<title> The TSF shall perform <h:b>digital signature generation</h:b> in accordance with a specified 
 					cryptographic algorithm <assignable>cryptographic algorithm</assignable>
@@ -3575,7 +3575,7 @@
 			<depends on-sel="sel-rot2-digsig"/>  <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-tud1-auth-update"/>  <!-- FPT_TUD_EXT.1 (covers TUD2, which requires SigVer) -->
 			<depends on-sel="sel-tud1-unauth-update"/> <!-- FPT_TUD_EXT.1 -->
-			<depends><manual/></depends>    		<!-- May be also included optionally -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-sigver">
 				<title> The TSF shall perform <h:b>digital signature generation</h:b> in accordance with a specified 
 					cryptographic algorithm <assignable>cryptographic algorithm</assignable>
@@ -3911,7 +3911,7 @@
 			<depends on-sel="sel-stg3-aes-gcm"/>  <!-- implies sel-fcs-cop-skc-aes-gcm -->
 			<depends on-sel="sel-stg3-aes-kw"/>  <!-- implies sel-fcs-cop-skc-aes-kw -->
 			<depends on-sel="sel-stg3-aes-kwp"/>  <!-- implies sel-fcs-cop-skc-aes-kwp -->
-			<depends><manual/></depends>    		<!-- May be also included optionally -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-skc">
 				<title>
 				The TSF shall perform <h:b>symmetric key encryption/decryption</h:b> in accordance with a specified 
@@ -4706,8 +4706,6 @@
 						evaluator with the ability manipulate fields in the ICMP, IPv4, IPv6, UDP, and TCP packet headers. The
 						evaluator shall provide justification for any differences in the test environment.<h:p/>
 						<figure entity="images/network.png" title="IPsec Test Environment" id="fig-ipsectest"/><h:p/>
-						Note that the evaluator shall perform all tests using the Virtualization System and a representative sample of
-						platforms listed in the ST (for TOEs that claim to support multiple platforms).<h:p/>
 					</Tests>
 				</aactivity>							
                 <aactivity level="element">
@@ -4746,7 +4744,7 @@
 						There are no KMD evaluation activities for this element.<h:p/>
 					</KMD>
                     <Tests>
-                        The evaluator uses the operational guidance to configure the TOE to carry out the following tests:<h:br></h:br><h:br></h:br>
+                        The evaluator uses the operational guidance to configure the TOE to carry out the following tests:<h:p/>
                         <testlist>
                             <test>The evaluator shall configure the SPD such that there is a rule for dropping a packet,
 								encrypting a packet, and allowing a packet to flow in plaintext. The selectors used in
@@ -4866,7 +4864,7 @@
                 <aactivity level="element">
                     <TSS>
                         The evaluator shall examine the TSS to verify that the algorithms AES-GCM-128 and 
-						AES-GCM-256 are implemented. If the "ST" author has selected either 
+						AES-GCM-256 are implemented. If the ST author has selected either 
                         AES-CBC-128 or AES-CBC-256 in the requirement, then the evaluator verifies the
                         TSS describes these as well. In addition, the evaluator ensures that the 
                         SHA-based HMAC algorithm conforms to the algorithms specified in FCS_COP.1/KeyHash Cryptographic 
@@ -5430,7 +5428,7 @@
 			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
-			<depends><manual/></depends>    		<!-- May be also included optionally -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<consistency-rationale/>
 			<comp-lev>requires random bit generation to be performed in accordance with
 				selected standards and seeded by an entropy source.</comp-lev>
