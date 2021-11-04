@@ -1352,41 +1352,31 @@
 				<title>
 					The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified 
 					cryptographic key generation algorithm 
-					<selectables>
+					<assignable>cryptographic key generation algorithm</assignable>
+<!--					<selectables>
 						<selectable id="sel-fcs-ckm-ak-rsa">RSA</selectable>
 						<selectable id="sel-fcs-ckm-ak-eccn">ECC-N</selectable>
 						<selectable id="sel-fcs-ckm-ak-eccb">ECC-B</selectable>
 						<selectable id="sel-fcs-ckm-ak-dsa">DSA</selectable>
 						<selectable id="sel-fcs-ckm-ak-curve25519">Curve25519</selectable>
-					</selectables>
+					</selectables>  -->
 					and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> 
 					that meet the following: <assignable>list of standards</assignable>. <h:p/>
-					The rows of <xref to="fcs-ckm-1-ak-sels"/> provide the allowable values for completion of the 
-					assignments and selections for FCS_CKM.1.1/AK.<h:p/>
-				
-<!--					The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys using the methods defined by 
-					the following rows in <xref to="fcs-ckm-1-ak-sels"/>: 
-					[selection: identifier from Supported Methods for Asymmetric Key Generation table] 
-					<selectables>
-						<selectable id="sel-fcs-ckm-ak-rsa">RSA</selectable>
-						<selectable id="sel-fcs-ckm-ak-eccn">ECC-N</selectable>
-						<selectable id="sel-fcs-ckm-ak-eccb">ECC-B</selectable>
-						<selectable id="sel-fcs-ckm-ak-dsa">DSA</selectable>
-						<selectable id="sel-fcs-ckm-ak-curve25519">Curve25519</selectable>
-					</selectables>.<h:p/>  -->
-					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-ak-sels">: Supported Methods for Asymmetric Key Generation</ctr></h:b><h:br/>	
+			
+					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-ak-sels">: Choices for completion of the assignment 
+					operations in FCS_CKM.1.1/AKG.</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Cryptographic key generation algorithm</h:td>
 							<h:td>Cryptographic key sizes</h:td><h:td>List of standards</h:td></h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-ckm-ak-rsa"/>
+						<h:tr><!-- <depends on-sel="sel-fcs-ckm-ak-rsa"/>  -->
 						<h:td>RSA</h:td>
 						<h:td><selectables>
 							<selectable id="sel-exp-ak-rsa-2048">2048 bit</selectable>
 							<selectable id="sel-exp-ak-rsa-3072">3072-bit</selectable></selectables></h:td>
 						<h:td>FIPS PUB 186-4 sec. B.3 [key generation]</h:td></h:tr>
 						
-						<h:tr><depends on-sel="sel-fcs-ckm-ak-eccn"/>
+						<h:tr><!-- <depends on-sel="sel-fcs-ckm-ak-eccn"/>  -->
 						<h:td>ECC-N</h:td>
 						<h:td><selectables>
 							<selectable id="sel-exp-ak-eccn-P256">256 (P-256)</selectable>
@@ -1395,7 +1385,7 @@
 						<h:td>FIPS PUB 186-4 sec. D.1.2 [NIST curves]<h:p/>
 							FIPS PUB 186-4 sec. B.4 [key generation]</h:td></h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-ckm-ak-eccb"/>
+						<h:tr><!-- <depends on-sel="sel-fcs-ckm-ak-eccb"/>  -->
 						<h:td>ECC-B</h:td>
 						<h:td><selectables>
 							<selectable id="sel-exp-ak-eccb-bpP256r1">256 (brainpoolP256r1)</selectable>
@@ -1404,7 +1394,7 @@
 						<h:td>RFC 5639 sec. 3 [Brainpool Curves]<h:p/>
 							FIPS PUB 186-4 sec. B.4 [key generation]</h:td></h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-ckm-ak-dsa"/>
+						<h:tr><!-- <depends on-sel="sel-fcs-ckm-ak-dsa"/> -->
 						<h:td>DSA</h:td>
 						<h:td>DSA Bit lengths of p and q respectively (L, N) 
 							<selectables>
@@ -1414,7 +1404,7 @@
 								<selectable id="sel-exp-ak-dsa-3027-256">(3027, 256)</selectable></selectables></h:td>
 						<h:td>FIPS PUB 186-4 sec. B.1 [key generation]</h:td></h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-ckm-ak-curve25519"/>
+						<h:tr> <!-- <depends on-sel="sel-fcs-ckm-ak-curve25519"/> -->
 						<h:td>Curve25519</h:td>
 						<h:td>256 bits</h:td>
 						<h:td>RFC 7748 [Curve25519]<h:p/>
@@ -1588,29 +1578,24 @@
 				<title>
 				The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with a specified 
 				cryptographic key generation algorithm 
-				<selectables>
+				<assignable>cryptographic key generation algorithm</assignable>
+<!-- 				<selectables>
 					<selectable id="sel-fcs-ckm-sk-rsk">RSK</selectable>
 					<selectable id="sel-fcs-ckm-sk-dsk">DSK</selectable>
 					<selectable id="sel-fcs-ckm-sk-pbk">PBK</selectable>
-				</selectables>
+				</selectables>  -->
 				and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> 
 				that meet the following: <assignable>list of standards</assignable>. <h:p/>
 				The rows of <xref to="fcs-ckm-1-sk-sels"/> provide the allowable values for completion of the 
 				assignments and selections for FCS_CKM.1.1/SK.<h:p/>
-<!--					The TSF shall generate <h:b>symmetric</h:b> cryptographic keys using the methods defined by 
-					the following rows in <xref to="fcs-ckm-1-sk-sels"/>:
-					[selection: identifier from Supported Methods for Symmetric Encryption Key Generation table]
-					<selectables>
-						<selectable id="sel-fcs-ckm-sk-rsk">RSK</selectable>
-						<selectable id="sel-fcs-ckm-sk-dsk">DSK</selectable>
-						<selectable id="sel-fcs-ckm-sk-pbk">PBK</selectable>
-					</selectables>.<h:p/>  --> 
-					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-sk-sels">: Supported Methods for Symmetric Key Generation</ctr></h:b><h:br/>	
+
+					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-sk-sels">: Choices for completion of the assignment 
+					operations in FCS_CKM.1.1/SK</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><!--<h:td>Key Type</h:td>-->
 							<h:td>Cryptographic key generation algorithm</h:td><h:td>Key sizes</h:td><h:td>List of standards</h:td></h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-ckm-sk-rsk"/>
+						<h:tr><!-- <depends on-sel="sel-fcs-ckm-sk-rsk"/>  -->
 						<h:td>RSK</h:td>
 						<!--<h:td><selectables>
 							<selectable>symmetric key</selectable>
@@ -1624,7 +1609,7 @@
 							<selectable>512</selectable></selectables> bits</h:td>
 						<h:td>NIST SP 800-133 Rev 2 sec. 6.1.</h:td></h:tr>
 							
-						<h:tr><depends on-sel="sel-fcs-ckm-sk-dsk"/>
+						<h:tr><!-- <depends on-sel="sel-fcs-ckm-sk-dsk"/>  -->
 							<h:td>DSK <!--<assignable>Identifier from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Functions</assignable>--></h:td>
 						<!--<h:td><assignable>Key Type from <xref to="fcs-ckm-keydrv-sels"/>: Key Derivation Functions</assignable></h:td>-->
 						<h:td>Derived from a Key Derivation Function as specified in FCS_CKM_EXT.5 <!--
@@ -1632,7 +1617,7 @@
 						<h:td>Key sizes as specified in FCS_CKM_EXT.5</h:td>
 						<h:td>List of Standards as specified in FCS_CKM_EXT.5</h:td></h:tr>
 						
-						<h:tr><depends on-sel="sel-fcs-ckm-sk-pbk"/>
+						<h:tr><!-- <depends on-sel="sel-fcs-ckm-sk-pbk"/> -->
 							<h:td>PBK</h:td>
 						<!--<h:td><selectables>
 							<selectable>submask</selectable>
@@ -2159,7 +2144,8 @@
 				<title>The TSF shall derive cryptographic keys <assignable>key type</assignable>
 					from <assignable>input parameters</assignable>
 					in accordance with a specified key derivation algorithm	
-					<selectables>
+					<assignable>key derivation algorithm</assignable>
+<!--					<selectables>
 						<selectable id="sel-fcs-ckm-ext-5-kdf-ctr">KDF-CTR</selectable>
 						<selectable id="sel-fcs-ckm-ext-5-kdf-fb">KDF-FB</selectable>
 						<selectable id="sel-fcs-ckm-ext-5-kdf-dpi">KDF-DPI</selectable>
@@ -2167,24 +2153,14 @@
 						<selectable id="sel-fcs-ckm-ext-5-kdf-enc">KDF-ENC</selectable>
 						<selectable id="sel-fcs-ckm-ext-5-kdf-hash">KDF-HASH</selectable>
 						<selectable id="sel-fcs-ckm-ext-5-kdf-mac">KDF-MAC</selectable>
-					</selectables>
+					</selectables>  -->
 					and specified cryptographic key sizes <assignable>list of key sizes</assignable>
 					that meet the following: <assignable>list of standards</assignable>.<h:p/>
 					The rows of <xref to="fcs-ckm-keydrv-sels"/> provide the allowable values for completion of the 
 					assignments for FCS_CKM_EXT.5.1.<h:p/>
-<!-- 					The TSF shall generate cryptographic keys using the Key Derivation Functions defined by the following 
-					rows of <xref to="fcs-ckm-keydrv-sels"/>:
-					<selectables>
-						<selectable id="sel-fcs-ckm-keydrv-1">KeyDrv1</selectable>
-						<selectable id="sel-fcs-ckm-keydrv-2">KeyDrv2</selectable>
-						<selectable id="sel-fcs-ckm-keydrv-3">KeyDrv3</selectable>
-						<selectable id="sel-fcs-ckm-keydrv-4">KeyDrv4</selectable>
-						<selectable id="sel-fcs-ckm-keydrv-5">KeyDrv5</selectable>
-						<selectable id="sel-fcs-ckm-keydrv-6">KeyDrv6</selectable>
-						<selectable id="sel-fcs-ckm-keydrv-7">KeyDrv7</selectable>
-						<selectable id="sel-fcs-ckm-keydrv-8">KeyDrv8</selectable>
-					</selectables>.<h:p/>  -->
-					<h:b><ctr ctr-type='Table' id="fcs-ckm-keydrv-sels">: Key Derivation Functions</ctr></h:b><h:br/>	
+
+					<h:b><ctr ctr-type='Table' id="fcs-ckm-keydrv-sels">: Choices for completion of the assignment
+					operations in FCS_CKM_EXT.5.1.</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Key Type</h:td><h:td>Input Parameters</h:td>
 						<h:td>Key Derivation Algorithm</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
@@ -2331,51 +2307,7 @@
 							<selectable>FIPS PUB 180-4 (SHA)</selectable>
 							</selectables></h:td>
 						</h:tr>
-		
-						<!-- This is the same as the first three above using concatenated keys	
-							so it can be removed if we allow concatenated keys as input to the three above -->
-<!--						<h:tr>  <depends on-sel="sel-fcs-ckm-keydrv-5"/>
-						<h:td>KeyDrv5</h:td> 
-						<h:td><selectables>
-							<selectable>symmetric key</selectable>
-							<selectable>initialization vector</selectable>
-							<selectable>authentication token</selectable>
-							<selectable>authorization value</selectable>
-							<selectable>HMAC key</selectable>
-							<selectable>KMAC key</selectable>
-							</selectables></h:td>
-						<h:td>Concatenated keys</h:td>
-						<h:td>KDF in <selectables>
-							<selectable>Counter Mode</selectable>
-							<selectable>Feedback Mode</selectable>
-							<selectable>Double Pipeline Iteration Mode</selectable>
-							</selectables> using <selectables>
-							<selectable>CMAC-AES-128</selectable>
-							<selectable>CMAC-AES-192</selectable>
-							<selectable>CMAC-AES-256</selectable>
-							<selectable>HMAC-SHA-1</selectable>
-							<selectable>HMAC-SHA-256</selectable>
-							<selectable>HMAC-SHA-512</selectable>
-							</selectables>as the PRF</h:td>
-						<h:td><selectables>
-							<selectable>128</selectable>
-							<selectable>192</selectable>
-							<selectable>256</selectable>
-							</selectables>bits</h:td>
-						<h:td>NIST SP 800-108 [selection: (Section 5.1) (KDF in Counter Mode);<h:p/>
-							(Section 5.2) (KDF in Feedback Mode);<h:p/>
-							(Section 5.3) (KDF in Double-Pipeline Iteration Mode)]<h:p/>
-							<selectables>
-								<selectable>ISO/IEC 9797-1 (CMAC)</selectable>
-								<selectable>NIST SP800-38B (CMAC)</selectable>
-								<selectable>ISO/IEC 18033-3:2010 (AES)</selectable>
-								<selectable>ISO/IEC 9797-2:2011 (HMAC)</selectable> 
-								<selectable>FIPS PUB 198-1 (HMAC)</selectable>
-								<selectable>ISO/IEC 10118-3:2018 (SHA)</selectable>
-								<selectable>FIPS PUB 180-4 (SHA)</selectable>
-								</selectables></h:td>
-						</h:tr>
--->
+
 						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-6"/>-->
 						<h:td>KDF-ENC</h:td>  <!-- KeyDrv6 -->
 						<h:td><selectables>
@@ -2740,7 +2672,7 @@
             <f-element id="fcs-cop-1e1-hash">
                 <title>
 				The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified 
-				cryptographic algorithm
+				cryptographic algorithm 
                     <selectables>
                         <selectable id="sel-cop1-sha1">SHA-1</selectable>
                         <selectable id="sel-cop1-sha256">SHA-256</selectable>
@@ -2954,9 +2886,11 @@
 			<depends on-sel="sel-fcs-ckm-2-ecies"/>  	<!-- FCS_CKM.2 -->
 			<depends><manual/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-kat">
-				<title>The TSF shall perform [<h:i>cryptographic key agreement/transport</h:i>] using the supported
-					methods for key agreement/transport defined by the following rows of <xref to="fcs-ckm-kat-sels"/>: 
-					<selectables>
+				<title>The TSF shall perform [<h:i>cryptographic key agreement/transport</h:i>] in accordance
+				with a specified cryptographic algorithm <assignable>cryptographic algorithm</assignable> and
+				cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet the following:
+				<assignable>list of standards</assignable>.
+<!--					<selectables>
 						<selectable id="sel-fcs-cop-kat-kas1">KAS1</selectable>
 						<selectable id="sel-fcs-cop-kat-kas2">KAS2</selectable>
 						<selectable id="sel-fcs-cop-kat-kts">KTS-OAEP</selectable>
@@ -2966,13 +2900,15 @@
 						<selectable id="sel-fcs-cop-kat-dh">DH</selectable>
 						<selectable id="sel-fcs-cop-kat-curve25519">Curve25519</selectable>
 						<selectable id="sel-fcs-cop-kat-ecies">ECIES</selectable>
-					</selectables>.<h:p/>
-					<h:b><ctr ctr-type='Table' id="fcs-ckm-kat-sels">: Supported Methods for Key Agreement/Transport Operation</ctr></h:b><h:br/>	
+					</selectables>-->.<h:p/>
+					
+					<h:b><ctr ctr-type='Table' id="fcs-ckm-kat-sels">: Choices for completion of the assignments
+					in FCS_COP.1.1/KAT.</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td><h:td>Key Sizes</h:td>
 							<h:td>List of Standards</h:td></h:tr>
 						
-						<h:tr><depends on-sel="sel-fcs-cop-kat-kas1"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-kas1"/>-->
 							<h:td>KAS1</h:td>
 							<h:td>RSA-single party</h:td>
 							<h:td><selectables>
@@ -2985,7 +2921,7 @@
 							<h:td>NIST SP800-56B rev2 sec. 8.2</h:td>
 						</h:tr>
 					
-						<h:tr><depends on-sel="sel-fcs-cop-kat-kas2"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-kas2"/>-->
 							<h:td>KAS2</h:td>
 							<h:td>RSA-both party</h:td>
 							<h:td><selectables>
@@ -2998,7 +2934,7 @@
 							<h:td>NIST SP800-56B rev2 sec. 8.3</h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-kat-kts"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-kts"/>-->
 							<h:td>KTS-OAEP</h:td>
 							<h:td>RSA</h:td>
 							<h:td><selectables>
@@ -3011,7 +2947,7 @@
 							<h:td>NIST SP800-56B rev2 sec. 9</h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-kat-rsaes"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-rsaes"/>-->
 							<h:td>RSAES-PKCS1-v1_5</h:td>
 							<h:td>RSA</h:td>
 							<h:td><selectables>
@@ -3024,7 +2960,7 @@
 							<h:td>RFC 8017 sec. 7.2</h:td>
 						</h:tr>
 						
-						<h:tr><depends on-sel="sel-fcs-cop-kat-ecdh-nist"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-ecdh-nist"/>-->
 							<h:td>ECDH-NIST</h:td>
 							<h:td>ECDH with NIST curves</h:td>
 							<h:td><selectables>
@@ -3035,7 +2971,7 @@
 							<h:td>NIST SP800-56A rev3</h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-kat-ecdh-bpc"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-ecdh-bpc"/>-->
 							<h:td>ECDH-BPC</h:td>
 							<h:td>ECDH with Brainpool curves</h:td>
 							<h:td><selectables>
@@ -3046,7 +2982,7 @@
 							<h:td>RFC 5639 sec. 3</h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-kat-dh"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-dh"/>-->
 							<h:td>DH</h:td>
 							<h:td>Diffie-Hellman</h:td>
 							<h:td><selectables>
@@ -3077,14 +3013,14 @@
 								</selectables></h:td>
 						</h:tr>
 						
-						<h:tr><depends on-sel="sel-fcs-cop-kat-curve25519"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-curve25519"/>-->
 							<h:td>ECDH-25519</h:td>
 							<h:td>ECDH with Curve25519</h:td>
 							<h:td>256 bits</h:td>
 							<h:td>RFC 7748</h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-kat-ecies"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-ecies"/>-->
 							<h:td>ECIES</h:td>
 							<h:td>ECIES</h:td>
 							<h:td><selectables>
@@ -3290,20 +3226,22 @@
 			<depends on-sel="sel-stg1-sw-based"/>  <!-- implies sel-stg2-sw-based -->
 			<depends><manual/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-keyenc">
-				<title>
-					The TSF shall perform [<h:i>key encryption and decryption</h:i>] using the methods defined in the
-					following rows of <xref to="fcs-cop-keyenc-sels"/>:
-					<selectables>
+				<title>The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance
+				with a specified cryptographic algorithm <assignable>cryptographic algorithm</assignable> and
+				cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet the following:
+				<assignable>list of standards</assignable>.
+<!--					<selectables>
 						<selectable id="sel-fcs-cop-keyenc-se1">SE1</selectable>
 						<selectable id="sel-fcs-cop-keyenc-ae1">AE1</selectable>
 						<selectable id="sel-fcs-cop-keyenc-xor">XOR</selectable>
-					</selectables><h:p/>
-					<h:b><ctr ctr-type='Table' id="fcs-cop-keyenc-sels">: Supported Methods for Key Encryption Operation</ctr></h:b><h:br/>	
+					</selectables>--><h:p/>
+					<h:b><ctr ctr-type='Table' id="fcs-cop-keyenc-sels">: Choices for completion of the assignments in 
+					FCS_COP.1.1/KeyEnc</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
 						<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-keyenc-se1"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-keyenc-se1"/>-->
 						<h:td>SE1</h:td>
 						<h:td>Symmetric <selectables>
 							<selectable>AES-CCM</selectable>
@@ -3319,7 +3257,7 @@
 								<selectable>256</selectable></selectables> bits</h:td>
 						<h:td>See FCS_COP.1/SKC</h:td></h:tr>
 					
-						<h:tr><depends on-sel="sel-fcs-cop-keyenc-ae1"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-keyenc-ae1"/>-->
 						<h:td>AE1</h:td>
 						<h:td>Asymmetric KTS-OAEP</h:td>
 						<h:td><selectables>
@@ -3327,7 +3265,7 @@
 							<selectable>3072</selectable></selectables> bits</h:td>
 						<h:td>See FCS_COP.1/KAT</h:td></h:tr>
 		
-						<h:tr><depends on-sel="sel-fcs-cop-keyenc-xor"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-keyenc-xor"/>-->
 						<h:td>XOR</h:td>
 						<h:td>Exclusive OR operation</h:td>
 							<h:td><selectables>
@@ -3399,15 +3337,15 @@
 			<depends on-sel="sel-fcs-ckm-sk-pbk"/> <!-- FCS_CKM.1/SK -->
 			<depends><manual/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-pbkdf">
-				<title>The TSF shall perform [<h:i>password-based key derivation functions</h:i>] in
-					accordance with a specified cryptographic algorithm
+				<title>The TSF shall perform [<h:i>password-based key derivation functions</h:i>] in accordance
+				with a specified cryptographic algorithm 
 					<selectables>
 						<selectable>HMAC-SHA-1</selectable>
 						<selectable>HMAC-SHA-224</selectable>
 						<selectable>HMAC-SHA-256</selectable>
 						<selectable>HMAC-SHA-384</selectable>
 						<selectable>HMAC-SHA-512</selectable>
-						<selectable>HMAC-SHA-512/224</selectable>
+						<selectable>HMAC-SHA-512/224</selectable> 
 						<selectable>HMAC-SHA-512/256</selectable>
 					</selectables> with <assignable>integer number greater than or equal to 1000</assignable>
 					iterations, and output cryptographic key sizes 
@@ -3477,35 +3415,24 @@
 			<depends><manual/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-siggen">
 				<title> The TSF shall perform <h:b>digital signature generation</h:b> in accordance with a specified 
-					cryptographic algorithm 
-					<selectables>
+					cryptographic algorithm <assignable>cryptographic algorithm</assignable>
+<!--					<selectables>
 						<selectable id="sel-fcs-cop-siggen-1">RSASSA-PKCS1</selectable>
 						<selectable id="sel-fcs-cop-siggen-2">DSS 2</selectable>
 						<selectable id="sel-fcs-cop-siggen-3">DSS 3</selectable>
 						<selectable id="sel-fcs-cop-siggen-4">RSASSA-PSS</selectable>
 						<selectable id="sel-fcs-cop-siggen-5">ECDSA</selectable>
-					</selectables> 				
+					</selectables>  --> 				
 					and cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet
 					the following: <assignable>list of standards</assignable>.<h:p/>
-					<xref to="tab-fcs-cop-siggen-sels"/> provides the allowed choices for completion of the selection
-					and assignments for FCS_COP.1/SigGen.<h:p/>
-
-<!--					The TSF shall perform [<h:i>digital signature generation</h:i>] using the supported methods 
-					for signature generation defined in the following rows of <xref to="fcs-cop-siggen-sels"/>
-					<selectables>
-						<selectable id="sel-fcs-cop-siggen-1">RSASSA-PKCS1</selectable>
-						<selectable id="sel-fcs-cop-siggen-2">DSS 2</selectable>
-						<selectable id="sel-fcs-cop-siggen-3">DSS 3</selectable>
-						<selectable id="sel-fcs-cop-siggen-4">RSASSA-PSS</selectable>
-						<selectable id="sel-fcs-cop-siggen-5">ECDSA</selectable>
-					</selectables>.<h:p/>
--->					
-					<h:b><ctr ctr-type='Table' id="tab-fcs-cop-siggen-sels">: Supported Methods for Signature Generation Operation</ctr></h:b><h:br/>	
+					
+					<h:b><ctr ctr-type='Table' id="tab-fcs-cop-siggen-sels">: Choices for completion of the assignments in 
+					FCS_COP.1.1/SigGen.</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
 						<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 						
-						<h:tr><depends on-sel="sel-fcs-cop-siggen-1"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-siggen-1"/>-->
 						<h:td>RSASSA-PKCS1</h:td>
 						<h:td>RSASSA-PKCS1-v1_5 using
 							<selectables>
@@ -3533,7 +3460,7 @@
 							</selectables></h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel-fcs-cop-siggen-2"/>
+					<h:tr><!--<depends on-sel="sel-fcs-cop-siggen-2"/>-->
 						<h:td>DSS 2</h:td>
 						<h:td>Digital signature scheme 2 using
 							<selectables>
@@ -3557,7 +3484,7 @@
 							</selectables></h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel-fcs-cop-siggen-3"/>
+					<h:tr><!--<depends on-sel="sel-fcs-cop-siggen-3"/>-->
 						<h:td>DSS 3</h:td>
 						<h:td>Digital signature scheme 3 using
 							<selectables>
@@ -3581,7 +3508,7 @@
 							</selectables></h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel-fcs-cop-siggen-4"/>
+					<h:tr><!--<depends on-sel="sel-fcs-cop-siggen-4"/>-->
 						<h:td>RSASSA-PSS</h:td>
 						<h:td>RSASSA-PSS using
 							<selectables>
@@ -3605,7 +3532,7 @@
 							</selectables></h:td>
 					</h:tr>
 
-					<h:tr><depends on-sel="sel-fcs-cop-siggen-5"/>
+					<h:tr><!--<depends on-sel="sel-fcs-cop-siggen-5"/>-->
 						<h:td>ECDSA</h:td>
 						<h:td>ECDSA on 
 							<selectables>
@@ -3709,36 +3636,24 @@
 			<depends><manual/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-sigver">
 				<title> The TSF shall perform <h:b>digital signature generation</h:b> in accordance with a specified 
-					cryptographic algorithm 
-					<selectables>
+					cryptographic algorithm <assignable>cryptographic algorithm</assignable>
+<!--					<selectables>
 						<selectable id="sel-fcs-cop-sigver-1">RSASSA-PKCS1</selectable>
 						<selectable id="sel-fcs-cop-sigver-2">DSS 2</selectable>
 						<selectable id="sel-fcs-cop-sigver-3">DSS 3</selectable>
 						<selectable id="sel-fcs-cop-sigver-4">RSASSA-PSS</selectable>
 						<selectable id="sel-fcs-cop-sigver-5">ECDSA</selectable>
-					</selectables> 				
+					</selectables> 		-->		
 					and cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet
 					the following: <assignable>list of standards</assignable>.<h:p/>
-					<xref to="tab-fcs-cop-sigver-sels"/> provides the allowed choices for completion of the selection
-					and assignments for FCS_COP.1/SigGen.<h:p/>
-					
-<!--					<refinement>Refinement:</refinement> The TSF shall perform  
-				The TSF shall perform [<h:i>digital signature verification</h:i>] using the supported methods 
-				for signature verification defined in the following rows of <xref to="fcs-cop-sigver-sels"/>
-				<selectables>
-					<selectable id="sel-fcs-cop-sigver-1">RSASSA-PKCS1</selectable>
-					<selectable id="sel-fcs-cop-sigver-2">DSS 2</selectable>
-					<selectable id="sel-fcs-cop-sigver-3">DSS 3</selectable>
-					<selectable id="sel-fcs-cop-sigver-4">RSASSA-PSS</selectable>
-					<selectable id="sel-fcs-cop-sigver-5">ECDSA</selectable>
-				</selectables>.<h:p/>
--->				
-				<h:b><ctr ctr-type='Table' id="tab-fcs-cop-sigver-sels">: Supported Methods for Signature Verification Operation</ctr></h:b><h:br/>	
+		
+				<h:b><ctr ctr-type='Table' id="tab-fcs-cop-sigver-sels">: Choices for completion of the assignments 
+				in FCS_COP.1.1/SigVer.</ctr></h:b><h:br/>	
 				<h:table>
 					<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
 					<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 					
-					<h:tr><depends on-sel="sel-fcs-cop-sigver-1"/>
+					<h:tr><!--<depends on-sel="sel-fcs-cop-sigver-1"/>-->
 					<h:td>RSASSA-PKCS1</h:td>
 					<h:td>RSASSA-PKCS1-v1_5 using
 						<selectables>
@@ -3766,7 +3681,7 @@
 						</selectables></h:td>
 				</h:tr>
 
-				<h:tr><depends on-sel="sel-fcs-cop-sigver-2"/>
+				<h:tr><!--<depends on-sel="sel-fcs-cop-sigver-2"/>-->
 					<h:td>DSS 2</h:td>
 					<h:td>Digital signature scheme 2 using
 						<selectables>
@@ -3790,7 +3705,7 @@
 						</selectables></h:td>
 				</h:tr>
 
-				<h:tr><depends on-sel="sel-fcs-cop-sigver-3"/>
+				<h:tr><!--<depends on-sel="sel-fcs-cop-sigver-3"/>-->
 					<h:td>DSS 3</h:td>
 					<h:td>Digital signature scheme 3 using
 						<selectables>
@@ -3814,7 +3729,7 @@
 						</selectables></h:td>
 				</h:tr>
 
-				<h:tr><depends on-sel="sel-fcs-cop-sigver-4"/>
+				<h:tr><!--<depends on-sel="sel-fcs-cop-sigver-4"/>-->
 					<h:td>RSASSA-PSS</h:td>
 					<h:td>RSASSA-PSS using
 						<selectables>
@@ -3838,7 +3753,7 @@
 						</selectables></h:td>
 				</h:tr>
 
-				<h:tr><depends on-sel="sel-fcs-cop-sigver-5"/>
+				<h:tr><!--<depends on-sel="sel-fcs-cop-sigver-5"/>-->
 					<h:td>ECDSA</h:td>
 					<h:td>ECDSA on 
 						<selectables>
@@ -4057,9 +3972,12 @@
 			<depends><manual/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-skc">
 				<title>
-					The TSF shall perform [<h:i>data encryption/decryption</h:i>] using the supported symmetric-key cryptography
-					methods defined in the following rows of <xref to="fcs-cop-skc-sels"/>
-					<selectables>
+				The TSF shall perform <h:b>symmetric key encryption/decryption</h:b> in accordance with a specified 
+					cryptographic algorithm <assignable>cryptographic algorithm</assignable>
+					and cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet
+					the following: <assignable>list of standards</assignable>.<h:p/>
+				
+<!--					<selectables>
 						<selectable id="sel-fcs-cop-skc-aes-ccm">AES-CCM</selectable>
 						<selectable id="sel-fcs-cop-skc-aes-gcm">AES-GCM</selectable>
 						<selectable id="sel-fcs-cop-skc-aes-cbc">AES-CBC</selectable>
@@ -4067,13 +3985,14 @@
 						<selectable id="sel-fcs-cop-skc-xts-aes">XTS-AES</selectable>
 						<selectable id="sel-fcs-cop-skc-aes-kwp">AES-KWP</selectable>
 						<selectable id="sel-fcs-cop-skc-aes-kw">AES-KW</selectable>
-					</selectables>.<h:p/>
-					<h:b><ctr ctr-type='Table' id="fcs-cop-skc-sels">: Supported Methods for Symmetric Key Cryptography Operation</ctr></h:b><h:br/>	
+					</selectables>.--><h:p/>
+					<h:b><ctr ctr-type='Table' id="fcs-cop-skc-sels">: Choices for completion of the assignments 
+					in FCS_COP.1.1/SKC.</ctr></h:b><h:br/>	
 					<h:table>
 						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
 						<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
 						
-						<h:tr><depends on-sel="sel-fcs-cop-skc-aes-ccm"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-ccm"/>-->
 						<h:td>AES-CCM</h:td>
 						<h:td>AES in CCM mode with unpredictable, nonrepeating nonce, minimum size of 64 bits</h:td>
 						<h:td><selectables>
@@ -4086,7 +4005,7 @@
 							ISO 19772 cl. 8, NIST SP800-38C [CCM]</h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-skc-aes-gcm"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-gcm"/>-->
 						<h:td>AES-GCM</h:td>
 						<h:td>AES in GCM mode with non-repeating IVs; IV length must be equal to 96
 							bits; the deterministic IV construction method (SP800-38D, Section 8.2.1) must
@@ -4108,7 +4027,7 @@
 							ISO 19772 cl. 11, NIST SP800-38D [GCM]</h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-skc-aes-cbc"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-cbc"/>-->
 						<h:td>AES-CBC</h:td>
 						<h:td>AES in CBC mode with non-repeating and unpredictable IVs</h:td>
 						<h:td><selectables>
@@ -4121,7 +4040,7 @@
 							ISO 10116, NIST SP800-38A [CBC]</h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-skc-aes-ctr"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-ctr"/>-->
 						<h:td>AES-CTR</h:td>
 						<h:td>AES in counter mode with a non-repeating initial counter and with no
 							repeated use of counter values across multiple messages with the same
@@ -4136,7 +4055,7 @@
 							ISO 10116, NIST SP800-38A [CTR]</h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-skc-xts-aes"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-xts-aes"/>-->
 						<h:td>XTS-AES</h:td>
 						<h:td>AES in XTS mode with unique 
 							<selectables>
@@ -4153,7 +4072,7 @@
 							IEEE 1619, NIST SP800-38E [XTS]</h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-skc-aes-kwp"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-kwp"/>-->
 						<h:td>AES-KWP</h:td>
 						<h:td>KWP based on AES </h:td>
 						<h:td><selectables>
@@ -4167,7 +4086,7 @@
 							NIST SP800-38F sec. 6.3 [KWP]</h:td>
 						</h:tr>
 
-						<h:tr><depends on-sel="sel-fcs-cop-skc-aes-kw"/>
+						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-kw"/>-->
 						<h:td>AES-KW</h:td>
 						<h:td>KW based on AES </h:td>
 						<h:td><selectables>
