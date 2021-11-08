@@ -3143,7 +3143,7 @@
 							<assigncol>Cryptographic key sizes</assigncol>
 							<assigncol>List of standards</assigncol>
 						</tabularize>
-
+<!--
 						<selectable id="sel-fcs-cop-keyenc-aes">
 						<col><selectables>
 							<selectable>AES-CCM</selectable>
@@ -3167,7 +3167,66 @@
 								<selectable>ISO/IEC 19772 cl. 7 [key wrap]; NIST SP800-38F, sec. 6.2 [KW]</selectable>
 							</selectables>
 						</col></selectable>
-					
+-->
+						<selectable id="sel-fcs-cop-keyenc-aes-ccm">
+							<col>AES-CCM</col>
+							<col><selectables>
+								<selectable>128</selectable>
+								<selectable>192</selectable>
+								<selectable>256</selectable></selectables> bits</col>
+						<col>ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							ISO 19772 cl. 8, NIST SP800-38C [CCM]
+						</col></selectable>
+						
+						<selectable id="sel-fcs-cop-keyenc-aes-gcm">
+							<col>AES-GCM</col>
+							<col><selectables>
+								<selectable>128</selectable>
+								<selectable>192</selectable>
+								<selectable>256</selectable></selectables> bits</col>
+							<col>ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+								ISO 19772 cl. 11, NIST SP800-38D [GCM]
+							</col></selectable>
+						
+						<selectable id="sel-fcs-cop-keyenc-aes-cbc">
+						<col>AES-CBC</col>
+							<col><selectables>
+								<selectable>128</selectable>
+								<selectable>192</selectable>
+								<selectable>256</selectable></selectables> bits</col>
+						<col>ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							ISO 10116, NIST SP800-38A [CBC]</col></selectable>
+						
+						<selectable id="sel-fcs-cop-keyenc-aes-ctr">
+						<col>AES-CTR</col>
+							<col><selectables>
+								<selectable>128</selectable>
+								<selectable>192</selectable>
+								<selectable>256</selectable></selectables> bits</col>
+						<col>ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							ISO 10116, NIST SP800-38A [CTR]
+						</col></selectable>
+						
+						<selectable id="sel-fcs-cop-keyenc-aes-kwp">
+						<col>AES-KWP</col>
+							<col><selectables>
+								<selectable>128</selectable>
+								<selectable>192</selectable>
+								<selectable>256</selectable></selectables> bits</col>
+						<col>ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							ISO/IEC 19772 cl. 7 [key wrap]; NIST SP800-38F sec. 6.3 [KWP]
+						</col></selectable>
+						
+						<selectable id="sel-fcs-cop-keyenc-aes-kw">
+						<col>AES-KW</col>
+							<col><selectables>
+								<selectable>128</selectable>
+								<selectable>192</selectable>
+								<selectable>256</selectable></selectables> bits</col>
+						<col>ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+							ISO/IEC 19772 cl. 7 [key wrap]; NIST SP800-38F, sec. 6.2 [KW]
+						</col></selectable>
+						
 						<selectable id="sel-fcs-cop-keyenc-kts">
 						<key>KTS-OAEP</key>
 						<col><selectables>
@@ -3319,26 +3378,22 @@
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-siggen">
 				<title> The TSF shall perform <h:b>digital signature generation</h:b> in accordance with a specified 
-					cryptographic algorithm <assignable>cryptographic algorithm</assignable>
-<!--					<selectables>
-						<selectable id="sel-fcs-cop-siggen-1">RSASSA-PKCS1</selectable>
-						<selectable id="sel-fcs-cop-siggen-2">DSS 2</selectable>
-						<selectable id="sel-fcs-cop-siggen-3">DSS 3</selectable>
-						<selectable id="sel-fcs-cop-siggen-4">RSASSA-PSS</selectable>
-						<selectable id="sel-fcs-cop-siggen-5">ECDSA</selectable>
-					</selectables>  --> 				
-					and cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet
-					the following: <assignable>list of standards</assignable>.<h:p/>
-					
-					<h:b><ctr ctr-type='Table' id="tab-fcs-cop-siggen-sels">: Choices for completion of the assignments in 
-					FCS_COP.1.1/SigGen.</ctr></h:b>
-					<h:table>
-						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
-						<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+					cryptographic algorithm 
+					<selectables>
+						<tabularize id="tab-fcs-cop-siggen-sels" title="Choices for completion of the assignments in 
+							FCS_COP.1.1/SigGen.">
+							<keycol assign="y">Identifier</keycol>
+							<reqtext></reqtext>
+							<assigncol>Cryptographic algorithm</assigncol>
+							<reqtext>and cryptographic key sizes</reqtext>
+							<assigncol>Cryptographic key sizes</assigncol>
+							<reqtext>that meet the following:</reqtext>
+							<assigncol>List of standards</assigncol>
+						</tabularize>
 						
-						<h:tr><!--<depends on-sel="sel-fcs-cop-siggen-1"/>-->
-						<h:td>RSASSA-PKCS1</h:td>
-						<h:td>RSASSA-PKCS1-v1_5 using
+						<selectable id="sel-fcs-cop-siggen-rsa-pkcs1">
+							<key>RSASSA-PKCS1</key>
+							<col>RSASSA-PKCS1-v1_5 using
 							<selectables>
 								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
@@ -3346,12 +3401,12 @@
 								<selectable>SHA3-256</selectable>
 								<selectable>SHA3-384</selectable>
 								<selectable>SHA3-512</selectable>
-							</selectables></h:td>
-						<h:td><selectables>
+							</selectables></col>
+						<col><selectables>
 							<selectable>2048 bit</selectable>
 							<selectable>3072 bit</selectable>
-						</selectables></h:td>
-						<h:td>
+						</selectables></col>
+						<col>
 							<selectables>
 								<selectable>RFC 8017</selectable>
 								<selectable>PKCS #1 v2.2 (sec. 8.2)</selectable>
@@ -3361,12 +3416,12 @@
 								<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
 								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
 								<selectable>FIPS PUB 202 [SHA3]</selectable>
-							</selectables></h:td>
-					</h:tr>
+							</selectables></col>
+					</selectable>
 
-					<h:tr><!--<depends on-sel="sel-fcs-cop-siggen-2"/>-->
-						<h:td>DSS 2</h:td>
-						<h:td>Digital signature scheme 2 using
+					<selectable id="sel-fcs-cop-siggen-dss2">
+						<key>DSS2</key>
+						<col>Digital signature scheme 2 using
 							<selectables>
 								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
@@ -3374,23 +3429,23 @@
 								<selectable>SHA3-256</selectable>
 								<selectable>SHA3-384</selectable>
 								<selectable>SHA3-512</selectable>
-							</selectables></h:td>
-						<h:td><selectables>
+							</selectables></col>
+						<col><selectables>
 							<selectable>2048 bit</selectable>
 							<selectable>3072 bit</selectable>
-						</selectables></h:td>
-						<h:td>
+						</selectables></col>
+						<col>
 							ISO9796-2 (cl. 9) [Digital signature scheme 2]<h:p/>
 							<selectables>
 								<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
 								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
 								<selectable>FIPS PUB 202 [SHA3]</selectable>
-							</selectables></h:td>
-					</h:tr>
+							</selectables></col>
+					</selectable>
 
-					<h:tr><!--<depends on-sel="sel-fcs-cop-siggen-3"/>-->
-						<h:td>DSS 3</h:td>
-						<h:td>Digital signature scheme 3 using
+					<selectable id="sel-fcs-cop-siggen-dss3">
+						<key>DSS3</key>
+						<col>Digital signature scheme 3 using
 							<selectables>
 								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
@@ -3398,23 +3453,23 @@
 								<selectable>SHA3-256</selectable>
 								<selectable>SHA3-384</selectable>
 								<selectable>SHA3-512</selectable>
-							</selectables></h:td>
-						<h:td><selectables>
+							</selectables></col>
+						<col><selectables>
 							<selectable>2048 bit</selectable>
 							<selectable>3072 bit</selectable>
-						</selectables></h:td>
-						<h:td>
+						</selectables></col>
+						<col>
 							ISO9796-2 (cl. 10) [Digital signature scheme 3]<h:p/>
 							<selectables>
 								<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
 								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
 								<selectable>FIPS PUB 202 [SHA3]</selectable>
-							</selectables></h:td>
-					</h:tr>
+							</selectables></col>
+					</selectable>
 
-					<h:tr><!--<depends on-sel="sel-fcs-cop-siggen-4"/>-->
-						<h:td>RSASSA-PSS</h:td>
-						<h:td>RSASSA-PSS using
+					<selectable id="sel-fcs-cop-siggen-rsa-pss">
+						<key>RSASSA-PSS</key>
+						<col>RSASSA-PSS using
 							<selectables>
 								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
@@ -3422,23 +3477,23 @@
 								<selectable>SHA3-256</selectable>
 								<selectable>SHA3-384</selectable>
 								<selectable>SHA3-512</selectable>
-							</selectables></h:td>
-						<h:td><selectables>
+							</selectables></col>
+						<col><selectables>
 							<selectable>2048 bit</selectable>
 							<selectable>3072 bit</selectable>
-						</selectables></h:td>
-						<h:td>
+						</selectables></col>
+						<col>
 							RFC8017, PKCS#1v2.2 sec. 8.1 [RSASSAPSS]<h:p/>
 							<selectables>
 								<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
 								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
 								<selectable>FIPS PUB 202 [SHA3]</selectable>
-							</selectables></h:td>
-					</h:tr>
+							</selectables></col>
+					</selectable>
 
-					<h:tr><!--<depends on-sel="sel-fcs-cop-siggen-5"/>-->
-						<h:td>ECDSA</h:td>
-						<h:td>ECDSA on 
+					<selectable id="sel-fcs-cop-siggen-ecdsa">
+						<key>ECDSA</key>
+						<col>ECDSA on 
 							<selectables>
 								<selectable>brainpoolP256r1</selectable>
 								<selectable>brainpoolP384r1</selectable>
@@ -3454,12 +3509,12 @@
 								<selectable>SHA3-256</selectable>
 								<selectable>SHA3-384</selectable>
 								<selectable>SHA3-512</selectable>
-							</selectables></h:td>
-						<h:td><selectables>
+							</selectables></col>
+						<col><selectables>
 							<selectable>2048 bit</selectable>
 							<selectable>3072 bit</selectable>
-						</selectables></h:td>
-						<h:td>
+						</selectables></col>
+						<col>
 							<selectables linebreak="yes">
 								<selectable>
 									<selectables>
@@ -3473,9 +3528,9 @@
 								<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
 								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
 								<selectable>FIPS PUB 202 [SHA3]</selectable>
-							</selectables></h:td>
-					</h:tr>
-					</h:table>
+							</selectables></col>
+					</selectable>
+					</selectables>
 				</title>
 				<note role="application">			
 					This SFR must be included in the ST if digital signature generation is a service provided by the TOE to 
@@ -3866,7 +3921,12 @@
 		<!-- FCS_COP.1/SKC Cryptographic Operation (Symmetric Key Cryptography) -->	
 		<f-component id="sfr-fcs-cop-1-skc" cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="sel-based">
 			<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG_EXT.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
-			<depends on-sel="sel-fcs-cop-keyenc-aes"/>   
+			<depends on-sel="sel-fcs-cop-keyenc-aes-ccm"/>   
+			<depends on-sel="sel-fcs-cop-keyenc-aes-gcm"/>   
+			<depends on-sel="sel-fcs-cop-keyenc-aes-cbc"/>   
+			<depends on-sel="sel-fcs-cop-keyenc-aes-ctr"/>   
+			<depends on-sel="sel-fcs-cop-keyenc-aes-kwp"/>   
+			<depends on-sel="sel-fcs-cop-keyenc-aes-kw"/>   
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>
 			<depends on-sel="sel-stg3-aes-ccm"/>  <!-- implies sel-fcs-cop-skc-aes-ccm -->
