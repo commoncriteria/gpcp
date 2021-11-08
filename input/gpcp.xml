@@ -3138,7 +3138,7 @@
 					with a specified cryptographic algorithm 
 					<selectables>
 						<tabularize id="fcs-cop-keyenc-sels" title="Choices for completion of the assignment operations in FCS_COP.1.1/KeyEnc">
-							<assigncol assign="y">Cryptographic algorithm</assigncol>
+							<keycol assign="y">Cryptographic algorithm</keycol>
 							<reqtext>and cryptographic key sizes</reqtext>
 							<assigncol>Cryptographic key sizes</assigncol>
 							<assigncol>List of standards</assigncol>
@@ -3597,6 +3597,7 @@
 				<title> 
 					The TSF shall perform <h:b>digital signature verification</h:b> in accordance with a specified 
 					cryptographic algorithm 
+					<selectables>
 					<tabularize id="tab-fcs-cop-sigver-sels" title="Choices for completion of the assignments 
 						in FCS_COP.1.1/SigVer.">
 						<keycol assign="y">Identifier</keycol>
@@ -3933,41 +3934,33 @@
 			<f-element id="fcs-cop-1e1-skc">
 				<title>
 				The TSF shall perform <h:b>symmetric key encryption/decryption</h:b> in accordance with a specified 
-					cryptographic algorithm <assignable>cryptographic algorithm</assignable>
-					and cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet
-					the following: <assignable>list of standards</assignable>.<h:p/>
-				
-<!--					<selectables>
-						<selectable id="sel-fcs-cop-skc-aes-ccm">AES-CCM</selectable>
-						<selectable id="sel-fcs-cop-skc-aes-gcm">AES-GCM</selectable>
-						<selectable id="sel-fcs-cop-skc-aes-cbc">AES-CBC</selectable>
-						<selectable id="sel-fcs-cop-skc-aes-ctr">AES-CTR</selectable>
-						<selectable id="sel-fcs-cop-skc-xts-aes">XTS-AES</selectable>
-						<selectable id="sel-fcs-cop-skc-aes-kwp">AES-KWP</selectable>
-						<selectable id="sel-fcs-cop-skc-aes-kw">AES-KW</selectable>
-					</selectables>.--><h:p/>
-					<h:b><ctr ctr-type='Table' id="fcs-cop-skc-sels">: Choices for completion of the assignments 
-					in FCS_COP.1.1/SKC.</ctr></h:b>
-					<h:table>
-						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
-						<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+					cryptographic algorithm 
+					<selectables>
+						<tabularize id="fcs-cop-skc-sels" title="Choices for completion of the assignments 
+							in FCS_COP.1.1/SKC">
+							<keycol assign="y">Cryptographic algorithm</keycol>
+							<reqtext>and cryptographic key sizes</reqtext>
+							<assigncol>Cryptographic key sizes</assigncol>
+							<reqtext>that meet the following:</reqtext>
+							<assigncol>List of standards</assigncol>
+						</tabularize>
 						
-						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-ccm"/>-->
-						<h:td>AES-CCM</h:td>
-						<h:td>AES in CCM mode with unpredictable, nonrepeating nonce, minimum size of 64 bits</h:td>
-						<h:td><selectables>
+						<selectable id="sel-fcs-cop-skc-aes-ccm">
+						<key>AES-CCM</key>
+						<col>AES in CCM mode with unpredictable, nonrepeating nonce, minimum size of 64 bits</col>
+						<col><selectables>
 							<selectable>128 bits</selectable>
 							<selectable>192 bits</selectable>
 							<selectable>256 bits</selectable>
-						</selectables></h:td>
-						<h:td>
+						</selectables></col>
+						<col>
 							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
-							ISO 19772 cl. 8, NIST SP800-38C [CCM]</h:td>
-						</h:tr>
+							ISO 19772 cl. 8, NIST SP800-38C [CCM]</col>
+						</selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-gcm"/>-->
-						<h:td>AES-GCM</h:td>
-						<h:td>AES in GCM mode with non-repeating IVs; IV length must be equal to 96
+						<selectable id="sel-fcs-cop-skc-aes-gcm">
+						<key>AES-GCM</key>
+						<col>AES in GCM mode with non-repeating IVs; IV length must be equal to 96
 							bits; the deterministic IV construction method (SP800-38D, Section 8.2.1) must
 							be used; the MAC length t must be one of the values 
 							<selectables>
@@ -3976,90 +3969,90 @@
 								<selectable>112</selectable>
 								<selectable>120</selectable>
 								<selectable>128</selectable>
-							</selectables></h:td>
-						<h:td><selectables>
+							</selectables></col>
+						<col><selectables>
 								<selectable>128 bits</selectable>
 								<selectable>192 bits</selectable>
 								<selectable>256 bits</selectable>
-							</selectables></h:td>
-						<h:td>
+							</selectables></col>
+						<col>
 							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
-							ISO 19772 cl. 11, NIST SP800-38D [GCM]</h:td>
-						</h:tr>
+							ISO 19772 cl. 11, NIST SP800-38D [GCM]</col>
+						</selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-cbc"/>-->
-						<h:td>AES-CBC</h:td>
-						<h:td>AES in CBC mode with non-repeating and unpredictable IVs</h:td>
-						<h:td><selectables>
+						<selectable id="sel-fcs-cop-skc-aes-cbc">
+						<key>AES-CBC</key>
+						<col>AES in CBC mode with non-repeating and unpredictable IVs</col>
+						<col><selectables>
 								<selectable>128 bits</selectable>
 								<selectable>192 bits</selectable>
 								<selectable>256 bits</selectable>
-							</selectables></h:td>
-						<h:td>
+							</selectables></col>
+						<col>
 							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
-							ISO 10116, NIST SP800-38A [CBC]</h:td>
-						</h:tr>
+							ISO 10116, NIST SP800-38A [CBC]</col>
+						</selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-ctr"/>-->
-						<h:td>AES-CTR</h:td>
-						<h:td>AES in counter mode with a non-repeating initial counter and with no
+						<selectable id="sel-fcs-cop-skc-aes-ctr">
+						<key>AES-CTR</key>
+						<col>AES in counter mode with a non-repeating initial counter and with no
 							repeated use of counter values across multiple messages with the same
-							secret key</h:td>
-						<h:td><selectables>
+							secret key</col>
+						<col><selectables>
 								<selectable>128 bits</selectable>
 								<selectable>192 bits</selectable>
 								<selectable>256 bits</selectable>
-							</selectables></h:td>
-						<h:td>
+							</selectables></col>
+						<col>
 							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
-							ISO 10116, NIST SP800-38A [CTR]</h:td>
-						</h:tr>
+							ISO 10116, NIST SP800-38A [CTR]</col>
+						</selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-xts-aes"/>-->
-						<h:td>XTS-AES</h:td>
-						<h:td>AES in XTS mode with unique 
+						<selectable id="sel-fcs-cop-skc-xts-aes">
+						<key>XTS-AES</key>
+						<col>AES in XTS mode with unique 
 							<selectables>
 								<selectable>consecutive non-negative integers starting at an
 									arbitrary non-negative integer</selectable>
 								<selectable>data unit sequence numbers</selectable>
-							</selectables> tweak values</h:td>
-						<h:td><selectables>
+							</selectables> tweak values</col>
+						<col><selectables>
 								<selectable>256 bits</selectable>
 								<selectable>512 bits</selectable>
-							</selectables></h:td>
-						<h:td>
+							</selectables></col>
+						<col>
 							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
-							IEEE 1619, NIST SP800-38E [XTS]</h:td>
-						</h:tr>
+							IEEE 1619, NIST SP800-38E [XTS]</col>
+						</selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-kwp"/>-->
-						<h:td>AES-KWP</h:td>
-						<h:td>KWP based on AES </h:td>
-						<h:td><selectables>
+						<selectable id="sel-fcs-cop-skc-aes-kwp">
+						<key>AES-KWP</key>
+						<col>KWP based on AES </col>
+						<col><selectables>
 								<selectable>128 bits</selectable>
 								<selectable>192 bits</selectable>
 								<selectable>256 bits</selectable>
-							</selectables></h:td>
-						<h:td>
+							</selectables></col>
+						<col>
 							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
 							ISO/IEC 19772 cl. 7 [key wrap]<h:p/>
-							NIST SP800-38F sec. 6.3 [KWP]</h:td>
-						</h:tr>
+							NIST SP800-38F sec. 6.3 [KWP]</col>
+						</selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-skc-aes-kw"/>-->
-						<h:td>AES-KW</h:td>
-						<h:td>KW based on AES </h:td>
-						<h:td><selectables>
+						<selectable id="sel-fcs-cop-skc-aes-kw">
+						<key>AES-KW</key>
+						<col>KW based on AES </col>
+						<col><selectables>
 								<selectable>128 bits</selectable>
 								<selectable>192 bits</selectable>
 								<selectable>256 bits</selectable>
-							</selectables></h:td>
-						<h:td>
+							</selectables></col>
+						<col>
 							ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
 							ISO/IEC 19772 cl. 7 [key wrap]<h:p/>
-							NIST SP800-38F, sec. 6.2 (KW)<h:p/></h:td>
-						</h:tr>
-					</h:table>
+							NIST SP800-38F, sec. 6.2 (KW)<h:p/></col>
+						</selectable>
+					</selectables>
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if symmetric-key cryptography is a service provided by the TOE 
