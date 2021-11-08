@@ -2096,7 +2096,7 @@
 						</tabularize>
 
 						<selectable id="sel-fcs-ckm-ext-5-kdf-ctr">
-							<keycol>KDF-CTR</keycol>  <!-- formerly KeyDrv1 -->
+							<key>KDF-CTR</key>  <!-- formerly KeyDrv1 -->
 							<col><selectables>
 								<selectable>symmetric key</selectable>
 								<selectable>initialization vector</selectable>
@@ -2135,7 +2135,7 @@
 						</selectable>
 		
 						<selectable id="sel-fcs-ckm-ext-5-kdf-fb">
-						<keycol>KDF-FB</keycol>  <!-- formerly KeyDrv2  -->
+						<key>KDF-FB</key>  <!-- formerly KeyDrv2  -->
 						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
@@ -2174,7 +2174,7 @@
 						</selectable>
 		
 						<selectable id="sel-fcs-ckm-ext-5-kdf-dpi">
-						<keycol>KDF-DPI</keycol> <!-- formerly KeyDrv3  -->
+						<key>KDF-DPI</key> <!-- formerly KeyDrv3  -->
 						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
@@ -2213,7 +2213,7 @@
 						</selectable>
 
 						<selectable id="sel-fcs-ckm-ext-5-kdf-xor">
-						<keycol>KDF-XOR</keycol>  <!-- formerly KeyDrv4  -->
+						<key>KDF-XOR</key>  <!-- formerly KeyDrv4  -->
 						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
@@ -2239,7 +2239,7 @@
 						</selectable>
 
 						<selectable id="sel-fcs-ckm-ext-5-kdf-enc">
-						<keycol>KDF-ENC</keycol>  <!-- formerly KeyDrv6 -->
+						<key>KDF-ENC</key>  <!-- formerly KeyDrv6 -->
 						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
@@ -2279,7 +2279,7 @@
 
 						<!-- Keyed Hashes can be removed from this one or it's redundant with KDF-MAC -->
 						<selectable id="sel-fcs-ckm-ext-5-kdf-hash">
-						<keycol>KDF-HASH</keycol>  <!-- formerly KeyDrv7 -->
+						<key>KDF-HASH</key>  <!-- formerly KeyDrv7 -->
 						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>secret IV</selectable>
@@ -2299,7 +2299,7 @@
 						<col>NIST SP 800-56C rev2, sec. 4</col></selectable>
 
 						<selectable id="sel-fcs-ckm-ext-5-kdf-mac">
-						<keycol>KDF-MAC</keycol>  <!-- formerly KeyDrv8 -->
+						<key>KDF-MAC</key>  <!-- formerly KeyDrv8 -->
 						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>secret IV</selectable>
@@ -2354,8 +2354,8 @@
 						functions and shall check that this uses a key derivation algorithm and key sizes
 						according to the specification selected in <xref to="fcs-ckm-keydrv-sels"/>. The evaluator shall confirm that the TSS supports the selected
 						methods.<h:p/>
-<!--						If <h:u>KeyDrv5</h:u> is selected, the evaluator shall verify that the TSS shows that the total
-						length of the concatenated keys used as input to the KDF is greater than or equal to
+<!--						If <h:u>Concatenated keys</h:u> is selected as Input Parameters, the evaluator shall verify that the TSS 
+						shows that the total length of the concatenated keys used as input to the KDF is greater than or equal to
 						the length of the output from the KDF.<h:p/>  -->
 						If key combination is used to form a KEK, the evaluator shall verify
 						that the TSS describes the method of combination and that this method is either an
@@ -2543,11 +2543,6 @@
 						If the selected algorithm is a hash then the testing of the hash primitive is the only
 						required Evaluation Activity. If the selected algorithm is XOR then no separate
 						primitive testing is necessary.<h:p/>
-<!--						<h:b>KeyDrv5: Concatenated Keys Method</h:b><h:p/>
-						The evaluator should confirm that the combined length of the concatenated keys
-						should be at least as long as the keysize of the selected methods. There are no other
-						tests other than for the methods selected for this row performed for KDF-CTR,
-						KDF-FB, and KDF-DPI. <h:p/>  -->
 						<h:b>KDF-ENC: Two Keys Method</h:b><h:p/>
 						The evaluator should confirm that the combined length of the two keys should be
 						at least as long as the keysize of the selected methods. There are no other tests other
@@ -2814,113 +2809,115 @@
 			<depends on-sel="sel-fcs-ckm-2-ecies"/>  	<!-- FCS_CKM.2 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-kat">
-				<title>The TSF shall perform [<h:i>cryptographic key agreement/transport</h:i>] in accordance
-				with a specified cryptographic algorithm <assignable>cryptographic algorithm</assignable> and
-				cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet the following:
-				<assignable>list of standards</assignable>.
-<!--					<selectables>
-						<selectable id="sel-fcs-cop-kat-kas1">KAS1</selectable>
-						<selectable id="sel-fcs-cop-kat-kas2">KAS2</selectable>
-						<selectable id="sel-fcs-cop-kat-kts">KTS-OAEP</selectable>
-						<selectable id="sel-fcs-cop-kat-rsaes">RSAES-PKCS1-v1_5</selectable>
-						<selectable id="sel-fcs-cop-kat-ecdh-nist">ECDH-NIST</selectable>
-						<selectable id="sel-fcs-cop-kat-ecdh-bpc">ECDH-BPC</selectable>
-						<selectable id="sel-fcs-cop-kat-dh">DH</selectable>
-						<selectable id="sel-fcs-cop-kat-curve25519">Curve25519</selectable>
-						<selectable id="sel-fcs-cop-kat-ecies">ECIES</selectable>
-					</selectables>-->.<h:p/>
-					
-					<h:b><ctr ctr-type='Table' id="fcs-ckm-kat-sels">: Choices for completion of the assignments
-					in FCS_COP.1.1/KAT.</ctr></h:b>
-					<h:table>
-						<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td><h:td>Key Sizes</h:td>
-							<h:td>List of Standards</h:td></h:tr>
-						
-						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-kas1"/>-->
-							<h:td>KAS1</h:td>
-							<h:td>RSA-single party</h:td>
-							<h:td><selectables>
-								<selectable>2048</selectable>
-								<selectable>3072</selectable>
-								<selectable>4096</selectable>
-								<selectable>6144</selectable>
-								<selectable>8192</selectable>
-							</selectables> bits</h:td>
-							<h:td>NIST SP800-56B rev2 sec. 8.2</h:td>
-						</h:tr>
-					
-						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-kas2"/>-->
-							<h:td>KAS2</h:td>
-							<h:td>RSA-both party</h:td>
-							<h:td><selectables>
-								<selectable>2048</selectable>
-								<selectable>3072</selectable>
-								<selectable>4096</selectable>
-								<selectable>6144</selectable>
-								<selectable>8192</selectable>
-							</selectables> bits</h:td>
-							<h:td>NIST SP800-56B rev2 sec. 8.3</h:td>
-						</h:tr>
+				
+				
+										<tabularize id="fcs-ckm-keydrv-sels" 
+							    title="Choices for completion of the assignment operations in FCS_CKM_EXT.5.1">
+							<keycol assign="y">Key Type</keycol>
+							<reqtext>from</reqtext>
+							<assigncol>Input parameters</assigncol>
+							<reqtext>in accordance with a specified key derivation algorithm</reqtext>
+							<assigncol>Key derivation algorithm</assigncol>
+							<reqtest>and specified cryptographic key sizes</reqtest>
+							<assigncol>Cryptographic key sizes</assigncol>
+							<reqtext>that meet the following:</reqtext>
+							<assigncol>List of standards</assigncol>
+						</tabularize>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-kts"/>-->
-							<h:td>KTS-OAEP</h:td>
-							<h:td>RSA</h:td>
-							<h:td><selectables>
-								<selectable>2048</selectable>
-								<selectable>3072</selectable>
-								<selectable>4096</selectable>
-								<selectable>6144</selectable>
-								<selectable>8192</selectable>
-							</selectables> bits</h:td>
-							<h:td>NIST SP800-56B rev2 sec. 9</h:td>
-						</h:tr>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-rsaes"/>-->
-							<h:td>RSAES-PKCS1-v1_5</h:td>
-							<h:td>RSA</h:td>
-							<h:td><selectables>
+				
+				
+				<title>
+					The TSF shall perform [<h:i>cryptographic key agreement/transport</h:i>] in accordance
+					with a specified cryptographic algorithm 
+					<selectables>
+						<tabularize id="fcs-ckm-kat-sels" 
+							    title="Choices for completion of the assignment operations in FCS_CKM_EXT.5.1">
+							<keycol assign="y">Cryptographic algorithm</keycol>
+							<reqtest>and cryptographic key sizes</reqtext>
+							<assigncol>Cryptographic key size</assigncol>
+							<reqtext>that meet the following:</reqtext>
+							<assigncol>List of standards</assigncol>
+						</tabularize>
+
+						<selectable id="sel-fcs-cop-kat-kas1">
+							<key>KAS1 (RSA single-party)</key>
+							<col><selectables>
 								<selectable>2048</selectable>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
 								<selectable>6144</selectable>
 								<selectable>8192</selectable>
-							</selectables> bits</h:td>
-							<h:td>RFC 8017 sec. 7.2</h:td>
-						</h:tr>
+							</selectables> bits</col>
+							<col>NIST SP800-56B rev2 sec. 8.2</col>
+						</selectable>
+					
+						<selectable id="sel-fcs-cop-kat-kas2">
+							<key>KAS2 (RSA Two-party)</key>
+							<col><selectables>
+								<selectable>2048</selectable>
+								<selectable>3072</selectable>
+								<selectable>4096</selectable>
+								<selectable>6144</selectable>
+								<selectable>8192</selectable>
+							</selectables> bits</col>
+							<col>NIST SP800-56B rev2 sec. 8.3</col>
+						</selectable>
+
+						<selectable id="sel-fcs-cop-kat-kts">
+							<key>KTS-OAEP (RSA)</key>
+							<col><selectables>
+								<selectable>2048</selectable>
+								<selectable>3072</selectable>
+								<selectable>4096</selectable>
+								<selectable>6144</selectable>
+								<selectable>8192</selectable>
+							</selectables> bits</col>
+							<col>NIST SP800-56B rev2 sec. 9</col>
+						</selectable>
+
+						<selectable id="sel-fcs-cop-kat-rsaes">
+							<key>RSAES-PKCS1-v1_5 (RSA)</key>
+							<col><selectables>
+								<selectable>2048</selectable>
+								<selectable>3072</selectable>
+								<selectable>4096</selectable>
+								<selectable>6144</selectable>
+								<selectable>8192</selectable>
+							</selectables> bits</col>
+							<col>RFC 8017 sec. 7.2</col>
+						</selectable>
 						
-						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-ecdh-nist"/>-->
-							<h:td>ECDH-NIST</h:td>
-							<h:td>ECDH with NIST curves</h:td>
-							<h:td><selectables>
+						<selectable id="sel-fcs-cop-kat-ecdh-nist">
+							<key>ECDH-NIST (ECDH with NIST curves)</key>
+							<col><selectables>
 								<selectable>256 (P-256)</selectable>
 								<selectable>384 (P-384)</selectable>
 								<selectable>512 (P-521)</selectable>
-							</selectables></h:td>
-							<h:td>NIST SP800-56A rev3</h:td>
-						</h:tr>
+							</selectables></col>
+							<col>NIST SP800-56A rev3</col>
+						</selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-ecdh-bpc"/>-->
-							<h:td>ECDH-BPC</h:td>
-							<h:td>ECDH with Brainpool curves</h:td>
-							<h:td><selectables>
+						<selectable id="sel-fcs-cop-kat-ecdh-bpc">
+							<key>ECDH-BPC (ECDH with Brainpool curves)</key>
+							<col><selectables>
 								<selectable>256 (brainpoolP256r1)</selectable>
 								<selectable>384 (brainpoolP384r1</selectable>
 								<selectable>512 (brainpoolP512r1)</selectable>
-							</selectables></h:td>
-							<h:td>RFC 5639 sec. 3</h:td>
-						</h:tr>
+							</selectables></col>
+							<col>RFC 5639 sec. 3</col>
+						</selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-dh"/>-->
-							<h:td>DH</h:td>
-							<h:td>Diffie-Hellman</h:td>
-							<h:td><selectables>
+						<selectable id="sel-fcs-cop-kat-dh">
+							<key>DH (Diffie-Hellman)</key>
+							<col><selectables>
 								<selectable>2048</selectable>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
 								<selectable>6144</selectable>
 								<selectable>8192</selectable>
-							</selectables> bits</h:td>
-							<h:td>NIST SP800-56A rev3,
+							</selectables> bits</col>
+							<col>NIST SP800-56A rev3,
 								<selectables>
 									<selectable>RFC 3526 sec. 
 										<selectables>
@@ -2938,33 +2935,31 @@
 											<selectable>A.4</selectable>
 											<selectable>A.5</selectable>
 										</selectables></selectable>
-								</selectables></h:td>
-						</h:tr>
+								</selectables></col>
+						</selectable>
 						
-						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-curve25519"/>-->
-							<h:td>ECDH-25519</h:td>
-							<h:td>ECDH with Curve25519</h:td>
-							<h:td>256 bits</h:td>
-							<h:td>RFC 7748</h:td>
-						</h:tr>
+						<selectable id="sel-fcs-cop-kat-curve25519">
+							<key>ECDH-25519 (ECDH with Curve25519)</key>
+							<col>256 bits</col>
+							<col>RFC 7748</col>
+						</selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-kat-ecies"/>-->
-							<h:td>ECIES</h:td>
-							<h:td>ECIES</h:td>
-							<h:td><selectables>
+						<selectable id="sel-fcs-cop-kat-ecies">
+							<key>ECIES</key>
+							<col><selectables>
 								<selectable>256</selectable>
 								<selectable>384</selectable>
 								<selectable>512</selectable>
-							</selectables> bits</h:td>
-							<h:td>
+							</selectables> bits</col>
+							<col>
 								<selectables>
 									<selectable>ANSI X9.63</selectable>
 									<selectable>IEEE 1363a</selectable>
 									<selectable>ISO/IEC 18033-2 Part 2</selectable>
 									<selectable>SECG SEC1 sec. 5.1</selectable>
-								</selectables></h:td>
-						</h:tr>
-					</h:table>
+								</selectables></col>
+						</selectable>
+					</selectables>
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
