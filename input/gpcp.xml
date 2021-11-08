@@ -3594,27 +3594,23 @@
 			<depends on-sel="sel-tud1-unauth-update"/> <!-- FPT_TUD_EXT.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-sigver">
-				<title> The TSF shall perform <h:b>digital signature verification</h:b> in accordance with a specified 
-					cryptographic algorithm <assignable>cryptographic algorithm</assignable>
-<!--					<selectables>
-						<selectable id="sel-fcs-cop-sigver-1">RSASSA-PKCS1</selectable>
-						<selectable id="sel-fcs-cop-sigver-2">DSS 2</selectable>
-						<selectable id="sel-fcs-cop-sigver-3">DSS 3</selectable>
-						<selectable id="sel-fcs-cop-sigver-4">RSASSA-PSS</selectable>
-						<selectable id="sel-fcs-cop-sigver-5">ECDSA</selectable>
-					</selectables> 		-->		
-					and cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet
-					the following: <assignable>list of standards</assignable>.<h:p/>
-		
-				<h:b><ctr ctr-type='Table' id="tab-fcs-cop-sigver-sels">: Choices for completion of the assignments 
-				in FCS_COP.1.1/SigVer.</ctr></h:b>	
-				<h:table>
-					<h:tr class="header"><h:td>Identifier</h:td><h:td>Cryptographic Algorithm</h:td>
-					<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+				<title> 
+					The TSF shall perform <h:b>digital signature verification</h:b> in accordance with a specified 
+					cryptographic algorithm 
+					<tabularize id="tab-fcs-cop-sigver-sels" title="Choices for completion of the assignments 
+						in FCS_COP.1.1/SigVer.">
+						<keycol assign="y">Identifier</keycol>
+						<reqtext></reqtext>
+						<assigncol>Cryptographic algorithm</assigncol>
+						<reqtext>and cryptographic key sizes</reqtext>
+						<assigncol>Cryptographic key sizes</assigncol>
+						<reqtext>that meet the following:</reqtext>
+						<assigncol>List of standards</assigncol>
+					</tabularize>
 					
-					<h:tr><!--<depends on-sel="sel-fcs-cop-sigver-1"/>-->
-					<h:td>RSASSA-PKCS1</h:td>
-					<h:td>RSASSA-PKCS1-v1_5 using
+					<selectable id="sel-fcs-cop-sigver-rsa-pkcs">
+					<key>RSASSA-PKCS1</key>
+					<col>RSASSA-PKCS1-v1_5 using
 						<selectables>
 							<selectable>SHA-256</selectable>
 							<selectable>SHA-384</selectable>
@@ -3622,12 +3618,12 @@
 							<selectable>SHA3-256</selectable>
 							<selectable>SHA3-384</selectable>
 							<selectable>SHA3-512</selectable>
-						</selectables></h:td>
-					<h:td><selectables>
+						</selectables></col>
+					<col><selectables>
 						<selectable>2048 bit</selectable>
 						<selectable>3072 bit</selectable>
-					</selectables></h:td>
-					<h:td>
+					</selectables></col>
+					<col>
 						<selectables>
 							<selectable>RFC 8017</selectable>
 							<selectable>PKCS #1 v2.2 (sec. 8.2)</selectable>
@@ -3637,12 +3633,12 @@
 							<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
 							<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
 							<selectable>FIPS PUB 202 [SHA3]</selectable>
-						</selectables></h:td>
-				</h:tr>
+						</selectables></col>
+				</selectable>
 
-				<h:tr><!--<depends on-sel="sel-fcs-cop-sigver-2"/>-->
-					<h:td>DSS 2</h:td>
-					<h:td>Digital signature scheme 2 using
+				<selectable id="sel-fcs-cop-sigver-dss2">
+					<key>DSS2</key>
+					<col>Digital signature scheme 2 using
 						<selectables>
 							<selectable>SHA-256</selectable>
 							<selectable>SHA-384</selectable>
@@ -3650,23 +3646,23 @@
 							<selectable>SHA3-256</selectable>
 							<selectable>SHA3-384</selectable>
 							<selectable>SHA3-512</selectable>
-						</selectables></h:td>
-					<h:td><selectables>
+						</selectables></col>
+					<col><selectables>
 						<selectable>2048 bit</selectable>
 						<selectable>3072 bit</selectable>
-					</selectables></h:td>
-					<h:td>
+					</selectables></col>
+					<col>
 						ISO9796-2 (cl. 9) [Digital signature scheme 2]<h:p/>
 						<selectables>
 							<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
 							<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
 							<selectable>FIPS PUB 202 [SHA3]</selectable>
-						</selectables></h:td>
-				</h:tr>
+						</selectables></col>
+				</selectable>
 
-				<h:tr><!--<depends on-sel="sel-fcs-cop-sigver-3"/>-->
-					<h:td>DSS 3</h:td>
-					<h:td>Digital signature scheme 3 using
+				<selectable id="sel-fcs-cop-sigver-dss3">
+					<key>DSS3</key>
+					<col>Digital signature scheme 3 using
 						<selectables>
 							<selectable>SHA-256</selectable>
 							<selectable>SHA-384</selectable>
@@ -3674,23 +3670,23 @@
 							<selectable>SHA3-256</selectable>
 							<selectable>SHA3-384</selectable>
 							<selectable>SHA3-512</selectable>
-						</selectables></h:td>
-					<h:td><selectables>
+						</selectables></col>
+					<col><selectables>
 						<selectable>2048 bit</selectable>
 						<selectable>3072 bit</selectable>
-					</selectables></h:td>
-					<h:td>
+					</selectables></col>
+					<col>
 						ISO9796-2, (Clause 10) (Digital signature scheme 3)<h:p/>
 						<selectables>
 							<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
 							<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
 							<selectable>FIPS PUB 202 [SHA3]</selectable>
-						</selectables></h:td>
-				</h:tr>
+						</selectables></col>
+				</selectable>
 
-				<h:tr><!--<depends on-sel="sel-fcs-cop-sigver-4"/>-->
-					<h:td>RSASSA-PSS</h:td>
-					<h:td>RSASSA-PSS using
+				<selectable id="sel-fcs-cop-sigver-rsa-pss">
+					<key>RSASSA-PSS</key>
+					<col>RSASSA-PSS using
 						<selectables>
 							<selectable>SHA-256</selectable>
 							<selectable>SHA-384</selectable>
@@ -3698,23 +3694,23 @@
 							<selectable>SHA3-256</selectable>
 							<selectable>SHA3-384</selectable>
 							<selectable>SHA3-512</selectable>
-						</selectables></h:td>
-					<h:td><selectables>
+						</selectables></col>
+					<col><selectables>
 						<selectable>2048 bit</selectable>
 						<selectable>3072 bit</selectable>
-					</selectables></h:td>
-					<h:td>
+					</selectables></col>
+					<col>
 						[RFC8017, PKCS#1v2.2 (Section 8.1)] (RSASSAPSS)<h:p/>
 						<selectables>
 							<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
 							<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
 							<selectable>FIPS PUB 202 [SHA3]</selectable>
-						</selectables></h:td>
-				</h:tr>
+						</selectables></col>
+				</selectable>
 
-				<h:tr><!--<depends on-sel="sel-fcs-cop-sigver-5"/>-->
-					<h:td>ECDSA</h:td>
-					<h:td>ECDSA on 
+				<selectable id="sel-fcs-cop-sigver-5">
+					<key>ECDSA</key>
+					<col>ECDSA on 
 						<selectables>
 							<selectable>brainpoolP256r1</selectable>
 							<selectable>brainpoolP384r1</selectable>
@@ -3730,12 +3726,12 @@
 							<selectable>SHA3-256</selectable>
 							<selectable>SHA3-384</selectable>
 							<selectable>SHA3-512</selectable>
-						</selectables></h:td>
-					<h:td><selectables>
+						</selectables></col>
+					<col><selectables>
 						<selectable>2048 bit</selectable>
 						<selectable>3072 bit</selectable>
-					</selectables></h:td>
-					<h:td>
+					</selectables></col>
+					<col>
 						<selectables linebreak="yes">
 							<selectable>
 								<selectables>
@@ -3749,9 +3745,9 @@
 							<selectable>ISO10118-3 (cl. 10, 11) [SHA1/2]</selectable>
 							<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
 							<selectable>FIPS PUB 202 [SHA3]</selectable>
-						</selectables></h:td>
-				</h:tr>
-				</h:table>
+						</selectables></col>
+				</selectable>
+				</selectables>
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if digital signature verification is a service provided by 
