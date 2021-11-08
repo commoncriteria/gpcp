@@ -1352,13 +1352,14 @@
 					The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified 
 					<selectables>
 						<tabularize id="fcs-ckm-1-ak-sels" title="Choices Choices for completion of the assignment 
-							operations in FCS_CKM.1.1/AKG">
+							operations in FCS_CKM.1.1/AK">
 							<keycol assign="y">Cryptographic key generation algorithm </keycol>
 							<reqtext>and specified crptographic key sizes</reqtext>
 							<assigncol>Cryptographic key sizes</assigncol>
 							<reqtext>that meet the following: </reqtext>
 							<assigncol>List of standards</assigncol>
 						</tabularize>
+
 						<selectable id="sel-fcs-ckm-ak-rsa">
 							<key>RSA</key>
 							<col><selectables>
@@ -1366,6 +1367,7 @@
 								<selectable id="sel-exp-ak-rsa-3072">3072-bit</selectable></selectables></col>
 							<col>FIPS PUB 186-4 sec. B.3 [key generation]</col>
 						</selectable>
+
 						<selectable id="sel-fcs-ckm-ak-eccn">
 							<key>ECC-N</key>
 							<col><selectables>
@@ -1375,6 +1377,7 @@
 							<col>FIPS PUB 186-4 sec. D.1.2 [NIST curves]<h:p/>
 								FIPS PUB 186-4 sec. B.4 [key generation]</col>
 						</selectable>
+
 						<selectable id="sel-fcs-ckm-ak-eccb">
 						<key>ECC-B</key>
 						<col><selectables>
@@ -1389,7 +1392,6 @@
 						<key>DSA</key>
 						<col>DSA Bit lengths of p and q respectively (L, N) 
 							<selectables>
-<!--								<selectable id="sel-exp-ak-dsa-1024-160">(1024, 160)</selectable> -->
 								<selectable id="sel-exp-ak-dsa-2048-224">(2048, 224)</selectable>
 								<selectable id="sel-exp-ak-dsa-2048-256">(2048, 256)</selectable>
 								<selectable id="sel-exp-ak-dsa-3027-256">(3027, 256)</selectable></selectables></col>
@@ -1404,69 +1406,6 @@
 							</col>
 						</selectable>
 					</selectables>
-
-					<h:p/><h:p/>
-					The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified 
-					cryptographic key generation algorithm 
-					<assignable>cryptographic key generation algorithm</assignable>
-<!--					<selectables>
-						<selectable id="sel-fcs-ckm-ak-rsa">RSA</selectable>
-						<selectable id="sel-fcs-ckm-ak-eccn">ECC-N</selectable>
-						<selectable id="sel-fcs-ckm-ak-eccb">ECC-B</selectable>
-						<selectable id="sel-fcs-ckm-ak-dsa">DSA</selectable>
-						<selectable id="sel-fcs-ckm-ak-curve25519">Curve25519</selectable>
-					</selectables>  -->
-					and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> 
-					that meet the following: <assignable>list of standards</assignable>. <h:p/>
-			
-					<h:b><ctr ctr-type='Table' id="fcs-ckm-1-ak-sels">: Choices for completion of the assignment 
-					operations in FCS_CKM.1.1/AKG.</ctr></h:b>	
-					<h:table>
-						<h:tr class="header"><h:td>Cryptographic key generation algorithm</h:td>
-							<h:td>Cryptographic key sizes</h:td><h:td>List of standards</h:td></h:tr>
-
-						<h:tr><!-- <depends on-sel="sel-fcs-ckm-ak-rsa"/>  -->
-						<h:td>RSA</h:td>
-						<h:td><selectables>
-							<selectable id="sel-exp-ak-rsa-2048">2048 bit</selectable>
-							<selectable id="sel-exp-ak-rsa-3072">3072-bit</selectable></selectables></h:td>
-						<h:td>FIPS PUB 186-4 sec. B.3 [key generation]</h:td></h:tr>
-						
-						<h:tr><!-- <depends on-sel="sel-fcs-ckm-ak-eccn"/>  -->
-						<h:td>ECC-N</h:td>
-						<h:td><selectables>
-							<selectable id="sel-exp-ak-eccn-P256">256 (P-256)</selectable>
-							<selectable id="sel-exp-ak-eccn-P384">384 (P-384)</selectable>
-							<selectable id="sel-exp-ak-eccn-P521">521 (P-521)</selectable></selectables></h:td>
-						<h:td>FIPS PUB 186-4 sec. D.1.2 [NIST curves]<h:p/>
-							FIPS PUB 186-4 sec. B.4 [key generation]</h:td></h:tr>
-
-						<h:tr><!-- <depends on-sel="sel-fcs-ckm-ak-eccb"/>  -->
-						<h:td>ECC-B</h:td>
-						<h:td><selectables>
-							<selectable id="sel-exp-ak-eccb-bpP256r1">256 (brainpoolP256r1)</selectable>
-							<selectable id="sel-exp-ak-eccb-bpP384r1">384 (brainpoolP384r1)</selectable>
-							<selectable id="sel-exp-ak-eccb-bpP512r1">512 (brainpoolP512r1)</selectable></selectables></h:td>
-						<h:td>RFC 5639 sec. 3 [Brainpool Curves]<h:p/>
-							FIPS PUB 186-4 sec. B.4 [key generation]</h:td></h:tr>
-
-						<h:tr><!-- <depends on-sel="sel-fcs-ckm-ak-dsa"/> -->
-						<h:td>DSA</h:td>
-						<h:td>DSA Bit lengths of p and q respectively (L, N) 
-							<selectables>
-<!--								<selectable id="sel-exp-ak-dsa-1024-160">(1024, 160)</selectable> -->
-								<selectable id="sel-exp-ak-dsa-2048-224">(2048, 224)</selectable>
-								<selectable id="sel-exp-ak-dsa-2048-256">(2048, 256)</selectable>
-								<selectable id="sel-exp-ak-dsa-3027-256">(3027, 256)</selectable></selectables></h:td>
-						<h:td>FIPS PUB 186-4 sec. B.1 [key generation]</h:td></h:tr>
-
-						<h:tr> <!-- <depends on-sel="sel-fcs-ckm-ak-curve25519"/> -->
-						<h:td>Curve25519</h:td>
-						<h:td>256 bits</h:td>
-						<h:td>RFC 7748 [Curve25519]<h:p/>
-							FIPS PUB 186-4 sec. B.4 [key generation]
-						</h:td></h:tr>
-					</h:table>
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if asymmetric key generation is a service provided by 
