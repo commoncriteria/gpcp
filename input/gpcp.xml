@@ -2084,7 +2084,9 @@
 					<selectables>
 						<tabularize id="fcs-ckm-keydrv-sels" 
 							    title="Choices for completion of the assignment operations in FCS_CKM_EXT.5.1">
-							<keycol assign="y">Key Type</keycol>
+							<keycol assign="y">Identifier</keycol>
+							<reqtext></reqtext>
+							<assigncol>Key Type</assigncol>
 							<reqtext>from input parameters</reqtext>
 							<assigncol>Input parameters</assigncol>
 							<reqtext>in accordance with a specified key derivation algorithm</reqtext>
@@ -2802,7 +2804,7 @@
 
 		<!-- FCS_COP.1/KAT Cryptographic Operation (Key Agreement/Transport) -->
 		<f-component id="sfr-fcs-cop-1-kat" cc-id="fcs_cop.1" iteration="KAT" name="Cryptographic Operation (Key Agreement/Transport)" status="sel-based">
-			<depends on-sel="sel-fcs-cop-keyenc-ae1"/>  <!-- implies "sel-fcs-cop-kat-kts" -->
+			<depends on-sel="sel-fcs-cop-keyenc-kts"/>  <!-- implies "sel-fcs-cop-kat-kts" -->
 			<depends on-sel="sel-fcs-ckm-2-rsa"/>  		<!-- FCS_CKM.2 -->
 			<depends on-sel="sel-fcs-ckm-2-rsaaes"/> 	<!-- FCS_CKM.2 -->
 			<depends on-sel="sel-fcs-ckm-2-ecc"/>  		<!-- FCS_CKM.2 -->
@@ -2814,7 +2816,7 @@
 					with a specified cryptographic algorithm 
 					<selectables>
 						<tabularize id="fcs-ckm-kat-sels" 
-							    title="Choices for completion of the assignment operations in FCS_CKM_EXT.5.1">
+							    title="Choices for completion of the assignment operations in FCS_COP.1.1/KAT">
 							<keycol assign="y">Cryptographic algorithm</keycol>
 							<reqtext>and cryptographic key sizes</reqtext>
 							<assigncol>Cryptographic key size</assigncol>
@@ -2947,7 +2949,7 @@
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
 					functionality.<h:p/> 
-					Specifically, this SFR must be included if "<h:i>AE1</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/>
+					Specifically, this SFR must be included if "<h:i>KTS-OAEP</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/>
 					The selections in this SFR should be consistent with the algorithms selected in FCS_CKM.2.	
 				</note>
 				<aactivity>
@@ -3131,35 +3133,31 @@
 			<depends on-sel="sel-stg1-sw-based"/>  <!-- implies sel-stg2-sw-based -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-keyenc">
-				<title>The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance
-				with a specified cryptographic algorithm <assignable>cryptographic algorithm</assignable> and
-				cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet the following:
-				<assignable>list of standards</assignable>.
-<!--					<selectables>
-						<selectable id="sel-fcs-cop-keyenc-se1">SE1</selectable>
-						<selectable id="sel-fcs-cop-keyenc-ae1">AE1</selectable>
-						<selectable id="sel-fcs-cop-keyenc-xor">XOR</selectable>
-					</selectables>--><h:p/>
-					<h:b><ctr ctr-type='Table' id="fcs-cop-keyenc-sels">: Choices for completion of the assignments in 
-					FCS_COP.1.1/KeyEnc</ctr></h:b>
-					<h:table>
-						<h:tr class="header"><h:td>Cryptographic Algorithm</h:td>
-						<h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
+				<title>
+					The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance
+					with a specified cryptographic algorithm 
+					<selectables>
+						<tabularize id="fcs-cop-keyenc-sels" title="Choices for completion of the assignment operations in FCS_COP.1.1/KeyEnc">
+							<keycol assign="y">Cryptographic algorithm</keycol>
+							<reqtext>and cryptographic key sizes</reqtext>
+							<assigncol>Cryptographic key sizes</assigncol>
+							<assigncol>List of standards</assigncol>
+						</tabularize>
 
-						<h:tr><!--<depends on-sel="sel-fcs-cop-keyenc-se1"/>-->
-						<h:td><selectables>
+						<selectable id="sel-fcs-cop-keyenc-aes">
+						<key><selectables>
 							<selectable>AES-CCM</selectable>
 							<selectable>AES-GCM</selectable>
 							<selectable>AES-CBC</selectable>
 							<selectable>AES-CTR</selectable>
 							<selectable>AES-KWP</selectable>
 							<selectable>AES-KW</selectable>
-							</selectables></h:td>
-							<h:td><selectables>
+							</selectables></key>
+							<col><selectables>
 								<selectable>128</selectable>
 								<selectable>192</selectable>
-								<selectable>256</selectable></selectables> bits</h:td>
-						<h:td>ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
+								<selectable>256</selectable></selectables> bits</col>
+						<col>ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
 							<selectables>
 								<selectable>ISO 19772 cl. 8, NIST SP800-38C [CCM]</selectable>
 								<selectable>ISO 19772 cl. 11, NIST SP800-38D [GCM]</selectable>
@@ -3168,23 +3166,23 @@
 								<selectable>ISO/IEC 19772 cl. 7 [key wrap]; NIST SP800-38F sec. 6.3 [KWP]</selectable>
 								<selectable>ISO/IEC 19772 cl. 7 [key wrap]; NIST SP800-38F, sec. 6.2 [KW]</selectable>
 							</selectables>
-						</h:td></h:tr>
+						</col></selectable>
 					
-						<h:tr><!--<depends on-sel="sel-fcs-cop-keyenc-ae1"/>-->
-						<h:td>KTS-OAEP</h:td>
-						<h:td><selectables>
+						<selectable id="sel-fcs-cop-keyenc-kts">
+						<key>KTS-OAEP</key>
+						<col><selectables>
 							<selectable>2048</selectable>
-							<selectable>3072</selectable></selectables> bits</h:td>
-						<h:td>NIST SP800-56B rev2 sec. 9</h:td></h:tr>
+							<selectable>3072</selectable></selectables> bits</col>
+						<col>NIST SP800-56B rev2 sec. 9</col></selectable>
 		
-						<h:tr><!--<depends on-sel="sel-fcs-cop-keyenc-xor"/>-->
-						<h:td>XOR (Exclusive OR operation)</h:td>
-							<h:td><selectables>
+						<selectable id="sel-fcs-cop-keyenc-xor">
+						<key>XOR (Exclusive OR operation)</key>
+							<col><selectables>
 								<selectable>128</selectable>
 								<selectable>192</selectable>
-								<selectable>256</selectable></selectables> bits</h:td>
-						<h:td>No standard.</h:td></h:tr>
-					</h:table>
+								<selectable>256</selectable></selectables> bits</col>
+						<col>No standard.</col></selectable>
+					</selectables>
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if key encryption is a service provided by the TOE to tenant software,
@@ -3868,7 +3866,7 @@
 		<!-- FCS_COP.1/SKC Cryptographic Operation (Symmetric Key Cryptography) -->	
 		<f-component id="sfr-fcs-cop-1-skc" cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="sel-based">
 			<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG_EXT.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
-			<depends on-sel="sel-fcs-cop-keyenc-se1"/>   
+			<depends on-sel="sel-fcs-cop-keyenc-aes"/>   
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>
 			<depends on-sel="sel-stg3-aes-ccm"/>  <!-- implies sel-fcs-cop-skc-aes-ccm -->
