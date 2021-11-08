@@ -23,7 +23,7 @@
 			<PPTitle>Protection Profile for General-Purpose Computing Platforms</PPTitle>
 			<PPVersion>0.9</PPVersion>
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2021-11-04</PPPubDate>
+			<PPPubDate>2021-11-08</PPPubDate>
 			<Keywords>General-Purpose Computing Platforms</Keywords>
 		</ReferenceTable>
 	</PPReference>
@@ -38,7 +38,7 @@
 	<RevisionHistory>
 		<entry>
 			<version>0.9</version>
-			<date>2021-11-04</date>
+			<date>2021-11-08</date>
 			<subject>Latest draft</subject>
 		</entry>
 	</RevisionHistory>
@@ -1351,7 +1351,7 @@
 				<title>
 					The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified 
 					<selectables>
-						<tabularize id="fcs-ckm-1-ak-sels" title="Choices Choices for completion of the assignment 
+						<tabularize id="fcs-ckm-1-ak-sels" title="Choices for completion of the assignment 
 							operations in FCS_CKM.1.1/AK">
 							<keycol assign="y">Cryptographic key generation algorithm </keycol>
 							<reqtext>and specified crptographic key sizes</reqtext>
@@ -1569,7 +1569,7 @@
 			<depends on-sel="sel-ckm-kek-sk"/> <!-- from FCS_CKM.1.1/KEK -->
 			<depends><optional/></depends>		<!-- May be manually added -->
 			<f-element id="fcs-ckm-1e1-sk">
-				<title>
+				<title>					
 				The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with a specified 
 				cryptographic key generation algorithm 
 				<h:i>[Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1]</h:i>
@@ -2079,56 +2079,50 @@
 			<audit>There are no auditable events foreseen.</audit>
 			<dependencies><h:ul><h:li>FCS_CKM.1 Cryptographic Key Generation</h:li><h:li>FCS_COP.1 Cryptographic Operation</h:li></h:ul></dependencies>
 			<f-element id="fcs-ckm-ext-5e1">
-				<title>The TSF shall derive cryptographic keys <assignable>key type</assignable>
-					from <assignable>input parameters</assignable>
-					in accordance with a specified key derivation algorithm	
-					<assignable>key derivation algorithm</assignable>
-<!--					<selectables>
-						<selectable id="sel-fcs-ckm-ext-5-kdf-ctr">KDF-CTR</selectable>
-						<selectable id="sel-fcs-ckm-ext-5-kdf-fb">KDF-FB</selectable>
-						<selectable id="sel-fcs-ckm-ext-5-kdf-dpi">KDF-DPI</selectable>
-						<selectable id="sel-fcs-ckm-ext-5-kdf-xor">KDF-XOR</selectable>
-						<selectable id="sel-fcs-ckm-ext-5-kdf-enc">KDF-ENC</selectable>
-						<selectable id="sel-fcs-ckm-ext-5-kdf-hash">KDF-HASH</selectable>
-						<selectable id="sel-fcs-ckm-ext-5-kdf-mac">KDF-MAC</selectable>
-					</selectables>  -->
-					and specified cryptographic key sizes <assignable>list of key sizes</assignable>
-					that meet the following: <assignable>list of standards</assignable>.<h:p/>
+				<title>
+					The TSF shall derive cryptographic keys 
+					<selectables>
+						<tabularize id="fcs-ckm-keydrv-sels" 
+							    title="Choices for completion of the assignment operations in FCS_CKM_EXT.5.1">
+							<keycol assign="y">Key Type</keycol>
+							<reqtext>from</reqtext>
+							<assigncol>Input parameters</assigncol>
+							<reqtext>in accordance with a specified key derivation algorithm</reqtext>
+							<assigncol>Key derivation algorithm</assigncol>
+							<reqtest>and specified cryptographic key sizes</reqtest>
+							<assigncol>Cryptographic key sizes</assigncol>
+							<reqtext>that meet the following:</reqtext>
+							<assigncol>List of standards</assigncol>
+						</tabularize>
 
-					<h:b><ctr ctr-type='Table' id="fcs-ckm-keydrv-sels">: Choices for completion of the assignment
-					operations in FCS_CKM_EXT.5.1.</ctr></h:b>
-					<h:table>
-						<h:tr class="header"><h:td>Identifier</h:td><h:td>Key Type</h:td><h:td>Input Parameters</h:td>
-						<h:td>Key Derivation Algorithm</h:td><h:td>Key Sizes</h:td><h:td>List of Standards</h:td></h:tr>
-
-						<h:tr><!-- <depends on-sel="sel-fcs-ckm-keydrv-1"/>-->
-							<h:td>KDF-CTR</h:td>  <!-- KeyDrv1 -->
-						<h:td><selectables>
-							<selectable>symmetric key</selectable>
-							<selectable>initialization vector</selectable>
-							<selectable>authentication token</selectable>
-							<selectable>authorization value</selectable>
-							<selectable>HMAC key</selectable>
-							<selectable>KMAC key</selectable>
-							</selectables></h:td>
-						<h:td><selectables>
-							<selectable id="sel-fcs-ckm-5-kdf-ctr-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
-							<selectable>Concatenated keys</selectable>
-							</selectables></h:td>
-						<h:td>KDF in Counter Mode using <selectables>
+						<selectable id="sel-fcs-ckm-ext-5-kdf-ctr">
+							<keycol>KDF-CTR</keycol>  <!-- formerly KeyDrv1 -->
+							<col><selectables>
+								<selectable>symmetric key</selectable>
+								<selectable>initialization vector</selectable>
+								<selectable>authentication token</selectable>
+								<selectable>authorization value</selectable>
+								<selectable>HMAC key</selectable>
+								<selectable>KMAC key</selectable>
+							</selectables></col>
+							<col><selectables>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
+								<selectable>Concatenated keys</selectable>
+							</selectables></col>
+							<col>KDF in Counter Mode using <selectables>
 								<selectable>CMAC-AES-128</selectable>
 								<selectable>CMAC-AES-192</selectable>
 								<selectable>CMAC-AES-256</selectable>
 								<selectable>HMAC-SHA-1</selectable>
 								<selectable>HMAC-SHA-256</selectable>
 								<selectable>HMAC-SHA-512</selectable>
-							</selectables> as the PRF</h:td>
-						<h:td><selectables>
-							<selectable>128</selectable>
-							<selectable>192</selectable>
-							<selectable>256</selectable>
-							</selectables> bits</h:td>
-						<h:td>NIST SP800-108 sec. 5.1 (KDF in Counter Mode)<h:p/>
+							</selectables> as the PRF</col>
+							<col><selectables>
+								<selectable>128</selectable>
+								<selectable>192</selectable>
+								<selectable>256</selectable>
+							</selectables> bits</col>
+							<col>NIST SP800-108 sec. 5.1 (KDF in Counter Mode)<h:p/>
 							<selectables>
 								<selectable>ISO/IEC 9797-1 (CMAC)</selectable>
 								<selectable>NIST SP800-38B (CMAC)</selectable>
@@ -2137,37 +2131,37 @@
 								<selectable>FIPS PUB 198-1 (HMAC)</selectable>
 								<selectable>ISO/IEC 10118-3:2018 (SHA)</selectable>
 								<selectable>FIPS PUB 180-4 (SHA)</selectable>
-								</selectables></h:td>
-						</h:tr>
+								</selectables></col>
+						</selectable>
 		
-						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-2"/>-->
-						<h:td>KDF-FB</h:td>  <!-- KeyDrv2  -->
-						<h:td><selectables>
+						<selectable id="sel-fcs-ckm-ext-5-kdf-fb">
+						<keycol>KDF-FB</keycol>  <!-- formerly KeyDrv2  -->
+						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
 							<selectable>authentication token</selectable>
 							<selectable>authorization value</selectable>
 							<selectable>HMAC key</selectable>
 							<selectable>KMAC key</selectable>
-							</selectables></h:td>
-						<h:td><selectables>
+							</selectables></col>
+						<col><selectables>
 							<selectable id="sel-fcs-ckm-5-kdf-fb-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
 							<selectable>Concatenated keys</selectable>
-							</selectables></h:td>
-						<h:td>KDF in Feedback Mode using <selectables>
+							</selectables></col>
+						<col>KDF in Feedback Mode using <selectables>
 								<selectable>CMAC-AES-128</selectable>
 								<selectable>CMAC-AES-192</selectable>
 								<selectable>CMAC-AES-256</selectable>
 								<selectable>HMAC-SHA-1</selectable>
 								<selectable>HMAC-SHA-256</selectable>
 								<selectable>HMAC-SHA-512</selectable>
-							</selectables> as the PRF</h:td>
-						<h:td><selectables>
+							</selectables> as the PRF</col>
+						<col><selectables>
 							<selectable>128</selectable>
 							<selectable>192</selectable>
 							<selectable>256</selectable>
-							</selectables> bits</h:td>
-						<h:td>NIST SP800-108 sec 5.2 (KDF in Feedback Mode)<h:p/>
+							</selectables> bits</col>
+						<col>NIST SP800-108 sec 5.2 (KDF in Feedback Mode)<h:p/>
 							<selectables>
 								<selectable>ISO/IEC 9797-1 (CMAC)</selectable>
 								<selectable>NIST SP800-38B (CMAC)</selectable>
@@ -2176,37 +2170,37 @@
 								<selectable>FIPS PUB 198-1 (HMAC)</selectable>
 								<selectable>ISO/IEC 10118-3:2018 (SHA)</selectable>
 								<selectable>FIPS PUB 180-4 (SHA)</selectable>
-								</selectables></h:td>
-						</h:tr>
+								</selectables></col>
+						</selectable>
 		
-						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-3"/>-->
-						<h:td>KDF-DPI</h:td> <!-- KeyDrv3  -->
-						<h:td><selectables>
+						<selectable id="sel-fcs-ckm-ext-5-kdf-dpi">
+						<keycol>KDF-DPI</keycol> <!-- formerly KeyDrv3  -->
+						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
 							<selectable>authentication token</selectable>
 							<selectable>authorization value</selectable>
 							<selectable>HMAC key</selectable>
 							<selectable>KMAC key</selectable>
-							</selectables></h:td>
-						<h:td><selectables>
+							</selectables></col>
+						<col><selectables>
 							<selectable id="sel-fcs-ckm-5-kdf-dpi-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
 							<selectable>Concatenated keys</selectable>
-							</selectables></h:td>
-						<h:td>KDF in Double Pipeline Iteration Mode using <selectables>
+							</selectables></col>
+						<col>KDF in Double Pipeline Iteration Mode using <selectables>
 								<selectable>CMAC-AES-128</selectable>
 								<selectable>CMAC-AES-192</selectable>
 								<selectable>CMAC-AES-256</selectable>
 								<selectable>HMAC-SHA-1</selectable>
 								<selectable>HMAC-SHA-256</selectable>
 								<selectable>HMAC-SHA-512</selectable>
-							</selectables> as the PRF</h:td>
-						<h:td><selectables>
+							</selectables> as the PRF</col>
+						<col><selectables>
 							<selectable>128</selectable>
 							<selectable>192</selectable>
 							<selectable>256</selectable>
-							</selectables>bits</h:td>
-						<h:td>NIST SP 800-108 sec. 5.3 (KDF in n Double Pipeline Iteration Mode)<h:p/>
+							</selectables>bits</col>
+						<col>NIST SP 800-108 sec. 5.3 (KDF in n Double Pipeline Iteration Mode)<h:p/>
 							<selectables>
 								<selectable>ISO/IEC 9797-1 (CMAC)</selectable>
 								<selectable>NIST SP800-38B (CMAC)</selectable>
@@ -2215,58 +2209,58 @@
 								<selectable>FIPS PUB 198-1 (HMAC)</selectable>
 								<selectable>ISO/IEC 10118-3:2018 (SHA)</selectable>
 								<selectable>FIPS PUB 180-4 (SHA)</selectable>
-								</selectables></h:td>
-						</h:tr>
+								</selectables></col>
+						</selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-4"/>-->
-						<h:td>KDF-XOR</h:td>  <!-- KeyDrv4  -->
-						<h:td><selectables>
+						<selectable id="sel-fcs-ckm-ext-5-kdf-xor">
+						<keycol>KDF-XOR</keycol>  <!-- formerly KeyDrv4  -->
+						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
 							<selectable>authentication token</selectable>
 							<selectable>authorization value</selectable>
 							<selectable>HMAC key</selectable>
 							<selectable>KMAC key</selectable>
-							</selectables></h:td>
-						<h:td>Intermediary keys</h:td>
-						<h:td><selectables>
+							</selectables></col>
+						<col>Intermediary keys</col>
+						<col><selectables>
 							<selectable>exclusive OR (XOR)</selectable>
 							<selectable>SHA-256</selectable>
-							<selectable>SHA-512</selectable></selectables></h:td>
-						<h:td><selectables>
+							<selectable>SHA-512</selectable></selectables></col>
+						<col><selectables>
 							<selectable>128</selectable>
 							<selectable>192</selectable>
 							<selectable>256</selectable>
-							</selectables> bits</h:td>
-						<h:td><selectables>
+							</selectables> bits</col>
+						<col><selectables>
 							<selectable>ISO/IEC 10118-3:2018 (SHA)</selectable>
 							<selectable>FIPS PUB 180-4 (SHA)</selectable>
-							</selectables></h:td>
-						</h:tr>
+							</selectables></col>
+						</selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-6"/>-->
-						<h:td>KDF-ENC</h:td>  <!-- KeyDrv6 -->
-						<h:td><selectables>
+						<selectable id="sel-fcs-ckm-ext-5-kdf-enc">
+						<keycol>KDF-ENC</keycol>  <!-- formerly KeyDrv6 -->
+						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>initialization vector</selectable>
 							<selectable>authentication token</selectable>
 							<selectable>authorization value</selectable>
 							<selectable>HMAC key</selectable>
 							<selectable>KMAC key</selectable>
-							</selectables></h:td>
-						<h:td>Two keys</h:td>
-						<h:td>Encryption using <selectables>
+							</selectables></col>
+						<col>Two keys</col>
+						<col>Encryption using <selectables>
 							<selectable>AES-CCM</selectable>
 							<selectable>AES-GCM</selectable>
 							<selectable>AES-CBC</selectable>
 							<selectable>AES-KWP</selectable>
-							<selectable>AES-KW</selectable></selectables></h:td>
-						<h:td><selectables>
+							<selectable>AES-KW</selectable></selectables></col>
+						<col><selectables>
 							<selectable>128</selectable>
 							<selectable>192</selectable>
 							<selectable>256</selectable>
-							</selectables> bits</h:td>
-						<h:td><selectables>
+							</selectables> bits</col>
+						<col><selectables>
 							<selectable>ISO/IEC 18033-3:2010 (subclause 5.2) (AES)</selectable>
 							<selectable>FIPS PUB 197 (AES)</selectable>
 							<selectable>ISO/IEC 10116:2017 (clause 7) (CBC)</selectable>
@@ -2281,45 +2275,45 @@
 							<selectable>NIST SP800-38F sec. 6.2 (KW)</selectable>
 							<selectable>NIST SP800-38F sec. 6.3 (KWP)</selectable>
 							</selectables>
-							</h:td></h:tr>
+							</col></selectable>
 
 						<!-- Keyed Hashes can be removed from this one or it's redundant with KDF-MAC -->
-						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-7"/>-->
-						<h:td>KDF-HASH</h:td>  <!-- KeyDrv7 -->
-						<h:td><selectables>
+						<selectable id="sel-fcs-ckm-ext-5-kdf-hash">
+						<keycol>KDF-HASH</keycol>  <!-- formerly KeyDrv7 -->
+						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>secret IV</selectable>
 							<selectable>seed</selectable>
-							</selectables></h:td>
-						<h:td>Shared secret, salt, output length, fixed information</h:td>
+							</selectables></col>
+						<col>Shared secret, salt, output length, fixed information</col>
 <!--						<h:td><selectables>
 							<selectable>hash function from FCS_COP.1/Hash</selectable>
 							<selectable>keyed hash from FCS_COP.1/KeyedHash</selectable>
 							</selectables></h:td>  -->
-					<h:td><assignable>Hash function from FCS_COP.1/Hash</assignable></h:td> 
-						<h:td><selectables>
+					<col><assignable>Hash function from FCS_COP.1/Hash</assignable></col> 
+						<col><selectables>
 							<selectable>128</selectable>
 							<selectable>192</selectable>
 							<selectable>256</selectable>
-							</selectables> bits</h:td>
-						<h:td>NIST SP 800-56C rev2, sec. 4</h:td></h:tr>
+							</selectables> bits</col>
+						<col>NIST SP 800-56C rev2, sec. 4</col></selectable>
 
-						<h:tr><!--<depends on-sel="sel-fcs-ckm-keydrv-8"/>-->
-						<h:td>KDF-MAC</h:td>  <!-- KeyDrv8 -->
-						<h:td><selectables>
+						<selectable id="sel-fcs-ckm-ext-5-kdf-mac">
+						<keycol>KDF-MAC</keycol>  <!-- formerly KeyDrv8 -->
+						<col><selectables>
 							<selectable>symmetric key</selectable>
 							<selectable>secret IV</selectable>
 							<selectable>seed</selectable>
-							</selectables></h:td>
-						<h:td>Shared secret, salt, IV, output length, fixed information</h:td>
-						<h:td><assignable>keyed hash from FCS_COP.1/KeyedHash</assignable></h:td>
-						<h:td><selectables>
+							</selectables></col>
+						<col>Shared secret, salt, IV, output length, fixed information</col>
+						<col><assignable>keyed hash from FCS_COP.1/KeyedHash</assignable></col>
+						<col><selectables>
 							<selectable>128</selectable>
 							<selectable>192</selectable>
 							<selectable>256</selectable>
-							</selectables> bits</h:td>
-						<h:td>NIST SP 800-56C rev2, sec. 4</h:td></h:tr>
-					</h:table>
+							</selectables> bits</col>
+						<col>NIST SP 800-56C rev2, sec. 4</col></selectable>
+					</selectables>
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if key derivation is a service provided by the TOE to tenant software,
