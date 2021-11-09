@@ -829,7 +829,7 @@
 					<h:li>Requirements for key generation</h:li>
 					<h:li>Requirements for random bit generation support.</h:li>
 					</h:ul></description>
-				<addressed-by>FCS_CKM.1/KEK (optional)</addressed-by><rationale>Supports the objective by specifying the requirements for generating key encryption keys.</rationale>
+<!--				<addressed-by>FCS_CKM.1/KEK (optional)</addressed-by><rationale>Supports the objective by specifying the requirements for generating key encryption keys.</rationale>  -->
 				<addressed-by>FCS_SLT_EXT.1 (optional)</addressed-by><rationale>Supports the objective by specifying the requirements for cryptographic salt generation.</rationale>
 				<addressed-by>FCS_CKM.1/AK (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for generating asymmetric keys.</rationale>
 				<addressed-by>FCS_CKM.1/SK (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for generating symmetric keys.</rationale>
@@ -838,7 +838,7 @@
 				<addressed-by>FCS_COP.1/Hash (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for cryptographic hashing.</rationale>
 				<addressed-by>FCS_COP.1/KAT (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for key agreement and transport.</rationale>
 				<addressed-by>FCS_COP.1/KeyedHash (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for keyed hashes.</rationale>
-				<addressed-by>FCS_COP.1/KeyEnc (sel-based/optional)</addressed-by><rationale>Supports the objective by defining the methods for encryption and decryption of keys.</rationale>
+<!--				<addressed-by>FCS_COP.1/KeyEnc (sel-based/optional)</addressed-by><rationale>Supports the objective by defining the methods for encryption and decryption of keys.</rationale>  -->
 				<addressed-by>FCS_COP.1/PBKDF (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for password-based key derivation.</rationale>
 				<addressed-by>FCS_COP.1/SigGen (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for digital signature generation.</rationale>
 				<addressed-by>FCS_COP.1/SigVer (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for digital signature verification.</rationale>
@@ -1344,7 +1344,8 @@
 		
 		<!-- FCS_CKM.1/AK Gryptographic Key Generation (Asymmetric Keys) -->
 		<f-component id="sfr-fcs-ckm-1-ak" cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="sel-based">
-			<depends on-sel="sel-ckm-kek-ak"/> 			<!-- from FCS_CKM.1.1/KEK -->
+<!--			<depends on-sel="sel-ckm-kek-ak"/> -->			<!-- from FCS_CKM.1.1/KEK -->
+			<depends on-sel="sel-fcs-sto-ext-1e2-ak"/>  <!-- from FCS_STO_EXT.1 -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  	<!-- FCS_IPSEC_EXT.1 -->
 			<depends><optional/></depends>		<!-- May also be optionally added -->
 			<f-element id="fcs-ckm-1e1-ak">
@@ -1411,8 +1412,8 @@
 					This SFR must be included in the ST if asymmetric key generation is a service provided by 
 					the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
 					security functionality.<h:p/> 
-					Specifically, this SFR must be included in the ST if "<h:i>Asymmetric KEKs generated in
-					accordance with FCS_CKM.1/AK</h:i>" is selected in FCS_CKM.1/KEK, or if FCS_IPSEC_EXT.1 is 
+					Specifically, this SFR must be included in the ST if <!-- "<h:i>Asymmetric KEKs generated in
+					accordance with FCS_CKM.1/AK</h:i>" is selected in FCS_CKM.1/KEK, or if --> FCS_IPSEC_EXT.1 is 
 					included in the ST.<h:p/>
 					DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
 					by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
@@ -1566,7 +1567,8 @@
 	  
 		<!-- FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key) -->
 		<f-component id="sfr-fcs-ckm-1-sk" cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
-			<depends on-sel="sel-ckm-kek-sk"/> <!-- from FCS_CKM.1.1/KEK -->
+<!--			<depends on-sel="sel-ckm-kek-sk"/> --> <!-- from FCS_CKM.1.1/KEK -->
+			<depends on-sel="sel-fcs-sto-ext-1e2-sk"/>  <!-- from FCS_STO_EXT.1 -->
 			<depends><optional/></depends>		<!-- May be manually added -->
 			<f-element id="fcs-ckm-1e1-sk">
 				<title>					
@@ -1584,8 +1586,8 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					This SFR must be included in the ST if "<h:i>Symmetric KEKs generated in accordance with FCS_CKM.1/SK</h:i>"
-					is selected in FCS_CKM.1/KEK.<h:p/>
+	<!--				This SFR must be included in the ST if "<h:i>Symmetric KEKs generated in accordance with FCS_CKM.1/SK</h:i>"
+					is selected in FCS_CKM.1/KEK.<h:p/>  -->
 				</note>
 				<aactivity>
 					<TSS>
@@ -1619,7 +1621,7 @@
 		
 		<!-- FCS_CKM.1/KEK Cryptographic Key Generation (Key Encryption Key)  -->
 		<!-- Removed selection of FCS_CKM_EXT.5 since you can get there through FCS_CKM.1/SK -->
-		<f-component id="sfr-fcs-ckm-1-kek" cc-id="fcs_ckm.1" iteration="KEK" name="Cryptographic Key Generation (Key Encryption Key)" status="optional">
+<!--		<f-component id="sfr-fcs-ckm-1-kek" cc-id="fcs_ckm.1" iteration="KEK" name="Cryptographic Key Generation (Key Encryption Key)" status="optional">
 			<f-element id="fcs-ckm-1e1-kek">
 				<title>The TSF shall generate <h:b>key encryption keys</h:b> in accordance with a specified
 					cryptographic key generation algorithm 
@@ -1685,7 +1687,7 @@
 			</f-element>
 			<audit-event/>		
 		</f-component>
-
+-->
 		<!-- FCS_CKM.2 Cryptographic Key Establishment -->
 		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment (Refinement)" status="sel-based">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/> 	<!-- FCS_IPSEC_EXT.1 -->
@@ -1776,7 +1778,7 @@
 			<depends on-incl="sfr-fcs-ckm-ext-5"/>
 			<depends on-incl="sfr-fcs-cop-1-kat"/>
 			<depends on-incl="sfr-fcs-cop-1-pbkdf"/>
-			<depends on-incl="sfr-fcs-cop-1-keyenc"/>
+<!--			<depends on-incl="sfr-fcs-cop-1-keyenc"/>  -->
 			<depends on-incl="sfr-fcs-stg-ext-1"/> 
 			<depends on-incl="sfr-fia-afl-ext-1"/>   <!-- Required for wipe on multiple auth failures -->
 			<f-element id="fcs-ckm-4e1">
@@ -2069,10 +2071,10 @@
 		</f-component>
 
 		<!-- FCS_CKM_EXT.5 Cryptographic Key Derivation -->
-		<f-component id="sfr-fcs-ckm-ext-5" cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="sel-based">
-			<depends on-sel="sel-ckm-kek-drvd"/> <!-- from FCS_CKM.1/KEK -->
+		<f-component id="sfr-fcs-ckm-ext-5" cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="optional">
+<!--			<depends on-sel="sel-ckm-kek-drvd"/> --> <!-- from FCS_CKM.1/KEK -->
 <!--			<depends on-sel="sel-fcs-cop-keyenc-xor"/>  -->
-			<depends><optional/></depends>    	<!-- May be also included optionally -->
+<!--			<depends><optional/></depends>  -->   	<!-- May be also included optionally -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to perform key derivation using a defined method.</comp-lev>
 			<management>No specific management functions are identified.</management>
@@ -2086,7 +2088,7 @@
 							    title="Choices for completion of the assignment operations in FCS_CKM_EXT.5.1">
 							<textcol>Identifier</textcol>
 							<reqtext></reqtext>
-							<assigncol>Key Type</assigncol>
+							<assigncol>Key type</assigncol>
 							<reqtext>from input parameters</reqtext>
 							<assigncol>Input parameters</assigncol>
 							<reqtext>in accordance with a specified key derivation algorithm</reqtext>
@@ -2322,7 +2324,7 @@
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 <!--					This SFR must be included in the ST if "<h:i>Derived KEKs...</h:i>" is selected in FCS_CKM.1/KEK, or if
 					"<h:i>XOR</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/>  -->
-					This SFR must be included in the ST if "<h:i>XOR</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/>
+<!--					This SFR must be included in the ST if "<h:i>XOR</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/> -->
 					For Authorization Factor Submasks, the key size to be used in the HMAC falls into a range between
 					L1 and L2 defined in ISO/IEC 10118 for the appropriate hash function (for example for SHA-256
 					L1 = 512, L2 = 256) where L2 &lt;= k &lt;= L1.<h:p/>
@@ -2344,8 +2346,8 @@
 					expansion technique for deriving keying material from a shared secret generated during a key
 					establishment scheme. The Randomness Extraction step as described in Section 5 of SP 800-56C
 					is followed by Key Expansion using the key derivation functions defined in SP 800-108.<h:p/> -->
-					This requirement must be claimed by the TOE if at least one of FCS_CKM.1/KEK,
-					FCS_CKM.1/SK, or FCS_COP.1/KeyEnc chooses a selection related to key derivation.<h:p/>
+<!--					This requirement must be claimed by the TOE if at least one of FCS_CKM.1/KEK,  
+					FCS_CKM.1/SK or FCS_COP.1/KeyEnc chooses a selection related to key derivation.<h:p/>  -->
 					If at least one of KDF-XOR or KDF-ENC is selected AND password-based key derivation
 					is used to create at least one of the inputs, the selection-based SFR FCS_COP.1/PBKDF must also
 					be claimed.<h:p/>
@@ -2804,7 +2806,7 @@
 
 		<!-- FCS_COP.1/KAT Cryptographic Operation (Key Agreement/Transport) -->
 		<f-component id="sfr-fcs-cop-1-kat" cc-id="fcs_cop.1" iteration="KAT" name="Cryptographic Operation (Key Agreement/Transport)" status="sel-based">
-			<depends on-sel="sel-fcs-cop-keyenc-kts"/>  <!-- implies "sel-fcs-cop-kat-kts" -->
+<!--			<depends on-sel="sel-fcs-cop-keyenc-kts"/>  --> <!-- implies "sel-fcs-cop-kat-kts" -->
 			<depends on-sel="sel-fcs-ckm-2-rsa"/>  		<!-- FCS_CKM.2 -->
 			<depends on-sel="sel-fcs-ckm-2-rsaaes"/> 	<!-- FCS_CKM.2 -->
 			<depends on-sel="sel-fcs-ckm-2-ecc"/>  		<!-- FCS_CKM.2 -->
@@ -2949,7 +2951,7 @@
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
 					functionality.<h:p/> 
-					Specifically, this SFR must be included if "<h:i>KTS-OAEP</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/>
+<!--					Specifically, this SFR must be included if "<h:i>KTS-OAEP</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/> -->
 					The selections in this SFR should be consistent with the algorithms selected in FCS_CKM.2.	
 				</note>
 				<aactivity>
@@ -3129,9 +3131,9 @@
 		
 
 		<!-- FCS_COP.1/KeyEnc Cryptographic Operation (Key Encryption) -->
-		<f-component id="sfr-fcs-cop-1-keyenc" cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" status="sel-based">
-			<depends on-sel="sel-stg1-sw-based"/>  <!-- implies sel-stg2-sw-based -->
-			<depends><optional/></depends>    		<!-- May be also included optionally -->
+<!--		<f-component id="sfr-fcs-cop-1-keyenc" cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" status="sel-based">
+			<depends on-sel="sel-stg1-sw-based"/>  
+			<depends><optional/></depends>    		
 			<f-element id="fcs-cop-1e1-keyenc">
 				<title>
 					The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance
@@ -3143,31 +3145,7 @@
 							<assigncol>Cryptographic key sizes</assigncol>
 							<assigncol>List of standards</assigncol>
 						</tabularize>
-<!--
-						<selectable id="sel-fcs-cop-keyenc-aes">
-						<col><selectables>
-							<selectable>AES-CCM</selectable>
-							<selectable>AES-GCM</selectable>
-							<selectable>AES-CBC</selectable>
-							<selectable>AES-CTR</selectable>
-							<selectable>AES-KWP</selectable>
-							<selectable>AES-KW</selectable>
-							</selectables></col>
-							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
-								<selectable>256</selectable></selectables> bits</col>
-						<col>ISO 18033-3, FIPS PUB 197 [AES]<h:p/>
-							<selectables>
-								<selectable>ISO 19772 cl. 8, NIST SP800-38C [CCM]</selectable>
-								<selectable>ISO 19772 cl. 11, NIST SP800-38D [GCM]</selectable>
-								<selectable>ISO 10116, NIST SP800-38A [CBC]</selectable>
-								<selectable>ISO 10116, NIST SP800-38A [CTR]</selectable>
-								<selectable>ISO/IEC 19772 cl. 7 [key wrap]; NIST SP800-38F sec. 6.3 [KWP]</selectable>
-								<selectable>ISO/IEC 19772 cl. 7 [key wrap]; NIST SP800-38F, sec. 6.2 [KW]</selectable>
-							</selectables>
-						</col></selectable>
--->
+
 						<selectable id="sel-fcs-cop-keyenc-aes-ccm">
 							<col>AES-CCM</col>
 							<col><selectables>
@@ -3298,13 +3276,13 @@
 			</f-element>
 			<audit-event/>
 		</f-component>
-
+-->
 		<!-- FCS_COP.1/PBKDF Cryptographic Operation (Password-Based Key Derivation Functions) -->
 		<f-component id="sfr-fcs-cop-1-pbkdf" cc-id="fcs_cop.1" iteration="PBKDF" 
-			name="Cryptographic Operation (Password-Based Key Derivation Functions)" status="sel-based">
+			name="Cryptographic Operation (Password-Based Key Derivation Functions)" status="optional">
 <!--			<depends on-sel="sel-fcs-ckm-sk-pbk"/> --> <!-- FCS_CKM.1/SK -->  
-			<depends on-sel="sel-fcs-ckm-kek-pbkdf"/>  <!-- FCS_CKM.1/KEK -->  
-			<depends><optional/></depends>   		<!-- May be also included optionally -->
+<!--			<depends on-sel="sel-fcs-ckm-kek-pbkdf"/> --> <!-- FCS_CKM.1/KEK -->  
+<!--			<depends><optional/></depends>  --> 		<!-- May be also included optionally -->  
 			<f-element id="fcs-cop-1e1-pbkdf">
 				<title>The TSF shall perform [<h:i>password-based key derivation functions</h:i>] in accordance
 				with a specified cryptographic algorithm 
@@ -3382,7 +3360,7 @@
 					<selectables>
 						<tabularize id="tab-fcs-cop-siggen-sels" title="Choices for completion of the assignments in 
 							FCS_COP.1.1/SigGen.">
-							<assigncol>Identifier</assigncol>
+							<textcol>Identifier</textcol>
 							<reqtext></reqtext>
 							<assigncol>Cryptographic algorithm</assigncol>
 							<reqtext>and cryptographic key sizes</reqtext>
@@ -3600,7 +3578,7 @@
 					<selectables>
 					<tabularize id="tab-fcs-cop-sigver-sels" title="Choices for completion of the assignments 
 						in FCS_COP.1.1/SigVer.">
-						<assigncol>Identifier</assigncol>
+						<textcol>Identifier</textcol>
 						<reqtext></reqtext>
 						<assigncol>Cryptographic algorithm</assigncol>
 						<reqtext>and cryptographic key sizes</reqtext>
@@ -3918,12 +3896,13 @@
 		<!-- FCS_COP.1/SKC Cryptographic Operation (Symmetric Key Cryptography) -->	
 		<f-component id="sfr-fcs-cop-1-skc" cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="sel-based">
 			<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG_EXT.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
-			<depends on-sel="sel-fcs-cop-keyenc-aes-ccm"/>   
+<!--			<depends on-sel="sel-fcs-cop-keyenc-aes-ccm"/>   
 			<depends on-sel="sel-fcs-cop-keyenc-aes-gcm"/>   
 			<depends on-sel="sel-fcs-cop-keyenc-aes-cbc"/>   
 			<depends on-sel="sel-fcs-cop-keyenc-aes-ctr"/>   
 			<depends on-sel="sel-fcs-cop-keyenc-aes-kwp"/>   
-			<depends on-sel="sel-fcs-cop-keyenc-aes-kw"/>   
+			<depends on-sel="sel-fcs-cop-keyenc-aes-kw"/>    -->
+			<depends on-incl="sfr-fcs-stg-ext-2"/>	
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>
 			<depends on-sel="sel-stg3-aes-ccm"/>  <!-- implies sel-fcs-cop-skc-aes-ccm -->
@@ -4058,10 +4037,10 @@
 					This SFR must be included in the ST if symmetric-key cryptography is a service provided by the TOE 
 					to tenant software, or if the TOE itself uses SKC to support or implement PP-specified security 
 					functionality.<h:p/> 
-					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1, or includes any of the
-					following selections: <h:ul>
+					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STO_EXT.2, or includes
+					any of the following selections: <h:ul>
 						<h:li>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG_EXT.1</h:li>
-						<h:li>"<h:i>AES-*</h:i>" in FCS_COP.1/KeyEnc</h:li>
+<!--						<h:li>"<h:i>AES-*</h:i>" in FCS_COP.1/KeyEnc</h:li> -->
 						<h:li>"<h:i>ECIES</h:i>" in FCS_COP.1/KAT</h:li>
 						<h:li>"<h:i>AES-*</h:i>" in FCS_STG_EXT.3</h:li>
 					</h:ul>
@@ -5636,24 +5615,32 @@
 					This SFR must be claimed if the TOE includes a Dedicated Security Component that provides 
 					storage services, such as a TPM.<h:p/>
 					If the protected storage is implemented in software that is protected as required by
-					FCS_STG_EXT.2, the ST Author is expected to select "<h:i>software-based</h:i>." If "<h:i>software-based</h:i>" is selected,
-					the ST Author is expected to select all "<h:i>software-based key storage</h:i>" in FCS_STG_EXT.2.<h:p/>
-					Support for protected storage for all symmetric keys and persistent secrets will be required in
-					future revisions.<h:p/>
+					FCS_STG_EXT.2, the ST Author is expected to select "<h:i>software-based</h:i>." 
+					If "<h:i>software-based</h:i>" is selected,
+					the ST Author is expected to select all "<h:i>software-based key storage</h:i>" in FCS_STG_EXT.2.
 				</note>
 			</f-element>
 			<f-element id="fcs-stg-ext-1e2">
 				<title>
 					The TSF shall support the capability of 
 					<selectables>
-						<selectable>importing keys/secrets into the TOE</selectable>
-						<selectable>causing the TOE to generate keys/secrets</selectable>
+						<selectable id="sel-fcs-sto-ext-1e2-import">importing keys/secrets into the TOE</selectable>
+						<selectable>causing the TOE to generate 
+							<selectables>
+								<selectable id="sel-fcs-sto-ext-1e2-ak">asymmetric</selectable>
+								<selectable id="sel-fcs-sto-ext-1e2-sk">symmetric</selectable>keys/secrets
+								</selectables></selectable>
 					</selectables> upon request of 
 					<selectables>
 						<selectable>a client application</selectable>
 						<selectable>an administrator</selectable>
 					</selectables>.
 				</title>
+				<note role="application">
+					If "causing the TOE to generate keys/secrets" is selected in FCS_STO_EXT.1.2, then the 
+					ST must include at least one of FCS_CKM.1/AK or FCS_CKM.1/SK depending on the value of the 
+					internal selection.
+				</note>
 			</f-element>
 			<f-element id="fcs-stg-ext-1e3">
 				<title>
@@ -5664,12 +5651,6 @@
 						<selectable>an administrator</selectable>
 					</selectables>.
 				</title>
-	<!--			<note role="application">
-					Not all conformant TOEs will have the ability to import pre-generated keys into the TOE. In these
-					cases, the TOE’s ability to receive commands to perform key generation is considered to be its
-					implementation of the Parse service. A subject that caused a key to be generated is considered to
-					be the ‘owner’ of that key in the same manner as they would be if they had imported it directly.
-				</note>  -->
 				<aactivity>
 				<TSS>
 					The evaluator shall review the TSS to determine that the TOE implements the
@@ -5738,7 +5719,13 @@
 						<selectable>long-term trusted channel key material</selectable>
 						<selectable id="sel-stg2-sw-based">all software-based key storage</selectable>
 						<selectable>no other keys</selectable>
-					</selectables></h:i>] using key encryption methods as specified in FCS_COP.1/KeyEnc.
+					</selectables></h:i>] using 
+					<selectables>
+						<selectable>AES-CCM</selectable>
+						<selectable>AES-GCM</selectable>
+						<selectable>AES-KW</selectable>
+						<selectable>AES-KWP</selectable>
+					</selectables> as specified in FCS_COP.1/SK.
 				</title>
 				<note role="application">
 					This SFR is included in the ST if "software-based" is selected in FCS_STG_EXT.1.
@@ -5844,6 +5831,76 @@
 			<fam-behavior>This family defines requirements for Trusted Execution Enviroments implemented by the TOE
 				for the use of tenant software.</fam-behavior>
 		</ext-comp-def>
+	
+	
+	
+		<!-- FDP_ITC_EXT.1 Key Import --> 
+		<f-component id="sfr-fdp-itc-ext-1" cc-id="fdp_itc_ext.1" name="Key Import" status="sel-based">
+			<depends on-sel="sel-fcs-sto-ext-1e2-import"/>
+			<consistency-rationale/>
+			<comp-lev>requires the TSF to implement a means for importing keying material into the TOE.	</comp-lev>
+			<management>No specific management functions are identified.</management>
+			<audit>There are no auditable events foreseen.</audit>
+			<dependencies>No dependencies.</dependencies>
+			<f-element id="fdp-itc-exxt-1e1">
+				<title>
+					The TSF shall support importing keys/key material using 
+					<selectables>
+						<selectable id="sel-fdp-itc-ext-1e1-phys">physically protected channels as specified in FTP_ITP_EXT.1</selectable>
+						<selectable id="sel-fdp-itc-ext-1e1-buf">encrypted data buffers as specified in FTP_ITE_EXT.1</selectable>
+						<selectable id="sel-fdp-itc-ext-1e1-chan">cryptographically protected data channels as specified in FTP_ITC_EXT.1</selectable>
+					</selectables>
+				</title>
+			</f-element>
+			<f-element id="fdp-itc-ext-1e2">
+				<title>
+					The TSF shall verify the integrity of imported keys/key material using 
+						<selectables>
+							<selectable id="sel-fdp-itc-ext-1e2-hash">cryptographic hash as specified in FCS_COP.1/Hash</selectable>
+							<selectable id="sel-fdp-itc-ext-1e2-mac">keyed hash as specified in FCS_COP.1/KeyedHash</selectable>
+							<selectable id="sel-fdp-itc-ext-1e2-sk">integrity-providing encryption algorithm as specified in FCS_COP.1/AK
+								<selectables>
+									<selectable>AES-CCM</selectable>
+									<selectable>AES-GCM</selectable>
+									<selectable>AES-KW</selectable>
+									<selectable>AES-KWP</selectable>
+								</selectables></selectable>
+							<selectable id="sel-fdp-itc-ext-1e2-sig">digital signature as specified in FCS_COP.1/SigVer</selectable>
+							<selectable>integrity verification supported by FDP_ITC_EXT.1</selectable>
+						</selectables>.
+				</title>
+				<note role="application">
+					This SFR is included in the ST when "<h:i>importing keys/secrets into the TOE</h:i>"
+					is selected in FCS_STG_EXT.1.<h:p/>
+					The way the TSF checks the integrity of the keys depends on the method of importation. For
+					example, the encrypted data channel may provide data integrity as part of its service.<h:p/>
+					When a TSF parses an SDE, it should generate security attributes and create an SDO by binding
+					the security attributes to the SDE.
+					If "<h:i>physically protected channels as specified in FTP_ITC_EXT.1</h:i>" is selected, the selection-based
+					SFR FTP_ITP_EXT.1 must be claimed.<h:p/>
+					If "<h:i>encrypted data buffers as specified in FTP_ITE_EXT.1</h:i>" is selected, the selection-based SFR
+					FTP_ITE_EXT.1 must be claimed.<h:p/>
+					If "<h:i>cryptographically protected data channels as specified in FTP_ITC_EXT.1</h:i>" is selected, the
+					selection-based SFR FTP_ITC_EXT.1 must be claimed.<h:p/>
+					If "<h:i>integrity-providing encryption algorithm as specified in FCS_COP.1/AK</h:i>" is selected, the 
+					selection-based SFR FCS_COP.1/AK must be claimed.<h:p/>
+					If "<h:i>digital signature as specified in FCS_COP.1/SigVer</h:i>" is selected, the
+					selection-based SFR FCS_COP.1/SigVer must be claimed.<h:p/>
+					If "<h:i>cryptographic hash as specified in FCS_COP.1/Hash</h:i>" is selected, the selection-based 
+					SFR FCS_COP.1/Hash must be claimed.<h:p/>
+					If "<h:i>keyed hash as specified in FCS_COP.1/KeyedHash</h:i>" is selected, the selection-based
+					SFR FCS_COP.1/KeyedHash must be claimed.<h:p/>
+				</note>
+				<aactivity>TODO: Grab from DSC
+				</aactivity>
+					
+			</f-element>
+			<audit-event/>
+		</f-component>
+
+			
+	
+	
 	
 		<!-- FDP_TEE_EXT.1 Trusted Execution Environment for Tenant Software -->
 		<f-component id="sfr-fdp-tee-ext-1" cc-id="fdp_tee_ext.1" name="Trusted Execution Environment for Tenant Software" status="optional">
