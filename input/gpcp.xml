@@ -893,6 +893,8 @@
 				<addressed-by>FIA_X509_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying how X.509 certificate validation is performed.</rationale>
 				<addressed-by>FIA_X509_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by specifying how X.509 certificate authentication is performed.</rationale>
 				<addressed-by>FTP_ITC_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying allowable trusted channel protocols.</rationale>
+				<addressed-by>FTP_ITE_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying requirments for moving data through untrusted channels.</rationale>
+				<addressed-by>FTP_ITP_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by allowing physically protected communications channels.</rationale>
 				<addressed-by>FTP_TRP.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying allowable uses for trusted channels.</rationale>
 			</SO>
 			<SO name="O.CONFIGURATION_INTEGRITY">
@@ -1693,6 +1695,7 @@
 		<!-- FCS_CKM.2 Cryptographic Key Establishment -->
 		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment (Refinement)" status="sel-based">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/> 	<!-- FCS_IPSEC_EXT.1 -->
+			<depends on-sel="sel-ftp-ite-ext-1-est"/>   <!-- FTP_ITE_EXT.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-ckm-2e1">
 				<title><h:b>Refinement:</h:b> The TSF shall <h:b>establish</h:b> cryptographic keys in accordance with a specified
@@ -5903,13 +5906,13 @@
 					<TSS>
 						The evaluator shall confirm the TSS contains descriptions of the supported methods
 						the TSF uses to import keys amd key material into the TOE. For each import method selected, 
-						the TSS shall describe integrity verification schemes employed.
+						the TSS shall describe integrity verification schemes employed.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no AGD evaluation activities for this component.
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.
+						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
 						For each supported import method selected in FDP_ITC_EXT.1.1 and for each
@@ -8285,6 +8288,16 @@
 			<fam-behavior>This family defines requirements for protection of
 				data in transit between the TOE and its operational environment.</fam-behavior>
 		</ext-comp-def>
+		
+	    <ext-comp-def title="Encrypted Data Communications" fam-id="FTP_ITE_EXT">
+			<fam-behavior>This family defines requirements for encryption of TSF data that is transmitted 
+				to an external entity over an insecure channel.</fam-behavior>
+		</ext-comp-def>
+		
+	    <ext-comp-def title="Physically Protected Channel," fam-id="FTP_ITP_EXT">
+			<fam-behavior>This family defines requirements for use of physically protected communications
+				mechanisms.</fam-behavior>
+		</ext-comp-def>
 
 		<!-- FTP_ITC_EXT.1 Trusted Channel Communications -->
 	    <f-component id="sfr-ftp-itc-ext-1" cc-id="ftp_itc_ext.1" name="Trusted Channel Communication" status="sel-based">
@@ -8387,9 +8400,68 @@
 		    </audit-event>    
         </f-component>	
 		
+		<!-- FTP_ITE_EXT.1 Encrypted Data Communications -->
+	    <f-component id="sfr-ftp-ite-ext-1" cc-id="ftp_ite_ext.1" name="Encrypted Data Communications" status="sel-based">
+			<depends on-sel="sel-fdp-itc-ext-1e1-buf"/>   <!-- from FDP_ITC_EXT.1 -->
+			<consistency-rationale/>
+			<comp-lev>requires the TSF to encrypt data in the specified manner using key data that is provided
+				to an external entity in the specified manner.</comp-lev>
+			<management>No specific management functions are identified.</management>
+			<audit>There are no auditable events foreseen.</audit>
+			<dependencies>FCS_COP.1 Cryptographic Operation</dependencies>          
+			<f-element id="ftp-ite-ext-1e1">
+				<title>
+					The TSF shall encrypt data for transfer between the TOE and 
+					<assignable>list of entities external to the TOE</assignable>
+					using a cryptographic algorithm and key size as specified in
+					FCS_COP.1/SKC, and using 
+					<selectables linebreak="yes">
+						<selectable>Pre-shared keys</selectable>
+						<selectable id="sel-ftp-ite-ext-1-est">Keys established according to FCS_CKM.2</selectable>
+						<selectable id="sel-ftp-ite-ext-1-itp">Keys exchanged using a physically protected communication 
+							mechanism conformant with FTP_ITP_EXT.1</selectable>
+					</selectables>.
+				</title>
+				<note role="application">
+					This SFR must be claimed if "<h:i>encrypted data buffers as specified in FTP_ITE_EXT.1</h:i>" 
+					is selected in FDP_ITC_EXT.1.<h:p/>
+					This requirement applies to encrypted data communications between the TOE and external entities
+					that do not use a physically protected mechanism conforming to FTP_ITP_EXT.1, or a
+					cryptographically protected data channel as conforming to FTP_ITC_EXT.1. For example, if data
+					is transferred through encrypted buffers (or blobs) then this requirement applies. This
+					requirement would apply, for example, for communications implemented through a shared data
+					buffer.
+				</note>
+				<aactivity>
+					<TSS>
+						The evaluator shall review the TSS to determine that it lists all encryption
+						mechanisms the TOE uses for protected external communications, along with the
+						types of communications protected using each mechanism.<h:p/>
+					</TSS>
+					<Guidance>
+						There are no AGD evaluation activities for this component.<h:p/>
+					</Guidance>
+					<KMD>
+						There are no KMD evaluation activities for this component.<h:p/>
+					</KMD>						
+					<Tests>
+						The evaluator shall configure the TOE to communicate with each external entity
+						identified in the TSS. The evaluator shall initiate a transaction that will result in
+						data being transferred to the TOE through the mechanism and other data returned
+						to the initiating entity through the mechanism. The evaluator must verify that the
+						data returned to the entity was encrypted using the documented mechanism when
+						received.
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+					
+					
 		<!-- FTP_ITP_EXT.1 Physically Protected Channel -->
 	    <f-component id="sfr-ftp-itp-ext-1" cc-id="ftp_itp_ext.1" name="Physically Protected Channel" status="sel-based">
 			<depends on-sel="sel-fdp-itc-ext-1e1-phys"/>
+			<depends on-sel="sel-ftp-ite-ext-1-itp"/>   <!-- FTP_ITE_EXT.1 -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to use a physically protected
 				channel for transmission of data to an external entity.</comp-lev>
@@ -8409,13 +8481,13 @@
 					<TSS>
 						The evaluator shall review the TSS to determine that it lists all mechanisms the TOE
 						uses for physically protected external communications, along with the types of
-						communications protected using each mechanism.
+						communications protected using each mechanism.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no AGD evaluation activities for this component.
+						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.
+						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
 						There are no test activities for this component.
