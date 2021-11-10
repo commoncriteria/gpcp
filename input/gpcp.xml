@@ -861,6 +861,7 @@
 				<addressed-by>FCS_CKM_EXT.4 (sel-based)</addressed-by><rationale>Supports the objective by specifying the timing for credential and key destruction.</rationale>
 				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by specifying the types of material that must be encrypted for storage.</rationale>
 				<addressed-by>FCS_STG_EXT.3 (sel-based)</addressed-by><rationale>Supports the objective by specifying the encryption requirements for credential storage.</rationale>
+				<addressed-by>FDP_ITC_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the requirements for import of keys and credentials.</rationale>
 			</SO>
 			<SO name="O.TENANT_SECURITY">
 				<description>The TOE should provide capabilities and security services to tenant software 
@@ -876,6 +877,7 @@
 				<addressed-by>FDP_TEE_EXT.1 (optional)</addressed-by><rationale>Supports the objective by specifying the requirements for a trusted execution environment.</rationale>
 				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by specifying the types of material that must be encrypted for storage.</rationale>
 				<addressed-by>FCS_STG_EXT.3 (sel-based)</addressed-by><rationale>Supports the objective by specifying the encryption requirements for credential storage.</rationale>		  
+				<addressed-by>FDP_ITC_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the requirements for import of keys and credentials.</rationale>
 			</SO>
 			<SO name="O.TRUSTED_CHANNELS">
 				<description>The TOE must protect certain network communications through guaranteed 
@@ -2595,6 +2597,7 @@
 			<depends on-incl="sfr-fcs-cop-1-keyedhash"/>   <!-- FCS_COP.1/KeyedHash -->
 			<depends on-incl="sfr-fcs-cop-1-sigver"/>    <!-- FCS_COP.1/SigVer -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>    <!-- FCS_COP.1/SigGen -->
+			<depends on-sel="sel-fdp-itc-ext-1e2-hash"/>  <!-- from FDP_ITC_EXT.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
             <f-element id="fcs-cop-1e1-hash">
                 <title>
@@ -2745,7 +2748,7 @@
 		<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="sel-based">
 			<depends on-sel="sel-rbg-hmac"/>  		<!-- FCS_RBG_EXT.1.1 -->
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>	<!-- FCS_COP.1.1/KAT -->	
-		
+			<depends on-sel="sel-fdp-itc-ext-1e2-mac"/>  <!-- from FDP_ITC_EXT.1 -->		
 			<depends on-sel="sel-stg3-hmac"/>		<!-- FCS_STG_EXT.3.1 -->
 			<depends on-sel="sel-fcs-ckm-ext-5-kdf-mac"/>   <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
@@ -3570,6 +3573,7 @@
 			<depends on-sel="sel-rot2-digsig"/>  <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-tud1-auth-update"/>  <!-- FPT_TUD_EXT.1 (covers TUD2, which requires SigVer) -->
 			<depends on-sel="sel-tud1-unauth-update"/> <!-- FPT_TUD_EXT.1 -->
+			<depends on-sel="sel-fdp-itc-ext-1e2-sig"/>  <!-- from FDP_ITC_EXT.1 -->			
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-sigver">
 				<title> 
@@ -3909,6 +3913,7 @@
 			<depends on-sel="sel-stg3-aes-gcm"/>  <!-- implies sel-fcs-cop-skc-aes-gcm -->
 			<depends on-sel="sel-stg3-aes-kw"/>  <!-- implies sel-fcs-cop-skc-aes-kw -->
 			<depends on-sel="sel-stg3-aes-kwp"/>  <!-- implies sel-fcs-cop-skc-aes-kwp -->
+			<depends on-sel="sel-fdp-itc-ext-1e2-sk"/>  <!-- from FDP_ITC_EXT.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-skc">
 				<title>
@@ -5827,18 +5832,21 @@
 	
 	<section id="fdp" title="Class: User Data Protection (FDP)">
 	
+	    <ext-comp-def title="Key Import" fam-id="FDP_ITC_EXT">
+			<fam-behavior>This family defines requirements for importing cryptographic keys and credentials 
+				into the TOE.</fam-behavior>
+		</ext-comp-def>
 	    <ext-comp-def title="Trusted Execution Environment" fam-id="FDP_TEE_EXT">
 			<fam-behavior>This family defines requirements for Trusted Execution Enviroments implemented by the TOE
 				for the use of tenant software.</fam-behavior>
 		</ext-comp-def>
+
 	
-	
-	
-		<!-- FDP_ITC_EXT.1 Key Import --> 
-		<f-component id="sfr-fdp-itc-ext-1" cc-id="fdp_itc_ext.1" name="Key Import" status="sel-based">
+		<!-- FDP_ITC_EXT.1 Key/Credential Import --> 
+		<f-component id="sfr-fdp-itc-ext-1" cc-id="fdp_itc_ext.1" name="Key/Credential Import" status="sel-based">
 			<depends on-sel="sel-fcs-sto-ext-1e2-import"/>
 			<consistency-rationale/>
-			<comp-lev>requires the TSF to implement a means for importing keying material into the TOE.	</comp-lev>
+			<comp-lev>requires the TSF to implement a means for importing keys and credentials into the TOE.</comp-lev>
 			<management>No specific management functions are identified.</management>
 			<audit>There are no auditable events foreseen.</audit>
 			<dependencies>No dependencies.</dependencies>
@@ -5891,16 +5899,30 @@
 					If "<h:i>keyed hash as specified in FCS_COP.1/KeyedHash</h:i>" is selected, the selection-based
 					SFR FCS_COP.1/KeyedHash must be claimed.<h:p/>
 				</note>
-				<aactivity><no-tests/>
+				<aactivity>
+					<TSS>
+						The evaluator shall confirm the TSS contains descriptions of the supported methods
+						the TSF uses to import keys amd key material into the TOE. For each import method selected, 
+						the TSS shall describe integrity verification schemes employed.
+					</TSS>
+					<Guidance>
+						There are no AGD evaluation activities for this component.
+					</Guidance>
+					<KMD>
+						There are no KMD evaluation activities for this component.
+					</KMD>
+					<Tests>
+						For each supported import method selected in FDP_ITC_EXT.1.1 and for each
+						supported integrity verification method selected in FDP_ITC_EXT.1.2. used by the
+						selected import method, provide one key/credential with valid integrity credentials, 
+						one with invalid integrity credentials (e.g. hash). The operations with invalid integrity
+						credentials must result in error. The operations with valid integrity credentials must
+						accept the keys/credentials.
+					</Tests>
 				</aactivity>
-					
 			</f-element>
 			<audit-event/>
 		</f-component>
-
-			
-	
-	
 	
 		<!-- FDP_TEE_EXT.1 Trusted Execution Environment for Tenant Software -->
 		<f-component id="sfr-fdp-tee-ext-1" cc-id="fdp_tee_ext.1" name="Trusted Execution Environment for Tenant Software" status="optional">
@@ -8268,6 +8290,7 @@
 	    <f-component id="sfr-ftp-itc-ext-1" cc-id="ftp_itc_ext.1" name="Trusted Channel Communication" status="sel-based">
 			<depends on-sel="sel-fau-itc"/>
 			<depends on-sel="sel-mof-remote-admin"/>
+			<depends on-sel="sel-fdp-itc-ext-1e1-chan"/>   <!-- from FDP_ITC_EXT.1 -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to implement one or more cryptographic protocols
 					to secure connectivity between the TSF and various external entities.</comp-lev>
