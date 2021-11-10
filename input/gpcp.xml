@@ -5884,7 +5884,7 @@
 					example, the encrypted data channel may provide data integrity as part of its service.<h:p/>
 					When a TSF parses an SDE, it should generate security attributes and create an SDO by binding
 					the security attributes to the SDE.
-					If "<h:i>physically protected channels as specified in FTP_ITC_EXT.1</h:i>" is selected, the selection-based
+					If "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is selected, the selection-based
 					SFR FTP_ITP_EXT.1 must be claimed.<h:p/>
 					If "<h:i>encrypted data buffers as specified in FTP_ITE_EXT.1</h:i>" is selected, the selection-based SFR
 					FTP_ITE_EXT.1 must be claimed.<h:p/>
@@ -8386,6 +8386,45 @@
                         <audit-event-info>User ID and remote source (IP Address) if feasible.</audit-event-info>
 		    </audit-event>    
         </f-component>	
+		
+		<!-- FTP_ITP_EXT.1 Physically Protected Channel -->
+	    <f-component id="sfr-ftp-itp-ext-1" cc-id="ftp_itp_ext.1" name="Physically Protected Channel" status="sel-based">
+			<depends on-sel="sel-fdp-itc-ext-1e1-phys"/>
+			<consistency-rationale/>
+			<comp-lev>requires the TSF to use a physically protected
+				channel for transmission of data to an external entity.</comp-lev>
+			<management>No specific management functions are identified.</management>
+			<audit>There are no auditable events foreseen.</audit>
+			<dependencies>No dependencies.</dependencies>          
+			<f-element id="ftp-itp-ext-1e1">
+				<title>
+					The TSF shall provide a physically protected communication channel
+					between itself and <assignable>list of other IT entities within the same platform</assignable>.
+				</title>
+				<note role="application">
+					This SFR must be claimed if "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is
+					selected in either FDP_ITC_EXT.1.
+				</note>
+				<aactivity>
+					<TSS>
+						The evaluator shall review the TSS to determine that it lists all mechanisms the TOE
+						uses for physically protected external communications, along with the types of
+						communications protected using each mechanism.
+					</TSS>
+					<Guidance>
+						There are no AGD evaluation activities for this component.
+					</Guidance>
+					<KMD>
+						There are no KMD evaluation activities for this component.
+					</KMD>
+					<Tests>
+						There are no test activities for this component.
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
 		
         <!-- FTP_TRP.1 -->
         <!-- Included in th ST if "remote" is selected in FMT_MOF_EXT.1. -->
