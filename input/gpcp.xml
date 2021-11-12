@@ -2635,13 +2635,13 @@
 					with P-521. The ST Author selects the standard based on the algorithms selected.<h:p/>
 					SHA-1 may be used for the following applications: generating and verifying hash-based message
 					authentication codes (HMACs), key derivation functions (KDFs), and random bit/number
-					generation (In certain cases, SHA-1 may also be used for verifying old digital signatures and time
-					stamps, provided that this is explicitly allowed by the application domain).
+					generation.  In certain cases, SHA-1 may also be used for verifying old digital signatures and time
+					stamps, provided that this is explicitly allowed by the application domain.
                 </note>
                 <aactivity> 
                     <TSS>
                         The evaluator shall check that the association of the hash function with other TSF 
-                        cryptographic functions (for example, the digital signature verification function) is documented 
+                        cryptographic functions (e.g., the digital signature verification function) is documented 
                         in the TSS.<h:p/>
                     </TSS>
                     <Guidance>
@@ -2780,7 +2780,7 @@
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					
 					The HMAC key size falls into a range between L1 and L2 defined in ISO/IEC 10118 for the
-					appropriate hash function (for example for SHA-256 L1 = 512, L2 = 256) where L2 ≤ k ≤ L1.
+					appropriate hash function (e.g., for SHA-256 L1 = 512, L2 = 256) where L2 ≤ k ≤ L1.
 				</note>
 				<aactivity>
 					<TSS>
@@ -4173,30 +4173,30 @@
 						selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the
 						below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple
 						through 1000 iterations of AES-CBC encryption.<h:p/>
-				<h:pre>
-				# Input: PT, IV, Key
-				Key[0] = Key
-				IV[0] = IV
-				PT[0] = PT
-				for i = 0 to 99 {
-					Output Key[i], IV[i], PT[0]
-					for j = 0 to 999 {
-						if (j == 0) {
-							CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
-							PT[j+1] = IV[i]
-						} else {
-							CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
-							PT[j+1] = CT[j-1]
-						}
-					}
-					Output CT[j]
-					If (KeySize == 128) Key[i+1] = Key[i] xor CT[j] 
-					If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
-					If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
-					IV[i+1] = CT[j]
-					PT[0] = CT[j-1]
+		<h:pre>
+		# Input: PT, IV, Key
+		Key[0] = Key
+		IV[0] = IV
+		PT[0] = PT
+		for i = 0 to 99 {
+			Output Key[i], IV[i], PT[0]
+			for j = 0 to 999 {
+				if (j == 0) {
+					CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
+					PT[j+1] = IV[i]
+				} else {
+					CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
+					PT[j+1] = CT[j-1]
 				}
-				</h:pre>	<h:p/>
+			}
+			Output CT[j]
+			If (KeySize == 128) Key[i+1] = Key[i] xor CT[j] 
+			If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
+			If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
+			IV[i+1] = CT[j]
+			PT[0] = CT[j-1]
+		}
+		</h:pre>	<h:p/>
 						The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of
 						the 100 3-tuples for each selected key size. This result shall be compared to the
 						result of running 1000 iterations with the same values using a known good
@@ -4346,23 +4346,23 @@
 						selected key size. This 2-tuple of plaintext and key is provided as input to the below
 						algorithm to generate the remaining 99 2-tuples, and to run each 2-tuple through
 						1000 iterations of AES-CTR encryption.<h:p/>
-				<h:pre>
-				# Input: PT, Key
-				Key[0] = Key
-				PT[0] = PT
-				for i = 0 to 99 {
-					Output Key[i], PT[0]
-					for j = 0 to 999 {
-						CT[j] = AES-CTR-Encrypt(Key[i], PT[j])
-						PT[j+1] = CT[j]
-					}
-					Output CT[j]
-					If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
-					If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
-					If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
-					PT[0] = CT[j]
-				}
-				</h:pre><h:p/>
+		<h:pre>
+		# Input: PT, Key
+		Key[0] = Key
+		PT[0] = PT
+		for i = 0 to 99 {
+			Output Key[i], PT[0]
+			for j = 0 to 999 {
+				CT[j] = AES-CTR-Encrypt(Key[i], PT[j])
+				PT[j+1] = CT[j]
+			}
+			Output CT[j]
+			If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
+			If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
+			If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
+			PT[0] = CT[j]
+		}
+		</h:pre><h:p/>
 						The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of
 						the 100 2-tuples for each selected key size. This result shall be compared to the
 						result of running 1000 iterations with the same values using a known good
@@ -4416,7 +4416,7 @@
 						Decryption test, 20 out of the 100 trials per plaintext length have ciphertext values
 						that fail authentication.<h:p/>
 						Additionally, the evaluator shall perform the following negative tests:<h:p/>
-						<h:b>Test 1: (invalid plaintext length):</h:b><h:p/>
+						<h:b>Test 1: (invalid plaintext length):</h:b>
 						Determine the valid plaintext lengths of the implementation from the TOE
 						specification. Verify that the implementation of KWP-AE in the TOE rejects
 						plaintexts of invalid length by testing plaintext of the following lengths: 1) plaintext
@@ -4445,16 +4445,16 @@
 						<h:li>[513]32.</h:li></h:ul><h:p/>
 						Verify that the implementation of KWP-AD in the TOE outputs FAIL on those
 						inputs.<h:p/>
-						<h:b>Test 5: (invalid padding bits):</h:b><h:p/>
+						<h:b>Test 5: (invalid padding bits):</h:b>
 						If the implementation supports plaintext of length not a multiple of 64-bits, then<h:p/>
-				<h:pre>
-				for each PAD length [1..7]
-					for each byte in PAD set a zero PAD value;
-						replace current byte by a non-zero value and use the resulting plaintext as
-							input to algorithm KWP-AE to generate ciphertexts;
-						verify that the implementation of KWP-AD in the TOE outputs FAIL on
-							this input.
-				</h:pre><h:p/>
+		<h:pre>
+		for each PAD length [1..7]
+			for each byte in PAD set a zero PAD value;
+				replace current byte by a non-zero value and use the resulting plaintext as
+					input to algorithm KWP-AE to generate ciphertexts;
+				verify that the implementation of KWP-AD in the TOE outputs FAIL on
+					this input.
+		</h:pre><h:p/>
 						<h:b>AES-KW:</h:b><h:p/>
 						The tests below are derived from “The Key Wrap Validation System (KWVS),
 						Updated: June 20, 2014” from the National Institute of Standards and Technology.<h:p/>
@@ -4479,20 +4479,20 @@
 						of the 100 trials per plaintext length must have ciphertext values that are not
 						authentic; that is, they fail authentication.<h:p/>
 						Additionally, the evaluator shall perform the following negative tests:<h:p/>
-						<h:b>Test 1 (invalid plaintext length):</h:b><h:p/>
+						<h:b>Test 1 (invalid plaintext length):</h:b>
 						Determine the valid plaintext lengths of the implementation from the TOE
 						specification. Verify that the implementation of KW-AES in the TOE rejects
 						plaintexts of invalid length by testing plaintext of the following lengths: 1) plaintext
 						length greater than 64 semi-blocks, 2) plaintext bit-length not divisible by 64, 3)
 						plaintext with length 0, and 4) plaintext with one semi-block.<h:p/>
-						<h:b>Test 2 (invalid ciphertext length):</h:b><h:p/>
+						<h:b>Test 2 (invalid ciphertext length):</h:b>
 						Determine the valid ciphertext lengths of the implementation from the TOE
 						specification. Verify that the implementation of KW-AD in the TOE rejects
 						ciphertexts of invalid length by testing ciphertext of the following lengths: 1)
 						ciphertext with length greater than 65 semi-blocks, 2) ciphertext with bit-length not
 						divisible by 64, 3) ciphertext with length 0, 4) ciphertext with length of one semiblock, 
 						and 5) ciphertext with length of two semi-blocks.<h:p/>
-						<h:b>Test 3 (invalid ICV1):</h:b><h:p/>
+						<h:b>Test 3 (invalid ICV1):</h:b>
 						Test that the implementation detects invalid ICV1 values by encrypting any
 						plaintext value eight times using a different value for ICV1 each time as follows:
 						Start with a base ICV1 of 0xA6A6A6A6A6A6A6A6. For each of the eight tests
@@ -4711,8 +4711,7 @@
                         The evaluator shall examine the TSS and determine that it describes how the IPsec capabilities
 						are implemented.<h:p/>
 						The evaluator shall ensure that the TSS describes at a high level the architectural relationship between
-						the IPsec implementation and the rest of the TOE (e.g. is the IPsec implementation an integrated part 
-						of the VS or is it a standalone executable that is bundled into the VS).<h:p/> 		    
+						the IPsec implementation and the rest of the TOE.<h:p/> 		    
 						The evaluator shall ensure that the TSS describes how the SPD is implemented and the rules for processing
 						both inbound and outbound packets in terms of the IPsec policy. The TSS describes the rules that are
 						available and the resulting actions available after matching a rule. The TSS describes how the available
@@ -4726,7 +4725,7 @@
 						inbound and outbound packets) is sufficient to determine the action that will be applied, especially in the
 						case where two different rules may apply. This description shall cover both the initial packets (that is, no
 						SA is established on the interface or for that particular packet) as well as packets that are part of an
-						established SA. <h:br/>
+						established SA.
                     </TSS>
                     <Guidance>
                         The evaluator shall examine the AGD to verify it instructs the Administrator how 
@@ -4736,10 +4735,10 @@
                         that the description in the AGD is consistent with the description in the 
                         TSS, and that the level of detail in the AGD is sufficient to
                         allow the administrator to set up the SPD in an unambiguous fashion. This includes a discussion 
-                        of how ordering of rules impacts the processing of an IP packet.<h:br/>
+                        of how ordering of rules impacts the processing of an IP packet.
                     </Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this element.<h:p/>
+						There are no KMD evaluation activities for this element.
 					</KMD>
                     <Tests>
                         The evaluator uses the operational guidance to configure the TOE to carry out the following tests:<h:p/>
@@ -4785,7 +4784,7 @@
 				</note>
                 <aactivity level="element">
                     <TSS>
-                        The evaluator checks the TSS to ensure it states that am IPsec VPN can be 
+                        The evaluator checks the TSS to ensure it states that an IPsec VPN can be 
                         established to operate in tunnel mode or transport mode (as selected).<h:br/>
                     </TSS>
                     <Guidance>
@@ -4907,9 +4906,9 @@
                             <selectables>
                                 <selectable>no other RFCs for hash functions</selectable>
                                 <selectable>RFC 4868 for hash functions</selectable>
-                            </selectables>.
+                            </selectables>
 						</selectable>
-                    </selectables>
+                    </selectables>.
                 </title>
                 <note role="application">If the TOE implements SHA-2 hash algorithms for IKEv1 or IKEv2, the ST Author shall
 					select RFC 4868. </note>
@@ -5023,7 +5022,7 @@
 							one option that is 24 hours or less for Phase 1 SAs and 8 hours or
 							less for Phase 2 SAs.
 						</selectable>
-					</selectables>
+					</selectables>.
                 </title>
                 <note role="application">
 					The ST Author is afforded a selection based on the version of IKE in their
@@ -5050,7 +5049,7 @@
 				</note>
                 <aactivity level="element">
 					<TSS>
-						There are no TSS EAs for this requirement.<h:br/>
+						There are no TSS EAs for this element.<h:br/>
 					</TSS>
                     <Guidance>
                         The evaluator shall check the AGD to ensure it provides instructions on how the TOE
@@ -5155,13 +5154,13 @@
 						length of "x" and the nonces meet the stipulations in the requirement.<h:br/>
                     </TSS>
 					<Guidance>
-						There are no AGD EAs for this requirement.<h:br/>
+						There are no AGD EAs for this element.<h:br/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this element.<h:p/>
 					</KMD>
 					<Tests>
-						There are no test EAs for this requirement.
+						There are no test EAs for this element.
 					</Tests>
                 </aactivity>
             </f-element>
@@ -5189,13 +5188,10 @@
 				</title>
                 <note role="application">
 					At least one public-key-based Peer Authentication method is required in order to
-					conform to this PP-Module; one or more of the public key schemes is chosen by
+					conform to this PP-Module. One or more of the public key schemes is chosen by
 					the ST Author to reflect what is implemented. The ST Author also ensures that
 					appropriate FCS requirements reflecting the algorithms used (and key
-					generation capabilities, if provided) are listed to support those methods. Note
-					that the TSS will elaborate on the way in which these algorithms are to be used 
-					(for example, 2409 specifies three authentication methods using public keys;
-					each one supported will be described in the TSS).<h:p/>
+					generation capabilities, if provided) are listed to support those methods.<h:p/>
 					If “<h:i>pre-shared keys</h:i>” is selected, the selection-based requirement FIA_PSK_EXT.1
 					must be claimed.
 				</note>
@@ -5288,7 +5284,7 @@
                 </aactivity>
             </f-element>
             <f-element id="fcs-ipsec-ext-1e12">
-                <title>The TSF shall not establish an SA if the [
+                <title>The TSF shall not establish an SA if the
 					<selectables>
 						<selectable>IP address</selectable>
 						<selectable>Fully Qualified Domain Name (FQDN)</selectable>
@@ -5298,7 +5294,7 @@
 					<selectables>
 						<selectable>no other reference identifier type</selectable>
 						<selectable><assignable>other supported reference identifier types</assignable></selectable>
-					</selectables>] contained in a certificate does not match the expected value(s) for the
+					</selectables> contained in a certificate does not match the expected value(s) for the
 					entity attempting to establish a connection.
 				</title>
                 <note role="application">
@@ -5380,7 +5376,7 @@
 						algorithm is less than or equal to that of the IKE SA this is protecting the negotiation.<h:br/>
                     </TSS>
 					<Guidance>
-						There are no AGD EAs for this requirement.<h:br/>
+						There are no AGD EAs for this element.<h:br/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this element.<h:p/>
@@ -5488,8 +5484,8 @@
 					these in turn depends on underlying cryptographic primitives (hash functions/ciphers). This PP
 					allows SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512 for Hash_DRBG or HMAC_DRBG
 					and only AES-based implementations for CTR_DRBG. <h:p/>
-					This requirement must be included in the ST if the TOE generates keys, signatures, or Salts for its
-					own use or for tenant software (FCS_CKM.1/AK, FCS_CKM.1/SK, FCS_COP.1/SigGen, FCS_SKT_EXT.1) or if it provides 
+					This requirement must be included in the ST if the TOE generates keys, signatures, or salts for its
+					own use or for tenant software (FCS_CKM.1/AK, FCS_CKM.1/SK, FCS_COP.1/SigGen, FCS_SLT_EXT.1) or if it provides 
 					RNG services for tenant software (FCS_RBG_EXT.1).
 				</note>
 				<aactivity>
