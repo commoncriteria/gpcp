@@ -4173,30 +4173,30 @@
 						selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the
 						below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple
 						through 1000 iterations of AES-CBC encryption.<h:p/>
-					<h:pre>
-					# Input: PT, IV, Key
-					Key[0] = Key
-					IV[0] = IV
-					PT[0] = PT
-					for i = 0 to 99 {
-						Output Key[i], IV[i], PT[0]
-						for j = 0 to 999 {
-							if (j == 0) {
-								CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
-								PT[j+1] = IV[i]
-							} else {
-								CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
-								PT[j+1] = CT[j-1]
-							}
+				<h:pre>
+				# Input: PT, IV, Key
+				Key[0] = Key
+				IV[0] = IV
+				PT[0] = PT
+				for i = 0 to 99 {
+					Output Key[i], IV[i], PT[0]
+					for j = 0 to 999 {
+						if (j == 0) {
+							CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
+							PT[j+1] = IV[i]
+						} else {
+							CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
+							PT[j+1] = CT[j-1]
 						}
-						Output CT[j]
-						If (KeySize == 128) Key[i+1] = Key[i] xor CT[j] 
-						If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
-						If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
-						IV[i+1] = CT[j]
-						PT[0] = CT[j-1]
 					}
-					</h:pre><h:p/>
+					Output CT[j]
+					If (KeySize == 128) Key[i+1] = Key[i] xor CT[j] 
+					If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
+					If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
+					IV[i+1] = CT[j]
+					PT[0] = CT[j-1]
+				}
+				</h:pre>	<h:p/>
 						The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of
 						the 100 3-tuples for each selected key size. This result shall be compared to the
 						result of running 1000 iterations with the same values using a known good
@@ -4347,21 +4347,21 @@
 						algorithm to generate the remaining 99 2-tuples, and to run each 2-tuple through
 						1000 iterations of AES-CTR encryption.<h:p/>
 				<h:pre>
-					# Input: PT, Key
-					Key[0] = Key
-					PT[0] = PT
-					for i = 0 to 99 {
-						Output Key[i], PT[0]
-						for j = 0 to 999 {
-							CT[j] = AES-CTR-Encrypt(Key[i], PT[j])
-							PT[j+1] = CT[j]
-						}
-						Output CT[j]
-						If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
-						If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
-						If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
-						PT[0] = CT[j]
+				# Input: PT, Key
+				Key[0] = Key
+				PT[0] = PT
+				for i = 0 to 99 {
+					Output Key[i], PT[0]
+					for j = 0 to 999 {
+						CT[j] = AES-CTR-Encrypt(Key[i], PT[j])
+						PT[j+1] = CT[j]
 					}
+					Output CT[j]
+					If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
+					If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
+					If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
+					PT[0] = CT[j]
+				}
 				</h:pre><h:p/>
 						The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of
 						the 100 2-tuples for each selected key size. This result shall be compared to the
@@ -6943,113 +6943,88 @@
 			<audit>No auditable events are forseen.</audit>
 			<dependencies>FMT_MOF_EXT: Management of Security Functions Behavior</dependencies>
 			<f-element id="fmt-smf-est-1e1">
-				<title>The TSF shall be capable of performing the following management functions: <h:p/>
+				<title>The TSF shall support Administrators performing the following management functions: <h:p/>
 					<h:b><ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b><h:p/> 
-						Status Markers:<h:br/> M - Mandatory<h:br/> O - Optional/Objective<h:br/>
-						<!-- NOTE: management-function uses ctr variables crt-type=functions in the MOOO table, so that 
-							they do not have to be renumbered when one is added or removed. However app notes and AAs need 
-							to be in the same order as the functions. The list of IDs for each function is at the end of the xml.-->
-					<h:div class="table-key" style="border-style: solid; padding: 5px;">
-						M = Mandatory (TOE must provide that function to that role)<h:br/>
-						O = Optional (TOE may or may not provide that function to that role)<h:br/>
-						S = Selection-Based (TOE must provide that function to that role if the TOE claims a particular selection-based SFR)<h:br/>
-					</h:div>
                     <h:table>
                         <h:tr>
 							<h:th>Number</h:th> 
                             <h:th>Function</h:th> 
-                            <h:th>Admin</h:th> 
                             <h:th>Notes</h:th> 
                         </h:tr>
 		    
                         <h:tr>
                             <h:td>1</h:td>
                             <h:td>Ability to configure and manage the audit functionality and audit data</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FAU_GEN.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>2</h:td>
                             <h:td>Ability to configure name/address of audit/logging server to which to send audit/logging records</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FAU_STG_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>3</h:td>
                             <h:td>Ability to review audit records.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FAU_SAR.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>4</h:td>
                             <h:td>Ability to configure the cryptographic functionality.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FTP_ITC_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>5</h:td>
                             <h:td>Ability to initiate a trusted channel for remote administration.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FTP_TRP.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>6</h:td>
                             <h:td>Ability to set parameters for allowable number of authentication failures.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FIA_AFL_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>7</h:td>
                             <h:td>Ability to configure password length and complexity.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FIA_PMG_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>8</h:td>
                             <h:td>Ability to configure authentication throttling policy.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FIA_TRT_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>9</h:td>
                             <h:td>Ability to manage authentication methods and change default authorization factors</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FIA_PMG_EXT.1</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>10</h:td>
                             <h:td>Ability to configure of certificate revocation checking methods.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FIA_X509_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>11</h:td>
                             <h:td>Ability to configure TSF behavior when certificate revocation status cannot be determined.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FIA_X509_EXT.2.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>12</h:td>
                             <h:td>Ability to configure action to take on integrity failure.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FPT_ROT_EXT.2, FPT_ROT_EXT.3, and FPT_RVR_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>13</h:td>
                             <h:td>Ability to initiate the update process.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FPT_TUD_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>14</h:td>
                             <h:td>Ability to action to take on update failure.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FPT_TUD_EXT.2 and FPT_TUD_EXT.3.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>15</h:td>
                             <h:td>Ability to manage import and export keys/secrets to and from protected storage.</h:td>
-                            <h:td>X</h:td>
                             <h:td>See FCS_STG_EXT.1.</h:td>
                         </h:tr>
                     </h:table><h:br/>]
@@ -7061,11 +7036,7 @@
 					travel on a network. <h:p/>
 					The first column lists the management function number. The second column lists the management functions
 					identified in the PP. <h:p/>
-					In the following columns: <h:ul>
-						<h:li>‘M’ means Mandatory</h:li>
-						<h:li>‘O’ means Optional/Objective</h:li>
-						<h:li>‘S’ means Selection-based</h:li>
-					</h:ul>
+					The Administrator role is the only role for which Management these management functions are defined.
 				</note>
 				<aactivity>
 					<TSS>
@@ -7078,7 +7049,7 @@
 					</TSS>
 					<Guidance>
                        	The evaluator shall examine the AGD to ensure that it
-						describes how the Administrator and User are able to perform
+						describes how the Administrator is able to perform
 						each management function that the ST claims the TOE supports.<h:p/>
                         The evaluator shall verify for each claimed management function that 
 						the guidance is sufficiently detailed to allow the 
