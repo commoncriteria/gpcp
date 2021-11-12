@@ -1007,7 +1007,7 @@
 								for Selection-based requirements</selectable>
 							<selectable>Additional information for the <xref to="pkg-tls"/> listed in <xref to="atref-pkgs"/></selectable>
 							<selectable>Additional information defined in the audit table for the <xref to="pkg-ssh"/></selectable>
-							<selectable>no additional auditable events</selectable>
+							<selectable exclusive="yes">no additional auditable events</selectable>
 						</selectables>.</h:li>
 					</h:ol>
 				</title>
@@ -1026,7 +1026,7 @@
                             <selectable>Additional information defined in <xref g="t-audit-sel-based"/> for Selection-Based SFRs</selectable>
 							<selectable>Additional information for the <xref to="pkg-tls"/> listed in <xref to="atref-pkgs"/></selectable>
 							<selectable>Additional information defined in the audit table for the <xref to="pkg-ssh"/></selectable>
-                            <selectable>no other information</selectable>
+                            <selectable exclusive="yes">no other information</selectable>
 						</selectables>.</refinement></h:li>
                     </h:ol>
                 </title>		
@@ -4855,7 +4855,7 @@
                     <selectables>
                         <selectable>AES-CBC-128 (specified in RFC 3602)</selectable>
                         <selectable>AES-CBC-256 (specified in RFC 3602)</selectable>
-                        <selectable>no other algorithms</selectable>
+                        <selectable exclusive="yes">no other algorithms</selectable>
                     </selectables>] together with a Secure Hash Algorithm (SHA)-based HMAC.
                 </title>
                 <aactivity level="element">
@@ -4888,22 +4888,22 @@
                 <title>The TSF shall implement the protocol: <h:p/>
                     <selectables linebreak="yes">
                         <selectable>IKEv1, using Main Mode for Phase 1 exchanges, as defined in RFC 2407, RFC 2408, RFC 2409, RFC 4109, 
-							<selectables>
+							<selectables onlyone="yes">
                             	<selectable>no other RFCs for extended sequence numbers</selectable>
                             	<selectable>RFC 4304 for extended sequence numbers</selectable>
                             </selectables>,
-                            <selectables>
+                            <selectables onlyone="yes">
                                 <selectable>no other RFCs for hash functions</selectable>
                                 <selectable>RFC 4868 for hash functions</selectable>
 							</selectables>, and 
-							<selectables>
+							<selectables onlyone="yes">
 								<selectable>support for XAUTH</selectable>
 								<selectable>no support for XAUTH</selectable>
 							</selectables>
 						</selectable>
                         <selectable>IKEv2 as defined in RFC 7296 (with mandatory support for NAT traversal 
 							as specified in section 2.23), RFC 8784, RFC 8247, and 
-                            <selectables>
+                            <selectables onlyone="yes">
                                 <selectable>no other RFCs for hash functions</selectable>
                                 <selectable>RFC 4868 for hash functions</selectable>
                             </selectables>
@@ -4960,7 +4960,7 @@
                     <selectables>
                         <selectable>AES-GCM-128 as specified in RFC 5282</selectable>
                         <selectable>AES-GCM-256 as specified in RFC 5282</selectable>
-                        <selectable>no other algorithm</selectable>
+                        <selectable exclusive="yes">no other algorithm</selectable>
                     </selectables>.
                 </title>
                 <aactivity level="element">
@@ -5097,7 +5097,7 @@
 						<selectable>24 (2048-bit MODP with 256-bit POS)</selectable>
 						<selectable>15 (3072-bit MODP)</selectable>
 						<selectable>14 (2048-bit MODP)</selectable>
-						<selectable>no other DH groups</selectable>
+						<selectable exclusive="yes">no other DH groups</selectable>
 					</selectables>].
 				</title>
                 <note role="application">
@@ -5181,7 +5181,7 @@
 						<selectable>RSA</selectable>
 						<selectable>ECDSA</selectable>
 					</selectables> that use X.509v3 certificates that conform to RFC 4945 and 
-					<selectables>
+					<selectables onlyone="yes">
 						<selectable>Pre-shared Keys</selectable>
 						<selectable>no other method</selectable>
 					</selectables>.
@@ -5291,7 +5291,7 @@
 						<selectable>user FQDN</selectable>
 						<selectable>Distinguished Name (DN)</selectable>
 					</selectables> and 
-					<selectables>
+					<selectables onlyone="yes">
 						<selectable>no other reference identifier type</selectable>
 						<selectable><assignable>other supported reference identifier types</assignable></selectable>
 					</selectables> contained in a certificate does not match the expected value(s) for the
@@ -5722,7 +5722,7 @@
 					<selectables>
 						<selectable>long-term trusted channel key material</selectable>
 						<selectable id="sel-stg2-sw-based">all software-based key storage</selectable>
-						<selectable>no other keys</selectable>
+						<selectable exclusive="yes">no other keys</selectable>
 					</selectables></h:i>] using 
 					<selectables>
 						<selectable>AES-CCM</selectable>
@@ -5769,7 +5769,7 @@
 					<selectables>
 						<selectable>long-term trusted channel key material</selectable>
 						<selectable>all software-based key storage</selectable>
-						<selectable>no other keys</selectable>
+						<selectable exclusive="yes">no other keys</selectable>
 					</selectables></h:i>] by using 
 					<selectables linebreak="yes">
 						<selectable>Symmetric encryption in 
@@ -6005,15 +6005,17 @@
 					The TSF shall consider password and [<h:i>no other</h:i>] as critical authentication mechanisms.
 				</title>
 				<note role="application">
-					This SFR is included in the ST if FIA_UAU.5 is included in the ST.<h:p/>
+					This SFR is included in the ST if FIA_UAU.5 is included in the ST. FIA_UAU.5 specifies 
+					all mechanisms for authentication of Administrators. This SFR specifies the actions to be taken
+					in the event of multiple autnentication failures.<h:p/>
 <!--					If no additional authentication mechanisms are selected in FIA_UAU.5.1, then "<h:i>no other</h:i>" must 
 					be selected. If an additional authentication mechanism is selected in FIA_UAU.5.1, then it 
 					must only be selected in FIA_AFL_EXT.1.1 if surpassing the authentication failure threshold 
 					for biometric data causes a countermeasure to be triggered regardless of the failure status of
 					the other authentication mechanisms.<h:p/>  -->
 					This requirement applies to both critical and non-critical authentication mechanisms. The difference 
-					between the two is that excessive authentication failures using critical authentication mechanisms 
-					result in the wiping of all protected data (see FIA_AFL_EXT1.5.).
+					between the two is that excessive authentication failures of critical authentication mechanisms 
+					result in the wiping of all protected data (see FIA_AFL_EXT.1.5.).
 					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption
 					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
 					to all available interfaces. For example, a password is a critical authentication mechanism 
@@ -6025,27 +6027,27 @@
 				<title>
 					The TSF shall detect when a configurable positive integer within 
 					<assignable>range of acceptable values for each authentication mechanism</assignable>
-					of <selectables>
+					of <selectables onlyone="yes">
 						<selectable>unique</selectable>
 						<selectable>non-unique</selectable>
 					</selectables> unsuccessful authentication attempts occur related to last successful authentication for
 					each authentication mechanism.
 				</title>
 				<note role="application">
-					The positive integer(s) is configured according to <xref to="t-manfunc"/> in FMT_SMF_EXT.1.1.<h:p/>
-					An unique authentication attempt is defined as any attempt to verify a password 
+					The positive integer is configured according to <xref to="t-manfunc"/> in FMT_SMF_EXT.1.1.<h:p/>
+					An unique authentication attempt is defined as any attempt to verify a authentication attempt
 					in which the input is different from a previous attempt. ‘Unique’ must be selected if
 					the authentication system increments the counter only for unique unsuccessful authentication
 					attempts. For example, if the same incorrect password is attempted twice the authentication 
 					system increments the counter once. "<h:i>Non-unique</h:i>" must be selected if the authentication system 
-					increments the counter for each unsuccessful authentication attempt, regardless of if the
+					increments the counter for each unsuccessful authentication attempt, regardless of whether the
 					input is unique. For example, if the same incorrect password is attempted twice the
 					authentication system increments the counter twice.<h:p/>
-<!--					If the TOE supports multiple authentication mechanisms per FIA_UAU.5.1, this element applies
+					If the TOE supports multiple authentication mechanisms per FIA_UAU.5.1, this element applies
 					to all authentication mechanisms. It is acceptable for each authentication mechanism to
 					utilize an independent counter or for multiple authentication mechanisms to utilize a shared 
 					counter. The interaction between the authentication factors with regard to the authentication
-					counter must be in accordance with FIA_UAU.5.2.<h:p/> -->
+					counter must be in accordance with FIA_UAU.5.2.<h:p/>
 					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption 
 					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
 					to all available interfaces. However, it is acceptable for each Authentication Factor interface
@@ -6069,11 +6071,12 @@
 			<f-element id="fia-afl-ext-1e4">
 				<title>
 					When the defined number of unsuccessful authentication attempts has exceeded the maximum
-					allowed for a given authentication mechanism, all future authentication attempts will be
+					allowed for a given authentication mechanism, all future authentication attempts shall be
 					limited to other available authentication mechanisms, unless the given mechanism is designated
-					as a critical authentication mechanism. See FIA_AFL_EXT.1.5.
+					as a critical authentication mechanism. 
 				</title>
 				<note role="application">
+					See FIA_AFL_EXT.1.5 for exceeding the maximum failure threshold for critical authentication mechanisms.<h:p/>
 					In accordance with FIA_AFL_EXT.1.3, this requirement also applies after the TOE is powered off 
 					and powered back on.
 				</note>
@@ -6081,7 +6084,7 @@
 			<f-element id="fia-afl-ext-1e5">
 				<title>
 					When the defined number of unsuccessful authentication attempts for the last available
-					authentication mechanism or single critical authentication mechanism has been surpassed, the 
+					authentication mechanism or a critical authentication mechanism has been surpassed, the 
 					TSF shall perform a wipe of all protected data.
 				</title>
 				<note role="application">
@@ -6322,7 +6325,7 @@
 						<selectable id="sel-uau5-ssh">SSH certificate-based authentication</selectable>
 						<selectable>biometric authentication</selectable>
 						<selectable>hybrid authentication</selectable>
-						<selectable>no other authentication mechanism</selectable>
+						<selectable exclusive="yes">no other authentication mechanism</selectable>
 					</selectables> to support user authentication.
 				</title>
 				<note role="application">
@@ -7598,7 +7601,7 @@
 								<selectable id="sel-rot3-audit">generating an audit event</selectable>
 								<selectable><assignable>other notification method(s)</assignable></selectable>
 							</selectables>, and</h:li>
-						<h:li><selectables linebreak="yes">
+						<h:li><selectables linebreak="yes" onlyone="yes">
 							<selectable>Stop all execution and shut down</selectable>
 							<selectable>Continue execution without the integrity-compromised component</selectable>
 							<selectable>Continue execution</selectable>
@@ -7869,7 +7872,7 @@
 					<selectables>
 						<selectable>the version number of the platform firmware update is more recent than 
 							the version number of the current installed platform firmware</selectable>
-						<selectable>no other conditions</selectable>
+						<selectable exclusive="yes">no other conditions</selectable>
 					</selectables>.
 				</title>
 				<note role="application">
@@ -7908,10 +7911,10 @@
 							<selectables>
 								<selectable id="sel-tud2-audit">generating an audit event</selectable>
 								<selectable><assignable>notification method</assignable></selectable>
-							</selectables>
+							</selectables>,
 						</h:li>
-					</h:ul>, and
-					<selectables linebreak="yes">
+					</h:ul>and
+					<selectables linebreak="yes" onlyone="yes">
 						<selectable>Continue execution</selectable>
 						<selectable>Halt</selectable>
 						<selectable>Stop all execution and shut down</selectable>
@@ -8072,7 +8075,7 @@
 								<selectable><assignable>notification method</assignable></selectable>
 							</selectables></h:li>
 					</h:ul> and
-					<selectables linebreak="yes">
+					<selectables linebreak="yes" onlyone="yes">
 						<selectable>Halt</selectable>
 						<selectable>Stop all execution and shut down</selectable>
 						<selectable id="sel-tud3-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
@@ -8177,7 +8180,7 @@
 					<selectables>
 						<selectable id="sel-tud4-admin-assert">Administrator</selectable>
 						<selectable>User</selectable>
-					</selectables>shall assert physical presence to the TSF through: 
+					</selectables> shall assert physical presence to the TSF through: 
 					<selectables linebreak="yes">
 						<selectable>login to the TOE from a physically connected console or terminal</selectable>
 						<selectable>physical connection of a jumper or cable</selectable>
@@ -8304,7 +8307,7 @@
 							for Secure Shell</h:i></h:a></selectable>
 					</selectables> 
 					and 
-					<selectables linebreak="yes">
+					<selectables linebreak="yes" onlyone="yes">
 						<selectable id="sel-itc-certauth">X.509 certificate-based authentication of the remote peer</selectable>
 						<selectable>non-certificate-based authentication of the remote peer</selectable>
 						<selectable>no authentication of the remote peer</selectable>
@@ -8314,7 +8317,7 @@
 						<selectable>audit servers (as required by FAU_STG_EXT.1)</selectable>
 						<selectable>remote administrators (as required by FTP_TRP.1.1 if selected in FMT_MOF_EXT.1)</selectable>
 						<selectable><assignable>other capabilities</assignable></selectable>
-						<selectable>no other capabilities</selectable>
+						<selectable exclusive="yes">no other capabilities</selectable>
 					</selectables>
 					that is logically distinct from other communication channels, provides assured 
 					identification of its end points, protects channel data from disclosure, and detects modification
