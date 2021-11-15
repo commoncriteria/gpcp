@@ -55,6 +55,7 @@
 	         <raw-url>https://raw.githubusercontent.com/commoncriteria/ssh/v1.0-fp/input/ssh.xml</raw-url>
 		<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=389&amp;id=389</url>
 		<depends on-sel="sel-itc-ssh"/>
+		<depends on-sel="sel-fia-uau-5-ssh"/>
    </include-pkg>	
 
 	
@@ -6327,7 +6328,7 @@
 					The TSF shall provide password and 
 					<selectables>
 						<selectable id="sel-fia-uau-5-x509">X.509 certificate-based authentication</selectable>
-						<selectable id="sel-fia-uau-5-ssh">SSH certificate-based authentication</selectable>
+						<selectable id="sel-fia-uau-5-ssh">SSH-based authentication</selectable>
 						<selectable>biometric authentication</selectable>
 						<selectable>hybrid authentication</selectable>
 						<selectable exclusive="yes">no other authentication mechanism</selectable>
@@ -6341,10 +6342,15 @@
 					authentication factor. A hybrid authentication 
 					factor is where a user has to submit a combination of PIN/password and biometric sample where 
 					both have to pass and if either fails the user is not made aware of which factor failed.<h:p/>
+					The Password Authentication Factor is configured according to FIA_PMG_EXT.1.
 					If "hybrid" is selected, a biometric modality does not need to be selected, but should be 
 					selected if the biometric authentication can be used independent of the hybrid authentication, 
 					i.e. without having to enter a PIN/password.<h:p/>
-					The Password Authentication Factor is configured according to FIA_PMG_EXT.1.
+					If "<h:i>X.509 certificate-based authentication</h:i>" is selected, then the ST must include 
+					FIA_X509_EXT.1 and FIA_X509_EXT.2.<h:p/>
+					The ST Author should select "<h:i>SSH-based authentication</h:i>" if the TOE supports 
+					SSH-based authentication, whether public key-, password-, or certificate-based. In this case,
+					the ST should include the <xref to="pkg-ssh"/>.					
 				</note>
 			</f-element>
 			<f-element id="fia-uau-5e2">
@@ -6390,7 +6396,7 @@
 							</test>
 							<test>
 								For each authentication mechanism rule, the evaluator shall ensure that the 
-								authentication mechanism(s) behave accordingly.
+								authentication mechanism behaves accordingly.
 							</test>
 						</testlist>
 					</Tests>
