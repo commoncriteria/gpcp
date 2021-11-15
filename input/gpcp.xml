@@ -6600,7 +6600,7 @@
                     FIA_X509_EXT.1.1 lists the rules for validating certificates. The ST Author shall select whether revocation
 					status is verified using OCSP or CRLs. FIA_X509_EXT.2 requires that certificates are used for IPsec;
 					this use requires that the extendedKeyUsage rules are verified. Certificates may optionally be used 
-					for SSH, TLS, and HTTPs and, if implemented, must be validated to contain the corresponding 
+					for SSH, TLS, and HTTPS and, if implemented, must be validated to contain the corresponding 
 					extendedKeyUsage.<h:p/>
                     OCSP stapling and OCSP multi-stapling support only TLS server certificate validation. If other certificate 
 					types are validated, either OCSP or CRL must be claimed. If OCSP is not supported the EKU provision 
@@ -6667,12 +6667,12 @@
 								and verify that validation of the OCSP response fails. If CRL is selected, the evaluator
 								shall configure the CA to sign a CRL with a certificate that does not have the cRLsign key 
 								usage bit set and verify that validation of the CRL fails.</test>
-                            <test>[conditional] If the TOE supports EC certificates as indicated in FCS_COP.1/SIG, then the evaluator
+                            <test>[conditional] If the TOE supports EC certificates as indicated in FCS_COP.1/SigVer, then the evaluator
 								shall establish a valid, trusted certificate chain consisting of an EC leaf certificate, 
 								an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate
 								designated as a trusted anchor, where the elliptic curve parameters are specified as a
 								named curve. The evaluator shall confirm that the TOE validates the certificate chain..</test>
-							<test>[conditional] If the TOE supports EC certificates as indicated in FCS_COP.1/SIG, then the 
+							<test>[conditional] If the TOE supports EC certificates as indicated in FCS_COP.1/SigVer, then the 
 								evaluator shall replace the intermediate certificate in the certificate chain for Test 5 with a modified 
 								certificate, where the modified intermediate CA has a public key information field where
 								the EC parameters uses an explicit format version of the Elliptic Curve parameters in the
@@ -6918,8 +6918,7 @@
 					<Tests>
 						The evaluator shall perform the following tests:
 						<testlist>
-							<test>The evaluator shall use the test environment to deploy policies to Mobile
-								Devices. </test>
+							<test>The evaluator shall use the test environment to deploy policies to GPCPs. </test>
 							<test>The evaluator shall create policies which collectively include all
 								management functions which are controlled by the (enterprise) administrator and
 								cannot be overridden/relaxed by the user as defined in FMT_MOF_EXT.1.2. The
@@ -8343,10 +8342,10 @@
 					but if the product includes the capability to perform TLS with mutual authentication, then
 					mutual authentication must be included within the TOE boundary. The TLS Package requires that the X509 
 					requirements be included by the PP, so selection of TLS or HTTPS causes FIA_X509_EXT.* to be selected.<h:p/>
-					If the ST Author selects "<h:i>SSH</h:i>," the TSF shall be validated against the Extended Package for Secure Shell.<h:p/>
+					If the ST Author selects "<h:i>SSH</h:i>," the TSF shall be validated against the Functional Package for Secure Shell.<h:p/>
 					If the ST Author selects "<h:i>certificate-based authentication of the remote peer</h:i>," then FIA_X509_EXT.1 and FIA_X509_EXT.2
 					must be included in the ST. "<h:i>No authentication of the remote peer</h:i>" should be selected only if the TOE is acting 
-					as a server in a non-mutual authentication configuration.<h:p/>			    
+					as a server in a non-mutual authentication configuration.<h:p/>.
 				</note>
 				<aactivity>
 					<TSS>
