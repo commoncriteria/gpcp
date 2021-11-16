@@ -19,6 +19,9 @@ jobs:
         with:
           submodules: true
 
+      - name: Install Build Packages
+        run: sudo apt-get update && sudo apt-get install -y xsltproc
+ 
       - name: Generate Warnings
         run: make output/SanityChecksOutput.txt && cat output/SanityChecksOutput.txt
                
