@@ -48,7 +48,7 @@
 		  <raw-url>https://raw.githubusercontent.com/commoncriteria/tls/v1.1/input/tls.xml</raw-url>
 		<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>
         <depends on-sel="sel-itc-tls"/>
-        <depends on-sel="sek-itc-https"/>
+        <depends on-sel="sel-itc-https"/>
 	</include-pkg>
 	    
     <include-pkg id="pkg-ssh">
@@ -1779,7 +1779,6 @@
 		<f-component id="sfr-fcs-ckm-4" cc-id="fcs_ckm.4" name="Cryptographic Key Destruction" status="sel-based">
 			<depends on-incl="sfr-fcs-ckm-1-sk"/>
 			<depends on-incl="sfr-fcs-ckm-1-ak"/>
-			<depends on-incl="sfr-fcs-ckm-1-kek"/>
 			<depends on-incl="sfr-fcs-ckm-2"/>
 			<depends on-incl="sfr-fcs-ckm-ext-5"/>
 			<depends on-incl="sfr-fcs-cop-1-kat"/>
@@ -6545,12 +6544,12 @@
         <!-- Depends on x509 certificates being used for administrator authentication -->
         <f-component id="sfr-fia-x509-ext-1" cc-id="fia_x509_ext.1" name="X.509 Certificate Validation"  status="sel-based">
 	<!--	<depends on-incl="sfr-fcs-ipsec-ext-1"/>   -->  <!-- FCS_IPSEC_EXT.1 -->
-            <depends on-sel="sel-tud-digsign"/>
             <depends on-sel="sel-fia-uau-5-x509"/> 
 			<depends on-sel="sel-itc-certauth"/>
 			<depends on-sel="sel-itc-tls"/>
 			<depends on-sel="sel-itc-https"/>
 			<depends on-sel="sel-itc-ipsec"/>
+            <depends on-incl="sfr-fpt-tud-ext-2"/>
 			<consistency-rationale/>
 			<comp-lev>defines how the TSF must validate X.509 certificates that are presented to it.</comp-lev>
 			<management>The following actions could be considered for the management functions in FMT:
@@ -6701,7 +6700,7 @@
         <!-- Depends on digital signatures being used for trusted updates or administrator authentication -->
         <f-component id="sfr-fia-x509-ext-2" cc-id="fia_x509_ext.2" name="X.509 Certificate Authentication"  status="sel-based">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
-            <depends on-sel="sel-tud-digsign-cert"/>
+<!--            <depends on-sel="sel-tud-digsign-cert"/>   -->
             <depends on-sel="sel-fia-uau-5-x509" /> 
 			<depends on-sel="sel-itc-certauth"/>
 			<consistency-rationale/>
@@ -7201,7 +7200,7 @@
 			<depends on-use="uc-client-portable-enhanced"/>
 			<depends on-use="uc-csfc-eud"/>
 			<depends on-use="uc-tactical-eud"/>
-			<depends on-use="uc-iot-devices"/>
+			<depends on-use="uc-iot-device"/>
 			<consistency-rationale/>
 				<comp-lev>requires that debug ports be disabled.</comp-lev>
 				<management>No management functions.</management>
@@ -7252,7 +7251,7 @@
 		<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="sel-based">
 			<depends on-use="uc-client-portable-enhanced"/>
 			<depends on-use="uc-csfc-eud"/> 
-			<depends on-use="uc-iot-devices"/>
+			<depends on-use="uc-iot-device"/>
 			<f-element id="fpt-php-1e1">
 				<title>The TSF shall provide unambiguous detection of physical tampering
 					that might compromise the TSF.
@@ -7713,7 +7712,7 @@
 		<f-component id="sfr-fpt-rvr-ext-1" cc-id="fpt_rvr_ext.1" name="Platform Firmware Recovery" status="sel-based">
 			<depends on-sel="sel-rot2-recovery"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-tud2-recovery"/>   <!-- FPT_TUD_EXT.2 -->  
-			<depends on-sel="sel-tud-3-recovery"/>  <!-- FPT_TUD_EXT.3 -->
+			<depends on-sel="sel-tud3-recovery"/>  <!-- FPT_TUD_EXT.3 -->
 			<consistency-rationale/>
 			<comp-lev>defines mechanisms for recovering from a platform firmware integrity failure.</comp-lev>
 			<management>The following actions could be considered for the management functions:<h:ul>
