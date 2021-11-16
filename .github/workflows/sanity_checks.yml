@@ -19,5 +19,15 @@ jobs:
         with:
           submodules: true
 
-      - name: Sanity Checks
-        run: make output/SanityChecksOutput.txt && [ ! -s output/SanityChecksOutput.txt ]
+      - name: Generate Warnings
+        run: make output/SanityChecksOutput.txt && cat output/SanityChecksOutput.txt
+               
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          repository-name: commoncriteria/commoncriteria.github.io
+          folder: commoncriteria.github.io # The folder the action should deploy.
+          token: ${{ secrets.DEPLOY_TOKEN }}
+      - name: Check warnings
+        run: "[ ! -s output/SanityChecksOutput.txt ]"
+
