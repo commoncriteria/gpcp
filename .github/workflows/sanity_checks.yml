@@ -1,6 +1,6 @@
 # This is a the Common Criteria build workflow that is triggered on push
 
-name: Validate
+name: SanityChecks
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -19,8 +19,18 @@ jobs:
         with:
           submodules: true
 
-      - name: Install Jing
-        run: wget -O - https://github.com/relaxng/jing-trang/releases/download/V20181222/jing-20181222.zip | jar -x
+      - name: Install Build Packages
+        run: sudo apt-get update && sudo apt-get install -y xsltproc
+ 
+      - name: Generate Warnings
+        run: make output/SanityChecksOutput.md && cat output/SanityChecksOutput.md
 
-      - name: Schema Validation
-        run: JING_JAR=jing*/bin/jing.jar make validate
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: output # The folder the action should deploy.
+
+      - name: Check warnings
+        run: "[ ! -s output/SanityChecksOutput.md ]"
+
