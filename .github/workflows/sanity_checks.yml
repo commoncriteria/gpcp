@@ -23,7 +23,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y xsltproc
  
       - name: Generate Warnings
-        run: make output/SanityChecksOutput.txt && cat output/SanityChecksOutput.txt
+        run: make output/SanityChecksOutput.md && cat output/SanityChecksOutput.md
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
@@ -32,5 +32,5 @@ jobs:
           folder: output # The folder the action should deploy.
 
       - name: Check warnings
-        run: "[ ! -s output/SanityChecksOutput.txt ]"
+        run: "[ ! -s output/SanityChecksOutput.md ]"
 
