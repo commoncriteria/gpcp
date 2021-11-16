@@ -24,14 +24,15 @@ jobs:
  
       - name: Generate Warnings
         run: make output/SanityChecksOutput.txt && cat output/SanityChecksOutput.txt
-               
+ 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
-          branch: master
           repository-name: commoncriteria/commoncriteria.github.io
+          branch: master # The branch the action should deploy to.
           folder: commoncriteria.github.io # The folder the action should deploy.
-          token: ${{ secrets.DEPLOY_TOKEN }}
+          token: ${{ secrets.DEPLOY_TOKEN }}              
+
       - name: Check warnings
         run: "[ ! -s output/SanityChecksOutput.txt ]"
 
