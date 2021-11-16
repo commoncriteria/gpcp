@@ -31,14 +31,14 @@
 	<RevisionHistory>
 		<entry>
 			<version>0.1</version>
-			<date>2020-11-09</date>
+			<date>2020-11-16</date>
 			<subject>Started</subject>
 		</entry>
 	</RevisionHistory>
 	<RevisionHistory>
 		<entry>
 			<version>0.9</version>
-			<date>2021-11-08</date>
+			<date>2021-11-16</date>
 			<subject>Latest draft</subject>
 		</entry>
 	</RevisionHistory>
@@ -123,10 +123,10 @@
 		<suppress>Distributed TOE</suppress>
 		<term abbr='AES' full="Advanced Encryption Standard"/>
 		<term full="Administrator">
-			An administrator is responsible for management activities, including setting policies that are 
-			applied by the enterprise on the platform. An administrator can act remotely through a management server,
-			from which the platform receives configuration policies and updates. An administrator can enforce
-			settings on the system that cannot be overridden by non-administrator users.
+			An Administrator is responsible for management activities, including setting policies that are 
+			applied by the enterprise on the platform. An Administrator can act remotely through a management server,
+			from which the platform receives configuration policies and updates. An Administrator can enforce
+			settings on the system that cannot be overridden by non-Administrator users.
 		</term>
 		<term full="Application" abbr="app">
 			Software that runs on a platform and performs tasks on behalf of the user
@@ -230,8 +230,8 @@
 		<term abbr='TLS' full="Transport Layer Security"/>
 		<term abbr='USB' full="Universal Serial Bus"/>
 		<term full="User">
-			In the context of a GPCP, a User is a person who is physically present and operating the platform. Users 
-			do not need to be authenticated by the platform to use the platform, but may authenticate to tenant
+			In the context of a GPCP, a User is a human who interacts with the platform through a user intereface.
+			Users do not need to be authenticated by the platform to use the platform, but generally authenticate to tenant
 			software such as on Operating System.
 		</term>
 		<term abbr="VM" full="Virtual Machine">
@@ -437,17 +437,17 @@
 		Tenant Software generally consists of an operating system, virtualization system, or application
 		that uses platform resources to run workloads on behalf of Users. Tenant software is necessarily privileged
     	on the platform.<h:p/>
-    	Users are humans who interact with the platform through user interfaces. They generally have to authenticate 
-    	thenselves to tenant software (e.g. an operating system), but generally not to the platform itself.<h:p/>
-    	Administrators are humans who manage the platform through some kind of administrative interface. The interface
+    	Users are humans who interact with the platform through user interfaces. They usually have to authenticate 
+    	themselves to tenant software (e.g. an operating system), but generally not to the platform itself. Throughout
+		this document the term "user" refers generally to a person interacting with the platform.<h:p/>
+    	Administrators are users who manage the platform through some kind of management interface. The interface
     	may be local or remote to the platform. <h:p/>
-		In this context, Administrators manage the physical platform, not the OS (OS Admins would be classified
-		as platform Users). Only Administrators need to be authenticated to the platform. For an EUD, this could generally
-		be accomplished through an interface implemented in firmware. For server-class hardware, the management
-		interface could be implemented in a management controller that is part of the platform. Administrators 
-		must authenticate themselves to the platform before the platform can allow them to perform administrative
-		tasks.<h:p/>
-		Administrators are assumed to be acting in the best interests of the platform owner.
+		GPCP Administrators manage the physical platform, not the OS (OS Admins would be classified
+		as platform Users). Administrators must be authenticated to the platform before the platform can allow them 
+		to perform administrative functions. For an EUD, this could be accomplished through an interface implemented 
+		in firmware. For server-class hardware, the management interface could be implemented in a management
+		controller that is part of the platform.<h:p/>
+		Administrators are assumed to be acting in the best interests of the platform owner.<h:p/>
 	</section>
 </sec:Introduction>
 
@@ -609,7 +609,7 @@
 					authentication measures.</description>
 				<objective-refer ref="O.AUTHORIZED_ADMINISTRATOR">
 					<rationale>The threat T.UNAUTHORIZED_PLATFORM_ADMINISTRATOR is countered by O.AUTHORIZED_ADMINISTRATOR as this
-						provides for authentication of privileged administrative users.</rationale>
+						provides for authentication of privileged Administrators.</rationale>
 				</objective-refer>
 			</threat>
 		</threats>
@@ -1853,10 +1853,7 @@
 					specific physical memory locations holding the data to be erased and therefore relies on
 					addressing logical addresses (which frees the relevant physical addresses holding the old data)
 					and then requesting the platform to ensure that the data in the physical addresses is no longer
-					available for reading (i.e. the “garbage collection” referred to in the SFR text).
-					The AGD for the TOE requires users not to allow the TOE to leave the user’s
-					control while a session is active (and hence while the DEK is likely to be in plaintext in volatile
-					memory).<h:p/>
+					available for reading (i.e. the “garbage collection” referred to in the SFR text).<h:p/>
 					The selection for destruction of data in non-volatile memory includes block erase as an option,
 					and this option applies only to flash memory. A block erase does not require a read verify, since 
 					the mappings of logical addresses to the erased memory locations are erased as well as the data
@@ -1901,9 +1898,6 @@
 						does not contain any sensitive data. <h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall check that the AGD for the TOE requires
-						users to ensure that the TOE remains under the user’s control while a session is
-						active.<h:p/>
 						A TOE may be subject to situations that could prevent or delay data destruction in
 						some cases. The evaluator shall check that the AGD identifies
 						configurations or circumstances that may not strictly conform to the key destruction
@@ -1913,7 +1907,7 @@
 						identifying any additional mitigation actions for the user (e.g. there might be some
 						operation the user can invoke, or the user might be advised to retain control of the
 						device for some particular time to maximise the probability that garbage collection
-						will have occurred).<h:p/>
+						has occurred).<h:p/>
 						For example, when the TOE does not have full access to the physical memory, it is
 						possible that the storage may implement wear-leveling and garbage collection. This
 						may result in additional copies of the data that are logically inaccessible but persist
@@ -2673,35 +2667,35 @@
 						to a test platform that provides the evaluator with tools that are typically not found on factory 
 						products.<h:p/>
                         <h:b>Short Messages Test Bit-oriented Mode</h:b><h:br/>
-                        The evaluators devise an input set consisting of m+1 messages, where m is the block length of the hash
+                        The evaluator devises an input set consisting of m+1 messages, where m is the block length of the hash
 						algorithm. The length of the messages range sequentially from 0 to m bits. The message text shall
-						be pseudo-randomly generated. The evaluators compute the message digest for each of the messages
+						be pseudo-randomly generated. The evaluator computes the message digest for each of the messages
 						and ensure that the correct result is produced when the messages are provided to the TSF.<h:p/>
                         <h:b>Short Messages Test Byte-oriented Mode</h:b><h:br/>
-                        The evaluators devise an input set consisting of m/8+1 messages, where m is the block length of the 
+                        The evaluator devises an input set consisting of m/8+1 messages, where m is the block length of the 
 						hash algorithm. The length of the messages range sequentially from 0 to m/8 bytes, with each 
 						message being an integral number of bytes. The message text shall be pseudo-randomly generated.
-						The evaluators compute the message digest for each of the messages and ensure that the correct
+						The evaluator computes the message digest for each of the messages and ensure that the correct
 						result is produced when the messages are provided to the TSF.<h:p/>
                         <h:b>Selected Long Messages Test Bit-oriented Mode</h:b><h:br/>
-                        The evaluators devise an input set consisting of m messages, where m is the block length
+                        The evaluator devises an input set consisting of m messages, where m is the block length
                         of the hash algorithm. The length of the ith message is 512 + 99*i, where
                         1 &lt;= i &lt;= m. The message text shall be pseudo-randomly
-                        generated. The evaluators compute the message digest for each of the messages and ensure
+                        generated. The evaluator computes the message digest for each of the messages and ensure
                         that the correct result is produced when the messages are provided to the TSF.<h:p/>
                         <h:b>Selected Long Messages Test Byte-oriented Mode</h:b><h:br/>
-                        The evaluators devise an input set consisting of m/8 messages,
+                        The evaluator devises an input set consisting of m/8 messages,
                         where m is the block length of the hash algorithm. The length of the ith message
                         is 512 + 8*99*i, where 1 &lt;= i &lt;= m/8.
-                        The message text shall be pseudo-randomly generated. The evaluators compute the message
+                        The message text shall be pseudo-randomly generated. The evaluator computes the message
                         digest for each of the messages and ensure that the correct result is produced when
                         the messages are provided to the TSF.<h:p/>
                         <h:b>Pseudo-randomly Generated Messages Test</h:b><h:br/>
-                        This test is for byte-oriented implementations only. The evaluators randomly generate a
+                        This test is for byte-oriented implementations only. The evaluator randomly generates a
                         seed that is n bits long, where n is the length of the message digest produced by the
-                        hash function to be tested. The evaluators then formulate a set of 100 messages and
+                        hash function to be tested. The evaluator then formulates a set of 100 messages and
                         associated digests by following the algorithm provided in Figure 1 of [SHAVS]. The
-                        evaluators then ensure that the correct result is produced when the messages are
+                        evaluator then ensures that the correct result is produced when the messages are
                         provided to the TSF.<h:p/>
 						<h:b><h:u>SHA-3 Tests</h:u></h:b><h:br/>
 						The tests below are derived from the The Secure Hash Algorithm-3 Validation System (SHA3VS), 
@@ -2717,37 +2711,37 @@
 						compare digest values produced by a known-good SHA-3 implementation against those generated by
 						running the same values through the TSF.<h:p/>
 						<h:b>Short Messages Test, Bit-oriented Mode</h:b><h:br/>
-						The evaluators devise an input set consisting of rate+1 short messages. The length of the messages
+						The evaluator devises an input set consisting of rate+1 short messages. The length of the messages
 						ranges sequentially from 0 to rate bits. The message text shall be pseudo-randomly generated. The
-						evaluators compute the message digest for each of the messages and ensure that the correct result
+						evaluator computes the message digest for each of the messages and ensure that the correct result
 						is produced when the messages are provided to the TSF. The message of length 0 is omitted if the
 						TOE does not support zero-length messages.<h:p/>
 						<h:b>Short Messages Test, Byte-oriented Mode</h:b><h:br/>
-						The evaluators devise an input set consisting of rate/8+1 short messages. The length of the
+						The evaluator devises an input set consisting of rate/8+1 short messages. The length of the
 						messages ranges sequentially from 0 to rate/8 bytes, with each message being an integral number of 
-						bytes. The message text shall be pseudo-randomly generated. The evaluators compute the message
+						bytes. The message text shall be pseudo-randomly generated. The evaluator computes the message
 						digest for each of the messages and ensure that the correct result is produced when the messages
 						are provided to the TSF. The message of length 0 is omitted if the TOE does not support zero-length
 						messages.<h:br/><h:p/>
 						<h:b>Selected Long Messages Test, Bit-oriented Mode</h:b><h:br/>
-						The evaluators devise an input set consisting of 100 long messages ranging in size from 
+						The evaluator devises an input set consisting of 100 long messages ranging in size from 
 						rate+(rate+1) to rate+(100*(rate+1)), incrementing by rate+1. (For example, SHA-3-256 has a rate
 						of 1088 bits. Therefore, 100 messages will be generated with lengths 2177, 3266, …, 109988 bits.)
-						The message text shall be pseudo-randomly generated. The evaluators compute the message digest for
+						The message text shall be pseudo-randomly generated. The evaluator computes the message digest for
 						each of the messages and ensure that the correct result is produced when the messages are provided
 						to the TSF.<h:p/>
 						<h:b>Selected Long Messages Test, Byte-oriented Mode</h:b><h:br/>
-						The evaluators devise an input set consisting of 100 messages ranging in size from (rate+(rate+8))
+						The evaluator devises an input set consisting of 100 messages ranging in size from (rate+(rate+8))
 						to (rate+100*(rate+8)), incrementing by rate+8. (For example, SHA-3-256 has a rate of 1088 bits.
 						Therefore 100 messages will be generated of lengths 2184, 3280, 4376, …, 110688 bits.) The message
-						text shall be pseudo-randomly generated. The evaluators compute the message digest for each of the
+						text shall be pseudo-randomly generated. The evaluator computes the message digest for each of the
 						messages and ensure that the correct result is produced when the messages are provided to the TSF.<h:p/>
 						<h:b>Pseudo-randomly Generated Messages Monte Carlo) Test, Byte-oriented Mode</h:b><h:p/>
-						The evaluators supply a seed of d bits (where d is the length of the message digest produced by
+						The evaluator supplies a seed of d bits (where d is the length of the message digest produced by
 						the hash function to be tested. This seed is used by a pseudorandom function to generate 100,000 
 						message digests. One hundred of the digests (every 1000th digest) are recorded as checkpoints. The
 						TOE then uses the same procedure to generate the same 100,000 message digests and 100 checkpoint
-						values. The evaluators then compare the results generated ensure that the correct result is
+						values. The evaluator then compares the results generated ensure that the correct result is
 						produced when the messages are generated by the TSF.<h:p/>
                     </Tests>
                 </aactivity>
@@ -3545,9 +3539,9 @@
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
-						Each section below contains tests the evaluators must perform for each selected
+						Each section below contains tests the evaluator must perform for each selected
 						digital signature scheme. Based on the assignments and selections in the
-						requirement, the evaluators choose the specific activities that correspond to those
+						requirement, the evaluator chooses the specific activities that correspond to those
 						selections.<h:p/>
 						The following tests require the developer to provide access to a test platform that
 						provides the evaluator with tools that are not found on the TOE in its evaluated
@@ -3781,9 +3775,9 @@
 				<Tests>
 					The following tests require the developer to provide access to a test platform that
 					provides the evaluator with tools that are typically not found on factory products.<h:p/>
-					Each section below contains tests the evaluators must perform for each selected
+					Each section below contains tests the evaluator must perform for each selected
 					digital signature scheme. Based on the assignments and selections in the
-					requirement, the evaluators choose the specific activities that correspond to those
+					requirement, the evaluator chooses the specific activities that correspond to those
 					selections.<h:p/>
 					The following tests require the developer to provide access to a test platform that
 					provides the evaluator with tools that are not found on the TOE in its evaluated
@@ -4074,7 +4068,7 @@
 					<Guidance>
 						If the product supports multiple modes, the evaluator shall examine the AGD
 						to determine that the method of choosing a specific mode/key size
-						by the end user is described.<h:p/>
+						is described.<h:p/>
 					</Guidance>
 					<KMD>
 						The evaluator shall examine the KMD to ensure that the points at which symmetric
@@ -4122,7 +4116,7 @@
 						These tests are intended to be equivalent to those described in NIST’s AES Algorithm Validation Suite (AESAVS)
 						(<h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf">
 						http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf</h:a>). It is not
-						recommended that evaluators use values obtained from static sources such as the
+						recommended that the evaluator use values obtained from static sources such as the
 						example NIST’s AES Known Answer Test Values from the AESAVS document,
 						or use values not generated expressly to exercise the AES-CBC implementation.<h:p/>
 						<h:b><h:i>AES-CBC Known Answer Tests</h:i></h:b><h:p/>
@@ -4216,7 +4210,7 @@
 						“The CCM Validation System (CCMVS),” updated 9 Jan 2012, found at
 						<h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/mac/CCMVS.pdf">
 						http://csrc.nist.gov/groups/STM/cavp/documents/mac/CCMVS.pdf</h:a>.<h:p/>
-						It is not recommended that evaluators use values obtained from static sources such
+						It is not recommended that the evaluator use values obtained from static sources such
 						as http://csrc.nist.gov/groups/STM/cavp/documents/mac/ccmtestvectors.zip or use
 						values not generated expressly to exercise the AES-CCM implementation.<h:p/>
 						The evaluator shall test the generation-encryption and decryption-verification
@@ -4259,7 +4253,7 @@
 						the Addition of XPN Validation Testing,” rev. 15 Jun 2016, section 6.2, found at
 						<h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmvs.pdf">
 						http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmvs.pdf</h:a>.<h:p/>
-						It is not recommended that evaluators use values obtained from static sources such
+						It is not recommended that the evaluator use values obtained from static sources such
 						as http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmtestvectors.zip, or use
 						values not generated expressly to exercise the AES-GCM implementation.<h:p/>
 						The evaluator shall test the authenticated encryption functionality of AES-GCM by
@@ -4297,7 +4291,7 @@
 						Algorithm Validation Suite (AESAVS)
 						(<h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf">
 						http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf</h:a>). It is not
-						recommended that evaluators use values obtained from static sources such as the
+						recommended that the evaluator use values obtained from static sources such as the
 						example NIST’s AES Known Answer Test Values from the AESAVS document,
 						or use values not generated expressly to exercise the AES-CTR implementation.<h:p/>
 						<h:b><h:i>AES-CTR Known Answer Tests</h:i></h:b><h:p/>
@@ -4384,7 +4378,7 @@
 						“The XTS-AES Validation System (XTSVS),” updated 5 Sept 2013, found at
 						<h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSVS.pdf">
 						http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSVS.pdf</h:a><h:p/>
-						It is not recommended that evaluators use values obtained from static sources such
+						It is not recommended that the evaluator use values obtained from static sources such
 						as the XTS-AES test vectors at
 						http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSTestVectors.zip or use
 						values not generated expressly to exercise the XTS-AES implementation.<h:p/>
@@ -6068,7 +6062,7 @@
 				<note role="application">
 					The TOE may implement an Authentication Factor interface that precedes another Authentication
 					Factor interface in the boot sequence (for example, a volume DAR decryption interface which
-					precedes the lockscreen interface) before the user can access the device. In this situation,
+					precedes the lockscreen interface) before the user can access the GPCP. In this situation,
 					because the user must successfully authenticate to the first interface to access the second,
 					the number of unsuccessful authentication attempts need not be maintained for the second 
 					interface.
@@ -6322,7 +6316,6 @@
 			<depends on-sel="sel-tud3-admin-notify"/>  <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->
 			<depends on-sel="sel-tud3-admin-det"/>   <!-- FPT_TUD_EXT.3 -->
-			<depends on-sel="sel-tud4-admin-assert"/>   <!-- FPT_TUD_EXT.4 -->
 			<f-element id="fia-uau-5e1">
 				<title>
 					The TSF shall provide password and 
@@ -6337,7 +6330,7 @@
 				<note role="application">
 					This SFR is included in the ST based on use cases and selections throughout the PP that depend
 					on there being an Administrator role for the TOE.<h:p/>
-					A "user" in the context of this PP is an Administrator.<h:p/>
+					A "user" in the context of this SFR is an Administrator.<h:p/>
 					The TSF must support a Password Authentication Factor and may optionally implement a biometric
 					authentication factor. A hybrid authentication 
 					factor is where a user has to submit a combination of PIN/password and biometric sample where 
@@ -6820,9 +6813,6 @@
 	    <ext-comp-def title="Management of Security Function Behavior" fam-id="FMT_MOF_EXT">
 			<fam-behavior>This family defines the management functions that can be performed by user roles.</fam-behavior>
 		</ext-comp-def>
-	    <ext-comp-def title="Specification of Security Management Functions" fam-id="FMT_SMF_EXT">
-			<fam-behavior>This family defines all security management functions for the TOE.</fam-behavior>
-		</ext-comp-def>
 	
 		<!-- FMT_CFG_EXT.1 Secure by Default Configuration -->
 		<f-component id="sfr-fmt-cfg-ext-1" cc-id="fmt_cfg_ext.1" name="Secure by Default Configuration">
@@ -6957,97 +6947,142 @@
 			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->	       		
 			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->	       		
 			<depends on-incl="sfr-fia-uia-ext-1"/>
-			<consistency-rationale/>
-			<comp-lev>requires that certain security functionality be configurable.</comp-lev>
-			<management>No additional management functions are envisioned</management>
-			<audit>No auditable events are forseen.</audit>
-			<dependencies>FMT_MOF_EXT: Management of Security Functions Behavior</dependencies>
 			<f-element id="fmt-smf-est-1e1">
-				<title>The TSF shall support Administrators performing the following management functions: <h:p/>
+				<title>The TSF shall be capable of performing the following management functions: <h:p/>
 					<h:b><ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b><h:p/> 
+					Status Markers:<h:br/>
+					M - Mandatory<h:br/>
+					O - Optional/Selectable<h:br/>
+					X - Not permitted<h:p/>
                     <h:table>
                         <h:tr>
 							<h:th>Number</h:th> 
-                            <h:th>Function</h:th> 
+                            <h:th>Function</h:th>
+							<h:th>Admin</h:th>
+							<h:th>User</h:th>
                             <h:th>Notes</h:th> 
                         </h:tr>
 		    
                         <h:tr>
                             <h:td>1</h:td>
                             <h:td>Ability to configure and manage the audit functionality and audit data</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FAU_GEN.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>2</h:td>
                             <h:td>Ability to configure name/address of audit/logging server to which to send audit/logging records</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FAU_STG_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>3</h:td>
                             <h:td>Ability to review audit records.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FAU_SAR.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>4</h:td>
                             <h:td>Ability to configure the cryptographic functionality.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FTP_ITC_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>5</h:td>
                             <h:td>Ability to initiate a trusted channel for remote administration.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FTP_TRP.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>6</h:td>
                             <h:td>Ability to set parameters for allowable number of authentication failures.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FIA_AFL_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>7</h:td>
                             <h:td>Ability to configure password length and complexity.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FIA_PMG_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>8</h:td>
                             <h:td>Ability to configure authentication throttling policy.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FIA_TRT_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>9</h:td>
                             <h:td>Ability to manage authentication methods and change default authorization factors</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FIA_PMG_EXT.1</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>10</h:td>
                             <h:td>Ability to configure of certificate revocation checking methods.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FIA_X509_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>11</h:td>
                             <h:td>Ability to configure TSF behavior when certificate revocation status cannot be determined.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FIA_X509_EXT.2.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>12</h:td>
-                            <h:td>Ability to configure action to take on integrity failure.</h:td>
+                            <h:td>Ability to configure default action to take on integrity failure.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FPT_ROT_EXT.2, FPT_ROT_EXT.3, and FPT_RVR_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>13</h:td>
-                            <h:td>Ability to initiate the update process.</h:td>
-                            <h:td>See FPT_TUD_EXT.1.</h:td>
+                            <h:td>Ability to configure default action to take on update failure.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
+                            <h:td>See FPT_TUD_EXT.2, FPT_TUD_EXT.3, and FPT_RVR_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>14</h:td>
-                            <h:td>Ability to action to take on update failure.</h:td>
-                            <h:td>See FPT_TUD_EXT.2 and FPT_TUD_EXT.3.</h:td>
+                            <h:td>Ability to initiate the update process.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
+                            <h:td>See FPT_TUD_EXT.1.</h:td>
                         </h:tr>
                         <h:tr>
                             <h:td>15</h:td>
+                            <h:td>Ability to determine the action to take on update failure.</h:td>
+							<h:td>O</h:td>
+							<h:td>O</h:td>
+                            <h:td>See FPT_TUD_EXT.2 and FPT_TUD_EXT.3.</h:td>
+                        </h:tr>
+                        <h:tr>
+                            <h:td>16</h:td>
+                            <h:td>Ability to determine the action to take on integrity check failure.</h:td>
+							<h:td>O</h:td>
+							<h:td>O</h:td>
+                            <h:td>See FPT_ROT_EXT.2 and FPT_ROT_EXT.3.</h:td>
+                        </h:tr>
+                        <h:tr>
+                            <h:td>17</h:td>
                             <h:td>Ability to manage import and export keys/secrets to and from protected storage.</h:td>
+							<h:td>O</h:td>
+							<h:td>X</h:td>
                             <h:td>See FCS_STG_EXT.1.</h:td>
                         </h:tr>
-                    </h:table><h:br/>]
+                    </h:table><h:br/>].
 				</title>
                 <ext-comp-def-title>
 				<title>The TSF shall be capable of performing the following management functions: 
@@ -7056,40 +7091,36 @@
                 </ext-comp-def-title>
 	
 				<note role="application">
-					Administration is considered “local” if the Administrator is physically present at the machine on which the VS is 
-					installed.<h:p/>
-					Administration is considered “remote” if communications between the Administrator and the Management Subsystem 
-					travel on a network. <h:p/>
+					Note that all Administrator management functions are indicated as "Optional/Selectable." 
+					These functions become Mandatory or Selectable when the noted SFRs are included in the ST, 
+					depending on whether the function is mandatory or selectable within the context of the particular SFR .<h:p/>
+					Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
+					Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
 					The first column lists the management function number. The second column lists the management functions
 					identified in the PP. <h:p/>
 					The Administrator role is the only role for which Management these management functions are defined.
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator shall examine the TSS and AGD to ensure
-						that they describes which security management functions require Administrator privilege and the actions 
-						associated with each management function. The evaluator shall verify that for each 
-						management function and role specified in <xref to="t-manfunc"/> the defined 
-						role is able to perform all mandatory functions as well as all optional or selection-based functions claimed
-						in the ST.	<h:p/>
+						The evaluator shall examine the TSS to ensure thta it describes each management function
+						and its associated actions. The evaluator shall verify that the Administrator role is 
+						able to perform all management functions claimed in the ST.	<h:p/>
 					</TSS>
 					<Guidance>
-                       	The evaluator shall examine the AGD to ensure that it
-						describes how the Administrator is able to perform
-						each management function that the ST claims the TOE supports.<h:p/>
+                       	The evaluator shall examine the AGD to ensure that it describes how the Administrator is 
+						perform each management function that the ST claims the TOE supports.<h:p/>
                         The evaluator shall verify for each claimed management function that 
-						the guidance is sufficiently detailed to allow the 
-						function to be performed and that the function can be performed.<h:p/>
+						the guidance is sufficiently detailed to allow the function to be performed.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
-						The evaluator shall test each management function for each role listed in <xref to="t-manfunc"/>
-                        in the ST to demonstrate that the function can be performed by the roles that are authorized to do so and the 
-						result of the function is demonstrated. The evaluator shall also verify for each claimed management function
-						in <xref to="t-manfunc"/> that if the TOE claims not to provide a particular role with access to the function, 
-						then it is not possible to access the TOE as that role and perform that function.<h:p/>
+						The evaluator shall test each management function included in the ST 
+                        to demonstrate that the function can be performed by the Administrator role 
+						and the result of the function is demonstrated. The evaluator shall also verify for each
+						claimed management function that it is not possible to access the TOE as a
+						non-Administrator and perform that function.<h:p/>
 					</Tests>
 				</aactivity>			   
 			</f-element>
@@ -7245,7 +7276,7 @@
 						tampering has been detected.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall ensure that the AGD describes how the TOE indicates to Users
+						The evaluator shall ensure that the AGD describes how the TOE indicates to users
 						and Administrators that it has detected tampering.  <h:p/>
 					</Guidance>
 					<KMD>
@@ -7299,7 +7330,7 @@
 					tampering has been detected for each device/element specified in FPT_PHP.2.3.<h:p/>
 				</TSS>
 				<Guidance>
-					The evaluator shall ensure that the AGD describes how the TOE notifies Users
+					The evaluator shall ensure that the AGD describes how the TOE notifies users
 					or Administrators that it has detected tampering.<h:p/>  
 				</Guidance>
 				<KMD>
@@ -7504,8 +7535,8 @@
 						<h:li>Halt,</h:li>
 						<h:li>Notify an 
 							<selectables>
-								<selectable id="sel-rot2-admin-notify">administrator</selectable>
-								<selectable>user</selectable>
+								<selectable id="sel-rot2-admin-notify">Administrator</selectable>
+								<selectable>User</selectable>
 							</selectables> by
 							<selectables>
 								<selectable id="sel-rot2-audit">generating an audit event</selectable>
@@ -7513,16 +7544,16 @@
 							</selectables>, and</h:li>
 						<h:li><selectables linebreak="yes">
 							<selectable>Stop all execution and shut down</selectable>
-							<selectable id="sel-rot2-recovery">Initiate a Recovery process as specified in FPT_RVR_EXT.1</selectable>
+							<selectable id="sel-rot2-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
 						</selectables></h:li>
 					</h:ol> 
 					<selectables linebreak="yes">
 						<selectable>automatically</selectable>
-						<selectable id="sel-rot2-admin-config">in accordance with administrator-configurable policy</selectable>
+						<selectable id="sel-rot2-admin-config">in accordance with Administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
 							<selectables>
-								<selectable id="sel-rot2-admin-det">administrator</selectable>
-								<selectable>user</selectable>
+								<selectable id="sel-rot2-admin-det">Administrator</selectable>
+								<selectable>User</selectable>
 							</selectables>
 						</selectable>
 					</selectables>.	
@@ -7531,13 +7562,13 @@
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
 					example, by blinking lights, beep codes, screen indications, or local logging.<h:p/>
-					If "administrator" is selected anywhere in FPT_ROT_EXT.2.2, or if "in accordance with administrator-configurable
-					policy" is selected, then all administrator authentication requirements shall be included in the ST
+					If "Administrator" is selected anywhere in FPT_ROT_EXT.2.2, or if "in accordance with Administrator-configurable
+					policy" is selected, then all Administrator authentication requirements shall be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
 					If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected, then FCS_COP.1/Hash must be included in the ST.<h:p/>
 					If "<h:i>verification of a digital signature by trusted code/data</h:i>" is selected, then FCS_COP.1/SigVer must be included in the ST.<h:p/>
-					If "<h:i>Initiate a Recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
+					If "<h:i>Initiate a recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
 					must be included in the ST.<h:p/>
 				</note>
@@ -7565,7 +7596,7 @@
 						The update mechanism can be tested either at boot time or at the time of the update. This verification 
 						check must be done during boot.<h:p/>
 						If modification of platform firmware <h:i>in situ</h:i> or using the update mechanism is deemed to be 
-						not feasible within the time and cost constraints of the evaluation, then the evaluators shall make such
+						not feasible within the time and cost constraints of the evaluation, then the evaluator shall make such
 						an argument in the AAR, and with concurrence of the CC scheme, this test can be replaced by evidence of 
 						vendor testing.<h:p/>
 					</Tests>
@@ -7618,8 +7649,8 @@
 						<h:li>Halt,</h:li>
 						<h:li>Notify an 
 							<selectables>
-								<selectable id="sel-rot3-admin-notify">administrator</selectable>
-								<selectable>user</selectable>
+								<selectable id="sel-rot3-admin-notify">Administrator</selectable>
+								<selectable>User</selectable>
 							</selectables> by
 							<selectables>
 								<selectable id="sel-rot3-audit">generating an audit event</selectable>
@@ -7635,8 +7666,8 @@
 						<selectable id="sel-rot3-admin-config">in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
 							<selectables>
-								<selectable id="sel-rot3-admin-det">administrator</selectable>
-								<selectable>user</selectable>
+								<selectable id="sel-rot3-admin-det">Administrator</selectable>
+								<selectable>User</selectable>
 							</selectables></selectable>
 					</selectables>.	
 				</title>				
@@ -7697,22 +7728,22 @@
 						<selectable>installation of a known-good or recovery firmware image</selectable>
 						<selectable>reversion to the prior firmware image</selectable>
 						<selectable>installation of a recovery image that puts the TOE into a maintenance mode</selectable>
-					</selectables>
+					</selectables>.
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if:
 					<h:ul>
-						<h:li>"<h:i>Initiate a Recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected in FPT_ROT_EXT.2.2,</h:li>
-						<h:li>"<h:i>Initiate a Recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected in FPT_TUD_EXT.2.5,</h:li>
+						<h:li>"<h:i>Initiate a recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected in FPT_ROT_EXT.2.2,</h:li>
+						<h:li>"<h:i>Initiate a recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected in FPT_TUD_EXT.2.5,</h:li>
 						<h:li>The TOE implements a recovery mechanism for firmware corruption not necessarily related to 
 							integrity or update failure.</h:li>
 					</h:ul>
-					If the ST Author selects "<h:i>the secure local update mechanism described in FPT_TUD_EXT.4</h:i>" then FPT_TUD_EXT.4
-					must be included in the ST.<h:p/>
+					If the ST Author selects "<h:i>the secure local update mechanism described in FPT_TUD_EXT.4</h:i>" then 
+					FPT_TUD_EXT.4 must be included in the ST.<h:p/>
 					As indicated above, in addition to integrity or update failure, the TOE may use a recovery 
 					mechanism to deal with non-security-related failures, such as a power outage during update or a 
 					power surge during normal operation.<h:p/>
-					The recovery process may be initiated automatically on failure, as the result of physically present User
+					The recovery process may be initiated automatically on failure, as the result of physically present user
 					action, or as the result of pre-configured policy. The action taken may depend on the nature of the
 					failure as specified in FPT_ROT_EXT.2.2 and FPT_TUD_EXT.2.5.<h:p/>
 				</note>
@@ -7729,7 +7760,7 @@
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
-						The evaluators shall perform the following tests:
+						The evaluator shall perform the following tests:
 						<testlist>
 							<test>To test this requirement, the evaluator shall trigger the recovery process
 								either by forcing an update error or a boot integrity failure and observing that 
@@ -7902,7 +7933,7 @@
 				<note role="application">
 					The ST Author should make the selection above if the TSF supports rollback prevention. That is, the TSF
 					does not allow "update" to an older version of the platform firmware. In general, rollback should be permitted
-					only through a secure local update mechanism at the express direction of an Administrator/User.
+					only through a secure local update mechanism at the express direction of an Administrator or user.
 				</note>
 			</f-element>
 			<f-element id="fpt-tud-ext-2e3">
@@ -7929,8 +7960,8 @@
 						<h:li>Do not install the update,</h:li>
 						<h:li>Notify an 
 						<selectables>
-							<selectable id="sel-tud2-admin-notify">administrator</selectable>
-							<selectable>user</selectable>
+							<selectable id="sel-tud2-admin-notify">Administrator</selectable>
+							<selectable>User</selectable>
 						</selectables> by 
 							<selectables>
 								<selectable id="sel-tud2-audit">generating an audit event</selectable>
@@ -7948,17 +7979,17 @@
 						<selectable>automatically</selectable>
 						<selectable id="sel-tud2-admin-config">in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an <selectables>
-							<selectable id="sel-tud2-admin-det">administrator</selectable>
-							<selectable>user</selectable>
+							<selectable id="sel-tud2-admin-det">Administrator</selectable>
+							<selectable>User</selectable>
 							</selectables></selectable>
 					</selectables>.
 				</title>
 				<note role="application">
-					If "<h:i>administrator</h:i>" is selected anywhere or if "<h:i>in accordance with administrator-configurable
-					policy</h:i>" is selected, then all administrator authentication requirements must be included in the ST
+					If "<h:i>Administrator</h:i>" is selected anywhere or if "<h:i>in accordance with Administrator-configurable
+					policy</h:i>" is selected, then all Administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 					If "<h:i>generating an audit event</h:i>" is selected then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
-					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
+					If "<h:i>in accordance with Administrator-configurable policy</h:i>" is selected then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
 					must be included in the ST.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					The platform firmware authenticated update mechanism employs digital signatures to ensure the authenticity of the
@@ -8091,8 +8122,8 @@
 					<h:ul>
 						<h:li>Notify Notify an 
 							<selectables>
-								<selectable id="sel-tud3-admin-notify">administrator</selectable>
-								<selectable>user</selectable>
+								<selectable id="sel-tud3-admin-notify">Administrator</selectable>
+								<selectable>User</selectable>
 							</selectables> by 
 							<selectables>
 								<selectable id="sel-tud3-audit">generating an audit event</selectable>
@@ -8109,17 +8140,17 @@
 						<selectable id="sel-tud3-admin-config">in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
 							<selectables>
-								<selectable id="sel-tud3-admin-det">administrator</selectable>
-								<selectable>user</selectable>
+								<selectable id="sel-tud3-admin-det">Administrator</selectable>
+								<selectable>User</selectable>
 							</selectables></selectable>
 					</selectables>.
 				</title>
 				<note role="application">
-					If "<h:i>administrator</h:i>" is selected anywhere or if "<h:i>in accordance with administrator-configurable
-					policy</h:i>" is selected, then all administrator authentication requirements must be included in the ST
+					If "<h:i>Administrator</h:i>" is selected anywhere or if "<h:i>in accordance with Administrator-configurable
+					policy</h:i>" is selected, then all Administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 					If "<h:i>generating an audit event</h:i>" is selected then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
-					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
+					If "<h:i>in accordance with Administrator-configurable policy</h:i>" is selected then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
 					must be included in the ST.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					The platform firmware unauthenticated update mechanism installs platform firmware updates without
@@ -8200,11 +8231,7 @@
 			</f-element>
 			<f-element id="fpt-tud-ext-4e2">
 				<title>
-					The 
-					<selectables>
-						<selectable id="sel-tud4-admin-assert">Administrator</selectable>
-						<selectable>User</selectable>
-					</selectables> shall assert physical presence to the TSF through: 
+					A user shall assert physical presence to the TSF through: 
 					<selectables linebreak="yes">
 						<selectable>login to the TOE from a physically connected console or terminal</selectable>
 						<selectable>physical connection of a jumper or cable</selectable>
@@ -8217,13 +8244,11 @@
 					is selected in FPT_RVR_EXT.1 or 
 					"<h:i>implement a secure local platform firmware update mechanism described in FPT_TUD_EXT.4</h:i>" is selected
 					in FPT_TUD_EXT.1.<h:p/>
-					If "<h:i>Administrator</h:i>" is selected then all administrator authentication 
-					requirements must be included in the ST (FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 					This requirement pertains to platform firmware update mechanisms that do not use the 
 					authentication-based update mechanism described in FPT_TUD_EXT.2 or the delayed-authentication
 					described in FPT_TUD_EXT.3. The secure local update 
-					mechanism ensures the authenticity and integrity of the firmware update image by requiring an
-					Administrator/User to be physically present at the TOE. An assertion of physical presence can take the form, for example, of
+					mechanism ensures the authenticity and integrity of the firmware update image by requiring a
+					user to be physically present at the TOE. An assertion of physical presence can take the form, for example, of
 					requiring entry of a password at a boot screen, unlocking of a physical lock (e.g., a motherboard
 					jumper), or inserting a USB cable before permitting platform firmware to be updated. <h:p/>
 					There is no requirement that the local update mechanism support rollback prevention.<h:p/>
@@ -8236,7 +8261,7 @@
 				<f-element id="fpt-tud-ext-4e3">
 				<title>
 					The TSF shall include a platform firmware version identifier that is accessible by the update mechanism or
-					to the Administrator/User who asserts physical presence.
+					to the user who asserts physical presence.
 				</title>
 			</f-element>
 			<f-element id="fpt-tud-ext-4e4">
@@ -8502,13 +8527,13 @@
             <f-element id="ftp-trp-1e1">
 			    <title>The TSF shall <refinement>use a trusted channel as specified in FTP_ITC_EXT.1 to</refinement> 
 				    provide a <refinement>trusted</refinement> communication path between itself and 
-				    [<h:i>remote</h:i>] <refinement>administrators</refinement> that is logically distinct from
+				    [<h:i>remote</h:i>] <refinement>Administrators</refinement> that is logically distinct from
 				    other communication paths and provides assured identification of its end points and 
 				    protection of the communicated data from [<h:i>modification, disclosure</h:i>].
                 </title>
             </f-element>
             <f-element id="ftp-trp-1e2">
-			    <title>The TSF shall permit [<h:i>remote administrators</h:i>] to initiate communication via the trusted path.
+			    <title>The TSF shall permit [<h:i>remote Administrators</h:i>] to initiate communication via the trusted path.
                 </title>
             </f-element>
 			<f-element id="ftp-trp-1e3">
@@ -8518,8 +8543,8 @@
 					This SFR is included in the ST if "<h:i>remote</h:i>" is selected in FMT_MOF_EXT.1.1.<h:p/>
 					Protocols used to implement the remote administration trusted channel must be
 					selected in FTP_ITC_EXT.1.<h:p/>
-                    This requirement ensures that authorized remote administrators initiate all communication with the
-					TOE via a trusted path, and that all communications with the TOE by remote administrators is performed
+                    This requirement ensures that authorized remote Administrators initiate all communication with the
+					TOE via a trusted path, and that all communications with the TOE by remote Administrators is performed
 					over this path. The data passed in this trusted communication channel are encrypted as defined the 
 					protocol chosen in the first selection in FTP_ITC_EXT.1.
 				</note>
@@ -8541,12 +8566,12 @@
                     <Tests>
                         The evaluator shall also perform the following tests:
                         <testlist>
-                            <test>The evaluators shall ensure that communications using each specified (in the operational
-								guidance) remote administration method is tested during the course of the evaluation,
-								setting up the connections as described in the operational guidance and ensuring that
+                            <test>The evaluator shall ensure that communications using each specified (in the AGD) 
+								remote administration method is tested during the course of the evaluation,
+								setting up the connections as described in the AGD and ensuring that
 								communication is successful.</test>
                             <test>For each method of remote administration supported, the evaluator shall follow the 
-								operational guidance to ensure that there is no available interface that can be used by
+								AGD to ensure that there is no available interface that can be used by
 								a remote user to establish remote administrative sessions without invoking the trusted 
 								path.</test>
                             <test>The evaluator shall ensure, for each method of remote administration, the channel data is
@@ -8560,15 +8585,15 @@
             </f-element>
 		    <audit-event>
 			<audit-event-descr>Initiation of the trusted channel.</audit-event-descr>
-                 <audit-event-info>User ID and remote source (IP Address) if feasible.</audit-event-info>
+                 <audit-event-info>Administrator ID and remote source (IP Address), if feasible.</audit-event-info>
 		    </audit-event>    
 		    <audit-event>
 			<audit-event-descr>Termination of the trusted channel.</audit-event-descr>
-                 <audit-event-info>User ID and remote source (IP Address) if feasible.</audit-event-info>
+                 <audit-event-info>Administrator ID and remote source (IP Address), if feasible.</audit-event-info>
 		    </audit-event>    
 		    <audit-event>
 			<audit-event-descr>Failures of the trusted path functions.</audit-event-descr>
-                 <audit-event-info>User ID and remote source (IP Address) if feasible.</audit-event-info>
+                 <audit-event-info>User ID and remote source (IP Address), if feasible.</audit-event-info>
 		    </audit-event>    
         </f-component>	
 		
