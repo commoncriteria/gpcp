@@ -907,7 +907,7 @@
 				<addressed-by>FMT_CFG_EXT.1</addressed-by><rationale>Supports the objective by requiring that default Administrator credentials be changed.</rationale>
 				<addressed-by>FIA_UIA_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring Administrators be authenticated before making changes.</rationale>
 				<addressed-by>FMT_MOF_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying that management functions be performed by Administrators.</rationale>
-				<addressed-by>FMT_SMF_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
+				<addressed-by>FMT_SMF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
 			</SO>
 			<SO name="O.AUTHORIZED_ADMINISTRATOR">
 				<description>The TOE must ensure that Administrative actions can be taken only by authorized Administrators. This includes 
@@ -928,7 +928,7 @@
 				<addressed-by>FIA_X509_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying how X.509 certificate validation is performed.</rationale>
 				<addressed-by>FIA_X509_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by specifying how X.509 certificate authentication is performed.</rationale>
 				<addressed-by>FMT_MOF_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying that management functions be performed by Administrators.</rationale>
-				<addressed-by>FMT_SMF_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
+				<addressed-by>FMT_SMF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
 			</SO>
 		</SOs>
     </section>
@@ -1242,7 +1242,8 @@
 			<depends on-use="uc-csfc-eud"/>
 			<depends on-use="uc-ent-clients-desktop"/>
 			<consistency-rationale/>
-			<comp-lev>specifies how audit data may be tramsmitted or removed from the TOE.</comp-lev>
+			<comp-lev>specifies how audit data may be transmitted or removed from the TOE, which is not 
+				covered by any FCS_STG component.</comp-lev>
 			<management>The following actions could be considered for the management functions in FMT:
 				<h:ol type="a">
 					<h:li>Ability to configure and manage the audit system and audit data,
@@ -1323,9 +1324,9 @@
 		
 	    <ext-comp-def title="Cryptographic Key Management" fam-id="FCS_CKM_EXT">
 			<fam-behavior>This family defines requirements for management of cryptographic keys.
-				FCS_CKM_EXT.5 is necessary to express requirements for key derivation, which are missing from Part 2. 
 				FCS_CKM_EXT.4 is necessary because FCS_CKM.4 does not include a requirement for the timing of 
 				key destruction.
+				FCS_CKM_EXT.5 is necessary to express requirements for key derivation, which are missing from Part 2. 
 				</fam-behavior>
 		</ext-comp-def>
 		<ext-comp-def title="Entropy for Virtual Machines" fam-id="FCS_ENT_EXT">
@@ -1334,7 +1335,7 @@
 		</ext-comp-def>
 	 	<ext-comp-def title="HTTPS Protocol" fam-id="FCS_HTTPS_EXT">
 			<fam-behavior>This family defines requirements for protecting remote management sessions between the TOE and a 
-				Security Administrator. This family describes how HTTPS will be implemented.
+				Security Administrator. This family describes how HTTPS is to be implemented.
 			</fam-behavior>
 		</ext-comp-def>
 		<ext-comp-def title="IPsec Protocol" fam-id="FCS_IPSEC_EXT">
@@ -2029,7 +2030,7 @@
 		<f-component id="sfr-fcs-ckm-ext-4" cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="sel-based">
 			<depends on-incl="sfr-fcs-ckm-4"/>
 			<consistency-rationale/>
-			<comp-lev>requires the TSF to destroy keys when no longer used.</comp-lev>
+			<comp-lev>specifies the timing for key destruction, which is not addressed by FCS_CKM.4.</comp-lev>
 			<management/>
 			<audit/>
 			<dependencies><h:br/>FCS_CKM.4 Cryptographic Key Destruction</dependencies>
@@ -2078,7 +2079,8 @@
 <!--			<depends on-sel="sel-fcs-cop-keyenc-xor"/>  -->
 <!--			<depends><optional/></depends>  -->   	<!-- May be also included optionally -->
 			<consistency-rationale/>
-			<comp-lev>requires the TSF to perform key derivation using a defined method.</comp-lev>
+			<comp-lev>requires the TSF to perform key derivation using a defined method, which is 
+				not addressed by any other FCS_CKM component.</comp-lev>
 			<management/>
 			<audit/>
 			<dependencies><h:br/>
@@ -4637,7 +4639,7 @@
 			<depends on-sel="sel-itc-ipsec"/>
 			<depends on-sel="sel-x509-2-ipsec"/>
 			<consistency-rationale/>
-			<comp-lev>requires that IPsec be implemented as specified.</comp-lev>
+			<comp-lev>requires that IPsec be implemented as specified manner.</comp-lev>
 			<management>The following actions could be considered for the management functions in FMT: 
 				<h:ol type="a">
 					<h:li>Managing the cryptographic functionality.</h:li>
@@ -5766,7 +5768,7 @@
 			</comp-lev>
 			<management/>
 			<audit/>
-			<dependencies>FCS_COP.1 Cryptographic Operation</dependencies>
+			<dependencies><h:br/>FCS_COP.1 Cryptographic Operation</dependencies>
 			<f-element id="fcs-stg-ext-3e1">
 				<title>
 					The TSF shall protect the integrity of any encrypted [<h:i>AKs, SKs, KEKs, and
@@ -5849,7 +5851,8 @@
 		<f-component id="sfr-fdp-itc-ext-1" cc-id="fdp_itc_ext.1" name="Key/Credential Import" status="sel-based">
 			<depends on-sel="sel-fcs-sto-ext-1e2-import"/>
 			<consistency-rationale/>
-			<comp-lev>requires the TSF to implement a means for importing keys and credentials into the TOE.</comp-lev>
+			<comp-lev>requires the TSF to implement one or more means for importing keys and credentials
+				into the TOE, which are not addressed by the FDP_ITC component.</comp-lev>
 			<management/>
 			<audit/>
 			<dependencies><h:br/>FCS_COP.1 Cryptographic Operation<h:br/>
@@ -6001,14 +6004,16 @@
 			<depends on-incl="sfr-fia-uau-5"/>  <!-- FIA_UAU.5 -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to monitor authorization attempts, including counting and limiting the number of 
-				attempts at failed or passed authorizations.</comp-lev>
+				attempts at failed or passed authorizations. This extended component permits considerably
+				more flexibility for dealing with multiple authentication mechanisms than FIA_AFL.</comp-lev>
 			<management>The following actions could be considered for the management functions in FMT:
 				<h:ul><h:li>Set authorization failure parameters</h:li></h:ul></management>
 			<audit>If FAU_GEN.1 is included in the ST, then the following audit events should be considered:
 				<h:ul><h:li>Administrator authentication failures.</h:li></h:ul></audit>
-			<dependencies>FIA_UAU.5 Multiple Authentication Mechanisms<h:br/>
-				FIA_SMF_EXT.1 Management Functions Specification<h:br/>
-				FCS_CKM_EXT.4 Key Destruction</dependencies>
+			<dependencies><h:br/>FCS_CKM_EXT.4 Key Destruction<h:br/>
+				FIA_SMF.1 Management Functions Specification<h:br/>
+				FIA_UAU.5 Multiple Authentication Mechanisms
+				</dependencies>
 			<f-element id="fia-afl-ext-1e1">
 				<title>
 					The TSF shall consider password and [<h:i>no other</h:i>] as critical authentication mechanisms.
@@ -6043,7 +6048,7 @@
 					each authentication mechanism.
 				</title>
 				<note role="application">
-					The positive integer is configured according to <xref to="t-manfunc"/> in FMT_SMF_EXT.1.1.<h:p/>
+					The positive integer is configured according to <xref to="t-manfunc"/> in FMT_SMF.1.1.<h:p/>
 					An unique authentication attempt is defined as any attempt to verify an authentication attempt
 					in which the input is different from a previous attempt. ‘Unique’ must be selected if
 					the authentication system increments the counter only for unique unsuccessful authentication
@@ -6509,7 +6514,7 @@
 					Ordinary unprivileged users of the platform need not authenticate to the platform, though they
 					may well have to authenticate themselves to tenant software such as an Operating System. <h:p/>
 					The TSF-mediated management functions are listed in the management functions table 
-					(<xref to="t-manfunc"/>) in FMT_SMF_EXT.1.  
+					(<xref to="t-manfunc"/>) in FMT_SMF.1.  
 				</note>
                 <aactivity>
 					<TSS>
@@ -6573,9 +6578,9 @@
 					<h:li>Failure to validate a certificate.</h:li>
 				</h:ol>
 			</audit>
-			<dependencies>FPT_STM.1 Reliable Time Stamps<h:br/>
-				FCS_COP.1 Cryptographic Operation<h:br/>
-				FCS_RBG_EXT.1 Cryptographic Operation (Random Bit Generation)
+			<dependencies><h:br/>FCS_COP.1 Cryptographic Operation<h:br/>
+				FCS_RBG_EXT.1 Cryptographic Operation (Random Bit Generation)<h:br/>
+				FPT_STM.1 Reliable Time Stamps
 			</dependencies>
             <f-element id="fia-x509-ext-1e1">
                 <title>The TSF shall validate certificates in accordance with the following rules:
@@ -6723,7 +6728,7 @@
 				</h:ol>
 			</management>
 			<audit/>
-			<dependencies>FIA_X509_EXT.1 X.509 Certificate Validation<h:br/>
+			<dependencies><h:br/>FIA_X509_EXT.1 X.509 Certificate Validation<h:br/>
 				FTP_ITC_EXT.1 Trusted Channel Communications</dependencies>
             <f-element id="fia-x509-ext-2e1">
                 <title>The TSF shall use X.509v3 certificates as defined by RFC 5280 to support authentication for
@@ -6819,6 +6824,7 @@
 	    <ext-comp-def title="Secure by Default" fam-id="FMT_CFG_EXT">
 			<fam-behavior>This family defines requirements for secure by default configuration of the TOE.</fam-behavior>
 		</ext-comp-def>
+		
 	    <ext-comp-def title="Management of Security Function Behavior" fam-id="FMT_MOF_EXT">
 			<fam-behavior>This family defines the management functions that can be performed by user roles.</fam-behavior>
 		</ext-comp-def>
@@ -6885,10 +6891,12 @@
 			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->	       		
 			<depends on-sel="sel-tud3-admin-config"/>   <!-- FPT_TUD_EXT.3 -->	       		
    			<consistency-rationale/>
-			<comp-lev>requires that management functions be assigned to user roles.</comp-lev>
+			<comp-lev>requires that management functions be restricted to the Administrator role.
+	       			It extends FMT_MOF.1 by requiring specification of support for either remote or 
+				local administration.</comp-lev>
 			<management/>
 			<audit/>
-			<dependencies><h:br/>FMT_SMF_EXT.1 Specification of Management Function</dependencies>
+			<dependencies><h:br/>FMT_SMF.1 Specification of Management Function</dependencies>
 			<f-element id="fmt-mof-ext-1e1">
                	<title>The TSF shall be capable of supporting 
                   	<selectables>
@@ -6898,8 +6906,9 @@
                 </title>
 			</f-element>
 			<f-element id="fmt-mof-ext-1e2">
-				<title>The TSF shall restrict the ability to perform the functions in column 3 of
-					<xref to="t-manfunc"/> to an authenticated administrator. 
+				<title>The TSF shall restrict the ability to [<h:i>determine the behaviour of</h:i>]
+					the functions [<h:i>listed in <xref to="t-manfunc"/></h:i>] to [<h:i>an authenticated 
+					Administrator</h:i>]. 
 				</title>
 				<note role="application"> There are three roles defined in this PP for general-purpose 
 					computing platforms: 1) Administrator, 2) User, and 3) tenant software. 
@@ -6922,7 +6931,7 @@
 						accessing, performing, or relaxing the function (if applicable). The
 						TSS also describes any functionality that is affected by administrator-configured
 						policy and how. This activity will be performed in conjunction with
-						FMT_SMF_EXT.1.<h:p/>
+						FMT_SMF.1.<h:p/>
 					</TSS>
 					<Guidance>There are no AGD evaluation activities for this component.<h:p/></Guidance>
 					<KMD>
@@ -6941,7 +6950,7 @@
 								user may still apply a more restrictive policy than that of the
 								administrator.</test>
 							<test>Additional testing of functions provided to the administrator are performed
-								in conjunction with the testing activities for FMT_SMF_EXT.1.1.</test>
+								in conjunction with the testing activities for FMT_SMF.1.1.</test>
 						</testlist>
 					</Tests>
 				</aactivity>
@@ -6949,8 +6958,8 @@
 			<audit-event/>
         </f-component>
 		
-		<!-- FMT_SMF_EXT.1: Specification of Management Functions -->
-        <f-component id="sfr-fmt-smf-ext-1" cc-id="fmt_smf_ext.1" name="Specification of Management Functions" status="sel-based">
+		<!-- FMT_SMF.1: Specification of Management Functions -->
+        <f-component id="sfr-fmt-smf-1" cc-id="fmt_smf.1" name="Specification of Management Functions" status="sel-based">
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->	       		
@@ -7578,7 +7587,7 @@
 					If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected, then FCS_COP.1/Hash must be included in the ST.<h:p/>
 					If "<h:i>verification of a digital signature by trusted code/data</h:i>" is selected, then FCS_COP.1/SigVer must be included in the ST.<h:p/>
 					If "<h:i>Initiate a recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
-					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
+					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
 					must be included in the ST.<h:p/>
 				</note>
 				<aactivity>
@@ -7688,7 +7697,7 @@
 					policy</h:i>" is selected, then all administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
-					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
+					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
 					must be included in the ST.<h:p/>				
 				</note>
 				<aactivity>
@@ -7839,9 +7848,9 @@
 				<management>The following actions could be considered for the management functions in FMT:<h:ul>
 					<h:li>Initiation of the update process.</h:li></h:ul></management>
 				<audit/>
-				<dependencies>FPT_TUD_EXT.2 Platform Firmware Authenticated Update Mechanism<h:br/>
+				<dependencies><h:br/>FPT_TUD_EXT.2 Platform Firmware Authenticated Update Mechanism<h:br/>
 					FPT_TUD_EXT.3 Platform Firmware Delayed-Authentication Update Mechanism<h:br/>
-					FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism<h:br/>
+					FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism
 					</dependencies>
 			<f-element id="fpt-tud-ext-1e1">
 				<title>The TSF shall 
@@ -7914,8 +7923,7 @@
 				included in the PP/ST:<h:ul><h:li>Failure of update authentication/integrity check/rollback</h:li>
 				<h:li>Failure of update operation</h:li>
 				<h:li>Success of update operation</h:li></h:ul></audit>
-			<dependencies>FCS_COP.1/SigVer<h:br/>
-				FCS_COP.1/Hash</dependencies>
+			<dependencies><h:br/>FCS_COP.1 Cryptographic Operations</dependencies>
 			<f-element id="fpt-tud-ext-2e1">
 				<title>The TSF shall authenticate the source of all platform firmware updates using a 
 					digital signature algorithm specified in FCS_COP.1/SigVer and using a key store 
@@ -7998,7 +8006,7 @@
 					policy</h:i>" is selected, then all Administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
-					If "<h:i>in accordance with Administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
+					If "<h:i>in accordance with Administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
 					must be included in the ST.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					The platform firmware authenticated update mechanism employs digital signatures to ensure the authenticity of the
@@ -8159,7 +8167,7 @@
 					policy</h:i>" is selected, then all Administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
-					If "<h:i>in accordance with Administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF_EXT.1
+					If "<h:i>in accordance with Administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
 					must be included in the ST.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					The platform firmware unauthenticated update mechanism installs platform firmware updates without
@@ -8350,7 +8358,7 @@
 					<h:li>Failures of the trusted path functions.</h:li>
 				</h:ol>
 			</audit>
-			<dependencies>FAU_STG_EXT.1 Off-Loading of Audit Data</dependencies>          
+			<dependencies><h:br/>FAU_STG_EXT.1 Off-Loading of Audit Data</dependencies>          
 			<f-element id="ftp-itc-ext-1e1">
 				<title>The TSF shall use
 					<selectables linebreak="yes">
