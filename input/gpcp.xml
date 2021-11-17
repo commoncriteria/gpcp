@@ -908,6 +908,7 @@
 				<addressed-by>FIA_UIA_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring Administrators be authenticated before making changes.</rationale>
 				<addressed-by>FMT_MOF_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying that management functions be performed by Administrators.</rationale>
 				<addressed-by>FMT_SMF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
+				<addressed-by>FMT_SMR.1 (sel-based)</addressed-by><rationale>Supports the objective by defining the roles of Administrator and User.</rationale>
 			</SO>
 			<SO name="O.AUTHORIZED_ADMINISTRATOR">
 				<description>The TOE must ensure that Administrative actions can be taken only by authorized Administrators. This includes 
@@ -929,6 +930,7 @@
 				<addressed-by>FIA_X509_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by specifying how X.509 certificate authentication is performed.</rationale>
 				<addressed-by>FMT_MOF_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying that management functions be performed by Administrators.</rationale>
 				<addressed-by>FMT_SMF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
+				<addressed-by>FMT_SMR.1 (sel-based)</addressed-by><rationale>Supports the objective by defining the roles of Administrator and User.</rationale>
 			</SO>
 		</SOs>
     </section>
@@ -1259,12 +1261,16 @@
 			<dependencies><h:br/>
 				FAU_GEN.1 Audit Data Generation</dependencies>
             <f-element id="fau-stg-ext-1e1">
-                <title>The TSF shall be able to tranfer generated audit data to an external IT entity using 
+                <title>The TSF shall be able to transfer generated audit data to an external IT entity using 
 				<selectables linebreak="yes">
 					<selectable id="sel-fau-itc">a trusted channel as specified in FTP_ITC_EXT.1</selectable>
 					<selectable>removable media requiring physical access to the platform</selectable>
 				</selectables>.
                 </title>
+		    <ext-comp-def-title>
+			    <title>The TSF shall be able to transfer generated audit data to an external IT entity using 
+				    <assignable>mechanism for moving audit data</assignable>. 
+			    </title></ext-comp-def-title>				    
 				<note role="application">
 					The ST Author must select "<h:i>trusted channel</h:i>" and include FTP_ITC_EXT.1 in the ST if the TOE offloads
 					audit data to external IT entity over a network connection. Protocols used for implementing the trusted
@@ -4778,6 +4784,9 @@
                         <selectable>tunnel mode</selectable>
                     </selectables>.
                 </title>
+		<ext-comp-def-title>
+			<title>The TSF shall implement <assignable>IPsec modes</assignable>.
+                </title></ext-comp-def-title>				
 				<note role="application">
 					If the TOE is used to connect to a VPN gateway for the purposes of establishing a
 					secure connection to a private network, the ST Author shall select
@@ -4863,6 +4872,11 @@
                         <selectable exclusive="yes">no other algorithms</selectable>
                     </selectables>] together with a Secure Hash Algorithm (SHA)-based HMAC.
                 </title>
+		<ext-comp-def-title><title>
+			The TSF shall implement the IPsec protocol ESP as defined by RFC 4303 using the cryptographic 
+			algorithms <assignable>cryptographic algorithms</assignable>
+			together with a Secure Hash Algorithm (SHA)-based HMAC.
+                </title></ext-comp-def-title>
                 <aactivity level="element">
                     <TSS>
                         The evaluator shall examine the TSS to verify that the algorithms AES-GCM-128 and 
@@ -4915,6 +4929,9 @@
 						</selectable>
                     </selectables>.
                 </title>
+		    <ext-comp-def-title>
+			    <title>The TSF shall implement the protocol: <assignable>key exchange protocol</assignable>.
+	                </title></ext-comp-def-title>
                 <note role="application">If the TOE implements SHA-2 hash algorithms for IKEv1 or IKEv2, the ST Author shall
 					select RFC 4868. </note>
                 <aactivity level="element">
@@ -4967,6 +4984,10 @@
                         <selectable>AES-GCM-256 as specified in RFC 5282</selectable>
                         <selectable exclusive="yes">no other algorithm</selectable>
                     </selectables>.
+                </title>
+		<ext-comp-def-title><title>
+		   The TSF shall ensure the encrypted payload in the <assignable>key exchange protocol</assignable>
+                   protocol uses the cryptographic algorithms <assignable>cryptographic algorithms</assignable>.
                 </title>
                 <aactivity level="element">
                     <TSS>
@@ -5027,7 +5048,10 @@
 						</selectable>
 					</selectables>.
                 </title>
-                <note role="application">
+		<ext-comp-def-title>
+                <title>The TSF shall ensure that <assignable>key exchange protocol lifetime configuration rules</assignable>.
+                </title></ext-comp-def-title>
+		    <note role="application">
 					The ST Author is afforded a selection based on the version of IKE in their
 					implementation. There is a further selection within this selection that allows the
 					ST Author to specify which entity is responsible for “configuring” the life of the
@@ -5192,6 +5216,13 @@
 						<selectable>no other method</selectable>
 					</selectables>.
 				</title>
+		    <ext-comp-def-title>
+                <title>The TSF shall ensure that all IKE protocols perform peer authentication using a
+			<assignable>IKE peer authentication algorithm</assignable>
+			that use X.509v3 certificates that conform to RFC 4945 and 
+			<assignable>other IKE peer authentication mechanism</assignable>.
+			</title>
+		    </ext-comp-def-title>
                 <note role="application">
 					At least one public-key-based Peer Authentication method is required in order to
 					conform to this PP-Module. One or more of the public key schemes is chosen by
@@ -5303,6 +5334,12 @@
 					</selectables> contained in a certificate does not match the expected value(s) for the
 					entity attempting to establish a connection.
 				</title>
+		    <ext-comp-def-title>
+                <title>The TSF shall not establish an SA if the <assignable>specific certificate reference identifier</assignable>
+			and <assignable>other certificate reference identifier type</assignable> contained in a certificate does
+			not match the expected value(s) for the entity attempting to establish a connection.
+		</title>
+		    </ext-comp-def-title>			    
                 <note role="application">
 					The TOE must support at least one of the following identifier types: IP address,
 					Fully Qualified Domain Name (FQDN), user FQDN, or Distinguished Name (DN).
@@ -5359,9 +5396,21 @@
 						<selectable>IKEv1 Phase 1</selectable>
 						<selectable>IKEv2 IKE_SA</selectable>
 					</selectables> connection is greater than or equal to the strength of the symmetric algorithm (in terms of
-					the number of bits in the key) negotiated to protect the [selection: IKEv1 Phase
-					2, IKEv2 CHILD_SA] connection.
+					the number of bits in the key) negotiated to protect the 
+					<selectables>
+						<selectable>IKEv1 Phase 2</selectable>
+						<selectable>IKEv2 CHILD_SA</selectable>
+					</selectables> connection.
 				</title>
+		    <ext-comp-def-title>
+			    <title>The <assignable>configuring entity</assignable> shall be able to ensure by default
+				    that the strength of the symmetric algorithm (in terms of the number of bits in 
+				    the key) negotiated to protect the <assignable>connection type</assignable>
+					connection is greater than or equal to the strength of the symmetric algorithm (in terms of
+					the number of bits in the key) negotiated to protect the 
+				    <assignable>connection type</assignable>connection.
+				</title>
+		    </ext-comp-def-title>    
                 <note role="application">
 					If this functionality is configurable, the TSF may be configured by a VPN Gateway
 					or by an Administrator of the TOE itself.<h:p/>
@@ -5449,6 +5498,11 @@
 						<selectable id="sel-rbg-ctr">CTR_DRBG (AES)</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>The TSF shall perform all deterministic random bit generation services in
+					accordance with ISO/IEC 18031:2011 using <assignable>DRBG type</assignable>.
+				</title>
+				</ext-comp-def-title>
 			</f-element>
 			<f-element id="fcs-rbg-ext-1e2">
 				<title>The deterministic RBG shall be seeded by at least one entropy source in
@@ -5466,6 +5520,14 @@
 					</selectables> bits of entropy at least equal to the greatest security strength, 
 					according to ISO/IEC 18031:2011, of the keys and CSPs that it will generate.
 				</title>
+				<ext-comp-def-title>
+				<title>The deterministic RBG shall be seeded by at least one entropy source in
+					accordance with NIST SP 800-90B that accumulates entropy from 
+					<assignable>seed source</assignable> with a minimum of 
+					<assignable>bits of entropy</assignable> bits of entropy at least equal to the greatest security strength, 
+					according to ISO/IEC 18031:2011, of the keys and CSPs that it will generate.
+				</title>
+				</ext-comp-def-title>					
 				<note role="application">
 					This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
@@ -5619,6 +5681,13 @@
 						<selectable>no other keys</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>
+					The TSF shall provide <assignable>protected storage type</assignable>
+					protected storage for asymmetric private keys and 
+					<assignable>secrets to be stored</assignable>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					This SFR should be included in the ST if the TOE provides protected storage as a service for
 					tenant software, or if it stores keys or other persistent secrets for its own use.<h:p/>
@@ -5646,6 +5715,13 @@
 						<selectable>an administrator</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>
+					The TSF shall support the capability of 
+					<assignable>capability for acquiring keys</assignable>
+					upon request of <assignable>entity requesting storage</assignable>. 
+				</title>
+				</ext-comp-def-title>					
 				<note role="application">
 					If "causing the TOE to generate keys/secrets" is selected in FCS_STO_EXT.1.2, then the 
 					ST must include at least one of FCS_CKM.1/AK or FCS_CKM.1/SK depending on the value of the 
@@ -5740,16 +5816,11 @@
 						<selectable>AES-GCM</selectable>
 						<selectable>AES-KW</selectable>
 						<selectable>AES-KWP</selectable>
-					</selectables> as specified in FCS_COP.1/SK.
+					</selectables>.
 				</title>
 				<ext-comp-def-title><title>
 					The TSF shall encrypt <assignable>types of key material</assignable> using 
-					<selectables>
-						<selectable>AES-CCM</selectable>
-						<selectable>AES-GCM</selectable>
-						<selectable>AES-KW</selectable>
-						<selectable>AES-KWP</selectable>
-					</selectables> as specified in FCS_COP.1/SK.
+					<assignable>cryptographic algorithm</assignable>.
 					</title>
 					</ext-comp-def-title>
 				<note role="application">
@@ -5811,20 +5882,7 @@
 				<ext-comp-def-title><title>
 					The TSF shall protect the integrity of any encrypted 
 					<assignable>types of key material</assignable> by using 
-					<selectables linebreak="yes">
-						<selectable>Symmetric encryption in 
-							<selectables>
-								<selectable>AES_CCM</selectable>
-								<selectable>AES_GCM</selectable>
-								<selectable>AES_KW</selectable>
-								<selectable>AES_KWP</selectable>
-							</selectables> mode in accordance with FCS_COP.1/SKC</selectable>
-						<selectable>A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</selectable>
-						<selectable>A digital signature of the stored key in accordance with FCS_COP.1/SigGen
-							using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</selectable>
-						<selectable>An immediate application of the key for decrypting the protected data followed 
-							by a successful verification of the decrypted data with previously known information</selectable>
-					</selectables>.
+					<assignable>integrity protection mechanism</assignable>.
 				</title></ext-comp-def-title>
 			</f-element>
 			<f-element id="fcs-stg-ext-3e2">
@@ -5901,8 +5959,14 @@
 						<selectable id="sel-fdp-itc-ext-1e1-phys">physically protected channels as specified in FTP_ITP_EXT.1</selectable>
 						<selectable id="sel-fdp-itc-ext-1e1-buf">encrypted data buffers as specified in FTP_ITE_EXT.1</selectable>
 						<selectable id="sel-fdp-itc-ext-1e1-chan">cryptographically protected data channels as specified in FTP_ITC_EXT.1</selectable>
-					</selectables>
+					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>
+					The TSF shall support importing keys/key material using 
+					<assignable>import mechanism</assignable>.
+				</title>
+				</ext-comp-def-title>	
 			</f-element>
 			<f-element id="fdp-itc-ext-1e2">
 				<title>
@@ -5921,6 +5985,12 @@
 							<selectable>integrity verification supported by FDP_ITC_EXT.1</selectable>
 						</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>
+					The TSF shall verify the integrity of imported keys/key material using 
+					<assignable>integrity verification method</assignable>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					This SFR is included in the ST when "<h:i>importing keys/secrets into the TOE</h:i>"
 					is selected in FCS_STG_EXT.1.<h:p/>
@@ -5982,6 +6052,11 @@
 					standard: [<h:i>Advanced Trusted Environment: OMTP TR1 v1.1</h:i>] 
 					and make this TEE available to tenant software.
 				</title>
+				<ext-comp-def-title><title>
+					The TSF shall implement a trusted execution environment that conforms to the following
+					standard: <assignable>Trusted Execution Environment standard</assignable> 
+					and make this TEE available to tenant software.</title>
+				</ext-comp-def-title>
 				<note role="application">
 					This SFR should be claimed in the ST if the TOE includes a trusted execution environment 
 					for the use of tenant software.
@@ -6952,19 +7027,13 @@
 					the functions [<h:i>listed in <xref to="t-manfunc"/></h:i>] to [<h:i>an authenticated 
 					Administrator</h:i>]. 
 				</title>
-				<note role="application"> There are three roles defined in this PP for general-purpose 
-					computing platforms: 1) Administrator, 2) User, and 3) tenant software. 
-					Only Administrators can perform management functions on the platform, and only
-					Administrators authenticate themselves to the platform.<h:p/>
+				<note role="application"> There are two roles defined in this PP for general-purpose 
+					computing platforms: Administrator and User. 
+					Administrators can perform management functions on the platform, and only
+					Administrators are required to authenticate themselves to the platform.<h:p/>
+					Users have a limited ability to select responses to certain events.<h:p/>
 					This SFR should be included in the ST if the platform implements the Administrator role, 
 					as consistent with several selections thoughout the PP.<h:p/>
-					The ST Author may not select the same function in both FMT_MOF_EXT.1.1 and FMT_MOF_EXT.1.2. <h:p/>
-					The ST Author should select those security management functions that the administrator may 
-					exercise. <h:p/>
-					For functions that are mandatory, any sub-functions not in a selection are also mandatory
-					and any assignments must contain at least one assigned value. For non-selectable
-					sub-functions in an optional function, all sub-functions outside the selection must be
-					implemented in order for the function to be listed.<h:p/> 
 					If the ST Author selects "remote," then FTP_ITC_EXT.1 must be included in the ST.
 				</note>
 				<aactivity>
@@ -7157,8 +7226,7 @@
 					Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
 					Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
 					The first column lists the management function number. The second column lists the management functions
-					identified in the PP. <h:p/>
-					The Administrator role is the only role for which Management these management functions are defined.
+					identified in the PP.
 				</note>
 				<aactivity>
 					<TSS>
@@ -8425,7 +8493,7 @@
 					<h:li>Failures of the trusted path functions.</h:li>
 				</h:ol>
 			</audit>
-			<dependencies><h:br/>FAU_STG_EXT.1 Off-Loading of Audit Data</dependencies>          
+			<dependencies>No dependencies.</dependencies>          
 			<f-element id="ftp-itc-ext-1e1">
 				<title>The TSF shall use
 					<selectables linebreak="yes">
@@ -8454,6 +8522,15 @@
 					identification of its end points, protects channel data from disclosure, and detects modification
 					of the channel data. 
 				</title>
+				<ext-comp-def-title><title>
+					The TSF shall use <assignable>trusted channel protocols</assignable>
+					protocols with <assignable>authentication mechanism</assignable>
+					to provide a communication channel between itself and 
+					<assignable>external IT entities</assignable>
+					that is logically distinct from other communication channels, provides assured 
+					identification of its end points, protects channel data from disclosure, and detects modification
+					of the channel data. 
+				</title></ext-comp-def-title>
 				<note role="application"> 
 					This SFR is included in the ST if a trusted channel is used to offload audit data 
 					or if the platform is administered remotely. That is, if "<h:i>a trusted channel as specified in FTP_ITC_EXT.1</h:i>" 
