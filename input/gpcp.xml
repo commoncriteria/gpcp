@@ -1334,8 +1334,8 @@
 				generated or collected by the TSF.</fam-behavior>
 		</ext-comp-def>
 	 	<ext-comp-def title="HTTPS Protocol" fam-id="FCS_HTTPS_EXT">
-			<fam-behavior>This family defines requirements for protecting remote management sessions between the TOE and a 
-				Security Administrator. This family describes how HTTPS is to be implemented.
+			<fam-behavior>This family defines requirements for protecting HTTP communications between the TOE and
+				an external IT entity.
 			</fam-behavior>
 		</ext-comp-def>
 		<ext-comp-def title="IPsec Protocol" fam-id="FCS_IPSEC_EXT">
@@ -2084,8 +2084,8 @@
 			<management/>
 			<audit/>
 			<dependencies><h:br/>
-			FCS_CKM.1 Cryptographic Key Generation<h:br/>
-			FCS_COP.1 Cryptographic Operation</dependencies>
+			[FCS_CKM.1 Cryptographic Key Generation or<h:br/>
+			FDP_ITC_EXT.1 Key/Credential Import]</dependencies>
 			<f-element id="fcs-ckm-ext-5e1">
 				<title>
 					The TSF shall derive cryptographic keys of type
@@ -5096,8 +5096,8 @@
                 </aactivity>
             </f-element>
             <f-element id="fcs-ipsec-ext-1e8">
-                <title>The TSF shall ensure that all IKE protocols implement DH groups [19 (256-bit
-					Random ECP), 20 (384-bit Random ECP), and 
+                <title>The TSF shall ensure that all IKE protocols implement DH groups [<h:i>19 (256-bit
+			Random ECP), 20 (384-bit Random ECP), and </h:i>
 					<selectables>
 						<selectable>24 (2048-bit MODP with 256-bit POS)</selectable>
 						<selectable>15 (3072-bit MODP)</selectable>
@@ -5105,6 +5105,9 @@
 						<selectable exclusive="yes">no other DH groups</selectable>
 					</selectables>].
 				</title>
+		    <ext-comp-def-title><title>
+			    The TSF shall ensure that all IKE protocols implement DH groups <assignable>DH Groups</assignable>.
+			    </title></ext-comp-def-title>
                 <note role="application">
 					The selection is used to specify additional DH groups supported. This applies to
 					IKEv1 and IKEv2 exchanges. It should be noted that if any additional DH groups
@@ -5660,6 +5663,10 @@
 						<selectable>an administrator</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title><title>
+					The TSF shall be capable of destroying keys/secrets in the protected storage
+					upon request of <assignable>authorized subject</assignable>.</title>
+				</ext-comp-def-title>
 				<aactivity>
 				<TSS>
 					The evaluator shall review the TSS to determine that the TOE implements the
@@ -5737,6 +5744,16 @@
 						<selectable>AES-KWP</selectable>
 					</selectables> as specified in FCS_COP.1/SK.
 				</title>
+				<ext-comp-def-title><title>
+					The TSF shall encrypt <assignable>types of key material</assignable> using 
+					<selectables>
+						<selectable>AES-CCM</selectable>
+						<selectable>AES-GCM</selectable>
+						<selectable>AES-KW</selectable>
+						<selectable>AES-KWP</selectable>
+					</selectables> as specified in FCS_COP.1/SK.
+					</title>
+					</ext-comp-def-title>
 				<note role="application">
 					This SFR is included in the ST if "software-based" is selected in FCS_STG_EXT.1.
 				</note>
@@ -5793,6 +5810,24 @@
 							by a successful verification of the decrypted data with previously known information</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title><title>
+					The TSF shall protect the integrity of any encrypted 
+					<assignable>types of key material</assignable> by using 
+					<selectables linebreak="yes">
+						<selectable>Symmetric encryption in 
+							<selectables>
+								<selectable id="sel-stg3-aes-ccm">AES_CCM</selectable>
+								<selectable id="sel-stg3-aes-gcm">AES_GCM</selectable>
+								<selectable id="sel-stg3-aes-kw">AES_KW</selectable>
+								<selectable id="sel-stg3-aes-kwp">AES_KWP</selectable>
+							</selectables> mode in accordance with FCS_COP.1/SKC</selectable>
+						<selectable id="sel-stg3-hmac">A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</selectable>
+						<selectable id="sel-stg3-digsig">A digital signature of the stored key in accordance with FCS_COP.1/SigGen
+							using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</selectable>
+						<selectable>An immediate application of the key for decrypting the protected data followed 
+							by a successful verification of the decrypted data with previously known information</selectable>
+					</selectables>.
+				</title></ext-comp-def-title>
 			</f-element>
 			<f-element id="fcs-stg-ext-3e2">
 				<title>
@@ -5993,7 +6028,7 @@
 			<fam-behavior>This family defines requirements for ensuring that access to the TSF
 				is not granted to unauthenticated subjects.</fam-behavior>
 		</ext-comp-def>
-	    <ext-comp-def title="X.509 Certificate" fam-id="FIA_X509_EXT">
+	    <ext-comp-def title="X.509 Certificate Handling" fam-id="FIA_X509_EXT">
 			<fam-behavior>This family defines requirements for the validation and use of X.509 certificates.</fam-behavior>
 		</ext-comp-def>
 
@@ -6011,13 +6046,18 @@
 			<audit>If FAU_GEN.1 is included in the ST, then the following audit events should be considered:
 				<h:ul><h:li>Administrator authentication failures.</h:li></h:ul></audit>
 			<dependencies><h:br/>FCS_CKM_EXT.4 Key Destruction<h:br/>
-				FIA_SMF.1 Management Functions Specification<h:br/>
-				FIA_UAU.5 Multiple Authentication Mechanisms
+				FIA_SMF.1 Specification of Management Functions
 				</dependencies>
 			<f-element id="fia-afl-ext-1e1">
 				<title>
 					The TSF shall consider password and [<h:i>no other</h:i>] as critical authentication mechanisms.
 				</title>
+				<ext-comp-def-title>
+					<title>
+						The TSF shall consider password and <assignable>other authentication mechanisms</assignable>
+						as critical authentication mechanisms.\\
+					</title>
+				</ext-comp-def-title>
 				<note role="application">
 					This SFR is included in the ST if FIA_UAU.5 is included in the ST. FIA_UAU.5 specifies 
 					all mechanisms for authentication of Administrators. This SFR specifies the actions to be taken
@@ -6187,9 +6227,8 @@
 			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
 			<depends on-incl="sfr-fia-uau-5"/>  <!-- FIA_UAU.5 -->
 			<consistency-rationale/>
-			<comp-lev>requires the TSF to support passwords with varying composition requirements, minimum lengths, 
-				maximum lifetime, and similarity constraints.</comp-lev>
-			<management>>The following actions could be considered for the management functions in FMT:
+			<comp-lev>requires the TSF to support passwords with varying composition and length requirements.</comp-lev>
+			<management>The following actions could be considered for the management functions in FMT:
 				<h:ul><h:li>Ability to configure password composition and length requirements 
 					for authorization of Administrators.</h:li></h:ul></management>
 			<audit/>
@@ -6276,7 +6315,11 @@
 					<selectables>
 						<selectable>preventing authentication via an external port</selectable>
 						<selectable>enforcing a delay between incorrect authentication attempts</selectable>
-					</selectables> for all authentication mechanisms selected in FIA_UAU.5.1. The minimum delay 
+					</selectables> for all authentication mechanisms selected in FIA_UAU.5.1.
+				</title>
+			</f-element>
+			<f-element id="fia-trt-ext-1e2">
+				<title>The minimum delay between incorrect authentication attempts  
 					shall be such that no more than 10 attempts can be attempted per 500 milliseconds.
 				</title>
 				<note role="application">
@@ -6557,7 +6600,7 @@
 	
         <!-- FIA_X509_EXT.1 -->
         <!-- Depends on x509 certificates being used for administrator authentication -->
-        <f-component id="sfr-fia-x509-ext-1" cc-id="fia_x509_ext.1" name="X.509 Certificate Validation"  status="sel-based">
+        <f-component id="sfr-fia-x509-ext-1" cc-id="fia_x509_ext.1" name="X.509 Certificate Validation" status="sel-based">
 	<!--	<depends on-incl="sfr-fcs-ipsec-ext-1"/>   -->  <!-- FCS_IPSEC_EXT.1 -->
             <depends on-sel="sel-fia-uau-5-x509"/> 
 			<depends on-sel="sel-itc-certauth"/>
@@ -6728,8 +6771,7 @@
 				</h:ol>
 			</management>
 			<audit/>
-			<dependencies><h:br/>FIA_X509_EXT.1 X.509 Certificate Validation<h:br/>
-				FTP_ITC_EXT.1 Trusted Channel Communications</dependencies>
+			<dependencies><h:br/>FIA_X509_EXT.1 X.509 Certificate Validation</dependencies>
             <f-element id="fia-x509-ext-2e1">
                 <title>The TSF shall use X.509v3 certificates as defined by RFC 5280 to support authentication for
                     <selectables>
