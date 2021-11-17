@@ -979,7 +979,7 @@
 		
 			<ext-comp-def title="Off-Loading of Audit Data" fam-id="FAU_STG_EXT">
 			<fam-behavior>This family defines requirements for the TSF to securely 
-				transmit extract audit data from the TOE.</fam-behavior>
+				transmit or move audit data from the TOE.</fam-behavior>
 			</ext-comp-def>
 
 		<!-- FAU_GEN.1 Audit Data Generation-->
@@ -1232,7 +1232,6 @@
 
         <!-- FAU_STG_EXT.1 Off-Loading of Audit Data -->
 		<!-- Must be included if FAU_GEN.1 is included. -->
-		<!-- Administrator? -->
         <f-component id="sfr-fau-stg-ext-1" cc-id="fau_stg_ext.1" name="Off-Loading of Audit Data" status="sel-based">
 			<depends on-sel="sel-rot2-audit"/>  <!-- FPT_ROT_EXT.2.2 -->
 			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3.2 -->
@@ -1258,8 +1257,7 @@
 				</h:ol>
 			</audit>
 			<dependencies><h:br/>
-				FAU_GEN.1 Audit Data Generation<h:br/>
-				FTP_ITC_EXT.1 Trusted Channel Communications</dependencies>
+				FAU_GEN.1 Audit Data Generation</dependencies>
             <f-element id="fau-stg-ext-1e1">
                 <title>The TSF shall be able to tranfer generated audit data to an external IT entity using 
 				<selectables linebreak="yes">
@@ -5816,13 +5814,13 @@
 					<selectables linebreak="yes">
 						<selectable>Symmetric encryption in 
 							<selectables>
-								<selectable id="sel-stg3-aes-ccm">AES_CCM</selectable>
-								<selectable id="sel-stg3-aes-gcm">AES_GCM</selectable>
-								<selectable id="sel-stg3-aes-kw">AES_KW</selectable>
-								<selectable id="sel-stg3-aes-kwp">AES_KWP</selectable>
+								<selectable>AES_CCM</selectable>
+								<selectable>AES_GCM</selectable>
+								<selectable>AES_KW</selectable>
+								<selectable>AES_KWP</selectable>
 							</selectables> mode in accordance with FCS_COP.1/SKC</selectable>
-						<selectable id="sel-stg3-hmac">A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</selectable>
-						<selectable id="sel-stg3-digsig">A digital signature of the stored key in accordance with FCS_COP.1/SigGen
+						<selectable>A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</selectable>
+						<selectable>A digital signature of the stored key in accordance with FCS_COP.1/SigGen
 							using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</selectable>
 						<selectable>An immediate application of the key for decrypting the protected data followed 
 							by a successful verification of the decrypted data with previously known information</selectable>
@@ -6785,7 +6783,7 @@
                 </title>
 				<ext-comp-def-title>
 					<title>The TSF shall use X.509v3 certificates as defined by RFC 5280 to support authentication for 
-						<assignable>secure transport protocols</assignable>, and <assignable> other uses </assignable>.
+						<assignable>secure transport protocols</assignable>, and <assignable>other uses</assignable>.
 					</title>
 				</ext-comp-def-title>
                 <note role="application">This SFR must be included in the ST if the selection for FPT_TUD_EXT.1.3 is “digital
@@ -6877,7 +6875,8 @@
 			<comp-lev>requires that default Admnistrator credentials be changed immediately after first use.</comp-lev>
 			<management/>
 			<audit/>
-			<dependencies>No dependencies.</dependencies>
+			<dependencies><h:br/>FIA_UAU.1 Timing of Authentication
+			<h:br/>FMT_SMR.1 Security Roles</dependencies>
 			<f-element id="fmt-cfg-ext-1e1">
 				<title>
 					The TSF shall enforce that Administrator credentials be changed immediately
@@ -6938,7 +6937,8 @@
 				local administration.</comp-lev>
 			<management/>
 			<audit/>
-			<dependencies><h:br/>FMT_SMF.1 Specification of Management Function</dependencies>
+			<dependencies><h:br/>FMT_SMF.1 Specification of Management Functions
+	       <h:br/>FMT_SMR.1 Security Roles</dependencies>
 			<f-element id="fmt-mof-ext-1e1">
                	<title>The TSF shall be capable of supporting 
                   	<selectables>
@@ -7186,7 +7186,32 @@
 			</f-element>
 			<audit-event/>
         </f-component>
-	
+		
+	<!-- FMT_SMR.1 Security Roles -->
+	<f-component cc-id="fmt_smr.1" id="sfr-fmt-smr-1" name="Security Roles" status="sel-based">
+		<depends on-incl="sfr-fmt-smf-1"/>
+		<f-element id="fmt-smr-1e1">
+			<title>The TSF shall maintain the roles [<h:i>Administrator, User</h:i>].</title>
+		</f-element>
+		<f-element id="fmt-smr-1e2">
+			<title>The TSF shall be able to associate users with roles. </title>
+			<note role="application">
+				This SFR is included in the ST if FMT_SMF.1 is included in the ST.<h:p/>
+				This role is a platform Administrator that authenticates to the GPCP. This is 
+				distinct from, for example, OS administrators and users that may have
+				to authenticate themselves to tenant software.<h:p/>
+				A User is a human who interacts with the GPCP through a user interface. Users do not
+				authenticate themselves to the GPCP, though they may be authenticated by tenant
+				software.
+			</note>
+			<aactivity>
+				<no-tests>Documentation and testing for user roles is covered in the
+				other FMT requirements.</no-tests>
+			</aactivity>
+		</f-element>
+		<audit-event/>	
+	</f-component>
+		
 	</section>   <!-- FMT -->
 		
 		
@@ -9151,8 +9176,64 @@
 <!-- Appendix A includes optional, objective, and implementation-dependent requirements -->
 <!-- Appendix B is selection-based requirements -->
 <!-- Appendix C: Extended Component Definitions -->
-	    
-<!-- Appendix D: Entropy Documentation and Assessment -->
+
+<!-- Appendix D: Implicity Satisfied Requirements -->
+	<appendix title="Implicitly Satisfied Requirements" id="satisfiedreqs">
+	<!-- Boilerplate goes here -->
+	<h:b><ctr ctr-type="Table" pre="Table " id="imp-sat-reqs-table">: Implicitly Satisfied Requirements</ctr></h:b>
+    <h:table>	
+		<h:tr class="header"><h:td>Requirement</h:td><h:td>Rationale for Satisfaction</h:td></h:tr>
+	<h:tr>
+	<h:td>FIA_UAU.1 – Timing of Authentication</h:td>
+	<h:td>
+	  FMT_CFG_EXT.1 has a dependency on FIA_UAU.1 because it cannot exist unless the TOE supports an authentication
+		mechanism.
+	</h:td>
+	</h:tr>
+<!--	<h:tr>
+	<h:td>FCS_CKM.4 – Cryptographic Key Destruction</h:td>
+	<h:td>
+	  FCS_CKM.2 has a dependency on FCS_CKM.4. The extended SFR FCS_CKM_EXT.4 addresses this dependency by 
+	  defining an alternate requirement for key destruction.
+	</h:td>
+	</h:tr>
+	<h:tr>
+	<h:td>FCS_CKM.4 – Cryptographic Key Destruction</h:td>
+	<h:td>
+	  Each iteration of FCS_COP.1 has a dependency on FCS_CKM.4. The extended SFR FCS_CKM_EXT.4 addresses this 
+	  dependency by defining an alternate requirement for key destruction.
+	</h:td>
+	</h:tr>
+	<h:tr>
+	<h:td>FIA_UID.1 – Timing of Identification</h:td>
+	<h:td>
+	  FMT_SMR.2 has a dependency on FIA_UID.1. The extended SFR FIA_UID_EXT.1 expresses this dependency by also requiring
+	  user identification for use of the TOE.
+	</h:td>
+	</h:tr>
+	<h:tr>
+	<h:td>FPT_STM.1 – Reliable Time Stamps</h:td>
+	<h:td>
+	  FAU_GEN.1 has a dependency on FPT_STM.1. While not explicitly stated in the PP, it is assumed
+	  that this will be provided by the underlying hardware platform on which the TOE is installed. 
+	  This is because the TOE is installed as a software or firmware product that runs on general-purpose 
+	  computing hardware so a hardware clock is assumed to be available.
+	</h:td>
+	</h:tr>
+	<h:tr>
+	<h:td>FPT_STM.1 – Reliable Time Stamps</h:td>
+	<h:td>
+ 	  FIA_X509_EXT.1 has a dependency on FPT_STM.1. While not explicitly stated in the PP, it is assumed that
+	  this will be provided by the underlying hardware platform on which the TOE is installed. This is 
+	  because the TOE is installed as a software or firmware product that runs on general-purpose computing
+	  hardware so a hardware clock is assumed to be available.
+	</h:td>
+	</h:tr>  -->
+    </h:table>
+  </appendix>
+	
+	
+<!-- Appendix E: Entropy Documentation and Assessment -->
 <appendix id="appendix-entropy" title="Entropy Documentation and Assessment">
     <section id="s-design" title="Design Description">
         Documentation shall include the design of the entropy source as a whole, including the interaction of all entropy source
@@ -9189,7 +9270,7 @@
     </section>
 </appendix>
 	  
-<!-- Appendix E: Equivalency Guidelines -->
+<!-- Appendix F: Equivalency Guidelines -->
 <appendix id="appendix-equiv" title="Equivalency Guidelines">
 	
 	<section id="s-vm-intro" title="Introduction">
@@ -9344,9 +9425,9 @@
   	    
 </appendix>	  <!-- Equiv -->
 
-<!-- Appendix F: Use-Case Templates -->
-<!-- Appendix G: Acronyms -->
-<!-- Appendix H: Bibliography -->
+<!-- Appendix G: Use-Case Templates -->
+<!-- Appendix H: Acronyms -->
+<!-- Appendix I: Bibliography -->
 
 <bibliography>
     <entry id="bibCEM">
