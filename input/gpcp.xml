@@ -6303,7 +6303,9 @@
 			<comp-lev>requires the TSF to support passwords with varying composition and length requirements.</comp-lev>
 			<management>The following actions could be considered for the management functions in FMT:
 				<h:ul><h:li>Ability to configure password composition and length requirements 
-					for authorization of Administrators.</h:li></h:ul></management>
+					for authorization of Administrators.</h:li>
+					<h:li>Ability to manage authentication methods and change default authorization factors</h:li>
+				</h:ul></management>
 			<audit/>
 			<dependencies>No other components.</dependencies>
 			<f-element id="fia-pmg-ext-1e1">
@@ -6627,9 +6629,7 @@
 			<audit>The following actions should be auditable if FAU_GEN Security audit data 
 				generation is included in the PP/ST:
 				<h:ol type="a">
-					<h:li>Administrator authentication attempts.</h:li>
 					<h:li>All use of the identification and authentication mechanism.</h:li>
-					<h:li>Administrator session start time and end time.</h:li>
 				</h:ol>
 			</audit>
 			<dependencies><h:br/>FIA_UAU.5 Multiple Authentication Mechanisms</dependencies>
@@ -6669,17 +6669,8 @@
                 </aactivity>
             </f-element>
 			<audit-event> 
-				<audit-event-descr>Administrator authentication attempts.</audit-event-descr>
-				<audit-event-info>Provided user identity, origin of the attempt (e.g. console, remote IP address).</audit-event-info>
-			</audit-event> 
-			<audit-event> 
 				<audit-event-descr>All use of the identification and authentication mechanism.</audit-event-descr>
                 <audit-event-info>Provided user identity, origin of the attempt (e.g. console, remote IP address).</audit-event-info>
-			</audit-event> 
-			<!-- Below event used to be in Table 3 -->
-			<audit-event type="optional"> 
-				<audit-event-descr>Start and end of administrator session</audit-event-descr>
-                <audit-event-info>Start time and end time of administrator session.</audit-event-info>
 			</audit-event> 
         </f-component>
 
@@ -7128,7 +7119,7 @@
                         </h:tr>
                         <h:tr>
                             <h:td>4</h:td>
-                            <h:td>Ability to configure the cryptographic functionality.</h:td>
+                            <h:td>Ability to manage the cryptographic functionality.</h:td>
 							<h:td>O</h:td>
 							<h:td>X</h:td>
                             <h:td>See FTP_ITC_EXT.1.</h:td>
