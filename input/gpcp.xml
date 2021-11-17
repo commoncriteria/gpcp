@@ -6331,6 +6331,19 @@
 						<assignable>an integer greater than or equal to 14</assignable> characters shall be 
 						supported.</h:li></h:ol>
 				</title>
+				<ext-comp-def-title>
+				<title>
+					The TSF shall support the following for the Password Authentication Factor:
+					<h:ol type="1">
+					<h:li>Passwords shall be able to be composed of any combination of 
+						<assignable>characters sets</assignable>,
+						numbers, and special characters: <assignable>special characters</assignable>.
+					</h:li>
+					<h:li>Password length up to 
+						<assignable>an integer greater than or equal to 14</assignable> characters shall be 
+						supported.</h:li></h:ol>
+				</title>
+				</ext-comp-def-title>	
 				<note role="application">
 					This SFR is included in the ST if FIA_UAU.5 is included in the ST.<h:p/>
 					While some corporate policies require passwords of 14 characters or better, the use of a REK 
@@ -7213,12 +7226,6 @@
                         </h:tr>
                     </h:table><h:br/>].
 				</title>
-                <ext-comp-def-title>
-				<title>The TSF shall be capable of performing the following management functions: 
-                                       <assignable>managment functions</assignable>.
-                                </title>
-                </ext-comp-def-title>
-	
 				<note role="application">
 					Note that all Administrator management functions are indicated as "Optional/Selectable." 
 					These functions become Mandatory or Selectable when the noted SFRs are included in the ST, 
@@ -7623,6 +7630,11 @@
 						<selectable id="sel-rot-offplat">integrity measurements held securely by an off-platform entity</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>The integrity of platform firmware shall be rooted in 
+					<assignable>platform firmware root of trust</assignable>.
+				</title>
+				</ext-comp-def-title>	
 				<note role="application">
 					Roots of Trust are components that constitute a set of unconditionally trusted functions. The above are acceptable
 					roots of trust for platform firmware integrity.<h:p/>
@@ -7671,6 +7683,12 @@
 						<selectable>measurement and verification by an off-platform entity</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>The integrity of all mutable platform firmware outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
+					prior to execution or use through:
+					<assignable>method for extending the platform integrity root</assignable>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					This requirement specifies the means for extending the initial integrity
 					of platform firmware established by FPT_ROT_EXT.1.1 to subsequently executed
@@ -7710,7 +7728,35 @@
 							</selectables>
 						</selectable>
 					</selectables>.	
-				</title>				
+				</title>
+				<ext-comp-def-title>
+				<title>The TOE shall take the following actions if an integrity check specified in
+					FPT_ROT_EXT.2.1 fails: 
+					<h:ol type="1">
+						<h:li>Halt,</h:li>
+						<h:li>Notify an 
+							<selectables>
+								<selectable>Administrator</selectable>
+								<selectable>User</selectable>
+							</selectables> by
+							<assignable>notification method</assignable>, and</h:li>
+						<h:li><selectables linebreak="yes">
+							<selectable>Stop all execution and shut down</selectable>
+							<selectable>Initiate a recovery process</selectable>
+						</selectables></h:li>
+					</h:ol> 
+					<selectables linebreak="yes">
+						<selectable>automatically</selectable>
+						<selectable>in accordance with Administrator-configurable policy</selectable>
+						<selectable>by express determination of an 
+							<selectables>
+								<selectable>Administrator</selectable>
+								<selectable>User</selectable>
+							</selectables>
+						</selectable>
+					</selectables>.	
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
@@ -7823,7 +7869,33 @@
 								<selectable>User</selectable>
 							</selectables></selectable>
 					</selectables>.	
-				</title>				
+				</title>
+				<ext-comp-def-title>
+				<title>
+					The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.3.1 fails:
+					<h:ol type="1">
+						<h:li>Halt,</h:li>
+						<h:li>Notify an 
+							<selectables>
+								<selectable>Administrator</selectable>
+								<selectable>User</selectable>
+							</selectables> by <assignable>notification method</assignable>, and</h:li>
+						<h:li><selectables linebreak="yes" onlyone="yes">
+							<selectable>Stop all execution and shut down</selectable>
+							<selectable>Continue execution without the integrity-compromised component</selectable>
+							<selectable>Continue execution</selectable>
+						</selectables></h:li>
+					</h:ol> 
+					<selectables linebreak="yes">
+						<selectable>in accordance with administrator-configurable policy</selectable>
+						<selectable>by express determination of an 
+							<selectables>
+								<selectable>Administrator</selectable>
+								<selectable>User</selectable>
+							</selectables></selectable>
+					</selectables>.	
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
@@ -7883,6 +7955,12 @@
 						<selectable>installation of a recovery image that puts the TOE into a maintenance mode</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>
+					The TSF shall implement a mechanism for recovering from boot firmware failure consisting of 
+					<assignable>recovery mechanism</assignable>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					This SFR must be included in the ST if:
 					<h:ul>
@@ -7988,17 +8066,21 @@
 					FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism
 					</dependencies>
 			<f-element id="fpt-tud-ext-1e1">
-				<title>The TSF shall 
+				<title>The TSF shall implement
 					<selectables linebreak="yes">
-						<selectable>make no provision for platform firmware update</selectable> 
-						<selectable id="sel-tud1-auth-update">implement an authenticated platform firmware update mechanism as described in
+						<selectable>no mechanism for platform firmware update</selectable> 
+						<selectable id="sel-tud1-auth-update">an authenticated platform firmware update mechanism as described in
 							FPT_TUD_EXT.2</selectable>
-						<selectable id="sel-tud1-unauth-update">implement a delayed-authentication platform firmware update mechanism as described in
+						<selectable id="sel-tud1-unauth-update">a delayed-authentication platform firmware update mechanism as described in
 							FPT_TUD_EXT.3</selectable>					
-						<selectable id="sel-tud1-local-update">implement a secure local platform firmware update mechanism
+						<selectable id="sel-tud1-local-update">a secure local platform firmware update mechanism
 							described in FPT_TUD_EXT.4</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+					<title>The TSF shall implement <assignable>update mechanism</assignable>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					The purpose of the platform firmware update mechanism is to ensure the authenticity and integrity of
 					platform firmware updates. <h:p/>
@@ -8068,6 +8150,16 @@
 						<selectable id="sel-tud2-hash">hash value of the public key</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>The TSF shall authenticate the source of all platform firmware updates using a 
+					digital signature algorithm specified in FCS_COP.1 and using a key store 
+					that contains 
+					<selectables>
+						<selectable>the public key</selectable>
+						<selectable>hash value of the public key</selectable>
+					</selectables>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					The ST must include FCS_COP.1/Hash if "<h:i>hash value of the public key</h:i>" is selected.
 				</note>
@@ -8082,6 +8174,13 @@
 						<selectable exclusive="yes">no other conditions</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>
+					The TSF shall allow installation of updates only if the digital signature has been
+					successfully verified as specified in FCS_COP.1 and 
+					<assignable>additional contraints on updates</assignable>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					The ST Author should make the selection above if the TSF supports rollback prevention. That is, the TSF
 					does not allow "update" to an older version of the platform firmware. In general, rollback should be permitted
@@ -8136,6 +8235,35 @@
 							</selectables></selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>
+					The TOE shall take the following actions if a platform firmware integrity, authenticity, 
+					or rollback-prevention check fails, or a platform firmware update fails for any other reason: 
+					<h:ul>
+						<h:li>Do not install the update,</h:li>
+						<h:li>Notify an 
+						<selectables>
+							<selectable>Administrator</selectable>
+							<selectable>User</selectable>
+							</selectables> by <assignable>notification method</assignable>,
+						</h:li>
+					</h:ul>and
+					<selectables linebreak="yes" onlyone="yes">
+						<selectable>Continue execution</selectable>
+						<selectable>Halt</selectable>
+						<selectable>Stop all execution and shut down</selectable>
+						<selectable>Initiate recovery as specified in FPT_RVR_EXT.1</selectable>
+					</selectables>			
+					<selectables linebreak="yes">
+						<selectable>automatically</selectable>
+						<selectable>in accordance with Administrator-configurable policy</selectable>
+						<selectable>by express determination of an <selectables>
+							<selectable>Administrator</selectable>
+							<selectable>User</selectable>
+							</selectables></selectable>
+					</selectables>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					If "<h:i>Administrator</h:i>" is selected anywhere or if "<h:i>in accordance with Administrator-configurable
 					policy</h:i>" is selected, then all Administrator authentication requirements must be included in the ST
@@ -8238,6 +8366,13 @@
 						<selectable>no other conditions</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>
+					The TSF shall allow execution or use of platform firmware updates only if new platform firmware
+					is integrity- and authenticity-checked using the mechanism described in FPT_ROT_EXT.2 prior to its
+					execution or use, and <assignable>additional constraints on update</assignable>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					This requirement must be included in the ST if "<h:i>implement a delayed-authentication platform firmware
 					update mechanism as described in FPT_TUD_EXT.3</h:i>" is selected in FPT_TUD_EXT.1.<h:p/>
@@ -8297,6 +8432,34 @@
 							</selectables></selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>
+					The TOE shall take the following actions if a platform firmware update integrity, authentication, or
+					rollback-prevention check fails, or a platform firmware update fails for any other reason:
+					<h:ul>
+						<h:li>Notify an 
+							<selectables>
+								<selectable>Administrator</selectable>
+								<selectable>User</selectable>
+							</selectables> by <assignable>notification method</assignable>
+						</h:li>
+					</h:ul> and
+					<selectables linebreak="yes" onlyone="yes">
+						<selectable>Halt</selectable>
+						<selectable>Stop all execution and shut down</selectable>
+						<selectable>Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
+					</selectables>
+					<selectables linebreak="yes">
+						<selectable>automatically</selectable>
+						<selectable>in accordance with administrator-configurable policy</selectable>
+						<selectable>by express determination of an 
+							<selectables>
+								<selectable>Administrator</selectable>
+								<selectable>User</selectable>
+							</selectables></selectable>
+					</selectables>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					If "<h:i>Administrator</h:i>" is selected anywhere or if "<h:i>in accordance with Administrator-configurable
 					policy</h:i>" is selected, then all Administrator authentication requirements must be included in the ST
@@ -8391,6 +8554,12 @@
 						<selectable><assignable>description of other mechanism for asserting physical presence</assignable></selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>
+					A user shall assert physical presence to the TSF through: 
+					<assignable>method for asserting physical presence</assignable>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					The requirement included in the ST if "<h:i>the secure local update mechanism described in FPT_TUD_EXT.4</h:i>" 
 					is selected in FPT_RVR_EXT.1 or 
@@ -8603,6 +8772,14 @@
 							mechanism conformant with FTP_ITP_EXT.1</selectable>
 					</selectables>.
 				</title>
+				<ext-comp-def-title>
+				<title>
+					The TSF shall encrypt data for transfer between the TOE and 
+					<assignable>list of entities external to the TOE</assignable>
+					using a cryptographic algorithm and key size as specified in
+					FCS_COP.1, and using <assignable>key establishment mechanism</assignment>.
+				</title>
+				</ext-comp-def-title>
 				<note role="application">
 					This SFR must be claimed if "<h:i>encrypted data buffers as specified in FTP_ITE_EXT.1</h:i>" 
 					is selected in FDP_ITC_EXT.1.<h:p/>
