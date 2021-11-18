@@ -128,6 +128,7 @@
 			from which the platform receives configuration policies and updates. An Administrator can enforce
 			settings on the system that cannot be overridden by non-Administrator users.
 		</term>
+		<term abbr="AK" full="Asymmetric Key"/>
 		<term abbr="ANSI" full="American National Standards Institute">
 			A private organization that oversees development of standards in the United States. 
 		</term>
@@ -141,6 +142,7 @@
 			component, such as a library. APIs are often provided for a set of libraries included
 			with the platform.
 		</term>
+    	<term abbr="BAF" full="Biometric Authentication Factor"/>
     	<term abbr="BMC" full="Baseboard Management Controller">
 			Or Management Controller. A small computer generally found on Server motherboards that performs management tasks 
 			on behalf of an Administrator.</term>
@@ -189,6 +191,7 @@
 		<term abbr='EAP' full="Extensible Authentication Protocol"/>
 		<term abbr='ECDHE' full="Elliptic Curve Diffie-Hellman Ephemeral"/>
 		<term abbr='ECDSA' full="Elliptic Curve Digital Signature Algorithm"/>
+		<term abbr='ECIES' full="Elliptic Curve Integrated Encryption Scheme"/>
 		<term abbr='EST' full="Enrollment over Secure Transport"/>
 		<term abbr="EUD" full="End-User Device">
 			A class of computing platform characterized by having a user interface for a single user. Often, EUDs are 
@@ -216,8 +219,10 @@
 		<term abbr='ITSEF' full="Information Technology Security Evaluation Facility"/>
 		<term abbr="JTAG" full="Joint Test Action Group">
 			A standard for verifying and testing circuit boards after manufacture.</term>
+		<term abbr="KDF" full="Key-Derivation Function"></term>
 		<term abbr="KMAC" full="KECCAK Message Authentication Code">
 			A variable-length keyed hash function described in NIST SP800-185.</term>
+		<term abbr='MAC' full="Message Authentication Code"/>
 		<term abbr="MC" full="Management Controller">
 			Or Baseboard Management Controller (BMC). A small computer generally found on server motherboards that performs management tasks 
 			on behalf of an Administrator.</term>
@@ -231,6 +236,8 @@
 			Software that manages physical and logical resources and provides services
 			for applications. Operating systems are the generally the primary tenant of a GPCP.
 		</term>
+		<term full="Online Certificate Status Protocol" abbr="OCSP"/>
+		<term abbr='PBKDF' full="Password-based Key-Derivation Function"/>
 		<term abbr='PKCS' full="Public Key Cryptography Standards"/>
 		<term abbr='PKI' full="Public Key Infrastructure"/>
 		<term full="Physical Presence">
@@ -242,12 +249,19 @@
 		<term abbr='RBG' full="Random Bit Generator"/>
 		<term abbr='RFC' full="Request for Comment"/>
 		<term abbr='RNG' full="Random Number Generator"/>
+		<term full="Security Association" abbr="SA"/>
+		<term full="Subject Alternative Name" abbr="SAN">
+			An extended X.509 certificate field.
+		</term>
 		<term abbr='SHA' full="Secure Hash Algorithm"/>
 		<term full="Sensitive Data">
 			Sensitive data may include all user or enterprise data or may be specific
 			application data such as PII, emails, messaging, documents, calendar items, and contacts.
 			Sensitive data must minimally include credentials and keys. 
 		</term>
+		<term abbr='SPD' full="Security Policy Database"/>
+		<term abbr='SSH' full="Secure Shell"/>
+		<term abbr="SK" full="Symmetric Key"/>
 		<term abbr='SWID' full="Software Identification"/>
 		<term full="Tenant Software">
 			Software that runs on and is supported by a platform. In the case of a GPCP, tenant software generally
@@ -264,6 +278,7 @@
 			Users do not need to be authenticated by the platform to use the platform, but generally authenticate to tenant
 			software such as on Operating System.
 		</term>
+		<term abbr="VPN" full="Virtual Private Network">
 		<term abbr="VS" full="Virtualization System">
 			A software product that enables multiple independent computing systems to execute on the same physical
 			hardware platform without interference from one other.
@@ -6300,8 +6315,8 @@
 				</ext-comp-def-title>	
 				<note role="application">
 					This SFR is included in the ST if FIA_UAU.5 is included in the ST.<h:p/>
-					While some corporate policies require passwords of 14 characters or better, the use of a REK 
-					for DAR protection and key storage protection and the anti-hammer requirement (FIA_TRT_EXT.1)
+					While some corporate policies require passwords of 14 characters or better, the use of a Root
+					Encryption Key for DAR protection and key storage protection and the anti-hammer requirement (FIA_TRT_EXT.1)
 					addresses the threat of attackers with physical access using much smaller and less complex
 					passwords.<h:p/>
 					The ST Author selects the character set: either the upper and lower case Basic Latin letters 
@@ -6465,7 +6480,7 @@
 						of a successful authentication (i.e. is the user input used to derive or unlock a key) and
 						which authentication mechanism can be used at which authentication factor interfaces
 						(i.e. if there are times, for example, after a reboot, that only specific authentication 
-						mechanisms can be used). If multiple Biometric Authenitcation Factors (BAF) are supported per FIA_UAU.5.1, the interaction
+						mechanisms can be used). If multiple Biometric Authentication Factors (BAF) are supported per FIA_UAU.5.1, the interaction
 						between the BAFs must be described. For example, whether the multiple BAFs can be enabled 
 						at the same time.<h:p/>
 					</TSS>
