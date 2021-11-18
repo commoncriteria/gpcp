@@ -16,7 +16,7 @@ Can't really find it
 Target does not have text field: req
 Can't really find it
 Target does not have text field: req
-bash -c "hunspell -l -H -p <(cat transforms/dictionaries/*.txt local/Dictionary.txt) output/*.html | sort -u"
+bash -c "hunspell -l -H -p <(cat transforms/dictionaries/*.txt Dictionary.txt) output/*.html | sort -u"
 output/gpcp-esr.html: BMC
 output/gpcp-esr.html: GPCP
 output/gpcp-esr.html: RNGs
