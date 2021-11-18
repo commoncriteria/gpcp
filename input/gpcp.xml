@@ -128,6 +128,9 @@
 			from which the platform receives configuration policies and updates. An Administrator can enforce
 			settings on the system that cannot be overridden by non-Administrator users.
 		</term>
+		<term abbr="ANSI" full="American National Standards Institute">
+			A private organization that oversees development of standards in the United States. 
+		</term>
 		<term full="Application">
 			Software that runs on a platform and performs tasks on behalf of the user
 			or owner of the platform. 
@@ -155,6 +158,10 @@
 			of which can compromise the security of a cryptographic module or the security of the
 			information protected by the module.
 		</term>
+		<term full="Commercial Solutions for Classified" abbr="CSfC">
+			An US Department of Defense program for delivering cybersecurity solutions that leverage commercial 
+			technologies and products. 
+		</term>
 		<term full="Data-at-Rest" abbr="DAR" />
 		<term full="Data-at-Rest (DAR) Protection">
 			Countermeasures that prevent attackers, even those with physical access, from extracting data from non-volatile storage.
@@ -162,6 +169,12 @@
 		</term>
 		<term full="Developer">
 			An entity that writes OS software. For the purposes of this document, vendors and developers are the same.
+		</term>
+		<term full="Diffie-Hellman Key Exchange" abbr="DH">
+			A cryptographic key exchange protocol using public/private key pairs.
+		</term>
+		<term full="Distinquished Name" abbr="DN">
+			Information used in certificate-based operations to uniquely identify a person, organization, or business.
 		</term>
 		<term full="General Purpose Operating System">
 			A class of OS designed to support a wide-variety of workloads consisting of many concurrent applications or
@@ -190,16 +203,23 @@
 		<term abbr='HTTP' full="Hypertext Transfer Protocol"/>
 		<term abbr='HTTPS' full="Hypertext Transfer Protocol Secure"/>
 		<term abbr='IETF' full="Internet Engineering Task Force"/>
+		<term abbr="IoT" full="Internet of Things">
+			Physical computing devices that are embedded with sensors, processing ability, software, 
+			and other technologies that connect and exchange data with other devices and systems over 
+			communications networks.</term>
 		<term abbr='IP' full="Internet Protocol"/>
 		<term abbr='ISO' full="International Organization for Standardization"/>
 		<term abbr='IT' full="Information Technology"/>
 		<term abbr='ITSEF' full="Information Technology Security Evaluation Facility"/>
+		<term abbr="JTAG" full="Joint Test Action Group">
+			A standard for verifying and testing circuit boards after manufacture.</term>
 		<term abbr="KMAC" full="KECCAK Message Authentication Code">
 			A variable-length keyed hash function described in NIST SP800-185.</term>
 		<term abbr="MC" full="Management Controller">
 			Or Baseboard Management Controller (BMC). A small computer generally found on server motherboards that performs management tasks 
 			on behalf of an Administrator.</term>
 		<term abbr='NIST' full="National Institute of Standards and Technology"/>
+		<term abbr='OEM' full="Original Equipment Manufacturer"/>
 		<term abbr='OID' full="Object Identifier"/>
 		<term full="Open Mobile Terminal Platform" abbr="OMTP">
 			A forum created by mobile network operators to discuss standards with manufacturers of mobile devices.
@@ -1040,7 +1060,7 @@
 					associated SFRs and selections are included.<h:p/>
 					The following table contains the events enumerated in the auditable events table for 
 					the TLS Functional Package. Inclusion of these events in the ST is subject to selection above,
-					inclusion of the corresponding SFRs in the ST, and support in the FP as represented by a selection in the 
+					inclusion of the corresponding SFRs in the ST, and support in the Package as represented by a selection in the 
 					table below.<h:p/>
 					<h:b><ctr ctr-type='Table' id="atref-pkgs">: Auditable Events for the TLS Functional Package</ctr></h:b><h:br/>							
 					<h:table>
@@ -1364,12 +1384,12 @@
 					cryptographic key generation algorithm<selectables>
 						<tabularize id="fcs-ckm-1-ak-sels" title="Choices for completion of the selection 
 							operations in FCS_CKM.1.1/AK">
-							<assigncol>Cryptographic key generation algorithm </assigncol>
+							<selectcol>Cryptographic key generation algorithm </selectcol>
 							<reqtext>and specified crptographic key sizes</reqtext>
-<!--							<assigncol>Cryptographic key sizes</assigncol> -->
+<!--							<selectcol>Cryptographic key sizes</selectcol> -->
 							<selectcol>Cryptographic key sizes</selectcol>
 							<reqtext>that meet the following: </reqtext>
-							<assigncol>List of standards</assigncol>
+							<selectcol>List of standards</selectcol>
 						</tabularize>
 
 						<selectable id="sel-fcs-ckm-ak-rsa">
@@ -2028,15 +2048,15 @@
 							    title="Choices for completion of the assignment operations in FCS_CKM_EXT.5.1">
 							<textcol>Identifier</textcol>
 							<reqtext></reqtext>
-							<assigncol>Key type</assigncol>
+							<selectcol>Key type</selectcol>
 							<reqtext>from input parameters</reqtext>
-							<assigncol>Input parameters</assigncol>
+							<selectcol>Input parameters</selectcol>
 							<reqtext>in accordance with a specified key derivation algorithm</reqtext>
-							<assigncol>Key derivation algorithm</assigncol>
+							<selectcol>Key derivation algorithm</selectcol>
 							<reqtext>and specified cryptographic key sizes</reqtext>
-							<assigncol>Cryptographic key sizes</assigncol>
+							<selectcol>Cryptographic key sizes</selectcol>
 							<reqtext>that meet the following:</reqtext>
-							<assigncol>List of standards</assigncol>
+							<selectcol>List of standards</selectcol>
 						</tabularize>
 
 						<selectable id="sel-fcs-ckm-ext-5-kdf-ctr">
@@ -2767,11 +2787,11 @@
 					<selectables>
 						<tabularize id="fcs-ckm-kat-sels" 
 							    title="Choices for completion of the assignment operations in FCS_COP.1.1/KAT">
-							<assigncol>Cryptographic algorithm</assigncol>
+							<selectcol>Cryptographic algorithm</selectcol>
 							<reqtext>and cryptographic key sizes</reqtext>
-							<assigncol>Cryptographic key size</assigncol>
+							<selectcol>Cryptographic key size</selectcol>
 							<reqtext>that meet the following:</reqtext>
-							<assigncol>List of standards</assigncol>
+							<selectcol>List of standards</selectcol>
 						</tabularize>
 
 						<selectable id="sel-fcs-cop-kat-kas1">
@@ -3088,10 +3108,10 @@
 					with a specified cryptographic algorithm 
 					<selectables>
 						<tabularize id="fcs-cop-keyenc-sels" title="Choices for completion of the assignment operations in FCS_COP.1.1/KeyEnc">
-							<assigncol>Cryptographic algorithm</assigncol>
+							<selectcol>Cryptographic algorithm</selectcol>
 							<reqtext>and cryptographic key sizes</reqtext>
-							<assigncol>Cryptographic key sizes</assigncol>
-							<assigncol>List of standards</assigncol>
+							<selectcol>Cryptographic key sizes</selectcol>
+							<selectcol>List of standards</selectcol>
 						</tabularize>
 
 						<selectable id="sel-fcs-cop-keyenc-aes-ccm">
@@ -3310,11 +3330,11 @@
 							FCS_COP.1.1/SigGen.">
 							<textcol>Identifier</textcol>
 							<reqtext></reqtext>
-							<assigncol>Cryptographic algorithm</assigncol>
+							<selectcol>Cryptographic algorithm</selectcol>
 							<reqtext>and cryptographic key sizes</reqtext>
-							<assigncol>Cryptographic key sizes</assigncol>
+							<selectcol>Cryptographic key sizes</selectcol>
 							<reqtext>that meet the following:</reqtext>
-							<assigncol>List of standards</assigncol>
+							<selectcol>List of standards</selectcol>
 						</tabularize>
 						
 						<selectable id="sel-fcs-cop-siggen-rsa-pkcs1">
@@ -3529,11 +3549,11 @@
 						in FCS_COP.1.1/SigVer.">
 						<textcol>Identifier</textcol>
 						<reqtext></reqtext>
-						<assigncol>Cryptographic algorithm</assigncol>
+						<selectcol>Cryptographic algorithm</selectcol>
 						<reqtext>and cryptographic key sizes</reqtext>
-						<assigncol>Cryptographic key sizes</assigncol>
+						<selectcol>Cryptographic key sizes</selectcol>
 						<reqtext>that meet the following:</reqtext>
-						<assigncol>List of standards</assigncol>
+						<selectcol>List of standards</selectcol>
 					</tabularize>
 					
 					<selectable id="sel-fcs-cop-sigver-rsa-pkcs">
@@ -3867,11 +3887,11 @@
 					<selectables>
 						<tabularize id="fcs-cop-skc-sels" title="Choices for completion of the assignments 
 							in FCS_COP.1.1/SKC">
-							<assigncol>Cryptographic algorithm</assigncol>
+							<selectcol>Cryptographic algorithm</selectcol>
 							<reqtext>and cryptographic key sizes</reqtext>
-							<assigncol>Cryptographic key sizes</assigncol>
+							<selectcol>Cryptographic key sizes</selectcol>
 							<reqtext>that meet the following:</reqtext>
-							<assigncol>List of standards</assigncol>
+							<selectcol>List of standards</selectcol>
 						</tabularize>
 						
 						<selectable id="sel-fcs-cop-skc-aes-ccm">
