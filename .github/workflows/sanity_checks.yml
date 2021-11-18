@@ -25,6 +25,9 @@ jobs:
       - name: Generate Warnings
         run: make output/SanityChecksOutput.md && cat output/SanityChecksOutput.md
 
+      - name: Quick Build
+        run: make release >> output/SanityChecksOutput.md
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
