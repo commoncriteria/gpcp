@@ -197,10 +197,13 @@
 		<term abbr="KMAC" full="KECCAK Message Authentication Code">
 			A variable-length keyed hash function described in NIST SP800-185.</term>
 		<term abbr="MC" full="Management Controller">
-			Or Baseboard Management Controller. A small computer generally found on Server motherboards that performs management tasks 
+			Or Baseboard Management Controller (BMC). A small computer generally found on server motherboards that performs management tasks 
 			on behalf of an Administrator.</term>
 		<term abbr='NIST' full="National Institute of Standards and Technology"/>
 		<term abbr='OID' full="Object Identifier"/>
+		<term full="Open Mobile Terminal Platform" abbr="OMTP">
+			A forum created by mobile network operators to discuss standards with manufacturers of mobile devices.
+		</term>
 		<term full="Operating System" abbr="OS" plural="OSes">
 			Software that manages physical and logical resources and provides services
 			for applications. Operating systems are the generally the primary tenant of a GPCP.
@@ -227,20 +230,19 @@
 			consists of an operating system, virtualization system, or "bare-metal" application.
 		</term>
 		<term abbr='TLS' full="Transport Layer Security"/>
+		<term full="Trusted Execution Environment" abbr="TEE">
+			An isolated and secure area that ensures the confidentiality and integrity of code and data 
+			loaded inside.
+		</term>
 		<term abbr='USB' full="Universal Serial Bus"/>
 		<term full="User">
-			In the context of a GPCP, a User is a human who interacts with the platform through a user intereface.
+			In the context of a GPCP, a User is a human who interacts with the platform through a user interface.
 			Users do not need to be authenticated by the platform to use the platform, but generally authenticate to tenant
 			software such as on Operating System.
 		</term>
-		<term abbr="VM" full="Virtual Machine">
-			A Virtual Machine is a abstracted hardware environment in which an operating system may execute.
-		</term>
 		<term abbr="VS" full="Virtualization System">
 			A software product that enables multiple independent computing systems to execute on the same physical
-			hardware platform without interference from one other. For the purposes of this document, the VS consists 
-			of a Virtual Machine Manager (VMM), Virtual Machine abstractions, a management subsystem, and other 
-			components.
+			hardware platform without interference from one other.
 		</term>
 		<term abbr='XOR' full="Exclusive Or"/>
     </tech-terms>   
@@ -343,7 +345,7 @@
 			</usecase>
 			<usecase title="Portable Clients (laptops, tablets), Basic" id="uc-client-portable-basic">
 				<description>
-					This use case defines the base requirements for portable clients or end-user devices. <h:p/>
+					This use case defines the base requirements for portable clients. <h:p/>
 					This use case adds no requirements to the base mandatory SFRs.
 				</description>
 			</usecase>
@@ -1360,7 +1362,7 @@
 				<title>
 					The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified 
 					cryptographic key generation algorithm<selectables>
-						<tabularize id="fcs-ckm-1-ak-sels" title="Choices for completion of the assignment 
+						<tabularize id="fcs-ckm-1-ak-sels" title="Choices for completion of the selection 
 							operations in FCS_CKM.1.1/AK">
 							<assigncol>Cryptographic key generation algorithm </assigncol>
 							<reqtext>and specified crptographic key sizes</reqtext>
@@ -1627,75 +1629,7 @@
 			<audit-event/>
 		</f-component>
 		
-		<!-- FCS_CKM.1/KEK Cryptographic Key Generation (Key Encryption Key)  -->
-		<!-- Removed selection of FCS_CKM_EXT.5 since you can get there through FCS_CKM.1/SK -->
-<!--		<f-component id="sfr-fcs-ckm-1-kek" cc-id="fcs_ckm.1" iteration="KEK" name="Cryptographic Key Generation (Key Encryption Key)" status="optional">
-			<f-element id="fcs-ckm-1e1-kek">
-				<title>The TSF shall generate <h:b>key encryption keys</h:b> in accordance with a specified
-					cryptographic key generation algorithm 
-					<selectables linebreak="yes">
-						<selectable id="sel-ckm-kek-ak">Asymmetric KEKs generated in accordance with FCS_CKM.1/AK</selectable>
-						<selectable id="sel-ckm-kek-sk">Symmetric KEKs generated in accordance with FCS_CKM.1/SK</selectable>
-						<selectable id="sel-ckm-kek-drvd">Derived KEKs generated in accordance with FCS_CKM_EXT.5</selectable> 
-						<selectable id="sel-ckm-kek-pbkdf">Password-based derived KEKs generated in accordance with FCS_COP.1/PBKDF</selectable> 
-					</selectables>
-					and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet the
-					following: <assignable>list of standards</assignable>.
-				</title>
-				<note role="application">
-					This SFR must be included in the ST if key encryption key generation is a service provided by the
-					TOE to tenant software, or if the TOE generates key encryption keys to support or implement 
-					PP-specified security functionality.<h:p/> 
-					KEKs protect KEKs and Symmetric Keys (SKs). DSCs should use key strengths commensurate
-					with protecting the chosen symmetric encryption key strengths.<h:p/>
-					If "<h:i>Asymmetric KEKs generated in accordance with FCS_CKM.1/AK</h:i>" is selected, the selection-based
-					SFR FCS_CKM.1/AK must be claimed by the TOE.<h:p/>
-					If "<h:i>Symmetric KEKs generated in accordance with FCS_CKM.1/SK</h:i>" is selected, the selection-based
-					SFR FCS_CKM.1/SK must be claimed by the TOE.<h:p/>
-					If "<h:i>Derived KEKs generated in accordance with FCS_CKM_EXT.5</h:i>" is selected, the selection-based
-					SFR FCS_CKM_EXT.5 must be claimed by the TOE.<h:p/>
-					If "<h:i>Password-based derived KEKs generated in accordance with FCS_COP.1/PBKDF</h:i>" is selected, the selection-based
-					SFR FCS_COP.1/PBKDF must be claimed by the TOE.<h:p/>
-				</note>
-				<aactivity>
-					<TSS>
-						If the KEK is generated according to an asymmetric key scheme, the
-						evaluator shall review the TSS to determine that it describes how the functionality
-						described by FCS_CKM.1/AK is invoked. The evaluator uses the description of the
-						key generation functionality in FCS_CKM.1/AK or documentation available for the
-						operational environment to determine that the key strength being requested is
-						greater than or equal to 112 bits.<h:p/>
-						If the KEK is generated according to a symmetric key scheme, the
-						evaluator shall review the TSS to determine that it describes how the functionality
-						described by FCS_CKM.1/SK is invoked. The evaluator uses the description of the
-						RBG functionality in FCS_RBG_EXT.1, or the key derivation functionality in
-						either FCS_CKM_EXT.5 or FCS_COP.1/PBKDF, depending on the key
-						generation method claimed, to determine that the key size being requested is greater
-						than or equal to the key size and mode to be used for the encryption/decryption of
-						the data.<h:p/>
-						If the KEK is formed from derivation, the evaluator shall verify that
-						the TSS describes the method of derivation and that this method is consistent with
-						FCS_CKM_EXT.5.<h:p/>  
-						If the KEK is formed from password-based derivation, the evaluator shall verify that
-						the TSS describes the method of derivation and that this method is consistent with
-						FCS_COP.1/PBKDF.<h:p/>  
-					</TSS>
-					<Guidance>
-						There are no AGD evaluation activities for this component.<h:p/>
-					</Guidance>
-					<KMD>
-						The evaluator shall iterate through each of the methods selected by the ST and
-						confirm that the KMD describes the applicable selected methods.<h:p/>
-					</KMD>
-					<Tests>
-						The evaluator shall iterate through each of the methods selected by the ST and
-						perform all applicable tests from the selected methods.
-					</Tests>
-				</aactivity>
-			</f-element>
-			<audit-event/>		
-		</f-component>
--->
+
 		<!-- FCS_CKM.2 Cryptographic Key Establishment -->
 		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment (Refinement)" status="sel-based">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/> 	<!-- FCS_IPSEC_EXT.1 -->
