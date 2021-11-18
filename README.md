@@ -1,9 +1,10 @@
-Protection Profile or Extended Package for General Purpose Computing Platform
+Protection Profile for General-Purpose Computing Platform
 ===============
 
 ![Build](https://github.com/commoncriteria/gpcp/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/gpcp/workflows/Validate/badge.svg)
 [![SanityChecks](https://github.com/commoncriteria/gpcp/workflows/SanityChecks/badge.svg)](https://github.com/commoncriteria/gpcp/blob/gh-pages/SanityChecksOutput.md)
+[![QuickBuild](https://github.com/commoncriteria/gpcp/workflows/QuickBuild/badge.svg)](https://commoncriteria.github.io/gpcp/gpcp-release.html)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/gpcp.svg?maxAge=2592000)](https://github.com/commoncriteria/gpcp/issues) 
 ![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
