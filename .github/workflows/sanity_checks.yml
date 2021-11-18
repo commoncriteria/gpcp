@@ -20,13 +20,13 @@ jobs:
           submodules: true
 
       - name: Install Build Packages
-        run: sudo apt-get update && sudo apt-get install -y xsltproc
+        run: sudo apt-get update && sudo apt-get install -y xsltproc hunspell
  
       - name: Quick Build
         run: make release 
 
       - name: Spellcheck
-        run: make spellcheck 2>> output/SanityChecksOutput.md
+        run: make spellcheck >> output/SanityChecksOutput.md
 
       - name: Debug
         run: find output
