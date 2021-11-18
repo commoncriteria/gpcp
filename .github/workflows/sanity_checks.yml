@@ -25,6 +25,24 @@ jobs:
       - name: Generate Warnings
         run: make output/SanityChecksOutput.md && cat output/SanityChecksOutput.md
 
+      - name: Quick Build
+        run: make release 2>> output/SanityChecksOutput.md
+
+      - name: Debug
+        run: find output
+
+      - name: Make a directory listing
+        run: >
+          cd output;
+          (echo "<html><head><title>PP-Template</title></head><body>";
+           date;
+           echo "<br/><ol>";
+           for aa in $(find . -name '*.html'); do
+                echo "<li><a href='$aa'>$aa</a></li>";
+           done;
+           echo "</ol></body></html>") > index.html
+           
+ 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
