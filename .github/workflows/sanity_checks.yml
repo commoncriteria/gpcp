@@ -22,11 +22,11 @@ jobs:
       - name: Install Build Packages
         run: sudo apt-get update && sudo apt-get install -y xsltproc
  
-      - name: Generate Warnings
-        run: make output/SanityChecksOutput.md && cat output/SanityChecksOutput.md
-
       - name: Quick Build
-        run: make release 2>> output/SanityChecksOutput.md
+        run: make release 
+
+      - name: Spellcheck
+        run: make spellcheck 2>> output/SanityChecksOutput.md
 
       - name: Debug
         run: find output
