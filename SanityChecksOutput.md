@@ -70,7 +70,6 @@ output/gpcp-release-linkable.html: AFL
 output/gpcp-release-linkable.html: AKs
 output/gpcp-release-linkable.html: ASE
 output/gpcp-release-linkable.html: Admnistrator
-output/gpcp-release-linkable.html: Authenitcation
 output/gpcp-release-linkable.html: BAF
 output/gpcp-release-linkable.html: BAFs
 output/gpcp-release-linkable.html: BMC
@@ -184,7 +183,6 @@ output/gpcp-release-linkable.html: PPF
 output/gpcp-release-linkable.html: PRF
 output/gpcp-release-linkable.html: PSK
 output/gpcp-release-linkable.html: PSS
-output/gpcp-release-linkable.html: REK
 output/gpcp-release-linkable.html: RFC5639
 output/gpcp-release-linkable.html: RFC8017
 output/gpcp-release-linkable.html: RSA2VS
@@ -192,8 +190,6 @@ output/gpcp-release-linkable.html: RSAES
 output/gpcp-release-linkable.html: RSASSA
 output/gpcp-release-linkable.html: RSASSAPSS
 output/gpcp-release-linkable.html: RSK
-output/gpcp-release-linkable.html: RTOS
-output/gpcp-release-linkable.html: RTOSes
 output/gpcp-release-linkable.html: RVR
 output/gpcp-release-linkable.html: SAA
 output/gpcp-release-linkable.html: SAs
@@ -262,7 +258,6 @@ output/gpcp-release-linkable.html: existance
 output/gpcp-release-linkable.html: grey
 output/gpcp-release-linkable.html: gx
 output/gpcp-release-linkable.html: hardcoded
-output/gpcp-release-linkable.html: href
 output/gpcp-release-linkable.html: immplements
 output/gpcp-release-linkable.html: incrementing
 output/gpcp-release-linkable.html: invokable
@@ -357,7 +352,6 @@ output/gpcp-release.html: AFL
 output/gpcp-release.html: AKs
 output/gpcp-release.html: ASE
 output/gpcp-release.html: Admnistrator
-output/gpcp-release.html: Authenitcation
 output/gpcp-release.html: BAF
 output/gpcp-release.html: BAFs
 output/gpcp-release.html: BMC
@@ -471,7 +465,6 @@ output/gpcp-release.html: PPF
 output/gpcp-release.html: PRF
 output/gpcp-release.html: PSK
 output/gpcp-release.html: PSS
-output/gpcp-release.html: REK
 output/gpcp-release.html: RFC5639
 output/gpcp-release.html: RFC8017
 output/gpcp-release.html: RSA2VS
@@ -479,8 +472,6 @@ output/gpcp-release.html: RSAES
 output/gpcp-release.html: RSASSA
 output/gpcp-release.html: RSASSAPSS
 output/gpcp-release.html: RSK
-output/gpcp-release.html: RTOS
-output/gpcp-release.html: RTOSes
 output/gpcp-release.html: RVR
 output/gpcp-release.html: SAA
 output/gpcp-release.html: SAs
@@ -645,7 +636,6 @@ output/gpcp.html: AFL
 output/gpcp.html: AKs
 output/gpcp.html: ASE
 output/gpcp.html: Admnistrator
-output/gpcp.html: Authenitcation
 output/gpcp.html: BAF
 output/gpcp.html: BAFs
 output/gpcp.html: BMC
@@ -760,7 +750,6 @@ output/gpcp.html: PPF
 output/gpcp.html: PRF
 output/gpcp.html: PSK
 output/gpcp.html: PSS
-output/gpcp.html: REK
 output/gpcp.html: RFC5639
 output/gpcp.html: RFC8017
 output/gpcp.html: RSA2VS
@@ -768,8 +757,6 @@ output/gpcp.html: RSAES
 output/gpcp.html: RSASSA
 output/gpcp.html: RSASSAPSS
 output/gpcp.html: RSK
-output/gpcp.html: RTOS
-output/gpcp.html: RTOSes
 output/gpcp.html: RVR
 output/gpcp.html: SAs
 output/gpcp.html: SDE
