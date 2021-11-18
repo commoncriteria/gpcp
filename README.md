@@ -1,4 +1,4 @@
-Protection Profile or Extended Package for General Purpose Computing Platform
+Protection Profile for General-Purpose Computing Platform
 ===============
 
 ![Build](https://github.com/commoncriteria/gpcp/workflows/Build/badge.svg)
