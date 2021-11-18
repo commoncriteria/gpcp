@@ -1,12 +1,10 @@
-python3 transforms/py/retrieve-included-docs.py input/gpcp.xml output && python3 transforms/py/post-process.py <(xsltproc --stringparam debug 'v' --stringparam appendicize on --stringparam release final transforms/xsl/pp2html.xsl input/gpcp.xml)\=output/gpcp-release.html 
-Downloading https://raw.githubusercontent.com/commoncriteria/tls/v1.1/input/tls.xml to output/pkg-tls.xml
-Downloading https://raw.githubusercontent.com/commoncriteria/ssh/v1.0-fp/input/ssh.xml to output/pkg-ssh.xml
-Can't really find it
-Target does not have text field: obj
-Can't really find it
-Target does not have text field: req
-Can't really find it
-Target does not have text field: req
-Can't really find it
-Target does not have text field: req
-python3 transforms/py/anchorize-periods.py output/gpcp-release.html output/gpcp-release-linkable.html || true
+ Failed to find a reference to obj.
+ Failed to find a reference to req.
+ Failed to find a reference to req.
+ Failed to find a reference to req.
+Unable to make an xref for tabularize
+Unable to make an xref for tabularize
+Unable to make an xref for tabularize
+
+                          WARNING: Since FMT_MOF_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
