@@ -7015,10 +7015,10 @@
                             <h:td>Ability to administer the platform
 					<selectables>
 						<selectable>locally</selectable>
-						<selectable>remotely</selectable>
+						<selectable id="sel-smf-remote-admin">remotely</selectable>
 						<selectable>not at all</selectable>
 					</selectables></h:td>
-						<h:td>O</h:td>
+						<h:td>M</h:td>
 						<h:td>X</h:td>
                             <h:td>TODO</h:td>
                         </h:tr>
@@ -8564,7 +8564,7 @@
 		<!-- FTP_ITC_EXT.1 Trusted Channel Communications -->
 	    <f-component id="sfr-ftp-itc-ext-1" cc-id="ftp_itc_ext.1" name="Trusted Channel Communication" status="sel-based">
 			<depends on-sel="sel-fau-itc"/>
-			<depends on-sel="sel-mof-remote-admin"/>
+			<depends on-sel="sel-smf-remote-admin"/>
 			<depends on-sel="sel-fdp-itc-ext-1e1-chan"/>   <!-- from FDP_ITC_EXT.1 -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to implement one or more cryptographic protocols
@@ -8779,7 +8779,7 @@
         <!-- FTP_TRP.1 -->
         <!-- Included in th ST if "remote" is selected in FMT_MOF_EXT.1. -->
         <f-component id="sfr-ftp-trp-1" cc-id="ftp_trp.1" name="Trusted Path" status="sel-based">
-			<depends on-sel="sel-mof-remote-admin"/> 
+			<depends on-sel="sel-smf-remote-admin"/> 
             <f-element id="ftp-trp-1e1">
 			    <title>The TSF shall <refinement>use a trusted channel as specified in FTP_ITC_EXT.1 to</refinement> 
 				    provide a <refinement>trusted</refinement> communication path between itself and 
