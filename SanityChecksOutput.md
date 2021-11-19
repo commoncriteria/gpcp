@@ -1,6 +1,7 @@
-
-                          WARNING: Since FMT_MOF_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
-                       
+* Error: Detected dangling id-reference to sel-mof-remote-admin from attribute
+           on-sel
+* Error: Detected dangling id-reference to sel-mof-remote-admin from attribute
+           on-sel
 bash -c "hunspell -l -H -p <(cat transforms/dictionaries/*.txt Dictionary.txt) output/*.html | sort -u"
 output/gpcp-esr.html: BMC
 output/gpcp-esr.html: GPCP
@@ -278,7 +279,6 @@ output/gpcp-release-linkable.html: succesful
 output/gpcp-release-linkable.html: supersets
 output/gpcp-release-linkable.html: tactial
 output/gpcp-release-linkable.html: testmacs
-output/gpcp-release-linkable.html: thoughout
 output/gpcp-release-linkable.html: thta
 output/gpcp-release-linkable.html: untruncated
 output/gpcp-release-linkable.html: updateabililty
@@ -559,7 +559,6 @@ output/gpcp-release.html: succesful
 output/gpcp-release.html: supersets
 output/gpcp-release.html: tactial
 output/gpcp-release.html: testmacs
-output/gpcp-release.html: thoughout
 output/gpcp-release.html: thta
 output/gpcp-release.html: untruncated
 output/gpcp-release.html: updateabililty
@@ -644,7 +643,6 @@ output/gpcp.html: DSS2
 output/gpcp.html: DSS3
 output/gpcp.html: DTLSC
 output/gpcp.html: DTLSS
-output/gpcp.html: Descri
 output/gpcp.html: Distinquished
 output/gpcp.html: ECDSA2VS
 output/gpcp.html: ECIES
@@ -822,7 +820,6 @@ output/gpcp.html: nonrepeating
 output/gpcp.html: onehalf
 output/gpcp.html: plaform
 output/gpcp.html: plaintexts
-output/gpcp.html: ption
 output/gpcp.html: rekeying
 output/gpcp.html: requirments
 output/gpcp.html: resistence
@@ -843,7 +840,6 @@ output/gpcp.html: succesful
 output/gpcp.html: supersets
 output/gpcp.html: tactial
 output/gpcp.html: testmacs
-output/gpcp.html: thoughout
 output/gpcp.html: thta
 output/gpcp.html: untruncated
 output/gpcp.html: updateabililty
