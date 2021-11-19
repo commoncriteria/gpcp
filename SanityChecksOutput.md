@@ -96,7 +96,6 @@ output/gpcp-release-linkable.html: DSS3
 output/gpcp-release-linkable.html: DTLSC
 output/gpcp-release-linkable.html: DTLSS
 output/gpcp-release-linkable.html: Distinquished
-output/gpcp-release-linkable.html: EAP
 output/gpcp-release-linkable.html: ECDSA2VS
 output/gpcp-release-linkable.html: ECIES
 output/gpcp-release-linkable.html: ECP
@@ -110,7 +109,6 @@ output/gpcp-release-linkable.html: Enviroments
 output/gpcp-release-linkable.html: FAU
 output/gpcp-release-linkable.html: FB
 output/gpcp-release-linkable.html: FCD
-output/gpcp-release-linkable.html: FIPS186
 output/gpcp-release-linkable.html: FP
 output/gpcp-release-linkable.html: FPT
 output/gpcp-release-linkable.html: FQDN
@@ -134,7 +132,6 @@ output/gpcp-release-linkable.html: IKEv2
 output/gpcp-release-linkable.html: IPv4
 output/gpcp-release-linkable.html: IPv6
 output/gpcp-release-linkable.html: ISO10118
-output/gpcp-release-linkable.html: ISO14888
 output/gpcp-release-linkable.html: ISO9796
 output/gpcp-release-linkable.html: ITE
 output/gpcp-release-linkable.html: ITP
@@ -191,6 +188,7 @@ output/gpcp-release-linkable.html: RSASSA
 output/gpcp-release-linkable.html: RSASSAPSS
 output/gpcp-release-linkable.html: RSK
 output/gpcp-release-linkable.html: RVR
+output/gpcp-release-linkable.html: RoT
 output/gpcp-release-linkable.html: SAA
 output/gpcp-release-linkable.html: SAs
 output/gpcp-release-linkable.html: SDE
@@ -378,7 +376,6 @@ output/gpcp-release.html: DSS3
 output/gpcp-release.html: DTLSC
 output/gpcp-release.html: DTLSS
 output/gpcp-release.html: Distinquished
-output/gpcp-release.html: EAP
 output/gpcp-release.html: ECDSA2VS
 output/gpcp-release.html: ECIES
 output/gpcp-release.html: ECP
@@ -392,7 +389,6 @@ output/gpcp-release.html: Enviroments
 output/gpcp-release.html: FAU
 output/gpcp-release.html: FB
 output/gpcp-release.html: FCD
-output/gpcp-release.html: FIPS186
 output/gpcp-release.html: FP
 output/gpcp-release.html: FPT
 output/gpcp-release.html: FQDN
@@ -416,7 +412,6 @@ output/gpcp-release.html: IKEv2
 output/gpcp-release.html: IPv4
 output/gpcp-release.html: IPv6
 output/gpcp-release.html: ISO10118
-output/gpcp-release.html: ISO14888
 output/gpcp-release.html: ISO9796
 output/gpcp-release.html: ITE
 output/gpcp-release.html: ITP
@@ -473,6 +468,7 @@ output/gpcp-release.html: RSASSA
 output/gpcp-release.html: RSASSAPSS
 output/gpcp-release.html: RSK
 output/gpcp-release.html: RVR
+output/gpcp-release.html: RoT
 output/gpcp-release.html: SAA
 output/gpcp-release.html: SAs
 output/gpcp-release.html: SDE
@@ -663,7 +659,6 @@ output/gpcp.html: DTLSC
 output/gpcp.html: DTLSS
 output/gpcp.html: Descri
 output/gpcp.html: Distinquished
-output/gpcp.html: EAP
 output/gpcp.html: ECDSA2VS
 output/gpcp.html: ECIES
 output/gpcp.html: ECP
@@ -677,7 +672,6 @@ output/gpcp.html: Enviroments
 output/gpcp.html: FAU
 output/gpcp.html: FB
 output/gpcp.html: FCD
-output/gpcp.html: FIPS186
 output/gpcp.html: FP
 output/gpcp.html: FPT
 output/gpcp.html: FQDN
@@ -701,7 +695,6 @@ output/gpcp.html: IKEv2
 output/gpcp.html: IPv4
 output/gpcp.html: IPv6
 output/gpcp.html: ISO10118
-output/gpcp.html: ISO14888
 output/gpcp.html: ISO9796
 output/gpcp.html: ITE
 output/gpcp.html: ITP
@@ -758,6 +751,7 @@ output/gpcp.html: RSASSA
 output/gpcp.html: RSASSAPSS
 output/gpcp.html: RSK
 output/gpcp.html: RVR
+output/gpcp.html: RoT
 output/gpcp.html: SAs
 output/gpcp.html: SDE
 output/gpcp.html: SDO
