@@ -1,7 +1,3 @@
-* Error: Detected dangling id-reference to sel-mof-remote-admin from attribute
-           on-sel
-* Error: Detected dangling id-reference to sel-mof-remote-admin from attribute
-           on-sel
 bash -c "hunspell -l -H -p <(cat transforms/dictionaries/*.txt Dictionary.txt) output/*.html | sort -u"
 output/gpcp-esr.html: BMC
 output/gpcp-esr.html: GPCP
