@@ -2323,13 +2323,11 @@
 					these cases the ST Author must explicitly declare this option and should present a reasonable
 					argument that the entropy of the inputs to the KDFs will result in full entropy of the expected
 					output.<h:p/>
-					If keys are combined, the ST Author shall describe which method of combination is used in order
-					to justify that the effective entropy of each factor is preserved.<h:p/>
-					The documentation of the product’s encryption key management should be detailed enough that,
+<!-					The documentation of the product’s encryption key management should be detailed enough that,
 					after reading, the evaluator will thoroughly understand the product’s key management and how it
 					meets the requirements to ensure the keys are adequately protected. This documentation should
 					include an essay and diagrams. This documentation is not required to be part of the TSS; it can be
-					submitted as a separate document and marked as developer proprietary.<h:p/>
+					submitted as a separate document and marked as developer proprietary.<h:p/>  -->
 <!--					SP 800-56C specifies a two-step key derivation procedure that employs an extraction-then 
 					expansion technique for deriving keying material from a shared secret generated during a key
 					establishment scheme. The Randomness Extraction step as described in Section 5 of SP 800-56C
@@ -2399,7 +2397,9 @@
 						<h:li>If a key is used as an input to several KDFs, each invocation must use a
 							distinct context string. If the output of a KDF execution is used for multiple
 							cryptographic keys, those keys must be disjoint segments of the output.</h:li>
-						</h:ul>
+						<h:li>If keys are combined, the ST Author shall describe which method of combination is used in order
+							to justify that the effective entropy of each factor is preserved.</h:li>
+						</h:ul><h:p/>
 					</KMD>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
@@ -7043,7 +7043,7 @@
         </f-component>
 		
 		<!-- FMT_SMF.1: Specification of Management Functions -->
-        <f-component id="sfr-fmt-smf-1" cc-id="fmt_smf.1" name="Specification of Management Functions" status="sel-based">
+        <f-component id="sfr-fmt-smf-1" cc-id="fmt_smf.1" name="Specification of Management Functions">
 			<depends on-sel="sel-rot2-admin-config"/>   <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-rot3-admin-config"/>   <!-- FPT_ROT_EXT.3 -->
 			<depends on-sel="sel-tud2-admin-config"/>   <!-- FPT_TUD_EXT.2 -->	       		
@@ -7223,21 +7223,24 @@
         </f-component>
 		
 	<!-- FMT_SMR.1 Security Roles -->
-	<f-component cc-id="fmt_smr.1" id="sfr-fmt-smr-1" name="Security Roles" status="sel-based">
-		<depends on-incl="sfr-fmt-smf-1"/>
+	<f-component cc-id="fmt_smr.1" id="sfr-fmt-smr-1" name="Security Roles">
 		<f-element id="fmt-smr-1e1">
-			<title>The TSF shall maintain the roles [<h:i>Administrator, User</h:i>].</title>
+			<title>The TSF shall maintain the roles [<h:i>User</h:i> and 
+				<selectables>
+					<selectable id="sel-fmt-smr-1-admin">Administrator</selectable>
+					<selectable>no other roles</selectable>
+				</selectables>].</title>
 		</f-element>
 		<f-element id="fmt-smr-1e2">
 			<title>The TSF shall be able to associate users with roles. </title>
 			<note role="application">
-				This SFR is included in the ST if FMT_SMF.1 is included in the ST.<h:p/>
-				This role is a platform Administrator that authenticates to the GPCP. This is 
-				distinct from, for example, OS administrators and users that may have
-				to authenticate themselves to tenant software.<h:p/>
 				A User is a human who interacts with the GPCP through a user interface. Users do not
 				authenticate themselves to the GPCP, though they may be authenticated by tenant
-				software.
+				software.<h:p/>
+				An Administrator is a privileged user that must be authenticated by the GPCP in order 
+				to administer the GPCP. This role is distinct from OS or VS administrators that 
+				are authenticated to tenant software to administer an OS or VS. These admnistrators
+				are considered to be Users in the context of the GPCP. 
 			</note>
 			<aactivity>
 				<no-tests>Documentation and testing for user roles is covered in the
