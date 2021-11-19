@@ -23,7 +23,7 @@
 			<PPTitle>Protection Profile for General-Purpose Computing Platforms</PPTitle>
 			<PPVersion>0.9</PPVersion>
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2021-11-08</PPPubDate>
+			<PPPubDate>2021-11-19</PPPubDate>
 			<Keywords>General-Purpose Computing Platforms</Keywords>
 		</ReferenceTable>
 	</PPReference>
@@ -38,7 +38,7 @@
 	<RevisionHistory>
 		<entry>
 			<version>0.9</version>
-			<date>2021-11-16</date>
+			<date>2021-11-19</date>
 			<subject>Latest draft</subject>
 		</entry>
 	</RevisionHistory>
@@ -186,11 +186,9 @@
 		<term abbr='DRBG' full="Deterministic Random Bit Generator"/>
 		<term abbr='DSS' full="Digital Signature Standard"/>
 		<term abbr='DTLS' full="Datagram Transport Layer Security"/>
-		<term abbr='EAP' full="Extensible Authentication Protocol"/>
 		<term abbr='ECDHE' full="Elliptic Curve Diffie-Hellman Ephemeral"/>
 		<term abbr='ECDSA' full="Elliptic Curve Digital Signature Algorithm"/>
 		<term abbr='ECIES' full="Elliptic Curve Integrated Encryption Scheme"/>
-		<term abbr='EST' full="Enrollment over Secure Transport"/>
 		<term abbr="EUD" full="End-User Device">
 			A class of computing platform characterized by having a user interface for a single user. Often, EUDs are 
 			portable (e.g., laptop, tablet, mobile device), but this is not necessarily the case (e.g., desktop PC). 
@@ -202,11 +200,9 @@
 			systems, and applications.
 		</term>
 		<term abbr='HMAC' full="Hash-based Message Authentication Code"/>
-		<term abbr='HTTP' full="Hypertext Transfer Protocol"/>
 		<term abbr='HTTPS' full="Hypertext Transfer Protocol Secure"/>
 		<term abbr='IEC' full="International Electrotechnical Commission"/>
 		<term abbr='IEEE' full="Institute of Electrical and Electronics Engineers"/>
-		<term abbr='IETF' full="Internet Engineering Task Force"/>
 		<term abbr="IoT" full="Internet of Things">
 			Physical computing devices that are embedded with sensors, processing ability, software, 
 			and other technologies that connect and exchange data with other devices and systems over 
@@ -237,7 +233,6 @@
 		<term full="Online Certificate Status Protocol" abbr="OCSP"/>
 		<term abbr='PBKDF' full="Password-based Key-Derivation Function"/>
 		<term abbr='PKCS' full="Public Key Cryptography Standards"/>
-		<term abbr='PKI' full="Public Key Infrastructure"/>
 		<term full="Physical Presence">
 			A user or administrator having physical access to the TOE. An assertion of physical presence
 			can take the form, for example, of requiring entry of a password at a boot screen, unlocking 
@@ -247,6 +242,11 @@
 		<term abbr='RBG' full="Random Bit Generator"/>
 		<term abbr='RFC' full="Request for Comment"/>
 		<term abbr='RNG' full="Random Number Generator"/>
+	    	<term abbr="RoT" full="Root of Trust">
+			Roots of trust are highly reliable hardware, firmware, and software components that perform 
+			specific, critical security functions. Roots of trust are the foundation for integrity of 
+			computing devices.
+		    </term>
 		<term full="Security Association" abbr="SA"/>
 		<term full="Subject Alternative Name" abbr="SAN">
 			An extended X.509 certificate field.
@@ -2106,7 +2106,7 @@
 							</selectables> bits</col>
 							<col>NIST SP800-108 sec. 5.1 (KDF in Counter Mode)<h:p/>
 							<selectables>
-								<selectable>ISO/IEC 9797-1 (CMAC)</selectable>
+								<selectable>ISO/IEC 9797-1:2011 (CMAC)</selectable>
 								<selectable>NIST SP800-38B (CMAC)</selectable>
 								<selectable>ISO/IEC 18033-3:2010 (AES)</selectable>
 								<selectable>ISO/IEC 9797-2:2011 (HMAC)</selectable> 
@@ -2145,7 +2145,7 @@
 							</selectables> bits</col>
 						<col>NIST SP800-108 sec 5.2 (KDF in Feedback Mode)<h:p/>
 							<selectables>
-								<selectable>ISO/IEC 9797-1 (CMAC)</selectable>
+								<selectable>ISO/IEC 9797-1:2011 (CMAC)</selectable>
 								<selectable>NIST SP800-38B (CMAC)</selectable>
 								<selectable>ISO/IEC 18033-3:2010 (AES)</selectable>
 								<selectable>ISO/IEC 9797-2:2011 (HMAC)</selectable> 
@@ -2184,7 +2184,7 @@
 							</selectables>bits</col>
 						<col>NIST SP 800-108 sec. 5.3 (KDF in n Double Pipeline Iteration Mode)<h:p/>
 							<selectables>
-								<selectable>ISO/IEC 9797-1 (CMAC)</selectable>
+								<selectable>ISO/IEC 9797-1:2011 (CMAC)</selectable>
 								<selectable>NIST SP800-38B (CMAC)</selectable>
 								<selectable>ISO/IEC 18033-3:2010 (AES)</selectable>
 								<selectable>ISO/IEC 9797-2:2011 (HMAC)</selectable> 
@@ -2209,7 +2209,6 @@
 							<selectable>exclusive OR (XOR)</selectable>
 							<selectable>SHA-256</selectable>
 							<selectable>SHA-512</selectable></selectables></col>
-						<col><selectables>
 							<selectable>128</selectable>
 							<selectable>192</selectable>
 							<selectable>256</selectable>
@@ -2601,7 +2600,7 @@
 					<selectables>
 						<selectable>ISO/IEC 10118-3:2018</selectable>
 						<selectable>FIPS 180-4 (SHA1/2)</selectable>
-						<selectable>FIPS 202 (SHA3)</selectable>
+						<selectable>FIPS PUB 202 (SHA3)</selectable>
 					</selectables>.   
                 </title>
                 <note role="application">
@@ -2751,7 +2750,7 @@
 					that meet the following: 
 					<selectables>
 						<selectable>ISO/IEC 9797-2:2011 sec. 7 (MAC Algorithm 2)</selectable>
-						<selectable>FIPS 198-1 (HMAC)</selectable>
+						<selectable>FIPS PUB 198-1 (HMAC)</selectable>
 						<selectable>NIST SP 800-185 sec. 4 (KMAC)</selectable>
 					</selectables>.
 				</title>
