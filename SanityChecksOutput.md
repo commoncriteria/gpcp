@@ -210,7 +210,6 @@ output/gpcp-release-linkable.html: XAUTH
 output/gpcp-release-linkable.html: XCCDF
 output/gpcp-release-linkable.html: XPN
 output/gpcp-release-linkable.html: XTSVS
-output/gpcp-release-linkable.html: admnistrators
 output/gpcp-release-linkable.html: amd
 output/gpcp-release-linkable.html: assignents
 output/gpcp-release-linkable.html: autenticate
@@ -489,7 +488,6 @@ output/gpcp-release.html: XAUTH
 output/gpcp-release.html: XCCDF
 output/gpcp-release.html: XPN
 output/gpcp-release.html: XTSVS
-output/gpcp-release.html: admnistrators
 output/gpcp-release.html: amd
 output/gpcp-release.html: assignents
 output/gpcp-release.html: autenticate
@@ -770,7 +768,6 @@ output/gpcp.html: XAUTH
 output/gpcp.html: XCCDF
 output/gpcp.html: XPN
 output/gpcp.html: XTSVS
-output/gpcp.html: admnistrators
 output/gpcp.html: amd
 output/gpcp.html: assignents
 output/gpcp.html: autenticate
