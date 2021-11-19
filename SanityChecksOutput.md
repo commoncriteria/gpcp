@@ -1,21 +1,6 @@
-Unable to make an xref for tabularize
-Unable to make an xref for tabularize
-Unable to make an xref for tabularize
- Failed to find a reference to obj.
- Failed to find a reference to req.
- Failed to find a reference to req.
- Failed to find a reference to req.
 
                           WARNING: Since FMT_MOF_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
                        
-Can't really find it
-Target does not have text field: obj
-Can't really find it
-Target does not have text field: req
-Can't really find it
-Target does not have text field: req
-Can't really find it
-Target does not have text field: req
 bash -c "hunspell -l -H -p <(cat transforms/dictionaries/*.txt Dictionary.txt) output/*.html | sort -u"
 output/gpcp-esr.html: BMC
 output/gpcp-esr.html: GPCP
