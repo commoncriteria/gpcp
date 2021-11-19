@@ -6964,8 +6964,7 @@
 					the functions [<h:i>listed in <xref to="t-manfunc"/></h:i>] to [<h:i>the roles 
 					indicated in <xref to="t-manfunc"/></h:i>]. 
 				</title>
-				<note role="application"> There are two roles defined in this PP for general-purpose 
-					computing platforms: Administrator and User. 
+				<note role="application"> There are two roles defined in this PP: Administrator and User. 
 					Administrators can perform management most functions on the platform, and only
 					Administrators are required to authenticate themselves to the platform.<h:p/>
 					Users have a limited ability to select responses to certain events
@@ -6973,19 +6972,14 @@
 				</note>
 				<aactivity>
 					<TSS>The evaluator shall verify that the TSS describes those management functions that
-						may be performed by the Administrator, to include how the user is prevented from
-						accessing, performing, or relaxing the function (if applicable). The
-						TSS also describes any functionality that is affected by administrator-configured
-						policy and how. This activity will be performed in conjunction with
+						may be performed by the Administrator, and those that can be performed by
+						ordinary users. The TSS also describes any functionality that is affected by 
+						administrator-configured policy and how. This activity will be performed in conjunction with
 						FMT_SMF.1.<h:p/>
 					</TSS>
 					<Guidance>There are no AGD evaluation activities for this component.<h:p/></Guidance>
-					<KMD>
-						There are no KMD evaluation activities for this component.<h:p/>
-					</KMD>
-					<Tests>
-						Testing of this SFR is covered in the tests for FMT_SMF.1.
-					</Tests>
+					<KMD>There are no KMD evaluation activities for this component.<h:p/></KMD>
+					<Tests>Testing of this SFR is covered in the tests for FMT_SMF.1.</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event/>
@@ -7189,19 +7183,17 @@
 				</selectables>].</title>
 		</f-element>
 		<f-element id="fmt-smr-1e2">
-			<title>The TSF shall be able to associate users with roles. </title>
+			<title>The TSF shall be able to associate users with roles.</title>
 			<note role="application">
 				A User is a human who interacts with the GPCP through a user interface. Users do not
 				authenticate themselves to the GPCP, though they may be authenticated by tenant
-				software.<h:p/>
+				software. The User role is considered to exist even if no humans normally interact with a GPCP.<h:p/>
 				An Administrator is a privileged user that must be authenticated by the GPCP in order 
-				to administer the GPCP. This role is distinct from OS or VS administrators that 
-				are authenticated to tenant software to administer an OS or VS. These admnistrators
-				are considered to be Users in the context of the GPCP. 
+				to administer the GPCP. This role is distinct from OS or VS administrators, who are
+				may are authenticated to tenant software and are considered to be Users in the context of the GPCP.
 			</note>
 			<aactivity>
-				<no-tests>Documentation and testing for user roles is covered in the
-				other FMT requirements.</no-tests>
+				<no-tests>Documentation and testing for roles is covered in the Evaluation Activities for FMT_SMF.1</no-tests>
 			</aactivity>
 		</f-element>
 		<audit-event/>	
