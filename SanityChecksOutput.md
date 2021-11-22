@@ -215,6 +215,7 @@ output/gpcp-release-linkable.html: endianness
 output/gpcp-release-linkable.html: grey
 output/gpcp-release-linkable.html: gx
 output/gpcp-release-linkable.html: incrementing
+output/gpcp-release-linkable.html: indluded
 output/gpcp-release-linkable.html: invocable
 output/gpcp-release-linkable.html: jitter
 output/gpcp-release-linkable.html: jittered
@@ -447,6 +448,7 @@ output/gpcp-release.html: endianness
 output/gpcp-release.html: grey
 output/gpcp-release.html: gx
 output/gpcp-release.html: incrementing
+output/gpcp-release.html: indluded
 output/gpcp-release.html: invocable
 output/gpcp-release.html: jitter
 output/gpcp-release.html: jittered
@@ -679,6 +681,7 @@ output/gpcp.html: endianness
 output/gpcp.html: grey
 output/gpcp.html: gx
 output/gpcp.html: incrementing
+output/gpcp.html: indluded
 output/gpcp.html: invocable
 output/gpcp.html: jitter
 output/gpcp.html: jittered
