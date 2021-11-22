@@ -1,3 +1,6 @@
+ Failed to find a reference to t_manfunc.
+Can't really find it
+Target does not have text field: t_manfunc
 bash -c "hunspell -l -H -p <(cat transforms/dictionaries/*.txt Dictionary.txt) output/*.html | sort -u"
 output/gpcp-esr.html: BMC
 output/gpcp-esr.html: GPCP
@@ -185,7 +188,6 @@ output/gpcp-release-linkable.html: STO
 output/gpcp-release-linkable.html: SigGen
 output/gpcp-release-linkable.html: SigVer
 output/gpcp-release-linkable.html: TCG
-output/gpcp-release-linkable.html: TODO
 output/gpcp-release-linkable.html: TR1
 output/gpcp-release-linkable.html: TRP
 output/gpcp-release-linkable.html: TRT
@@ -417,7 +419,6 @@ output/gpcp-release.html: STO
 output/gpcp-release.html: SigGen
 output/gpcp-release.html: SigVer
 output/gpcp-release.html: TCG
-output/gpcp-release.html: TODO
 output/gpcp-release.html: TR1
 output/gpcp-release.html: TRP
 output/gpcp-release.html: TRT
@@ -651,7 +652,6 @@ output/gpcp.html: STO
 output/gpcp.html: SigGen
 output/gpcp.html: SigVer
 output/gpcp.html: TCG
-output/gpcp.html: TODO
 output/gpcp.html: TR1
 output/gpcp.html: TRP
 output/gpcp.html: TRT
