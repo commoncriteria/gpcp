@@ -1,6 +1,3 @@
- Failed to find a reference to t_manfunc.
-Can't really find it
-Target does not have text field: t_manfunc
 bash -c "hunspell -l -H -p <(cat transforms/dictionaries/*.txt Dictionary.txt) output/*.html | sort -u"
 output/gpcp-esr.html: BMC
 output/gpcp-esr.html: GPCP
