@@ -7015,7 +7015,11 @@
 					</selectables></h:td>
 						<h:td>M</h:td>
 						<h:td>X</h:td>
-                            <h:td>TODO</h:td>
+				<h:td>If "<h:i>remotely</h:i>" is selected, then FTP_TRP.1 mush be included in the ST
+					and Management Function 6 must be selected.<h:p/>
+					If "<h:i>not at all</h:i>" is selected, then no other management
+					functions may be selected.
+				</h:td>
                         </h:tr>
 			<h:tr>
                             <h:td>2</h:td>
@@ -7139,23 +7143,21 @@
                     </h:table><h:br/>].
 				</title>
 				<note role="application">
-					Note that all Administrator management functions are indicated as "Optional/Selectable." 
-					These functions become Mandatory or Selectable when the noted SFRs are included in the ST, 
-					depending on whether the function is mandatory or selectable within the context of the particular SFR .<h:p/>
+					Note that all Administrator management functions except Function 1 are indicated as "Optional/Selectable." 
+					These functions become Mandatory or Selectable as indicated in the Notes.<h:p/>
 					Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
 					Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
-					The first column lists the management function number. The second column lists the management functions
-					identified in the PP.
+					"<h:i>Not at all</h:i>" is the proper selection for Function 1 only in the case
+					where the GPCP is incapable of being Administered at all.
 				</note>
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to ensure that it describes each management function
-						and its associated actions. The evaluator shall verify that the Administrator role is 
-						able to perform all management functions claimed in the ST.	<h:p/>
+						and its associated actions. <h:p/>
 					</TSS>
 					<Guidance>
-                       	The evaluator shall examine the AGD to ensure that it describes how the Administrator is 
-						perform each management function that the ST claims the TOE supports.<h:p/>
+                       	The evaluator shall examine the AGD to ensure that it describes how the Administrator
+						performs each management function that the ST claims the TOE supports.<h:p/>
                         The evaluator shall verify for each claimed management function that 
 						the guidance is sufficiently detailed to allow the function to be performed.<h:p/>
 					</Guidance>
@@ -7164,10 +7166,8 @@
 					</KMD>
 					<Tests>
 						The evaluator shall test each management function included in the ST 
-                        to demonstrate that the function can be performed by the Administrator role 
-						and the result of the function is demonstrated. The evaluator shall also verify for each
-						claimed management function that it is not possible to access the TOE as a
-						non-Administrator and perform that function.<h:p/>
+			                        to demonstrate that the function can be performed only by the roles 
+						indicated in <xref to="t_manfunc"/> and the result of the function is demonstrated. 
 					</Tests>
 				</aactivity>			   
 			</f-element>
