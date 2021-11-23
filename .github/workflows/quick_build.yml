@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: A job to test this action
+    name: Quick Build
     steps:
     - name: Checkout project and transforms
       uses: actions/checkout@v2
@@ -53,8 +53,8 @@ jobs:
 
     - name: Get Status
       run: |
-         echo ::set-output name=WORD::$(if [ -s output/SanityChecksOutput.md ]; then echo "SUCCESS"; else echo "FAILURE"; fi )
-         echo ::set-output name=COLOR::$(if [ -s output/SanityChecksOutput.md ]; then echo "green"; else echo "red"; fi )
+         echo ::set-output name=WORD::$(if [ -s output/SanityChecksOutput.md ]; then echo FAILURE; else echo SUCCESS; fi )
+         echo ::set-output name=COLOR::$(if [ -s output/SanityChecksOutput.md ]; then echo red; else echo green; fi )
       id: status
       
 
@@ -89,7 +89,7 @@ jobs:
     - name: Generate the badge SVG image
       uses: emibcn/badge-action@v1
       with:
-        label: 'Quick Build'
+        label: 'Warnings'
         status: ${{ steps.status.outputs.WORD }}
         color: ${{ steps.status.outputs.COLOR }}
         path: ${{ steps.coverage.outputs.path }}
