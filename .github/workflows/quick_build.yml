@@ -53,7 +53,7 @@ jobs:
 
     - name: Get Status
       run: |
-         echo ::set-output name=WORD::$(if [ -s output/SanityChecksOutput.md ]; then echo FAILURE; else echo SUCCESS; fi )
+         echo ::set-output name=WORD::$(if [ -s output/SanityChecksOutput.md ]; then echo some; else echo none; fi )
          echo ::set-output name=COLOR::$(if [ -s output/SanityChecksOutput.md ]; then echo red; else echo green; fi )
       id: status
       
