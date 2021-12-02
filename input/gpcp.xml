@@ -2310,9 +2310,6 @@
 				<note role="application">
 					This SFR must be included in the ST if key derivation is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-<!--					This SFR must be included in the ST if "<h:i>Derived KEKs...</h:i>" is selected in FCS_CKM.1/KEK, or if
-					"<h:i>XOR</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/>  -->
-<!--					This SFR must be included in the ST if "<h:i>XOR</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/> -->
 					For Authorization Factor Submasks, the key size to be used in the HMAC falls into a range between
 					L1 and L2 defined in ISO/IEC 10118 for the appropriate hash function (for example for SHA-256
 					L1 = 512, L2 = 256) where L2 &lt;= k &lt;= L1.<h:p/>
@@ -2323,17 +2320,6 @@
 					these cases the ST Author must explicitly declare this option and should present a reasonable
 					argument that the entropy of the inputs to the KDFs will result in full entropy of the expected
 					output.<h:p/>
-<!--					The documentation of the product’s encryption key management should be detailed enough that,
-					after reading, the evaluator will thoroughly understand the product’s key management and how it
-					meets the requirements to ensure the keys are adequately protected. This documentation should
-					include an essay and diagrams. This documentation is not required to be part of the TSS; it can be
-					submitted as a separate document and marked as developer proprietary.<h:p/>  -->
-<!--					SP 800-56C specifies a two-step key derivation procedure that employs an extraction-then 
-					expansion technique for deriving keying material from a shared secret generated during a key
-					establishment scheme. The Randomness Extraction step as described in Section 5 of SP 800-56C
-					is followed by Key Expansion using the key derivation functions defined in SP 800-108.<h:p/> -->
-<!--					This requirement must be claimed by the TOE if at least one of FCS_CKM.1/KEK,  
-					FCS_CKM.1/SK or FCS_COP.1/KeyEnc chooses a selection related to key derivation.<h:p/>  -->
 					If at least one of KDF-XOR or KDF-ENC is selected AND password-based key derivation
 					is used to create at least one of the inputs, the selection-based SFR FCS_COP.1/PBKDF must also
 					be claimed.<h:p/>
@@ -3727,7 +3713,6 @@
 					firmware update mechanism as described in FPT_TUD_EXT.3</h:i>" in FPT_TUD_EXT.1; or if the ST Author 
 					selects "<h:i>verification of a digital signature by trusted code/data</h:i>" in FPT_ROT_EXT.2.<h:p/>				
 					The ST Author should choose the algorithm implemented to perform verification of digital signatures. 
-					If more than one algorithm is available, this requirement should be iterated to specify the functionality. 
 					For the algorithm chosen, the ST Author should make the appropriate assignments/selections to specify the 
 					parameters that are implemented for that algorithm. In particular, if ECDSA is selected as one of the signature
 					algorithms, the key size specified must match the selection for the curve used in the algorithm.<h:p/>
@@ -4556,10 +4541,7 @@
 					This SFR is included in the ST if the ST Author selects "<h:i>TLS/HTTPS</h:i>" in 
 					FTP_ITC_EXT.1.1 or if "<h:i>HTTPS</h:i>" is selected in FIA_X509_EXT.2.<h:p/>
 					If this SFR is included in the ST, then the <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">
-					<h:i>Functional Package for Transport Layer Security</h:i></h:a> must also be included.<h:p/>
-					The ST Author must provide enough detail to determine how the implementation is 
-					complying with the standard(s) identified; this can be done either by adding elements to this 
-					component, or by additional detail in the TSS.
+					<h:i>Functional Package for Transport Layer Security</h:i></h:a> must also be included.
 				</note>
             </f-element>
             <f-element id="fcs-https-ext-1e2">
@@ -4746,11 +4728,11 @@
                 </title></ext-comp-def-title>				
 				<note role="application">
 					If the TOE is used to connect to a VPN gateway for the purposes of establishing a
-					secure connection to a private network, the ST Author shall select
+					secure connection to a private network, the ST Author should select
 					tunnel mode. If the TOE uses IPsec to establish an end-to-end connection to
-					another IPsec VPN Client, the ST Author shall select transport mode. If
+					another IPsec VPN Client, the ST Author should select transport mode. If
 					the TOE uses IPsec to establish a connection to a specific endpoint device for the
-					purpose of secure remote administration, the ST Author shall select
+					purpose of secure remote administration, the ST Author should select
 					transport mode.<h:p/>
 				</note>
                 <aactivity level="element">
@@ -4889,7 +4871,7 @@
 		    <ext-comp-def-title>
 			    <title>The TSF shall implement the protocol: <assignable>key exchange protocol</assignable>.
 	                </title></ext-comp-def-title>
-                <note role="application">If the TOE implements SHA-2 hash algorithms for IKEv1 or IKEv2, the ST Author shall
+                <note role="application">If the TOE implements SHA-2 hash algorithms for IKEv1 or IKEv2, the ST Author should
 					select RFC 4868. </note>
                 <aactivity level="element">
                     <TSS>
@@ -5855,12 +5837,7 @@
 					This requirement is not applicable to derived keys that are not stored. It is not expected that a
 					single key will be protected from corruption by multiple of these methods; however, a product may
 					use one integrity-protection method for one type of key and a different method for other types of
-					keys.<h:p/>
-					The documentation of the product’s encryption key management should be detailed enough that,
-					after reading, the evaluator will thoroughly understand the product’s key management and how it
-					meets the requirements to ensure the keys are adequately protected. This documentation should
-					include an essay and diagrams. This documentation is not required to be part of the TSS – it can
-					be submitted as a separate document and marked as developer proprietary.
+					keys.
 				</note>
 				<aactivity>
 					<TSS>
@@ -5871,7 +5848,10 @@
 						There are no AGD evaluation activities for this component.<h:p/>
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.<h:p/>
+					The documentation of the product’s encryption key management should be detailed enough that,
+					after reading, the evaluator will thoroughly understand the product’s key management and how it
+					meets the requirements to ensure the keys are adequately protected. This documentation should
+					include an essay and diagrams. This documentation may be marked as developer proprietary.<h:p/>
 					</KMD>
 					<Tests>
 						There are no test evaluation activities for this component.
@@ -6684,7 +6664,7 @@
 					signature mechanism</h:i>,” if "<h:i>certificate-based authentication of the remote peer</h:i>" is
 					selected in FTP_ITC_EXT.1.1, or if "<h:i>authentication based on X.509 certificates</h:i>"
 					is selected in FIA_UAU.5.1.<h:p/>
-                    FIA_X509_EXT.1.1 lists the rules for validating certificates. The ST Author shall select whether revocation
+                    FIA_X509_EXT.1.1 lists the rules for validating certificates. The ST Author should select whether revocation
 					status is verified using OCSP or CRLs. FIA_X509_EXT.2 requires that certificates are used for IPsec;
 					this use requires that the extendedKeyUsage rules are verified. Certificates may optionally be used 
 					for SSH, TLS, and HTTPS and, if implemented, must be validated to contain the corresponding 
@@ -6836,7 +6816,7 @@
 					certificate - either to download a CRL or to perform a lookup using OCSP. The selection is used to 
 					describe the behavior in the event that such a connection cannot be established (for example, due to 
 					a network error). If the TOE has determined the certificate valid according to all other rules in 
-					FIA_X509_EXT.1, the behavior indicated in the selection shall determine the validity. The TOE must
+					FIA_X509_EXT.1, the behavior indicated in the selection determines validity. The TOE must
 					not accept the certificate if it fails any of the other validation rules in FIA_X509_EXT.1. If the 
 					administrator-configured option is selected by the ST Author, the ST Author must ensure that this is
 					also defined as a management function that is provided by the TOE.
@@ -6952,8 +6932,9 @@
 					the functions [<h:i>listed in <xref to="t-manfunc"/></h:i>] to [<h:i>the roles 
 					indicated in <xref to="t-manfunc"/></h:i>]. 
 				</title>
-				<note role="application"> There are two roles defined in this PP: Administrator and User. 
-					Administrators can perform management most functions on the platform, and only
+				<note role="application"> There are two roles defined in this PP: Administrator and User
+					(see FIA_SMR.1).  
+					Administrators can perform most management functions on the platform, and only
 					Administrators are required to authenticate themselves to the platform.<h:p/>
 					Users have a limited ability to select responses to certain events
 					as specified in the Management Functions table in FMT_SMF.1.<h:p/>
@@ -7676,7 +7657,7 @@
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
 					example, by blinking lights, beep codes, screen indications, or local logging.<h:p/>
 					If "Administrator" is selected anywhere in FPT_ROT_EXT.2.2, or if "in accordance with Administrator-configurable
-					policy" is selected, then all Administrator authentication requirements shall be included in the ST
+					policy" is selected, then all Administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
 					If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected, then FCS_COP.1/Hash must be included in the ST.<h:p/>
@@ -7744,7 +7725,7 @@
 					unexpected software and hardware, and the corresponding customer processes that verify that client and server computing devices and
 					components have not been tampered with or otherwise modified. Manufacturing processes that cannot be verified by the customer are explicitly
 					out of scope."<h:p/>
-					As a basic step, critical platform components should include immutable hardware IDs that can be listed in a hardware component  
+					As a basic step, SP 1800-34 specifies that critical platform components should include immutable hardware IDs that can be listed in a hardware component  
 					manifest that is provided to the purchaser and signed by the manufacturer. It should then be possible for the TOE to verify 
 					the signature on the manifest and check that each hardware ID in the manifest matches the IDs in the actual hardware.
 					The component manifest and hardware IDs provide proof of provenance for the TOE and its hardware components.<h:p/>
@@ -8096,9 +8077,9 @@
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
-					The ST Author should make the selection above if the TSF supports rollback prevention. That is, the TSF
+					The ST Author should select "<h:i>the version number...</h:i>" if the TSF supports rollback prevention. That is, the TSF
 					does not allow "update" to an older version of the platform firmware. In general, rollback should be permitted
-					only through a secure local update mechanism at the express direction of an Administrator or user.
+					only through a secure local update mechanism at the express direction of an physically present Administrator or User.
 				</note>
 			</f-element>
 			<f-element id="fpt-tud-ext-2e3">
@@ -8190,13 +8171,13 @@
 					firmware update image. The TSF includes a signature verification algorithm and a key
 					store containing the public key needed to verify the signature on the firmware update image. <h:p/>
 					A hash of the public key may be stored if a copy of the public key is provided with firmware
-					update images. In this case, the update mechanism shall hash the public key provided with the update 
+					update images. In this case, the update mechanism hashes the public key provided with the update 
 					image, and ensure that it matches a hash which appears in the key store before using the provided public 
 					key to verify the signature of the update image. If the hash of the public key is selected, the ST Author may
 					iterate the FCS_COP.1/Hash requirement to specify the hashing functions used.<h:p/>
 					An indication of success or failure can be generation of an audit event by a management subsystem, a beep code,
 					an updated version number on a splash screen, or simple failure to continue functioning.<h:p/>
-					If the update mechanism generates audit events, the ST Author shall make the appropriate selections
+					If the update mechanism generates audit events, the ST Author must make the appropriate selections
 					from the audit events table (<xref g="t-audit-sel-based"/>).
 				</note>
 				<aactivity>
@@ -8618,12 +8599,12 @@
 					This SFR is included in the ST if a trusted channel is used to offload audit data 
 					or if the platform is administered remotely. That is, if "<h:i>a trusted channel as specified in FTP_ITC_EXT.1</h:i>" 
 					is selected in FAU_STG_EXT.1 or "remote" is selected in FMT_MOF_EXT.1.<h:p/>
-					If the ST Author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TSF shall be validated against the 
+					If the ST Author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TSF must be validated against the 
 					Functional Package for TLS. This PP does not mandate that a product implement TLS with mutual authentication,
 					but if the product includes the capability to perform TLS with mutual authentication, then
 					mutual authentication must be included within the TOE boundary. The TLS Package requires that the X509 
 					requirements be included by the PP, so selection of TLS or HTTPS causes FIA_X509_EXT.* to be selected.<h:p/>
-					If the ST Author selects "<h:i>SSH</h:i>," the TSF shall be validated against the Functional Package for Secure Shell.<h:p/>
+					If the ST Author selects "<h:i>SSH</h:i>," the TSF must be validated against the Functional Package for Secure Shell.<h:p/>
 					If the ST Author selects "<h:i>certificate-based authentication of the remote peer</h:i>," then FIA_X509_EXT.1 and FIA_X509_EXT.2
 					must be included in the ST. "<h:i>No authentication of the remote peer</h:i>" should be selected only if the TOE is acting 
 					as a server in a non-mutual authentication configuration.<h:p/>.
