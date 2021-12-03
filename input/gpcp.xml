@@ -1073,7 +1073,7 @@
 					or boot failures as indicated by the appropriate selections in FPT_ROT_EXT.2, FPT_ROT_EXT.3,
 					FPT_TUD_EXT.2, or FPT_TUD_EXT.3.4; or if the TOE supports the Server (basic or enhanced), CSfC EUD, or
 					Enterprise Desktop use cases.<h:p/>
-					If this SFR is included in the ST, then all the other FAU SFRs must also be included.<h:p/>
+					If this SFR is included in the ST, then all the other FAU SFRs must also be claimed.<h:p/>
 					Appropriate entries from <xref g="t-audit-optional"/>, <xref g="t-audit-objective"/>, and
 					<xref g="t-audit-sel-based"/> should be included in the ST if the 
 					associated SFRs and selections are included.<h:p/>
@@ -1162,7 +1162,7 @@
 				<title>The TSF shall provide the audit records in a manner suitable for the <refinement>Administrator
 					</refinement> to interpret the information.</title>
 				<note role="application">
-					This SFR must be included in the ST if FAU_GEN.1 is included.
+					This SFR must be included in the ST if FAU_GEN.1 is claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -1207,7 +1207,7 @@
 					in the audit trail.
 				</title>
 				<note role="application">
-					This SFR must be included in the ST if FAU_GEN.1 is included.
+					This SFR must be included in the ST if FAU_GEN.1 is claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -1257,7 +1257,7 @@
 					The TSF shall overwrite the oldest stored audit records if the audit trail is full.
 				</title>
 				<note role="application">
-					This SFR must be included in the ST if FAU_GEN.1 is included.
+					This SFR must be included in the ST if FAU_GEN.1 is claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -1475,9 +1475,9 @@
 					This SFR must be included in the ST if asymmetric key generation is a service provided by 
 					the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
 					security functionality.<h:p/> 
-					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is included in the ST, or if 
+					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
 					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
 					DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
 					by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
 					For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.<h:p/>
@@ -1650,7 +1650,7 @@
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR must be included in the ST if "<h:i>causing the TOE to generate [symmetric] keys/secrets</h:i>"
 					is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 must also be included.
+					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -1726,9 +1726,9 @@
 					This SFR must be included in the ST if key establishment is a service provided by the TOE to tenant
 					software, or if key establishment is used by the TOE itself to support or implement PP-specified 
 					security functionality.<h:p/> 
-					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is included, or if 
+					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
 					"<h:i>Keys established according to FCS_CKM.2</h:i>" is selected in FTP_ITE_EXT.1.1.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
 					The ST Author selects all key establishment schemes used for the selected cryptographic protocols.<h:p/>
 				<!--	The RSA-based key establishment schemes are described in Section 8 of NIST SP 800-56B Revision
 					2 [NIST-RSA]; however, Section 8 relies on implementation of other sections in SP 800-56B Revision 2.<h:p/> -->
@@ -1834,9 +1834,9 @@
 				<note role="application">
 					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
 					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SDF
-					must be included in the ST if any of the following SFRs are included: FCS_CKM.1/AK, FCS_CKM.1/SK,
+					must be included in the ST if any of the following SFRs are claimed: FCS_CKM.1/AK, FCS_CKM.1/SK,
 					FCS_CKM.2, FCS_CKM_EXT.5, FCS_COP.1/KAT, FCS_COP.1/PBKDF, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
-					If this SFR is included in the ST, then FCS_CKM_EXT.4 must also be included.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM_EXT.4 must also be claimed.<h:p/>
 					The term “cryptographic keys” in this SFR includes
 					the authorization data that is the entry point to a key chain and all other cryptographic keys and
 					keying material (whether in plaintext or encrypted form). This SFR does not apply to the public
@@ -2022,7 +2022,7 @@
 					The TSF shall destroy all keys and keying material when no longer needed.
 				</title>
 				<note role="application">
-					This SFR must be included in the ST if FCS_CKM.4 is included in the ST.<h:p/>
+					This SFR must be included in the ST if FCS_CKM.4 is claimed.<h:p/>
 					The TOE must have mechanisms to destroy keys and key material in persistent storage using an 
 					approved method as specified in FCS_CKM.4. Examples of keys and key material include intermediate
 					keys, encryption keys, signing keys, verification keys, authentication tokens, and submasks. <h:p/>
@@ -2321,7 +2321,7 @@
 				<note role="application">
 					This SFR must be included in the ST if key derivation is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
 					For Authorization Factor Submasks, the key size to be used in the HMAC falls into a range between
 					L1 and L2 defined in ISO/IEC 10118 for the appropriate hash function (for example for SHA-256
 					L1 = 512, L2 = 256) where L2 &lt;= k &lt;= L1.<h:p/>
@@ -2332,9 +2332,11 @@
 					these cases the ST Author must explicitly declare this option and should present a reasonable
 					argument that the entropy of the inputs to the KDFs will result in full entropy of the expected
 					output.<h:p/>
-					If at least one of KDF-XOR or KDF-ENC is selected AND password-based key derivation
+					If at least one of "<h:i>KDF-XOR</h:i>" or "<h:i>KDF-ENC</h:i>" is selected AND password-based key derivation
 					is used to create at least one of the inputs, the selection-based SFR FCS_COP.1/PBKDF must also
 					be claimed.<h:p/>
+					If "<h:i>KDF-XOR</h:i>" and at least one of the SHA hashes is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
+					If "<h:i>KDF-HASH</h:i>" or "<h:i>KDF-MAC</h:i>" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
 				</note>
 				<aactivity>
 					<TSS>
@@ -2576,12 +2578,12 @@
 			<depends on-sel="sel-rot2-hash"/>  <!-- FPT_ROT_EXT.2.1 -->
 			<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1.1 -->
 			<depends on-sel="sel-tud2-hash"/>  <!-- FPT_TUD_EXT.2.1 -->
-			<depends on-sel="sel-fcs-cop-kat-ecies"/>  <!-- FCS_COP.1.1/KAT -->
+<!--			<depends on-sel="sel-fcs-cop-kat-ecies"/>  --> <!-- FCS_COP.1.1/KAT -->
 			<depends on-sel="sel-fcs-ckm-ext-5-kdf-hash"/> <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fdp-itc-ext-1e2-hash"/>  <!-- from FDP_ITC_EXT.1 -->
 			<depends on-incl="sfr-fcs-cop-1-keyedhash"/>   <!-- FCS_COP.1/KeyedHash -->
 			<depends on-incl="sfr-fcs-cop-1-sigver"/>    <!-- FCS_COP.1/SigVer -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>    <!-- FCS_COP.1/SigGen -->
-			<depends on-sel="sel-fdp-itc-ext-1e2-hash"/>  <!-- from FDP_ITC_EXT.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
             <f-element id="fcs-cop-1e1-hash">
                 <title>
@@ -2607,9 +2609,15 @@
                 </title>
                 <note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
-					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-			    	Specifically, this SFR must be included if "<h:i>hash value of the public key</h:i>" is selected in 
-					FPT_TUD_EXT.2, or if FCS_COP.1/KeyedHash is included in the ST.<h:p/>			    
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/>
+					Also, this SFR must be included in the ST if FCS_COP.1/KeyedHash, FCS_COP.1/SigGen, or FCS_COP.1/SigVer
+					are claimed.<h:p/>
+			    	It must be included in the ST if "<h:i>hash value of the public key</h:i>" is selected in FPT_TUD_EXT.2.1. <h:p/>	
+				It must be included  in the ST if "<h:i>KDF-HASH</h:i>" or "<h:i>KDF-MAC</h:i>" or one of the SHA hashes is selected within 
+				"<h:i>KDF-XOR</h:i>" in FCS_CKM_EXT.5.1.<h:p/>
+				It must be included  in the ST if "<h:i>Hash_DRBG (any)</h:i>" or "<h:i>HMAC_DRBG (any)</h:i>" is selected in FCS_RBG_EXT.1.1.<h:p/>
+				It must be included  in the ST if "<h:i>cryptographic hash as specified in FCS_COP.1/Hash</h:i>" is selected in FDP_ITC_EXT.1.2. <h:p/>
+				It must be included  in the ST if "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected in FPT_ROT_EXT.2.1. <h:p/>			
 					The hash selection should be consistent with the overall strength of the algorithm used for
 					signature generation. For example, the ST Author should choose SHA-256 for 2048-bit RSA or ECC 
 					with P-256, SHA-384 for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 for ECC
@@ -2759,7 +2767,7 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					
+					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/>
 					The HMAC key size falls into a range between L1 and L2 defined in ISO/IEC 10118 for the
 					appropriate hash function (e.g., for SHA-256 L1 = 512, L2 = 256) where L2 ≤ k ≤ L1.
 				</note>
@@ -2938,7 +2946,7 @@
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
 					functionality.<h:p/> 
-					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
 					The selections in this SFR should be consistent with the algorithms selected in FCS_CKM.2.	
 				</note>
 				<aactivity>
@@ -3292,7 +3300,7 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
 					The TSF must condition a password into a string of bits prior to using it as input to algorithms that
 					form SKs and KEKs. The TSF can perform conditioning using one of the identified hash functions
 					or the process described in NIST SP 800-132; the ST Author selects the method used. NIST SP
@@ -3503,7 +3511,8 @@
 					tenant software, or if digital signature generation is used by the TOE itself to support or implement 
 					PP-specified security functionality.<h:p/> 
 					Specifically, this SFR must be included if "<h:i>A digital signature of the stored key in accordance with FCS_COP.1/SigGen
-					using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</h:i>" is selected in FCS_STG_EXT.3.
+					using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</h:i>" is selected in FCS_STG_EXT.3.<h:p/>
+					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -3724,7 +3733,8 @@
 					Specifically, this SFR must be included if the ST Author chooses "<h:i>implement an authenticated platform
 					firmware update mechanism as described in FPT_TUD_EXT.2</h:i>" or "<h:i>implement a delayed-authentication platform
 					firmware update mechanism as described in FPT_TUD_EXT.3</h:i>" in FPT_TUD_EXT.1; or if the ST Author 
-					selects "<h:i>verification of a digital signature by trusted code/data</h:i>" in FPT_ROT_EXT.2.<h:p/>				
+					selects "<h:i>verification of a digital signature by trusted code/data</h:i>" in FPT_ROT_EXT.2.<h:p/>	
+					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/>
 					The ST Author should choose the algorithm implemented to perform verification of digital signatures. 
 					For the algorithm chosen, the ST Author should make the appropriate assignments/selections to specify the 
 					parameters that are implemented for that algorithm. In particular, if ECDSA is selected as one of the signature
@@ -4554,7 +4564,7 @@
 					This SFR is included in the ST if the ST Author selects "<h:i>TLS/HTTPS</h:i>" in 
 					FTP_ITC_EXT.1.1 or if "<h:i>HTTPS</h:i>" is selected in FIA_X509_EXT.2.<h:p/>
 					If this SFR is included in the ST, then the <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">
-					<h:i>Functional Package for Transport Layer Security</h:i></h:a> must also be included.
+					<h:i>Functional Package for Transport Layer Security</h:i></h:a> must also be claimed.
 				</note>
             </f-element>
             <f-element id="fcs-https-ext-1e2">
@@ -5455,6 +5465,10 @@
 					accordance with ISO/IEC 18031:2011 using <assignable>DRBG type</assignable>.
 				</title>
 				</ext-comp-def-title>
+				<note role="application">
+					If "<h:i>Hash_DRBG (any)</h:i>" or "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/Hash 
+					must be claimed.<h:p/>
+				</note>
 			</f-element>
 			<f-element id="fcs-rbg-ext-1e2">
 				<title>The deterministic RBG shall be seeded by at least one entropy source in
@@ -5649,7 +5663,7 @@
 					FCS_STG_EXT.2, the ST Author is expected to select "<h:i>software-based</h:i>." 
 					If "<h:i>software-based</h:i>" is selected,
 					the ST Author is expected to select all "<h:i>software-based key storage</h:i>" in FCS_STG_EXT.2.
-					If this SFR is included in the ST, then FCS_CKM.4 must also be included.
+					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.
 				</note>
 			</f-element>
 			<f-element id="fcs-stg-ext-1e2">
@@ -6086,7 +6100,7 @@
 					This SFR is included in the ST if FIA_UAU.5 is included in the ST. FIA_UAU.5 specifies 
 					all mechanisms for authentication of Administrators. This SFR specifies the actions to be taken
 					in the event of multiple authentication failures.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
 <!--					If no additional authentication mechanisms are selected in FIA_UAU.5.1, then "<h:i>no other</h:i>" must 
 					be selected. If an additional authentication mechanism is selected in FIA_UAU.5.1, then it 
 					must only be selected in FIA_AFL_EXT.1.1 if surpassing the authentication failure threshold 
@@ -6299,7 +6313,7 @@
 				</title>
 				</ext-comp-def-title>	
 				<note role="application">
-					This SFR is included in the ST if FIA_UAU.5 is included in the ST.<h:p/>
+					This SFR is included in the ST if FIA_UAU.5 is claimed.<h:p/>
 					While some corporate policies require passwords of 14 characters or better, the use of a Root
 					Encryption Key for DAR protection and key storage protection and the anti-hammer requirement (FIA_TRT_EXT.1)
 					addresses the threat of attackers with physical access using much smaller and less complex
@@ -6495,7 +6509,7 @@
 					while the authentication is in progress. 
 				</title>
 				<note role="application">
-					This SFR is included in the ST if FIA_UAU.5 is included in the ST. <h:p/>
+					This SFR is included in the ST if FIA_UAU.5 is claimed in the ST. <h:p/>
 					This requirement applies to all authentication mechanisms specified in FIA_UAU.5.1 that provide 
 					feedback to a user or Administrator during authentication.<h:p/>
 					For authentication mechanisms that require the user or Administrator to enter a
@@ -6580,7 +6594,7 @@
                     function to be performed by that Administrator.
                 </title>
                 <note role="application">
-					This SFR is included in the ST if FIA_UAU.5 is included in the ST. <h:p/>
+					This SFR is included in the ST if FIA_UAU.5 is claimed in the ST. <h:p/>
 					Ordinary unprivileged users of the platform need not authenticate to the platform, though they
 					may well have to authenticate themselves to tenant software such as an Operating System. <h:p/>
 					The TSF-mediated management functions are listed in the management functions table 
@@ -6998,7 +7012,7 @@
 					</selectables></h:td>
 						<h:td>M</h:td>
 						<h:td>X</h:td>
-				<h:td>If "<h:i>remotely</h:i>" is selected, then FTP_TRP.1 mush be included in the ST
+				<h:td>If "<h:i>remotely</h:i>" is selected, then FTP_TRP.1 mush be claimed in the ST
 					and Management Function 5 must be selected.<h:p/>
 					If "<h:i>not at all</h:i>" is selected, then no other management
 					functions may be selected.
@@ -7605,7 +7619,8 @@
 					Otherwise, integrity must be extended through cryptographic means: either through hashes
 					or digital signatures computed and verified by firmware that is trusted because it has  
 					previously had its integrity verified or is itself a Root of Trust. Verification can be performed
-					by TOE components such as management controllers or non-TOE trusted entities.<h:p/>				
+					by TOE components such as management controllers or non-TOE trusted entities.<h:p/>
+					If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
 				</note>
 			</f-element>
 			<f-element id="fpt-rot-ext-2e2">
@@ -7813,7 +7828,7 @@
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).<h:p/>				
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
 					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
-					must be included in the ST.
+					must be claimed in the ST.
 				</note>
 				<aactivity>
 					<TSS>
@@ -7878,7 +7893,7 @@
 							integrity or update failure.</h:li>
 					</h:ul>
 					If the ST Author selects "<h:i>the secure local update mechanism described in FPT_TUD_EXT.4</h:i>," then 
-					FPT_TUD_EXT.4 must be included in the ST.<h:p/>
+					FPT_TUD_EXT.4 must be claimed in the ST.<h:p/>
 					As indicated above, in addition to integrity or update failure, the TOE may use a recovery 
 					mechanism to deal with non-security-related failures, such as a power outage during update or a 
 					power surge during normal operation.<h:p/>
@@ -8374,7 +8389,7 @@
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
 					If "<h:i>in accordance with Administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
-					must be included in the ST.<h:p/>
+					must be claimed in the ST.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					The platform firmware unauthenticated update mechanism installs platform firmware updates without
 					first checking their integrity or authenticity. Instead, this mechanism either invokes a 
