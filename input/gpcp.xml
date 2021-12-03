@@ -1475,9 +1475,9 @@
 					This SFR must be included in the ST if asymmetric key generation is a service provided by 
 					the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
 					security functionality.<h:p/> 
-					Specifically, this SFR must be included in the ST if <!-- "<h:i>Asymmetric KEKs generated in
-					accordance with FCS_CKM.1/AK</h:i>" is selected in FCS_CKM.1/KEK, or if --> FCS_IPSEC_EXT.1 is 
-					included in the ST.<h:p/>
+					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is included in the ST, or if 
+					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
 					DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
 					by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
 					For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.<h:p/>
@@ -1630,7 +1630,6 @@
 	  
 		<!-- FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key) -->
 		<f-component id="sfr-fcs-ckm-1-sk" cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
-<!--			<depends on-sel="sel-ckm-kek-sk"/> --> <!-- from FCS_CKM.1.1/KEK -->
 			<depends on-sel="sel-fcs-sto-ext-1e2-sk"/>  <!-- from FCS_STO_EXT.1 -->
 			<depends><optional/></depends>		<!-- May be manually added -->
 			<f-element id="fcs-ckm-1e1-sk">
@@ -1649,8 +1648,9 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-	<!--				This SFR must be included in the ST if "<h:i>Symmetric KEKs generated in accordance with FCS_CKM.1/SK</h:i>"
-					is selected in FCS_CKM.1/KEK.<h:p/>  -->
+					This SFR must be included in the ST if "<h:i>causing the TOE to generate [symmetric] keys/secrets</h:i>"
+					is selected in FCS_STG_EXT.1.2.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 must also be included.
 				</note>
 				<aactivity>
 					<TSS>
@@ -1721,11 +1721,14 @@
 					</selectables> <h:s>that meets the following: [<h:i>assignment: list of standards</h:i>]</h:s>.
 				</title>
 				<note role="application">
+					This is a refinement of the SFR FCS_CKM.2 to deal with key establishment rather than key
+					distribution.<h:p/>
 					This SFR must be included in the ST if key establishment is a service provided by the TOE to tenant
 					software, or if key establishment is used by the TOE itself to support or implement PP-specified 
 					security functionality.<h:p/> 
-					This is a refinement of the SFR FCS_CKM.2 to deal with key establishment rather than key
-					distribution.<h:p/>
+					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is included, or if 
+					"<h:i>Keys established according to FCS_CKM.2</h:i>" is selected in FTP_ITE_EXT.1.1.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
 					The ST Author selects all key establishment schemes used for the selected cryptographic protocols.<h:p/>
 				<!--	The RSA-based key establishment schemes are described in Section 8 of NIST SP 800-56B Revision
 					2 [NIST-RSA]; however, Section 8 relies on implementation of other sections in SP 800-56B Revision 2.<h:p/> -->
@@ -1830,7 +1833,10 @@
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
-					In particular, if the TOE creates or stores keys, it must be able to destroy them.<h:p/>
+					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SDF
+					must be included in the ST if any of the following SFRs are included: FCS_CKM.1/AK, FCS_CKM.1/SK,
+					FCS_CKM.2, FCS_CKM_EXT.5, FCS_COP.1/KAT, FCS_COP.1/PBKDF, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
+					If this SFR is included in the ST, then FCS_CKM_EXT.4 must also be included.<h:p/>
 					The term “cryptographic keys” in this SFR includes
 					the authorization data that is the entry point to a key chain and all other cryptographic keys and
 					keying material (whether in plaintext or encrypted form). This SFR does not apply to the public
@@ -2315,6 +2321,7 @@
 				<note role="application">
 					This SFR must be included in the ST if key derivation is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
 					For Authorization Factor Submasks, the key size to be used in the HMAC falls into a range between
 					L1 and L2 defined in ISO/IEC 10118 for the appropriate hash function (for example for SHA-256
 					L1 = 512, L2 = 256) where L2 &lt;= k &lt;= L1.<h:p/>
@@ -2931,7 +2938,7 @@
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
 					functionality.<h:p/> 
-<!--					Specifically, this SFR must be included if "<h:i>KTS-OAEP</h:i>" is selected in FCS_COP.1/KeyEnc.<h:p/> -->
+					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
 					The selections in this SFR should be consistent with the algorithms selected in FCS_CKM.2.	
 				</note>
 				<aactivity>
@@ -3285,6 +3292,7 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
 					The TSF must condition a password into a string of bits prior to using it as input to algorithms that
 					form SKs and KEKs. The TSF can perform conditioning using one of the identified hash functions
 					or the process described in NIST SP 800-132; the ST Author selects the method used. NIST SP
@@ -5641,6 +5649,7 @@
 					FCS_STG_EXT.2, the ST Author is expected to select "<h:i>software-based</h:i>." 
 					If "<h:i>software-based</h:i>" is selected,
 					the ST Author is expected to select all "<h:i>software-based key storage</h:i>" in FCS_STG_EXT.2.
+					If this SFR is included in the ST, then FCS_CKM.4 must also be included.
 				</note>
 			</f-element>
 			<f-element id="fcs-stg-ext-1e2">
@@ -6077,6 +6086,7 @@
 					This SFR is included in the ST if FIA_UAU.5 is included in the ST. FIA_UAU.5 specifies 
 					all mechanisms for authentication of Administrators. This SFR specifies the actions to be taken
 					in the event of multiple authentication failures.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 must also be included.<h:p/>
 <!--					If no additional authentication mechanisms are selected in FIA_UAU.5.1, then "<h:i>no other</h:i>" must 
 					be selected. If an additional authentication mechanism is selected in FIA_UAU.5.1, then it 
 					must only be selected in FIA_AFL_EXT.1.1 if surpassing the authentication failure threshold 
