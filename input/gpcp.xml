@@ -1144,13 +1144,14 @@
 		<!-- Must be included if FAU_GEN.1 is included. -->
 		<!-- Requires that there be an Administrator. -->
         <f-component id="sfr-fau-sar-1" cc-id="fau_sar.1" name="Audit Review" status="sel-based">
-			<depends on-sel="sel-rot2-audit"/>   <!-- FPT_ROT_EXT.2.2 -->
-			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3.2 -->
-			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2.5 -->
-			<depends on-sel="sel-tud3-audit"/>  <!-- FPT_TUD_EXT.3.4 -->
-			<depends on-use="uc-server-enhanced"/>
-			<depends on-use="uc-csfc-eud"/>
-			<depends on-use="uc-ent-clients-desktop"/>
+			<depends on-incl="sfr-fau-gen-1"/>  
+		<!--	<depends on-sel="sel-rot2-audit"/>   -->
+		<!--	<depends on-sel="sel-rot3-audit"/>   -->
+		<!--	<depends on-sel="sel-tud2-audit"/>   -->
+		<!--	<depends on-sel="sel-tud3-audit"/>    -->
+		<!--	<depends on-use="uc-server-enhanced"/> -->
+		<!--	<depends on-use="uc-csfc-eud"/> -->
+		<!--	<depends on-use="uc-ent-clients-desktop"/>   -->
 			<f-element id="fau-sar-1e1">
 				<title>The TSF shall provide <refinement>the Administrator</refinement> with the
 					capability to read <refinement>all audited events and record contents</refinement>
@@ -1186,13 +1187,14 @@
 		<!-- Requires that there be an Administrator. -->
 		<!-- Management function: deletion of audit records? -->
 		<f-component id="sfr-fau-stg-1" cc-id="fau_stg.1" name="Protected Audit Trail Storage" status="sel-based">
-			<depends on-sel="sel-rot2-audit"/>  <!-- FPT_ROT_EXT.2.2 -->
-			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3.2 -->
-			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2.5 -->
-			<depends on-sel="sel-tud3-audit"/>  <!-- FPT_TUD_EXT.3.4 -->
-			<depends on-use="uc-server-enhanced"/>
-			<depends on-use="uc-csfc-eud"/>
-			<depends on-use="uc-ent-clients-desktop"/>
+			<depends on-incl="sfr-fau-gen-1"/>  
+		<!--	<depends on-sel="sel-rot2-audit"/>  -->
+		<!--	<depends on-sel="sel-rot3-audit"/>  -->
+		<!--	<depends on-sel="sel-tud2-audit"/>  -->
+		<!--	<depends on-sel="sel-tud3-audit"/>  -->
+		<!--	<depends on-use="uc-server-enhanced"/>  -->
+		<!--	<depends on-use="uc-csfc-eud"/> -->
+		<!--	<depends on-use="uc-ent-clients-desktop"/>  -->
 			<f-element id="fau-stg-1e1">
 				<title>
 					The TSF shall protect the stored audit records in the audit trail from unauthorized deletion.
@@ -1241,13 +1243,14 @@
 		<!-- FAU_STG.4 Prevention of Audit Data Loss -->
 		<!-- Must be included if FAU_GEN.1 is included. -->
 		<f-component id="sfr-fau-stg-4" cc-id="fau_stg.4" name="Prevention of Audit Data Loss" status="sel-based">
-			<depends on-sel="sel-rot2-audit"/>  <!-- FPT_ROT_EXT.2.2 -->
-			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3.3 -->
-			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2.5 -->
-			<depends on-sel="sel-tud3-audit"/>  <!-- FPT_TUD_EXT.3.4 -->
-			<depends on-use="uc-server-enhanced"/>
-			<depends on-use="uc-csfc-eud"/>
-			<depends on-use="uc-ent-clients-desktop"/>
+			<depends on-incl="sfr-fau-gen-1"/>  
+		<!--	<depends on-sel="sel-rot2-audit"/>  -->
+		<!--	<depends on-sel="sel-rot3-audit"/>  -->
+		<!--	<depends on-sel="sel-tud2-audit"/>  -->
+		<!--	<depends on-sel="sel-tud3-audit"/>  -->
+		<!--	<depends on-use="uc-server-enhanced"/>  -->
+		<!--	<depends on-use="uc-csfc-eud"/>  -->
+		<!--	<depends on-use="uc-ent-clients-desktop"/>  -->
 			<f-element id="fau-stg-4e1">
 				<title>
 					The TSF shall overwrite the oldest stored audit records if the audit trail is full.
@@ -1279,13 +1282,14 @@
         <!-- FAU_STG_EXT.1 Off-Loading of Audit Data -->
 		<!-- Must be included if FAU_GEN.1 is included. -->
         <f-component id="sfr-fau-stg-ext-1" cc-id="fau_stg_ext.1" name="Off-Loading of Audit Data" status="sel-based">
-			<depends on-sel="sel-rot2-audit"/>  <!-- FPT_ROT_EXT.2.2 -->
-			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3.2 -->
-			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2.5 -->
-			<depends on-sel="sel-tud3-audit"/>  <!-- FPT_TUD_EXT.3.4 -->
-			<depends on-use="uc-server-enhanced"/>
-			<depends on-use="uc-csfc-eud"/>
-			<depends on-use="uc-ent-clients-desktop"/>
+			<depends on-incl="sfr-fau-gen-1"/>  
+		<!--	<depends on-sel="sel-rot2-audit"/>  -->
+		<!--	<depends on-sel="sel-rot3-audit"/>  -->
+		<!--	<depends on-sel="sel-tud2-audit"/>  -->
+		<!--	<depends on-sel="sel-tud3-audit"/>  -->
+		<!--	<depends on-use="uc-server-enhanced"/>  -->
+		<!--	<depends on-use="uc-csfc-eud"/>  -->
+		<!--	<depends on-use="uc-ent-clients-desktop"/>  -->
 			<consistency-rationale/>
 			<comp-lev>specifies how audit data may be transmitted or removed from the TOE, which is not 
 				covered by any FCS_STG component.</comp-lev>
@@ -7793,19 +7797,19 @@
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
 					example, by blinking lights, beep codes, screen indications, or local logging.<h:p/>
-					If "<h:i>administrator</h:i>" is selected anywhere in FPT_ROT_EXT.3.2, of if "<h:i>in accordance with administrator-configurable
+					If "<h:i>administrator</h:i>" is selected anywhere in FPT_ROT_EXT.3.2, or if "<h:i>in accordance with administrator-configurable
 					policy</h:i>" is selected, then all administrator authentication requirements must be included in the ST
-					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
+					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).<h:p/>				
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
 					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
-					must be included in the ST.<h:p/>				
+					must be included in the ST.
 				</note>
 				<aactivity>
 					<TSS>
 						The evaluator shall verify that the TSS describes the means by which integrity of platform hardware and
 						firmware is maintained from TOE manufacture to delivery of the TOE to its operational site.
 						The TSS shall also describe how the TOE responds to failure of an integrity check consistent with the 
-						selections in FPT_ROT_EXT.3.2.<h:p/><h:p/>
+						selections in FPT_ROT_EXT.3.2.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall examine the AGD to ensure that it describes the actions taken and notification
