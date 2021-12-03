@@ -7270,8 +7270,6 @@
 					</selectables> to JTAG or other debug interfaces.
 				</title>
 				<note role="application">
-					This requirement means that access to JTAG must be disabled either through hardware or
-					restricted through the use of a signing key.<h:p/>
 					This requirement should be included in the ST for use cases that include the threat T.PHYSICAL. 
 				</note>
 				<aactivity>
@@ -7979,21 +7977,21 @@
 				<note role="application">
 					The purpose of the platform firmware update mechanism is to ensure the authenticity and integrity of
 					platform firmware updates. <h:p/>
-					If platform firmware is immutable (not updateable by any non-destructive means), then the ST Author must select 
-					"<h:i>make no provision for platform firmware update</h:i>."<h:p/>
-					If platform firmware is modifiable only through a
-					local update requiring physical presence at the platform, then the ST Author must select "<h:i>implement a secure
-					local update process...</h:i>" and include FPT_TUD_EXT.4 in the ST.<h:p/>
-					If the platform implements an update mechanism 
-					that does not require physical presence at the platform, and that authenticates firmware updates prior to installing them,
-					then the ST Author selects "<h:i>implement an authenticated platform update mechanism...</h:i>" and include FPT_TUD_EXT.2 in the ST.<h:p/>
+					If platform firmware is immutable (not updateable by any non-destructive means), then the ST Author selects 
+					"<h:i>no mechanism for platform firmware update</h:i>."<h:p/>
+					If the platform implements an update mechanism that does not require physical presence at the platform, and 
+					that authenticates firmware updates prior to installing them, then the ST Author selects 
+					"<h:i>an authenticated platform firmware update mechanism...</h:i>" and include FPT_TUD_EXT.2 in the ST.<h:p/>
 					If the platform implements an update mechanism that does not require physical presence at the
 					platform, and that does not authenticate firmware updates prior to installing them,
-					then the ST Author selects "<h:i>implement an unauthenticated platform update mechanism...</h:i>" and include FPT_TUD_EXT.3 in the ST.
+					then the ST Author selects "<h:i>a delayed-authentication platform firmware update mechanism...</h:i>" and 
+					include FPT_TUD_EXT.3 in the ST.<h:p/>
+					If platform firmware is modifiable only through a local update requiring physical presence at the platform,
+					then the ST Author must select "<h:i>a secure local platform firmware update mechanism...</h:i>" and include FPT_TUD_EXT.4 in the ST.
 				</note>
 				<aactivity>
 					<TSS>
-						If the ST Author selects "<h:i>make no provision for platform firmware update</h:i>," then the 
+						If the ST Author selects "<h:i>no provision for platform firmware update</h:i>," then the 
 						evaluator shall examine the TSS to ensure that it explains all ways of modifying platform 
 						firmware in the absence of any provided mechanism. For example, breaking open the case
 						and prying a chip off the motherboard and then reprogramming the chip. The purpose of this
@@ -8002,11 +8000,11 @@
 						This requirement is met if the platform implements no means for updating platform firmware
 						and the TSS describes a method for updating or replacing platform firmware that involves
 						potentially destroying or damaging the TOE or some of its components.<h:p/>
-						If the ST Author selects "<h:i>implement an authenticated platform firmware update mechanism...</h:i>," then this requirement is 
+						If the ST Author selects "<h:i>an authenticated platform firmware update mechanism...</h:i>," then this requirement is 
 						satisfied if FPT_TUD_EXT.2 is satisfied. <h:p/>
-						If the ST Author selects "<h:i>implement an unauthenticated platform firmware update mechanism...</h:i>," then this requirement is 
+						If the ST Author selects "<h:i>a delayed-authentication platform firmware update mechanism...</h:i>," then this requirement is 
 						satisfied if FPT_TUD_EXT.3 is satisfied. <h:p/>
-						If the ST Author selects "<h:i>implement a secure local platform update mechanism...</h:i>," then this requirement is 
+						If the ST Author selects "<h:i>a secure local platform firmware update mechanism...</h:i>," then this requirement is 
 						satisfied if FPT_TUD_EXT.4 is satisfied. <h:p/>
 					</TSS>
 					<Guidance>
