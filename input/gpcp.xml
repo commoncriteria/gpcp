@@ -1833,7 +1833,7 @@
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
-					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SDF
+					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SFR
 					must be included in the ST if any of the following SFRs are claimed: FCS_CKM.1/AK, FCS_CKM.1/SK,
 					FCS_CKM.2, FCS_CKM_EXT.5, FCS_COP.1/KAT, FCS_COP.1/PBKDF, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
 					If this SFR is included in the ST, then FCS_CKM_EXT.4 must also be claimed.<h:p/>
@@ -2322,6 +2322,14 @@
 					This SFR must be included in the ST if key derivation is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
+					If at least one of "<h:i>KDF-XOR</h:i>" or "<h:i>KDF-ENC</h:i>" is selected AND password-based key derivation
+					is used to create at least one of the inputs, the selection-based SFR FCS_COP.1/PBKDF must also
+					be claimed.<h:p/>
+					If "<h:i>KDF-XOR</h:i>" and at least one of the SHA hashes is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
+					If "<h:i>KDF-HASH</h:i>" or "<h:i>KDF-MAC</h:i>" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
+					If "<h:i>KDF-MAC</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
+					If "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or "<h:i>KDF-DPI</h:i>" is selected, and 
+					HMAC is selected as part of the key derivation algorithm, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
 					For Authorization Factor Submasks, the key size to be used in the HMAC falls into a range between
 					L1 and L2 defined in ISO/IEC 10118 for the appropriate hash function (for example for SHA-256
 					L1 = 512, L2 = 256) where L2 &lt;= k &lt;= L1.<h:p/>
@@ -2331,12 +2339,7 @@
 					use a submask key as input, which could be an authorization factor or derived from a PBKDF. In
 					these cases the ST Author must explicitly declare this option and should present a reasonable
 					argument that the entropy of the inputs to the KDFs will result in full entropy of the expected
-					output.<h:p/>
-					If at least one of "<h:i>KDF-XOR</h:i>" or "<h:i>KDF-ENC</h:i>" is selected AND password-based key derivation
-					is used to create at least one of the inputs, the selection-based SFR FCS_COP.1/PBKDF must also
-					be claimed.<h:p/>
-					If "<h:i>KDF-XOR</h:i>" and at least one of the SHA hashes is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
-					If "<h:i>KDF-HASH</h:i>" or "<h:i>KDF-MAC</h:i>" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
+					output.
 				</note>
 				<aactivity>
 					<TSS>
@@ -2767,6 +2770,17 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					This SFR must be included in the ST if either FCS_IPSEC_EXT.1 or FCS_COP,1/PBKDF is claimed.<h:p/>
+					Also, this SFR must be claimed under the following conditions:<h:ul>
+					<h:li>If "<h:i>KDF-MAC</h:i>" is selected in FCS_CKM_EXT.5</h:li>
+					<h:li>If "<h:i>KDF-CTR,</h:i>" "<h:i>KDF-FB,</h:i>" "<h:i></h:i>"KDF-DPI is selected in FCS_CKM_EXT.5 
+					and HMAC is selected for use by the key derivation algorithm.</h:li>
+					<h:li>If "<h:i>A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</h:i>"
+					is selected in FCS_STG_EXT.3.1</h:li>
+					<h:li>If "<h:i>ECIES</h:i>" is selected in FCS_COP.1/KAT</h:li>
+					<h:li>If "<h:i>HMAC_DRBG (any)</h:i>" is selected in FCS_RBG_EXT.1.1</h:li>
+					<h:li>If "<h:i>keyed hash as specified in FCS_COP.1/KeyedHash</h:i>" is selected in FDP_ITC_EXT.1.2</h:li>
+					</h:ul>
 					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/>
 					The HMAC key size falls into a range between L1 and L2 defined in ISO/IEC 10118 for the
 					appropriate hash function (e.g., for SHA-256 L1 = 512, L2 = 256) where L2 ≤ k ≤ L1.
@@ -2946,6 +2960,7 @@
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
 					functionality.<h:p/> 
+					If "<h:i>ECIES</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
 					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
 					The selections in this SFR should be consistent with the algorithms selected in FCS_CKM.2.	
 				</note>
@@ -3300,7 +3315,7 @@
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 and FCS_COP.1/KeyedHash must also be claimed.<h:p/>
 					The TSF must condition a password into a string of bits prior to using it as input to algorithms that
 					form SKs and KEKs. The TSF can perform conditioning using one of the identified hash functions
 					or the process described in NIST SP 800-132; the ST Author selects the method used. NIST SP
@@ -3308,8 +3323,7 @@
 					approved hash function.<h:p/>
 					Appendix A of NIST SP 800-132 recommends setting the iteration count in order to increase the
 					computation needed to derive a key from a password and therefore increase the workload of
-					performing a dictionary attack.<h:p/>
-					If the ST includes this SFR, then it must also include FCS_COP.1/KeyedHash.
+					performing a dictionary attack.
 				</note>
 				<aactivity>
 					<TSS>
@@ -4628,7 +4642,8 @@
                 <title>The TSF shall implement the IPsec architecture as specified in RFC 4301.
                 </title>
                 <note role="application">
-					This SFR is included in the ST if the ST Author selected "<h:i>IPsec</h:i>" in FTP_ITC_EXT.1.1.<h:p/>
+					This SFR must be included in the ST if the ST Author selected "<h:i>IPsec</h:i>" in FTP_ITC_EXT.1.1.<h:p/>
+					If this SFR is claimed, then FCS_COP.1/KeyedHash must also be claimed.<h:p/>
 					RFC 4301 calls for an IPsec implementation to protect IP traffic through the use
 					of a Security Policy Database (SPD). The SPD is used to define how IP packets are
 					to be handled: PROTECT the packet (e.g., encrypt the packet), BYPASS the IPsec
@@ -5466,8 +5481,8 @@
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
-					If "<h:i>Hash_DRBG (any)</h:i>" or "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/Hash 
-					must be claimed.<h:p/>
+					If "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
+					If "<h:i>Hash_DRBG (any)</h:i>" is selected, then FCS_COP.1/Hash must be claimed.
 				</note>
 			</f-element>
 			<f-element id="fcs-rbg-ext-1e2">
@@ -5939,7 +5954,7 @@
 						<selectables>
 							<selectable id="sel-fdp-itc-ext-1e2-hash">cryptographic hash as specified in FCS_COP.1/Hash</selectable>
 							<selectable id="sel-fdp-itc-ext-1e2-mac">keyed hash as specified in FCS_COP.1/KeyedHash</selectable>
-							<selectable id="sel-fdp-itc-ext-1e2-sk">integrity-providing encryption algorithm as specified in FCS_COP.1/AK
+							<selectable id="sel-fdp-itc-ext-1e2-sk">integrity-providing encryption algorithm as specified in FCS_COP.1/SKC
 								<selectables>
 									<selectable>AES-CCM</selectable>
 									<selectable>AES-GCM</selectable>
@@ -5960,23 +5975,7 @@
 					This SFR is included in the ST when "<h:i>importing keys/secrets into the TOE</h:i>"
 					is selected in FCS_STG_EXT.1.<h:p/>
 					The way the TSF checks the integrity of the keys depends on the method of importation. For
-					example, the encrypted data channel may provide data integrity as part of its service.<h:p/>
-					When a TSF parses an SDE, it should generate security attributes and create an SDO by binding
-					the security attributes to the SDE.
-					If "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is selected, the selection-based
-					SFR FTP_ITP_EXT.1 must be claimed.<h:p/>
-					If "<h:i>encrypted data buffers as specified in FTP_ITE_EXT.1</h:i>" is selected, the selection-based SFR
-					FTP_ITE_EXT.1 must be claimed.<h:p/>
-					If "<h:i>cryptographically protected data channels as specified in FTP_ITC_EXT.1</h:i>" is selected, the
-					selection-based SFR FTP_ITC_EXT.1 must be claimed.<h:p/>
-					If "<h:i>integrity-providing encryption algorithm as specified in FCS_COP.1/AK</h:i>" is selected, the 
-					selection-based SFR FCS_COP.1/AK must be claimed.<h:p/>
-					If "<h:i>digital signature as specified in FCS_COP.1/SigVer</h:i>" is selected, the
-					selection-based SFR FCS_COP.1/SigVer must be claimed.<h:p/>
-					If "<h:i>cryptographic hash as specified in FCS_COP.1/Hash</h:i>" is selected, the selection-based 
-					SFR FCS_COP.1/Hash must be claimed.<h:p/>
-					If "<h:i>keyed hash as specified in FCS_COP.1/KeyedHash</h:i>" is selected, the selection-based
-					SFR FCS_COP.1/KeyedHash must be claimed.<h:p/>
+					example, the encrypted data channel may provide data integrity as part of its service.
 				</note>
 				<aactivity>
 					<TSS>
