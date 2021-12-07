@@ -1477,7 +1477,7 @@
 					security functionality.<h:p/> 
 					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
 					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG_EXT.1 must also be claimed.<h:p/>
 					DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
 					by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
 					For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.<h:p/>
@@ -1650,7 +1650,7 @@
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR must be included in the ST if "<h:i>causing the TOE to generate [symmetric] keys/secrets</h:i>"
 					is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.
+					If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG_EXT.1 must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -2325,6 +2325,8 @@
 					If "<h:i>KDF-XOR</h:i>" and at least one of the SHA hashes is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
 					If "<h:i>KDF-HASH</h:i>" or "<h:i>KDF-MAC</h:i>" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
 					If "<h:i>KDF-MAC</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
+					If "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or "<h:i>KDF-DPI</h:i>" is selected, then
+					FCS_RBG_EXT.1 must be claimed.<h:p/>
 					If "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or "<h:i>KDF-DPI</h:i>" is selected, and 
 					HMAC is selected as part of the key derivation algorithm, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
 					For Authorization Factor Submasks, the key size to be used in the HMAC falls into a range between
@@ -2957,9 +2959,10 @@
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
 					functionality.<h:p/> 
-					If "<h:i>ECIES</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
-					The selections in this SFR should be consistent with the algorithms selected in FCS_CKM.2.	
+					Also, this SFR must be included in the TOE if FCS_CKM.2 is claimed and a key establishment
+					scheme other than FFC is selected.<h:p/>
+					If "<h:i>ECIES</h:i>" is selected, then FCS_COP.1/KeyedHash and FCS_COP.1/SKC must be claimed.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -3523,7 +3526,7 @@
 					PP-specified security functionality.<h:p/> 
 					Specifically, this SFR must be included if "<h:i>A digital signature of the stored key in accordance with FCS_COP.1/SigGen
 					using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</h:i>" is selected in FCS_STG_EXT.3.<h:p/>
-					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.
+					If this SFR is included in the ST, then FCS_COP.1/Hash and FCS_RBG_EXT.1 must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -4573,7 +4576,7 @@
                 </title>
                 <note role="application">
 					This SFR is included in the ST if the ST Author selects "<h:i>TLS/HTTPS</h:i>" in 
-					FTP_ITC_EXT.1.1 or if "<h:i>HTTPS</h:i>" is selected in FIA_X509_EXT.2.<h:p/>
+					FTP_ITC_EXT.1.1 or "<h:i>HTTPS</h:i>" in FIA_X509_EXT.2.<h:p/>
 					If this SFR is included in the ST, then the <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">
 					<h:i>Functional Package for Transport Layer Security</h:i></h:a> must also be claimed.
 				</note>
@@ -4639,8 +4642,9 @@
                 <title>The TSF shall implement the IPsec architecture as specified in RFC 4301.
                 </title>
                 <note role="application">
-					This SFR must be included in the ST if the ST Author selected "<h:i>IPsec</h:i>" in FTP_ITC_EXT.1.1.<h:p/>
-					If this SFR is claimed, then FCS_COP.1/KeyedHash must also be claimed.<h:p/>
+					This SFR must be included in the ST if the ST Author selects "<h:i>IPsec</h:i>" in FTP_ITC_EXT.1.1
+					or in FIA_X509_EXT.2.1.<h:p/>
+					If this SFR is claimed, then FCS_COP.1/KeyedHash and FCS_RBG_EXT.1 must also be claimed.<h:p/>
 					RFC 4301 calls for an IPsec implementation to protect IP traffic through the use
 					of a Security Policy Database (SPD). The SPD is used to define how IP packets are
 					to be handled: PROTECT the packet (e.g., encrypt the packet), BYPASS the IPsec
@@ -5478,8 +5482,15 @@
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
+					This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					This SFR is also needed if the following SFRs are included in the ST: FCS_IPSEC_EXT.1, 
+					FCS_SLT_EXT.1, FCS_CKM.1/AK, FCS_CKM.1/SK, and FCS_COP.1/SigGen.<h:p/>
+					Also, this SFR must be claimed if "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or
+					"<h:i>KDF-DPI</h:i>" is selected in FCS_CKM_EXT.5.<h:p/>
 					If "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
 					If "<h:i>Hash_DRBG (any)</h:i>" is selected, then FCS_COP.1/Hash must be claimed.
+					If "<h:i>CTR_DRBG (any)</h:i>" is selected, then FCS_COP.1/SKC must be claimed.
 				</note>
 			</f-element>
 			<f-element id="fcs-rbg-ext-1e2">
@@ -5507,11 +5518,6 @@
 				</title>
 				</ext-comp-def-title>					
 				<note role="application">
-					This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
-					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					Specifically, this SFR must be included in the ST if "RSK" is selected in FCS_CKM.1/SK.<h:p/>
-					This SFR is also needed if the following SFRs are included in the ST: FCS_IPSEC_EXT.1, 
-					FCS_SLT_EXT.1, FCS_CKM.1/AK, and FCS_COP.1/SigGen.<h:p/>
 					For the selection in FCS_RBG_EXT.1.2, the ST Author selects the appropriate number 
 					of bits of entropy that corresponds to the greatest security strength of the
 					algorithms included in the ST. Security strength is defined in Tables 2 and 3 of 
@@ -5674,7 +5680,8 @@
 					If the protected storage is implemented in software that is protected as required by
 					FCS_STG_EXT.2, the ST Author is expected to select "<h:i>software-based</h:i>." 
 					If "<h:i>software-based</h:i>" is selected,
-					the ST Author is expected to select all "<h:i>software-based key storage</h:i>" in FCS_STG_EXT.2.
+					the ST Author is expected to select "<h:i>software-based key storage</h:i>" in FCS_STG_EXT.2
+					and also claim FCS_STG_EXT.3.<h:p/>
 					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.
 				</note>
 			</f-element>
@@ -5863,6 +5870,9 @@
 					<assignable>types of key material</assignable> by using 
 					<assignable>integrity protection mechanism</assignable>.
 				</title></ext-comp-def-title>
+				<note role="application">
+						This SFR is included in the ST if "software-based" is selected in FCS_STG_EXT.1.
+				</note>
 			</f-element>
 			<f-element id="fcs-stg-ext-3e2">
 				<title>
@@ -6821,7 +6831,11 @@
 					selected in FTP_ITC_EXT.1, or if "authentication based on X.509 certificates"
 					is selected in FIA_UAU.5.1.<h:p/>
 					This SFR must also be included in the ST if X.509 certificate-based authentication is used for "other uses"
-					as listed in the assignment in FIA_X509_EXT.2.1.
+					as listed in the assignment in FIA_X509_EXT.2.1.<h:p/>
+					If "<h:i>HTTPS</h:i>" is selected, then FCS_HTTPS_EXT.1 must be claimed.<h:p/>
+					If "<h:i>IPsec</h:i>" is selected, then FCS_IPSEC_EXT.1 must be claimed.<h:p/>
+					If "<h:i>TLS</h:i>" is selected, then the Functional Package for Transport Layer Security must also be claimed.<h:p/>
+					If "<h:i>SSH</h:i>" is selected, then the Functional Package for Secure Shell (SSH) must also be claimed.
 			    </note>
 			</f-element>
             <f-element id="fia-x509-ext-2e2">
@@ -7617,6 +7631,7 @@
 					previously had its integrity verified or is itself a Root of Trust. Verification can be performed
 					by TOE components such as management controllers or non-TOE trusted entities.<h:p/>
 					If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
+					If "<h:i>verification of a digital signature by trusted code/data</h:i>" is selected, then FCS_COP.1/SigVer must be claimed.					
 				</note>
 			</f-element>
 			<f-element id="fpt-rot-ext-2e2">
@@ -8007,11 +8022,12 @@
 					"<h:i>no mechanism for platform firmware update</h:i>."<h:p/>
 					If the platform implements an update mechanism that does not require physical presence at the platform, and 
 					that authenticates firmware updates prior to installing them, then the ST Author selects 
-					"<h:i>an authenticated platform firmware update mechanism...</h:i>" and include FPT_TUD_EXT.2 in the ST.<h:p/>
+					"<h:i>an authenticated platform firmware update mechanism...</h:i>" and includes FPT_TUD_EXT.2 
+					and FCS_COP.1/SigVer in the ST.<h:p/>
 					If the platform implements an update mechanism that does not require physical presence at the
 					platform, and that does not authenticate firmware updates prior to installing them,
 					then the ST Author selects "<h:i>a delayed-authentication platform firmware update mechanism...</h:i>" and 
-					include FPT_TUD_EXT.3 in the ST.<h:p/>
+					includes FPT_TUD_EXT.3 and FCS_COP.1/SigVer in the ST.<h:p/>
 					If platform firmware is modifiable only through a local update requiring physical presence at the platform,
 					then the ST Author must select "<h:i>a secure local platform firmware update mechanism...</h:i>" and include FPT_TUD_EXT.4 in the ST.
 				</note>
