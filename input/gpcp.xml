@@ -1264,13 +1264,16 @@
 						deletion or overwrite of the oldest stored record.<h:p/>
 					</TSS>
 					<Guidance>
-						There are no AGD evaluation activities for this component.<h:p/>
+						The evaluator shall examine the AGD to ensure that it describes the means used by the TOE
+						to indicate that the audit trail is full and overwrite is about to commence.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
-						There are no test evaluation activities for this component.
+						The evaluator shall cause audit records to be written until the size limits are met and exceeded.
+						The evaluator shall verify that the overwrite function works as described in the TSS and that the 
+						indication of full audit trail is evident as described in the AGD.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -1333,9 +1336,11 @@
                         If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
 						trusted channel to the audit server, as well as describe any requirements 
                         on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
-                        as configuration of the TOE needed to communicate with the audit server.<h:p/>
+                        as configuration of the TOE needed to communicate with the audit server. Furthermore, it must describe whether the 
+			    transfer mechanism ois periodic or continuous, and what happens in the event of a loss of connectivity. <h:p/>
 						If "removable media" is selected, the evaluator shall ensure that the AGD describes the process for
-						accessing audit data and copying it to media.<h:br/>
+						accessing audit data and copying it to media. The AGD must also include high-level guidance on 
+				  		how frequently this operation may need to be done to minimize risk of data loss.<h:br/>
                     </Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:br/>
@@ -7204,7 +7209,8 @@
 					tampering has been detected such that SFRs are always enforced.<h:p/>
 				</TSS>
 				<Guidance>
-					There are no AGD evaluation activities for this component.<h:p/>
+					The evaluator shall examine the AGD to ensure that it describes the expected response
+					of the TOE when physical tampering is detected.<h:p/>
 				</Guidance>
 				<KMD>
 					There are no KMD evaluation activities for this component.<h:p/>
@@ -7213,7 +7219,7 @@
 						The evaluator shall perform the following test:<h:p/>
 							For each physical tampering scenario and device/element 
 							listed in FPT_PHP.3.1, the evaluator shall verify that tampering attempts
-							shall result in a response from the TSF consistent with the operational guidance.					
+							result in a response from the TSF consistent with the operational guidance.					
 				</Tests>
 			</aactivity>
 			</f-element>
