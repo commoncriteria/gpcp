@@ -7631,6 +7631,7 @@
 					<h:ul>
 						<h:li>"<h:i>Initiate a recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected in FPT_ROT_EXT.2.2,</h:li>
 						<h:li>"<h:i>Initiate a recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected in FPT_TUD_EXT.2.5,</h:li>
+						<h:li>"<h:i>Initiate a recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected in FPT_TUD_EXT.3.4,</h:li>
 						<h:li>The TOE implements a recovery mechanism for firmware corruption not necessarily related to 
 							integrity or update failure.</h:li>
 					</h:ul>
@@ -7827,6 +7828,8 @@
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
+					This SFR must be included in the ST if "<h:i>an authenticated platform firmware update mechanism 
+					as described in FPT_TUD_EXT.2</h:i>" is selected in FPT_TUD_EXT.1.1.<h:p/>
 					The ST must include FCS_COP.1/Hash if "<h:i>hash value of the public key</h:i>" is selected.
 				</note>
 			</f-element>
@@ -7931,12 +7934,7 @@
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
-					If "<h:i>Administrator</h:i>" is selected anywhere or if "<h:i>in accordance with Administrator-configurable
-					policy</h:i>" is selected, then all Administrator authentication requirements must be included in the ST
-					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
-					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
-					If "<h:i>in accordance with Administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
-					must be included in the ST.<h:p/>
+					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1 and the other audit requirements must be claimed.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					The platform firmware authenticated update mechanism employs digital signatures to ensure the authenticity of the
 					firmware update image. The TSF includes a signature verification algorithm and a key
@@ -8041,7 +8039,7 @@
 				</ext-comp-def-title>
 				<note role="application">
 					This requirement must be included in the ST if "<h:i>implement a delayed-authentication platform firmware
-					update mechanism as described in FPT_TUD_EXT.3</h:i>" is selected in FPT_TUD_EXT.1.<h:p/>
+					update mechanism as described in FPT_TUD_EXT.3</h:i>" is selected in FPT_TUD_EXT.1.1.<h:p/>
 					This update mechanism does not require an integrity or authenticity check prior to installation, but the
 					newly installed platform firmware must have its integrity and authenticity verified prior to 
 					being executed or used. This update mechanism takes advantage of the existing FPT_ROT_EXT.2
@@ -8127,12 +8125,7 @@
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
-					If "<h:i>Administrator</h:i>" is selected anywhere or if "<h:i>in accordance with Administrator-configurable
-					policy</h:i>" is selected, then all Administrator authentication requirements must be included in the ST
-					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
-					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
-					If "<h:i>in accordance with Administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
-					must be claimed in the ST.<h:p/>
+					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1 and the other audit SFRs must be claimed.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					The platform firmware unauthenticated update mechanism installs platform firmware updates without
 					first checking their integrity or authenticity. Instead, this mechanism either invokes a 
@@ -8228,9 +8221,9 @@
 				</ext-comp-def-title>
 				<note role="application">
 					The requirement included in the ST if "<h:i>the secure local update mechanism described in FPT_TUD_EXT.4</h:i>" 
-					is selected in FPT_RVR_EXT.1 or 
+					is selected in FPT_RVR_EXT.1.1 or 
 					"<h:i>implement a secure local platform firmware update mechanism described in FPT_TUD_EXT.4</h:i>" is selected
-					in FPT_TUD_EXT.1.<h:p/>
+					in FPT_TUD_EXT.1.1.<h:p/>
 					This requirement pertains to platform firmware update mechanisms that do not use the 
 					authentication-based update mechanism described in FPT_TUD_EXT.2 or the delayed-authentication
 					described in FPT_TUD_EXT.3. The secure local update 
@@ -8369,7 +8362,8 @@
 				<note role="application"> 
 					This SFR is included in the ST if a trusted channel is used to offload audit data 
 					or if the platform is administered remotely. That is, if "<h:i>a trusted channel as specified in FTP_ITC_EXT.1</h:i>" 
-					is selected in FAU_STG_EXT.1 or "remote" is selected in FMT_MOF_EXT.1.<h:p/>
+					is selected in FAU_STG_EXT.1.1, if "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is 
+					selected in FDP_ITC_EXT.1., or if "<h:i>remotely</h:i>" is selected in Management Function 1 in FMP_SMF.1.1.<h:p/>
 					If the ST Author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TSF must be validated against the 
 					Functional Package for TLS. This PP does not mandate that a product implement TLS with mutual authentication,
 					but if the product includes the capability to perform TLS with mutual authentication, then
@@ -8499,7 +8493,8 @@
 				</title>
 				<note role="application">
 					This SFR must be claimed if "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is
-					selected in either FDP_ITC_EXT.1.
+					selected in either FDP_ITC_EXT.1, or if "<h:i>Keys exchanged using a physically protected communication mechanism
+					conformant with FTP_ITP_EXT.1</h:i>" is selected in FTP_ITE_EXT.1.1.
 				</note>
 				<aactivity>
 					<TSS>
@@ -8542,7 +8537,7 @@
                 <title>The TSF shall require the use of the trusted path for [<h:i>[all remote administration actions]</h:i>].
                 </title>
                 <note role="application">
-					This SFR is included in the ST if "<h:i>remote</h:i>" is selected in FMT_MOF_EXT.1.1.<h:p/>
+					This SFR is included in the ST if "<h:i>remotely</h:i>" is selected in Management Function 1 of FMT_SMF.1.1.<h:p/>
 					Protocols used to implement the remote administration trusted channel must be
 					selected in FTP_ITC_EXT.1.<h:p/>
                     This requirement ensures that authorized remote Administrators initiate all communication with the
