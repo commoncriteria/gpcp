@@ -1208,12 +1208,12 @@
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator shall ensure that the TSS lists the location of all logs and the access 
+						The evaluator shall ensure that the TSS lists the locations of all logs and the access 
 						controls of those files such that unauthorized modification and deletion are prevented.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall ensure that the AGD describes the steps necessary for an authorized 
-						administrator to delete audit records.<h:p/>
+						administrator to delete audit records, if such a capability is implemented.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
@@ -1222,7 +1222,8 @@
 						The evaluator shall perform the following tests:
 						<testlist>
 							<test>
-								The evaluator shall attempt to delete the audit trail in a manner that the access 
+								[conditional] If the TOE implements an audit record deletion capability, then
+								the evaluator shall attempt to delete the audit trail in a manner that the access 
 								controls should prevent (as an unauthorized user) and shall verify that the attempt
 								fails.
 							</test>
@@ -1337,7 +1338,7 @@
 						trusted channel to the audit server, as well as describe any requirements 
                         on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
                         as configuration of the TOE needed to communicate with the audit server. Furthermore, it must describe whether the 
-			    transfer mechanism ois periodic or continuous, and what happens in the event of a loss of connectivity. <h:p/>
+			    transfer mechanism is periodic or continuous, and what happens in the event of a loss of connectivity. <h:p/>
 						If "removable media" is selected, the evaluator shall ensure that the AGD describes the process for
 						accessing audit data and copying it to media. The AGD must also include high-level guidance on 
 				  		how frequently this operation may need to be done to minimize risk of data loss.<h:br/>
@@ -6131,8 +6132,8 @@
 						attempts are not able to be automated. The evaluator shall ensure that the TSS describes 
 						either how the TSF disables authentication via external interfaces (other than the 
 						ordinary user interface) or how authentication attempts are delayed in order to slow 
-						automated entry and shall ensure that this delay totals at least 500 milliseconds over 10
-						attempts for all authentication mechanisms selected in FIA_UAU.5.1.<h:p/>
+						automated entry and shall ensure that no more than 10 attempts can be attempted
+						per 500 milliseconds for all authentication mechanisms selected in FIA_UAU.5.1.<h:p/>
 					</TSS>
 					<Guidance>
 						There are no AGD evaluation activities for this component.<h:p/>
@@ -7100,8 +7101,7 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to ensure it describes the methods used by the
-						TOE to detect physical tampering and how the TOE will respond when physical
-						tampering has been detected.<h:p/>
+						TOE to detect physical tampering and how tampering is indicated when detected.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall ensure that the AGD describes how the TOE indicates to users
@@ -7114,7 +7114,7 @@
 						The evaluator shall verify that attempts to open the TOE enclosure  
 						result in indications consistent with the operational guidance. Such indications 
 						could include damaged tamper seals, logged events, or other physical or 
-						electronic manifestations.						
+						electronic manifestations.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -7699,26 +7699,16 @@
 				</TSS>
 				<Guidance>
 					The evaluator shall examine the AGD to ensure it instructs the
-					administrator how to set the time or indicates any configuration steps required for
-					the TSF to receive time data from an external source.<h:p/>
+					Administrator on any mechanisms for configuring the time source.<h:p/>
 				</Guidance>
 				<KMD>
 					There are no KMD evaluation activities for this component.<h:p/>
 				</KMD>
 				<Tests>
-					The evaluator shall perform the following tests:
-					<testlist>
-						<test>[conditional] If the TSF provides a mechanism to manually set the time, the
-							evaluator shall use the guidance documentation to set the time. The evaluator shall
-							then use an available interface to observe that the time was set correctly.
-						</test>
-						<test>
-							[conditional] If the TSF receives time data from some source outside the
-							TOE, the evaluator shall use the guidance documentation to configure the external
-							time source (if applicable). The evaluator shall observe that the time has been set to
-							the expected value.
-						</test>
-					</testlist>
+					The evaluator shall perform the following tests:<h:p/>
+					[conditional] If the TSF provides a mechanism to manually set the time, the
+					evaluator shall use the guidance documentation to set the time. The evaluator shall
+					then use an available interface to observe that the time is reported correctly.
 				</Tests>
 				</aactivity>
 			</f-element>
@@ -8369,7 +8359,7 @@
 					This SFR is included in the ST if a trusted channel is used to offload audit data 
 					or if the platform is administered remotely. That is, if "<h:i>a trusted channel as specified in FTP_ITC_EXT.1</h:i>" 
 					is selected in FAU_STG_EXT.1.1, if "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is 
-					selected in FDP_ITC_EXT.1., or if "<h:i>remotely</h:i>" is selected in Management Function 1 in FMP_SMF.1.1.<h:p/>
+					selected in FDP_ITC_EXT.1., or if "<h:i>remotely</h:i>" is selected in Management Function 1 in FMT_SMF.1.1.<h:p/>
 					If the ST Author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TSF must be validated against the 
 					Functional Package for TLS. This PP does not mandate that a product implement TLS with mutual authentication,
 					but if the product includes the capability to perform TLS with mutual authentication, then
@@ -8383,12 +8373,12 @@
 				<aactivity>
 					<TSS>
 						The evaluator will review the TSS to determine that it lists all trusted channels 
-						the TOE uses for remote communications, including both the external entities and/or 
-						remote users used for the channel as well as the protocol that is used for each.<h:p/>
+						the TOE uses for remote communications, including both the external IT entities and 
+						remote users that use the channel as well as the protocol that is used for each.<h:p/>
 					</TSS>
 					<Guidance> The evaluator shall confirm that the AGD contains
-						instructions for establishing the connection to access points, VPN Gateways, and
-						other trusted IT products. <h:p/>
+						instructions for establishing connections to external IT entities and
+						remote users. <h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
