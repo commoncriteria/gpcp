@@ -5971,56 +5971,39 @@
 						The evaluator shall verify that the AGD describes how the Administrator configures
 						the maximum number of unique unsuccessful authentication attempts, and the lockout time period,
 						if applicable.<h:p/>
-						the evaluator shall verify that the AGD described how an Administrator may recover from 
-						a login failure when another Administrator is locked out.<h:p/>
+						The evaluator shall verify that the AGD describes how an Administrator may recover from 
+						authentication failure when another Administrator is locked out.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this element.<h:p/>
 					</KMD>
 					<Tests>
 						The evaluator shall configure the device with all authentication mechanisms 
-						selected in FIA_UAU.5.1. The evaluator shall perform the following tests for each
-						available authentication interface:
+						selected in FIA_UAU.5.1, and configure a maximum number of unsuccessful authentication
+						attempts for each mechanism.<h:p/>
 						<testlist>
+							<test>The evaluator shall for each authentication mechanism make 
+								unsuccessful authentication attempts until the maximum is exceeded and verify that
+								the number of failures corresponds to the configured maximum and that no further 
+								authentication attempts can be made using that mechanism.
 							<test>
-								[conditional] If "<h:i>perform a wipe of all protected data</h:i>" is selected in 
-								FIA_AFL_EXT.1.5, then the evaluator shall configure the TOE, according to the AGD guidance,
-								with a maximum number of unsuccessful authentication attempts. The evaluator shall make
-								incorrect authentication attempts until the wipe occurs. The
-								evaluator shall verify that the number of failures corresponds with the 
-								configured maximum and that the wipe is implemented.
+							<test>
+								[conditional] If the mechanism is critical or if all authentication mechanisms are
+								exhausted, then if "<h:i>perform a wipe of all protected data</h:i>" is selected in 
+								FIA_AFL_EXT.1.5 the evaluator shall verify that the wipe is implemented.
 							</test>
 							<test>
-								[conditional] If "<h:i>exclude the current User/Administrator from further authentication 
-								attempts</h:i>" is selected in FIA_AFL_EXT.1.5, then the evaluator shall configure the TOE, 
-								according to the AGD guidance,
-								with a maximum number of unsuccessful authentication attempts. The evaluator shall make
-								incorrect authentication attempts until locked out. The evaluator shall verify that the number
-								of failures corresponds with the 
-								configured maximum and that the User/Admnistrator can make no further attempts.
+								[conditional] If the mechanism is critical or if all authentication mechanisms are
+								exhausted, then if "<h:i>exclude the current User/Administrator from further authentication 
+								attempts</h:i>" is selected in FIA_AFL_EXT.1.5 the evaluator shall verify that 
+								the User/Admnistrator can make no further authentication attempts.
 							</test>
 							<test>
-								[conditional] If "<h:i>exclude the current User/Administrator from further authentication
-								attempts for a period of [assignment: greater than zero seconds] time</h:i>" is selected 
-								in FIA_AFL_EXT.1.5, then the evaluator shall configure the TOE, 
-								according to the AGD guidance, 
-								with a maximum number of unsuccessful authentication attempts. The evaluator shall make
-								incorrect authentication attempts until locked out. The evaluator shall verify that the
-								number of failures corresponds with the 
-								configured maximum and that the User/Admnistrator can make no further authentication 
-								attempts until the specified time period has expired.
-							</test>
-							<test>
-								[conditional] If the TOE supports multiple authentication mechanisms the previous
-								test shall be repeated using a combination of authentication mechanisms confirming 
-								that the critical authentication mechanisms will cause the device to wipe and that
-								when the maximum number of unsuccessful authentication attempts for a non-critical
-								authentication mechanism is exceeded, the device limits authentication attempts to
-								other available authentication mechanisms. If multiple authentication mechanisms 
-								utilize a shared counter, then the evaluator shall verify that the maximum number 
-								of unsuccessful authentication attempts can be reached by using each individual
-								authentication mechanism and a combination of all authentication mechanisms that 
-								share the counter.
+								[conditional] If the mechanism is critical or if all authentication mechanisms are
+								exhausted, then if "<h:i>exclude the current User/Administrator from further authentication 
+								attempts for a period of [assignment: greater than zero seconds] time</h:i>" is selected in
+								FIA_AFL_EXT.1.5 the evaluator shall verify that the User/Admnistrator can make no further 
+								authentication attempts until the specified time period has expired.
 							</test>
 						</testlist>
 					</Tests>
