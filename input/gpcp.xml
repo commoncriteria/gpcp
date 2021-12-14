@@ -5920,7 +5920,13 @@
 				<title>
 					When the defined number of unsuccessful authentication attempts for the last available
 					authentication mechanism or a critical authentication mechanism has been surpassed, the 
-					TSF shall perform a wipe of all protected data.
+					TSF shall 
+						<selectables>
+							<selectable>perform a wipe of all protected data</selectable>
+							<selectable>exclude the current User/Administrator from further authentication attempts</selectable>
+							<selectable>exclude the current User/Administrator from further authentication
+								attempts for a period of <assignable>greater than zero seconds</assignable> time</selectable>
+						</selectables>.
 				</title>
 				<note role="application">
 					Wipe is performed in accordance with FCS_CKM_EXT.4. Protected data is all non-TSF data, 
@@ -5962,8 +5968,11 @@
 						TOE user if the authentication attempt was successful or not.<h:p/>
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that the AGD describes how the administrator configures
-						the maximum number of unique unsuccessful authentication attempts.<h:p/>
+						The evaluator shall verify that the AGD describes how the Administrator configures
+						the maximum number of unique unsuccessful authentication attempts, and the lockout time period,
+						if applicable.<h:p/>
+						the evaluator shall verify that the AGD described how an Administrator may recover from 
+						a login failure when another Administrator is locked out.<h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this element.<h:p/>
@@ -5974,11 +5983,32 @@
 						available authentication interface:
 						<testlist>
 							<test>
-								The evaluator shall configure the TOE, according to the AGD guidance, with a
-								maximum number of unsuccessful authentication attempts. The evaluator shall enter
-								the locked state and enter incorrect passwords until the wipe occurs. The
-								evaluator shall verify that the number of password entries corresponds to the 
+								[conditional] If "<h:i>perform a wipe of all protected data</h:i>" is selected in 
+								FIA_AFL_EXT.1.5, then the evaluator shall configure the TOE, according to the AGD guidance,
+								with a maximum number of unsuccessful authentication attempts. The evaluator shall make
+								incorrect authentication attempts until the wipe occurs. The
+								evaluator shall verify that the number of failures corresponds with the 
 								configured maximum and that the wipe is implemented.
+							</test>
+							<test>
+								[conditional] If "<h:i>exclude the current User/Administrator from further authentication 
+								attempts</h:i>" is selected in FIA_AFL_EXT.1.5, then the evaluator shall configure the TOE, 
+								according to the AGD guidance,
+								with a maximum number of unsuccessful authentication attempts. The evaluator shall make
+								incorrect authentication attempts until locked out. The evaluator shall verify that the number
+								of failures corresponds with the 
+								configured maximum and that the User/Admnistrator can make no further attempts.
+							</test>
+							<test>
+								[conditional] If "<h:i>exclude the current User/Administrator from further authentication
+								attempts for a period of [assignment: greater than zero seconds] time</h:i>" is selected 
+								in FIA_AFL_EXT.1.5, then the evaluator shall configure the TOE, 
+								according to the AGD guidance, 
+								with a maximum number of unsuccessful authentication attempts. The evaluator shall make
+								incorrect authentication attempts until locked out. The evaluator shall verify that the
+								number of failures corresponds with the 
+								configured maximum and that the User/Admnistrator can make no further authentication 
+								attempts until the specified time period has expired.
 							</test>
 							<test>
 								[conditional] If the TOE supports multiple authentication mechanisms the previous
@@ -6947,12 +6977,13 @@
 		<f-element id="fmt-smr-1e2">
 			<title>The TSF shall be able to associate users with roles.</title>
 			<note role="application">
+				If "<h:i>Administrator</h:i>" is selected, then the user authentication SFRs in FIA must be claimed.<h:p/>
 				A User is a human who interacts with the GPCP through a user interface. Users do not
 				authenticate themselves to the GPCP, though they may be authenticated by tenant
 				software. The User role is considered to exist even if no humans normally interact with a GPCP.<h:p/>
 				An Administrator is a privileged user that must be authenticated by the GPCP in order 
 				to administer the GPCP. This role is distinct from OS or VS administrators, who are
-				may are authenticated to tenant software and are considered to be Users in the context of the GPCP.
+				may are authenticated to tenant software and are considered to be Users in the context of the GPCP.				
 			</note>
 			<aactivity>
 				<no-tests>Documentation and testing for roles is covered in the Evaluation Activities for FMT_SMF.1</no-tests>
