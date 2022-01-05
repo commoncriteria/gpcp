@@ -1784,7 +1784,7 @@
 					<h:ul><h:li>For volatile memory, the destruction shall be executed by a 
 						<selectables linebreak="yes">
 							<selectable>single overwrite consisting of 
-								<selectables>
+								<selectables onlyone="yes">
 									<selectable>a pseudo-random pattern using the TSF’s RBG</selectable>
 									<selectable>zeroes</selectable>
 									<selectable>ones</selectable>
@@ -1800,7 +1800,7 @@
 							<selectable>that employs a wear-leveling algorithm, the destruction shall be executed by a
 								<selectables>
 									<selectable>single overwrite consisting of 
-										<selectables>
+										<selectables onlyone="yes">
 											<selectable>zeroes</selectable>
 											<selectable>ones</selectable>
 											<selectable>pseudo-random pattern</selectable>
@@ -1812,7 +1812,7 @@
 							<selectable>that does not employ a wear-leveling algorithm, the destruction shall be executed by a
 								<selectables linebreak="yes">
 									<selectable>
-										<selectables>
+										<selectables onlyone="yes">
 											<selectable>single</selectable>
 											<selectable><assignable>ST Author-defined multi-pass</assignable></selectable>
 										</selectables> overwrite consisting of 
@@ -6593,7 +6593,7 @@
 			</f-element>
             <f-element id="fia-x509-ext-2e2">
                 <title>When the TSF cannot establish a connection to determine the validity of a certificate, the TSF shall
-                    <selectables>
+                    <selectables onlyone="yes">
                         <selectable id="sel-x509-adminset">allow the administrator to choose whether to accept the certificate in these cases</selectable>
                         <selectable>accept the certificate</selectable>
                         <selectable>not accept the certificate</selectable>
@@ -6771,7 +6771,7 @@
 					<selectables>
 						<selectable>locally</selectable>
 						<selectable id="sel-smf-remote-admin">remotely</selectable>
-						<selectable>not at all</selectable>
+						<selectable exclusive="yes">not at all</selectable>
 					</selectables></h:td>
 						<h:td>M</h:td>
 						<h:td>X</h:td>
@@ -6954,7 +6954,7 @@
 			<title>The TSF shall maintain the roles [<h:i>User</h:i> and 
 				<selectables>
 					<selectable id="sel-fmt-smr-1-admin">Administrator</selectable>
-					<selectable>no other roles</selectable>
+					<selectable exclusive="yes">no other roles</selectable>
 				</selectables>].</title>
 		</f-element>
 		<f-element id="fmt-smr-1e2">
@@ -7057,7 +7057,7 @@
 				<dependencies>No dependencies.</dependencies>
 			<f-element id="fpt-jta-ext-2e1">
 				<title>
-					The TSF shall <selectables>
+					The TSF shall <selectables onlyone="yes">
 						<selectable>disable access through hardware</selectable>
 						<selectable>control access by a signing key</selectable>
 					</selectables> to JTAG or other debug interfaces.
@@ -7401,12 +7401,12 @@
 								<selectable id="sel-rot2-audit">generating an audit event</selectable>
 								<selectable><assignable>other notification method(s)</assignable></selectable>
 							</selectables>, and</h:li>
-						<h:li><selectables linebreak="yes">
+						<h:li><selectables linebreak="yes" onlyone="yes">
 							<selectable>Stop all execution and shut down</selectable>
 							<selectable id="sel-rot2-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
 						</selectables></h:li>
 					</h:ol> 
-					<selectables linebreak="yes">
+					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
 						<selectable id="sel-rot2-admin-config">in accordance with Administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
@@ -7428,12 +7428,12 @@
 								<selectable>User</selectable>
 							</selectables> by
 							<assignable>notification method</assignable>, and</h:li>
-						<h:li><selectables linebreak="yes">
+						<h:li><selectables linebreak="yes" onlyone="yes">
 							<selectable>Stop all execution and shut down</selectable>
 							<selectable>Initiate a recovery process</selectable>
 						</selectables></h:li>
 					</h:ol> 
-					<selectables linebreak="yes">
+					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
 						<selectable>in accordance with Administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
@@ -7549,7 +7549,7 @@
 							<selectable>Continue execution</selectable>
 						</selectables></h:li>
 					</h:ol> 
-					<selectables linebreak="yes">
+					<selectables linebreak="yes" onlyone="yes">
 						<selectable id="sel-rot3-admin-config">in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
 							<selectables>
@@ -7574,7 +7574,7 @@
 							<selectable>Continue execution</selectable>
 						</selectables></h:li>
 					</h:ol> 
-					<selectables linebreak="yes">
+					<selectables linebreak="yes" onlyone="yes">
 						<selectable>in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
 							<selectables>
@@ -7747,7 +7747,7 @@
 			<f-element id="fpt-tud-ext-1e1">
 				<title>The TSF shall implement
 					<selectables linebreak="yes">
-						<selectable>no mechanism for platform firmware update</selectable> 
+						<selectable exclusive="yes">no mechanism for platform firmware update</selectable> 
 						<selectable id="sel-tud1-auth-update">an authenticated platform firmware update mechanism as described in
 							FPT_TUD_EXT.2</selectable>
 						<selectable id="sel-tud1-unauth-update">a delayed-authentication platform firmware update mechanism as described in
@@ -7908,7 +7908,7 @@
 						<selectable>Stop all execution and shut down</selectable>
 						<selectable id="sel-tud2-recovery">Initiate recovery as specified in FPT_RVR_EXT.1</selectable>
 					</selectables>			
-					<selectables linebreak="yes">
+					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
 						<selectable id="sel-tud2-admin-config">in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an <selectables>
@@ -7936,7 +7936,7 @@
 						<selectable>Stop all execution and shut down</selectable>
 						<selectable>Initiate recovery as specified in FPT_RVR_EXT.1</selectable>
 					</selectables>			
-					<selectables linebreak="yes">
+					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
 						<selectable>in accordance with Administrator-configurable policy</selectable>
 						<selectable>by express determination of an <selectables>
@@ -8040,7 +8040,7 @@
 					<selectables>
 						<selectable>the version number of the platform firmware update is more recent than 
 							the version number of the previously installed platform firmware</selectable>
-						<selectable>no other conditions</selectable>
+						<selectable exclusive="yes">no other conditions</selectable>
 					</selectables>.
 				</title>
 				<ext-comp-def-title>
@@ -8099,7 +8099,7 @@
 						<selectable>Stop all execution and shut down</selectable>
 						<selectable id="sel-tud3-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
 					</selectables>
-					<selectables linebreak="yes">
+					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
 						<selectable id="sel-tud3-admin-config">in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
@@ -8126,7 +8126,7 @@
 						<selectable>Stop all execution and shut down</selectable>
 						<selectable>Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
 					</selectables>
-					<selectables linebreak="yes">
+					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
 						<selectable>in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
