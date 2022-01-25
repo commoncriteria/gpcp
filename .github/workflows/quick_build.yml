@@ -24,7 +24,7 @@ jobs:
 
     - id: spellcheck
       run: |
-        make spellcheck-release
+        SPELL_OUT output/SpellCheckReport.txt make spellcheck-release
         echo ::set-output name=LINES::$(wc -l output/SpellCheckReport.txt | { read first rest ; echo $first ; } )
 
     - name: Deploy 🚀
