@@ -1,12 +1,17 @@
 Protection Profile for General-Purpose Computing Platform
 ===============
-
+![Master Badges](https://img.shields.io/badge/Build-master-black.svg)
 ![Build](https://github.com/commoncriteria/gpcp/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/gpcp/workflows/Validate/badge.svg)
-[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/gpcp/gh-pages/warnings-badge.svg)](https://github.com/commoncriteria/gpcp/blob/gh-pages/SanityChecksOutput.md)
+
+![Last QuickBuilt Branch](https://raw.githubusercontent.com/commoncriteria/gpcp/gh-pages/build-branch-badge.svg)
+[![Validation](https://raw.githubusercontent.com/commoncriteria/gpcp/gh-pages/validation.svg)](https://github.com/commoncriteria/gpcp/blob/gh-pages/ValidationReport.txt)
+[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/gpcp/gh-pages/warnings.svg)](https://github.com/commoncriteria/gpcp/blob/gh-pages/SanityChecksOutput.md)
 [![SpellCheck](https://raw.githubusercontent.com/commoncriteria/gpcp/gh-pages/spell-badge.svg)](https://github.com/commoncriteria/gpcp/blob/gh-pages/SpellCheckReport.txt)
-[![QuickBuild](https://github.com/commoncriteria/gpcp/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/gpcp/gpcp-release.html)
+[![QuickBuild](https://github.com/commoncriteria/gpcp/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/gpcp)
+
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/gpcp.svg?maxAge=2592000)](https://github.com/commoncriteria/gpcp/issues) 
+
 
 This repository hosts the draft version of the Protection Profile for General Purpose Computing Platform based on the
 [Essential Security Requirements (ESR)](https://commoncriteria.github.io/pp/gpcp/gpcp-esr.html) for this technology class of
