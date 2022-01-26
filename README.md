@@ -3,8 +3,8 @@ Protection Profile for General-Purpose Computing Platform
 
 ![Build](https://github.com/commoncriteria/gpcp/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/gpcp/workflows/Validate/badge.svg)
-[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/gpcp/badges/master/warnings-badge.svg)](https://github.com/commoncriteria/gpcp/blob/gh-pages/SanityChecksOutput.md)
-[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/gpcp/badges/master/spell-badge.svg)](https://github.com/commoncriteria/gpcp/blob/gh-pages/SpellCheckReport.txt)
+[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/gpcp/gh-pages/warnings-badge.svg)](https://github.com/commoncriteria/gpcp/blob/gh-pages/SanityChecksOutput.md)
+[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/gpcp/gh-pages/spell-badge.svg)](https://github.com/commoncriteria/gpcp/blob/gh-pages/SpellCheckReport.txt)
 [![QuickBuild](https://github.com/commoncriteria/gpcp/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/gpcp/gpcp-release.html)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/gpcp.svg?maxAge=2592000)](https://github.com/commoncriteria/gpcp/issues) 
 
