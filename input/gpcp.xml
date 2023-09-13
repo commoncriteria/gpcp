@@ -11,7 +11,7 @@
 -->
 
 
-<PP target-products="General-Purpose Computing Platforms" 
+<PP target-product="General-Purpose Computing Platforms" 
     xmlns="https://niap-ccevs.org/cc/v1"
     xmlns:cc="https://niap-ccevs.org/cc/v1"
     xmlns:sec="https://niap-ccevs.org/cc/v1/section"
@@ -45,15 +45,21 @@
 
 	<!-- Include SSH and TLS packages -->
 	<include-pkg id="pkg-tls">
-		  <raw-url>https://raw.githubusercontent.com/commoncriteria/tls/v1.1/input/tls.xml</raw-url>
+		<git>
+		  <url>https://github.com/commoncriteria/tls</url>
+		  <branch>release-1.1</branch>
+		</git>
 		<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>
         <depends on-sel="sel-itc-tls"/>
         <depends on-sel="sel-itc-https"/>
 	</include-pkg>
 	    
     <include-pkg id="pkg-ssh">
-	         <raw-url>https://raw.githubusercontent.com/commoncriteria/ssh/v1.0-fp/input/ssh.xml</raw-url>
-		<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=389&amp;id=389</url>
+	    <git>
+			<url>https://github.com/commoncriteria/ssh</url>
+			<branch>release-1.0</branch>
+		</git>
+		<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459</url>
 		<depends on-sel="sel-itc-ssh"/>
 		<depends on-sel="sel-fia-uau-5-ssh"/>
    </include-pkg>	
@@ -1006,7 +1012,7 @@
 
 		<!-- 5.1.1 Auditable Events for Mandatory SFRs -->
 		<section id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
-			<audit-table table="mandatory"/>
+			<audit-table id="at-mandatory" table="mandatory"/>
 		</section>
 
 		<section id="fau" title="Class: Security Audit (FAU)">
