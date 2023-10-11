@@ -1,3 +1,5 @@
+* Error: Detected dangling ref-id to 'sfr-'.
+	  /PP[1]""/sec:Introduction[1]""/section[5]"Appendix "/implements[1]""/feature[2]""/ref-id[1]"sfr-"
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[3]""
