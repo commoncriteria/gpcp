@@ -2,11 +2,11 @@
 
 	<PPReference>
 		<ReferenceTable>
-			<PPTitle>Protection Profile for General-Purpose Computing Platforms</PPTitle>
+			<PPTitle>Protection Profile for General-Purpose Computing Platforms (transforms-test branch)</PPTitle>
 			<PPVersion>1.0</PPVersion>
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
 			<PPPubDate>2022-02-10</PPPubDate>
-			<Keywords>General-Purpose Computing Platforms</Keywords>
+<!--			<Keywords>General-Purpose Computing Platforms</Keywords>   -->
 		</ReferenceTable>
 	</PPReference>
 
@@ -452,7 +452,19 @@
 		</usecases>
     </section>
 	
-	<!--   1.5 Roles -->
+	<!-- 1.5 Features -->
+<!--	<section title="Product Features and Feature-based Requirements" id="sec-features">
+		<features>
+			<feature id="feat-test1" title="Test Feature 1">
+				<description>Description of test feature one.</description>
+			</feature>
+			<feature id="feat-test2" title="Test Feature 2">
+				<description>Description of test feature two.</description>
+			</feature>
+		</features>			
+	</section>
+-->
+	<!--   1.6 Roles -->
     <section title="Roles" id="roles">
 		For purposes of these requirements there are two entities that interact with a general-purpose computing 
 		platform: <h:ol type="1">
@@ -472,6 +484,8 @@
 		that uses platform resources to run workloads on behalf of Users. Tenant software generally has the privilege 
 		of the User or Administrator in whose context it runs.<h:p/>
 	</section>
+
+	
 </sec:Introduction>
 
 <!-- 2.0 Conformance Claims (this is all boilerplate) -->
@@ -8587,6 +8601,119 @@
                  <audit-event-info>User ID and remote source (IP Address), if feasible.</audit-event-info>
 		    </audit-event>    
         </f-component>	
+
+
+        <!-- FTP_TST.6 -->
+        <!-- A fake component for testing the features feature -->
+        <f-component id="sfr-ftp-tst-6" cc-id="ftp_tst.6" name="Test One" status="feat-based">
+			<depends on-feat="feat-test3"/> 
+			<depends on-feat="feat-test4"/> 
+            <f-element id="ftp-tst-6e1">
+			    <title>The TSF shall do a thing with feature 1.
+                </title>
+                <note role="application">
+					This SFR is included in the ST if feature 1 or feature 2 is implemented by the TOE.
+				</note>
+                <aactivity>
+                    <TSS>Blah
+                    </TSS>
+                    <Guidance>Blah
+                    </Guidance>
+					<KMD>Blah
+					</KMD>
+                    <Tests>
+                        The evaluator shall also perform some tests.
+                    </Tests>
+                </aactivity>
+            </f-element>
+		    <audit-event>
+			<audit-event-descr>Initiation of the feature.</audit-event-descr>
+                 <audit-event-info>Administrator ID and remote source (IP Address), if feasible.</audit-event-info>
+		    </audit-event>    
+		    <audit-event>
+			<audit-event-descr>Termination of the feature.</audit-event-descr>
+                 <audit-event-info>Administrator ID and remote source (IP Address), if feasible.</audit-event-info>
+		    </audit-event>    
+		    <audit-event>
+			<audit-event-descr>Failures of the feature.</audit-event-descr>
+                 <audit-event-info>User ID and remote source (IP Address), if feasible.</audit-event-info>
+		    </audit-event>    
+        </f-component>	
+
+
+        <!-- FTP_TST.7 -->
+        <!-- A fake complement for testing the features feature -->
+        <f-component id="sfr-ftp-tst-7" cc-id="ftp_tst.7" name="Test Two" status="feat-based">
+			<depends on-feat="feat-test3"/> 
+            <f-element id="ftp-tst-7e1">
+			    <title>The TSF shall do a thing with feature 1.
+                </title>
+                <note role="application">
+					This SFR is included in the ST if feature 1 is implemented by the TOE.
+				</note>
+                <aactivity>
+                    <TSS>Blah
+                    </TSS>
+                    <Guidance>Blah
+                    </Guidance>
+					<KMD>Blah
+					</KMD>
+                    <Tests>
+                        The evaluator shall also perform some tests.
+                    </Tests>
+                </aactivity>
+            </f-element>
+		    <audit-event>
+			<audit-event-descr>Initiation of the feature.</audit-event-descr>
+                 <audit-event-info>Administrator ID and remote source (IP Address), if feasible.</audit-event-info>
+		    </audit-event>    
+		    <audit-event>
+			<audit-event-descr>Termination of the feature.</audit-event-descr>
+                 <audit-event-info>Administrator ID and remote source (IP Address), if feasible.</audit-event-info>
+		    </audit-event>    
+		    <audit-event>
+			<audit-event-descr>Failures of the feature.</audit-event-descr>
+                 <audit-event-info>User ID and remote source (IP Address), if feasible.</audit-event-info>
+		    </audit-event>    
+        </f-component>	
+
+        <!-- FTP_TST.8 -->
+        <!-- A fake complement for testing the features feature -->
+        <f-component id="sfr-ftp-tst-8" cc-id="ftp_tst.8" name="Test Three" status="feat-based">
+			<depends on-feat="feat-test4"/> 
+            <f-element id="ftp-tst-8e1">
+			    <title>The TSF shall do a thing with feature 2.
+                </title>
+                <note role="application">
+					This SFR is included in the ST if feature 2 is implemented by the TOE.
+				</note>
+                <aactivity>
+                    <TSS>Blah
+                    </TSS>
+                    <Guidance>Blah
+                    </Guidance>
+					<KMD>Blah
+					</KMD>
+                    <Tests>
+                        The evaluator shall also perform some tests.
+                    </Tests>
+                </aactivity>
+            </f-element>
+		    <audit-event>
+			<audit-event-descr>Initiation of the feature.</audit-event-descr>
+                 <audit-event-info>Administrator ID and remote source (IP Address), if feasible.</audit-event-info>
+		    </audit-event>    
+		    <audit-event>
+			<audit-event-descr>Termination of the feature.</audit-event-descr>
+                 <audit-event-info>Administrator ID and remote source (IP Address), if feasible.</audit-event-info>
+		    </audit-event>    
+		    <audit-event>
+			<audit-event-descr>Failures of the feature.</audit-event-descr>
+                 <audit-event-info>User ID and remote source (IP Address), if feasible.</audit-event-info>
+		    </audit-event>    
+        </f-component>	
+
+
 		
 	</section>  <!-- FTP -->
     
@@ -9080,7 +9207,7 @@
 </sec:Security_Requirements>
 
 	    
-<!-- Appendix A includes optional, objective, and implementation-dependent requirements -->
+<!-- Appendix A includes optional, objective, and feature-based requirements -->
 <!-- Appendix B is selection-based requirements -->
 <!-- Appendix C: Extended Component Definitions -->
 
@@ -9336,6 +9463,16 @@
 <!-- Appendix G: Use-Case Templates -->
 <!-- Appendix H: Acronyms -->
 <!-- Appendix I: Bibliography -->
+
+		<!-- this is the old way -->
+		<implements>
+			<feature id="feat-test3" title="Test Feature 3"> 
+				<description>Description of test feature three.</description> 
+			</feature>
+			<feature id="feat-test4" title="Test Feature 4">
+				<description>Description of test feature four.</description>
+			</feature>
+		</implements>			
 
 <bibliography>
     <entry id="bibCEM">
