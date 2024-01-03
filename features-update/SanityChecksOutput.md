@@ -1,9 +1,3 @@
-* Error: Illegal empty Guidance element at:
-        /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[15]""/f-element[9]""/aactivity[1]""/Guidance[1]""
-* Error: Illegal empty KMD element at:
-        /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[15]""/f-element[9]""/aactivity[1]""/KMD[1]""
-* Error: Illegal empty Tests element at:
-        /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[15]""/f-element[9]""/aactivity[1]""/Tests[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[3]""
