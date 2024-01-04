@@ -4420,10 +4420,10 @@
 						is for the possibility that the configuration of the IPsec connection is initiated from outside the TOE, which
 						is permissible so long as the TSF is solely responsible for enforcing the configured behavior. However, it is
 						allowable for the TSF to rely on low-level platform-provided networking functions to implement the SPD
-						from the client (e.g., enforcement of packet routing decisions).<h:p/>
+						from the client (e.g., enforcement of packet routing decisions).
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this component.<h:p/>
+						There are no KMD evaluation activities for this component.
 					</KMD>
 					<Tests>
 						As a prerequisite for performing the Test EAs for the individual FCS_IPSEC_EXT.1 elements below, the
@@ -4432,7 +4432,7 @@
 						below. The traffic generator used to construct network packets should provide the
 						evaluator with the ability manipulate fields in the ICMP, IPv4, IPv6, UDP, and TCP packet headers. The
 						evaluator shall provide justification for any differences in the test environment.<h:p/>
-						<figure entity="images/network.png" title="IPsec Test Environment" id="fig-ipsectest"/><h:p/>
+						<figure entity="images/network.png" title="IPsec Test Environment" id="fig-ipsectest"/>
 					</Tests>
 				</aactivity>							
                 <aactivity level="element">
@@ -4454,7 +4454,7 @@
 						inbound and outbound packets) is sufficient to determine the action that will be applied, especially in the
 						case where two different rules may apply. This description shall cover both the initial packets (that is, no
 						SA is established on the interface or for that particular packet) as well as packets that are part of an
-						established SA.<h:br/>
+						established SA.
                     </TSS>
                     <Guidance>
                         The evaluator shall examine the AGD to verify it instructs the Administrator how 
@@ -4464,10 +4464,10 @@
                         that the description in the AGD is consistent with the description in the 
                         TSS, and that the level of detail in the AGD is sufficient to
                         allow the administrator to set up the SPD in an unambiguous fashion. This includes a discussion 
-                        of how ordering of rules impacts the processing of an IP packet.<h:br/>
+                        of how ordering of rules impacts the processing of an IP packet.
                     </Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this element.<h:br/>
+						There are no KMD evaluation activities for this element.
 					</KMD>
                     <Tests>
                         The evaluator uses the operational guidance to configure the TOE to carry out the following tests:<h:p/>
@@ -4517,16 +4517,16 @@
                 <aactivity level="element">
                     <TSS>
                         The evaluator checks the TSS to ensure it states that an IPsec VPN can be 
-                        established to operate in tunnel mode or transport mode (as selected).<h:br/>
+                        established to operate in tunnel mode or transport mode (as selected).
                     </TSS>
                     <Guidance>
                         The evaluator shall confirm that the AGD contains instructions on how to 
                         configure the connection in each mode selected.<h:p/>
 						If both transport mode and tunnel mode are implemented, the evaluator shall review the AGD
-						to determine how the use of a given mode is specified.<h:br/>
+						to determine how the use of a given mode is specified.
                     </Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this element.<h:br/>
+						There are no KMD evaluation activities for this element.
 					</KMD>
                     <Tests>
                         The evaluator shall perform the following test(s) based on the selections chosen:
@@ -4557,16 +4557,16 @@
                 </title>
                 <aactivity level="element">
 					<TSS>
-						There are no TSS evaluation activities for this element.<h:br/>
+						There are no TSS evaluation activities for this element.
 					</TSS>
 					<Guidance>
 						The evaluator shall check that the AGD provides instructions on how to construct or
 						acquire the SPD and uses the AGD to configure the TOE for the following test.<h:br/>
 						If both transport mode and tunnel mode are implemented, the evaluator shall review the
-						AGD to determine how the use of a given mode is specified.<h:br/>
+						AGD to determine how the use of a given mode is specified.
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this element.<h:br/>
+						There are no KMD evaluation activities for this element.
 					</KMD>
                     <Tests>
                         The evaluator shall perform the following test:<h:p/>
@@ -4577,7 +4577,7 @@
 								the proper destination interface with no modification. The evaluator shall then modify a field in the packet
 								header; such that it no longer matches the evaluator-created entries (there may be a “TOE-created” final
 								entry that discards packets that do not match any previous entries). The evaluator sends the packet, and
-								observes that the packet was not permitted to flow to any of the TOE’s interfaces.<h:br/>
+								observes that the packet was not permitted to flow to any of the TOE’s interfaces.
                     </Tests>
                 </aactivity>
             </f-element>
@@ -4602,7 +4602,7 @@
                         AES-CBC-128 or AES-CBC-256 in the requirement, then the evaluator verifies the
                         TSS describes these as well. In addition, the evaluator ensures that the 
                         SHA-based HMAC algorithm conforms to the algorithms specified in FCS_COP.1/KeyedHash Cryptographic 
-                        Operations (Keyed Hash Algorithms).<h:br/>
+                        Operations (Keyed Hash Algorithms).
                     </TSS>
                     <Guidance>
                         The evaluator checks the AGD to ensure it provides instructions on how the TOE is
@@ -4611,13 +4611,13 @@
 						environmental component.<h:br/>
                     </Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this element.<h:br/>
+						There are no KMD evaluation activities for this element.
 					</KMD>
                     <Tests>
 			The evaluator shall perform the following test:<h:p/>
 							The evaluator shall configure the TOE/platform as indicated in the 
                                 operational guidance configuring the TOE/platform to use each of the supported
-                                algorithms, attempt to establish a connection using ESP, and verify that the attempt succeeds.<h:br/>
+                                algorithms, attempt to establish a connection using ESP, and verify that the attempt succeeds.
                     </Tests>
                 </aactivity>
             </f-element>
@@ -4657,7 +4657,7 @@
                         The evaluator shall examine the TSS to verify that IKEv1 and/or IKEv2 are implemented. If IKEv1 is
 						implemented, the evaluator shall verify that the TSS indicates whether or not XAUTH is supported, and
 						that aggressive mode is not used for IKEv1 Phase 1 exchanges (i.e. only main mode is used). It may be that
-						these are configurable options.<h:br/>
+						these are configurable options.
                     </TSS>
                     <Guidance>
                         The evaluator shall check the AGD to ensure it instructs the administrator how to
@@ -4665,10 +4665,10 @@
 						perform NAT traversal for the test below. If XAUTH is implemented, the evaluator shall verify that the
 						AGD provides instructions on how it is enabled or disabled.<h:br/>
 						If the TOE supports IKEv1, the evaluator shall verify that the AGD either asserts that only
-						main mode is used for Phase 1 exchanges, or provides instructions for disabling aggressive mode.<h:p/>
+						main mode is used for Phase 1 exchanges, or provides instructions for disabling aggressive mode.
                     </Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this element.<h:br/>
+						There are no KMD evaluation activities for this element.
 					</KMD>
                     <Tests>
                         Tests are performed in conjunction with the other IPsec evaluation activities with the exception
@@ -4711,16 +4711,16 @@
                     <TSS>
                         The evaluator shall ensure the TSS identifies the algorithms used for encrypting the IKEv1 and/or IKEv2
 						payload, and that the algorithms AES-CBC-128, AES-CBC-256 are specified, and if others are chosen in the
-						selection of the requirement, those are included in the TSS discussion.<h:br/>
+						selection of the requirement, those are included in the TSS discussion.
                     </TSS>
                     <Guidance>
                         The evaluator checks the AGD to ensure it provides instructions on how the TOE is
 						configured to use the algorithms selected in this component and whether this is performed through direct
 						configuration, defined during initial installation, or defined by acquiring configuration settings from an
-						environmental component. <h:br/>
+						environmental component.
                     </Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this element.<h:br/>
+						There are no KMD evaluation activities for this element.
 					</KMD>
                     <Tests>
 						The evaluator shall use the operational guidance to configure the TOE (or to configure the Operational
@@ -4731,7 +4731,7 @@
 								payload encrypted using the indicated ciphersuite. The evaluator will confirm the algorithm was that used
 								in the negotiation. The evaluator will confirm that the connection is successful by confirming that data
 								can be passed through the connection once it is established. For example, the evaluator may connect to
-								a webpage on the remote network and verify that it can be reached.<h:br/>
+								a webpage on the remote network and verify that it can be reached.
                     </Tests>
                 </aactivity>
             </f-element>
@@ -4802,10 +4802,10 @@
 						option for either the Administrator or VPN Gateway to configure Phase 1 SAs if time-based limits are
 						supported. Currently there are no values mandated for the number of packets or number of bytes, the
 						evaluator shall simply check the AGD to ensure that this can be configured if selected in
-						the requirement.<h:br/>
+						the requirement.
                     </Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this element.<h:br/>
+						There are no KMD evaluation activities for this element.
 					</KMD>
                     <Tests>
                         When testing this functionality, the evaluator needs to ensure that both sides are configured
@@ -4870,18 +4870,18 @@
 					<TSS>
 						The evaluator shall check to ensure that the DH groups specified in the requirement are listed as being
 						supported in the TSS. If there is more than one DH group supported, the evaluator checks to ensure the
-						TSS describes how a particular DH group is specified/negotiated with a peer.<h:br/>
+						TSS describes how a particular DH group is specified/negotiated with a peer.
 					</TSS>
                     <Guidance>
-                        There are no AGD EAs for this requirement.<h:br/>
+                        There are no AGD EAs for this requirement.
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this element.<h:br/>
+						There are no KMD evaluation activities for this element.
 					</KMD>
                     <Tests>
 						The evaluator shall perform the following test: <h:p/>
 							For each supported DH group, the evaluator shall test to ensure that all supported IKE protocols
-								can be successfully completed using that particular DH group.<h:br/>
+								can be successfully completed using that particular DH group.
                     </Tests>
                 </aactivity>
             </f-element>
@@ -4895,12 +4895,12 @@
 					1: General</assignable> bits.
 				</title>
                 <aactivity level="element">
-                    <TSS>
+                    <TSS/>
                         The evaluator shall check to ensure that, for each DH group supported, the TSS describes the process for
-						generating "x" (as defined in FCS_IPSEC_EXT.1.9) and each nonce. The evaluator shall verify that the TSS
+<!--						generating "x" (as defined in FCS_IPSEC_EXT.1.9) and each nonce. The evaluator shall verify that the TSS
 						indicates that the random number generated that meets the requirements in this EP is used, and that the
-						length of "x" and the nonces meet the stipulations in the requirement.<h:br/>
-                    </TSS>
+						length of "x" and the nonces meet the stipulations in the requirement.
+                    </TSS>   -->
 					<Guidance/>
 <!--						There are no AGD EAs for this element.<h:br/>
 					</Guidance>  -->
@@ -4963,7 +4963,7 @@
 						compared to the ID payload presented identifier, which field(s) of the certificate are used as the presented
 						identifier (DN, Common Name, or SAN) and, if multiple fields are supported, the logical order comparison.
 						If the ST Author assigned an additional identifier type, the TSS description shall also include a description
-						of that type and the method by which that type is compared to the peer’s presented certificate.<h:br/>
+						of that type and the method by which that type is compared to the peer’s presented certificate.
                     </TSS>
 					<Guidance>
 						The evaluator shall check that the AGD describes how pre-shared keys are to be
@@ -4974,10 +4974,10 @@
 						ensure that the AGD also describes how to configure the TOE to connect to a trusted CA,
 						and ensure a valid certificate for that CA is loaded into the TOE as a trusted CA.<h:p/>
 						The evaluator shall also ensure that the AGD includes the configuration of the reference
-						identifier(s) for the peer.<h:br/>
+						identifier(s) for the peer.
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this element.<h:br/>
+						There are no KMD evaluation activities for this element.
 					</KMD>
 					<Tests>
 						For efficiency’s sake, the testing that is performed here has been combined with the testing for
@@ -5141,18 +5141,18 @@
 					functionality.
 				</note>
                 <aactivity level="element">
-                    <TSS/>
-<!--                        The evaluator shall check that the TSS describes the potential strengths (in terms of the number of bits in
+                    <TSS>
+						The evaluator shall check that the TSS describes the potential strengths (in terms of the number of bits in
 						the symmetric key) of the algorithms that are allowed for the IKE and ESP exchanges. The TSS shall also
 						describe the checks that are done when negotiating IKEv1 Phase 2 and/or IKEv2 CHILD_SA suites to ensure
 						that the strength (in terms of the number of bits of key in the symmetric algorithm) of the negotiated
-						algorithm is less than or equal to that of the IKE SA this is protecting the negotiation.<h:br/>
-                    </TSS>   -->
+						algorithm is less than or equal to that of the IKE SA this is protecting the negotiation.
+                    </TSS>
 					<Guidance>
-						There are no AGD EAs for this element.<h:br/>
+						There are no AGD EAs for this element.
 					</Guidance>
 					<KMD>
-						There are no KMD evaluation activities for this element.<h:br/>
+						There are no KMD evaluation activities for this element.
 					</KMD>
                     <Tests>
                         The evaluator follows the guidance to configure the TOE to perform the following tests for each version of IKE supported:<h:p/>
