@@ -20,9 +20,8 @@ See the [release](#Release-Version) section if you are looking for the officiall
 A list of products that have passed evaluation against this Protection Profile can be found [here](QQQQ).
 
 ## Draft Version
-
-* [Protection Profile for General-Purpose Computing Platforms](https://commoncriteria.github.io/pp/gpcp/gpcp-release.html) (html)
-* [Protection Profile for General-Purpose Computing Platforms](https://commoncriteria.github.io/pp/gpcp/gpcp-release.pdf) (pdf)
+* [Protection Profile for General-Purpose Computing Platforms (master)](https://commoncriteria.github.io/gpcp/master/gpcp-release.html) (html)
+* [Protection Profile for General-Purpose Computing Platforms (master)](https://commoncriteria.github.io/gpcp/master/gpcp-release.pdf) (pdf)
 
 ## Release Version
 * N/A - Not released yet
