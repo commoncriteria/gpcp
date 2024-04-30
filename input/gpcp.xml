@@ -1416,7 +1416,7 @@
 		
 		<!-- FCS_CKM.1/AK Cryptographic Key Generation (Asymmetric Keys) -->
 		<f-component id="sfr-fcs-ckm-1-ak" cc-id="fcs_ckm.1" iteration="AK" name="Cryptographic Key Generation (Asymmetric Keys)" status="sel-based">
-			<depends on-sel="sel-fcs-sto-ext-1e2-ak"/>  <!-- from FCS_STO_EXT.1 -->
+			<depends on-sel="sel-fcs-stg-ext-1e2-ak"/>  <!-- from FCS_STG_EXT.1 -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  	<!-- FCS_IPSEC_EXT.1 -->
 			<depends><optional/></depends>		<!-- May also be optionally added -->
 			<f-element id="fcs-ckm-1e1-ak">
@@ -1638,7 +1638,7 @@
 	  
 		<!-- FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key) -->
 		<f-component id="sfr-fcs-ckm-1-sk" cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
-			<depends on-sel="sel-fcs-sto-ext-1e2-sk"/>  <!-- from FCS_STO_EXT.1 -->
+			<depends on-sel="sel-fcs-stg-ext-1e2-sk"/>  <!-- from FCS_STG_EXT.1 -->
 			<depends><optional/></depends>		<!-- May be manually added -->
 			<f-element id="fcs-ckm-1e1-sk">
 				<title>					
@@ -3791,7 +3791,7 @@
 					This SFR must be included in the ST if symmetric-key cryptography is a service provided by the TOE 
 					to tenant software, or if the TOE itself uses SKC to support or implement PP-specified security 
 					functionality.<h:p/> 
-					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STO_EXT.2, or includes
+					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STG_EXT.2, or includes
 					any of the following selections: <h:ul>
 						<h:li>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG_EXT.1</h:li>
 						<h:li>"<h:i>ECIES</h:i>" in FCS_COP.1/KAT</h:li>
@@ -5431,11 +5431,11 @@
 				<title>
 					The TSF shall support the capability of 
 					<selectables>
-						<selectable id="sel-fcs-sto-ext-1e2-import">importing keys/secrets into the TOE</selectable>
+						<selectable id="sel-fcs-stg-ext-1e2-import">importing keys/secrets into the TOE</selectable>
 						<selectable>causing the TOE to generate 
 							<selectables>
-								<selectable id="sel-fcs-sto-ext-1e2-ak">asymmetric</selectable>
-								<selectable id="sel-fcs-sto-ext-1e2-sk">symmetric</selectable>
+								<selectable id="sel-fcs-stg-ext-1e2-ak">asymmetric</selectable>
+								<selectable id="sel-fcs-stg-ext-1e2-sk">symmetric</selectable>
 								</selectables>keys/secrets</selectable>
 					</selectables> upon request of 
 					<selectables>
@@ -5451,7 +5451,7 @@
 				</title>
 				</ext-comp-def-title>					
 				<note role="application">
-					If "causing the TOE to generate keys/secrets" is selected in FCS_STO_EXT.1.2, then the 
+					If "causing the TOE to generate keys/secrets" is selected in FCS_STG_EXT.1.2, then the 
 					ST must include at least one of FCS_CKM.1/AK or FCS_CKM.1/SK depending on the value of the 
 					internal selection.
 				</note>
@@ -5669,7 +5669,7 @@
 	
 		<!-- FDP_ITC_EXT.1 Key/Credential Import --> 
 		<f-component id="sfr-fdp-itc-ext-1" cc-id="fdp_itc_ext.1" name="Key/Credential Import" status="sel-based">
-			<depends on-sel="sel-fcs-sto-ext-1e2-import"/>
+			<depends on-sel="sel-fcs-stg-ext-1e2-import"/>
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to implement one or more means for importing keys and credentials
 				into the TOE, which are not addressed by the FDP_ITC component.</comp-lev>
