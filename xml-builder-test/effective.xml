@@ -24,132 +24,132 @@
     <url>NIAPURL</url>
     <depends on-sel="QQQQ" on-also="QQQQ"/>
   </include-pkg>
-  <sec:Introduction>
-    <sec:Overview><h:p>The scope of this Protection Profile (PP) is to describe the security functionality of General-Purpose Computing Platforms in terms of the Common Criteria and to define functional and assurance requirements for such products. A platform is a collection of hardware devices and firmware that provide the functional capabilities and services needed by tenant software. Such components typically include embedded controllers, trusted platform modules, management controllers, host processors, network interface controllers, graphics processing units, flash memory, storage controllers, storage devices, boot firmware, runtime firmware, human interface devices, and a power supply. This Protection Profile for General-Purpose Computing Platforms derives requirements from the following documents:</h:p><h:ul><h:li>NIAP, <h:i>BIOS Update for PC Client Devices protection Profile</h:i>, Version 1.0, 12 Feb 2013</h:li><h:li>NIST SP 800-147 <h:i>BIOS Protection Guidelines</h:i>, April 2011</h:li><h:li>NIST SP 800-147B <h:i>BIOS Protection Guidelines for Servers</h:i>, August 2014</h:li><h:li>NIST SP 800-193 <h:i>Platform Firmware Resiliency Guidelines</h:i></h:li></h:ul><h:p> Additionally, the following specifications and standards may be relevant to requirements in this PP:</h:p><h:ul><h:li>NIST SP 800-155 (Draft) <h:i>BIOS Integrity Measurement Guidelines (Draft)</h:i>, December 2011</h:li><h:li>NIST SP 1800-34 (Draft) <h:i>Validating the Integrity of Computing Devices (Preliminary Draft)</h:i>, 2021</h:li><h:li>Trusted Computing Group, <h:i>TCG PC Client Platform Firmware Integrity Measurement</h:i> Version 1.0 Revision Specification 43 Family 2.0, May 7, 2021</h:li><h:li>IEEE Std 802.1AR-2018, <h:i>Secure Device Identity</h:i></h:li></h:ul></sec:Overview>
-    <tech-terms>
-      <term full="Administrator" abbr="null">
+  <sec:Introduction xmlns="">
+    <sec:Overview>The scope of this Protection Profile (PP) is to describe the security functionality of General-Purpose Computing Platforms in terms of the Common Criteria and to define functional and assurance requirements for such products. A platform is a collection of hardware devices and firmware that provide the functional capabilities and services needed by tenant software. Such components typically include embedded controllers, trusted platform modules, management controllers, host processors, network interface controllers, graphics processing units, flash memory, storage controllers, storage devices, boot firmware, runtime firmware, human interface devices, and a power supply. This Protection Profile for General-Purpose Computing Platforms derives requirements from the following documents: NIAP, BIOS Update for PC Client Devices protection Profile, Version 1.0, 12 Feb 2013NIST SP 800-147 BIOS Protection Guidelines, April 2011NIST SP 800-147B BIOS Protection Guidelines for Servers, August 2014NIST SP 800-193 Platform Firmware Resiliency Guidelines Additionally, the following specifications and standards may be relevant to requirements in this PP: NIST SP 800-155 (Draft) BIOS Integrity Measurement Guidelines (Draft), December 2011NIST SP 1800-34 (Draft) Validating the Integrity of Computing Devices (Preliminary Draft), 2021Trusted Computing Group, TCG PC Client Platform Firmware Integrity Measurement Version 1.0 Revision Specification 43 Family 2.0, May 7, 2021IEEE Std 802.1AR-2018, Secure Device Identity</sec:Overview>
+    <cc:tech-terms>
+      <cc:term full="Administrator" abbr="null">
 			An Administrator is responsible for management activities, including setting policies that are 
 			applied by the enterprise on the platform. An Administrator can act remotely through a management server,
 			from which the platform receives configuration policies and updates. An Administrator can enforce
 			settings on the system that cannot be overridden by non-Administrator users.
-		</term>
-      <term full="American National Standards Institute" abbr="ANSI">
+		</cc:term>
+      <cc:term full="American National Standards Institute" abbr="ANSI">
 			A private organization that oversees development of standards in the United States. 
-		</term>
-      <term full="Application" abbr="null">
+		</cc:term>
+      <cc:term full="Application" abbr="null">
 			Software that runs on a platform and performs tasks on behalf of the user
 			or owner of the platform. 
-		</term>
-      <term full="Application Programming Interface" abbr="API">
+		</cc:term>
+      <cc:term full="Application Programming Interface" abbr="API">
 			A specification of routines, data structures, object classes, and variables
 			that allows an application to make use of services provided by another software
 			component, such as a library. APIs are often provided for a set of libraries included
 			with the platform.
-		</term>
-      <term full="Baseboard Management Controller" abbr="BMC">
+		</cc:term>
+      <cc:term full="Baseboard Management Controller" abbr="BMC">
 			Or Management Controller. A small computer generally found on Server motherboards that performs management tasks 
-			on behalf of an Administrator.</term>
-      <term full="Cipher-based Message Authentication Code" abbr="CMAC">
-			A mode of AES that provides authentication, but not confidentiality.</term>
-      <term full="Credential" abbr="null">
+			on behalf of an Administrator.</cc:term>
+      <cc:term full="Cipher-based Message Authentication Code" abbr="CMAC">
+			A mode of AES that provides authentication, but not confidentiality.</cc:term>
+      <cc:term full="Credential" abbr="null">
 			Data that establishes the identity of a user, e.g. a cryptographic key or password.
-		</term>
-      <term full="Critical Security Parameters" abbr="CSP">
+		</cc:term>
+      <cc:term full="Critical Security Parameters" abbr="CSP">
 			Information that is either user or system defined and
 			is used to operate a cryptographic module in processing encryption functions including
 			cryptographic keys and authentication data, such as passwords, the disclosure or modification
 			of which can compromise the security of a cryptographic module or the security of the
 			information protected by the module.
-		</term>
-      <term full="Commercial Solutions for Classified" abbr="CSfC">
+		</cc:term>
+      <cc:term full="Commercial Solutions for Classified" abbr="CSfC">
 			An US Department of Defense program for delivering cybersecurity solutions that leverage commercial 
 			technologies and products. 
-		</term>
-      <term full="Data-at-Rest  Protection" abbr="DAR">
+		</cc:term>
+      <cc:term full="Data-at-Rest  Protection" abbr="DAR">
 			Countermeasures that prevent attackers, even those with physical access, from extracting data from non-volatile storage.
 			Common techniques include data encryption and wiping.
-		</term>
-      <term full="Developer" abbr="null">
+		</cc:term>
+      <cc:term full="Developer" abbr="null">
 			An entity that writes OS software. For the purposes of this document, vendors and developers are the same.
-		</term>
-      <term full="Diffie-Hellman Key Exchange" abbr="DH">
+		</cc:term>
+      <cc:term full="Diffie-Hellman Key Exchange" abbr="DH">
 			A cryptographic key exchange protocol using public/private key pairs.
-		</term>
-      <term full="Distinguished Name" abbr="DN">
+		</cc:term>
+      <cc:term full="Distinguished Name" abbr="DN">
 			Information used in certificate-based operations to uniquely identify a person, organization, or business.
-		</term>
-      <term full="General Purpose Operating System" abbr="null">
+		</cc:term>
+      <cc:term full="General Purpose Operating System" abbr="null">
 			A class of OS designed to support a wide-variety of workloads consisting of many concurrent applications or
 			services. Typical characteristics for OSes in this class include support for third-party applications,
 			support for multiple users, and security separation between users and their respective resources.
-		</term>
-      <term full="End-User Device" abbr="EUD">
+		</cc:term>
+      <cc:term full="End-User Device" abbr="EUD">
 			A class of computing platform characterized by having a user interface for a single user. Often, EUDs are 
 			portable (e.g., laptop, tablet, mobile device), but this is not necessarily the case (e.g., desktop PC). 
-		</term>
-      <term full="General-Purpose Computing Platform" abbr="GPCP">
+		</cc:term>
+      <cc:term full="General-Purpose Computing Platform" abbr="GPCP">
 			A physical computing platform designed to support general-purpose operating systems, virtualization 
 			systems, and applications.
-		</term>
-      <term full="Internet of Things" abbr="IoT">
+		</cc:term>
+      <cc:term full="Internet of Things" abbr="IoT">
 			Physical computing devices that are embedded with sensors, processing ability, software, 
 			and other technologies that connect and exchange data with other devices and systems over 
-			communications networks.</term>
-      <term full="Joint Test Action Group" abbr="JTAG">
-			A standard for verifying and testing circuit boards after manufacture.</term>
-      <term full="KECCAK Message Authentication Code" abbr="KMAC">
-			A variable-length keyed hash function described in NIST SP 800-185.</term>
-      <term full="Management Controller" abbr="MC">
+			communications networks.</cc:term>
+      <cc:term full="Joint Test Action Group" abbr="JTAG">
+			A standard for verifying and testing circuit boards after manufacture.</cc:term>
+      <cc:term full="KECCAK Message Authentication Code" abbr="KMAC">
+			A variable-length keyed hash function described in NIST SP 800-185.</cc:term>
+      <cc:term full="Management Controller" abbr="MC">
 			Or Baseboard Management Controller (BMC). A small computer generally found on server motherboards that performs management tasks 
-			on behalf of an Administrator.</term>
-      <term full="Open Mobile Terminal Platform" abbr="OMTP">
+			on behalf of an Administrator.</cc:term>
+      <cc:term full="Open Mobile Terminal Platform" abbr="OMTP">
 			A forum created by mobile network operators to discuss standards with manufacturers of mobile devices.
-		</term>
-      <term full="Operating System" abbr="OS">
+		</cc:term>
+      <cc:term full="Operating System" abbr="OS">
 			Software that manages physical and logical resources and provides services
 			for applications. Operating systems are the generally the primary tenant of a GPCP.
-		</term>
-      <term full="Physical Presence" abbr="null">
+		</cc:term>
+      <cc:term full="Physical Presence" abbr="null">
 			A user or administrator having physical access to the TOE. An assertion of physical presence
 			can take the form, for example, of requiring entry of a password at a boot screen, unlocking 
 			of a physical lock (e.g., a motherboard jumper), or inserting a USB cable before permitting
 			platform firmware to be updated.
-		</term>
-      <term full="Root of Trust" abbr="RoT">
+		</cc:term>
+      <cc:term full="Root of Trust" abbr="RoT">
 			Roots of trust are highly reliable hardware, firmware, and software components that perform 
 			specific, critical security functions. Roots of trust are the foundation for integrity of 
 			computing devices.
-		    </term>
-      <term full="Subject Alternative Name" abbr="SAN">
+		    </cc:term>
+      <cc:term full="Subject Alternative Name" abbr="SAN">
 			An extended X.509 certificate field.
-		</term>
-      <term full="Sensitive Data" abbr="null">
+		</cc:term>
+      <cc:term full="Sensitive Data" abbr="null">
 			Sensitive data may include all user or enterprise data or may be specific
 			application data such as PII, emails, messaging, documents, calendar items, and contacts.
 			Sensitive data must minimally include credentials and keys. 
-		</term>
-      <term full="Tenant Software" abbr="null">
+		</cc:term>
+      <cc:term full="Tenant Software" abbr="null">
 			Software that runs on and is supported by a platform. In the case of a GPCP, tenant software generally
 			consists of an operating system, virtualization system, or "bare-metal" application.
-		</term>
-      <term full="Trusted Execution Environment" abbr="TEE">
+		</cc:term>
+      <cc:term full="Trusted Execution Environment" abbr="TEE">
 			An isolated and secure area that ensures the confidentiality and integrity of code and data 
 			loaded inside.
-		</term>
-      <term full="User" abbr="null">
+		</cc:term>
+      <cc:term full="User" abbr="null">
 			In the context of a GPCP, a User is a human who interacts with the platform through a user interface.
 			Users do not need to be authenticated by the platform to use the platform, but generally authenticate to tenant
 			software such as on Operating System.
-		</term>
-      <term full="Virtualization System" abbr="VS">
+		</cc:term>
+      <cc:term full="Virtualization System" abbr="VS">
 			A software product that enables multiple independent computing systems to execute on the same physical
 			hardware platform without interference from one other.
-		</term>
-    </tech-terms>
-    <section title="Compliant Targets of Evaluation" id="TOEdescription">This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more general-purpose operating systems as defined by the Protection Profile for General Purpose Operating Systems, one or more virtualization systems as defined by the Protection Profile for Virtualization, or more than one application. Typical platform implementations include servers, PC clients, laptops, and tablets. Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and Network Device platforms as defined in the collaborative Protection Profile for Network Devices are out of scope of this PP. Mobile Device and Network Device platforms must be evaluated against the more specific requirements in their respective specialized PPs. The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware must be protected such that it is not permitted to execute if it has been modified outside of authorized and authenticated update processes. Other use-case-specific features include audit capabilities, Administrator authentication, and protections against physical tampering.</section>
-    <section title="Platforms with Specific EAs" id="sec-platforms"/>
+		</cc:term>
+    </cc:tech-terms>
+    <section title="Compliant Targets of Evaluation">This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more general-purpose operating systems as defined by the Protection Profile for General Purpose Operating Systems, one or more virtualization systems as defined by the Protection Profile for Virtualization, or more than one application. Typical platform implementations include servers, PC clients, laptops, and tablets. Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and Network Device platforms as defined in the collaborative Protection Profile for Network Devices are out of scope of this PP. Mobile Device and Network Device platforms must be evaluated against the more specific requirements in their respective specialized PPs. The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware must be protected such that it is not permitted to execute if it has been modified outside of authorized and authenticated update processes. Other use-case-specific features include audit capabilities, Administrator authentication, and protections against physical tampering.</section>
+    <section title="Platforms with Specific EAs"/>
     <sec:Use_Cases>
-      This Protection Profile supports several use cases. The cases enumerated below add requirements to the baseline for GPCP due to additional threats or changes in assumptions about the operational environment. Use cases not listed below (e.g. consumer-grade desktop computers) need be evaluated only against the baseline requirements subject to the appropriate selections.
+      <h:br/>
       <usecases>
         <usecase title="Server-Class Platform, Basic" id="uc-server-basic">
           <description>This use case encompasses server-class hardware in a data center. There are no additional physical protections required because the platform is assumed to be protected by the operational environment as indicated by A.PHYSICAL_PROTECTION. The platform is administered through a management controller that accesses the MC through a console or remotely. This use case adds audit requirements and Administrator authentication requirements to the base mandatory requirements.</description>
@@ -178,24 +178,24 @@
       </usecases>
     </sec:Use_Cases>
   </sec:Introduction>
-  <sec:Conformance_Claims boilerplate="no">
-    <cclaims>
-      <cclaim name="Conformance Statement">
-        <description>A Security Target must claim exact conformance to this Protection Profile, as defined in the CC and CEM addenda for Exact Conformance, Selection-Based SFRs, and Optional SFRs (dated May 2017).</description>
-      </cclaim>
-      <cclaim name="CC Conformance Claims">
-        <description>This PP is conformant to Parts 2 (Extended) and 3 (Extended) of Common Criteria Version 3.1, Release 5 [CC].</description>
-      </cclaim>
-      <cclaim name="PP Claim">
-        <description>This PP does not claim conformance to any other PP.</description>
-      </cclaim>
-      <cclaim name="Package Claim">
-        <description>This PP is Functional Package for Transport Layer Security (TLS), version 1.1 Conformant and Functional Package for Secure Shell (SSH), version 1.0 Conformant.</description>
-      </cclaim>
-    </cclaims>
+  <sec:Conformance_Claims xmlns="" boilerplate="no">
+    <cc:cclaims>
+      <cc:cclaim name="Conformance Statement">
+        <cc:description>A Security Target must claim exact conformance to this Protection Profile, as defined in the CC and CEM addenda for Exact Conformance, Selection-Based SFRs, and Optional SFRs (dated May 2017).</cc:description>
+      </cc:cclaim>
+      <cc:cclaim name="CC Conformance Claims">
+        <cc:description>This PP is conformant to Parts 2 (Extended) and 3 (Extended) of Common Criteria Version 3.1, Release 5 [CC].</cc:description>
+      </cc:cclaim>
+      <cc:cclaim name="PP Claim">
+        <cc:description>This PP does not claim conformance to any other PP.</cc:description>
+      </cc:cclaim>
+      <cc:cclaim name="Package Claim">
+        <cc:description>This PP is Functional Package for Transport Layer Security (TLS), version 1.1 Conformant and Functional Package for Secure Shell (SSH), version 1.0 Conformant.</cc:description>
+      </cc:cclaim>
+    </cc:cclaims>
   </sec:Conformance_Claims>
   <!-- 3.0 Security Problem Definition-->
-  <sec:Security_Problem_Definition>
+  <sec:Security_Problem_Definition xmlns="">
     <!-- 3.1 Threats -->
     <sec:Threats>
       <threats>
@@ -345,7 +345,7 @@
     </sec:Organizational_Security_Policies>
   </sec:Security_Problem_Definition>
   <!-- 4.0 Security Objectives -->
-  <sec:Security_Objectives>
+  <sec:Security_Objectives xmlns="">
     <!-- 4.1 Security Objectives for the TOE -->
     <sec:Security_Objectives_for_the_TOE>
       <SOs>
@@ -564,7 +564,7 @@
     <sec:Security_Objectives_Rationale/>
   </sec:Security_Objectives>
   <!-- 5.0 Security Requirements -->
-  <sec:Security_Requirements title="Security Requirements">
+  <sec:req xmlns="" title="Security Requirements">
     <!-- 5.1 Security Functional Requirements-->
     <sec:SFRs title="Security Functional Requirements">
       <!--5.1.1 Class: Security Audit (FAU)-->
@@ -580,10 +580,10 @@
           <depends on="uc-csfc-eud"/>
           <depends on="uc-ent-clients-desktop"/>
           <f-element id="fau-gen-1e1">
-            <title>The TSF shall be able to generate an audit record of the following auditable events:  <h:ol><h:li>Start-up and shutdown of the audit functions</h:li><h:li>All administrative actions</h:li><h:li>Start-up, shutdown, and reboot of the platform</h:li><h:li>Specifically defined auditable events in  <xref g="t-audit-mandatory"/></h:li><h:li><selectables><selectable id="fau_gen.1.1_1">Specifically defined auditable event in  <xref g="t-audit-optional"/> 
+            <title><h:p>The TSF shall be able to generate an audit record of the following auditable events:</h:p><h:ol><h:li>Start-up and shutdown of the audit functions</h:li><h:li>All administrative actions</h:li><h:li>Start-up, shutdown, and reboot of the platform</h:li><h:li>Specifically defined auditable events in <xref g="t-audit-mandatory"/></h:li></h:ol><selectables><selectable id="fau_gen.1.1_1">Specifically defined auditable event in  <xref g="t-audit-optional"/> 
 								for Strictly Optional requirements</selectable><selectable id="fau_gen.1.1_2">Specifically defined auditable event in  <xref g="t-audit-objective"/> 
 								for Objective requirements</selectable><selectable id="fau_gen.1.1_3">Specifically defined auditable event in  <xref g="t-audit-sel-based"/> 
-								for Selection-based requirements</selectable><selectable id="fau_gen.1.1_4">Additional information for the  <xref to="pkg-tls"/> listed in  <xref to="atref-pkgs"/></selectable><selectable id="fau_gen.1.1_5">Additional information defined in the audit table for the  <xref to="pkg-ssh"/></selectable><selectable id="fau_gen.1.1_6" exclusive="yes">no additional auditable events</selectable></selectables>.</h:li></h:ol></title>
+								for Selection-based requirements</selectable><selectable id="fau_gen.1.1_4">Additional information for the  <xref to="pkg-tls"/> listed in  <xref to="atref-pkgs"/></selectable><selectable id="fau_gen.1.1_5">Additional information defined in the audit table for the  <xref to="pkg-ssh"/></selectable><selectable id="fau_gen.1.1_6" exclusive="yes">no additional auditable events</selectable></selectables><h:p>.</h:p></title>
           </f-element>
           <f-element id="fau-gen-1e2">
             <title>The TSF shall record within each audit record at least the following information:  <h:ol><h:li>Date and time of the event</h:li><h:li>Type of event</h:li><h:li>Subject and object identity (if applicable)</h:li><h:li>The outcome (success or failure) of the event</h:li><h:li>[<h:b>Additional information defined in  <xref g="t-audit-mandatory"/></h:b>]</h:li><h:li><h:b><selectables><selectable id="fau_gen.1.2_1">Additional information defined in  <xref g="t-audit-optional"/> for Strictly Optional SFRs</selectable><selectable id="fau_gen.1.2_2">Additional information defined in  <xref g="t-audit-objective"/> for Objective SFRs</selectable><selectable id="fau_gen.1.2_3">Additional information defined in  <xref g="t-audit-sel-based"/> for Selection-Based SFRs</selectable><selectable id="fau_gen.1.2_4">Additional information for the  <xref to="pkg-tls"/> listed in  <xref to="atref-pkgs"/></selectable><selectable id="fau_gen.1.2_5">Additional information defined in the audit table for the  <xref to="pkg-ssh"/></selectable><selectable id="fau_gen.1.2_6" exclusive="yes">no other information</selectable></selectables>.</h:b></h:li></h:ol></title>
@@ -599,7 +599,7 @@
 					The following table contains the events enumerated in the auditable events table for 
 					the TLS Functional Package. Inclusion of these events in the ST is subject to selection above,
 					inclusion of the corresponding SFRs in the ST, and support in the Package as represented by a selection in the 
-					table below.<h:p/><h:b> <ctr ctr-type="Table" id="atref-pkgs">: Auditable Events for the TLS Functional Package</ctr></h:b><h:br/> <h:table><h:tr><h:td>FCS_TLSC_EXT.1</h:td><h:td>Failure to establish a session.</h:td><h:td>Reason for failure.</h:td></h:tr><h:tr><h:td>FCS_TLSC_EXT.1</h:td><h:td>Failure to verify presented identifier.</h:td><h:td>Presented identifier and reference identifier.</h:td></h:tr><h:tr><h:td>FCS_TLSC_EXT.1</h:td><h:td>Establishment/termination of a TLS session.</h:td><h:td>Non-TOE endpoint of connection.</h:td></h:tr><h:tr><h:td>FCS_TLSS_EXT.1</h:td><h:td>Failure to establish a session.</h:td><h:td>Reason for failure.</h:td></h:tr><h:tr><h:td>FCS_DTLSC_EXT.1</h:td><h:td>Failure of the certificate validity check.</h:td><h:td>Issuer Name and Subject Name of certificate.</h:td></h:tr><h:tr><h:td>FCS_DTLSS_EXT.1</h:td><h:td>Failure of the certificate validity check.</h:td><h:td>Issuer Name and Subject Name of certificate.</h:td></h:tr></h:table></note>
+					table below.<h:p/><h:b> <ctr ctr-type="Table" id="atref-pkgs">: Auditable Events for the TLS Functional Package</ctr></h:b></note>
             <aactivity level="element">
               <TSS>The evaluator shall check the TSS and ensure that it lists all of the auditable events 
                         and provides a format for audit records. Each audit record format type shall be covered, along with a 
@@ -620,7 +620,7 @@
                         evaluator shall ensure the audit records generated during testing match the format specified in the 
                         administrative guide, and that the fields in each audit record have the proper entries.<h:p/>
                         Note that the testing here can be accomplished in conjunction with the testing of the security mechanisms 
-                        directly.<h:br/></Tests>
+                        directly.</Tests>
             </aactivity>
           </f-element>
           <audit-event/>
@@ -665,6 +665,9 @@
 						The evaluator shall ensure that the AGD describes the steps necessary for an authorized 
 						administrator to delete audit records, if such a capability is implemented.<h:p/></Guidance>
               <Tests>
+                
+						The evaluator shall perform the following tests:
+						
                 <testlist>
                   
 						The evaluator shall perform the following tests:
@@ -734,7 +737,7 @@
 				</note>
             <aactivity level="element">
               <TSS>The evaluator shall examine the TSS to ensure it describes the means by which 
-                        the audit data are transferred to the external audit server.<h:br/></TSS>
+                        the audit data are transferred to the external audit server.</TSS>
               <Guidance>
                         If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
 						trusted channel to the audit server, as well as describe any requirements 
@@ -743,7 +746,7 @@
 			    transfer mechanism is periodic or continuous, and what happens in the event of a loss of connectivity. <h:p/>
 						If "removable media" is selected, the evaluator shall ensure that the AGD describes the process for
 						accessing audit data and copying it to media. The AGD must also include high-level guidance on 
-				  		how frequently this operation may need to be done to minimize risk of data loss.<h:br/></Guidance>
+				  		how frequently this operation may need to be done to minimize risk of data loss.</Guidance>
               <Tests>
                         If "trusted channel" is selected above, testing of the trusted channel mechanism itself is to be performed 
 						as specified in the evaluation activities for FTP_ITC_EXT.1. In addition, the evaluator must 
@@ -760,7 +763,7 @@
 						If "removable media" is selected above, the evaluator must run the system for a time long enough to generate
 						some audit data and then collect audit data onto removable media for transfer to another machine. On another 
 						machine, the evaluator shall examine the audit data to ensure that it appears to be complete and correct. This test
-						may be performed in conjunction with any other requirement that generates audit events.<h:br/></Tests>
+						may be performed in conjunction with any other requirement that generates audit events.</Tests>
             </aactivity>
           </f-element>
           <audit-event>
@@ -773,7 +776,7 @@
       <section id="fcs" title="Class: Cryptographic Support (FCS)">
         <!--FCS_CKM.1/AK Cryptographic Key Generation (Asymmetric Keys)-->
         <f-component cc-id="fcs_ckm.1" id="sfr-fcs-ckm-1-ak" name="Cryptographic Key Generation (Asymmetric Keys)" iteration="AK" status="sel-based">
-          <depends on="sel-fcs-stg-ext-1e2-ak"/>
+          <depends on="sel-fcs-sto-ext-1e2-ak"/>
           <depends>
             <optional/>
           </depends>
@@ -801,7 +804,7 @@
 						to configure the TOE to use the selected key types for all uses identified in the ST.<h:p/></Guidance>
               <Tests>
 						The following tests require the developer to provide access to a test platform that
-						provides the evaluator with tools that are typically not found on factory products.<h:p/><h:br/><h:b>RSA: RSA Key Generation</h:b><h:p/>
+						provides the evaluator with tools that are typically not found on factory products.<h:p/><h:b>RSA: RSA Key Generation</h:b><h:p/>
 						The below tests are derived from The 186-4 RSA Validation System (RSA2VS),
 						Updated 8 July 2014, Section 6.2, from the National Institute of Standards and
 						Technology.<h:p/>
@@ -827,22 +830,23 @@
 						implementation as described above. If verification against a known good
 						implementation is not possible, the evaluator shall have the TSF generate 25 key
 						pairs for each supported key length nlen and verify that all of the following are true:<h:ul><h:li>n = p*q</h:li><h:li>p and q are probably prime according to Miller-Rabin tests with error
-							probability 2^(-125)</h:li><h:li>2^16 &lt; e &lt; 2^256 and e is an odd integer</h:li><h:li>GCD(p-1,e) = 1</h:li><h:li>GCD(q-1,e) = 1</h:li><h:li>|p-q|  2^(nlen/2 - 100)</h:li><h:li>p  squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>q  squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li><h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/><h:br/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
+							probability 2^(-125)</h:li><h:li>2^16 &lt; e &lt; 2^256 and e is an odd integer</h:li><h:li>GCD(p-1,e) = 1</h:li><h:li>GCD(q-1,e) = 1</h:li><h:li>|p-q| &gt; 2^(nlen/2 - 100)</h:li><h:li>p  squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>q  squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li><h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
 						These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
-						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/><h:b>  ECC Key Generation Test</h:b><h:br/>
+						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/><h:b>  ECC Key Generation Test</h:b>
 						For each selected curve, and for each key pair generation method as described in
 						FIPS PUB 186-4, section B.4, the evaluator shall require the implementation under test
 						to generate 10 private/public key pairs (d, Q). The private key, d, shall be generated 
 						using a random bit generator as specified in FCS_RBG_EXT.1. The private key, d,
 						is used to compute the public key, Q’. The evaluator shall confirm that 
-						(where n is the order of the group), and the computed value (Q’) is then compared to
-						public key (Q) of the generated public/private key pair to confirm that Q and Q' are equal.<h:p/><h:b>  Public Key Validation (PKV) Test</h:b><h:br/>
+						(where n is the order of the group), and the computed value Q’ is then compared to
+						the generated public/private key pairs’ public key, Q, to confirm that Q is equal to
+						Q’.<h:p/><h:b>  Public Key Validation (PKV) Test</h:b>
 						For each supported curve, the evaluator shall generate 12 private/public key pairs
 						using the key generation function of a known good implementation and modify six
 						of the public key values so that they are incorrect, leaving six values unchanged
 						(i.e., correct). To determine correctness, the evaluator shall submit the 12 key pairs
 						to the public key validation (PKV) function of the TOE and shall confirm that the
-						results correspond as expected to the modified and unmodified values.<h:p/><h:br/><h:b>DSA: DSA Key Generation using Finite-Field Cryptography (FFC)</h:b><h:p/>
+						results correspond as expected to the modified and unmodified values.<h:p/><h:b>DSA: DSA Key Generation using Finite-Field Cryptography (FFC)</h:b><h:p/>
 						The evaluator shall verify the implementation of the Parameters Generation and the
 						Key Generation for FFC by the TOE using the Parameter Generation and Key
 						Generation test. This test verifies the ability of the TSF to correctly produce values
@@ -863,7 +867,7 @@
 						parameter sets and key pairs. The evaluator shall verify the correctness of the TSF’s
 						implementation by comparing values generated by the TSF with those generated
 						from a known good implementation. Verification must also confirm<h:ul><h:li>g != 0,1</h:li><h:li>q divides p-1</h:li><h:li>g^q mod p = 1</h:li><h:li>g^x mod p = y</h:li></h:ul>
-						for each FFC parameter set and key pair.<h:p/><h:br/><h:b>Curve25519: Curve25519 Key Generation</h:b><h:p/>
+						for each FFC parameter set and key pair.<h:p/><h:b>Curve25519: Curve25519 Key Generation</h:b><h:p/>
 						The evaluator shall require the implementation under test (IUT) to generate 10
 						private/public key pairs. The private key shall be generated as specified in RFC
 						7748 using an approved random bit generator (RBG) and shall be written in little-endian order (least significant byte first. To determine correctness, the evaluator
@@ -884,7 +888,7 @@
         </f-component>
         <!--FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key)-->
         <f-component cc-id="fcs_ckm.1" id="sfr-fcs-ckm-1-sk" name="Cryptographic Key Generation (Symmetric Encryption Key)" iteration="SK" status="sel-based">
-          <depends on="sel-fcs-stg-ext-1e2-sk"/>
+          <depends on="sel-fcs-sto-ext-1e2-sk"/>
           <depends>
             <optional/>
           </depends>
@@ -935,7 +939,7 @@
 									Key Agreement and Key Transport Using Elliptic Curve Cryptography</selectable><selectable id="fcs_ckm.2.1_4">IEEE 1363a - Standard Specification for Public-Key Cryptography -
 									Amendment 1: Additional Techniques</selectable><selectable id="fcs_ckm.2.1_5">ISO/IEC 18033-2 - Information Technology - Security Techniques -
 									Encryption Algorithms - Part 2: Asymmetric Ciphers</selectable><selectable id="fcs_ckm.2.1_6">SECG SEC1 - Standards for Efficient Cryptography Group Elliptic Curve
-									Cryptography, section 5.1 Elliptic Curve Integrated Encryption Scheme</selectable></selectables></selectable></selectables><h:s>that meets the following: [<h:i>assignment: list of standards</h:i>]</h:s>  .</title>
+									Cryptography, section 5.1 Elliptic Curve Integrated Encryption Scheme</selectable></selectables></selectable></selectables>.</title>
             <note role="application">
 					This is a refinement of the SFR FCS_CKM.2 to deal with key establishment rather than key
 					distribution.<h:p/>
@@ -1076,7 +1080,7 @@
 						are supported:<h:p/>
 						Preconditions for testing:<h:ul><h:li>Specification of input parameter to the key derivation function to be tested</h:li><h:li>Specification of further required input parameters</h:li><h:li>Access to derived keys</h:li></h:ul>
 						The following table maps the data fields in the tests below to the notations used in
-						SP 800-108 and SP 800-56C<h:p/> <h:table class="classic" style="width:75%"><h:tr class="header"><h:td>Data Fields</h:td><h:td colspan="2">Notations</h:td></h:tr><h:tr><h:td/><h:td>SP 800-108</h:td><h:td>SP 800-56C</h:td></h:tr><h:tr><h:td>Pseudorandom function</h:td><h:td>PRF</h:td><h:td>PRF</h:td></h:tr><h:tr><h:td>Counter length</h:td><h:td>r</h:td><h:td>r</h:td></h:tr><h:tr><h:td>Length of output of PRF</h:td><h:td>r</h:td><h:td>r</h:td></h:tr><h:tr><h:td>Length of derived keying material</h:td><h:td>L</h:td><h:td>L</h:td></h:tr><h:tr><h:td>Length of input values</h:td><h:td>I_length</h:td><h:td>I_length</h:td></h:tr><h:tr><h:td>Pseudorandom input values I</h:td><h:td>K1 (key derivation key)</h:td><h:td>Z (shared secret)</h:td></h:tr><h:tr><h:td>Pseudorandom salt values</h:td><h:td/><h:td>S</h:td></h:tr><h:tr><h:td>Randomness extraction MAC</h:td><h:td>n/a</h:td><h:td>MAC</h:td></h:tr></h:table>
+						SP 800-108 and SP 800-56C<h:p/>
 						The below tests are derived from Key Derivation using Pseudorandom Functions
 						(SP 800-108) Validation System (KBKDFVS), Updated 4 January 2016, Section
 						6.2, from the National Institute of Standards and Technology.<h:p/><h:b>KDF-CTR: Counter Mode Tests:</h:b><h:p/>
@@ -1221,7 +1225,7 @@
               <Guidance>
                         The evaluator checks the AGD to determine that any configuration that is required to 
                         be done to configure the functionality for the required hash sizes is present. <h:p/></Guidance>
-              <Tests><h:b/><h:br/>
+              <Tests><h:b/>
                         The TSF hashing functions can be implemented in one of two modes. The first mode is the byte-oriented
 						mode. In this mode the TSF only hashes messages that are an integral number of bytes in length;
 						i.e., the length (in bits) of the message to be hashed is divisible by 8. The second mode is the
@@ -1229,35 +1233,35 @@
 						tests for each mode, an indication is given in the following sections for the bit-oriented vs. the
 						byte-oriented test macs.<h:p/>
                         The evaluator shall perform all of the following tests for each hash algorithm implemented by the TSF
-						and used to satisfy the requirements of this PP. <h:p/><h:b>Assurance Activity Note:</h:b><h:br/> The following tests require the developer to provide access
+						and used to satisfy the requirements of this PP. <h:p/><h:b>Assurance Activity Note:</h:b> The following tests require the developer to provide access
 						to a test platform that provides the evaluator with tools that are typically not found on factory 
-						products.<h:p/><h:b>Short Messages Test Bit-oriented Mode</h:b><h:br/>
+						products.<h:p/><h:b>Short Messages Test Bit-oriented Mode</h:b>
                         The evaluator devises an input set consisting of m+1 messages, where m is the block length of the hash
 						algorithm. The length of the messages range sequentially from 0 to m bits. The message text shall
 						be pseudo-randomly generated. The evaluator computes the message digest for each of the messages
-						and ensure that the correct result is produced when the messages are provided to the TSF.<h:p/><h:b>Short Messages Test Byte-oriented Mode</h:b><h:br/>
+						and ensure that the correct result is produced when the messages are provided to the TSF.<h:p/><h:b>Short Messages Test Byte-oriented Mode</h:b>
                         The evaluator devises an input set consisting of m/8+1 messages, where m is the block length of the 
 						hash algorithm. The length of the messages range sequentially from 0 to m/8 bytes, with each 
 						message being an integral number of bytes. The message text shall be pseudo-randomly generated.
 						The evaluator computes the message digest for each of the messages and ensure that the correct
-						result is produced when the messages are provided to the TSF.<h:p/><h:b>Selected Long Messages Test Bit-oriented Mode</h:b><h:br/>
+						result is produced when the messages are provided to the TSF.<h:p/><h:b>Selected Long Messages Test Bit-oriented Mode</h:b>
                         The evaluator devises an input set consisting of m messages, where m is the block length
                         of the hash algorithm. The length of the ith message is 512 + 99*i, where
                         1 &lt;= i &lt;= m. The message text shall be pseudo-randomly
                         generated. The evaluator computes the message digest for each of the messages and ensure
-                        that the correct result is produced when the messages are provided to the TSF.<h:p/><h:b>Selected Long Messages Test Byte-oriented Mode</h:b><h:br/>
+                        that the correct result is produced when the messages are provided to the TSF.<h:p/><h:b>Selected Long Messages Test Byte-oriented Mode</h:b>
                         The evaluator devises an input set consisting of m/8 messages,
                         where m is the block length of the hash algorithm. The length of the ith message
                         is 512 + 8*99*i, where 1 &lt;= i &lt;= m/8.
                         The message text shall be pseudo-randomly generated. The evaluator computes the message
                         digest for each of the messages and ensure that the correct result is produced when
-                        the messages are provided to the TSF.<h:p/><h:b>Pseudo-randomly Generated Messages Test</h:b><h:br/>
+                        the messages are provided to the TSF.<h:p/><h:b>Pseudo-randomly Generated Messages Test</h:b>
                         This test is for byte-oriented implementations only. The evaluator randomly generates a
                         seed that is n bits long, where n is the length of the message digest produced by the
                         hash function to be tested. The evaluator then formulates a set of 100 messages and
                         associated digests by following the algorithm provided in Figure 1 of [SHAVS]. The
                         evaluator then ensures that the correct result is produced when the messages are
-                        provided to the TSF.<h:p/><h:b/><h:br/>
+                        provided to the TSF.<h:p/><h:b/>
 						The tests below are derived from the The Secure Hash Algorithm-3 Validation System (SHA3VS), 
 						Updated: April 7, 2016, from the National Institute of Standards and Technology.<h:p/>
 						For each SHA-3-XXX implementation, XXX represents d, the digest length in bits. The capacity, c,
@@ -1269,24 +1273,24 @@
 						The evaluator shall perform all of the following tests for each hash algorithm and orientation
 						implemented by the TSF and used to satisfy the requirements of this PP. The evaluator shall
 						compare digest values produced by a known-good SHA-3 implementation against those generated by
-						running the same values through the TSF.<h:p/><h:b>Short Messages Test, Bit-oriented Mode</h:b><h:br/>
+						running the same values through the TSF.<h:p/><h:b>Short Messages Test, Bit-oriented Mode</h:b>
 						The evaluator devises an input set consisting of rate+1 short messages. The length of the messages
 						ranges sequentially from 0 to rate bits. The message text shall be pseudo-randomly generated. The
 						evaluator computes the message digest for each of the messages and ensure that the correct result
 						is produced when the messages are provided to the TSF. The message of length 0 is omitted if the
-						TOE does not support zero-length messages.<h:p/><h:b>Short Messages Test, Byte-oriented Mode</h:b><h:br/>
+						TOE does not support zero-length messages.<h:p/><h:b>Short Messages Test, Byte-oriented Mode</h:b>
 						The evaluator devises an input set consisting of rate/8+1 short messages. The length of the
 						messages ranges sequentially from 0 to rate/8 bytes, with each message being an integral number of 
 						bytes. The message text shall be pseudo-randomly generated. The evaluator computes the message
 						digest for each of the messages and ensure that the correct result is produced when the messages
 						are provided to the TSF. The message of length 0 is omitted if the TOE does not support zero-length
-						messages.<h:br/><h:p/><h:b>Selected Long Messages Test, Bit-oriented Mode</h:b><h:br/>
+						messages.<h:p/><h:b>Selected Long Messages Test, Bit-oriented Mode</h:b>
 						The evaluator devises an input set consisting of 100 long messages ranging in size from 
 						rate+(rate+1) to rate+(100*(rate+1)), incrementing by rate+1. (For example, SHA-3-256 has a rate
 						of 1088 bits. Therefore, 100 messages will be generated with lengths 2177, 3266, …, 109988 bits.)
 						The message text shall be pseudo-randomly generated. The evaluator computes the message digest for
 						each of the messages and ensure that the correct result is produced when the messages are provided
-						to the TSF.<h:p/><h:b>Selected Long Messages Test, Byte-oriented Mode</h:b><h:br/>
+						to the TSF.<h:p/><h:b>Selected Long Messages Test, Byte-oriented Mode</h:b>
 						The evaluator devises an input set consisting of 100 messages ranging in size from (rate+(rate+8))
 						to (rate+100*(rate+8)), incrementing by rate+8. (For example, SHA-3-256 has a rate of 1088 bits.
 						Therefore 100 messages will be generated of lengths 2184, 3280, 4376, …, 110688 bits.) The message
@@ -1655,7 +1659,7 @@
 							the maximum bit-length of recoverable message that is divisible by 512, for
 							some combinations of modulus size, underlying hash algorithm, and length
 							of salt.
-							 <h:table class="classic" style="width:50%"><h:tr class="header"><h:td>Maximum length of recoverable message divisible by 512 (bits)</h:td><h:td>Modulus size (bits)</h:td><h:td>Underlying hash algorithm (bits)</h:td><h:td>Length of salt L<h:sub>S</h:sub> (bits)</h:td></h:tr><h:tr><h:td>1536</h:td><h:td rowspan="5">2048</h:td><h:td rowspan="2">SHA-256</h:td><h:td>128</h:td></h:tr><h:tr><h:td>1024</h:td><h:td>256</h:td></h:tr><h:tr><h:td>1024</h:td><h:td rowspan="3">SHA-512</h:td><h:td>128</h:td></h:tr><h:tr><h:td>1024</h:td><h:td>256</h:td></h:tr><h:tr><h:td>512</h:td><h:td>512</h:td></h:tr><h:tr><h:td>2560</h:td><h:td rowspan="5">3072</h:td><h:td rowspan="2">SHA-256</h:td><h:td>128</h:td></h:tr><h:tr><h:td>2048</h:td><h:td>256</h:td></h:tr><h:tr><h:td>2048</h:td><h:td rowspan="3">SHA-512</h:td><h:td>128</h:td></h:tr><h:tr><h:td>2048</h:td><h:td>256</h:td></h:tr><h:tr><h:td>1536</h:td><h:td>512</h:td></h:tr><h:tr colspan="4">None that 2-byte trailer field is assumed in calculating the maximum length of recoverable message</h:tr></h:table></h:li><h:li>The length of non-recoverable messages should be selected by considering
+							</h:li><h:li>The length of non-recoverable messages should be selected by considering
 							the underlying hash algorithm and usages. If the TSF is used for verifying
 							the authenticity of software/firmware updates, the length of non-recoverable
 							messages should be selected greater than or equal to 2048-bit. With this
@@ -1717,7 +1721,7 @@
 					This SFR must be included in the ST if symmetric-key cryptography is a service provided by the TOE 
 					to tenant software, or if the TOE itself uses SKC to support or implement PP-specified security 
 					functionality.<h:p/> 
-					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STG_EXT.2, or includes
+					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STO_EXT.2, or includes
 					any of the following selections: <h:ul><h:li>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG_EXT.1</h:li><h:li>"<h:i>ECIES</h:i>" in FCS_COP.1/KAT</h:li><h:li>"<h:i>AES-*</h:i>" in FCS_STG_EXT.3</h:li></h:ul></note>
             <aactivity level="element">
               <TSS>The evaluator shall check that the TSS includes a description of encryption
@@ -1726,7 +1730,7 @@
 						operations as specified in  <xref to="fcs-cop-skc-sels"/>.<h:p/>
 						The evaluator shall check that the TSS describes the means by which the TOE
 						satisfies constraints on algorithm parameters included in the selections made for
-						"cryptographic algorithm" and "list of standards."<h:p/></TSS>
+						‘cryptographic algorithm’ and ‘list of standards’.<h:p/></TSS>
               <Guidance>
 						If the product supports multiple modes, the evaluator shall examine the AGD
 						to determine that the method of choosing a specific mode/key size
@@ -1741,7 +1745,7 @@
 						for example, use of a debug mode). Where the test is not carried out on the TOE
 						itself, the test platform shall be identified and the differences between test
 						environment and TOE execution environment shall be described.<h:p/>
-						Preconditions for testing:<h:ul><h:li>Specification of keys as input parameter to the function to be tested</h:li><h:li>specification of required input parameters such as modes</h:li><h:li>Specification of user data (plaintext)</h:li><h:li>Tapping of encrypted user data (ciphertext) directly in the non-volatile memory</h:li></h:ul><h:p/><h:b>AES-CBC:</h:b><h:br/>
+						Preconditions for testing:<h:ul><h:li>Specification of keys as input parameter to the function to be tested</h:li><h:li>specification of required input parameters such as modes</h:li><h:li>Specification of user data (plaintext)</h:li><h:li>Tapping of encrypted user data (ciphertext) directly in the non-volatile memory</h:li></h:ul><h:p/><h:b>AES-CBC:</h:b>
 						For the AES-CBC tests described below, the plaintext, ciphertext, and IV values
 						shall consist of 128-bit blocks. To determine correctness, the evaluator shall
 						compare the resulting values to those obtained by submitting the same inputs to a
@@ -2233,13 +2237,16 @@
 					transport mode.<h:p/></note>
             <aactivity level="element">
               <TSS>The evaluator checks the TSS to ensure it states that an IPsec VPN can be 
-                        established to operate in tunnel mode or transport mode (as selected).<h:br/></TSS>
+                        established to operate in tunnel mode or transport mode (as selected).</TSS>
               <Guidance>
                         The evaluator shall confirm that the AGD contains instructions on how to 
                         configure the connection in each mode selected.<h:p/>
 						If both transport mode and tunnel mode are implemented, the evaluator shall review the AGD
-						to determine how the use of a given mode is specified.<h:br/></Guidance>
+						to determine how the use of a given mode is specified.</Guidance>
               <Tests>
+                
+                        The evaluator shall perform the following test(s) based on the selections chosen:
+                        
                 <testlist>
                   
                         The evaluator shall perform the following test(s) based on the selections chosen:
@@ -2267,12 +2274,12 @@
           <f-element id="fcs-ipsec-ext-1e3">
             <title>The TSF shall have a nominal, final entry in the SPD that matches anything that is otherwise unmatched, and discards it.</title>
             <aactivity level="element">
-              <TSS>There are no TSS evaluation activities for this element.<h:br/></TSS>
+              <TSS>There are no TSS evaluation activities for this element.</TSS>
               <Guidance>
 						The evaluator shall check that the AGD provides instructions on how to construct or
-						acquire the SPD and uses the AGD to configure the TOE for the following test.<h:br/>
+						acquire the SPD and uses the AGD to configure the TOE for the following test.
 						If both transport mode and tunnel mode are implemented, the evaluator shall review the
-						AGD to determine how the use of a given mode is specified.<h:br/></Guidance>
+						AGD to determine how the use of a given mode is specified.</Guidance>
               <Tests>
                         The evaluator shall perform the following test:<h:p/>
                             The evaluator shall configure the SPD such that it has entries that contain operations that DISCARD,
@@ -2282,7 +2289,7 @@
 								the proper destination interface with no modification. The evaluator shall then modify a field in the packet
 								header; such that it no longer matches the evaluator-created entries (there may be a “TOE-created” final
 								entry that discards packets that do not match any previous entries). The evaluator sends the packet, and
-								observes that the packet was not permitted to flow to any of the TOE’s interfaces.<h:br/></Tests>
+								observes that the packet was not permitted to flow to any of the TOE’s interfaces.</Tests>
             </aactivity>
           </f-element>
           <f-element id="fcs-ipsec-ext-1e4">
@@ -2293,17 +2300,17 @@
                         AES-CBC-128 or AES-CBC-256 in the requirement, then the evaluator verifies the
                         TSS describes these as well. In addition, the evaluator ensures that the 
                         SHA-based HMAC algorithm conforms to the algorithms specified in FCS_COP.1/KeyedHash Cryptographic 
-                        Operations (Keyed Hash Algorithms).<h:br/></TSS>
+                        Operations (Keyed Hash Algorithms).</TSS>
               <Guidance>
                         The evaluator checks the AGD to ensure it provides instructions on how the TOE is
 						configured to use the algorithms selected in this component and whether this is performed through direct
 						configuration, defined during initial installation, or defined by acquiring configuration settings from an
-						environmental component.<h:br/></Guidance>
+						environmental component.</Guidance>
               <Tests>
 			The evaluator shall perform the following test:<h:p/>
 							The evaluator shall configure the TOE/platform as indicated in the 
                                 operational guidance configuring the TOE/platform to use each of the supported
-                                algorithms, attempt to establish a connection using ESP, and verify that the attempt succeeds.<h:br/></Tests>
+                                algorithms, attempt to establish a connection using ESP, and verify that the attempt succeeds.</Tests>
             </aactivity>
           </f-element>
           <f-element id="fcs-ipsec-ext-1e5">
@@ -2314,15 +2321,18 @@
               <TSS>The evaluator shall examine the TSS to verify that IKEv1 and/or IKEv2 are implemented. If IKEv1 is
 						implemented, the evaluator shall verify that the TSS indicates whether or not XAUTH is supported, and
 						that aggressive mode is not used for IKEv1 Phase 1 exchanges (i.e. only main mode is used). It may be that
-						these are configurable options.<h:br/></TSS>
+						these are configurable options.</TSS>
               <Guidance>
                         The evaluator shall check the AGD to ensure it instructs the administrator how to
 						configure the TOE to use IKEv1 and/or IKEv2 (as selected), and uses the guidance to configure the TOE to
 						perform NAT traversal for the test below. If XAUTH is implemented, the evaluator shall verify that the
-						AGD provides instructions on how it is enabled or disabled.<h:br/>
+						AGD provides instructions on how it is enabled or disabled.
 						If the TOE supports IKEv1, the evaluator shall verify that the AGD either asserts that only
 						main mode is used for Phase 1 exchanges, or provides instructions for disabling aggressive mode.<h:p/></Guidance>
               <Tests>
+                
+                        Tests are performed in conjunction with the other IPsec evaluation activities with the exception
+                        of the activities below:<h:p/>
                 <testlist>
                   <test>The evaluator shall configure the TOE so that it will perform NAT traversal processing as described
 								in the TSS and RFC 7296, section 2.23. The evaluator shall initiate an IPsec connection and determine that
@@ -2345,12 +2355,12 @@
             <aactivity level="element">
               <TSS>The evaluator shall ensure the TSS identifies the algorithms used for encrypting the IKEv1 and/or IKEv2
 						payload, and that the algorithms AES-CBC-128, AES-CBC-256 are specified, and if others are chosen in the
-						selection of the requirement, those are included in the TSS discussion.<h:br/></TSS>
+						selection of the requirement, those are included in the TSS discussion.</TSS>
               <Guidance>
                         The evaluator checks the AGD to ensure it provides instructions on how the TOE is
 						configured to use the algorithms selected in this component and whether this is performed through direct
 						configuration, defined during initial installation, or defined by acquiring configuration settings from an
-						environmental component. <h:br/></Guidance>
+						environmental component. </Guidance>
               <Tests>
 						The evaluator shall use the operational guidance to configure the TOE (or to configure the Operational
 						Environment to have the TOE receive configuration) to perform the following test for each ciphersuite
@@ -2360,7 +2370,7 @@
 								payload encrypted using the indicated ciphersuite. The evaluator will confirm the algorithm was that used
 								in the negotiation. The evaluator will confirm that the connection is successful by confirming that data
 								can be passed through the connection once it is established. For example, the evaluator may connect to
-								a webpage on the remote network and verify that it can be reached.<h:br/></Tests>
+								a webpage on the remote network and verify that it can be reached.</Tests>
             </aactivity>
           </f-element>
           <f-element id="fcs-ipsec-ext-1e7">
@@ -2389,15 +2399,26 @@
 					by the same key (the total volume of all IPsec traffic protected by that key).
 				</note>
             <aactivity level="element">
-              <TSS>There are no TSS EAs for this element.<h:br/></TSS>
+              <TSS>There are no TSS EAs for this element.</TSS>
               <Guidance>
                         The evaluator shall check the AGD to ensure it provides instructions on how the TOE
 						configures the values for SA lifetimes. In addition, the evaluator shall check that the AGD has the
 						option for either the Administrator or VPN Gateway to configure Phase 1 SAs if time-based limits are
 						supported. Currently there are no values mandated for the number of packets or number of bytes, the
 						evaluator shall simply check the AGD to ensure that this can be configured if selected in
-						the requirement.<h:br/></Guidance>
+						the requirement.</Guidance>
               <Tests>
+                
+                        When testing this functionality, the evaluator needs to ensure that both sides are configured
+						appropriately. From the RFC “A difference between IKEv1 and IKEv2 is that in IKEv1 SA lifetimes were
+						negotiated. In IKEv2, each end of the SA is responsible for enforcing its own lifetime policy on the SA and
+						rekeying the SA when necessary. If the two ends have different lifetime policies, the end with the shorter
+						lifetime will end up always being the one to request the rekeying. If the two ends have the same lifetime
+						policies, it is possible that both will initiate a rekeying at the same time (which will result in redundant
+						SAs). To reduce the probability of this happening, the timing of rekeying requests SHOULD be jittered.”<h:p/>
+                        Each of the following tests shall be performed for each version of IKE selected in the
+						FCS_IPSEC_EXT.1.5 protocol selection:
+                        
                 <testlist>
                   
                         Each of the following tests shall be performed for each version of IKE selected in the
@@ -2444,13 +2465,13 @@
             <aactivity level="element">
               <TSS>The evaluator shall check to ensure that the DH groups specified in the requirement are listed as being
 						supported in the TSS. If there is more than one DH group supported, the evaluator checks to ensure the
-						TSS describes how a particular DH group is specified/negotiated with a peer.<h:br/></TSS>
+						TSS describes how a particular DH group is specified/negotiated with a peer.</TSS>
               <Guidance>
-                        There are no AGD EAs for this requirement.<h:br/></Guidance>
+                        There are no AGD EAs for this requirement.</Guidance>
               <Tests>
 						The evaluator shall perform the following test: <h:p/>
 							For each supported DH group, the evaluator shall test to ensure that all supported IKE protocols
-								can be successfully completed using that particular DH group.<h:br/></Tests>
+								can be successfully completed using that particular DH group.</Tests>
             </aactivity>
           </f-element>
           <f-element id="fcs-ipsec-ext-1e9">
@@ -2459,11 +2480,11 @@
               <TSS>The evaluator shall check to ensure that, for each DH group supported, the TSS describes the process for
 						generating "x" (as defined in FCS_IPSEC_EXT.1.9) and each nonce. The evaluator shall verify that the TSS
 						indicates that the random number generated that meets the requirements in this EP is used, and that the
-						length of "x" and the nonces meet the stipulations in the requirement.<h:br/></TSS>
+						length of "x" and the nonces meet the stipulations in the requirement.</TSS>
               <Guidance>
-						There are no AGD EAs for this element.<h:br/></Guidance>
+						There are no AGD EAs for this element.</Guidance>
               <Tests>
-						There are no test EAs for this element.<h:br/></Tests>
+						There are no test EAs for this element.</Tests>
             </aactivity>
           </f-element>
           <f-element id="fcs-ipsec-ext-1e10">
@@ -2493,7 +2514,7 @@
 						compared to the ID payload presented identifier, which field(s) of the certificate are used as the presented
 						identifier (DN, Common Name, or SAN) and, if multiple fields are supported, the logical order comparison.
 						If the ST Author assigned an additional identifier type, the TSS description shall also include a description
-						of that type and the method by which that type is compared to the peer’s presented certificate.<h:br/></TSS>
+						of that type and the method by which that type is compared to the peer’s presented certificate.</TSS>
               <Guidance>
 						The evaluator shall check that the AGD describes how pre-shared keys are to be
 						generated and established.<h:p/>
@@ -2503,8 +2524,13 @@
 						ensure that the AGD also describes how to configure the TOE to connect to a trusted CA,
 						and ensure a valid certificate for that CA is loaded into the TOE as a trusted CA.<h:p/>
 						The evaluator shall also ensure that the AGD includes the configuration of the reference
-						identifier(s) for the peer.<h:br/></Guidance>
+						identifier(s) for the peer.</Guidance>
               <Tests>
+                
+						For efficiency’s sake, the testing that is performed here has been combined with the testing for
+						FIA_X509_EXT.2 and FIA_X509_EXT.3 (for IPsec connections and depending on the Base-PP),
+						FCS_IPSEC_EXT.1.12, and FCS_IPSEC_EXT.1.13. The following tests shall be repeated for each peer
+						authentication protocol selected in the FCS_IPSEC_EXT.1.11 selection above:<h:p/>
                 <testlist>
                   <test>The evaluator shall have the TOE generate a public-private key pair, and submit a CSR (Certificate
 								Signing Request) to a CA (trusted by both the TOE and the peer VPN used to establish a connection) for
@@ -2614,10 +2640,12 @@
 						the symmetric key) of the algorithms that are allowed for the IKE and ESP exchanges. The TSS shall also
 						describe the checks that are done when negotiating IKEv1 Phase 2 and/or IKEv2 CHILD_SA suites to ensure
 						that the strength (in terms of the number of bits of key in the symmetric algorithm) of the negotiated
-						algorithm is less than or equal to that of the IKE SA this is protecting the negotiation.<h:br/></TSS>
+						algorithm is less than or equal to that of the IKE SA this is protecting the negotiation.</TSS>
               <Guidance>
-						There are no AGD EAs for this element.<h:br/></Guidance>
+						There are no AGD EAs for this element.</Guidance>
               <Tests>
+                
+                        The evaluator follows the guidance to configure the TOE to perform the following tests for each version of IKE supported:<h:p/>
                 <testlist>
                   <test>The evaluator shall successfully
 								negotiate an IPsec connection using each of the supported algorithms and hash functions identified in the
@@ -2788,9 +2816,9 @@
 				</note>
           </f-element>
           <f-element id="fcs-stg-ext-1e2">
-            <title>The TSF shall support the capability of<selectables><selectable id="sel-fcs-stg-ext-1e2-import">importing keys/secrets into the TOE</selectable><selectable>causing the TOE to generate <selectables><selectable id="sel-fcs-stg-ext-1e2-ak">asymmetric</selectable><selectable id="sel-fcs-stg-ext-1e2-sk">symmetric</selectable></selectables>keys/secrets</selectable></selectables>upon request of<selectables><selectable id="fcs_stg_ext.1.2_2">a client application</selectable><selectable id="fcs_stg_ext.1.2_3">an administrator</selectable></selectables>.</title>
+            <title>The TSF shall support the capability of<selectables><selectable id="sel-fcs-sto-ext-1e2-import">importing keys/secrets into the TOE</selectable><selectable>causing the TOE to generate <selectables><selectable id="sel-fcs-sto-ext-1e2-ak">asymmetric</selectable><selectable id="sel-fcs-sto-ext-1e2-sk">symmetric</selectable></selectables>keys/secrets</selectable></selectables>upon request of<selectables><selectable id="fcs_stg_ext.1.2_2">a client application</selectable><selectable id="fcs_stg_ext.1.2_3">an administrator</selectable></selectables>.</title>
             <note role="application">
-					If "causing the TOE to generate keys/secrets" is selected in FCS_STG_EXT.1.2, then the 
+					If "causing the TOE to generate keys/secrets" is selected in FCS_STO_EXT.1.2, then the 
 					ST must include at least one of FCS_CKM.1/AK or FCS_CKM.1/SK depending on the value of the 
 					internal selection.
 				</note>
@@ -2808,6 +2836,13 @@
 					the ST. The evaluator shall also examine the AGD to ensure that it
 					describes the process for destroying keys that have been imported or generated.<h:p/></Guidance>
               <Tests>
+                
+					The evaluator shall test the functionality of each security function as described
+					below. If the TOE supports both import and generation of keys, the evaluator shall
+					repeat the testing as needed to demonstrate that the keys resulting from both
+					operations are treated in the same manner. The devices used with the tooling may
+					need to be non-production devices in order to enable the execution of testing and gathering of
+					evidence.<h:p/>
                 <testlist>
                   <test>
 							The evaluator shall import or generate keys/secrets of each supported type
@@ -2842,7 +2877,7 @@
 			FCS_STG_EXT.1 Protected Storage</dependencies>
           <f-element id="fcs-stg-ext-2e1">
             <title>The TSF shall encrypt [  <h:i>AKs, SKs, KEKs, and 
-					<selectables><selectable id="fcs_stg_ext.2.1_1">long-term trusted channel key material</selectable><selectable id="sel-stg2-sw-based">all software-based key storage</selectable><selectable id="fcs_stg_ext.2.1_2" exclusive="yes">no other keys</selectable></selectables></h:i>  ] using<selectables><selectable id="fcs_stg_ext.2.1_3">AES-CCM</selectable><selectable id="fcs_stg_ext.2.1_4">AES-GCM</selectable><selectable id="fcs_stg_ext.2.1_5">AES-KW</selectable><selectable id="fcs_stg_ext.2.1_6">AES-KWP</selectable></selectables>.</title>
+					<selectables><selectable id="fcs_stg_ext.2.1_1">long-term trusted channel key material</selectable><selectable id="sel-stg2-sw-based">all software-based key storage</selectable><selectable id="fcs_stg_ext.2.1_2" exclusive="yes">no other keys</selectable></selectables>] using<selectables><selectable id="fcs_stg_ext.2.1_3">AES-CCM</selectable><selectable id="fcs_stg_ext.2.1_4">AES-GCM</selectable><selectable id="fcs_stg_ext.2.1_5">AES-KW</selectable><selectable id="fcs_stg_ext.2.1_6">AES-KWP</selectable></selectables>.</h:i></title>
             <note role="application">
 					This SFR is included in the ST if "software-based" is selected in FCS_STG_EXT.1.
 				</note>
@@ -2867,9 +2902,9 @@
           <dependencies>FCS_COP.1 Cryptographic Operation</dependencies>
           <f-element id="fcs-stg-ext-3e1">
             <title>The TSF shall protect the integrity of any encrypted [  <h:i>AKs, SKs, KEKs, and
-					<selectables><selectable id="fcs_stg_ext.3.1_1">long-term trusted channel key material</selectable><selectable id="fcs_stg_ext.3.1_2">all software-based key storage</selectable><selectable id="fcs_stg_ext.3.1_3" exclusive="yes">no other keys</selectable></selectables></h:i>  ] by using<selectables><selectable>Symmetric encryption in <selectables><selectable id="sel-stg3-aes-ccm">AES_CCM</selectable><selectable id="sel-stg3-aes-gcm">AES_GCM</selectable><selectable id="sel-stg3-aes-kw">AES_KW</selectable><selectable id="sel-stg3-aes-kwp">AES_KWP</selectable></selectables> mode in accordance with FCS_COP.1/SKC</selectable><selectable id="sel-stg3-hmac">A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</selectable><selectable id="sel-stg3-digsig">A digital signature of the stored key in accordance with FCS_COP.1/SigGen
+					<selectables><selectable id="fcs_stg_ext.3.1_1">long-term trusted channel key material</selectable><selectable id="fcs_stg_ext.3.1_2">all software-based key storage</selectable><selectable id="fcs_stg_ext.3.1_3" exclusive="yes">no other keys</selectable></selectables>] by using<selectables><selectable>Symmetric encryption in <selectables><selectable id="sel-stg3-aes-ccm">AES_CCM</selectable><selectable id="sel-stg3-aes-gcm">AES_GCM</selectable><selectable id="sel-stg3-aes-kw">AES_KW</selectable><selectable id="sel-stg3-aes-kwp">AES_KWP</selectable></selectables> mode in accordance with FCS_COP.1/SKC</selectable><selectable id="sel-stg3-hmac">A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</selectable><selectable id="sel-stg3-digsig">A digital signature of the stored key in accordance with FCS_COP.1/SigGen
 							using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</selectable><selectable id="fcs_stg_ext.3.1_5">An immediate application of the key for decrypting the protected data followed 
-							by a successful verification of the decrypted data with previously known information</selectable></selectables>.</title>
+							by a successful verification of the decrypted data with previously known information</selectable></selectables>.</h:i></title>
             <note role="application">
 						This SFR is included in the ST if "software-based" is selected in FCS_STG_EXT.1.
 				</note>
@@ -2898,7 +2933,7 @@
       <section id="fdp" title="Class: User Data Protection (FDP)">
         <!--FDP_ITC_EXT.1 Key/Credential Import-->
         <f-component cc-id="fdp_itc_ext.1" id="sfr-fdp-itc-ext-1" name="Key/Credential Import" status="sel-based">
-          <depends on="sel-fcs-stg-ext-1e2-import"/>
+          <depends on="sel-fcs-sto-ext-1e2-import"/>
           <comp-lev>requires the TSF to implement one or more means for importing keys and credentials
 				into the TOE, which are not addressed by the FDP_ITC component.</comp-lev>
           <dependencies>FCS_COP.1 Cryptographic Operation
@@ -2999,10 +3034,10 @@
             <note role="application">
 					The positive integer is configured according to  <xref to="t-manfunc"/> in FMT_SMF.1.1.<h:p/>
 					An unique authentication attempt is defined as any attempt to verify an authentication attempt
-					in which the input is different from a previous attempt. "Unique" must be selected if
+					in which the input is different from a previous attempt. ‘Unique’ must be selected if
 					the authentication system increments the counter only for unique unsuccessful authentication
 					attempts. For example, if the same incorrect password is attempted twice the authentication 
-					system increments the counter once. "Non-unique" must be selected if the authentication system 
+					system increments the counter once. "<h:i>Non-unique</h:i>" must be selected if the authentication system 
 					increments the counter for each unsuccessful authentication attempt, regardless of whether the
 					input is unique. For example, if the same incorrect password is attempted twice the
 					authentication system increments the counter twice.<h:p/>
@@ -3078,6 +3113,10 @@
 						The evaluator shall verify that the AGD describes how an Administrator may recover from 
 						authentication failure when another Administrator is locked out.<h:p/></Guidance>
               <Tests>
+                
+						The evaluator shall configure the device with all authentication mechanisms 
+						selected in FIA_UAU.5.1, and configure a maximum number of unsuccessful authentication
+						attempts for each mechanism.<h:p/>
                 <testlist>
                   <test>The evaluator shall for each authentication mechanism make 
 								unsuccessful authentication attempts until the maximum is exceeded and verify that
@@ -3251,6 +3290,9 @@
 						The evaluator shall verify that configuration information for each authentication mechanism
 						is addressed in the AGD guidance.<h:p/></Guidance>
               <Tests>
+                
+						The evaluator shall perform the following tests:
+						
                 <testlist>
                   
 						The evaluator shall perform the following tests:
@@ -3302,6 +3344,9 @@
 						The evaluator shall verify that any configuration of this requirement is addressed in the 
 						AGD guidance and that user authentication input is obscured by default.<h:p/></Guidance>
               <Tests>
+                
+						The evaluator shall perform the following tests:
+						
                 <testlist>
                   
 						The evaluator shall perform the following tests:
@@ -3439,6 +3484,10 @@
               <Guidance>
 						There are no AGD evaluation activities for this component.<h:p/></Guidance>
               <Tests>
+                
+                        The tests described must be performed in conjunction with the other Certificate Services evaluation 
+						activities, including the uses listed in FIA_X509_EXT.2.1. The tests for the extendedKeyUsage rules 
+						are performed in conjunction with the uses that require those rules.<h:p/>
                 <testlist>
                   <test>The evaluator shall demonstrate that validating a certificate without a valid certification
 								path results in the function failing, for each of the following reasons, in turn:
@@ -3530,6 +3579,9 @@
               <Guidance>
 						There are no AGD evaluation activities for this component.<h:p/></Guidance>
               <Tests>
+                
+                        The evaluator shall perform Test 1 for each function listed in FIA_X509_EXT.2.1 that requires the
+						use of certificates:<h:p/>
                 <testlist>
                   <test>The evaluator shall demonstrate that using a certificate without a valid certification path
 								results in the function failing. Using the administrative guidance, the evaluator shall 
@@ -3573,6 +3625,10 @@
 						The evaluator shall examine the AGD to ensure that it describes the process for 
 						replacing or specifying Administrator credentials on first use.<h:p/></Guidance>
               <Tests>
+                
+						If the platform uses default Administrator credentials or no Administrator credentials 
+						on first use the evaluator shall run the following tests:
+						
                 <testlist>
                   
 						If the platform uses default Administrator credentials or no Administrator credentials 
@@ -3620,7 +3676,7 @@
         <!--FMT_SMF.1 Specification of Management Functions-->
         <f-component cc-id="fmt_smf.1" id="sfr-fmt-smf-1" name="Specification of Management Functions">
           <f-element id="fmt-smf-est-1e1">
-            <title><!-- NOTE: There is currently no support for Management Function tables, so the following raw XML will be used in the XML Export --> <h:br/>
+            <title><!-- NOTE: There is currently no support for Management Function tables, so the following raw XML will be used in the XML Export --> <br/>
                         <title>The TSF shall be capable of performing the following management functions: [<h:p/><h:b><ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b><h:p/> 
 					Status Markers:<h:br/>
 					M - Mandatory<h:br/>
@@ -3718,6 +3774,9 @@
 						The evaluator shall examine the AGD to ensure that it describes how Administrators assert 
 						physical presence to the TSF.<h:p/></Guidance>
               <Tests>
+                
+						The evaluator shall perform the following tests:
+						
                 <testlist>
                   
 						The evaluator shall perform the following tests:
@@ -3751,10 +3810,10 @@
 					This requirement should be included in the ST for use cases that include the threat T.PHYSICAL. 
 				</note>
             <aactivity level="element">
-              <TSS>If "<h:i>disable access through hardware</h:i>" is selected:<h:br/>
+              <TSS>If "<h:i>disable access through hardware</h:i>" is selected:
 						The evaluator shall examine the TSS to determine the location of the JTAG ports on the TSF, to
 						include the order of the ports (i.e. Data In, Data Out, Clock, etc.).<h:p/>
-						If "<h:i>control access by a signing key</h:i>" is selected:<h:br/>
+						If "<h:i>control access by a signing key</h:i>" is selected:
 						The evaluator shall examine the TSS to determine how access to the JTAG is controlled by a
 						signing key. The evaluator shall examine the TSS to determine when the JTAG can be accessed,
 						i.e. what has the access to the signing key.<h:p/></TSS>
@@ -3763,7 +3822,7 @@
               <Tests>
 						The following test requires the developer to provide access to a test platform that provides 
 						the evaluator with chip level access.<h:p/>
-						[conditional] If "<h:i>disable access through hardware</h:i>" is selected:<h:br/>
+						[conditional] If "<h:i>disable access through hardware</h:i>" is selected:
 						The evaluator shall connect a packet analyzer to the JTAG ports. The evaluator shall query 
 						the JTAG port for its device ID and confirm that the device ID cannot be retrieved.
 					</Tests>
@@ -3824,6 +3883,9 @@
 					The evaluator shall ensure that the AGD describes how the TOE notifies users
 					or Administrators that it has detected tampering.<h:p/></Guidance>
               <Tests>
+                
+						The evaluator shall perform the following tests:
+					
                 <testlist>
                   
 						The evaluator shall perform the following tests:
@@ -4107,6 +4169,9 @@
 						The evaluator shall examine the AGD to ensure that is describes how to configure the 
 						conditions under which the recovery mechanism is initiated (if configurable).<h:p/></Guidance>
               <Tests>
+                
+						The evaluator shall perform the following tests:
+						
                 <testlist>
                   
 						The evaluator shall perform the following tests:
@@ -4277,6 +4342,9 @@
 						The evaluator shall examine the AGD to ensure that it documents the observable indications
 						of update success or failure, and that it describes how to access the platform firmware version indicators.<h:p/></Guidance>
               <Tests>
+                
+						The evaluator shall perform the following tests:
+						
                 <testlist>
                   
 						The evaluator shall perform the following tests:
@@ -4392,6 +4460,9 @@
 						The evaluator shall examine the AGD to ensure that it documents the observable indications
 						of update success or failure, and that it describes how to access the platform firmware version indicators.<h:p/></Guidance>
               <Tests>
+                
+						The evaluator shall perform the following tests:
+						
                 <testlist>
                   
 						The evaluator shall perform the following tests:
@@ -4485,6 +4556,9 @@
 					The evaluator shall examine the AGD to ensure that it describes instructions for 
 					using the local update mechanism, and how to validate that the update was successful.<h:p/></Guidance>
               <Tests>
+                 
+						The evaluator shall perform the following tests:
+					
                 <testlist>
                    
 						The evaluator shall perform the following tests:
@@ -4657,6 +4731,9 @@
                         The evaluator shall confirm that the AGD contains instructions for 
 						establishing the remote administrative sessions for each supported method. <h:p/></Guidance>
               <Tests>
+                
+                        The evaluator shall also perform the following tests:
+                        
                 <testlist>
                   
                         The evaluator shall also perform the following tests:
@@ -4998,14 +5075,15 @@
 						requires expert skills and an electron microscope, for instance, then a test would not
 						be suitable and an appropriate justification would be formulated.
 					</aactivity></a-element></a-component></section></section>
-  </sec:Security_Requirements>
+  </sec:req>
+  <appendix title="Entropy Documentation and Assessment" id="entropyappendix"/>
   <bibliography>
     <cc-entry/>
-    <entry id="bibOMB">
-      <tag>OMB</tag>
-      <description> <h:a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf">Reporting Incidents Involving Personally Identifiable Information and Incorporating the
-            Cost for Security in Agency Information Technology Investments</h:a>, OMB M-06-19, July
-          12, 2006. </description>
+    <entry id="qqq">
+      <tag>CEM</tag>
+      <description>
+        <h:a xmlns="" href="url">QQQQ</h:a>
+      </description>
     </entry>
   </bibliography>
 </PP>
