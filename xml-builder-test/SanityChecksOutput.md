@@ -86,6 +86,8 @@
         on-also/PP[1]""/include-pkg[1]""/depends[1]""/on-also[1]""
 * Error: Detected multiple elements with an id of 't-manfunc'.
 * Error: Detected multiple elements with an id of 't-manfunc'.
+* Error: Detected multiple elements with an id of 'bibCEM'.
+* Error: Detected multiple elements with an id of 'bibCEM'.
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[2]""/note[1]"The ST Au"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[2]""/note[1]"The ST Au"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[2]""/note[1]"The ST Au"/h:p[3]""
