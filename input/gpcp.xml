@@ -565,15 +565,6 @@
     <sec:Security_Objectives_Rationale/>
   </sec:Security_Objectives>
   <!-- 5.0 Security Requirements -->
-  <bibliography>
-    <cc-entry/>
-    <entry id="bibOMB">
-      <tag>OMB</tag>
-      <description> <h:a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf">Reporting Incidents Involving Personally Identifiable Information and Incorporating the
-            Cost for Security in Agency Information Technology Investments</h:a>, OMB M-06-19, July
-          12, 2006. </description>
-    </entry>
-  </bibliography>
   <sec:Security_Requirements title="Security Requirements">
     <!-- 5.1 Security Functional Requirements-->
     <sec:SFRs title="Security Functional Requirements">
@@ -837,14 +828,14 @@
 						implementation as described above. If verification against a known good
 						implementation is not possible, the evaluator shall have the TSF generate 25 key
 						pairs for each supported key length nlen and verify that all of the following are true:<h:ul><h:li>n = p*q</h:li><h:li>p and q are probably prime according to Miller-Rabin tests with error
-							probability <2^(-125)</h:li><h:li>2^16 &lt; e &lt; 2^256 and e is an odd integer</h:li><h:li>GCD(p-1,e) = 1</h:li><h:li>GCD(q-1,e) = 1</h:li><h:li>|p-q| > 2^(nlen/2 - 100)</h:li><h:li>p >= squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>q >= squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li><h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/><h:br/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
+							probability 2^(-125)</h:li><h:li>2^16 &lt; e &lt; 2^256 and e is an odd integer</h:li><h:li>GCD(p-1,e) = 1</h:li><h:li>GCD(q-1,e) = 1</h:li><h:li>|p-q|  2^(nlen/2 - 100)</h:li><h:li>p = squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>q = squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li><h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/><h:br/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
 						These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
 						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/><h:b>  ECC Key Generation Test</h:b><h:br/>
 						For each selected curve, and for each key pair generation method as described in
 						FIPS PUB 186-4, section B.4, the evaluator shall require the implementation under test
 						to generate 10 private/public key pairs (d, Q). The private key, d, shall be generated 
 						using a random bit generator as specified in FCS_RBG_EXT.1. The private key, d,
-						is used to compute the public key, Q’. The evaluator shall confirm that 0<d<n
+						is used to compute the public key, Q’. The evaluator shall confirm that 
 						(where n is the order of the group), and the computed value (Q’) is then compared to
 						public key (Q) of the generated public/private key pair to confirm that Q and Q' are equal.<h:p/><h:b>  Public Key Validation (PKV) Test</h:b><h:br/>
 						For each supported curve, the evaluator shall generate 12 private/public key pairs
@@ -5005,4 +4996,13 @@
 						be suitable and an appropriate justification would be formulated.
 					</aactivity></a-element></a-component></section></section>
   </sec:Security_Requirements>
+    <bibliography>
+    <cc-entry/>
+    <entry id="bibOMB">
+      <tag>OMB</tag>
+      <description> <h:a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf">Reporting Incidents Involving Personally Identifiable Information and Incorporating the
+            Cost for Security in Agency Information Technology Investments</h:a>, OMB M-06-19, July
+          12, 2006. </description>
+    </entry>
+  </bibliography>
 </PP>
