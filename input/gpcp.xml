@@ -28,9 +28,9 @@
     <depends on-sel="QQQQ" on-also="QQQQ"/>
   </include-pkg>
   <sec:Introduction >
-    <sec:Overview><h:p>The scope of this Protection Profile (PP) is to describe the security functionality of General-Purpose Computing Platforms in terms of the Common Criteria and to define functional and assurance requirements for such products. A platform is a collection of hardware devices and firmware that provide the functional capabilities and services needed by tenant software. Such components typically include embedded controllers, trusted platform modules, management controllers, host processors, network interface controllers, graphics processing units, flash memory, storage controllers, storage devices, boot firmware, runtime firmware, human interface devices, and a power supply. This Protection Profile for General-Purpose Computing Platforms derives requirements from the following documents:</h:p><h:ul><h:li>NIAP, <h:i>BIOS Update for PC Client Devices protection Profile</h:i>, Version 1.0, 12 Feb 2013</h:li><h:li>NIST SP 800-147 <h:i>BIOS Protection Guidelines</h:i>, April 2011</h:li><h:li>NIST SP 800-147B <h:i>BIOS Protection Guidelines for Servers</h:i>, August 2014</h:li><h:li>NIST SP 800-193 <h:i>Platform Firmware Resiliency Guidelines</h:i></h:li></h:ul><h:p> Additionally, the following specifications and standards may be relevant to requirements in this PP:</h:p><h:ul><h:li>NIST SP 800-155 (Draft) <h:i>BIOS Integrity Measurement Guidelines (Draft)</h:i>, December 2011</h:li><h:li>NIST SP 1800-34 (Draft) <h:i>Validating the Integrity of Computing Devices (Preliminary Draft)</h:i>, 2021</h:li><h:li>Trusted Computing Group, <h:i>TCG PC Client Platform Firmware Integrity Measurement</h:i> Version 1.0 Revision Specification 43 Family 2.0, May 7, 2021</h:li><h:li>IEEE Std 802.1AR-2018, <h:i>Secure Device Identity</h:i></h:li></h:ul></sec:Overview>
+    <section title="Compliant Targets of Evaluation" id="TOEdescription">This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more general-purpose operating systems as defined by the Protection Profile for General Purpose Operating Systems, one or more virtualization systems as defined by the Protection Profile for Virtualization, or more than one application. Typical platform implementations include servers, PC clients, laptops, and tablets. Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and Network Device platforms as defined in the collaborative Protection Profile for Network Devices are out of scope of this PP. Mobile Device and Network Device platforms must be evaluated against the more specific requirements in their respective specialized PPs. The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware must be protected such that it is not permitted to execute if it has been modified outside of authorized and authenticated update processes. Other use-case-specific features include audit capabilities, Administrator authentication, and protections against physical tampering.</section>
     <tech-terms>
-      <term full="Administrator" abbr="null">
+      <term full="Administrator">
 			An Administrator is responsible for management activities, including setting policies that are 
 			applied by the enterprise on the platform. An Administrator can act remotely through a management server,
 			from which the platform receives configuration policies and updates. An Administrator can enforce
@@ -39,7 +39,7 @@
       <term full="American National Standards Institute" abbr="ANSI">
 			A private organization that oversees development of standards in the United States. 
 		</term>
-      <term full="Application" abbr="null">
+      <term full="Application">
 			Software that runs on a platform and performs tasks on behalf of the user
 			or owner of the platform. 
 		</term>
@@ -54,7 +54,7 @@
 			on behalf of an Administrator.</term>
       <term full="Cipher-based Message Authentication Code" abbr="CMAC">
 			A mode of AES that provides authentication, but not confidentiality.</term>
-      <term full="Credential" abbr="null">
+      <term full="Credential">
 			Data that establishes the identity of a user, e.g. a cryptographic key or password.
 		</term>
       <term full="Critical Security Parameters" abbr="CSP">
@@ -72,7 +72,7 @@
 			Countermeasures that prevent attackers, even those with physical access, from extracting data from non-volatile storage.
 			Common techniques include data encryption and wiping.
 		</term>
-      <term full="Developer" abbr="null">
+      <term full="Developer">
 			An entity that writes OS software. For the purposes of this document, vendors and developers are the same.
 		</term>
       <term full="Diffie-Hellman Key Exchange" abbr="DH">
@@ -81,7 +81,7 @@
       <term full="Distinguished Name" abbr="DN">
 			Information used in certificate-based operations to uniquely identify a person, organization, or business.
 		</term>
-      <term full="General Purpose Operating System" abbr="null">
+      <term full="General Purpose Operating System">
 			A class of OS designed to support a wide-variety of workloads consisting of many concurrent applications or
 			services. Typical characteristics for OSes in this class include support for third-party applications,
 			support for multiple users, and security separation between users and their respective resources.
@@ -112,7 +112,7 @@
 			Software that manages physical and logical resources and provides services
 			for applications. Operating systems are the generally the primary tenant of a GPCP.
 		</term>
-      <term full="Physical Presence" abbr="null">
+      <term full="Physical Presence">
 			A user or administrator having physical access to the TOE. An assertion of physical presence
 			can take the form, for example, of requiring entry of a password at a boot screen, unlocking 
 			of a physical lock (e.g., a motherboard jumper), or inserting a USB cable before permitting
@@ -126,12 +126,12 @@
       <term full="Subject Alternative Name" abbr="SAN">
 			An extended X.509 certificate field.
 		</term>
-      <term full="Sensitive Data" abbr="null">
+      <term full="Sensitive Data">
 			Sensitive data may include all user or enterprise data or may be specific
 			application data such as PII, emails, messaging, documents, calendar items, and contacts.
 			Sensitive data must minimally include credentials and keys. 
 		</term>
-      <term full="Tenant Software" abbr="null">
+      <term full="Tenant Software">
 			Software that runs on and is supported by a platform. In the case of a GPCP, tenant software generally
 			consists of an operating system, virtualization system, or "bare-metal" application.
 		</term>
@@ -139,7 +139,7 @@
 			An isolated and secure area that ensures the confidentiality and integrity of code and data 
 			loaded inside.
 		</term>
-      <term full="User" abbr="null">
+      <term full="User">
 			In the context of a GPCP, a User is a human who interacts with the platform through a user interface.
 			Users do not need to be authenticated by the platform to use the platform, but generally authenticate to tenant
 			software such as on Operating System.
@@ -149,8 +149,6 @@
 			hardware platform without interference from one other.
 		</term>
     </tech-terms>
-    <section title="Compliant Targets of Evaluation" id="TOEdescription">This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more general-purpose operating systems as defined by the Protection Profile for General Purpose Operating Systems, one or more virtualization systems as defined by the Protection Profile for Virtualization, or more than one application. Typical platform implementations include servers, PC clients, laptops, and tablets. Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and Network Device platforms as defined in the collaborative Protection Profile for Network Devices are out of scope of this PP. Mobile Device and Network Device platforms must be evaluated against the more specific requirements in their respective specialized PPs. The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware must be protected such that it is not permitted to execute if it has been modified outside of authorized and authenticated update processes. Other use-case-specific features include audit capabilities, Administrator authentication, and protections against physical tampering.</section>
-    <section title="Platforms with Specific EAs" id="sec-platforms"/>
     <sec:Use_Cases>
       This Protection Profile supports several use cases. The cases enumerated below add requirements to the baseline for GPCP due to additional threats or changes in assumptions about the operational environment. Use cases not listed below (e.g. consumer-grade desktop computers) need be evaluated only against the baseline requirements subject to the appropriate selections.
       <usecases>
@@ -567,7 +565,16 @@
     <sec:Security_Objectives_Rationale/>
   </sec:Security_Objectives>
   <!-- 5.0 Security Requirements -->
-  <sec:Security_Requirements  title="Security Requirements">
+  <bibliography>
+    <cc-entry/>
+    <entry id="bibOMB">
+      <tag>OMB</tag>
+      <description> <h:a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf">Reporting Incidents Involving Personally Identifiable Information and Incorporating the
+            Cost for Security in Agency Information Technology Investments</h:a>, OMB M-06-19, July
+          12, 2006. </description>
+    </entry>
+  </bibliography>
+  <sec:Security_Requirements title="Security Requirements">
     <!-- 5.1 Security Functional Requirements-->
     <sec:SFRs title="Security Functional Requirements">
       <!--5.1.1 Class: Security Audit (FAU)-->
@@ -830,14 +837,14 @@
 						implementation as described above. If verification against a known good
 						implementation is not possible, the evaluator shall have the TSF generate 25 key
 						pairs for each supported key length nlen and verify that all of the following are true:<h:ul><h:li>n = p*q</h:li><h:li>p and q are probably prime according to Miller-Rabin tests with error
-							probability 2^(-125)</h:li><h:li>2^16 &lt; e &lt; 2^256 and e is an odd integer</h:li><h:li>GCD(p-1,e) = 1</h:li><h:li>GCD(q-1,e) = 1</h:li><h:li>|p-q|  2^(nlen/2 - 100)</h:li><h:li>p  squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>q  squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li><h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/><h:br/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
+							probability <2^(-125)</h:li><h:li>2^16 &lt; e &lt; 2^256 and e is an odd integer</h:li><h:li>GCD(p-1,e) = 1</h:li><h:li>GCD(q-1,e) = 1</h:li><h:li>|p-q| > 2^(nlen/2 - 100)</h:li><h:li>p >= squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>q >= squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li><h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/><h:br/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
 						These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
 						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/><h:b>  ECC Key Generation Test</h:b><h:br/>
 						For each selected curve, and for each key pair generation method as described in
 						FIPS PUB 186-4, section B.4, the evaluator shall require the implementation under test
 						to generate 10 private/public key pairs (d, Q). The private key, d, shall be generated 
 						using a random bit generator as specified in FCS_RBG_EXT.1. The private key, d,
-						is used to compute the public key, Q’. The evaluator shall confirm that 
+						is used to compute the public key, Q’. The evaluator shall confirm that 0<d<n
 						(where n is the order of the group), and the computed value (Q’) is then compared to
 						public key (Q) of the generated public/private key pair to confirm that Q and Q' are equal.<h:p/><h:b>  Public Key Validation (PKV) Test</h:b><h:br/>
 						For each supported curve, the evaluator shall generate 12 private/public key pairs
@@ -2471,8 +2478,7 @@
           </f-element>
           <f-element id="fcs-ipsec-ext-1e10">
             <title>The TSF shall generate nonces used in IKE exchanges in a manner such that the probability that a specific nonce value will be repeated during the life a specific IPsec SA is less than 1 in 2^<assignable>(one or more) “bits of security” value(s)associated with the negotiated Diffie-Hellman group as listed in Table 2 of NISTSP 800-57, Recommendation for Key Management – Part 1: General</assignable>.</title>
-            <aactivity level="element"/>
-          </f-element>
+                      </f-element>
           <f-element id="fcs-ipsec-ext-1e11">
             <title>The TSF shall ensure that all IKE protocols perform peer authentication using a<selectables ><selectable id="fcs_ipsec_ext.1.11_1" >RSA</selectable><selectable id="fcs_ipsec_ext.1.11_2" >ECDSA</selectable></selectables>that use X.509v3 certificates that conform to RFC 4945 and<selectables onlyone="yes"><selectable id="fcs_ipsec_ext.1.11_3" >Pre-shared Keys</selectable><selectable id="fcs_ipsec_ext.1.11_4" >no other method</selectable></selectables>.</title>
             <note role="application">
@@ -2572,8 +2578,7 @@
 					versions supported by the TOE in general. The ST Author may assign additional
 					supported identifier types in the second selection.
 				</note>
-            <aactivity level="element"/>
-          </f-element>
+                      </f-element>
           <f-element id="fcs-ipsec-ext-1e13">
             <title>The TSF shall not establish an SA if the presented identifier does not match the configured reference identifier of the peer.</title>
             <note role="application">
@@ -2597,8 +2602,7 @@
 					Common Name.<h:p/>
 					The configuration of the peer reference identifier is addressed by
 					FMT_SMF.1.1/VPN. <h:p/></note>
-            <aactivity level="element"/>
-          </f-element>
+                      </f-element>
           <f-element id="fcs-ipsec-ext-1e14">
             <title>The<selectables ><selectable id="fcs_ipsec_ext.1.14_1" >TSF</selectable><selectable id="fcs_ipsec_ext.1.14_2" >VPN Gateway</selectable></selectables>shall be able to ensure by default that the strength of the symmetric algorithm (in terms of the number of bits in the key) negotiated to protect the<selectables ><selectable id="fcs_ipsec_ext.1.14_3" >IKEv1 Phase 1</selectable><selectable id="fcs_ipsec_ext.1.14_4" >IKEv2 IKE_SA</selectable></selectables>connection is greater than or equal to the strength of the symmetric algorithm (in terms of the number of bits in the key) negotiated to protect the<selectables ><selectable id="fcs_ipsec_ext.1.14_5" >IKEv1 Phase 2</selectable><selectable id="fcs_ipsec_ext.1.14_6" >IKEv2 CHILD_SA</selectable></selectables>connection.</title>
             <note role="application">
@@ -3624,7 +3628,7 @@
         <f-component cc-id="fmt_smf.1" id="sfr-fmt-smf-1" name="Specification of Management Functions">
           <f-element id="fmt-smf-est-1e1">
             <title><!-- NOTE: There is currently no support for Management Function tables, so the following raw XML will be used in the XML Export --> <h:br/>
-                        <title>The TSF shall be capable of performing the following management functions: [<h:p/><h:b><ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b><h:p/> 
+                        The TSF shall be capable of performing the following management functions: [<h:p/><h:b><ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b><h:p/> 
 					Status Markers:<h:br></h:br>
 					M - Mandatory<h:br></h:br>
 					O - Optional/Selectable<h:br></h:br>
@@ -3655,7 +3659,7 @@
 				    then this function must be selected for Administrators. If 
 				    "<h:i>by express determination of an [User]</h:i>" is selected,
 				    then this function must be selected for Users.</h:td></h:tr><h:tr><h:td>17</h:td><h:td>Ability to manage import and export keys/secrets to and from protected storage.</h:td><h:td>O</h:td><h:td>X</h:td><h:td>If FCS_STG_EXT.1 is included in the ST, then this function must be selected.</h:td></h:tr></h:table><h:br></h:br>].
-				</title>  The TSF shall be capable of performing the following management functions: [ <h:p/> <h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b> <h:p/>  Status Markers:  M - Mandatory  O - Optional/Selectable  X - Not permitted <h:p/>  ].</title>
+				  The TSF shall be capable of performing the following management functions: [ <h:p/> <h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b> <h:p/>  Status Markers:  M - Mandatory  O - Optional/Selectable  X - Not permitted <h:p/>  ].</title>
             <note role="application">
 					Note that all Administrator management functions except Function 1 are indicated as "Optional/Selectable." 
 					These functions become Mandatory or Selectable as indicated in the Notes.<h:p/>
@@ -3697,8 +3701,7 @@
 				to administer the GPCP. This role is distinct from OS or VS administrators, who are
 				may are authenticated to tenant software and are considered to be Users in the context of the GPCP.				
 			</note>
-            <aactivity level="element"/>
-          </f-element>
+                      </f-element>
           <audit-event/>
         </f-component>
       </section>
@@ -5002,13 +5005,4 @@
 						be suitable and an appropriate justification would be formulated.
 					</aactivity></a-element></a-component></section></section>
   </sec:Security_Requirements>
-  <bibliography>
-    <cc-entry/>
-    <entry id="bibOMB">
-      <tag>OMB</tag>
-      <description> <h:a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf">Reporting Incidents Involving Personally Identifiable Information and Incorporating the
-            Cost for Security in Agency Information Technology Investments</h:a>, OMB M-06-19, July
-          12, 2006. </description>
-    </entry>
-  </bibliography>
 </PP>
