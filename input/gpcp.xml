@@ -38,23 +38,7 @@
   </include-pkg>
   <modules/>
   <sec:Introduction >
-    <section title="Compliant Targets of Evaluation" id="TOEdescription">
-      This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements
-      for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more
-      general-purpose operating systems as defined by the Protection Profile for General Purpose
-      Operating Systems, one or more virtualization systems as defined by the Protection Profile for
-      Virtualization, or more than one application. Typical platform
-      implementations include servers, PC clients, laptops, and tablets.<h:p/>
-      Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and
-      Network Device platforms as defined in the collaborative Protection Profile for Network Devices
-      are out of scope of this PP.  Mobile Device and Network Device platforms must be evaluated
-      against the more specific requirements in their respective specialized PPs.<h:p/>
-      The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware
-      must be protected such that it is not permitted to execute if it has been modified outside of authorized and
-      authenticated update processes. Other use-case-specific features include audit capabilities, Administrator
-      authentication, and protections against physical tampering.
-
-    </section>
+    <section title="Compliant Targets of Evaluation" id="TOEdescription">This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more general-purpose operating systems as defined by the Protection Profile for General Purpose Operating Systems, one or more virtualization systems as defined by the Protection Profile for Virtualization, or more than one application. Typical platform implementations include servers, PC clients, laptops, and tablets. Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and Network Device platforms as defined in the collaborative Protection Profile for Network Devices are out of scope of this PP. Mobile Device and Network Device platforms must be evaluated against the more specific requirements in their respective specialized PPs. The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware must be protected such that it is not permitted to execute if it has been modified outside of authorized and authenticated update processes. Other use-case-specific features include audit capabilities, Administrator authentication, and protections against physical tampering.</section>
     <tech-terms>
       <term full="Administrator">
         An Administrator is responsible for management activities, including setting policies that are
@@ -176,77 +160,31 @@
       </term>
     </tech-terms>
     <sec:Use_Cases>
-
-      This Protection Profile supports several use cases. The cases
-      enumerated below add requirements to the baseline for GPCP due to additional threats or changes in assumptions
-      about the operational environment. Use cases not listed below (e.g. consumer-grade desktop computers)
-      need be evaluated only against the baseline requirements subject to the appropriate selections.
-
+      This Protection Profile supports several use cases. The cases enumerated below add requirements to the baseline for GPCP due to additional threats or changes in assumptions about the operational environment. Use cases not listed below (e.g. consumer-grade desktop computers) need be evaluated only against the baseline requirements subject to the appropriate selections.
       <usecases>
         <usecase title="Server-Class Platform, Basic" id="uc-server-basic">
-          <description>
-            This use case encompasses server-class hardware in a data center. There are
-            no additional physical protections required because the platform is assumed to be protected
-            by the operational environment as indicated by A.PHYSICAL_PROTECTION.
-            The platform is administered through a management controller
-            that accesses the MC through a console or remotely.
-            This use case adds audit requirements and Administrator authentication requirements to
-            the base mandatory requirements.
-          </description>
+          <description>This use case encompasses server-class hardware in a data center. There are no additional physical protections required because the platform is assumed to be protected by the operational environment as indicated by A.PHYSICAL_PROTECTION. The platform is administered through a management controller that accesses the MC through a console or remotely. This use case adds audit requirements and Administrator authentication requirements to the base mandatory requirements.</description>
         </usecase>
         <usecase title="Server-Class Platform, Enhanced" id="uc-server-enhanced">
-          <description>
-            This use case adds physical protections to the base requirements for server-class hardware.
-            Additional physical protections are required because the platform us assumed to be minimally
-            protected by the by the operational environment. This use case can also be invoked for servers in
-            data centers where there are enhanced security requirements.
-            This use case adds requirements for audit, physical protections, and Administrator
-            authentication to the base mandatory SFRs.
-            It removes the assumption that the TOE is physically protected by the OE.
-          </description>
+          <description>This use case adds physical protections to the base requirements for server-class hardware. Additional physical protections are required because the platform us assumed to be minimally protected by the by the operational environment. This use case can also be invoked for servers in data centers where there are enhanced security requirements. This use case adds requirements for audit, physical protections, and Administrator authentication to the base mandatory SFRs. It removes the assumption that the TOE is physically protected by the OE.</description>
         </usecase>
         <usecase title="Portable Clients (laptops, tablets), Basic" id="uc-client-portable-basic">
-          <description>
-            This use case defines the base requirements for portable clients.
-            This use case adds no requirements to the base mandatory SFRs.
-          </description>
+          <description>This use case defines the base requirements for portable clients. This use case adds no requirements to the base mandatory SFRs.</description>
         </usecase>
         <usecase title="Portable Clients (laptops, tablets), Enhanced" id="uc-client-portable-enhanced">
-          <description>
-            This use case adds physical protections to the base requirements for portable clients or end-user
-            devices. It is intended for devices that are used in high-assurance scenarios.
-          </description>
+          <description>This use case adds physical protections to the base requirements for portable clients or end-user devices. It is intended for devices that are used in high-assurance scenarios.</description>
         </usecase>
         <usecase title="CSfC EUD" id="uc-csfc-eud">
-          <description>
-            EUDs used in accordance with the CSfC Mobile Access Capability Package can include
-            smart phones, tablets, and laptops. This use case covers the basic CSfC requirements
-            for tablet and laptop EUDs (mobile devices are out of scope for this PP).
-            Although CSfC requires that users maintain physical control of EUDs at all times,
-            this use case removes the assumption that the TOE is protected by the OE and
-            adds requirements for audit and basic tamper detection and reporting.
-          </description>
+          <description>EUDs used in accordance with the CSfC Mobile Access Capability Package can include smart phones, tablets, and laptops. This use case covers the basic CSfC requirements for tablet and laptop EUDs (mobile devices are out of scope for this PP). Although CSfC requires that users maintain physical control of EUDs at all times, this use case removes the assumption that the TOE is protected by the OE and adds requirements for audit and basic tamper detection and reporting.</description>
         </usecase>
         <usecase title="Tactical EUD" id="uc-tactical-eud">
-          <description>
-            This use case adds requirements for portable end user computing devices in a tactical
-            environment.
-          </description>
+          <description>This use case adds requirements for portable end user computing devices in a tactical environment.</description>
         </usecase>
         <usecase title="Enterprise Desktop clients" id="uc-ent-clients-desktop">
-          <description>
-            This use case covers the requirements for non-portable desktop computing devices in a low-threat
-            enterprise physical environment.
-            This use case adds only audit to the base mandatory SFRs.
-          </description>
+          <description>This use case covers the requirements for non-portable desktop computing devices in a low-threat enterprise physical environment. This use case adds only audit to the base mandatory SFRs.</description>
         </usecase>
         <usecase title="IoT Devices" id="uc-iot-device">
-          <description>
-            IoT devices are field-located devices without human interfaces when in normal
-            operation. In order to qualify for evaluation under this PP, the device must meet
-            the basic criteria for a general-purpose platform, and not meet the requirements
-            for a mobile device or network device.
-          </description>
+          <description>IoT devices are field-located devices without human interfaces when in normal operation. In order to qualify for evaluation under this PP, the device must meet the basic criteria for a general-purpose platform, and not meet the requirements for a mobile device or network device.</description>
         </usecase>
       </usecases>
     </sec:Use_Cases>
@@ -254,25 +192,16 @@
   <sec:Conformance_Claims  boilerplate="no">
     <cclaims>
       <cclaim name="Conformance Statement">
-        <description>
-          A Security Target must claim exact conformance to this Protection Profile,
-          as defined in the CC and CEM addenda for Exact Conformance, Selection-Based SFRs, and
-          Optional SFRs (dated May 2017).<h:p/></description>
+        <description>A Security Target must claim exact conformance to this Protection Profile, as defined in the CC and CEM addenda for Exact Conformance, Selection-Based SFRs, and Optional SFRs (dated May 2017).</description>
       </cclaim>
       <cclaim name="CC Conformance Claims">
-        <description>
-          This PP is conformant to Parts 2 (Extended) and 3 (Extended) of Common Criteria Version 3.1,
-          Release 5 [CC].
-        </description>
+        <description>This PP is conformant to Parts 2 (Extended) and 3 (Extended) of Common Criteria Version 3.1, Release 5 [CC].</description>
       </cclaim>
       <cclaim name="PP Claim">
         <description>This PP does not claim conformance to any other PP.</description>
       </cclaim>
       <cclaim name="Package Claim">
-        <description>
-          This PP is Functional Package for Transport Layer Security (TLS), version 1.1 Conformant and
-          Functional Package for Secure Shell (SSH), version 1.0 Conformant.
-        </description>
+        <description>This PP is Functional Package for Transport Layer Security (TLS), version 1.1 Conformant and Functional Package for Secure Shell (SSH), version 1.0 Conformant.</description>
       </cclaim>
     </cclaims>
   </sec:Conformance_Claims>
@@ -860,106 +789,12 @@
             <optional/>
           </depends>
           <f-element id="fcs-ckm-1e1-ak">
-            <title>The TSF shall generate <h:b>asymmetric</h:b>  cryptographic keys in accordance with a specified cryptographic key generation algorithm<selectables ><selectable id="sel-fcs-ckm-ak-rsa" ></selectable><selectable id="sel-fcs-ckm-ak-eccn" ></selectable><selectable id="sel-fcs-ckm-ak-eccb" ></selectable><selectable id="sel-fcs-ckm-ak-dsa" ></selectable><selectable id="sel-fcs-ckm-ak-curve25519" ></selectable></selectables></title>
-            <note role="application">
-              This SFR must be included in the ST if asymmetric key generation is a service provided by
-              the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
-              security functionality.<h:p/>
-              Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if
-              "<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
-              If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG_EXT.1 must also be claimed.<h:p/>
-              DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
-              by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
-              For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.<h:p/></note>
+            <title><h:p>The TSF shall generate <h:b/>asymmetric<h:b/> cryptographic keys in accordance with a specified cryptographic key generation algorithm</h:p><selectables ><selectable id="sel-fcs-ckm-ak-rsa" ></selectable><selectable id="sel-fcs-ckm-ak-eccn" ></selectable><selectable id="sel-fcs-ckm-ak-eccb" ></selectable><selectable id="sel-fcs-ckm-ak-dsa" ></selectable><selectable id="sel-fcs-ckm-ak-curve25519" ></selectable></selectables></title>
+            <note role="application"><h:p>This SFR must be included in the ST if asymmetric key generation is a service provided by the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified security functionality. Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if "<h:i/>causing the TOE to generate [asymmetric] keys/secrets<h:i/>" is selected in FCS_STG_EXT.1.2. If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG_EXT.1 must also be claimed. DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated by FIPS PUB 186-4 though that size is still allowed for signature verification. For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.</h:p></note>
             <aactivity level="element">
-              <TSS>The evaluator shall examine the TSS to verify that it describes how the TOE
-                generates an asymmetric key based on the methods selected from  <xref to="fcs-ckm-1-ak-sels"></xref>.
-                The evaluator shall examine the TSS to verify that it describes how the TOE invokes the methods
-                selected in the ST from the table. The evaluator shall examine the TSS to
-                verify that it identifies the usage for each row identifier (key type, key size, and list
-                of standards) selected in the ST.<h:p/></TSS>
-              <Guidance>
-                The evaluator shall verify that the AGD guidance instructs the administrator how
-                to configure the TOE to use the selected key types for all uses identified in the ST.<h:p/></Guidance>
-              <Tests>
-                The following tests require the developer to provide access to a test platform that
-                provides the evaluator with tools that are typically not found on factory products.<h:p/><h:br/><h:b>RSA: RSA Key Generation</h:b><h:p/>
-                The below tests are derived from The 186-4 RSA Validation System (RSA2VS),
-                Updated 8 July 2014, Section 6.2, from the National Institute of Standards and
-                Technology.<h:p/>
-                The evaluator shall verify the implementation of RSA Key Generation by the TOE
-                using the Key Generation test. This test verifies the ability of the TSF to correctly
-                produce values for the key components including the public verification exponent
-                e, the private prime factors p and q, the public modulus n and the calculation of the
-                private signature exponent d.<h:p/>
-                FIPS PUB 186-4 Key Pair generation specifies 5 methods for generating the primes p
-                and q.<h:p/>
-                These are:<h:ol><h:li>Random Primes:<h:ul><h:li>Provable primes</h:li><h:li>Probable primes</h:li></h:ul></h:li><h:li>Primes with Conditions:<h:ul><h:li>Primes p1, p2, q1, q2, p and q shall all be provable primes.</h:li><h:li>Primes p1, p2, q1, and q2 shall be provable primes and p and q shall be
-                probable primes</h:li><h:li>Primes p1, p2, q1, q2, p and q shall all be probable primes.</h:li></h:ul></h:li></h:ol>
-                To test the key generation method for the Random Provable primes method and for
-                all the Primes with Conditions methods, the evaluator must seed the TSF key
-                generation routine with sufficient data to deterministically generate the RSA key
-                pair.<h:p/>
-                For each key length supported, the evaluator shall have the TSF generate 25 key
-                pairs. The evaluator shall verify the correctness of the TSF’s implementation by
-                comparing values generated by the TSF with those generated by a known good
-                implementation using the same input parameters.<h:p/>
-                If the TOE generates Random Probable Primes, then if possible, the Random
-                Probable primes method should also be verified against a known good
-                implementation as described above. If verification against a known good
-                implementation is not possible, the evaluator shall have the TSF generate 25 key
-                pairs for each supported key length nlen and verify that all of the following are true:<h:ul><h:li>n = p*q</h:li><h:li>p and q are probably prime according to Miller-Rabin tests with error
-                probability <2^(-125)</h:li><h:li>2^16 &lt; e &lt; 2^256 and e is an odd integer</h:li><h:li>GCD(p-1,e) = 1</h:li><h:li>GCD(q-1,e) = 1</h:li><h:li>|p-q| > 2^(nlen/2 - 100)</h:li><h:li>p >= squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>q >= squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li><h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/><h:br/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
-                These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
-                Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/><h:b>  ECC Key Generation Test</h:b><h:br/>
-                For each selected curve, and for each key pair generation method as described in
-                FIPS PUB 186-4, section B.4, the evaluator shall require the implementation under test
-                to generate 10 private/public key pairs (d, Q). The private key, d, shall be generated
-                using a random bit generator as specified in FCS_RBG_EXT.1. The private key, d,
-                is used to compute the public key, Q’. The evaluator shall confirm that 0<d<n
-                (where n is the order of the group), and the computed value (Q’) is then compared to
-                public key (Q) of the generated public/private key pair to confirm that Q and Q' are equal.<h:p/><h:b>  Public Key Validation (PKV) Test</h:b><h:br/>
-                For each supported curve, the evaluator shall generate 12 private/public key pairs
-                using the key generation function of a known good implementation and modify six
-                of the public key values so that they are incorrect, leaving six values unchanged
-                (i.e., correct). To determine correctness, the evaluator shall submit the 12 key pairs
-                to the public key validation (PKV) function of the TOE and shall confirm that the
-                results correspond as expected to the modified and unmodified values.<h:p/><h:br/><h:b>DSA: DSA Key Generation using Finite-Field Cryptography (FFC)</h:b><h:p/>
-                The evaluator shall verify the implementation of the Parameters Generation and the
-                Key Generation for FFC by the TOE using the Parameter Generation and Key
-                Generation test. This test verifies the ability of the TSF to correctly produce values
-                for the field prime p, the cryptographic prime q (dividing p-1), the cryptographic
-                group generator g, and the calculation of the private key x and public key y.<h:p/>
-                The Parameter generation specifies 2 ways (or methods) to generate the
-                cryptographic prime q and the field prime p:<h:ul><h:li>Primes q and p shall both be provable primes</h:li><h:li>Primes q and field prime p shall both be probable primes</h:li></h:ul>
-                and two ways to generate the cryptographic group generator g:<h:ul><h:li>Generator g constructed through a verifiable process</h:li><h:li>Generator g constructed through an unverifiable process.</h:li></h:ul>
-                The Key generation specifies 2 ways to generate the private key x:<h:ul><h:li>len(q) bit output of RBG where 1 ≤ x ≤ q-1</h:li><h:li>len(q) + 64 bit output of RBG, followed by a mod q-1 operation and a +1
-                operation, where 1≤ x≤q-1. </h:li></h:ul>
-                The security strength of the RBG must be at least that of the security offered by the
-                FFC parameter set.<h:p/>
-                To test the cryptographic and field prime generation method for the provable primes
-                method or the group generator g for a verifiable process, the evaluator must seed
-                the TSF parameter generation routine with sufficient data to deterministically
-                generate the parameter set.<h:p/>
-                For each key length supported, the evaluator shall have the TSF generate 25
-                parameter sets and key pairs. The evaluator shall verify the correctness of the TSF’s
-                implementation by comparing values generated by the TSF with those generated
-                from a known good implementation. Verification must also confirm<h:ul><h:li>g != 0,1</h:li><h:li>q divides p-1</h:li><h:li>g^q mod p = 1</h:li><h:li>g^x mod p = y</h:li></h:ul>
-                for each FFC parameter set and key pair.<h:p/><h:br/><h:b>Curve25519: Curve25519 Key Generation</h:b><h:p/>
-                The evaluator shall require the implementation under test (IUT) to generate 10
-                private/public key pairs. The private key shall be generated as specified in RFC
-                7748 using an approved random bit generator (RBG) and shall be written in little-endian order (least significant byte first. To determine correctness, the evaluator
-                shall submit the generated key pairs to the public key verification (PKV) function
-                of a known good implementation.<h:p/>
-                Note: Assuming the PKV function of the good implementation will (using little-endian order):
-                <h:ul><h:li>Confirm the private and public keys are 32-byte values</h:li><h:li>Confirm the three least significant bits of the first byte of the private key are
-                  zero</h:li><h:li>Confirm the most significant bit of the last byte is zero</h:li><h:li>Confirm the second most significant bit of the last byte is one</h:li><h:li>Calculate the expected public key from the private key and confirm it matches
-                  the supplied public key</h:li></h:ul>
-                The evaluator shall generate 10 private/public key pairs using the key generation
-                function of a known good implementation and modify 5 of the public key values so
-                that they are incorrect, leaving five values unchanged (i.e. correct). The evaluator
-                shall obtain in response a set of 10 PASS/FAIL values.
-              </Tests>
+              <TSS><h:p>The evaluator shall examine the TSS to verify that it describes how the TOE generates an asymmetric key based on the methods selected from <xref to="fcs-ckm-1-ak-sels"></xref>. The evaluator shall examine the TSS to verify that it describes how the TOE invokes the methods selected in the ST from the table. The evaluator shall examine the TSS to verify that it identifies the usage for each row identifier (key type, key size, and list of standards) selected in the ST.</h:p></TSS>
+              <Guidance><h:p>The evaluator shall verify that the AGD guidance instructs the administrator how to configure the TOE to use the selected key types for all uses identified in the ST.</h:p></Guidance>
+              <Tests><h:p>The following tests require the developer to provide access to a test platform that provides the evaluator with tools that are typically not found on factory products.<h:p/><h:b/>RSA: RSA Key Generation<h:b/> The below tests are derived from The 186-4 RSA Validation System (RSA2VS), Updated 8 July 2014, Section 6.2, from the National Institute of Standards and Technology. The evaluator shall verify the implementation of RSA Key Generation by the TOE using the Key Generation test. This test verifies the ability of the TSF to correctly produce values for the key components including the public verification exponent e, the private prime factors p and q, the public modulus n and the calculation of the private signature exponent d. FIPS PUB 186-4 Key Pair generation specifies 5 methods for generating the primes p and q. These are:</h:p><h:ol><h:li>Random Primes:</h:li></h:ol><h:ul><li class="ql-indent-1">Provable primes</h:li><li class="ql-indent-1">Probable primes</h:li></h:ul><h:ol><h:li>Primes with Conditions:</h:li></h:ol><h:ul><li class="ql-indent-1">Primes p1, p2, q1, q2, p and q shall all be provable primes.</h:li><li class="ql-indent-1">Primes p1, p2, q1, and q2 shall be provable primes and p and q shall be probable primes</h:li><li class="ql-indent-1">Primes p1, p2, q1, q2, p and q shall all be probable primes.</h:li></h:ul><h:p>To test the key generation method for the Random Provable primes method and for all the Primes with Conditions methods, the evaluator must seed the TSF key generation routine with sufficient data to deterministically generate the RSA key pair. For each key length supported, the evaluator shall have the TSF generate 25 key pairs. The evaluator shall verify the correctness of the TSF’s implementation by comparing values generated by the TSF with those generated by a known good implementation using the same input parameters. If the TOE generates Random Probable Primes, then if possible, the Random Probable primes method should also be verified against a known good implementation as described above. If verification against a known good implementation is not possible, the evaluator shall have the TSF generate 25 key pairs for each supported key length nlen and verify that all of the following are true:</h:p><h:ul><h:li>n = p*q</h:li><h:li>p and q are probably prime according to Miller-Rabin tests with error probability &lt;2^(-125)</h:li><h:li>2^16 &lt; e &lt; 2^256 and e is an odd integer</h:li><h:li>GCD(p-1,e) = 1</h:li><h:li>GCD(q-1,e) = 1</h:li><h:li>|p-q| > 2^(nlen/2 - 100)</h:li><h:li>p >= squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>q >= squareroot(2)*( 2^(nlen/2 -1) )</h:li><h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li><h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p><h:br/><h:p/><h:b/>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves<h:b/> These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:b/> ECC Key Generation Test<h:b/><h:p/> For each selected curve, and for each key pair generation method as described in FIPS PUB 186-4, section B.4, the evaluator shall require the implementation under test to generate 10 private/public key pairs (d, Q). The private key, d, shall be generated using a random bit generator as specified in FCS_RBG_EXT.1. The private key, d, is used to compute the public key, Q’. The evaluator shall confirm that 0<h:b/> Public Key Validation (PKV) Test<h:b/><h:p/> For each supported curve, the evaluator shall generate 12 private/public key pairs using the key generation function of a known good implementation and modify six of the public key values so that they are incorrect, leaving six values unchanged (i.e., correct). To determine correctness, the evaluator shall submit the 12 key pairs to the public key validation (PKV) function of the TOE and shall confirm that the results correspond as expected to the modified and unmodified values.<h:p/><h:b/>DSA: DSA Key Generation using Finite-Field Cryptography (FFC)<h:b/> The evaluator shall verify the implementation of the Parameters Generation and the Key Generation for FFC by the TOE using the Parameter Generation and Key Generation test. This test verifies the ability of the TSF to correctly produce values for the field prime p, the cryptographic prime q (dividing p-1), the cryptographic group generator g, and the calculation of the private key x and public key y. The Parameter generation specifies 2 ways (or methods) to generate the cryptographic prime q and the field prime p:</h:p><h:ul><h:li>Primes q and p shall both be provable primes</h:li><h:li>Primes q and field prime p shall both be probable primes</h:li></h:ul><h:p>and two ways to generate the cryptographic group generator g:</h:p><h:ul><h:li>Generator g constructed through a verifiable process</h:li><h:li>Generator g constructed through an unverifiable process.</h:li></h:ul><h:p>The Key generation specifies 2 ways to generate the private key x:</h:p><h:ul><h:li>len(q) bit output of RBG where 1 ≤ x ≤ q-1</h:li><h:li>len(q) + 64 bit output of RBG, followed by a mod q-1 operation and a +1 operation, where 1≤ x≤q-1.</h:li></h:ul><h:p>The security strength of the RBG must be at least that of the security offered by the FFC parameter set. To test the cryptographic and field prime generation method for the provable primes method or the group generator g for a verifiable process, the evaluator must seed the TSF parameter generation routine with sufficient data to deterministically generate the parameter set. For each key length supported, the evaluator shall have the TSF generate 25 parameter sets and key pairs. The evaluator shall verify the correctness of the TSF’s implementation by comparing values generated by the TSF with those generated from a known good implementation. Verification must also confirm</h:p><h:ul><h:li>g != 0,1</h:li><h:li>q divides p-1</h:li><h:li>g^q mod p = 1</h:li><h:li>g^x mod p = y</h:li></h:ul><h:p>for each FFC parameter set and key pair.<h:p/><h:b/>Curve25519: Curve25519 Key Generation<h:b/> The evaluator shall require the implementation under test (IUT) to generate 10 private/public key pairs. The private key shall be generated as specified in RFC 7748 using an approved random bit generator (RBG) and shall be written in little-endian order (least significant byte first. To determine correctness, the evaluator shall submit the generated key pairs to the public key verification (PKV) function of a known good implementation. Note: Assuming the PKV function of the good implementation will (using little-endian order):</h:p><h:ul><h:li>Confirm the private and public keys are 32-byte values</h:li><h:li>Confirm the three least significant bits of the first byte of the private key are zero</h:li><h:li>Confirm the most significant bit of the last byte is zero</h:li><h:li>Confirm the second most significant bit of the last byte is one</h:li><h:li>Calculate the expected public key from the private key and confirm it matches the supplied public key</h:li></h:ul><h:p>The evaluator shall generate 10 private/public key pairs using the key generation function of a known good implementation and modify 5 of the public key values so that they are incorrect, leaving five values unchanged (i.e. correct). The evaluator shall obtain in response a set of 10 PASS/FAIL values. </h:p></Tests>
             </aactivity>
           </f-element>
           <audit-event/>
