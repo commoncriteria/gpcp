@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="..	ransformspp2html.xsl"?>
 <?xml-model href="https://raw.githubusercontent.com/commoncriteria/transforms/master/schemas/CCProtectionProfile.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<PP boilerplate="yes" target-products="General-Purpose Computing Platforms" xmlns="https://niap-ccevs.org/cc/v1" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:cc="https://niap-ccevs.org/cc/v1" xmlns:sec="https://niap-ccevs.org/cc/v1/section">
+<PP boilerplate="yes" target-product="General-Purpose Computing Platforms" xmlns="https://niap-ccevs.org/cc/v1" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:cc="https://niap-ccevs.org/cc/v1" xmlns:sec="https://niap-ccevs.org/cc/v1/section">
   <PPReference>
     <ReferenceTable>
       <PPTitle>Protection Profile for General-Purpose Computing Platforms</PPTitle>
@@ -18,7 +18,18 @@
       <subject>Started</subject>
     </entry>
   </RevisionHistory>
-  <include-pkg/>
+  <include-pkg id="pkg-tls">
+    <raw-url>https://raw.githubusercontent.com/commoncriteria/tls/v1.1/input/tls.xml</raw-url>
+    <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>
+    <depends on-sel="sel-itc-tls"/>
+    <depends on-sel="sel-itc-https"/>
+  </include-pkg>
+  <include-pkg id="pkg-ssh">
+    <raw-url>https://raw.githubusercontent.com/commoncriteria/ssh/v1.0-fp/input/ssh.xml</raw-url>
+    <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=389&amp;id=389</url>
+    <depends on-sel="sel-itc-ssh"/>
+    <depends on-sel="sel-fia-uau-5-ssh"/>
+  </include-pkg>
   <modules/>
   <sec:Introduction >
     <section title="Compliant Targets of Evaluation" id="TOEdescription">This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more general-purpose operating systems as defined by the Protection Profile for General Purpose Operating Systems, one or more virtualization systems as defined by the Protection Profile for Virtualization, or more than one application. Typical platform implementations include servers, PC clients, laptops, and tablets. Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and Network Device platforms as defined in the collaborative Protection Profile for Network Devices are out of scope of this PP. Mobile Device and Network Device platforms must be evaluated against the more specific requirements in their respective specialized PPs. The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware must be protected such that it is not permitted to execute if it has been modified outside of authorized and authenticated update processes. Other use-case-specific features include audit capabilities, Administrator authentication, and protections against physical tampering.</section>
@@ -190,22 +201,70 @@
   </sec:Conformance_Claims>
   <!-- 3.0 Security Problem Definition-->
   <sec:Security_Problem_Definition >
-    
-    The security problem is described in terms
-    of the threats that the TOE is expected to address, assumptions about the
-    operational environment, and any organizational security policies that the TOE
-    is expected to enforce.
-    
-
     <!-- 3.1 Threats -->
     <sec:Threats>
       <threats>
-        <threat name="T.QQQQ">
-          <!-- Repeatable -->
-          <description>QQQQ</description>
-          <objective-refer ref="O.QQQQ">
-            <!-- Repeatable -->
-            <rationale>QQQQ</rationale>
+        <threat name="T.NETWORK_BASED_ATTACK">
+          <description>An attacker from off the TOE can attempt to compromise the TOEthrough a network interface connected to an active TOE component, suchas a management subsystem.</description>
+          <objective-refer ref="O.TRUSTED_CHANNELS">
+            <rationale>The threat T.NETWORK_BASED_ATTACK is countered by O.TRUSTED_CHANNELS as thisprovides for integrity and confidentiality of transmitted data.</rationale>
+          </objective-refer>
+        </threat>
+        <threat name="T.PERSISTENCE">
+          <description>An attacker might be able to establish a permanent presence on the TOE infirmware. This could result in permanent compromise of tenant information, aswell as TOE updates. This threat does not encompass attacker presence in tenantsoftware, as tenant software is not part of the TOE.</description>
+          <objective-refer ref="O.PROTECTED_FIRMWARE">
+            <rationale>The threat T.PERSISTENCE is countered by O.PROTECTED_FIRMWARE as thisobjective supports maintenance of platform firmware integrity.</rationale>
+          </objective-refer>
+        </threat>
+        <threat name="T.PHYSICAL">
+          <description>An attacker with physical access might be able to compromise TOE integrity, subvertTOE protections, or access tenant data through hardware attacks such as probing, physicalmanipulation, fault-injection, side-channel analysis, environmental stress, or activatingdisabled features or pre-delivery services. This threat is addressed by TOE Objectives O.PHYSICAL_SECURITY and O.ATTACK_DETECTION_AND_RESPONSE for the use cases listed below. For other use cases, this threat is mitigated by Operational Environment Objective OE.PHYSICAL_PROTECTION as mapped to Assumption A.PHYSICAL_PROTECTION. Server-Class Platform, EnhancedPortable Clients (laptops, tablets), EnhancedCSfC EUDTactical EUDIoT Devices</description>
+          <objective-refer ref="O.ATTACK_DETECTION_AND_RESPONSE">
+            <rationale>The threat T.PHYSICAL is countered by O.ATTACK_DETECTION_AND_RESPONSE as thisobjective supports detection and reporting of attempts to compromise the TOE.</rationale>
+          </objective-refer>
+          <objective-refer ref="O.PHYSICAL_INTEGRITY">
+            <rationale>The threat T.PHYSICAL is countered by O.PHYSICAL_INTEGRITY as thisobjective supports detection or prevention of attempts to compromisethe physical platform.</rationale>
+          </objective-refer>
+        </threat>
+        <threat name="T.SECURITY_FUNCTIONALITY_FAILURE">
+          <description>An attacker could leverage failed or compromised security functionality to access, change, or modify tenant data, TOE data, or other security functionalityof the device.</description>
+          <objective-refer ref="O.SECURITY_FUNCTIONALITY_INTEGRITY">
+            <rationale>The threat T.SECURITY_FUNCTIONALITY_FAILURE is countered by O.SECURITY_FUNCTIONALITY_INTEGRITYas this objective supports integrity and proper functioning of security functionality.</rationale>
+          </objective-refer>
+        </threat>
+        <threat name="T.SIDE_CHANNEL_LEAKAGE">
+          <description>An attacker running in a tenant context might be able to leverage physicaleffects caused by the operation of the TOE to derive sensitive information aboutother tenants or the TOE.</description>
+          <objective-refer ref="O.MITIGATE_FUNDAMENTAL_FLAWS">
+            <rationale>The threat T.SIDE_CHANNEL_LEAKAGE is countered by O.MITIGATE_FUNDAMENTAL_FLAWS as thisobjective supports the remedy of critical flaws through update or other technical oroperational means.</rationale>
+          </objective-refer>
+        </threat>
+        <threat name="T.TENANT_BASED_ATTACK">
+          <description>An attacker running software as a tenant can attempt to access or modifyTOE firmware or functionality. Note that direct tenant attacks against othertenants are not encompassed by this threat as they are out of scope.</description>
+          <objective-refer ref="O.TENANT_SECURITY">
+            <rationale>The threat T.TENANT_BASED_ATTACK is countered by O.TENANT_SECURITY as thisobjective supports tenant-based security mechanisms to prevent tenant compromise.</rationale>
+          </objective-refer>
+        </threat>
+        <threat name="T.UNAUTHORIZED_PLATFORM_ADMINISTRATOR">
+          <description>An attacker might be able to attain platform administrator status by defeating or bypassingauthentication measures.</description>
+          <objective-refer ref="O.AUTHORIZED_ADMINISTRATOR">
+            <rationale>The threat T.UNAUTHORIZED_PLATFORM_ADMINISTRATOR is countered by O.AUTHORIZED_ADMINISTRATOR as thisprovides for authentication of privileged Administrators.</rationale>
+          </objective-refer>
+        </threat>
+        <threat name="T.UNAUTHORIZED_RECONFIGURATION">
+          <description>An attacker might be able to modify the configuration of the TOE and alter its functionality. This might include, activating dormant subsystems, disabling hardware assists,or altering boot-time behaviors.</description>
+          <objective-refer ref="O.CONFIGURATION_INTEGRITY">
+            <rationale>The threat T.UNAUTHORIZED_RECONFIGURATION is countered by O.CONFIGURATION_INTEGRITY as thisprovides for integrity of platform configuration.</rationale>
+          </objective-refer>
+        </threat>
+        <threat name="T.UPDATE_COMPROMISE">
+          <description>An attacker may attempt to provide a compromised update of TOE firmware. Such updates can undermine the security functionality of the device if they areunauthorized, unauthenticated, or are improperly validated using non-secure orweak cryptography.</description>
+          <objective-refer ref="O.ATTACK_DETECTION_AND_RESPONSE">
+            <rationale>The threat T.UPDATE_COMPROMISE is countered by O.ATTACK_DETECTION_AND_RESPONSE as thisobjective supports detection and reporting of attempts to compromise the TOE.</rationale>
+          </objective-refer>
+          <objective-refer ref="O.STRONG_CRYPTOGRAPHY">
+            <rationale>The threat T.UPDATE_COMPROMISE is countered by O.STRONG_CRYPTOGRAPHY as thisobjective supports use of proven, standards-based cryptographic mechanisms for ensuring that updates are authentic and maintain their integrity.</rationale>
+          </objective-refer>
+          <objective-refer ref="O.UPDATE_INTEGRITY">
+            <rationale>The threat T.UPDATE_COMPROMISE is countered by O.UPDATE_INTEGRITY as thisobjective supports ensuring that platform firmware updates are authentic and properly validated prior to installation.</rationale>
           </objective-refer>
         </threat>
       </threats>
@@ -213,12 +272,67 @@
     <!-- 3.2 Assumptions -->
     <sec:Assumptions>
       <assumptions>
-        <assumption name="A.QQQQ">
-          <!-- Repeatable -->
-          <description>QQQQ</description>
-          <objective-refer ref="OE.QQQQ">
-            <!-- Repeatable -->
-            <rationale>QQQQ</rationale>
+        <assumption name="A.CORRECT_INITIAL_CONFIGURATION">
+          <description>It is assumed that the initial setup and configuration of the TOE at its operational site is correct and in accordance with organizational security policy and operational use case.</description>
+          <objective-refer ref="OE.TRUSTED_ADMIN">
+            <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
+						A.TRUSTED_ADMIN.</rationale>
+          </objective-refer>
+        </assumption>
+        <assumption name="A.MFR_ROT">
+          <description>The root signing credential of the manufacturer is assumed to be secure and has not been compromised.</description>
+          <objective-refer ref="OE.TRUSTED_ADMIN">
+            <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
+						A.TRUSTED_ADMIN.</rationale>
+          </objective-refer>
+        </assumption>
+        <assumption name="A.PHYSICAL_PROTECTION">
+          <description>The TOE is assumed to be physically protected in its operational environment and thus is not subject to physical attacks that could compromise its security or its ability to support the security of tenant workloads. This assumption does not apply if the TOE implements any of the below, in which case physical protection from the Operational Environment is not assumed and the threat T.PHYSICAL and its associated TOE Objectives apply: Server-Class Platform, EnhancedPortable Clients (laptops, tablets), EnhancedCSfC EUDTactical EUDIoT Devices</description>
+          <objective-refer ref="OE.PHYSICAL_PROTECTION">
+            <rationale> The operational environment objective OE.PHYSICAL_PROTECTION is realized through
+						A.PHYSICAL_PROTECTION. </rationale>
+          </objective-refer>
+        </assumption>
+        <assumption name="A.REGULAR_UPDATES">
+          <description>It is assumed that the manufacturer provides updates to TOE firmware in a timely manner in response to known vulnerabilities, and that Administrators apply these updates when they are received.</description>
+          <objective-refer ref="OE.TRUSTED_ADMIN">
+            <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
+					A.TRUSTED_ADMIN.</rationale>
+          </objective-refer>
+        </assumption>
+        <assumption name="A.ROT_INTEGRITY">
+          <description>The TOE includes one or more Roots of Trust composed of TOE firmware, hardware, and pre-installed credentials. Roots of Trust are assumed to be free of malicious capabilities as their integrity cannot be verified.</description>
+          <objective-refer ref="OE.SUPPLY_CHAIN">
+            <rationale>The operational environment objective OE.SUPPLY_CHAIN is realized through
+					A.ROT_INTEGRITY.</rationale>
+          </objective-refer>
+        </assumption>
+        <assumption name="A.SUPPLY_CHAIN_SECURITY">
+          <description>The hardware components that comprise the TOE are assumed to be non-hostile and not compromised at the time of TOE construction. Likewise, the TOE is assumed to retain its integrity throughout transportation until delivery to its operational site.</description>
+          <objective-refer ref="OE.TRUSTED_ADMIN">
+            <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
+						A.TRUSTED_ADMIN.</rationale>
+          </objective-refer>
+        </assumption>
+        <assumption name="A.TRUSTED_ADMIN">
+          <description>TOE Security Administrator are assumed to be trusted and to act in the best interest of security for the organization. The TOE is not expected to be capable of defending against a malicious Administrator that actively works to bypass or compromise the security of the platform.</description>
+          <objective-refer ref="OE.TRUSTED_ADMIN">
+            <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
+					A.TRUSTED_ADMIN.</rationale>
+          </objective-refer>
+        </assumption>
+        <assumption name="A.TRUSTED_DEVELOPMENT_AND_BUILD_PROCESSES">
+          <description>The TOE cannot protect itself during its own development and build processes. Therefore it is assumed that the developers and participants in the build process are not hostile.</description>
+          <objective-refer ref="OE.TRUSTED_ADMIN">
+            <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
+						A.TRUSTED_ADMIN.</rationale>
+          </objective-refer>
+        </assumption>
+        <assumption name="A.TRUSTED_USERS">
+          <description>Physically present non-administrative users of the TOE are assumed to be trusted as far as they are assumed to not be actively trying to subvert the system. (Not for all use cases).</description>
+          <objective-refer ref="OE.TRUSTED_ADMIN">
+            <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
+					A.TRUSTED_ADMIN.</rationale>
           </objective-refer>
         </assumption>
       </assumptions>
@@ -240,24 +354,214 @@
     <!-- 4.1 Security Objectives for the TOE -->
     <sec:Security_Objectives_for_the_TOE>
       <SOs>
-        <SO name="O.QQQQ">
-          <!-- Repeatable -->
-          <description>QQQQ</description>
-          <addressed-by>QQQQ.#/QQQQ</addressed-by>
-          <rationale>QQQQ</rationale>
-          <!-- Repeatable -->
+        <SO name="O.ATTACK_DETECTION_AND_RESPONSE">
+          <description>The TOE must be capable of detecting attempts to compromise the physical or logical integrity of the TOE and respond by notifying a user or reporting the attempt to an enterprise security authority. This includes specification of:Requirements for responses to particular detected events. (resilience, secure state, etc.)Requirements for basic auditing capabilities and protection of audit records.Requirements for secure transmission of audit records (if applicable)</description>
+          <addressed-by>FAU_GEN.1</addressed-by>
+          <rationale>Supports the objective by requiring reporting of security-related audit events.</rationale>
+          <addressed-by>FAU_SAR.1</addressed-by>
+          <rationale>Supports the objective by requiring that audit events be readable by an Administrator.</rationale>
+          <addressed-by>FAU_STG.1</addressed-by>
+          <rationale>Supports the objective by requiring that audit records be protected from unauthorized deletion.</rationale>
+          <addressed-by>FAU_STG.4</addressed-by>
+          <rationale>Supports the objective by requiring that audit records be protected from automatic deletion.</rationale>
+          <addressed-by>FAU_STG_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring that audit records be off-loaded to an external IT entity.</rationale>
+          <addressed-by>FPT_PHP.1</addressed-by>
+          <rationale>Supports the objective through passive detection of physical tampering.</rationale>
+          <addressed-by>FPT_PHP.3</addressed-by>
+          <rationale>Supports the objective through resistance to physical tampering.</rationale>
+          <addressed-by>FPT_ROT_EXT.2</addressed-by>
+          <rationale>Supports the objective by indicating integrity failures in platform firmware.</rationale>
+          <addressed-by>FPT_STM.1</addressed-by>
+          <rationale>Supports the objective by ensuring that audit events are marked with reliable time stamps.</rationale>
+        </SO>
+        <SO name="O.AUTHORIZED_ADMINISTRATOR">
+          <description>The TOE must ensure that Administrative actions can be taken only by authorized Administrators. This includes specification of:Requirements specifying actions allowable for the Administrator roleRequirements for processes for authenticating AdministratorsRequirements for protection of Administrator credentialsRequirements for setup and operation of a secure channel for remote administrationRequirements for management of administrator sessions.</description>
+          <addressed-by>FIA_AFL_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring that Administrators be authenticated.</rationale>
+          <addressed-by>FIA_PMG_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying password complexity requirements.</rationale>
+          <addressed-by>FIA_TRT_EXT.1</addressed-by>
+          <rationale>Supports the objective by limiting the number of automated authentication attempts.</rationale>
+          <addressed-by>FIA_UAU.5</addressed-by>
+          <rationale>Supports the objective by specifying supported authentication mechanisms.</rationale>
+          <addressed-by>FIA_UAU.7</addressed-by>
+          <rationale>Supports the objective by requiring that authentication factor feedback be suppressed.</rationale>
+          <addressed-by>FIA_UIA_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring Administrators be authenticated before making changes.</rationale>
+          <addressed-by>FIA_X509_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying how X.509 certificate validation is performed.</rationale>
+          <addressed-by>FIA_X509_EXT.2</addressed-by>
+          <rationale>Supports the objective by specifying how X.509 certificate authentication is performed.</rationale>
+          <addressed-by>FMT_CFG_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring that default Administrator credentials be changed.</rationale>
+          <addressed-by>FMT_SMF.1</addressed-by>
+          <rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
+          <addressed-by>FMT_SMR.1</addressed-by>
+          <rationale>Supports the objective by defining the roles of Administrator and User.</rationale>
+        </SO>
+        <SO name="O.CONFIGURATION_INTEGRITY">
+          <description>The TOE should detect or prevent unauthorized users from being able to modify the system configuration. This includes:Requirements for authentication of Administrators before application of configuration modifications.Requirements for detection and reporting of attempts to modify the TOE configuration.</description>
+          <addressed-by>FIA_UIA_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring Administrators be authenticated before making changes.</rationale>
+          <addressed-by>FMT_CFG_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring that default Administrator credentials be changed.</rationale>
+          <addressed-by>FMT_SMF.1</addressed-by>
+          <rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
+          <addressed-by>FMT_SMR.1</addressed-by>
+          <rationale>Supports the objective by defining the roles of Administrator and User.</rationale>
+        </SO>
+        <SO name="O.MITIGATE_FUNDAMENTAL_FLAWS">
+          <description>The TOE must have a capability for mitigating or fixing fundamental flaws through update or some other technical or operational means. This includes specifications of:Requirements for updateability of TOE firmware.</description>
+          <addressed-by>FPT_TUD_EXT.1</addressed-by>
+          <rationale>Supports the objective through requiring that a TOE be either updateable or immutable.</rationale>
+          <addressed-by>FPT_TUD_EXT.2</addressed-by>
+          <rationale>Supports the objective through specifying an authenticated firmware update mechanism.</rationale>
+          <addressed-by>FPT_TUD_EXT.3</addressed-by>
+          <rationale>Supports the objective through specifying a firmware update mechanism with delayed authentication.</rationale>
+          <addressed-by>FPT_TUD_EXT.4</addressed-by>
+          <rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>
+        </SO>
+        <SO name="O.PHYSICAL_INTEGRITY">
+          <description>The TOE must be able to protect the physical platform and interfaces from access by physical means such as probing, physical manipulation, fault-injection, side-channel analysis, environmental stress, or activating disabled features or pre-delivery services. This includes specification of:Requirements for tamper detectionRequirements for disabling or protection of external debug interfacesRequirements for updateabilityRequirements for environmental shielding This Objective applies only if the TOE implements a use case that addresses the threat T.PHYSICAL.</description>
+          <addressed-by>FPT_JTA_EXT.1</addressed-by>
+          <rationale>Supports the objective through restricting access to debug ports.</rationale>
+          <addressed-by>FPT_JTA_EXT.2</addressed-by>
+          <rationale>Supports the objective through requiring debug ports to be disabled.</rationale>
+          <addressed-by>FPT_PHP.1</addressed-by>
+          <rationale>Supports the objective through passive detection of physical tampering.</rationale>
+          <addressed-by>FPT_PHP.2</addressed-by>
+          <rationale>Supports the objective through detection and reporting of physical tampering.</rationale>
+          <addressed-by>FPT_PHP.3</addressed-by>
+          <rationale>Supports the objective through resistance to physical tampering.</rationale>
+          <addressed-by>FPT_ROT_EXT.3</addressed-by>
+          <rationale>Supports the objective through requiring supply chain traceability.</rationale>
+          <addressed-by>FPT_TUD_EXT.1</addressed-by>
+          <rationale>Supports the objective through requiring that a TOE be either updateable or immutable.</rationale>
+          <addressed-by>FPT_TUD_EXT.2</addressed-by>
+          <rationale>Supports the objective through specifying an authenticated firmware update mechanism.</rationale>
+          <addressed-by>FPT_TUD_EXT.3</addressed-by>
+          <rationale>Supports the objective through specifying a firmware update mechanism with delayed authentication.</rationale>
+          <addressed-by>FPT_TUD_EXT.4</addressed-by>
+          <rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>
+        </SO>
+        <SO name="O.PROTECTED_FIRMWARE">
+          <description>TOE must ensure that its firmware cannot be modified other than through a non-bypassable trusted update process. This ensures the integrity of firmware both during the update process and while at rest. This includes specification of:Requirements for invocation of the trusted update processRequirements for non-bypassability of the update processRequirements for detection and reporting of attempts to modify TOE firmware outside of the trusted update process.</description>
+          <addressed-by>FPT_PPF_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring that platform firmware be modifiable only through the update process.</rationale>
+          <addressed-by>FPT_ROT_EXT.1</addressed-by>
+          <rationale>Supports the objective by ensuring that platform integrity is rooted in a trust anchor.</rationale>
+          <addressed-by>FPT_ROT_EXT.2</addressed-by>
+          <rationale>Supports the objective by detecting integrity failures in platform firmware.</rationale>
+          <addressed-by>FPT_RVR_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying a means for recovery from a boot firmware failure.</rationale>
+          <addressed-by>FPT_TUD_EXT.1</addressed-by>
+          <rationale>Supports the objective through requiring that a TOE be either updateable or immutable.</rationale>
+          <addressed-by>FPT_TUD_EXT.2</addressed-by>
+          <rationale>Supports the objective through specifying an authenticated firmware update mechanism.</rationale>
+          <addressed-by>FPT_TUD_EXT.3</addressed-by>
+          <rationale>Supports the objective through specifying a firmware update mechanism with delayed authentication.</rationale>
+          <addressed-by>FPT_TUD_EXT.4</addressed-by>
+          <rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>
+        </SO>
+        <SO name="O.SECURITY_FUNCTIONALITY_INTEGRITY">
+          <description>The TOE should be able not be able to operate with failed or degraded security functionality in such a way as might compromise the security or integrity of the TOE or of TOE data.Requirements for detection of degraded or failed security functionality.Requirements for protection of platform credentials against compromise (secret keys, passwords, etc.)Requirements for secure destruction of platform credentials (if applicable)Requirements for quality of credentials (password lengths and the like)</description>
+          <addressed-by>FCS_CKM.4</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for credential and key destruction.</rationale>
+          <addressed-by>FCS_CKM_EXT.4</addressed-by>
+          <rationale>Supports the objective by specifying the timing for credential and key destruction.</rationale>
+          <addressed-by>FCS_STG_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying the types of credential storage supported by the TOE.</rationale>
+          <addressed-by>FCS_STG_EXT.2</addressed-by>
+          <rationale>Supports the objective by specifying the types of material that must be encrypted for storage.</rationale>
+          <addressed-by>FCS_STG_EXT.3</addressed-by>
+          <rationale>Supports the objective by specifying the encryption requirements for credential storage.</rationale>
+          <addressed-by>FDP_ITC_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for import of keys and credentials.</rationale>
+          <addressed-by>FPT_PPF_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring that platform firmware be modifiable only through the update process.</rationale>
+        </SO>
+        <SO name="O.STRONG_CRYPTOGRAPHY">
+          <description>Cryptography must meet the standards required for protection of National Security Systems data (in accordance with CNSSP 15, "Use of Public Standards for Secure Information Sharing"). This includes specification of:Requirements for use and configuration of cryptographic operations.Requirements for key generationRequirements for random bit generation support.</description>
+          <addressed-by>FCS_CKM.1/AK</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for generating asymmetric keys.</rationale>
+          <addressed-by>FCS_CKM.1/SK</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for generating symmetric keys.</rationale>
+          <addressed-by>FCS_CKM.2</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for cryptographic key establishment.</rationale>
+          <addressed-by>FCS_CKM_EXT.5</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for cryptographic key derivation.</rationale>
+          <addressed-by>FCS_COP.1/Hash</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for cryptographic hashing.</rationale>
+          <addressed-by>FCS_COP.1/KAT</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for key agreement and transport.</rationale>
+          <addressed-by>FCS_COP.1/KeyedHash</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for keyed hashes.</rationale>
+          <addressed-by>FCS_COP.1/SigGen</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for digital signature generation.</rationale>
+          <addressed-by>FCS_COP.1/SigVer</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for digital signature verification.</rationale>
+          <addressed-by>FCS_COP.1/SKC</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for symmetric-key cryptography.</rationale>
+          <addressed-by>FCS_RBG_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for random-bit generation services.</rationale>
+          <addressed-by>FCS_SLT_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for cryptographic salt generation.</rationale>
+        </SO>
+        <SO name="O.TENANT_SECURITY">
+          <description>The TOE should provide capabilities and security services to tenant software to help tenants help themselves. This includes specification of:Requirements for providing cryptographic support to tenants (random bit generation, crypto support instructions).Requirements for support for separation of tenant workloadsRequirements for supporting secure storage of tenant credentialsRequirements for supporting secure boot of a tenant operating system</description>
+          <addressed-by>FCS_ENT_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring that the TOE provide entropy to tenant software.</rationale>
+          <addressed-by>FCS_STG_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying the types of credential storage supported by the TOE.</rationale>
+          <addressed-by>FCS_STG_EXT.2</addressed-by>
+          <rationale>Supports the objective by specifying the types of material that must be encrypted for storage.</rationale>
+          <addressed-by>FCS_STG_EXT.3</addressed-by>
+          <rationale>Supports the objective by specifying the encryption requirements for credential storage.</rationale>
+          <addressed-by>FDP_ITC_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for import of keys and credentials.</rationale>
+          <addressed-by>FDP_TEE_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying the requirements for a trusted execution environment.</rationale>
+        </SO>
+        <SO name="O.TRUSTED_CHANNELS">
+          <description>The TOE must protect certain network communications through guaranteed confidentiality, integrity, and authenticity. Such traffic includes communications with remote administrators, audit servers, update servers, and credential managers. This objective includes specification of:Requirements for the use of secure network protocolsRequirements for the use of public key certificatesRequirements for the authentication of endpoints</description>
+          <addressed-by>FCS_HTTPS_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying requirements for the HTTPS protocol.</rationale>
+          <addressed-by>FCS_IPSEC_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying requirements for the IPSec protocol.</rationale>
+          <addressed-by>FIA_X509_EXT.1</addressed-by>
+          <rationale>Supports the objective by specifying how X.509 certificate validation is performed.</rationale>
+          <addressed-by>FIA_X509_EXT.2</addressed-by>
+          <rationale>Supports the objective by specifying how X.509 certificate authentication is performed.</rationale>
+        </SO>
+        <SO name="O.UPDATE_INTEGRITY">
+          <description>The TOE must ensure that updates to TOE firmware are authorized, authenticated, and properly validated prior to installation. This includes specification of:Requirements for protection of updatesRequirements for authentication of update packagesRequirements for management of updatesRequirements for detection and reporting of update events, whether authorized or not.</description>
+          <addressed-by>FPT_PPF_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring that platform firmware be modifiable only through the update process.</rationale>
+          <addressed-by>FPT_ROT_EXT.2</addressed-by>
+          <rationale>Supports the objective by validating the integrity of platform firmware prior to execution.</rationale>
+          <addressed-by>FPT_TUD_EXT.1</addressed-by>
+          <rationale>Supports the objective through requiring that a TOE be either updateable or immutable.</rationale>
+          <addressed-by>FPT_TUD_EXT.2</addressed-by>
+          <rationale>Supports the objective through specifying an authenticated firmware update mechanism.</rationale>
+          <addressed-by>FPT_TUD_EXT.3</addressed-by>
+          <rationale>Supports the objective through specifying a firmware update mechanism with delayed authentication.</rationale>
+          <addressed-by>FPT_TUD_EXT.4</addressed-by>
+          <rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>
         </SO>
       </SOs>
     </sec:Security_Objectives_for_the_TOE>
     <!-- 4.2 Security Objctives for the Operational Environment -->
     <sec:Security_Objectives_for_the_Operational_Environment>
-      
-    QQQQ
-    
       <SOEs>
-        <SOE name="OE.QQQQ">
-          <!-- Repeatable -->
-          <description>QQQQ</description>
+        <SOE name="OE.PHYSICAL_PROTECTION">
+          <description>Platforms that operate within data centers or in other access-controlled environments are expected to receive a considerable degree of protection from these environments. In addition to physical protection, these environments often provide malware-detection and behavior-monitoring services for networked computing assets.</description>
+        </SOE>
+        <SOE name="OE.SUPPLY_CHAIN">
+          <description>The manufacturer is expected to implement processes to ensure that TOE hardware and firmware is not compromised between time of TOE manufacture and delivery to its operational site.</description>
+        </SOE>
+        <SOE name="OE.TRUSTED_ADMIN">
+          <description>The administrator of the GPCP is not careless, willfully negligent or hostile, and administers the platform within compliance of enterprise security policy.</description>
         </SOE>
       </SOEs>
     </sec:Security_Objectives_for_the_Operational_Environment>
