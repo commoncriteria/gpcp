@@ -19,14 +19,20 @@
     </entry>
   </RevisionHistory>
   <include-pkg id="pkg-tls">
-    <raw-url>https://raw.githubusercontent.com/commoncriteria/tls/v1.1/input/tls.xml</raw-url>
+    <git>
+      <url>https://github.com/commoncriteria/tls</url>
+      <branch>release-1.1</branch>
+    </git>
     <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>
     <depends on-sel="sel-itc-tls"/>
     <depends on-sel="sel-itc-https"/>
   </include-pkg>
   <include-pkg id="pkg-ssh">
-    <raw-url>https://raw.githubusercontent.com/commoncriteria/ssh/v1.0-fp/input/ssh.xml</raw-url>
-    <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=389&amp;id=389</url>
+    <git>
+      <url>https://github.com/commoncriteria/ssh</url>
+      <branch>release-1.0</branch>
+    </git>
+    <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459</url>
     <depends on-sel="sel-itc-ssh"/>
     <depends on-sel="sel-fia-uau-5-ssh"/>
   </include-pkg>
@@ -569,7 +575,7 @@
     <sec:Security_Objectives_Rationale/>
   </sec:Security_Objectives>
   <!-- 5.0 Security Requirements -->
-  <sec:req  title="Security Requirements">
+  <sec:Security_Requirements title="Security Requirements">
     <!-- 5.1 Security Functional Requirements-->
     <sec:SFRs title="Security Functional Requirements">
       <!--5.1.1 Class: Security Audit (FAU)-->
@@ -778,7 +784,7 @@
       <section id="fcs" title="Class: Cryptographic Support (FCS)">
         <!--FCS_CKM.1/AK Cryptographic Key Generation (Asymmetric Keys)-->
         <f-component cc-id="fcs_ckm.1" id="sfr-fcs-ckm-1-ak" name="Cryptographic Key Generation (Asymmetric Keys)" iteration="AK" status="sel-based">
-          <depends on="sel-fcs-sto-ext-1e2-ak"/>
+          <depends on="sel-fcs-stg-ext-1e2-ak"/>
           <depends>
             <optional/>
           </depends>
@@ -840,9 +846,8 @@
 						to generate 10 private/public key pairs (d, Q). The private key, d, shall be generated 
 						using a random bit generator as specified in FCS_RBG_EXT.1. The private key, d,
 						is used to compute the public key, Q’. The evaluator shall confirm that 0 &lt; d &lt; n
-						(where n is the order of the group), and the computed value Q’ is then compared to
-						the generated public/private key pairs’ public key, Q, to confirm that Q is equal to
-						Q’.<h:p/><h:b>  Public Key Validation (PKV) Test</h:b><h:br/>
+						(where n is the order of the group), and the computed value (Q’) is then compared to
+						public key (Q) of the generated public/private key pair to confirm that Q and Q' are equal.<h:p/><h:b>  Public Key Validation (PKV) Test</h:b><h:br/>
 						For each supported curve, the evaluator shall generate 12 private/public key pairs
 						using the key generation function of a known good implementation and modify six
 						of the public key values so that they are incorrect, leaving six values unchanged
@@ -890,7 +895,7 @@
         </f-component>
         <!--FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key)-->
         <f-component cc-id="fcs_ckm.1" id="sfr-fcs-ckm-1-sk" name="Cryptographic Key Generation (Symmetric Encryption Key)" iteration="SK" status="sel-based">
-          <depends on="sel-fcs-sto-ext-1e2-sk"/>
+          <depends on="sel-fcs-stg-ext-1e2-sk"/>
           <depends>
             <optional/>
           </depends>
@@ -1723,7 +1728,7 @@
 					This SFR must be included in the ST if symmetric-key cryptography is a service provided by the TOE 
 					to tenant software, or if the TOE itself uses SKC to support or implement PP-specified security 
 					functionality.<h:p/> 
-					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STO_EXT.2, or includes
+					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STG_EXT.2, or includes
 					any of the following selections: <h:ul><h:li>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG_EXT.1</h:li><h:li>"<h:i>ECIES</h:i>" in FCS_COP.1/KAT</h:li><h:li>"<h:i>AES-*</h:i>" in FCS_STG_EXT.3</h:li></h:ul></note>
             <aactivity level="element">
               <TSS>The evaluator shall check that the TSS includes a description of encryption
@@ -1732,7 +1737,7 @@
 						operations as specified in  <xref to="fcs-cop-skc-sels"></xref>.<h:p/>
 						The evaluator shall check that the TSS describes the means by which the TOE
 						satisfies constraints on algorithm parameters included in the selections made for
-						‘cryptographic algorithm’ and ‘list of standards’.<h:p/></TSS>
+						"cryptographic algorithm" and "list of standards."<h:p/></TSS>
               <Guidance>
 						If the product supports multiple modes, the evaluator shall examine the AGD
 						to determine that the method of choosing a specific mode/key size
@@ -2791,9 +2796,9 @@
 				</note>
           </f-element>
           <f-element id="fcs-stg-ext-1e2">
-            <title>The TSF shall support the capability of<selectables ><selectable id="sel-fcs-sto-ext-1e2-import" >importing keys/secrets into the TOE</selectable><selectable>causing the TOE to generate <selectables ><selectable id="sel-fcs-sto-ext-1e2-ak" >asymmetric</selectable><selectable id="sel-fcs-sto-ext-1e2-sk" >symmetric</selectable></selectables>keys/secrets</selectable></selectables>upon request of<selectables ><selectable id="fcs_stg_ext.1.2_2" >a client application</selectable><selectable id="fcs_stg_ext.1.2_3" >an administrator</selectable></selectables>.</title>
+            <title>The TSF shall support the capability of<selectables ><selectable id="sel-fcs-stg-ext-1e2-import" >importing keys/secrets into the TOE</selectable><selectable>causing the TOE to generate <selectables ><selectable id="sel-fcs-stg-ext-1e2-ak" >asymmetric</selectable><selectable id="sel-fcs-stg-ext-1e2-sk" >symmetric</selectable></selectables>keys/secrets</selectable></selectables>upon request of<selectables ><selectable id="fcs_stg_ext.1.2_2" >a client application</selectable><selectable id="fcs_stg_ext.1.2_3" >an administrator</selectable></selectables>.</title>
             <note role="application">
-					If "causing the TOE to generate keys/secrets" is selected in FCS_STO_EXT.1.2, then the 
+					If "causing the TOE to generate keys/secrets" is selected in FCS_STG_EXT.1.2, then the 
 					ST must include at least one of FCS_CKM.1/AK or FCS_CKM.1/SK depending on the value of the 
 					internal selection.
 				</note>
@@ -2901,7 +2906,7 @@
       <section id="fdp" title="Class: User Data Protection (FDP)">
         <!--FDP_ITC_EXT.1 Key/Credential Import-->
         <f-component cc-id="fdp_itc_ext.1" id="sfr-fdp-itc-ext-1" name="Key/Credential Import" status="sel-based">
-          <depends on="sel-fcs-sto-ext-1e2-import"/>
+          <depends on="sel-fcs-stg-ext-1e2-import"/>
           <comp-lev>requires the TSF to implement one or more means for importing keys and credentials
 				into the TOE, which are not addressed by the FDP_ITC component.</comp-lev>
           <dependencies>FCS_COP.1 Cryptographic Operation
@@ -3002,10 +3007,10 @@
             <note role="application">
 					The positive integer is configured according to  <xref to="t-manfunc"></xref> in FMT_SMF.1.1.<h:p/>
 					An unique authentication attempt is defined as any attempt to verify an authentication attempt
-					in which the input is different from a previous attempt. ‘Unique’ must be selected if
+					in which the input is different from a previous attempt. "Unique" must be selected if
 					the authentication system increments the counter only for unique unsuccessful authentication
 					attempts. For example, if the same incorrect password is attempted twice the authentication 
-					system increments the counter once. "<h:i>Non-unique</h:i>" must be selected if the authentication system 
+					system increments the counter once. "Non-unique" must be selected if the authentication system 
 					increments the counter for each unsuccessful authentication attempt, regardless of whether the
 					input is unique. For example, if the same incorrect password is attempted twice the
 					authentication system increments the counter twice.<h:p/>
@@ -5000,7 +5005,7 @@
 						requires expert skills and an electron microscope, for instance, then a test would not
 						be suitable and an appropriate justification would be formulated.
 					</aactivity></a-element></a-component></section></section>
-  </sec:req>
+  </sec:Security_Requirements>
   <appendix title="Implicitly Satisfied Requirements" id="satisfiedreqs"><h:b><ctr ctr-type="Table" pre="Table " id="imp-sat-reqs-table">: Implicitly Satisfied Requirements</ctr></h:b><h:table><h:tr class="header"><h:td>Requirement</h:td><h:td>Rationale for Satisfaction</h:td></h:tr><h:tr><h:td>FIA_UAU.1 – Timing of Authentication</h:td><h:td>
 	  FMT_CFG_EXT.1 has a dependency on FIA_UAU.1 because it cannot exist unless the TOE supports an authentication
 		mechanism.
@@ -5112,11 +5117,11 @@
 	</section></appendix>
   <bibliography>
     <cc-entry/>
-    <entry id="bibCEM">
-      <tag>CEM</tag>
-      <description> <h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CEMV3.1R4.pdf">Common
-            Evaluation Methodology for Information Technology Security - Evaluation Methodology</h:a>,
-			CCMB-2012-09-004, Version 3.1, Revision 4, September 2012. </description>
+    <entry id="bibOMB">
+      <tag>OMB</tag>
+      <description> <h:a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf">Reporting Incidents Involving Personally Identifiable Information and Incorporating the
+            Cost for Security in Agency Information Technology Investments</h:a>, OMB M-06-19, July
+          12, 2006. </description>
     </entry>
   </bibliography>
 </PP>
