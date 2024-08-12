@@ -38,7 +38,7 @@
   </include-pkg>
   <modules/>
   <sec:Introduction >
-    <span style="color: black;">The scope of this Protection Profile (</span><h:a href="https://www.niap-ccevs.org/MMO/PP/MDF%203.3%20PP/#abbr_PP" rel="noopener noreferrer" target="_blank" style="color: blue;">PP</h:a><span style="color: black;">) is to describe the security functionality of mobile devices in terms of [</span><h:a href="https://www.niap-ccevs.org/MMO/PP/MDF%203.3%20PP/#abbr_CC" rel="noopener noreferrer" target="_blank" style="color: blue;">CC</h:a><span style="color: black;">] and to define functional and assurance requirements for such devices.</span></>
+    <section title="Compliant Targets of Evaluation" id="TOEdescription">This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more general-purpose operating systems as defined by the Protection Profile for General Purpose Operating Systems, one or more virtualization systems as defined by the Protection Profile for Virtualization, or more than one application. Typical platform implementations include servers, PC clients, laptops, and tablets. Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and Network Device platforms as defined in the collaborative Protection Profile for Network Devices are out of scope of this PP. Mobile Device and Network Device platforms must be evaluated against the more specific requirements in their respective specialized PPs. The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware must be protected such that it is not permitted to execute if it has been modified outside of authorized and authenticated update processes. Other use-case-specific features include audit capabilities, Administrator authentication, and protections against physical tampering.</section>
     <tech-terms>
       <term full="Administrator">
 			An Administrator is responsible for management activities, including setting policies that are 
@@ -159,7 +159,6 @@
 			hardware platform without interference from one other.
 		</term>
     </tech-terms>
-    <section title="Compliant Targets of Evaluation" id="TOEdescription">This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more general-purpose operating systems as defined by the Protection Profile for General Purpose Operating Systems, one or more virtualization systems as defined by the Protection Profile for Virtualization, or more than one application. Typical platform implementations include servers, PC clients, laptops, and tablets. Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and Network Device platforms as defined in the collaborative Protection Profile for Network Devices are out of scope of this PP. Mobile Device and Network Device platforms must be evaluated against the more specific requirements in their respective specialized PPs. The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware must be protected such that it is not permitted to execute if it has been modified outside of authorized and authenticated update processes. Other use-case-specific features include audit capabilities, Administrator authentication, and protections against physical tampering.</section>
     <sec:Use_Cases>
       This Protection Profile supports several use cases. The cases enumerated below add requirements to the baseline for GPCP due to additional threats or changes in assumptions about the operational environment. Use cases not listed below (e.g. consumer-grade desktop computers) need be evaluated only against the baseline requirements subject to the appropriate selections.
       <usecases>
@@ -587,22 +586,26 @@
           <depends on="sel-rot3-audit"/>
           <depends on="sel-tud2-audit"/>
           <depends on="sel-tud3-audit"/>
+          <depends on="uc-server-basic"/>
+          <depends on="uc-server-enhanced"/>
+          <depends on="uc-csfc-eud"/>
+          <depends on="uc-ent-clients-desktop"/>
           <f-element id="fau-gen-1e1">
-            <title>The TSF shall be able to generate an audit record of the following auditable events:  <h:ol><h:li>Start-up and shutdown of the audit functions</h:li><h:li>All administrative actions</h:li><h:li>Start-up, shutdown, and reboot of the platform</h:li><h:li>Specifically defined auditable events in   <xref g="t-audit-mandatory"></xref></h:li><h:li><selectables ><selectable id="fau_gen.1.1_1" >Specifically defined auditable event in   <xref g="t-audit-optional"></xref> 
-								for Strictly Optional requirements</selectable><selectable id="fau_gen.1.1_2" >Specifically defined auditable event in   <xref g="t-audit-objective"></xref> 
-								for Objective requirements</selectable><selectable id="fau_gen.1.1_3" >Specifically defined auditable event in   <xref g="t-audit-sel-based"></xref> 
-								for Selection-based requirements</selectable><selectable id="fau_gen.1.1_4" >Additional information for the   <xref to="pkg-tls"></xref> listed in   <xref to="atref-pkgs"></xref></selectable><selectable id="fau_gen.1.1_5" >Additional information defined in the audit table for the   <xref to="pkg-ssh"></xref></selectable><selectable id="fau_gen.1.1_6" exclusive="yes">no additional auditable events</selectable></selectables>.</h:li></h:ol></title>
+            <title>The TSF shall be able to generate an audit record of the following auditable events:  <h:ol><h:li>Start-up and shutdown of the audit functions</h:li><h:li>All administrative actions</h:li><h:li>Start-up, shutdown, and reboot of the platform</h:li><h:li>Specifically defined auditable events in  <xref g="t-audit-mandatory"></xref></h:li><h:li><selectables ><selectable id="fau_gen.1.1_1" >Specifically defined auditable event in  <xref g="t-audit-optional"></xref> 
+								for Strictly Optional requirements</selectable><selectable id="fau_gen.1.1_2" >Specifically defined auditable event in  <xref g="t-audit-objective"></xref> 
+								for Objective requirements</selectable><selectable id="fau_gen.1.1_3" >Specifically defined auditable event in  <xref g="t-audit-sel-based"></xref> 
+								for Selection-based requirements</selectable><selectable id="fau_gen.1.1_4" >Additional information for the  <xref to="pkg-tls"></xref> listed in  <xref to="atref-pkgs"></xref></selectable><selectable id="fau_gen.1.1_5" >Additional information defined in the audit table for the  <xref to="pkg-ssh"></xref></selectable><selectable id="fau_gen.1.1_6" exclusive="yes">no additional auditable events</selectable></selectables>.</h:li></h:ol></title>
           </f-element>
           <f-element id="fau-gen-1e2">
-            <title>The TSF shall record within each audit record at least the following information:  <h:ol><h:li>Date and time of the event</h:li><h:li>Type of event</h:li><h:li>Subject and object identity (if applicable)</h:li><h:li>The outcome (success or failure) of the event</h:li><h:li>[<h:b>Additional information defined in   <xref g="t-audit-mandatory"></xref></h:b>]</h:li><h:li><h:b><selectables ><selectable id="fau_gen.1.2_1" >Additional information defined in   <xref g="t-audit-optional"></xref> for Strictly Optional SFRs</selectable><selectable id="fau_gen.1.2_2" >Additional information defined in   <xref g="t-audit-objective"></xref> for Objective SFRs</selectable><selectable id="fau_gen.1.2_3" >Additional information defined in   <xref g="t-audit-sel-based"></xref> for Selection-Based SFRs</selectable><selectable id="fau_gen.1.2_4" >Additional information for the   <xref to="pkg-tls"></xref> listed in   <xref to="atref-pkgs"></xref></selectable><selectable id="fau_gen.1.2_5" >Additional information defined in the audit table for the   <xref to="pkg-ssh"></xref></selectable><selectable id="fau_gen.1.2_6" exclusive="yes">no other information</selectable></selectables>.</h:b></h:li></h:ol></title>
+            <title>The TSF shall record within each audit record at least the following information:  <h:ol><h:li>Date and time of the event</h:li><h:li>Type of event</h:li><h:li>Subject and object identity (if applicable)</h:li><h:li>The outcome (success or failure) of the event</h:li><h:li>[<h:b>Additional information defined in  <xref g="t-audit-mandatory"></xref></h:b>]</h:li><h:li><h:b><selectables ><selectable id="fau_gen.1.2_1" >Additional information defined in  <xref g="t-audit-optional"></xref> for Strictly Optional SFRs</selectable><selectable id="fau_gen.1.2_2" >Additional information defined in  <xref g="t-audit-objective"></xref> for Objective SFRs</selectable><selectable id="fau_gen.1.2_3" >Additional information defined in  <xref g="t-audit-sel-based"></xref> for Selection-Based SFRs</selectable><selectable id="fau_gen.1.2_4" >Additional information for the  <xref to="pkg-tls"></xref> listed in  <xref to="atref-pkgs"></xref></selectable><selectable id="fau_gen.1.2_5" >Additional information defined in the audit table for the  <xref to="pkg-ssh"></xref></selectable><selectable id="fau_gen.1.2_6" exclusive="yes">no other information</selectable></selectables>.</h:b></h:li></h:ol></title>
             <note role="application">
 					The ST Author should include this SFR in the ST if the TOE generates audit events for integrity verification 
 					or boot failures as indicated by the appropriate selections in FPT_ROT_EXT.2, FPT_ROT_EXT.3,
 					FPT_TUD_EXT.2, or FPT_TUD_EXT.3.4; or if the TOE supports the Server (basic or enhanced), CSfC EUD, or
 					Enterprise Desktop use cases.<h:p/>
 					If this SFR is included in the ST, then all the other FAU SFRs must also be claimed.<h:p/>
-					Appropriate entries from   <xref g="t-audit-optional"></xref>,   <xref g="t-audit-objective"></xref>, and
-					  <xref g="t-audit-sel-based"></xref> should be included in the ST if the 
+					Appropriate entries from  <xref g="t-audit-optional"></xref>,  <xref g="t-audit-objective"></xref>, and
+					 <xref g="t-audit-sel-based"></xref> should be included in the ST if the 
 					associated SFRs and selections are included.<h:p/>
 					The following table contains the events enumerated in the auditable events table for 
 					the TLS Functional Package. Inclusion of these events in the ST is subject to selection above,
@@ -674,6 +677,9 @@
 						administrator to delete audit records, if such a capability is implemented.<h:p/></Guidance>
               <Tests>
                 <testlist>
+                  
+						The evaluator shall perform the following tests:
+						
                   <test>
 								[conditional] If the TOE implements an audit record deletion capability, then
 								the evaluator shall attempt to delete the audit trail in a manner that the access 
@@ -796,7 +802,7 @@
 					For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.<h:p/></note>
             <aactivity level="element">
               <TSS>The evaluator shall examine the TSS to verify that it describes how the TOE
-						generates an asymmetric key based on the methods selected from   <xref to="fcs-ckm-1-ak-sels"></xref>.
+						generates an asymmetric key based on the methods selected from  <xref to="fcs-ckm-1-ak-sels"></xref>.
 						The evaluator shall examine the TSS to verify that it describes how the TOE invokes the methods
 						selected in the ST from the table. The evaluator shall examine the TSS to
 						verify that it identifies the usage for each row identifier (key type, key size, and list
@@ -978,9 +984,9 @@
         <f-component cc-id="fcs_ckm.4" id="sfr-fcs-ckm-4" name="Cryptographic Key Destruction">
           <f-element id="fcs-ckm-4e1">
             <title>The TSF shall destroy cryptographic keys and keying material in accordance with a specified cryptographic key destruction method  <h:ul><h:li>For volatile memory, the destruction shall be executed by a 
-						<selectables ><selectable id="fcs_ckm.4.1_1">single overwrite consisting of <selectables><selectable id="fcs_ckm.4.1_2" >a pseudo-random pattern using the TSF’s RBG</selectable><selectable id="fcs_ckm.4.1_3" >zeroes</selectable><selectable id="fcs_ckm.4.1_4" >ones</selectable><selectable id="fcs_ckm.4.1_5" >a new value of a key</selectable><selectable id="fcs_ckm.4.1_1" ><assignable>some value that does not contain any CSP  </assignable></selectable></selectables></selectable><selectable id="fcs_ckm.4.1_8" >removal of power to the memory</selectable><selectable id="fcs_ckm.4.1_9" >removal of all references to the key directly followed by a request for garbage
+						<selectables ><selectable id="fcs_ckm.4.1_1">single overwrite consisting of <selectables><selectable id="fcs_ckm.4.1_2" >a pseudo-random pattern using the TSF’s RBG</selectable><selectable id="fcs_ckm.4.1_3" >zeroes</selectable><selectable id="fcs_ckm.4.1_4" >ones</selectable><selectable id="fcs_ckm.4.1_5" >a new value of a key</selectable><selectable id="fcs_ckm.4.1_7" ><assignable>some value that does not contain any CSP </assignable></selectable></selectables></selectable><selectable id="fcs_ckm.4.1_8" >removal of power to the memory</selectable><selectable id="fcs_ckm.4.1_9" >removal of all references to the key directly followed by a request for garbage
 								collection</selectable></selectables></h:li><h:li>For non-volatile memory 
-						<selectables ><selectable id="fcs_ckm.4.1_10">that employs a wear-leveling algorithm, the destruction shall be executed by a <selectables><selectable id="fcs_ckm.4.1_11">single overwrite consisting of <selectables><selectable id="fcs_ckm.4.1_12" >zeroes</selectable><selectable id="fcs_ckm.4.1_13" >ones</selectable><selectable id="fcs_ckm.4.1_14" >pseudo-random pattern</selectable><selectable id="fcs_ckm.4.1_15" >a new value of a key of the same size</selectable><selectable id="fcs_ckm.4.1_2" ><assignable>some value that does not contain any CSP  </assignable></selectable></selectables></selectable><selectable id="fcs_ckm.4.1_18" >block erase</selectable></selectables></selectable><selectable id="fcs_ckm.4.1_19">that does not employ a wear-leveling algorithm, the destruction shall be executed by a <selectables><selectable id="fcs_ckm.4.1_20"><selectables><selectable id="fcs_ckm.4.1_21" >single</selectable><selectable id="fcs_ckm.4.1_3" ><assignable>ST Author-defined multi-pass  </assignable></selectable></selectables> overwrite consisting of <selectables><selectable id="fcs_ckm.4.1_24" >zeros</selectable><selectable id="fcs_ckm.4.1_25" >ones</selectable><selectable id="fcs_ckm.4.1_26" >pseudo-random pattern</selectable><selectable id="fcs_ckm.4.1_27" >a new value of a key of the same size</selectable><selectable id="fcs_ckm.4.1_4" ><assignable>some value that does not contain any CSP  </assignable></selectable></selectables> followed by a read-verify. If the read-verification of the overwritten data fails, the process shall be repeated again up to times, whereupon an error is returned</selectable><selectable id="fcs_ckm.4.1_31" >block erase</selectable></selectables></selectable></selectables></h:li></h:ul>  that meets the following: [ <h:i>no standard</h:i>  ].</title>
+						<selectables ><selectable id="fcs_ckm.4.1_10">that employs a wear-leveling algorithm, the destruction shall be executed by a <selectables><selectable id="fcs_ckm.4.1_11">single overwrite consisting of <selectables><selectable id="fcs_ckm.4.1_12" >zeroes</selectable><selectable id="fcs_ckm.4.1_13" >ones</selectable><selectable id="fcs_ckm.4.1_14" >pseudo-random pattern</selectable><selectable id="fcs_ckm.4.1_15" >a new value of a key of the same size</selectable><selectable id="fcs_ckm.4.1_17" ><assignable>some value that does not contain any CSP </assignable></selectable></selectables></selectable><selectable id="fcs_ckm.4.1_18" >block erase</selectable></selectables></selectable><selectable id="fcs_ckm.4.1_19">that does not employ a wear-leveling algorithm, the destruction shall be executed by a <selectables><selectable id="fcs_ckm.4.1_20"><selectables><selectable id="fcs_ckm.4.1_21" >single</selectable><selectable id="fcs_ckm.4.1_23" ><assignable>ST Author-defined multi-pass </assignable></selectable></selectables> overwrite consisting of <selectables><selectable id="fcs_ckm.4.1_24" >zeros</selectable><selectable id="fcs_ckm.4.1_25" >ones</selectable><selectable id="fcs_ckm.4.1_26" >pseudo-random pattern</selectable><selectable id="fcs_ckm.4.1_27" >a new value of a key of the same size</selectable><selectable id="fcs_ckm.4.1_29" ><assignable>some value that does not contain any CSP </assignable></selectable></selectables> followed by a read-verify. If the read-verification of the overwritten data fails, the process shall be repeated again up to   times, whereupon an error is returned</selectable><selectable id="fcs_ckm.4.1_31" >block erase</selectable></selectables></selectable></selectables></h:li></h:ul>  that meets the following: [ <h:i>no standard</h:i>  ].</title>
             <note role="application">
 					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
 					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SFR
@@ -1053,6 +1059,9 @@
 						master file table.<h:p/></Guidance>
               <Tests>
                 <testlist>
+                  
+						The evaluator shall perform the following tests:
+						
                   <test>
 								Applied to each key or keying material held as plaintext in volatile
 								memory and subject to destruction by overwrite by the TOE (whether or not the
@@ -1179,7 +1188,7 @@
             <aactivity level="element">
               <TSS>The evaluator shall check that the TSS includes a description of the key derivation
 						functions and shall check that this uses a key derivation algorithm and key sizes
-						according to the specification selected in   <xref to="fcs-ckm-keydrv-sels"></xref>. The evaluator shall confirm that the TSS supports the selected
+						according to the specification selected in  <xref to="fcs-ckm-keydrv-sels"></xref>. The evaluator shall confirm that the TSS supports the selected
 						methods.<h:p/>
 						If key combination is used to form a KEK, the evaluator shall verify
 						that the TSS describes the method of combination and that this method is either an
@@ -1796,7 +1805,7 @@
 							the maximum bit-length of recoverable message that is divisible by 512, for
 							some combinations of modulus size, underlying hash algorithm, and length
 							of salt.
-							  <h:table class="classic" style="width:50%"><h:tr class="header"><h:td>Maximum length of recoverable message divisible by 512 (bits)</h:td><h:td>Modulus size (bits)</h:td><h:td>Underlying hash algorithm (bits)</h:td><h:td>Length of salt L<h:sub>S</h:sub> (bits)</h:td></h:tr><h:tr><h:td>1536</h:td><h:td rowspan="5">2048</h:td><h:td rowspan="2">SHA-256</h:td><h:td>128</h:td></h:tr><h:tr><h:td>1024</h:td><h:td>256</h:td></h:tr><h:tr><h:td>1024</h:td><h:td rowspan="3">SHA-512</h:td><h:td>128</h:td></h:tr><h:tr><h:td>1024</h:td><h:td>256</h:td></h:tr><h:tr><h:td>512</h:td><h:td>512</h:td></h:tr><h:tr><h:td>2560</h:td><h:td rowspan="5">3072</h:td><h:td rowspan="2">SHA-256</h:td><h:td>128</h:td></h:tr><h:tr><h:td>2048</h:td><h:td>256</h:td></h:tr><h:tr><h:td>2048</h:td><h:td rowspan="3">SHA-512</h:td><h:td>128</h:td></h:tr><h:tr><h:td>2048</h:td><h:td>256</h:td></h:tr><h:tr><h:td>1536</h:td><h:td>512</h:td></h:tr><h:tr colspan="4">None that 2-byte trailer field is assumed in calculating the maximum length of recoverable message</h:tr></h:table></h:li><h:li>The length of non-recoverable messages should be selected by considering
+							 <h:table class="classic" style="width:50%"><h:tr class="header"><h:td>Maximum length of recoverable message divisible by 512 (bits)</h:td><h:td>Modulus size (bits)</h:td><h:td>Underlying hash algorithm (bits)</h:td><h:td>Length of salt L<h:sub>S</h:sub> (bits)</h:td></h:tr><h:tr><h:td>1536</h:td><h:td rowspan="5">2048</h:td><h:td rowspan="2">SHA-256</h:td><h:td>128</h:td></h:tr><h:tr><h:td>1024</h:td><h:td>256</h:td></h:tr><h:tr><h:td>1024</h:td><h:td rowspan="3">SHA-512</h:td><h:td>128</h:td></h:tr><h:tr><h:td>1024</h:td><h:td>256</h:td></h:tr><h:tr><h:td>512</h:td><h:td>512</h:td></h:tr><h:tr><h:td>2560</h:td><h:td rowspan="5">3072</h:td><h:td rowspan="2">SHA-256</h:td><h:td>128</h:td></h:tr><h:tr><h:td>2048</h:td><h:td>256</h:td></h:tr><h:tr><h:td>2048</h:td><h:td rowspan="3">SHA-512</h:td><h:td>128</h:td></h:tr><h:tr><h:td>2048</h:td><h:td>256</h:td></h:tr><h:tr><h:td>1536</h:td><h:td>512</h:td></h:tr><h:tr colspan="4">None that 2-byte trailer field is assumed in calculating the maximum length of recoverable message</h:tr></h:table></h:li><h:li>The length of non-recoverable messages should be selected by considering
 							the underlying hash algorithm and usages. If the TSF is used for verifying
 							the authenticity of software/firmware updates, the length of non-recoverable
 							messages should be selected greater than or equal to 2048-bit. With this
@@ -1864,7 +1873,7 @@
               <TSS>The evaluator shall check that the TSS includes a description of encryption
 						functions used for symmetric key encryption. The evaluator should check that this
 						description of the selected encryption function includes the key sizes and modes of
-						operations as specified in   <xref to="fcs-cop-skc-sels"></xref>.<h:p/>
+						operations as specified in  <xref to="fcs-cop-skc-sels"></xref>.<h:p/>
 						The evaluator shall check that the TSS describes the means by which the TOE
 						satisfies constraints on algorithm parameters included in the selections made for
 						"cryptographic algorithm" and "list of standards."<h:p/></TSS>
@@ -1888,7 +1897,7 @@
 						compare the resulting values to those obtained by submitting the same inputs to a
 						known-good implementation.<h:p/>
 						These tests are intended to be equivalent to those described in NIST’s AES Algorithm Validation Suite (AESAVS)
-						(  <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf">
+						( <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf">
 						http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf</h:a>). It is not
 						recommended that the evaluator use values obtained from static sources such as the
 						example NIST’s AES Known Answer Test Values from the AESAVS document,
@@ -1973,7 +1982,7 @@
 						exchanging CT and PT, and replacing AES-CBC-Encrypt with AES-CBC-Decrypt.<h:p/><h:b>AES-CCM:</h:b><h:p/>
 						These tests are intended to be equivalent to those described in the NIST document,
 						“The CCM Validation System (CCMVS),” updated 9 Jan 2012, found at
-						  <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/mac/CCMVS.pdf">
+						 <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/mac/CCMVS.pdf">
 						http://csrc.nist.gov/groups/STM/cavp/documents/mac/CCMVS.pdf</h:a>.<h:p/>
 						It is not recommended that the evaluator use values obtained from static sources such
 						as http://csrc.nist.gov/groups/STM/cavp/documents/mac/ccmtestvectors.zip or use
@@ -2010,7 +2019,7 @@
 						These tests are intended to be equivalent to those described in the NIST document,
 						“The Galois/Counter Mode (GCM) and GMAC Validation System (GCMVS) with
 						the Addition of XPN Validation Testing,” rev. 15 Jun 2016, section 6.2, found at
-						  <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmvs.pdf">
+						 <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmvs.pdf">
 						http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmvs.pdf</h:a>.<h:p/>
 						It is not recommended that the evaluator use values obtained from static sources such
 						as http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmtestvectors.zip, or use
@@ -2042,7 +2051,7 @@
 						implementation.<h:p/>
 						These tests are intended to be equivalent to those described in NIST’s AES
 						Algorithm Validation Suite (AESAVS)
-						(  <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf">
+						( <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf">
 						http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf</h:a>). It is not
 						recommended that the evaluator use values obtained from static sources such as the
 						example NIST’s AES Known Answer Test Values from the AESAVS document,
@@ -2120,7 +2129,7 @@
 						requirements.<h:p/><h:b>XTS-AES:</h:b>
 						These tests are intended to be equivalent to those described in the NIST document,
 						“The XTS-AES Validation System (XTSVS),” updated 5 Sept 2013, found at
-						  <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSVS.pdf">
+						 <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSVS.pdf">
 						http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSVS.pdf</h:a><h:p/>
 						It is not recommended that the evaluator use values obtained from static sources such
 						as the XTS-AES test vectors at
@@ -2271,7 +2280,7 @@
             <note role="application">
 					This SFR is included in the ST if the ST Author selects "<h:i>TLS/HTTPS</h:i>" in 
 					FTP_ITC_EXT.1.1 or "<h:i>HTTPS</h:i>" in FIA_X509_EXT.2.<h:p/>
-					If this SFR is included in the ST, then the   <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">Functional Package for Transport Layer Security</h:a> must also be claimed.
+					If this SFR is included in the ST, then the  <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">Functional Package for Transport Layer Security</h:a> must also be claimed.
 				</note>
           </f-element>
           <f-element id="fcs-https-ext-1e2">
@@ -2382,6 +2391,9 @@
 						to determine how the use of a given mode is specified.<h:br/></Guidance>
               <Tests>
                 <testlist>
+                  
+                        The evaluator shall perform the following test(s) based on the selections chosen:
+                        
                   <test>[conditional] If tunnel mode is selected, the evaluator uses the operational guidance to 
 								configure the TOE/platform to operate in tunnel mode and also configures 
 								a VPN peer to operate in tunnel mode. The evaluator configures the TOE/platform and the
@@ -2537,6 +2549,10 @@
 						the requirement.<h:br/></Guidance>
               <Tests>
                 <testlist>
+                  
+                        Each of the following tests shall be performed for each version of IKE selected in the
+						FCS_IPSEC_EXT.1.5 protocol selection:
+                        
                   <test>[conditional] The evaluator shall configure a maximum lifetime in terms of the # of packets (or
 								bytes) allowed following the operational guidance. The evaluator shall establish an SA and determine that
 								once the allowed # of packets (or bytes) through this SA is exceeded, the connection is closed.</test>
@@ -2602,9 +2618,9 @@
           </f-element>
           <f-element id="fcs-ipsec-ext-1e10">
             <title>The TSF shall generate nonces used in IKE exchanges in a manner such that the probability that a specific nonce value will be repeated during the life a specific IPsec SA is less than 1 in 2^<assignable>(one or more) “bits of security” value(s)associated with the negotiated Diffie-Hellman group as listed in Table 2 of NISTSP 800-57, Recommendation for Key Management – Part 1: General</assignable>.</title>
-          </f-element>
+                      </f-element>
           <f-element id="fcs-ipsec-ext-1e11">
-            <title>The TSF shall ensure that all IKE protocols perform peer authentication using a<selectables ><selectable id="fcs_ipsec_ext.1.11_1" >RSA</selectable><selectable id="fcs_ipsec_ext.1.11_2" >ECDSA</selectable></selectables>that use X.509v3 certificates that conform to RFC 4945 and<selectables ><selectable id="fcs_ipsec_ext.1.11_3" >Pre-shared Keys</selectable><selectable id="fcs_ipsec_ext.1.11_4" >no other method</selectable></selectables>.</title>
+            <title>The TSF shall ensure that all IKE protocols perform peer authentication using a<selectables ><selectable id="fcs_ipsec_ext.1.11_1" >RSA</selectable><selectable id="fcs_ipsec_ext.1.11_2" >ECDSA</selectable></selectables>that use X.509v3 certificates that conform to RFC 4945 and<selectables onlyone="yes"><selectable id="fcs_ipsec_ext.1.11_3" >Pre-shared Keys</selectable><selectable id="fcs_ipsec_ext.1.11_4" >no other method</selectable></selectables>.</title>
             <note role="application">
 					At least one public-key-based Peer Authentication method is required in order to
 					conform to this PP-Module. One or more of the public key schemes is chosen by
@@ -2693,7 +2709,7 @@
             </aactivity>
           </f-element>
           <f-element id="fcs-ipsec-ext-1e12">
-            <title>The TSF shall not establish an SA if the<selectables ><selectable id="fcs_ipsec_ext.1.12_1" >IP address</selectable><selectable id="fcs_ipsec_ext.1.12_2" >Fully Qualified Domain Name (FQDN)</selectable><selectable id="fcs_ipsec_ext.1.12_3" >user FQDN</selectable><selectable id="fcs_ipsec_ext.1.12_4" >Distinguished Name (DN)</selectable></selectables>and<selectables ><selectable id="fcs_ipsec_ext.1.12_5" >no other reference identifier type</selectable><selectable id="fcs_ipsec_ext.1.12_1" ><assignable>other supported reference identifier types  </assignable></selectable></selectables>contained in a certificate does not match the expected value(s) for the entity attempting to establish a connection.</title>
+            <title>The TSF shall not establish an SA if the<selectables ><selectable id="fcs_ipsec_ext.1.12_1" >IP address</selectable><selectable id="fcs_ipsec_ext.1.12_2" >Fully Qualified Domain Name (FQDN)</selectable><selectable id="fcs_ipsec_ext.1.12_3" >user FQDN</selectable><selectable id="fcs_ipsec_ext.1.12_4" >Distinguished Name (DN)</selectable></selectables>and<selectables onlyone="yes"><selectable id="fcs_ipsec_ext.1.12_5" >no other reference identifier type</selectable><selectable id="fcs_ipsec_ext.1.12_7" ><assignable>other supported reference identifier types </assignable></selectable></selectables>contained in a certificate does not match the expected value(s) for the entity attempting to establish a connection.</title>
             <note role="application">
 					The TOE must support at least one of the following identifier types: IP address,
 					Fully Qualified Domain Name (FQDN), user FQDN, or Distinguished Name (DN).
@@ -2702,7 +2718,7 @@
 					versions supported by the TOE in general. The ST Author may assign additional
 					supported identifier types in the second selection.
 				</note>
-          </f-element>
+                      </f-element>
           <f-element id="fcs-ipsec-ext-1e13">
             <title>The TSF shall not establish an SA if the presented identifier does not match the configured reference identifier of the peer.</title>
             <note role="application">
@@ -2726,7 +2742,7 @@
 					Common Name.<h:p/>
 					The configuration of the peer reference identifier is addressed by
 					FMT_SMF.1.1/VPN. <h:p/></note>
-          </f-element>
+                      </f-element>
           <f-element id="fcs-ipsec-ext-1e14">
             <title>The<selectables ><selectable id="fcs_ipsec_ext.1.14_1" >TSF</selectable><selectable id="fcs_ipsec_ext.1.14_2" >VPN Gateway</selectable></selectables>shall be able to ensure by default that the strength of the symmetric algorithm (in terms of the number of bits in the key) negotiated to protect the<selectables ><selectable id="fcs_ipsec_ext.1.14_3" >IKEv1 Phase 1</selectable><selectable id="fcs_ipsec_ext.1.14_4" >IKEv2 IKE_SA</selectable></selectables>connection is greater than or equal to the strength of the symmetric algorithm (in terms of the number of bits in the key) negotiated to protect the<selectables ><selectable id="fcs_ipsec_ext.1.14_5" >IKEv1 Phase 2</selectable><selectable id="fcs_ipsec_ext.1.14_6" >IKEv2 CHILD_SA</selectable></selectables>connection.</title>
             <note role="application">
@@ -2800,7 +2816,7 @@
 				</note>
           </f-element>
           <f-element id="fcs-rbg-ext-1e2">
-            <title>The deterministic RBG shall be seeded by at least one entropy source in accordance with NIST SP 800-90B that accumulates entropy from<selectables ><selectable id="fcs_rbg_ext.1.2_1" ><assignable>number of software-based sources  </assignable></selectable><selectable id="fcs_rbg_ext.1.2_1" > software-based noise source</selectable><selectable id="fcs_rbg_ext.1.2_2" ><assignable>number of hardware-based sources  </assignable></selectable><selectable id="fcs_rbg_ext.1.2_3" > hardware-based noise source</selectable></selectables>with a minimum of<selectables ><selectable id="fcs_rbg_ext.1.2_5" >128</selectable><selectable id="fcs_rbg_ext.1.2_6" >192</selectable><selectable id="fcs_rbg_ext.1.2_7" >256</selectable></selectables>bits of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011, of the keys and CSPs that it will generate.</title>
+            <title>The deterministic RBG shall be seeded by at least one entropy source in accordance with NIST SP 800-90B that accumulates entropy from<selectables ><selectable id="fcs_rbg_ext.1.2_2" ><assignable>number of software-based sources </assignable></selectable><selectable id="fcs_rbg_ext.1.2_1"> software-based noise source</selectable><selectable id="fcs_rbg_ext.1.2_4" ><assignable>number of hardware-based sources </assignable></selectable><selectable id="fcs_rbg_ext.1.2_3"> hardware-based noise source</selectable></selectables>with a minimum of<selectables ><selectable id="fcs_rbg_ext.1.2_5" >128</selectable><selectable id="fcs_rbg_ext.1.2_6" >192</selectable><selectable id="fcs_rbg_ext.1.2_7" >256</selectable></selectables>bits of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011, of the keys and CSPs that it will generate.</title>
             <note role="application">
 					For the selection in FCS_RBG_EXT.1.2, the ST Author selects the appropriate number 
 					of bits of entropy that corresponds to the greatest security strength of the
@@ -2828,7 +2844,7 @@
 						contained in the combined seed value.<h:p/>
 						In addition to the materials below, documentation shall be produced—and the
 						evaluator shall perform the activities—in accordance with 
-						  <xref to="appendix-entropy"></xref>.<h:p/></TSS>
+						 <xref to="appendix-entropy"></xref>.<h:p/></TSS>
               <Guidance>
 						There are no AGD evaluation activities for this component.<h:p/></Guidance>
               <Tests>
@@ -3126,9 +3142,9 @@
 				</note>
           </f-element>
           <f-element id="fia-afl-ext-1e2">
-            <title>The TSF shall detect when a configurable positive integer within<assignable>range of acceptable values for each authentication mechanism</assignable>of<selectables ><selectable id="fia_afl_ext.1.2_2" >unique</selectable><selectable id="fia_afl_ext.1.2_3" >non-unique</selectable></selectables>unsuccessful authentication attempts occur related to last successful authentication for each authentication mechanism.</title>
+            <title>The TSF shall detect when a configurable positive integer within<assignable>range of acceptable values for each authentication mechanism</assignable>of<selectables onlyone="yes"><selectable id="fia_afl_ext.1.2_2" >unique</selectable><selectable id="fia_afl_ext.1.2_3" >non-unique</selectable></selectables>unsuccessful authentication attempts occur related to last successful authentication for each authentication mechanism.</title>
             <note role="application">
-					The positive integer is configured according to   <xref to="t-manfunc"></xref> in FMT_SMF.1.1.<h:p/>
+					The positive integer is configured according to  <xref to="t-manfunc"></xref> in FMT_SMF.1.1.<h:p/>
 					An unique authentication attempt is defined as any attempt to verify an authentication attempt
 					in which the input is different from a previous attempt. "Unique" must be selected if
 					the authentication system increments the counter only for unique unsuccessful authentication
@@ -3167,7 +3183,7 @@
 				</note>
           </f-element>
           <f-element id="fia-afl-ext-1e5">
-            <title>When the defined number of unsuccessful authentication attempts for the last available authentication mechanism or a critical authentication mechanism has been surpassed, the TSF shall<selectables ><selectable id="fia_afl_ext.1.5_1" >perform a wipe of all protected data</selectable><selectable id="fia_afl_ext.1.5_2" >exclude the current User/Administrator from further authentication attempts</selectable><selectable id="fia_afl_ext.1.5_3">exclude the current User/Administrator from further authentication attempts for a period of <assignable>greater than zero seconds  </assignable> time</selectable></selectables>.</title>
+            <title>When the defined number of unsuccessful authentication attempts for the last available authentication mechanism or a critical authentication mechanism has been surpassed, the TSF shall<selectables ><selectable id="fia_afl_ext.1.5_1" >perform a wipe of all protected data</selectable><selectable id="fia_afl_ext.1.5_2" >exclude the current User/Administrator from further authentication attempts</selectable><selectable id="fia_afl_ext.1.5_3">exclude the current User/Administrator from further authentication attempts for a period of <assignable>greater than zero seconds </assignable> time</selectable></selectables>.</title>
             <note role="application">
 					Wipe is performed in accordance with FCS_CKM_EXT.4. Protected data is all non-TSF data, 
 					including all user or enterprise data. Some or all of this data may be considered sensitive
@@ -3252,8 +3268,8 @@
           <dependencies>No other components.</dependencies>
           <f-element id="fia-pmg-ext-1e1">
             <title>The TSF shall support the following for the Password Authentication Factor:  <h:ol><h:li>Passwords shall be able to be composed of any combination of 
-						<selectables ><selectable id="fia_pmg_ext.1.1_1" >upper and lower case letters</selectable><selectable id="fia_pmg_ext.1.1_1" ><assignable>a character set of at least 52 characters  </assignable></selectable></selectables>, numbers, and special characters: 
-						<selectables ><selectable id="fia_pmg_ext.1.1_4" >"!"</selectable><selectable id="fia_pmg_ext.1.1_5" >"@"</selectable><selectable id="fia_pmg_ext.1.1_6" >"#"</selectable><selectable id="fia_pmg_ext.1.1_7" >"$"</selectable><selectable id="fia_pmg_ext.1.1_8" >"%"</selectable><selectable id="fia_pmg_ext.1.1_9" >"^"</selectable><selectable id="fia_pmg_ext.1.1_10" >"&amp;"</selectable><selectable id="fia_pmg_ext.1.1_11" >"*"</selectable><selectable id="fia_pmg_ext.1.1_12" >"("</selectable><selectable id="fia_pmg_ext.1.1_13" >")"</selectable><selectable id="fia_pmg_ext.1.1_2" ><assignable>other characters  </assignable></selectable></selectables></h:li><h:li>Password length up to 
+						<selectables ><selectable id="fia_pmg_ext.1.1_1" >upper and lower case letters</selectable><selectable id="fia_pmg_ext.1.1_3" ><assignable>a character set of at least 52 characters </assignable></selectable></selectables>, numbers, and special characters: 
+						<selectables ><selectable id="fia_pmg_ext.1.1_4" >"!"</selectable><selectable id="fia_pmg_ext.1.1_5" >"@"</selectable><selectable id="fia_pmg_ext.1.1_6" >"#"</selectable><selectable id="fia_pmg_ext.1.1_7" >"$"</selectable><selectable id="fia_pmg_ext.1.1_8" >"%"</selectable><selectable id="fia_pmg_ext.1.1_9" >"^"</selectable><selectable id="fia_pmg_ext.1.1_10" >"&amp;"</selectable><selectable id="fia_pmg_ext.1.1_11" >"*"</selectable><selectable id="fia_pmg_ext.1.1_12" >"("</selectable><selectable id="fia_pmg_ext.1.1_13" >")"</selectable><selectable id="fia_pmg_ext.1.1_15" ><assignable>other characters </assignable></selectable></selectables></h:li><h:li>Password length up to 
 						<assignable>an integer greater than or equal to 14</assignable> characters shall be 
 						supported.</h:li></h:ol></title>
             <note role="application">
@@ -3355,7 +3371,7 @@
 					FIA_X509_EXT.1 and FIA_X509_EXT.2.<h:p/>
 					The ST Author should select "<h:i>SSH-based authentication</h:i>" if the TOE supports 
 					SSH-based authentication, whether public key-, password-, or certificate-based. In this case,
-					the ST should include the   <xref to="pkg-ssh"></xref>.					
+					the ST should include the  <xref to="pkg-ssh"></xref>.					
 				</note>
           </f-element>
           <f-element id="fia-uau-5e2">
@@ -3383,6 +3399,9 @@
 						is addressed in the AGD guidance.<h:p/></Guidance>
               <Tests>
                 <testlist>
+                  
+						The evaluator shall perform the following tests:
+						
                   <test>
 								For each authentication mechanism selected in FIA_UAU.5.1, the evaluator shall
 								enable that mechanism and verify that it can be used to authenticate the user at 
@@ -3431,6 +3450,9 @@
 						AGD guidance and that user authentication input is obscured by default.<h:p/></Guidance>
               <Tests>
                 <testlist>
+                  
+						The evaluator shall perform the following tests:
+						
                   <test>
 								The evaluator shall enter passwords on the device, including at least the Password
 								Authentication Factor at lockscreen, and verify that the password is not displayed
@@ -3477,7 +3499,7 @@
 					Ordinary unprivileged users of the platform need not authenticate to the platform, though they
 					may well have to authenticate themselves to tenant software such as an Operating System. <h:p/>
 					The TSF-mediated management functions are listed in the management functions table 
-					(  <xref to="t-manfunc"></xref>) in FMT_SMF.1.  
+					( <xref to="t-manfunc"></xref>) in FMT_SMF.1.  
 				</note>
             <aactivity level="element">
               <TSS>The evaluator shall examine the TSS to determine that it describes the logon
@@ -3619,7 +3641,7 @@
 						cannot be determined.</management>
           <dependencies>FIA_X509_EXT.1 X.509 Certificate Validation</dependencies>
           <f-element id="fia-x509-ext-2e1">
-            <title>The TSF shall use X.509v3 certificates as defined by RFC 5280 to support authentication for<selectables ><selectable id="sel-x509-2-ipsec" >IPsec</selectable><selectable id="sel-x509-2-tls" >TLS</selectable><selectable id="sel-x509-2-https" >HTTPS</selectable><selectable id="sel-x509-2-ssh" >SSH</selectable><selectable id="sel-x5092-signed-updates" >code signing for system software updates</selectable><selectable id="fia_x509_ext.2.1_1" ><assignable>other uses  </assignable></selectable></selectables></title>
+            <title>The TSF shall use X.509v3 certificates as defined by RFC 5280 to support authentication for<selectables ><selectable id="sel-x509-2-ipsec" >IPsec</selectable><selectable id="sel-x509-2-tls" >TLS</selectable><selectable id="sel-x509-2-https" >HTTPS</selectable><selectable id="sel-x509-2-ssh" >SSH</selectable><selectable id="sel-x5092-signed-updates" >code signing for system software updates</selectable><selectable id="fia_x509_ext.2.1_2" ><assignable>other uses </assignable></selectable></selectables></title>
             <note role="application">This SFR must be included in the ST if "<h:i>certificate-based authentication of the remote peer</h:i>" is
 			selected in FTP_ITC_EXT.1, or if "<h:i>authentication based on X.509 certificates</h:i>"
 					is selected in FIA_UAU.5.1.<h:p/>
@@ -3631,7 +3653,7 @@
 			    </note>
           </f-element>
           <f-element id="fia-x509-ext-2e2">
-            <title>When the TSF cannot establish a connection to determine the validity of a certificate, the TSF shall<selectables ><selectable id="sel-x509-adminset" >allow the administrator to choose whether to accept the certificate in these cases</selectable><selectable id="fia_x509_ext.2.2_1" >accept the certificate</selectable><selectable id="fia_x509_ext.2.2_2" >not accept the certificate</selectable></selectables>.</title>
+            <title>When the TSF cannot establish a connection to determine the validity of a certificate, the TSF shall<selectables onlyone="yes"><selectable id="sel-x509-adminset" >allow the administrator to choose whether to accept the certificate in these cases</selectable><selectable id="fia_x509_ext.2.2_1" >accept the certificate</selectable><selectable id="fia_x509_ext.2.2_2" >not accept the certificate</selectable></selectables>.</title>
             <note role="application">
 					Often a connection must be established to check the revocation status of a 
 					certificate - either to download a CRL or to perform a lookup using OCSP. The selection is used to 
@@ -3699,6 +3721,10 @@
 						replacing or specifying Administrator credentials on first use.<h:p/></Guidance>
               <Tests>
                 <testlist>
+                  
+						If the platform uses default Administrator credentials or no Administrator credentials 
+						on first use the evaluator shall run the following tests:
+						
                   <test>
 								The evaluator shall reset the platform to factory state and restart the  
 								platform to verify that only the functionality required to set new Administrator
@@ -3718,8 +3744,8 @@
         <!--FMT_MOF.1 Management of Security Functions Behavior-->
         <f-component cc-id="fmt_mof.1" id="sfr-fmt-mof-1" name="Management of Security Functions Behavior">
           <f-element id="fmt-mof-1e1">
-            <title>The TSF shall restrict the ability to [ <h:i>determine the behaviour of</h:i>  ] the functions [ <h:i>listed in   <xref to="t-manfunc"></xref></h:i>  ] to [ <h:i>the roles 
-					indicated in   <xref to="t-manfunc"></xref></h:i>  ].</title>
+            <title>The TSF shall restrict the ability to [ <h:i>determine the behaviour of</h:i>  ] the functions [ <h:i>listed in  <xref to="t-manfunc"></xref></h:i>  ] to [ <h:i>the roles 
+					indicated in  <xref to="t-manfunc"></xref></h:i>  ].</title>
             <note role="application"> There are two roles defined in this PP: Administrator and User
 					(see FIA_SMR.1).  
 					Administrators can perform most management functions on the platform, and only
@@ -3742,7 +3768,6 @@
         <f-component cc-id="fmt_smf.1" id="sfr-fmt-smf-1" name="Specification of Management Functions">
           <f-element id="fmt-smf-est-1e1">
             <title><!-- NOTE: There is currently no support for Management Function tables, so the following raw XML will be used in the XML Export --> <h:br/>
-                        <h:br></h:br>
                         The TSF shall be capable of performing the following management functions: [<h:p/><h:b><ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b><h:p/> 
 					Status Markers:<h:br></h:br>
 					M - Mandatory<h:br></h:br>
@@ -3774,7 +3799,7 @@
 				    then this function must be selected for Administrators. If 
 				    "<h:i>by express determination of an [User]</h:i>" is selected,
 				    then this function must be selected for Users.</h:td></h:tr><h:tr><h:td>17</h:td><h:td>Ability to manage import and export keys/secrets to and from protected storage.</h:td><h:td>O</h:td><h:td>X</h:td><h:td>If FCS_STG_EXT.1 is included in the ST, then this function must be selected.</h:td></h:tr></h:table><h:br></h:br>].
-				  The TSF shall be capable of performing the following management functions: [ <h:p/><h:b><ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b><h:p/>  Status Markers:  M - Mandatory  O - Optional/Selectable  X - Not permitted <h:p/>  ].  The TSF shall be capable of performing the following management functions: [ <h:p/> <h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b> <h:p/>  Status Markers:  M - Mandatory  O - Optional/Selectable  X - Not permitted <h:p/>  ]. The TSF shall be capable of performing the following management functions: [ <h:p/> <h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b> <h:p/>  Status Markers: M - Mandatory O - Optional/Selectable X - Not permitted <h:p/>  ].</title>
+				  The TSF shall be capable of performing the following management functions: [ <h:p/> <h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b> <h:p/>  Status Markers:  M - Mandatory  O - Optional/Selectable  X - Not permitted <h:p/>  ].</title>
             <note role="application">
 					Note that all Administrator management functions except Function 1 are indicated as "Optional/Selectable." 
 					These functions become Mandatory or Selectable as indicated in the Notes.<h:p/>
@@ -3794,7 +3819,7 @@
               <Tests>
 						The evaluator shall test each management function included in the ST 
 			                        to demonstrate that the function can be performed only by the roles 
-						indicated in   <xref to="t-manfunc"></xref> and the result of the function is demonstrated. 
+						indicated in  <xref to="t-manfunc"></xref> and the result of the function is demonstrated. 
 					</Tests>
             </aactivity>
           </f-element>
@@ -3816,7 +3841,7 @@
 				to administer the GPCP. This role is distinct from OS or VS administrators, who are
 				may are authenticated to tenant software and are considered to be Users in the context of the GPCP.				
 			</note>
-          </f-element>
+                      </f-element>
           <audit-event/>
         </f-component>
       </section>
@@ -3840,6 +3865,9 @@
 						physical presence to the TSF.<h:p/></Guidance>
               <Tests>
                 <testlist>
+                  
+						The evaluator shall perform the following tests:
+						
                   <test>
 								The evaluator shall attempt to access the debug port without authenticating
 								as an Administrator. The attempt should fail.
@@ -3855,11 +3883,16 @@
           <audit-event/>
         </f-component>
         <!--FPT_JTA_EXT.2 JTAG/Debug Port Disablement-->
-        <f-component cc-id="fpt_jta_ext.2" id="sfr-fpt-jta-ext-2" name="JTAG/Debug Port Disablement">
+        <f-component cc-id="fpt_jta_ext.2" id="sfr-fpt-jta-ext-2" name="JTAG/Debug Port Disablement" status="sel-based">
+          <depends on="uc-server-enhanced"/>
+          <depends on="uc-client-portable-enhanced"/>
+          <depends on="uc-csfc-eud"/>
+          <depends on="uc-tactical-eud"/>
+          <depends on="uc-iot-device"/>
           <comp-lev>requires that debug ports be disabled.</comp-lev>
           <dependencies>No dependencies.</dependencies>
           <f-element id="fpt-jta-ext-2e1">
-            <title>The TSF shall<selectables ><selectable id="fpt_jta_ext.2.1_1" >disable access through hardware</selectable><selectable id="fpt_jta_ext.2.1_2" >control access by a signing key</selectable></selectables>to JTAG or other debug interfaces.</title>
+            <title>The TSF shall<selectables onlyone="yes"><selectable id="fpt_jta_ext.2.1_1" >disable access through hardware</selectable><selectable id="fpt_jta_ext.2.1_2" >control access by a signing key</selectable></selectables>to JTAG or other debug interfaces.</title>
             <note role="application">
 					This requirement should be included in the ST for use cases that include the threat T.PHYSICAL. 
 				</note>
@@ -3885,7 +3918,10 @@
           <audit-event/>
         </f-component>
         <!--FPT_PHP.1 Passive detection of physical attack-->
-        <f-component cc-id="fpt_php.1" id="sfr-fpt-php-1" name="Passive detection of physical attack">
+        <f-component cc-id="fpt_php.1" id="sfr-fpt-php-1" name="Passive detection of physical attack" status="sel-based">
+          <depends on="uc-client-portable-enhanced"/>
+          <depends on="uc-csfc-eud"/>
+          <depends on="uc-iot-device"/>
           <f-element id="fpt-php-1e1">
             <title>The TSF shall provide unambiguous detection of physical tampering that might compromise the TSF.</title>
           </f-element>
@@ -3913,7 +3949,9 @@
           </audit-event>
         </f-component>
         <!--FPT_PHP.2 Notification of Physical Attack-->
-        <f-component cc-id="fpt_php.2" id="sfr-fpt-php-2" name="Notification of Physical Attack">
+        <f-component cc-id="fpt_php.2" id="sfr-fpt-php-2" name="Notification of Physical Attack" status="sel-based">
+          <depends on="uc-server-enhanced"/>
+          <depends on="uc-csfc-eud"/>
           <f-element id="fpt-php-2e1">
             <title>The TSF shall provide unambiguous detection of physical tampering that might compromise the TSF.</title>
           </f-element>
@@ -3933,6 +3971,9 @@
 					or Administrators that it has detected tampering.<h:p/></Guidance>
               <Tests>
                 <testlist>
+                  
+						The evaluator shall perform the following tests:
+					
                   <test>
 							The evaluator shall verify that attempts to open the TOE enclosure  
 							result in indications consistent with the operational guidance. Such indications 
@@ -3954,7 +3995,9 @@
           </audit-event>
         </f-component>
         <!--FPT_PHP.3 Resistance to Physical Attack-->
-        <f-component cc-id="fpt_php.3" id="sfr-fpt-php-3" name="Resistance to Physical Attack">
+        <f-component cc-id="fpt_php.3" id="sfr-fpt-php-3" name="Resistance to Physical Attack" status="sel-based">
+          <depends on="uc-server-enhanced"/>
+          <depends on="uc-tactical-eud"/>
           <f-element id="fpt-php-3e1">
             <title>The TSF shall resist<assignable>physical tampering scenarios</assignable>to the<assignable>list of TSF devices/elements</assignable>by responding automatically such that the SFRs are always enforced.</title>
             <note role="application">
@@ -4073,7 +4116,7 @@
           <f-element id="fpt-rot-ext-2e2">
             <title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.2.1 fails:  <h:ol><h:li>Halt,</h:li><h:li>Notify an 
 							<selectables ><selectable id="sel-rot2-admin-notify" >Administrator</selectable><selectable id="fpt_rot_ext.2.2_1" >User</selectable></selectables> by
-							<selectables ><selectable id="sel-rot2-audit" >generating an audit event</selectable><selectable id="fpt_rot_ext.2.2_1" ><assignable>other notification method(s)  </assignable></selectable></selectables>, and</h:li><h:li><selectables ><selectable id="fpt_rot_ext.2.2_4" >Stop all execution and shut down</selectable><selectable id="sel-rot2-recovery" >Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable></selectables></h:li></h:ol><selectables ><selectable id="fpt_rot_ext.2.2_5" >automatically</selectable><selectable id="sel-rot2-admin-config" >in accordance with Administrator-configurable policy</selectable><selectable id="fpt_rot_ext.2.2_6">by express determination of an <selectables><selectable id="sel-rot2-admin-det" >Administrator</selectable><selectable id="fpt_rot_ext.2.2_7" >User</selectable></selectables></selectable></selectables>.</title>
+							<selectables ><selectable id="sel-rot2-audit" >generating an audit event</selectable><selectable id="fpt_rot_ext.2.2_3" ><assignable>other notification method(s) </assignable></selectable></selectables>, and</h:li><h:li><selectables onlyone="yes"><selectable id="fpt_rot_ext.2.2_4" >Stop all execution and shut down</selectable><selectable id="sel-rot2-recovery" >Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable></selectables></h:li></h:ol><selectables onlyone="yes"><selectable id="fpt_rot_ext.2.2_5" >automatically</selectable><selectable id="sel-rot2-admin-config" >in accordance with Administrator-configurable policy</selectable><selectable id="fpt_rot_ext.2.2_6">by express determination of an <selectables><selectable id="sel-rot2-admin-det" >Administrator</selectable><selectable id="fpt_rot_ext.2.2_7" >User</selectable></selectables></selectable></selectables>.</title>
             <note role="application">
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
@@ -4113,7 +4156,7 @@
           <audit-event>
             <audit-event-descr>
               <selectables onlyone="yes">
-                <selectable>Failure of integrity verification </selectable>
+                <selectable>Failure of integrity verification</selectable>
                 <selectable>none</selectable>
               </selectables>
             </audit-event-descr>
@@ -4150,7 +4193,7 @@
           <f-element id="fpt-rot-ext-3e2">
             <title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.3.1 fails:  <h:ol><h:li>Halt,</h:li><h:li>Notify an 
 							<selectables ><selectable id="sel-rot3-admin-notify" >Administrator</selectable><selectable id="fpt_rot_ext.3.2_1" >User</selectable></selectables> by
-							<selectables ><selectable id="sel-rot3-audit" >generating an audit event</selectable><selectable id="fpt_rot_ext.3.2_1" ><assignable>other notification method(s)  </assignable></selectable></selectables>, and</h:li><h:li><selectables ><selectable id="fpt_rot_ext.3.2_4" >Stop all execution and shut down</selectable><selectable id="fpt_rot_ext.3.2_5" >Continue execution without the integrity-compromised component</selectable><selectable id="fpt_rot_ext.3.2_6" >Continue execution</selectable></selectables></h:li></h:ol><selectables ><selectable id="sel-rot3-admin-config" >in accordance with administrator-configurable policy</selectable><selectable id="fpt_rot_ext.3.2_7">by express determination of an <selectables><selectable id="sel-rot3-admin-det" >Administrator</selectable><selectable id="fpt_rot_ext.3.2_8" >User</selectable></selectables></selectable></selectables>.</title>
+							<selectables ><selectable id="sel-rot3-audit" >generating an audit event</selectable><selectable id="fpt_rot_ext.3.2_3" ><assignable>other notification method(s) </assignable></selectable></selectables>, and</h:li><h:li><selectables onlyone="yes"><selectable id="fpt_rot_ext.3.2_4" >Stop all execution and shut down</selectable><selectable id="fpt_rot_ext.3.2_5" >Continue execution without the integrity-compromised component</selectable><selectable id="fpt_rot_ext.3.2_6" >Continue execution</selectable></selectables></h:li></h:ol><selectables onlyone="yes"><selectable id="sel-rot3-admin-config" >in accordance with administrator-configurable policy</selectable><selectable id="fpt_rot_ext.3.2_7">by express determination of an <selectables><selectable id="sel-rot3-admin-det" >Administrator</selectable><selectable id="fpt_rot_ext.3.2_8" >User</selectable></selectables></selectable></selectables>.</title>
             <note role="application">
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
@@ -4211,6 +4254,9 @@
 						conditions under which the recovery mechanism is initiated (if configurable).<h:p/></Guidance>
               <Tests>
                 <testlist>
+                  
+						The evaluator shall perform the following tests:
+						
                   <test>To test this requirement, the evaluator shall trigger the recovery process
 								either by forcing an update error or a boot integrity failure and observing that 
 								the recovery process has been initiated.</test>
@@ -4344,8 +4390,8 @@
           <f-element id="fpt-tud-ext-2e5">
             <title>The TOE shall take the following actions if a platform firmware integrity, authenticity, or rollback-prevention check fails, or a platform firmware update fails for any other reason:  <h:ul><h:li>Do not install the update,</h:li><h:li>Notify an 
 						<selectables ><selectable id="sel-tud2-admin-notify" >Administrator</selectable><selectable id="fpt_tud_ext.2.5_1" >User</selectable></selectables> by 
-							<selectables ><selectable id="sel-tud2-audit" >generating an audit event</selectable><selectable id="fpt_tud_ext.2.5_1" ><assignable>notification method  </assignable></selectable></selectables>,
-						</h:li></h:ul>  and<selectables ><selectable id="fpt_tud_ext.2.5_4" >Continue execution</selectable><selectable id="fpt_tud_ext.2.5_5" >Halt</selectable><selectable id="fpt_tud_ext.2.5_6" >Stop all execution and shut down</selectable><selectable id="sel-tud2-recovery" >Initiate recovery as specified in FPT_RVR_EXT.1</selectable></selectables><selectables ><selectable id="fpt_tud_ext.2.5_7" >automatically</selectable><selectable id="sel-tud2-admin-config" >in accordance with administrator-configurable policy</selectable><selectable id="fpt_tud_ext.2.5_8">by express determination of an <selectables><selectable id="sel-tud2-admin-det" >Administrator</selectable><selectable id="fpt_tud_ext.2.5_9" >User</selectable></selectables></selectable></selectables>.</title>
+							<selectables ><selectable id="sel-tud2-audit" >generating an audit event</selectable><selectable id="fpt_tud_ext.2.5_3" ><assignable>notification method </assignable></selectable></selectables>,
+						</h:li></h:ul>  and<selectables onlyone="yes"><selectable id="fpt_tud_ext.2.5_4" >Continue execution</selectable><selectable id="fpt_tud_ext.2.5_5" >Halt</selectable><selectable id="fpt_tud_ext.2.5_6" >Stop all execution and shut down</selectable><selectable id="sel-tud2-recovery" >Initiate recovery as specified in FPT_RVR_EXT.1</selectable></selectables><selectables onlyone="yes"><selectable id="fpt_tud_ext.2.5_7" >automatically</selectable><selectable id="sel-tud2-admin-config" >in accordance with administrator-configurable policy</selectable><selectable id="fpt_tud_ext.2.5_8">by express determination of an <selectables><selectable id="sel-tud2-admin-det" >Administrator</selectable><selectable id="fpt_tud_ext.2.5_9" >User</selectable></selectables></selectable></selectables>.</title>
             <note role="application">
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1 and the other audit requirements must be claimed.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
@@ -4360,7 +4406,7 @@
 					An indication of success or failure can be generation of an audit event by a management subsystem, a beep code,
 					an updated version number on a splash screen, or simple failure to continue functioning.<h:p/>
 					If the update mechanism generates audit events, the ST Author must make the appropriate selections
-					from the audit events table (  <xref g="t-audit-sel-based"></xref>).
+					from the audit events table ( <xref g="t-audit-sel-based"></xref>).
 				</note>
             <aactivity level="element">
               <TSS>The evaluator shall ensure that the TSS includes a comprehensive description of how the 
@@ -4378,6 +4424,9 @@
 						of update success or failure, and that it describes how to access the platform firmware version indicators.<h:p/></Guidance>
               <Tests>
                 <testlist>
+                  
+						The evaluator shall perform the following tests:
+						
                   <test>The evaluator determines the current version of the platform firmware, and obtains or 
 								produces a valid, authentic, and permissible update image of platform firmware. The evaluator 
 								initiates an update using this image through the process described in the operational guidance.
@@ -4399,7 +4448,7 @@
           <audit-event>
             <audit-event-descr>
               <selectables onlyone="yes">
-                <selectable>Failure of update authentication/integrity check/rollback </selectable>
+                <selectable>Failure of update authentication/integrity check/rollback</selectable>
                 <selectable>none</selectable>
               </selectables>
             </audit-event-descr>
@@ -4408,7 +4457,7 @@
           <audit-event>
             <audit-event-descr>
               <selectables onlyone="yes">
-                <selectable>Failure of update operation </selectable>
+                <selectable>Failure of update operation</selectable>
                 <selectable>none</selectable>
               </selectables>
             </audit-event-descr>
@@ -4417,7 +4466,7 @@
           <audit-event>
             <audit-event-descr>
               <selectables onlyone="yes">
-                <selectable>Success of update operation </selectable>
+                <selectable>Success of update operation</selectable>
                 <selectable>none</selectable>
               </selectables>
             </audit-event-descr>
@@ -4461,7 +4510,7 @@
           <f-element id="fpt-tud-ext-3e4">
             <title>The TOE shall take the following actions if a platform firmware update integrity, authentication, or rollback-prevention check fails, or a platform firmware update fails for any other reason:  <h:ul><h:li>Notify an 
 							<selectables ><selectable id="sel-tud3-admin-notify" >Administrator</selectable><selectable id="fpt_tud_ext.3.4_1" >User</selectable></selectables> by 
-							<selectables ><selectable id="sel-tud3-audit" >generating an audit event</selectable><selectable id="fpt_tud_ext.3.4_1" ><assignable>notification method  </assignable></selectable></selectables></h:li></h:ul>  and<selectables ><selectable id="fpt_tud_ext.3.4_4" >Halt</selectable><selectable id="fpt_tud_ext.3.4_5" >Stop all execution and shut down</selectable><selectable id="sel-tud3-recovery" >Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable></selectables><selectables ><selectable id="fpt_tud_ext.3.4_6" >automatically</selectable><selectable id="sel-tud3-admin-config" >in accordance with administrator-configurable policy</selectable><selectable id="fpt_tud_ext.3.4_7">by express determination of an <selectables><selectable id="sel-tud3-admin-det" >Administrator</selectable><selectable id="fpt_tud_ext.3.4_8" >User</selectable></selectables></selectable></selectables>.</title>
+							<selectables ><selectable id="sel-tud3-audit" >generating an audit event</selectable><selectable id="fpt_tud_ext.3.4_3" ><assignable>notification method </assignable></selectable></selectables></h:li></h:ul>  and<selectables onlyone="yes"><selectable id="fpt_tud_ext.3.4_4" >Halt</selectable><selectable id="fpt_tud_ext.3.4_5" >Stop all execution and shut down</selectable><selectable id="sel-tud3-recovery" >Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable></selectables><selectables onlyone="yes"><selectable id="fpt_tud_ext.3.4_6" >automatically</selectable><selectable id="sel-tud3-admin-config" >in accordance with administrator-configurable policy</selectable><selectable id="fpt_tud_ext.3.4_7">by express determination of an <selectables><selectable id="sel-tud3-admin-det" >Administrator</selectable><selectable id="fpt_tud_ext.3.4_8" >User</selectable></selectables></selectable></selectables>.</title>
             <note role="application">
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1 and the other audit SFRs must be claimed.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
@@ -4490,6 +4539,9 @@
 						of update success or failure, and that it describes how to access the platform firmware version indicators.<h:p/></Guidance>
               <Tests>
                 <testlist>
+                  
+						The evaluator shall perform the following tests:
+						
                   <test>The evaluator determines the current version of the platform firmware, and obtains or 
 								produces a valid, authentic, and permissible update image of platform firmware. The evaluator 
 								initiates an update using this image through the process described in the operational guidance.
@@ -4509,7 +4561,7 @@
           <audit-event>
             <audit-event-descr>
               <selectables onlyone="yes">
-                <selectable>Failure of update authentication/integrity/rollback check </selectable>
+                <selectable>Failure of update authentication/integrity/rollback check</selectable>
                 <selectable>none</selectable>
               </selectables>
             </audit-event-descr>
@@ -4518,7 +4570,7 @@
           <audit-event>
             <audit-event-descr>
               <selectables onlyone="yes">
-                <selectable>Failure of update operation </selectable>
+                <selectable>Failure of update operation</selectable>
                 <selectable>none</selectable>
               </selectables>
             </audit-event-descr>
@@ -4527,7 +4579,7 @@
           <audit-event>
             <audit-event-descr>
               <selectables onlyone="yes">
-                <selectable>Success of update operation </selectable>
+                <selectable>Success of update operation</selectable>
                 <selectable>none</selectable>
               </selectables>
             </audit-event-descr>
@@ -4544,7 +4596,7 @@
             <title>The TSF shall provide a secure local update mechanism that requires an assertion of physical access to the TOE before installation of an update.</title>
           </f-element>
           <f-element id="fpt-tud-ext-4e2">
-            <title>A user shall assert physical presence to the TSF through:<selectables ><selectable id="fpt_tud_ext.4.2_1" >login to the TOE from a physically connected console or terminal</selectable><selectable id="fpt_tud_ext.4.2_2" >physical connection of a jumper or cable</selectable><selectable id="fpt_tud_ext.4.2_3" >connection to a debug port</selectable><selectable id="fpt_tud_ext.4.2_1" ><assignable>description of other mechanism for asserting physical presence  </assignable></selectable></selectables>.</title>
+            <title>A user shall assert physical presence to the TSF through:<selectables ><selectable id="fpt_tud_ext.4.2_1" >login to the TOE from a physically connected console or terminal</selectable><selectable id="fpt_tud_ext.4.2_2" >physical connection of a jumper or cable</selectable><selectable id="fpt_tud_ext.4.2_3" >connection to a debug port</selectable><selectable id="fpt_tud_ext.4.2_5" ><assignable>description of other mechanism for asserting physical presence </assignable></selectable></selectables>.</title>
             <note role="application">
 					The requirement included in the ST if "<h:i>the secure local update mechanism described in FPT_TUD_EXT.4</h:i>" 
 					is selected in FPT_RVR_EXT.1.1 or 
@@ -4580,6 +4632,9 @@
 					using the local update mechanism, and how to validate that the update was successful.<h:p/></Guidance>
               <Tests>
                 <testlist>
+                   
+						The evaluator shall perform the following tests:
+					
                   <test>The evaluator tests the secure local update by following the instructions provided in the operational 
 					guidance to update the platform firmware image. The update must succeed.<h:p/></test>
                   <test>
@@ -4608,9 +4663,9 @@
 				Initiation of the trusted channel.Termination of the trusted channel.Failures of the trusted path functions.</audit>
           <dependencies>No dependencies.</dependencies>
           <f-element id="ftp-itc-ext-1e1">
-            <title>The TSF shall use<selectables ><selectable id="sel-itc-tls" >TLS as conforming to the   <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">Functional Package for Transport Layer Security</h:a></selectable><selectable id="sel-itc-https" >TLS/HTTPS as conforming to FCS_HTTPS_EXT.1</selectable><selectable id="sel-itc-ipsec" >IPsec as conforming to FCS_IPSEC_EXT.1</selectable><selectable id="sel-itc-ssh" >SSH as conforming to the
-							  <h:a href="https://www.niap-ccevs.org/MMO/PP/-389-/">Functional Package
-							for Secure Shell</h:a></selectable></selectables>protocols with<selectables ><selectable id="sel-itc-certauth" >X.509 certificate-based authentication of the remote peer</selectable><selectable id="ftp_itc_ext.1.1_1" >non-certificate-based authentication of the remote peer</selectable><selectable id="ftp_itc_ext.1.1_2" >no authentication of the remote peer</selectable></selectables>to provide a communication channel between itself and<selectables ><selectable id="ftp_itc_ext.1.1_3" >audit servers (as required by FAU_STG_EXT.1)</selectable><selectable id="ftp_itc_ext.1.1_4" >remote administrators (as required by FTP_TRP.1.1 if selected in FMT_MOF_EXT.1)</selectable><selectable id="ftp_itc_ext.1.1_1" ><assignable>other capabilities  </assignable></selectable><selectable id="ftp_itc_ext.1.1_7" exclusive="yes">no other capabilities</selectable></selectables>that is logically distinct from other communication channels, provides assured identification of its end points, protects channel data from disclosure, and detects modification of the channel data.</title>
+            <title>The TSF shall use<selectables ><selectable id="sel-itc-tls" >TLS as conforming to the  <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">Functional Package for Transport Layer Security</h:a></selectable><selectable id="sel-itc-https" >TLS/HTTPS as conforming to FCS_HTTPS_EXT.1</selectable><selectable id="sel-itc-ipsec" >IPsec as conforming to FCS_IPSEC_EXT.1</selectable><selectable id="sel-itc-ssh" >SSH as conforming to the
+							 <h:a href="https://www.niap-ccevs.org/MMO/PP/-389-/">Functional Package
+							for Secure Shell</h:a></selectable></selectables>protocols with<selectables onlyone="yes"><selectable id="sel-itc-certauth" >X.509 certificate-based authentication of the remote peer</selectable><selectable id="ftp_itc_ext.1.1_1" >non-certificate-based authentication of the remote peer</selectable><selectable id="ftp_itc_ext.1.1_2" >no authentication of the remote peer</selectable></selectables>to provide a communication channel between itself and<selectables ><selectable id="ftp_itc_ext.1.1_3" >audit servers (as required by FAU_STG_EXT.1)</selectable><selectable id="ftp_itc_ext.1.1_4" >remote administrators (as required by FTP_TRP.1.1 if selected in FMT_MOF_EXT.1)</selectable><selectable id="ftp_itc_ext.1.1_6" ><assignable>other capabilities </assignable></selectable><selectable id="ftp_itc_ext.1.1_7" exclusive="yes">no other capabilities</selectable></selectables>that is logically distinct from other communication channels, provides assured identification of its end points, protects channel data from disclosure, and detects modification of the channel data.</title>
             <note role="application"> 
 					This SFR is included in the ST if a trusted channel is used to offload audit data 
 					or if the platform is administered remotely. That is, if "<h:i>a trusted channel as specified in FTP_ITC_EXT.1</h:i>" 
@@ -4749,6 +4804,9 @@
 						establishing the remote administrative sessions for each supported method. <h:p/></Guidance>
               <Tests>
                 <testlist>
+                  
+                        The evaluator shall also perform the following tests:
+                        
                   <test>The evaluator shall ensure that communications using each specified (in the AGD) 
 								remote administration method is tested during the course of the evaluation,
 								setting up the connections as described in the AGD and ensuring that
@@ -4782,22 +4840,19 @@
     </sec:SFRs>
     <!--5.2 Security Assurance Requirements-->
     <section title="Security Assurance Requirements" id="SARs">
-      <h:p>The Security Objectives in <xref to="SecurityObjectivesTOE"></xref> were constructed to address threats identified in <xref to="Threats"></xref>. The Security Functional Requirements (SFRs) in <xref to="SFRs"></xref> are a formal instantiation of the Security Objectives. The PP identifies the Security Assurance Requirements (SARs) to frame the extent to which the evaluator assesses the documentation applicable for the evaluation and performs independent testing. This section lists the set of SARs from CC part 3 that are required in evaluations against this PP. Individual Evaluation Activities to be performed are specified both in <xref to="SFRs"></xref> as well as in this section. The general model for evaluation of GPCPs against STs written to conform to this PP is as follows: After the ST has been approved for evaluation, the ITSEF will obtain the TOE, supporting environmental IT, and the administrative/user guides for the TOE. The ITSEF is expected to perform actions mandated by the Common Evaluation Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the Evaluation Activities contained within <xref to="SFRs"></xref>, which are intended to be an interpretation of the other CEM assurance requirements as they apply to the specific technology instantiated in the TOE. The Evaluation Activities that are captured in <xref to="SFRs"></xref> also provide clarification as to what the developer needs to provide to demonstrate the TOE is compliant with the PP.</h:p>
+      <h:p>The Security Objectives in <xref to="SecurityObjectivesTOE"></xref> were constructed to address threats identified in <xref to="Threats"></xref>. The Security Functional Requirements (SFRs) in <xref to="SFRs"></xref> are a formal instantiation of the Security Objectives. The PP identifies the Security Assurance Requirements (SARs) to frame the extent to which the evaluator assesses the documentation applicable for the evaluation and performs independent testing.  This section lists the set of SARs from CC part 3 that are required in evaluations against this PP. Individual Evaluation Activities to be performed are specified both in <xref to="SFRs"></xref> as well as in this section.  The general model for evaluation of GPCPs against STs written to conform to this PP is as follows:  After the ST has been approved for evaluation, the ITSEF will obtain the TOE, supporting environmental IT, and the administrative/user guides for the TOE. The ITSEF is expected to perform actions mandated by the Common Evaluation Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the Evaluation Activities contained within <xref to="SFRs"></xref>, which are intended to be an interpretation of the other CEM assurance requirements as they apply to the specific technology instantiated in the TOE. The Evaluation Activities that are captured in <xref to="SFRs"></xref> also provide clarification as to what the developer needs to provide to demonstrate the TOE is compliant with the PP.</h:p>
       <section title="Class ASE: Security Target" id="ase">
-			As per ASE activities defined in   <xref to="bibCEM"></xref>.
+			As per ASE activities defined in  <xref to="bibCEM"></xref>.
 		</section>
       <section title="Class ADV: Development" id="adv">
-        
         The information about the TOE is contained in the guidance documentation
 			available to the end user as well as the TSS portion of the ST. The TOE developer must concur with the description
 			of the product that is contained in the TSS as it relates to the functional requirements. The Evaluation Activities
-			contained in   <xref to="SFRs"></xref> should provide the ST Authors with
+			contained in  <xref to="SFRs"></xref> should provide the ST Authors with
 			sufficient information to determine the appropriate content for the TSS section.
 			
 			
-        
         <a-component cc-id="adv_fsp.1" name="Basic Functional Specification (ADV_FSP.1)">
-          
           
 				The functional specification describes the TSFIs. It is not
 				necessary to have a formal or complete specification of these interfaces. Additionally,
@@ -4814,7 +4869,6 @@
 				evaluated are characterized through the information needed to perform the Evaluation
 				Activities listed, rather than as an independent, abstract list. 
 				
-          
           <a-element type="D">
             <title>The developer shall provide a functional specification.</title>
             <aactivity/>
@@ -4862,7 +4916,7 @@
 						and complete instantiation of the SFRs.</title>
             <aactivity>There are no specific Evaluation Activities associated with these SARs, except
 						ensuring the information is provided. The functional specification documentation is
-						provided to support the evaluation activities described in   <xref to="SFRs"></xref>, and
+						provided to support the evaluation activities described in  <xref to="SFRs"></xref>, and
 						other activities described for AGD, ATE, and AVA SARs. The requirements on the content
 						of the functional specification information is implicitly assessed by virtue of the
 						other Evaluation Activities being performed; if the evaluator is unable to perform an
@@ -4873,7 +4927,6 @@
         </a-component>
       </section>
       <section title="Class AGD: Guidance Documentation" id="agd">
-        
         The guidance documents will be
 			provided with the ST. Guidance must include a description of how the IT
 			personnel verifies that the Operational Environment can fulfill its role for the security
@@ -4887,7 +4940,6 @@
 			specified with each requirement. 
 			
 			
-        
         <a-component cc-id="agd_ope.1" name="Operational User Guidance (AGD_OPE.1)">
           <a-element type="D">
             <title>The developer shall provide operational user guidance.</title>
@@ -4956,7 +5008,7 @@
 						for content and presentation of evidence. </title>
             <aactivity>
 						Some of the contents of the operational guidance are verified by the
-						Evaluation Activities in   <xref to="SFRs"></xref> and evaluation of the TOE according to the   <xref to="bibCEM"></xref>. 
+						Evaluation Activities in  <xref to="SFRs"></xref> and evaluation of the TOE according to the  <xref to="bibCEM"></xref>. 
 						The following additional information is also required:<h:ul><h:li>If cryptographic functions are provided by the TOE, 
 							the operational guidance shall contain instructions for configuring
 							the cryptographic engine associated with the evaluated configuration of the TOE. It shall provide a 
@@ -5012,7 +5064,6 @@
         </a-component>
       </section>
       <section title="Class ALC: Life-cycle Support" id="alc">
-        
          
 			At the assurance level provided for TOEs conformant to this PP, life-cycle support is limited to end-user-visible
 			aspects of the life-cycle, rather than an examination of the TOE vendor’s development and configuration
@@ -5021,15 +5072,12 @@
 			reflection on the information to be made available for evaluation at this assurance level.
 			
 			
-        
         <a-component cc-id="alc_cmc.1" name="Labeling of the TOE (ALC_CMC.1)">
-          
           
 				This component is targeted at identifying the TOE such that it can be distinguished from
 				other products or versions from the same vendor and can be easily specified when being
 				procured by an end user. 
 				
-          
           <a-element type="D">
             <title>The developer shall provide the TOE and a reference for the TOE.</title>
             <aactivity/>
@@ -5055,12 +5103,10 @@
         </a-component>
         <a-component cc-id="alc_cms.1" name="TOE CM Coverage (ALC_CMS.1)">
           
-          
 				Given the scope of the TOE and its associated evaluation 
 				evidence requirements, this component’s Evaluation Activities are covered 
 				by the Evaluation Activities listed for ALC_CMC.1.
 				
-          
           <a-element type="D">
             <title>The developer shall provide a configuration list for the TOE.</title>
             <aactivity/>
@@ -5105,7 +5151,6 @@
           </a-element>
         </a-component>
         <a-component cc-id="alc_tsu_ext.1" name="Timely Security Updates">
-          
            
 				This component requires the TOE developer, in conjunction with any other necessary parties, to provide
 				information as to how the TOE is updated to address security issues in a timely manner. The
@@ -5129,55 +5174,6 @@
 				replacement of the entire device. In this case, delivery of a new device with the necessary 
 				security fixes would constitute deployment of the security update.
 				
-          
-           
-				This component requires the TOE developer, in conjunction with any other necessary parties, to provide
-				information as to how the TOE is updated to address security issues in a timely manner. The
-				documentation describes the process of providing updates to the public from the time a
-				security flaw is reported/discovered, to the time an update is released. This description
-				includes the parties involved (e.g., developer/OEM, component manufacturers) and the steps that are
-				performed (e.g., developer testing), including worst case time periods,
-				before an update is made available to the public. <h:p/>
-				For TOE implementations with immutable firmware, update might not be possible other than through 
-				replacement of the entire device. In this case, delivery of a new device with the necessary 
-				security fixes would constitute deployment of the security update.
-				 
-				This component requires the TOE developer, in conjunction with any other necessary parties, to provide
-				information as to how the TOE is updated to address security issues in a timely manner. The
-				documentation describes the process of providing updates to the public from the time a
-				security flaw is reported/discovered, to the time an update is released. This description
-				includes the parties involved (e.g., developer/OEM, component manufacturers) and the steps that are
-				performed (e.g., developer testing), including worst case time periods,
-				before an update is made available to the public. <h:p/>
-				For TOE implementations with immutable firmware, update might not be possible other than through 
-				replacement of the entire device. In this case, delivery of a new device with the necessary 
-				security fixes would constitute deployment of the security update.
-				
-          
-           
-				This component requires the TOE developer, in conjunction with any other necessary parties, to provide
-				information as to how the TOE is updated to address security issues in a timely manner. The
-				documentation describes the process of providing updates to the public from the time a
-				security flaw is reported/discovered, to the time an update is released. This description
-				includes the parties involved (e.g., developer/OEM, component manufacturers) and the steps that are
-				performed (e.g., developer testing), including worst case time periods,
-				before an update is made available to the public. <h:p/>
-				For TOE implementations with immutable firmware, update might not be possible other than through 
-				replacement of the entire device. In this case, delivery of a new device with the necessary 
-				security fixes would constitute deployment of the security update.
-				 
-				This component requires the TOE developer, in conjunction with any other necessary parties, to provide
-				information as to how the TOE is updated to address security issues in a timely manner. The
-				documentation describes the process of providing updates to the public from the time a
-				security flaw is reported/discovered, to the time an update is released. This description
-				includes the parties involved (e.g., developer/OEM, component manufacturers) and the steps that are
-				performed (e.g., developer testing), including worst case time periods,
-				before an update is made available to the public. <h:p/>
-				For TOE implementations with immutable firmware, update might not be possible other than through 
-				replacement of the entire device. In this case, delivery of a new device with the necessary 
-				security fixes would constitute deployment of the security update.
-				
-          
           <a-element type="D">
             <title>The developer shall provide a description in the TSS of how timely security
 						updates are made to the TOE.</title>
@@ -5226,7 +5222,6 @@
       </section>
       <section title="Class ATE: Tests" id="ate">
         
-        
 			Testing is specified for functional aspects of the system as well as aspects that take advantage of design or
 			implementation weaknesses. The former is done through the ATE_IND family, while the latter is through the AVA_VAN
 			family. At the assurance level specified in this PP, testing is based on advertised
@@ -5235,15 +5230,13 @@
 			following requirements. 
 		
 			
-        
         <a-component cc-id="ate_ind.1" name="Independent Testing – Conformance (ATE_IND.1)">
-          
            
 				Testing is performed to confirm the
 				functionality described in the TSS as well as the administrative
 				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
+				is to confirm that the requirements specified in  <xref to="SFRs"></xref> being met,
+				although some additional testing is specified for SARs in  <xref to="SARs"></xref>. The
 				Evaluation Activities identify the additional testing activities associated with these
 				components. The evaluator produces a test report documenting the plan for and results of
 				testing, as well as coverage arguments focused on the hardware configurations
@@ -5253,8 +5246,8 @@
 				Testing is performed to confirm the
 				functionality described in the TSS as well as the administrative
 				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
+				is to confirm that the requirements specified in  <xref to="SFRs"></xref> being met,
+				although some additional testing is specified for SARs in  <xref to="SARs"></xref>. The
 				Evaluation Activities identify the additional testing activities associated with these
 				components. The evaluator produces a test report documenting the plan for and results of
 				testing, as well as coverage arguments focused on the hardware configurations
@@ -5264,225 +5257,14 @@
 				Testing is performed to confirm the
 				functionality described in the TSS as well as the administrative
 				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
+				is to confirm that the requirements specified in  <xref to="SFRs"></xref> being met,
+				although some additional testing is specified for SARs in  <xref to="SARs"></xref>. The
 				Evaluation Activities identify the additional testing activities associated with these
 				components. The evaluator produces a test report documenting the plan for and results of
 				testing, as well as coverage arguments focused on the hardware configurations
 				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
 				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
 				
-          
-           
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				
-          
-           
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				
-          
-           
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				
-          
-           
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				
-          
-           
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				
-          
-           
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				 
-				Testing is performed to confirm the
-				functionality described in the TSS as well as the administrative
-				(including configuration and operational) documentation provided. The focus of the testing
-				is to confirm that the requirements specified in   <xref to="SFRs"></xref> being met,
-				although some additional testing is specified for SARs in   <xref to="SARs"></xref>. The
-				Evaluation Activities identify the additional testing activities associated with these
-				components. The evaluator produces a test report documenting the plan for and results of
-				testing, as well as coverage arguments focused on the hardware configurations
-				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
-				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
-				
-          
           <a-element type="D">
             <title>The developer shall provide the TOE for testing.</title>
             <aactivity/>
@@ -5503,7 +5285,7 @@
 						The evaluator will prepare a test plan and report documenting the testing
 						aspects of the system, including any application crashes during testing. The evaluator
 						shall determine the root cause of any application crashes and include that information
-						in the report. The test plan covers all of the testing actions contained in the   <xref to="bibCEM"></xref> 
+						in the report. The test plan covers all of the testing actions contained in the  <xref to="bibCEM"></xref> 
 						and the body of this PP’s Assurance Activities. <h:p/> 
 						While it is not necessary to have one test case per test listed in an Assurance Activity, the
 						evaluator must document in the test plan that each applicable testing requirement in
@@ -5540,7 +5322,6 @@
       </section>
       <section title="Class AVA: Vulnerability Assessment" id="ava">
         
-        
 			For the first generation of this protection profile, the evaluation lab is expected to survey open sources to discover
 			what vulnerabilities have been discovered in these types of products. In most cases, these
 			vulnerabilities will require sophistication beyond that of a basic attacker. Until
@@ -5551,7 +5332,6 @@
 			of penetration testing tools and for the development of future protection profiles.
 		
 			
-        
         <a-component cc-id="ava_van.1" name="Vulnerability Survey (AVA_VAN.1)">
           <a-element type="D">
             <title>The developer shall provide the TOE for testing.</title>
