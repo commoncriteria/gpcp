@@ -82,6 +82,10 @@
         /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[4]""/f-element[2]""
 * Error: Detected multiple elements with an id of 't-manfunc'.
 * Error: Detected multiple elements with an id of 't-manfunc'.
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"This Prot"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"This Prot"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"This Prot"/h:p[3]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"This Prot"/h:p[4]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[2]""/note[1]"The ST Au"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[2]""/note[1]"The ST Au"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[2]""/note[1]"The ST Au"/h:p[3]""
@@ -671,6 +675,12 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[4]""/f-element[3]""/note[1]"This SFR "/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[4]""/f-element[3]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[4]""/f-element[3]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/section[1]""/h:p[1]"The Secur"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/section[1]""/h:p[1]"The Secur"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/section[1]""/h:p[1]"The Secur"/h:p[3]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/section[1]""/h:p[1]"The Secur"/h:p[4]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/section[1]""/h:p[1]"The Secur"/h:p[5]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/section[1]""/h:p[1]"The Secur"/h:p[6]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/section[1]""/section[4]"At the as"/a-component[2]"Given the"/a-element[4]""/aactivity[1]"The "eval"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/section[1]""/section[4]"At the as"/a-component[3]"This comp"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/section[1]""/section[4]"At the as"/a-component[3]"This comp"/h:p[2]""
