@@ -80,8 +80,10 @@
         /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[4]""/f-element[1]""
 * Error: f-element FTP_TRP.1.2  appears not to have an associated evaluation activity.:
         /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[4]""/f-element[2]""
-* Error: Detected multiple elements with an id of 't-manfunc'.
-* Error: Detected multiple elements with an id of 't-manfunc'.
+* Error: Detected dangling id-reference to sel-smf-remote-admin from attribute
+        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[1]""/depends[2]""/on[1]""
+* Error: Detected dangling id-reference to sel-smf-remote-admin from attribute
+        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[4]""/depends[1]""/on[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"This Prot"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"This Prot"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"This Prot"/h:p[3]""
@@ -554,19 +556,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[2]""/f-element[1]""/note[1]"There are"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[2]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[2]""/f-element[1]""/aactivity[1]""/Guidance[1]"There are"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/title[1]""/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/title[1]""/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/title[1]""/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/title[1]""/h:table[1]""/h:tr[2]""/h:td[5]"If ""/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/title[1]""/h:p[4]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/title[1]""/h:p[5]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/title[1]""/h:p[6]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/note[1]"Note that"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/note[1]"Note that"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/note[1]"Note that"/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[1]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[4]""/f-element[2]""/note[1]"If ""/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[4]""/f-element[2]""/note[1]"If ""/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[1]""/f-element[1]""/note[1]"This requ"/h:p[1]""
@@ -709,6 +698,8 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[6]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[7]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[5]"In order "/h:p[1]""
+ Failed to find a reference to t-manfunc.
+ Failed to find a reference to t-manfunc.
  Failed to find a reference to SecurityObjectivesTOE.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
@@ -716,3 +707,5 @@
  Failed to find a reference to fcs-ckm-keydrv-sels.
  Failed to find a reference to fcs-ckm-1-ak-sels.
  Failed to find a reference to fcs-cop-skc-sels.
+ Failed to find a reference to t-manfunc.
+ Failed to find a reference to t-manfunc.
