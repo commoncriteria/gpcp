@@ -6755,209 +6755,236 @@
 							</text>
 							<M ref="A"/><X ref="U"/>
 							<app-note>
+								Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
+								Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
+								"<h:i>Not at all</h:i>" is the proper selection for Function <xref to="mf-admin-platform"/> only in the case
+								where the GPCP is incapable of being Administered at all.<h:p/>
 								If "<h:i>remotely</h:i>" is selected, then FTP_TRP.1 must be claimed in the 
-								ST and Function <xref to="mf-init-channel"/> must be selected.<h:p/>
-								If "<h:i>not at all</h:i>" is selected, then no other management
-								functions may be selected.
+								ST and Function <xref to="mf-init-channel"/> must be selected.
 							</app-note>
 						</management-function>
 
 						<!-- 2 -->
 						<management-function id="mf-audit-admin">	
+							<depends on-sfr="sfr-fau-gen-1"/>
 							<text>
 								Ability to configure and manage the audit functionality and audit data.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FAU_GEN.1 is included in the ST, then this Function must be selected.
+								This Function must be claimed if FAU_GEN.1 is claimed in the ST.
 							</app-note>  
 						</management-function>
 
 						<!-- 3 -->
 						<management-function id="mf-audit-server">	
+							<depends on-sfr="sfr-fau-stg-ext-1"/>
 							<text>
 								Ability to configure name/address of audit/logging server to which to send audit/logging records.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FAU_STG_EXT.1 is included in the ST, then this Function must be selected.
+								This Function must be claimed if FAU_STG_EXT.1 is claimed in the ST.
 							</app-note>
 						</management-function>
 
 						<!-- 4 -->
 						<management-function id="mf-audit-review">	
+							<depends on-sfr="sfr-fau-sar-1"/>
 							<text>
 								Ability to review audit records.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FAU_SAR.1 in included in the ST, then this Function must be selected.
+								This Function must be claimed if FAU_SAR.1 is claimed in the ST.
 							</app-note>
 						</management-function>
 
 						<!-- 5 -->
 						<management-function id="mf-init-channel">	
+							<depends on-sfr="sfr-ftp-trp-1"/>
 							<text>
 								Ability to initiate a trusted channel for remote administration.
 							</text>
 							<O ref="A"/><X ref="U"/>
 							<app-note>
-								If FTP_TRP.1 is included in the ST, then this Function must me selected.
+								This Function must be claimed if FTP_TRP.1 is claimed in the ST.
 							</app-note>
 						</management-function>
 
 						<!-- 6 -->
 						<management-function id="mf-auth-fail-params">	
+							<depends on-sfr="sfr-fia-afl-ext-1"/>
 							<text>
 								Ability to set parameters for allowable number of authentication failures.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FIA_AFL_EXT.1 is included in the ST, then this Function must be selected.
+								This Function must be claimed if FIA_AFL_EXT.1 is claimed in the ST.
 							</app-note>
 						</management-function>
 
 						<!-- 7 -->
-						<management-function id="mf-config-pwd">	
+						<management-function id="mf-config-pwd">
+							<depends on-sfr="sfr-fia-pmg-ext-1"/>
 							<text>
 								Ability to configure password length and complexity.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FIA_PMG_EXT.1 is included in the ST, then this Function must be selected
-								if password length and complexity are configurable.
+								This Function must be claimed if FIA_PMG_EXT.1 is claimed in the ST.<h:p/>
+								If password length and complexity are not configurable, then the Administrator 
+								Option should be denied.
 							</app-note>
 						</management-function>
 
 						<!-- 8 -->
 						<management-function id="mf-config-throttling">	
+							<depends on-sfr="sfr-fia-trt-ext-1"/>
 							<text>
 								Ability to configure authentication throttling policy.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FIA_TRT_EXT.1 is included in the ST, then this Function must be selected
-								if authentication throttling policy is configurable.
+								This Function must be claimed if FIA_TRT_EXT.1 is claimed in the ST.<h:p/>
+								If authentication throttling policy is not configurable, then the Administrator 
+								Option should be denied.
 							</app-note>
 						</management-function>
 
 						<!-- 9 -->
 						<management-function id="mf-auth-methods">	
+							<depends on-sfr="sfr-fia-uau-5"/>
 							<text>
 								Ability to manage authentication methods and change default authorization 
 								factors.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FIA_UAU.5 is included in the ST, then this Function must be selected 
-								if authentication methods are configurable.
+								This Function must be claimed if FIA_UAU.5 is claimed in the ST. <h:p/> 
+								If authentication methods are not configurable, then the Administrator 
+								Option should be denied.
 							</app-note>
 						</management-function>
 
 						<!-- 10 -->
 						<management-function id="mf-config-revocation-checking">	
+							<depends on-sfr="sfr-fia-x509-ext-1"/>
 							<text>
 								Ability to configure of certificate revocation checking methods.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FIA_X509_EXT.1 is included in the ST, then this Function must be selected
-								if TOE supports configuration of certificate revocation checking methods.
+								This Function must be claimed if FIA_X509_EXT.1 is claimed in the ST. <h:p/>
+								If TOE does not support configuration of certificate revocation checking methods,
+								then the Administrator Option should be denied.
 							</app-note>
 						</management-function>
 
 						<!-- 11 -->
 						<management-function id="mf-config-revocation-actions">	
+							<depends on-sel="sel-x509-adminset"/>
 							<text>
 								Ability to configure TSF behavior when certificate revocation status cannot be 
 								determined.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FIA_X509_EXT.2 is included in the ST and "<h:i> allow the administrator
-								to choose whether to accept the certificate in these cases</h:i>" is 
-								selected, then this Function must be selected.
+								This Function must be claimed if FIA_X509_EXT.2 is claimed in the ST and 
+								"<h:i> allow the administrator to choose whether to accept the certificate
+								in these cases</h:i>" is selected in FIA_X509_RXT.2.2.
 							</app-note>
 						</management-function>
 
 						<!-- 12 -->
-						<management-function id="mf-config-integrity-failure-actions">	
+						<management-function id="mf-config-integrity-failure-actions">
+							<depends on-sel="sel-rot2-admin-config"/>
+							<depends on-sel="sel-rot3-admin-config"/>
 							<text>
 								Ability to configure default action to take on integrity failure.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FPT_ROT_EXT.2 or FPT_ROT_EXT.3 is included in the ST and "<h:i>in accordance 
-								with Administrator-configurable policy</h:i>" is selected in
-								FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2, then this Function must be selected.
+								This Function must be selected if FPT_ROT_EXT.2 or FPT_ROT_EXT.3 are claimed 
+								in the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>" 
+								is selected in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2.
 							</app-note>
 						</management-function>
 
 						<!-- 13 -->
 						<management-function id="mf-config-default-update-failure-actions">	
+							<depends on-sel="sel-tud2-admin-config"/>
+							<depends on-sel="sel-tud3-admin-config"/>							
 							<text>
 								Ability to configure default action to take on update failure.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FPT_TUD_EXT.2 or FPT_TUD_EXT.3 is included in the ST and "<h:i>in accordance 
-								with Administrator-configurable policy</h:i>" is selected in
-								FPT_TUD_EXT.2.5 or FPT_TUD_EXT.3.4, then this Function must be selected.
+								This Function must be claimed if FPT_TUD_EXT.2 or FPT_TUD_EXT.3 is claimed in 
+								the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>" 
+								is selected in FPT_TUD_EXT.2.5 or FPT_TUD_EXT.3.4.
 							</app-note>
 						</management-function>
 
 						<!-- 14 -->
-						<management-function id="mf-initiate-update">	
+						<management-function id="mf-initiate-update">
+							<depends on-sel="sel-tud1-auth-update"/>
+							<depends on-sel="sel-tud1-unauth-update"/>
+							<depends on-sel="sel-tud1-local-update"/>
 							<text>
 								Ability to initiate the update process.
 							</text>
 							<O ref="A"/><X ref="U"/>
 							<app-note>
-								If "<h:i>no mechanism for platform firmware update</h:i>"
-								is selected in FPT_TUD_EXT.1.1, then this Function must be selected.
+								This Function must be claimed if something other than "<h:i>no mechanism for platform firmware update</h:i>"
+								is selected in FPT_TUD_EXT.1.1.
 							</app-note>
 						</management-function>
 
 						<!-- 15 -->
 						<management-function id="mf-determine-update-failure-action">	
+							<depends on-sfr="sfr-fpt-tud-ext-2"/>
+							<depends on-sfr="sfr-fpt-tud-ext-3"/>							
 							<text>
 								Ability to determine the action to take on update failure.
 							</text>
 							<O ref="A"/><O ref="U"/>
                             <app-note>
-								If FPT_TUD_EXT.2 or FPT_TUD_EXT.3 is included in the ST and 
-								"<h:i>by express determination of an [Administrator]</h:i>" is selected
-								in FPT_TUD_EXT.2.5 or FPT_TUD_EXT.3.4,
-								then this Function must be selected for Administrators. If 
-								"<h:i>by express determination of an [User]</h:i>" is selected,
-								then this Function must be selected for Users.
+								This Function must be claimed if FPT_TUD_EXT.2 or FPT_TUD_EXT.3 are claimed in 
+								the ST.<h:p/>
+								The Administrator Option must be selected if "<h:i>by express determination of an [Administrator]</h:i>" 
+								is selected in FPT_TUD_EXT.2.5 or FPT_TUD_EXT.3.4. <h:p/>
+								The User Option must be selected if "<h:i>by express determination of an [User]</h:i>" 
+								is selected in FPT_TUD_EXT.2.5 or FPT_TUD_EXT.3.4.
 							</app-note>
 						</management-function>
 
 						<!-- 16 -->
 						<management-function id="mf-determine-integrity-failure-action">	
+							<depends on-sfr="sfr-fpt-rot-ext.2"/>
+							<depends on-sfr="sfr-fpt-rot-ext.3"/>
 							<text>
 								Ability to determine the action to take on integrity check failure.
 							</text>
 							<O ref="A"/><O ref="U"/>
                             <app-note>
-								If FPT_ROT_EXT.2 or FPT_ROT_EXT.3 is included in the ST and 
-								"<h:i>by express determination of an [Administrator]</h:i>" is selected
-								in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2,
-								then this Function must be selected for Administrators. If 
-								"<h:i>by express determination of an [User]</h:i>" is selected,
-								then this Function must be selected for Users.
+								This Function must be claimed if FPT_ROT_EXT.2 or FPT_ROT_EXT.3 is claimed in the ST.<h:p/>
+								The Administrator Option must be selected if "<h:i>by express determination of an [Administrator]</h:i>" is selected
+								in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2.<h:p/>
+								The User Option must be selected if "<h:i>by express determination of an [User]</h:i>" is selected
+								in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2.
 							</app-note>
 						</management-function>
 
 						<!-- 17 -->
-						<management-function id="mf-admin-platform">	
+						<management-function id="mf-admin-platform">
+							<depends on-sfr="sfr-fcs-stg-ext.1"/>
 							<text>
 								Ability to manage import and export keys/secrets to and from protected storage.
 							</text>
 							<O ref="A"/><X ref="U"/>
                             <app-note>
-								If FCS_STG_EXT.1 is included in the ST, then this Function must be selected.
+								This Function must be claimed if FCS_STG_EXT.1 is claimed in the ST.
 							</app-note>
 						</management-function>
 					</management-function-set>
@@ -6968,7 +6995,9 @@
 					Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
 					Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
 					"<h:i>Not at all</h:i>" is the proper selection for Function <xref to="mf-admin-platform"/> only in the case
-					where the GPCP is incapable of being Administered at all.
+					where the GPCP is incapable of being Administered at all.<h:p/>
+					If "<h:i>not at all</h:i>" is selected in Function <xref to="mf-admin-platform"/>, then no other management
+					functions may be selected.
 				</note>
 				<aactivity>
 					<TSS>
@@ -7793,7 +7822,7 @@
 			<f-element id="fpt-tud-ext-1e1">
 				<title>The TSF shall implement
 					<selectables linebreak="yes">
-						<selectable exclusive="yes">no mechanism for platform firmware update</selectable> 
+						<selectable id="sel-tud1-no-update" exclusive="yes">no mechanism for platform firmware update</selectable> 
 						<selectable id="sel-tud1-auth-update">an authenticated platform firmware update mechanism as described in
 							FPT_TUD_EXT.2</selectable>
 						<selectable id="sel-tud1-unauth-update">a delayed-authentication platform firmware update mechanism as described in
