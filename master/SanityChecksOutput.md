@@ -43,10 +43,6 @@
 * Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/depends[2]""
 * Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/O[1]""/depends[1]""
-* Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/O[1]""/depends[2]""
-* Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/O[2]""/depends[1]""
 * Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/O[2]""/depends[2]""
