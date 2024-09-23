@@ -6736,7 +6736,7 @@
 					<h:b><ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b><h:p/> 
 					Status Markers:<h:br/>
 					M - Mandatory<h:br/>
-					O - Optional/Selectable<h:br/>
+					O - Optional/Selectable/Conditional<h:br/>
 					X - Not permitted<h:p/>
                     
 					<management-function-set default="O" notes-in-table="yes">
@@ -6753,11 +6753,12 @@
 									<selectable exclusive="yes">not at all</selectable>
 								</selectables>
 							</text>
-							<M ref="A"/><X ref="U"/>
+							<M ref="A"/>
+							<X ref="U"/>
 							<app-note>
 								Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
 								Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
-								"<h:i>Not at all</h:i>" is the proper selection for Function <xref to="mf-admin-platform"/> only in the case
+								"<h:i>Not at all</h:i>" is the proper selection for this Function only in the case
 								where the GPCP is incapable of being Administered at all.<h:p/>
 								If "<h:i>remotely</h:i>" is selected, then FTP_TRP.1 must be claimed in the 
 								ST and Function <xref to="mf-init-channel"/> must be selected.
@@ -6770,7 +6771,8 @@
 							<text>
 								Ability to configure and manage the audit functionality and audit data.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
                             <app-note>
 								This Function must be claimed if FAU_GEN.1 is claimed in the ST.
 							</app-note>  
@@ -6782,7 +6784,8 @@
 							<text>
 								Ability to configure name/address of audit/logging server to which to send audit/logging records.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
                             <app-note>
 								This Function must be claimed if FAU_STG_EXT.1 is claimed in the ST.
 							</app-note>
@@ -6794,7 +6797,8 @@
 							<text>
 								Ability to review audit records.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
                             <app-note>
 								This Function must be claimed if FAU_SAR.1 is claimed in the ST.
 							</app-note>
@@ -6806,7 +6810,8 @@
 							<text>
 								Ability to initiate a trusted channel for remote administration.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
 							<app-note>
 								This Function must be claimed if FTP_TRP.1 is claimed in the ST.
 							</app-note>
@@ -6818,7 +6823,8 @@
 							<text>
 								Ability to set parameters for allowable number of authentication failures.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
                             <app-note>
 								This Function must be claimed if FIA_AFL_EXT.1 is claimed in the ST.
 							</app-note>
@@ -6830,7 +6836,8 @@
 							<text>
 								Ability to configure password length and complexity.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
                             <app-note>
 								This Function must be claimed if FIA_PMG_EXT.1 is claimed in the ST.<h:p/>
 								If password length and complexity are not configurable, then the Administrator 
@@ -6844,7 +6851,8 @@
 							<text>
 								Ability to configure authentication throttling policy.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
                             <app-note>
 								This Function must be claimed if FIA_TRT_EXT.1 is claimed in the ST.<h:p/>
 								If authentication throttling policy is not configurable, then the Administrator 
@@ -6859,7 +6867,8 @@
 								Ability to manage authentication methods and change default authorization 
 								factors.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
                             <app-note>
 								This Function must be claimed if FIA_UAU.5 is claimed in the ST. <h:p/> 
 								If authentication methods are not configurable, then the Administrator 
@@ -6873,7 +6882,8 @@
 							<text>
 								Ability to configure of certificate revocation checking methods.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
                             <app-note>
 								This Function must be claimed if FIA_X509_EXT.1 is claimed in the ST. <h:p/>
 								If TOE does not support configuration of certificate revocation checking methods,
@@ -6888,7 +6898,8 @@
 								Ability to configure TSF behavior when certificate revocation status cannot be 
 								determined.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
                             <app-note>
 								This Function must be claimed if FIA_X509_EXT.2 is claimed in the ST and 
 								"<h:i> allow the administrator to choose whether to accept the certificate
@@ -6903,9 +6914,10 @@
 							<text>
 								Ability to configure default action to take on integrity failure.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
                             <app-note>
-								This Function must be selected if FPT_ROT_EXT.2 or FPT_ROT_EXT.3 are claimed 
+								This Function must be claimed if FPT_ROT_EXT.2 or FPT_ROT_EXT.3 are claimed 
 								in the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>" 
 								is selected in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2.
 							</app-note>
@@ -6918,7 +6930,8 @@
 							<text>
 								Ability to configure default action to take on update failure.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
                             <app-note>
 								This Function must be claimed if FPT_TUD_EXT.2 or FPT_TUD_EXT.3 is claimed in 
 								the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>" 
@@ -6934,7 +6947,8 @@
 							<text>
 								Ability to initiate the update process.
 							</text>
-							<O ref="A"/><X ref="U"/>
+							<O ref="A"/>
+							<X ref="U"/>
 							<app-note>
 								This Function must be claimed if something other than "<h:i>no mechanism for platform firmware update</h:i>"
 								is selected in FPT_TUD_EXT.1.1.
@@ -6943,12 +6957,19 @@
 
 						<!-- 15 -->
 						<management-function id="mf-determine-update-failure-action">	
-							<depends on-sfr="sfr-fpt-tud-ext-2"/>
+							<depends on-sfr="sel-tud2-admin-det"/>
 							<depends on-sfr="sfr-fpt-tud-ext-3"/>							
 							<text>
 								Ability to determine the action to take on update failure.
 							</text>
-							<O ref="A"/><O ref="U"/>
+							<O ref="A">
+								<depends on-sel="sel-tud2-admin-det"/>
+								<depends on-sel="sel-tud3-admin-det"/>
+							</O>
+							<O ref="U">
+								<depends on-sel="sel-tud2-user-det"/>
+								<depends on-sel="sel-tud3-user-det"/>
+							</O>
                             <app-note>
 								This Function must be claimed if FPT_TUD_EXT.2 or FPT_TUD_EXT.3 are claimed in 
 								the ST.<h:p/>
@@ -6966,7 +6987,14 @@
 							<text>
 								Ability to determine the action to take on integrity check failure.
 							</text>
-							<O ref="A"/><O ref="U"/>
+							<O ref="A">
+								<depends on-sel="sel-rot2-admin-det"/>
+								<depends on-sel="sel-rot3-admin-det"/>
+							</O>
+							<O ref="U">
+								<depends on-sel="sel-rot2-user-det"/>
+								<depends on-sel="sel-rot3-user-det"/>
+							</O>
                             <app-note>
 								This Function must be claimed if FPT_ROT_EXT.2 or FPT_ROT_EXT.3 is claimed in the ST.<h:p/>
 								The Administrator Option must be selected if "<h:i>by express determination of an [Administrator]</h:i>" is selected
@@ -6992,12 +7020,8 @@
 
 				<note role="application">
 					These functions become Mandatory or Selectable as indicated in the Notes.<h:p/>
-					Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
-					Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
-					"<h:i>Not at all</h:i>" is the proper selection for Function <xref to="mf-admin-platform"/> only in the case
-					where the GPCP is incapable of being Administered at all.<h:p/>
 					If "<h:i>not at all</h:i>" is selected in Function <xref to="mf-admin-platform"/>, then no other management
-					functions may be selected.
+					Management Funcitons may be selected.
 				</note>
 				<aactivity>
 					<TSS>
@@ -7487,7 +7511,7 @@
 						<selectable>by express determination of an 
 							<selectables>
 								<selectable id="sel-rot2-admin-det">Administrator</selectable>
-								<selectable>User</selectable>
+								<selectable id="sel-rot2-user-det">User</selectable>
 							</selectables>
 						</selectable>
 					</selectables>.	
@@ -7629,7 +7653,7 @@
 						<selectable>by express determination of an 
 							<selectables>
 								<selectable id="sel-rot3-admin-det">Administrator</selectable>
-								<selectable>User</selectable>
+								<selectable id="sel-rot3-user-det">User</selectable>
 							</selectables></selectable>
 					</selectables>.	
 				</title>
@@ -7988,7 +8012,7 @@
 						<selectable id="sel-tud2-admin-config">in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an <selectables>
 							<selectable id="sel-tud2-admin-det">Administrator</selectable>
-							<selectable>User</selectable>
+							<selectable id="sel-tud2-user-det">User</selectable>
 							</selectables></selectable>
 					</selectables>.
 				</title>
@@ -8180,7 +8204,7 @@
 						<selectable>by express determination of an 
 							<selectables>
 								<selectable id="sel-tud3-admin-det">Administrator</selectable>
-								<selectable>User</selectable>
+								<selectable is="sel-tud3-user-det">User</selectable>
 							</selectables></selectable>
 					</selectables>.
 				</title>
