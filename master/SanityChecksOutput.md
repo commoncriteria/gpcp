@@ -61,9 +61,9 @@
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[16]""/O[2]""/depends[2]""
 * Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/depends[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[3]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]""/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]""/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]""/h:p[3]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[2]"This Prot"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[2]"This Prot"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[2]"This Prot"/section[1]"The TOE c"/h:p[1]""
