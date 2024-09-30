@@ -3765,19 +3765,321 @@
         <!--FMT_SMF.1 Specification of Management Functions-->
         <f-component cc-id="fmt_smf.1" id="sfr-fmt-smf-1" name="Specification of Management Functions">
           <f-element id="fmt-smf-est-1e1">
-            <title>The TSF shall be capable of performing the following management functions: [ <h:p/> <h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b> <h:p/> <h:p/>  ].<h:br/><h:br/><h:b><ctr id="fmt_smf" ctr-type="Table">: Management Functions</ctr></h:b><h:br/><h:br/>Status Markers:<h:br/> 
+            <title>The TSF shall be capable of performing the following management functions: [ <h:p/> <h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b> <h:p/>  O - Optional/Selectable/Conditional <h:p/>
+			<h:br/><h:br/>
+			<h:b><ctr id="undefined" ctr-type="Table">: Management Functions</ctr></h:b>
+			<h:br/><h:br/>
+			Status Markers:<h:br/> 
 					M - Mandatory
-					O - Optional/Selectable
-					X - Not permitted<h:br/><management-function-set default="O"><manager cid="A">Admin</manager><manager cid="U">User</manager><management-function id="mf-1"><text>Ability to administer the platform
-					<selectables><selectable id="fmt_smf.1.1_1">locally</selectable><selectable id="sel-smf-remote-admin">remotely</selectable><selectable id="fmt_smf.1.1_2" exclusive="yes">not at all</selectable></selectables></text><M ref="A"/><X ref="U"/></management-function><management-function id="mf-2"><text>Ability to configure and manage the audit functionality and audit data</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-3"><text>Ability to configure name/address of audit/logging server to which to send audit/logging records</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-4"><text>Ability to review audit records.</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-5"><text>Ability to initiate a trusted channel for remote administration.</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-6"><text>Ability to set parameters for allowable number of authentication failures.</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-7"><text>Ability to configure password length and complexity.</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-8"><text>Ability to configure authentication throttling policy.</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-9"><text>Ability to manage authentication methods and change default authorization factors</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-10"><text>Ability to configure of certificate revocation checking methods.</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-11"><text>Ability to configure TSF behavior when certificate revocation status cannot be determined.</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-12"><text>Ability to configure default action to take on integrity failure.</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-13"><text>Ability to configure default action to take on update failure.</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-14"><text>Ability to initiate the update process.</text><O ref="A"/><X ref="U"/></management-function><management-function id="mf-15"><text>Ability to determine the action to take on update failure.</text><O ref="A"/><O ref="U"/></management-function><management-function id="mf-16"><text>Ability to determine the action to take on integrity check failure.</text><O ref="A"/><O ref="U"/></management-function><management-function id="mf-17"><text>Ability to manage import and export keys/secrets to and from protected storage.  <h:br/>  ].
-				</text><O ref="A"/><X ref="U"/></management-function></management-function-set></title>
+					X - Not permitted<h:br/>
+		<management-function-set default="O"><manager cid="A">Admin</manager><manager cid="U">User</manager>
+            <management-function id="mf-admin-platform">
+                <text>
+								Ability to administer the platform
+								<selectables><selectable id="fmt_smf.1.1_1">locally</selectable><selectable id="sel-smf-remote-admin">remotely</selectable><selectable id="fmt_smf.1.1_2" exclusive="yes">not at all</selectable></selectables></text>
+                <M ref="A"/><O ref="U"/>
+                <app-note>
+								Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
+								Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
+								"<h:i>Not at all</h:i>" is the proper selection for Function  <xref to="mf-admin-platform"/> only in the case
+								where the GPCP is incapable of being Administered at all.<h:p/>
+								If "<h:i>remotely</h:i>" is selected, then FTP_TRP.1 must be claimed in the 
+								ST and Function  <xref to="mf-init-channel"/> must be selected.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-audit-admin">
+                <text>
+								Ability to configure and manage the audit functionality and audit data.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FAU_GEN.1 is claimed in the ST.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-audit-server">
+                <text>
+								Ability to configure name/address of audit/logging server to which to send audit/logging records.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FAU_STG_EXT.1 is claimed in the ST.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-audit-review">
+                <text>
+								Ability to review audit records.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FAU_SAR.1 is claimed in the ST.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-init-channel">
+                <text>
+								Ability to initiate a trusted channel for remote administration.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FTP_TRP.1 is claimed in the ST.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-auth-fail-params">
+                <text>
+								Ability to set parameters for allowable number of authentication failures.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FIA_AFL_EXT.1 is claimed in the ST.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-config-pwd">
+                <text>
+								Ability to configure password length and complexity.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FIA_PMG_EXT.1 is claimed in the ST.<h:p/>
+								If password length and complexity are not configurable, then the Administrator 
+								Option should be denied.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-config-throttling">
+                <text>
+								Ability to configure authentication throttling policy.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FIA_TRT_EXT.1 is claimed in the ST.<h:p/>
+								If authentication throttling policy is not configurable, then the Administrator 
+								Option should be denied.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-auth-methods">
+                <text>
+								Ability to manage authentication methods and change default authorization 
+								factors.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FIA_UAU.5 is claimed in the ST. <h:p/> 
+								If authentication methods are not configurable, then the Administrator 
+								Option should be denied.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-config-revocation-checking">
+                <text>
+								Ability to configure of certificate revocation checking methods.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FIA_X509_EXT.1 is claimed in the ST. <h:p/>
+								If TOE does not support configuration of certificate revocation checking methods,
+								then the Administrator Option should be denied.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-config-revocation-actions">
+                <text>
+								Ability to configure TSF behavior when certificate revocation status cannot be 
+								determined.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FIA_X509_EXT.2 is claimed in the ST and 
+								"<h:i> allow the administrator to choose whether to accept the certificate
+								in these cases</h:i>" is selected in FIA_X509_RXT.2.2.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-config-integrity-failure-actions">
+                <text>
+								Ability to configure default action to take on integrity failure.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FPT_ROT_EXT.2 or FPT_ROT_EXT.3 are claimed 
+								in the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>" 
+								is selected in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-config-default-update-failure-actions">
+                <text>
+								Ability to configure default action to take on update failure.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FPT_TUD_EXT.2 or FPT_TUD_EXT.3 is claimed in 
+								the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>" 
+								is selected in FPT_TUD_EXT.2.5 or FPT_TUD_EXT.3.4.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-initiate-update">
+                <text>
+								Ability to initiate the update process.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if something other than "<h:i>no mechanism for platform firmware update</h:i>"
+								is selected in FPT_TUD_EXT.1.1.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-determine-update-failure-action">
+                <text>
+								Ability to determine the action to take on update failure.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FPT_TUD_EXT.2 or FPT_TUD_EXT.3 are claimed in 
+								the ST.<h:p/>
+								The Administrator Option must be selected if "<h:i>by express determination of an [Administrator]</h:i>" 
+								is selected in FPT_TUD_EXT.2.5 or FPT_TUD_EXT.3.4. <h:p/>
+								The User Option must be selected if "<h:i>by express determination of an [User]</h:i>" 
+								is selected in FPT_TUD_EXT.2.5 or FPT_TUD_EXT.3.4.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-determine-integrity-failure-action">
+                <text>
+								Ability to determine the action to take on integrity check failure.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FPT_ROT_EXT.2 or FPT_ROT_EXT.3 is claimed in the ST.<h:p/>
+								The Administrator Option must be selected if "<h:i>by express determination of an [Administrator]</h:i>" is selected
+								in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2.<h:p/>
+								The User Option must be selected if "<h:i>by express determination of an [User]</h:i>" is selected
+								in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        
+            <management-function id="mf-key-import-export">
+                <text>
+								Ability to manage import and export keys/secrets to and from protected storage.
+							</text>
+                <O ref="A"/><O ref="U"/>
+                <app-note>
+								This Function must be claimed if FCS_STG_EXT.1 is claimed in the ST.
+							</app-note>
+            <aactivity>
+                <TSS/>
+				<Guidance/>
+                <Tests/>
+            </aactivity>
+        
+            </management-function>
+        </management-function-set></title>
             <note role="application">
-					Note that all Administrator management functions except Function 1 are indicated as "Optional/Selectable." 
 					These functions become Mandatory or Selectable as indicated in the Notes.<h:p/>
-					Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
-					Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
-					"<h:i>Not at all</h:i>" is the proper selection for Function 1 only in the case
-					where the GPCP is incapable of being Administered at all.
+					If "<h:i>not at all</h:i>" is selected in Function  <xref to="mf-admin-platform"/>, then no other management
+					Management Functions may be selected.
 				</note>
             <aactivity level="element">
               <TSS>The evaluator shall examine the TSS to ensure that it describes each management function
@@ -4087,7 +4389,7 @@
           <f-element id="fpt-rot-ext-2e2">
             <title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.2.1 fails:  <h:ol><h:li>Halt,</h:li><h:li>Notify an 
 							<selectables><selectable id="sel-rot2-admin-notify">Administrator</selectable><selectable id="fpt_rot_ext.2.2_1">User</selectable></selectables> by
-							<selectables><selectable id="sel-rot2-audit">generating an audit event</selectable><selectable id="fpt_rot_ext.2.2_3"><assignable>other notification method(s)</assignable></selectable></selectables>, and</h:li><h:li><selectables onlyone="yes"><selectable id="fpt_rot_ext.2.2_4">Stop all execution and shut down</selectable><selectable id="sel-rot2-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable></selectables></h:li></h:ol><selectables onlyone="yes"><selectable id="fpt_rot_ext.2.2_5">automatically</selectable><selectable id="sel-rot2-admin-config">in accordance with Administrator-configurable policy</selectable><selectable id="fpt_rot_ext.2.2_6">by express determination of an<selectables><selectable id="sel-rot2-admin-det">Administrator</selectable><selectable id="fpt_rot_ext.2.2_7">User</selectable></selectables></selectable></selectables>.</title>
+							<selectables><selectable id="sel-rot2-audit">generating an audit event</selectable><selectable id="fpt_rot_ext.2.2_3"><assignable>other notification method(s)</assignable></selectable></selectables>, and</h:li><h:li><selectables onlyone="yes"><selectable id="fpt_rot_ext.2.2_4">Stop all execution and shut down</selectable><selectable id="sel-rot2-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable></selectables></h:li></h:ol><selectables onlyone="yes"><selectable id="fpt_rot_ext.2.2_5">automatically</selectable><selectable id="sel-rot2-admin-config">in accordance with Administrator-configurable policy</selectable><selectable id="fpt_rot_ext.2.2_6">by express determination of an<selectables><selectable id="sel-rot2-admin-det">Administrator</selectable><selectable id="sel-rot2-user-det">User</selectable></selectables></selectable></selectables>.</title>
             <note role="application">
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
@@ -4164,7 +4466,7 @@
           <f-element id="fpt-rot-ext-3e2">
             <title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.3.1 fails:  <h:ol><h:li>Halt,</h:li><h:li>Notify an 
 							<selectables><selectable id="sel-rot3-admin-notify">Administrator</selectable><selectable id="fpt_rot_ext.3.2_1">User</selectable></selectables> by
-							<selectables><selectable id="sel-rot3-audit">generating an audit event</selectable><selectable id="fpt_rot_ext.3.2_3"><assignable>other notification method(s)</assignable></selectable></selectables>, and</h:li><h:li><selectables onlyone="yes"><selectable id="fpt_rot_ext.3.2_4">Stop all execution and shut down</selectable><selectable id="fpt_rot_ext.3.2_5">Continue execution without the integrity-compromised component</selectable><selectable id="fpt_rot_ext.3.2_6">Continue execution</selectable></selectables></h:li></h:ol><selectables onlyone="yes"><selectable id="sel-rot3-admin-config">in accordance with administrator-configurable policy</selectable><selectable id="fpt_rot_ext.3.2_7">by express determination of an<selectables><selectable id="sel-rot3-admin-det">Administrator</selectable><selectable id="fpt_rot_ext.3.2_8">User</selectable></selectables></selectable></selectables>.</title>
+							<selectables><selectable id="sel-rot3-audit">generating an audit event</selectable><selectable id="fpt_rot_ext.3.2_3"><assignable>other notification method(s)</assignable></selectable></selectables>, and</h:li><h:li><selectables onlyone="yes"><selectable id="fpt_rot_ext.3.2_4">Stop all execution and shut down</selectable><selectable id="fpt_rot_ext.3.2_5">Continue execution without the integrity-compromised component</selectable><selectable id="fpt_rot_ext.3.2_6">Continue execution</selectable></selectables></h:li></h:ol><selectables onlyone="yes"><selectable id="sel-rot3-admin-config">in accordance with administrator-configurable policy</selectable><selectable id="fpt_rot_ext.3.2_7">by express determination of an<selectables><selectable id="sel-rot3-admin-det">Administrator</selectable><selectable id="sel-rot3-user-det">User</selectable></selectables></selectable></selectables>.</title>
             <note role="application">
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
@@ -4278,7 +4580,7 @@
 					FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism
 					</dependencies>
           <f-element id="fpt-tud-ext-1e1">
-            <title>The TSF shall implement<selectables><selectable id="fpt_tud_ext.1.1_1" exclusive="yes">no mechanism for platform firmware update</selectable><selectable id="sel-tud1-auth-update">an authenticated platform firmware update mechanism as described in
+            <title>The TSF shall implement<selectables><selectable id="sel-tud1-no-update" exclusive="yes">no mechanism for platform firmware update</selectable><selectable id="sel-tud1-auth-update">an authenticated platform firmware update mechanism as described in
 							FPT_TUD_EXT.2</selectable><selectable id="sel-tud1-unauth-update">a delayed-authentication platform firmware update mechanism as described in
 							FPT_TUD_EXT.3</selectable><selectable id="sel-tud1-local-update">a secure local platform firmware update mechanism
 							described in FPT_TUD_EXT.4</selectable></selectables>.</title>
@@ -4362,7 +4664,7 @@
             <title>The TOE shall take the following actions if a platform firmware integrity, authenticity, or rollback-prevention check fails, or a platform firmware update fails for any other reason:  <h:ul><h:li>Do not install the update,</h:li><h:li>Notify an 
 						<selectables><selectable id="sel-tud2-admin-notify">Administrator</selectable><selectable id="fpt_tud_ext.2.5_1">User</selectable></selectables> by 
 							<selectables><selectable id="sel-tud2-audit">generating an audit event</selectable><selectable id="fpt_tud_ext.2.5_3"><assignable>notification method</assignable></selectable></selectables>,
-						</h:li></h:ul>  and<selectables onlyone="yes"><selectable id="fpt_tud_ext.2.5_4">Continue execution</selectable><selectable id="fpt_tud_ext.2.5_5">Halt</selectable><selectable id="fpt_tud_ext.2.5_6">Stop all execution and shut down</selectable><selectable id="sel-tud2-recovery">Initiate recovery as specified in FPT_RVR_EXT.1</selectable></selectables><selectables onlyone="yes"><selectable id="fpt_tud_ext.2.5_7">automatically</selectable><selectable id="sel-tud2-admin-config">in accordance with administrator-configurable policy</selectable><selectable id="fpt_tud_ext.2.5_8">by express determination of an<selectables><selectable id="sel-tud2-admin-det">Administrator</selectable><selectable id="fpt_tud_ext.2.5_9">User</selectable></selectables></selectable></selectables>.</title>
+						</h:li></h:ul>  and<selectables onlyone="yes"><selectable id="fpt_tud_ext.2.5_4">Continue execution</selectable><selectable id="fpt_tud_ext.2.5_5">Halt</selectable><selectable id="fpt_tud_ext.2.5_6">Stop all execution and shut down</selectable><selectable id="sel-tud2-recovery">Initiate recovery as specified in FPT_RVR_EXT.1</selectable></selectables><selectables onlyone="yes"><selectable id="fpt_tud_ext.2.5_7">automatically</selectable><selectable id="sel-tud2-admin-config">in accordance with administrator-configurable policy</selectable><selectable id="fpt_tud_ext.2.5_8">by express determination of an<selectables><selectable id="sel-tud2-admin-det">Administrator</selectable><selectable id="sel-tud2-user-det">User</selectable></selectables></selectable></selectables>.</title>
             <note role="application">
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1 and the other audit requirements must be claimed.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
@@ -4481,7 +4783,7 @@
           <f-element id="fpt-tud-ext-3e4">
             <title>The TOE shall take the following actions if a platform firmware update integrity, authentication, or rollback-prevention check fails, or a platform firmware update fails for any other reason:  <h:ul><h:li>Notify an 
 							<selectables><selectable id="sel-tud3-admin-notify">Administrator</selectable><selectable id="fpt_tud_ext.3.4_1">User</selectable></selectables> by 
-							<selectables><selectable id="sel-tud3-audit">generating an audit event</selectable><selectable id="fpt_tud_ext.3.4_3"><assignable>notification method</assignable></selectable></selectables></h:li></h:ul>  and<selectables onlyone="yes"><selectable id="fpt_tud_ext.3.4_4">Halt</selectable><selectable id="fpt_tud_ext.3.4_5">Stop all execution and shut down</selectable><selectable id="sel-tud3-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable></selectables><selectables onlyone="yes"><selectable id="fpt_tud_ext.3.4_6">automatically</selectable><selectable id="sel-tud3-admin-config">in accordance with administrator-configurable policy</selectable><selectable id="fpt_tud_ext.3.4_7">by express determination of an<selectables><selectable id="sel-tud3-admin-det">Administrator</selectable><selectable id="fpt_tud_ext.3.4_8">User</selectable></selectables></selectable></selectables>.</title>
+							<selectables><selectable id="sel-tud3-audit">generating an audit event</selectable><selectable id="fpt_tud_ext.3.4_3"><assignable>notification method</assignable></selectable></selectables></h:li></h:ul>  and<selectables onlyone="yes"><selectable id="fpt_tud_ext.3.4_4">Halt</selectable><selectable id="fpt_tud_ext.3.4_5">Stop all execution and shut down</selectable><selectable id="sel-tud3-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable></selectables><selectables onlyone="yes"><selectable id="fpt_tud_ext.3.4_6">automatically</selectable><selectable id="sel-tud3-admin-config">in accordance with administrator-configurable policy</selectable><selectable id="fpt_tud_ext.3.4_7">by express determination of an<selectables><selectable id="sel-tud3-admin-det">Administrator</selectable><selectable id="sel-tud3-user-det">User</selectable></selectables></selectable></selectables>.</title>
             <note role="application">
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1 and the other audit SFRs must be claimed.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
