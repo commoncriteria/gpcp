@@ -1301,7 +1301,7 @@
                     <br>
                     <table class="mfs" style="width: 100%;">
                         <tr class="header">
-                            <td>#</td><td>Management Function</td><td>Admin</td><td>User</td>
+                            <td>#</td><td>Management Function</td><td>Admin</td><td>User</td><td>Application Notes</td>
                         </tr>
                         <tr id="mf-admin-platform">
                             <td>1</td><td style="text-align:left"> Ability to administer the platform [<b>selection</b>: <span class="selectable-content" id="fmt_smf.1.1_1">locally</span>, <span class="selectable-content" id="sel-smf-remote-admin">remotely</span>, <span class="selectable-content" id="fmt_smf.1.1_2">not at all</span>]</td><td>
@@ -1310,275 +1310,286 @@
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p> Administration is considered &ldquo;local&rdquo; if the Administrator is physically present at the GPCP.</p>
+                                <p></p>
+                                 Administration is considered &ldquo;remote&rdquo; if communications between the Administrator and GPCP is over a network.
+                                <p></p>
+                                 "<i>Not at all</i>" is the proper selection for Function <a href="#mf-admin-platform">1</a> only in the case where the GPCP is incapable of being Administered at all.
+                                <p></p>
+                                 If "<i>remotely</i>" is selected, then <a href="#FTP_TRP.1">FTP_TRP.1</a> must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and Function <a href="#mf-init-channel">5</a> must be selected. 
+                                <p></p>
                             </td>
                         </tr>
                         <tr id="mf-audit-admin">
                             <td>2</td><td style="text-align:left"> Ability to configure and manage the audit functionality and audit data. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FAU_GEN.1">FAU_GEN.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                                </p>
                             </td>
                         </tr>
                         <tr id="mf-audit-server">
                             <td>3</td><td style="text-align:left"> Ability to configure name/address of audit/logging server to which to send audit/logging records. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FAU_STG_EXT.1">FAU_STG_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                                </p>
                             </td>
                         </tr>
                         <tr id="mf-audit-review">
                             <td>4</td><td style="text-align:left"> Ability to review audit records. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FAU_SAR.1">FAU_SAR.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                                </p>
                             </td>
                         </tr>
                         <tr id="mf-init-channel">
                             <td>5</td><td style="text-align:left"> Ability to initiate a trusted channel for remote administration. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FTP_TRP.1">FTP_TRP.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                                </p>
                             </td>
                         </tr>
                         <tr id="mf-auth-fail-params">
                             <td>6</td><td style="text-align:left"> Ability to set parameters for allowable number of authentication failures. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FIA_AFL_EXT.1">FIA_AFL_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                                </p>
                             </td>
                         </tr>
                         <tr id="mf-config-pwd">
                             <td>7</td><td style="text-align:left"> Ability to configure password length and complexity. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FIA_PMG_EXT.1">FIA_PMG_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+                                </p>
+                                <p></p>
+                                 If password length and complexity are not configurable, then the Administrator Option should be denied. 
+                                <p></p>
                             </td>
                         </tr>
                         <tr id="mf-config-throttling">
                             <td>8</td><td style="text-align:left"> Ability to configure authentication throttling policy. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FIA_TRT_EXT.1">FIA_TRT_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+                                </p>
+                                <p></p>
+                                 If authentication throttling policy is not configurable, then the Administrator Option should be denied. 
+                                <p></p>
                             </td>
                         </tr>
                         <tr id="mf-auth-methods">
                             <td>9</td><td style="text-align:left"> Ability to manage authentication methods and change default authorization factors. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FIA_UAU.5">FIA_UAU.5</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                                </p>
+                                <p></p>
+                                 If authentication methods are not configurable, then the Administrator Option should be denied. 
+                                <p></p>
                             </td>
                         </tr>
                         <tr id="mf-config-revocation-checking">
                             <td>10</td><td style="text-align:left"> Ability to configure of certificate revocation checking methods. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FIA_X509_EXT.1">FIA_X509_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                                </p>
+                                <p></p>
+                                 If <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> does not support configuration of certificate revocation checking methods, then the Administrator Option should be denied. 
+                                <p></p>
                             </td>
                         </tr>
                         <tr id="mf-config-revocation-actions">
                             <td>11</td><td style="text-align:left"> Ability to configure <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> behavior when certificate revocation status cannot be determined. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and "<i> allow the administrator to choose whether to accept the certificate in these cases</i>" is selected in FIA_X509_RXT.2.2. 
+                                </p>
                             </td>
                         </tr>
                         <tr id="mf-config-integrity-failure-actions">
                             <td>12</td><td style="text-align:left"> Ability to configure default action to take on integrity failure. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a> or <a href="#FPT_ROT_EXT.3">FPT_ROT_EXT.3</a> are claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and "<i>in accordance with Administrator-configurable policy</i>" is selected in <a href="#FPT_ROT_EXT.2.2">FPT_ROT_EXT.2.2</a> or <a href="#FPT_ROT_EXT.3.2">FPT_ROT_EXT.3.2</a>. 
+                                </p>
                             </td>
                         </tr>
                         <tr id="mf-config-default-update-failure-actions">
                             <td>13</td><td style="text-align:left"> Ability to configure default action to take on update failure. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a> or <a href="#FPT_TUD_EXT.3">FPT_TUD_EXT.3</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and "<i>in accordance with Administrator-configurable policy</i>" is selected in <a href="#FPT_TUD_EXT.2.5">FPT_TUD_EXT.2.5</a> or <a href="#FPT_TUD_EXT.3.4">FPT_TUD_EXT.3.4</a>. 
+                                </p>
                             </td>
                         </tr>
                         <tr id="mf-initiate-update">
                             <td>14</td><td style="text-align:left"> Ability to initiate the update process. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if something other than "<i>no mechanism for platform firmware update</i>" is selected in <a href="#FPT_TUD_EXT.1.1">FPT_TUD_EXT.1.1</a>. 
+                                </p>
                             </td>
                         </tr>
                         <tr id="mf-determine-update-failure-action">
                             <td>15</td><td style="text-align:left"> Ability to determine the action to take on update failure. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a> or <a href="#FPT_TUD_EXT.3">FPT_TUD_EXT.3</a> are claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+                                </p>
+                                <p></p>
+                                 The Administrator Option must be selected if "<i>by express determination of an [Administrator]</i>" is selected in <a href="#FPT_TUD_EXT.2.5">FPT_TUD_EXT.2.5</a> or <a href="#FPT_TUD_EXT.3.4">FPT_TUD_EXT.3.4</a>. 
+                                <p></p>
+                                 The User Option must be selected if "<i>by express determination of an [User]</i>" is selected in <a href="#FPT_TUD_EXT.2.5">FPT_TUD_EXT.2.5</a> or <a href="#FPT_TUD_EXT.3.4">FPT_TUD_EXT.3.4</a>. 
+                                <p></p>
                             </td>
                         </tr>
                         <tr id="mf-determine-integrity-failure-action">
                             <td>16</td><td style="text-align:left"> Ability to determine the action to take on integrity check failure. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a> or <a href="#FPT_ROT_EXT.3">FPT_ROT_EXT.3</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+                                </p>
+                                <p></p>
+                                 The Administrator Option must be selected if "<i>by express determination of an [Administrator]</i>" is selected in <a href="#FPT_ROT_EXT.2.2">FPT_ROT_EXT.2.2</a> or <a href="#FPT_ROT_EXT.3.2">FPT_ROT_EXT.3.2</a>.
+                                <p></p>
+                                 The User Option must be selected if "<i>by express determination of an [User]</i>" is selected in <a href="#FPT_ROT_EXT.2.2">FPT_ROT_EXT.2.2</a> or <a href="#FPT_ROT_EXT.3.2">FPT_ROT_EXT.3.2</a>. 
+                                <p></p>
                             </td>
                         </tr>
                         <tr id="mf-key-import-export">
                             <td>17</td><td style="text-align:left"> Ability to manage import and export keys/secrets to and from protected storage. </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
                             </td><td>
                                 <div class="tooltipped">
-                                    O<span class="tooltiptext">Optional</span>
+                                    O<span class="tooltiptext">Optional/Conditional</span>
                                 </div>
+                            </td><td style="text-align:left">
+                                <p>
+                                     This Function must be claimed if <a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                                </p>
                             </td>
                         </tr>
                     </table>
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note"> These functions become Mandatory or Selectable as indicated in the Notes.
                             <p></p>
-                             If "<i>not at all</i>" is selected in Function <a href="#mf-admin-platform">1</a>, then no other management Management Functions may be selected. 
-                            <br>
-                            <br>
-                            <b>Function-specific Application Notes:</b>
-                            <br>
-                            <br>
-                            <p> Administration is considered &ldquo;local&rdquo; if the Administrator is physically present at the GPCP.</p>
-                            <p></p>
-                             Administration is considered &ldquo;remote&rdquo; if communications between the Administrator and GPCP is over a network.
-                            <p></p>
-                             "<i>Not at all</i>" is the proper selection for Function <a href="#mf-admin-platform">1</a> only in the case where the GPCP is incapable of being Administered at all.
-                            <p></p>
-                             If "<i>remotely</i>" is selected, then <a href="#FTP_TRP.1">FTP_TRP.1</a> must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and Function <a href="#mf-init-channel">5</a> must be selected. 
-                            <p></p>
-                            <p>
-                                 This Function must be claimed if <a href="#FAU_GEN.1">FAU_GEN.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
-                            </p>
-                            <p>
-                                 This Function must be claimed if <a href="#FAU_STG_EXT.1">FAU_STG_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
-                            </p>
-                            <p>
-                                 This Function must be claimed if <a href="#FAU_SAR.1">FAU_SAR.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
-                            </p>
-                            <p>
-                                 This Function must be claimed if <a href="#FTP_TRP.1">FTP_TRP.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
-                            </p>
-                            <p>
-                                 This Function must be claimed if <a href="#FIA_AFL_EXT.1">FIA_AFL_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
-                            </p>
-                            <p>
-                                 This Function must be claimed if <a href="#FIA_PMG_EXT.1">FIA_PMG_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
-                            </p>
-                            <p></p>
-                             If password length and complexity are not configurable, then the Administrator Option should be denied. 
-                            <p></p>
-                            <p>
-                                 This Function must be claimed if <a href="#FIA_TRT_EXT.1">FIA_TRT_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
-                            </p>
-                            <p></p>
-                             If authentication throttling policy is not configurable, then the Administrator Option should be denied. 
-                            <p></p>
-                            <p>
-                                 This Function must be claimed if <a href="#FIA_UAU.5">FIA_UAU.5</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
-                            </p>
-                            <p></p>
-                             If authentication methods are not configurable, then the Administrator Option should be denied. 
-                            <p></p>
-                            <p>
-                                 This Function must be claimed if <a href="#FIA_X509_EXT.1">FIA_X509_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
-                            </p>
-                            <p></p>
-                             If <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> does not support configuration of certificate revocation checking methods, then the Administrator Option should be denied. 
-                            <p></p>
-                            <p>
-                                 This Function must be claimed if <a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and "<i> allow the administrator to choose whether to accept the certificate in these cases</i>" is selected in FIA_X509_RXT.2.2. 
-                            </p>
-                            <p>
-                                 This Function must be claimed if <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a> or <a href="#FPT_ROT_EXT.3">FPT_ROT_EXT.3</a> are claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and "<i>in accordance with Administrator-configurable policy</i>" is selected in <a href="#FPT_ROT_EXT.2.2">FPT_ROT_EXT.2.2</a> or <a href="#FPT_ROT_EXT.3.2">FPT_ROT_EXT.3.2</a>. 
-                            </p>
-                            <p>
-                                 This Function must be claimed if <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a> or <a href="#FPT_TUD_EXT.3">FPT_TUD_EXT.3</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and "<i>in accordance with Administrator-configurable policy</i>" is selected in <a href="#FPT_TUD_EXT.2.5">FPT_TUD_EXT.2.5</a> or <a href="#FPT_TUD_EXT.3.4">FPT_TUD_EXT.3.4</a>. 
-                            </p>
-                            <p>
-                                 This Function must be claimed if something other than "<i>no mechanism for platform firmware update</i>" is selected in <a href="#FPT_TUD_EXT.1.1">FPT_TUD_EXT.1.1</a>. 
-                            </p>
-                            <p>
-                                 This Function must be claimed if <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a> or <a href="#FPT_TUD_EXT.3">FPT_TUD_EXT.3</a> are claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
-                            </p>
-                            <p></p>
-                             The Administrator Option must be selected if "<i>by express determination of an [Administrator]</i>" is selected in <a href="#FPT_TUD_EXT.2.5">FPT_TUD_EXT.2.5</a> or <a href="#FPT_TUD_EXT.3.4">FPT_TUD_EXT.3.4</a>. 
-                            <p></p>
-                             The User Option must be selected if "<i>by express determination of an [User]</i>" is selected in <a href="#FPT_TUD_EXT.2.5">FPT_TUD_EXT.2.5</a> or <a href="#FPT_TUD_EXT.3.4">FPT_TUD_EXT.3.4</a>. 
-                            <p></p>
-                            <p>
-                                 This Function must be claimed if <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a> or <a href="#FPT_ROT_EXT.3">FPT_ROT_EXT.3</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
-                            </p>
-                            <p></p>
-                             The Administrator Option must be selected if "<i>by express determination of an [Administrator]</i>" is selected in <a href="#FPT_ROT_EXT.2.2">FPT_ROT_EXT.2.2</a> or <a href="#FPT_ROT_EXT.3.2">FPT_ROT_EXT.3.2</a>.
-                            <p></p>
-                             The User Option must be selected if "<i>by express determination of an [User]</i>" is selected in <a href="#FPT_ROT_EXT.2.2">FPT_ROT_EXT.2.2</a> or <a href="#FPT_ROT_EXT.3.2">FPT_ROT_EXT.3.2</a>. 
-                            <p></p>
-                            <p>
-                                 This Function must be claimed if <a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
-                            </p>
-                        </span>
+                             If "<i>not at all</i>" is selected in Function <a href="#mf-admin-platform">1</a>, then no other management Management Functions may be selected. </span>
                     </div>
                 </div>
             </div>
@@ -2817,7 +2828,7 @@
          The second type, defined in Appendix <a href="#objective-reqs" class="dynref">A.2 Objective Requirements</a>, are objective requirements. These describe security functionality that is not yet widely available in commercial technology. Objective requirements are not currently mandated by this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, but will be mandated in the future. Adoption by vendors is encouraged, but claiming these <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> is not required in order to conform to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
         <br>
         <br>
-         The third type, defined in Appendix <a href="#feat-based-reqs" class="dynref">A.3 Implementation-dependent Requirements</a>, are Implementation-dependent requirements. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements the product features associated with the listed <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>, either the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> must be claimed or the product features must be disabled in the evaluated ocnfiguration. 
+         The third type, defined in Appendix <a href="#feat-based-reqs" class="dynref">A.3 Implementation-dependent Requirements</a>, are Implementation-dependent requirements. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements the product features associated with the listed <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>, either the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> must be claimed or the product features must be disabled in the evaluated configuration. 
         <h2 id="optional-reqs" class="indexable" data-level="2">A.1 Strictly Optional Requirements </h2>
         <h3 id="fcs-optional" class="indexable" data-level="3">A.1.1 Class: Cryptographic Support (FCS)</h3>
         <div class="comp" id="FCS_CKM_EXT.5">
