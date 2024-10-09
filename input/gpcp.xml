@@ -1481,49 +1481,64 @@
 						</selectable>
 					</selectables>
 				</title>
-				<note role="application">
-					This SFR must be included in the ST if asymmetric key generation is a service provided by 
-					the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
-					security functionality.<h:p/> 
-					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
-					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG_EXT.1 must also be claimed.<h:p/>
-					DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
-					by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
-					For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.<h:p/>
-				</note>
-				<aactivity>
-					<TSS>
-						The evaluator shall examine the TSS to verify that it describes how the TOE
-						generates an asymmetric key based on the methods selected from <xref to="fcs-ckm-1-ak-sels"/>.
-						The evaluator shall examine the TSS to verify that it describes how the TOE invokes the methods
-						selected in the ST from the table. The evaluator shall examine the TSS to
-						verify that it identifies the usage for each row identifier (key type, key size, and list
-						of standards) selected in the ST.<h:p/>
-					</TSS>
-					<Guidance>
+			</f-element>
+			<note role="application">
+				This SFR must be included in the ST if asymmetric key generation is a service provided by 
+				the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
+				security functionality.<h:p/> 
+				Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
+				"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
+				If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG_EXT.1 must also be claimed.<h:p/>
+				DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
+				by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
+				For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.<h:p/>
+			</note>
+			<audit-event/>
+			<eactivity id="ea-fcs-ckm-1-ak">
+				<ea-objective>
+					The objective of this EA is to determine whether the TSF properly generates 
+					asymmetric cryptographic keys.
+				</ea-objective>
+				<ea-TSS>
+					The evaluator shall examine the TSS to verify that it describes how the TOE
+					generates an asymmetric key based on the methods selected from <xref to="fcs-ckm-1-ak-sels"/>.
+					The evaluator shall examine the TSS to verify that it describes how the TOE invokes the methods
+					selected in the ST from the table. The evaluator shall examine the TSS to
+					verify that it identifies the usage for each row identifier (key type, key size, and list
+					of standards) selected in the ST.<h:p/>
+				</ea-TSS>
+				<ea-KMD>
+					If the TOE uses the generated key in a key chain/hierarchy, then the evaluator shall
+					confirm that the KMD describes:<h:ul>
+					<h:li>If "<h:i>RSA</h:i>" is selected, then the KMD describes which methods for generating p
+						and q are used</h:li>
+					<h:li>How the key is used as part of the key chain/hierarchy. </h:li></h:ul>
+				</ea-KMD>
+				<ea-Guidance>
 						The evaluator shall verify that the AGD guidance instructs the administrator how
 						to configure the TOE to use the selected key types for all uses identified in the ST.<h:p/>
-					</Guidance>
-					<KMD>
-						If the TOE uses the generated key in a key chain/hierarchy, then the evaluator shall
-						confirm that the KMD describes:<h:ul>
-						<h:li>If "<h:i>RSA</h:i>" is selected, then the KMD describes which methods for generating p
-							and q are used</h:li>
-						<h:li>How the key is used as part of the key chain/hierarchy. </h:li></h:ul>
-					</KMD>
-					<Tests>
+				</ea-Guidance>
+				<ea-Tests>
+					<ea-tools>
 						The following tests require the developer to provide access to a test platform that
-						provides the evaluator with tools that are typically not found on factory products.<h:p/>
-						<h:br/><h:b>RSA: RSA Key Generation</h:b><h:p/>
+						provides the evaluator with tools that are typically not found on factory products.
+					</ea-tools>
+				
+					<!-- RSA -->
+					<ea-Test>
+						<depends on="sel-fcs-ckm-ak-rsa"/>
+						<ea-Test-title>RSA: RSA Key Generation</ea-Test-title>
+
 						The below tests are derived from The 186-4 RSA Validation System (RSA2VS),
 						Updated 8 July 2014, Section 6.2, from the National Institute of Standards and
 						Technology.<h:p/>
+						
 						The evaluator shall verify the implementation of RSA Key Generation by the TOE
 						using the Key Generation test. This test verifies the ability of the TSF to correctly
 						produce values for the key components including the public verification exponent
 						e, the private prime factors p and q, the public modulus n and the calculation of the
 						private signature exponent d.<h:p/>
+						
 						FIPS PUB 186-4 Key Pair generation specifies 5 methods for generating the primes p
 						and q.<h:p/>
 						These are:<h:ol type="1">
@@ -1536,10 +1551,12 @@
 									probable primes</h:li>
 								<h:li>Primes p1, p2, q1, q2, p and q shall all be probable primes.</h:li></h:ul></h:li>
 						</h:ol>	
+						
 						To test the key generation method for the Random Provable primes method and for
 						all the Primes with Conditions methods, the evaluator must seed the TSF key
 						generation routine with sufficient data to deterministically generate the RSA key
 						pair.<h:p/>
+						
 						For each key length supported, the evaluator shall have the TSF generate 25 key
 						pairs. The evaluator shall verify the correctness of the TSF’s implementation by
 						comparing values generated by the TSF with those generated by a known good
@@ -1560,7 +1577,13 @@
 						<h:li>q >= squareroot(2)*( 2^(nlen/2 -1) )</h:li>
 						<h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li>
 						<h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/>
-						<h:br/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
+					</ea-Test>	
+						
+					<ea-Test>
+						<depends on="sel-fcs-ckm-ak-eccn"/>
+						<depends on="sel-fcs-ckm-ak-eccb"/>
+						<ea-Test-title>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</ea-Test-title>
+					
 						These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
 						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/>
 						<h:b>  ECC Key Generation Test</h:b><h:br/>
@@ -1578,7 +1601,12 @@
 						(i.e., correct). To determine correctness, the evaluator shall submit the 12 key pairs
 						to the public key validation (PKV) function of the TOE and shall confirm that the
 						results correspond as expected to the modified and unmodified values.<h:p/>
-						<h:br/><h:b>DSA: DSA Key Generation using Finite-Field Cryptography (FFC)</h:b><h:p/>
+					</ea-test>	
+						
+					<!-- DSA -->
+					<ea-Test>
+						<depends on="sel-fcs-ckm-ak-dsa"/>
+						<ea-Test-title>DSA: DSA Key Generation using Finite-Field Cryptography (FFC)</ea-Test-title>
 						<!-- Apparently not based on DSA2VS? -->
 						The evaluator shall verify the implementation of the Parameters Generation and the
 						Key Generation for FFC by the TOE using the Parameter Generation and Key
@@ -1611,7 +1639,12 @@
 						<h:li>g^q mod p = 1</h:li>
 						<h:li>g^x mod p = y</h:li></h:ul>
 						for each FFC parameter set and key pair.<h:p/>
-						<h:br/><h:b>Curve25519: Curve25519 Key Generation</h:b><h:p/>
+					</ea-Test>
+					
+					<ea-Test>
+						<depends on="sel-fcs-ckm-ak-curve25519"/>
+						<ea-Test-title>Curve25519: Curve25519 Key Generation</ea-Test-title>
+					
 						The evaluator shall require the implementation under test (IUT) to generate 10
 						private/public key pairs. The private key shall be generated as specified in RFC
 						7748 using an approved random bit generator (RBG) and shall be written in little-endian order (least significant byte first. To determine correctness, the evaluator
@@ -1631,10 +1664,10 @@
 						function of a known good implementation and modify 5 of the public key values so
 						that they are incorrect, leaving five values unchanged (i.e. correct). The evaluator
 						shall obtain in response a set of 10 PASS/FAIL values.
-					</Tests>				
-				</aactivity>
-			</f-element>
-			<audit-event/>
+						
+					</ea-Test>
+				</ea-Tests>				
+			</eactivity>
 		</f-component>
 	  
 		<!-- FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key) -->
