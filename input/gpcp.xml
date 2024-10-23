@@ -592,10 +592,10 @@
           <depends on-use="uc-csfc-eud"/>
           <depends on-use="uc-ent-clients-desktop"/>
           <f-element id="fau-gen-1e1">
-            <title><h:p>The TSF shall be able to generate an audit record of the following auditable events:</h:p><h:ol><h:li data-list="ordered">Start-up and shutdown of the audit functions</h:li><h:li data-list="ordered">All administrative actions</h:li><h:li data-list="ordered">Start-up, shutdown, and reboot of the platform</h:li><h:li data-list="ordered">Specifically defined auditable events in <xref g="t-audit-mandatory"></xref></h:li><h:li data-list="ordered"><h:br/></h:li></h:ol><selectables  linebreak="yes"><selectable id="fau_gen.1.1_1" >Specifically defined auditable event in  <xref g="t-audit-optional"></xref>
+            <title>The TSF shall be able to generate an audit record of the following auditable events:  <h:ol><h:li>Start-up and shutdown of the audit functions</h:li><h:li>All administrative actions</h:li><h:li>Start-up, shutdown, and reboot of the platform</h:li><h:li>Specifically defined auditable events in  <xref g="t-audit-mandatory"></xref></h:li><h:li><selectables  linebreak="yes"><selectable id="fau_gen.1.1_1" >Specifically defined auditable event in  <xref g="t-audit-optional"></xref>
               for Strictly Optional requirements</selectable><selectable id="fau_gen.1.1_2" >Specifically defined auditable event in  <xref g="t-audit-objective"></xref>
               for Objective requirements</selectable><selectable id="fau_gen.1.1_3" >Specifically defined auditable event in  <xref g="t-audit-sel-based"></xref>
-              for Selection-based requirements</selectable><selectable id="fau_gen.1.1_4" >Additional information for the  <xref to="pkg-tls"></xref> listed in  <xref to="atref-pkgs"></xref></selectable><selectable id="fau_gen.1.1_5" >Additional information defined in the audit table for the  <xref to="pkg-ssh"></xref></selectable><selectable id="fau_gen.1.1_6" exclusive="yes">no additional auditable events</selectable> </selectables><h:p>.</h:p></title>
+              for Selection-based requirements</selectable><selectable id="fau_gen.1.1_4" >Additional information for the  <xref to="pkg-tls"></xref> listed in  <xref to="atref-pkgs"></xref></selectable><selectable id="fau_gen.1.1_5" >Additional information defined in the audit table for the  <xref to="pkg-ssh"></xref></selectable><selectable id="fau_gen.1.1_6" exclusive="yes">no additional auditable events</selectable> </selectables>.</h:li></h:ol></title>
           </f-element>
           <f-element id="fau-gen-1e2">
             <title>The TSF shall record within each audit record at least the following information:  <h:ol><h:li>Date and time of the event</h:li><h:li>Type of event</h:li><h:li>Subject and object identity (if applicable)</h:li><h:li>The outcome (success or failure) of the event</h:li><h:li>[<h:b>Additional information defined in  <xref g="t-audit-mandatory"></xref></h:b>]</h:li><h:li><h:b><selectables  linebreak="yes"><selectable id="fau_gen.1.2_1" >Additional information defined in  <xref g="t-audit-optional"></xref> for Strictly Optional SFRs</selectable><selectable id="fau_gen.1.2_2" >Additional information defined in  <xref g="t-audit-objective"></xref> for Objective SFRs</selectable><selectable id="fau_gen.1.2_3" >Additional information defined in  <xref g="t-audit-sel-based"></xref> for Selection-Based SFRs</selectable><selectable id="fau_gen.1.2_4" >Additional information for the  <xref to="pkg-tls"></xref> listed in  <xref to="atref-pkgs"></xref></selectable><selectable id="fau_gen.1.2_5" >Additional information defined in the audit table for the  <xref to="pkg-ssh"></xref></selectable><selectable id="fau_gen.1.2_6" exclusive="yes">no other information</selectable> </selectables>.</h:b></h:li></h:ol></title>
@@ -641,7 +641,7 @@
         <f-component cc-id="fau_sar.1" id="sfr-fau-sar-1" name="Audit Review" status="sel-based">
           <depends on-incl="sfr-fau-gen-1"/>
           <f-element id="fau-sar-1e1">
-            <title><h:p>The TSF shall provide <h:b>the Administrator<h:b> with the capability to read <h:b>all audited events and record contents<h:b> from the audit records.</h:p></title>
+            <title>The TSF shall provide <h:b>the Administrator</h:b>  with the capability to read <h:b>all audited events and record contents</h:b>  from the audit records.</title>
           </f-element>
           <f-element id="fau-sar-1e2">
             <title>The TSF shall provide the audit records in a manner suitable for the <h:b>Administrator
@@ -3543,23 +3543,12 @@
         <!--FIA_UIA_EXT.1 Administrator Identification and Authentication-->
         <f-component cc-id="fia_uia_ext.1" id="sfr-fia-uia-ext-1" name="Administrator Identification and Authentication" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
-          <comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
-            are identified and authenticated prior to authorizing these actions to be performed.</comp-lev>
-          <audit>The following actions should be auditable if FAU_GEN Security audit data
-            generation is included in the PP/ST:
-            All use of the identification and authentication mechanism.</audit>
-          <dependencies>FIA_UAU.5 Multiple Authentication Mechanisms</dependencies>
+          <comp-lev><h:p>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions are identified and authenticated prior to authorizing these actions to be performed.</h:p></comp-lev>
+          <audit><h:p>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST: All use of the identification and authentication mechanism.</h:p></audit>
+          <dependencies><h:p>FIA_UAU.5 Multiple Authentication Mechanisms</h:p></dependencies>
           <f-element id="fia-uia-ext-1e1">
             <title>The TSF shall require Administrators to be successfully identified and authenticated using one of the methods in FIA_UAU.5 before allowing any TSF-mediated management function to be performed by that Administrator.</title>
-            <note role="application">
-              This SFR is included in the ST if the "<h:i>Administrator</h:i>" role is selected
-              in FMT_SMR.1, or if the "<h:i>Server-Class Platform, Basic</h:i>" or "<h:i>Server-Class Platform, Enhanced</h:i>"
-              use cases are selected.<h:p/>
-              Ordinary unprivileged users of the platform need not authenticate to the platform, though they
-              may well have to authenticate themselves to tenant software such as an Operating System. <h:p/>
-              The TSF-mediated management functions are listed in the management functions table
-              ( <xref to="t-manfunc"></xref>) in FMT_SMF.1.
-            </note>
+            <note role="application"><h:p>This SFR is included in the ST if the "<h:i>Administrator<h:i>" role is selected in FMT_SMR.1, or if the "<h:i>Server-Class Platform, Basic<h:i>" or "<h:i>Server-Class Platform, Enhanced<h:i>" use cases are selected.<h:p/><h:br/><h:p/>Ordinary unprivileged users of the platform need not authenticate to the platform, though they may well have to authenticate themselves to tenant software such as an Operating System.<h:p/><h:br/><h:p/>The TSF-mediated management functions are listed in the management functions table ( <xref to="t-manfunc"></xref>) in FMT_SMF.1.</h:p></note>
             <aactivity level="element">
               <TSS>The evaluator shall examine the TSS to determine that it describes the logon
                 process for each logon method (local, remote (HTTPS, SSH, etc.)) supported for the platform.
