@@ -3165,6 +3165,8 @@
         <!--FIA_AFL_EXT.1 Authentication Failure Handling-->
         <f-component cc-id="fia_afl_ext.1" id="sfr-fia-afl-ext-1" name="Authentication Failure Handling" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-basic"/>
+          <depends on-use="uc-server-enhanced"/>
           <comp-lev>requires the TSF to monitor authorization attempts, including counting and limiting the number of
             attempts at failed or passed authorizations. This extended component permits considerably
             more flexibility for dealing with multiple authentication mechanisms than FIA_AFL.</comp-lev>
@@ -3313,6 +3315,8 @@
         <!--FIA_PMG_EXT.1 Password Management-->
         <f-component cc-id="fia_pmg_ext.1" id="sfr-fia-pmg-ext-1" name="Password Management" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-basic"/>
+          <depends on-use="uc-server-enhanced"/>
           <comp-lev>requires the TSF to support passwords with varying composition and length requirements.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:
             Ability to configure password composition and length requirements
@@ -3404,6 +3408,8 @@
         <!--FIA_UAU.5 Multiple Authentication Mechanisms-->
         <f-component cc-id="fia_uau.5" id="sfr-fia-uau-5" name="Multiple Authentication Mechanisms" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-basic"/>
+          <depends on-use="uc-server-enhanced"/>
           <f-element id="fia-uau-5e1">
             <title>The TSF shall provide password and<selectables><selectable id="sel-fia-uau-5-x509">X.509 certificate-based authentication</selectable><selectable id="sel-fia-uau-5-ssh">SSH-based authentication</selectable><selectable id="fia_uau.5.1_1">biometric authentication</selectable><selectable id="fia_uau.5.1_2">hybrid authentication</selectable><selectable id="fia_uau.5.1_3" exclusive="yes">no other authentication mechanism</selectable> </selectables>to support user authentication.</title>
             <note role="application">
@@ -3472,6 +3478,8 @@
         <!--FIA_UAU.7 Protected Authentication Feedback-->
         <f-component cc-id="fia_uau.7" id="sfr-fia-uau-7" name="Protected Authentication Feedback" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-basic"/>
+          <depends on-use="uc-server-enhanced"/>
           <f-element id="fia-uau-7e1">
             <title>The TSF shall provide only [ <h:i>obscured feedback</h:i>  ] to the user while the authentication is in progress.</title>
             <note role="application">
@@ -3536,6 +3544,8 @@
         <!--FIA_UIA_EXT.1 Administrator Identification and Authentication-->
         <f-component cc-id="fia_uia_ext.1" id="sfr-fia-uia-ext-1" name="Administrator Identification and Authentication" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-basic"/>
+          <depends on-use="uc-server-enhanced"/>
           <comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
             are identified and authenticated prior to authorizing these actions to be performed.</comp-lev>
           <audit>The following actions should be auditable if FAU_GEN Security audit data
@@ -3821,11 +3831,11 @@
         <!--FMT_SMF.1 Specification of Management Functions-->
         <f-component cc-id="fmt_smf.1" id="sfr-fmt-smf-1" name="Specification of Management Functions">
           <f-element id="fmt-smf-est-1e1">
-            <title><h:p>The TSF shall be capable of performing the following management functions: [<h:p/><h:br/><h:p/><h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b><h:p/>O - Optional/Selectable/Conditional</h:p>
+            <title>The TSF shall be capable of performing the following management functions: [ <h:p/> <h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b> <h:p/>  O - Optional/Selectable/Conditional <h:p/>
               <h:br/><h:br/>
               <h:b><ctr id="undefined" ctr-type="Table">: Management Functions</ctr></h:b>
               <h:br/><h:br/>
-              Status Markers:<h:br/> <h:p>M - Mandatory<h:p/>X - Not permitted</h:p><h:br/>
+              Status Markers:<h:br/> M - Mandatory<h:br/>X - Not permitted<h:br/><h:br/>
               <management-function-set default="O"><manager cid="A">Admin</manager><manager cid="U">User</manager>
                 <management-function id="mf-admin-platform">
                   <text>
@@ -4028,7 +4038,11 @@
                   </app-note>
                 </management-function>
               </management-function-set></title>
-            <note role="application"><h:p>These functions become Mandatory or Selectable as indicated in the Notes.<h:p/><h:br/><h:p/>If "<h:i>not at all</h:i>" is selected in Function <xref to="mf-admin-platform"/>, then no other management Management Functions may be selected.</h:p></note>
+            <note role="application">
+              These functions become Mandatory or Selectable as indicated in the Notes.<h:p/>
+              If "<h:i>not at all</h:i>" is selected in Function  <xref to="mf-admin-platform"/>, then no other management
+              Management Functions may be selected.
+            </note>
             <aactivity level="element">
               <TSS>The evaluator shall examine the TSS to ensure that it describes each management function
                 and its associated actions. <h:p/></TSS>
