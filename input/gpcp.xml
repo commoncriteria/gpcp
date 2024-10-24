@@ -3543,12 +3543,23 @@
         <!--FIA_UIA_EXT.1 Administrator Identification and Authentication-->
         <f-component cc-id="fia_uia_ext.1" id="sfr-fia-uia-ext-1" name="Administrator Identification and Authentication" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
-          <comp-lev><h:p>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions are identified and authenticated prior to authorizing these actions to be performed.</h:p></comp-lev>
-          <audit><h:p>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST: All use of the identification and authentication mechanism.</h:p></audit>
-          <dependencies><h:p>FIA_UAU.5 Multiple Authentication Mechanisms</h:p></dependencies>
+          <comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
+            are identified and authenticated prior to authorizing these actions to be performed.</comp-lev>
+          <audit>The following actions should be auditable if FAU_GEN Security audit data
+            generation is included in the PP/ST:
+            All use of the identification and authentication mechanism.</audit>
+          <dependencies>FIA_UAU.5 Multiple Authentication Mechanisms</dependencies>
           <f-element id="fia-uia-ext-1e1">
             <title>The TSF shall require Administrators to be successfully identified and authenticated using one of the methods in FIA_UAU.5 before allowing any TSF-mediated management function to be performed by that Administrator.</title>
-            <note role="application"><h:p>This SFR is included in the ST if the "<h:i>Administrator<h:i>" role is selected in FMT_SMR.1, or if the "<h:i>Server-Class Platform, Basic<h:i>" or "<h:i>Server-Class Platform, Enhanced<h:i>" use cases are selected.<h:p/><h:br/><h:p/>Ordinary unprivileged users of the platform need not authenticate to the platform, though they may well have to authenticate themselves to tenant software such as an Operating System.<h:p/><h:br/><h:p/>The TSF-mediated management functions are listed in the management functions table ( <xref to="t-manfunc"></xref>) in FMT_SMF.1.</h:p></note>
+            <note role="application">
+              This SFR is included in the ST if the "<h:i>Administrator</h:i>" role is selected
+              in FMT_SMR.1, or if the "<h:i>Server-Class Platform, Basic</h:i>" or "<h:i>Server-Class Platform, Enhanced</h:i>"
+              use cases are selected.<h:p/>
+              Ordinary unprivileged users of the platform need not authenticate to the platform, though they
+              may well have to authenticate themselves to tenant software such as an Operating System. <h:p/>
+              The TSF-mediated management functions are listed in the management functions table
+              ( <xref to="t-manfunc"></xref>) in FMT_SMF.1.
+            </note>
             <aactivity level="element">
               <TSS>The evaluator shall examine the TSS to determine that it describes the logon
                 process for each logon method (local, remote (HTTPS, SSH, etc.)) supported for the platform.
