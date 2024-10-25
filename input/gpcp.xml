@@ -3801,17 +3801,17 @@
         <!--FMT_SMF.1 Specification of Management Functions-->
         <f-component cc-id="fmt_smf.1" id="sfr-fmt-smf-1" name="Specification of Management Functions">
           <f-element id="fmt-smf-est-1e1">
-            <title>The TSF shall be capable of performing the following management functions: [ <h:p/> <h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b> <h:p/>  O - Optional/Selectable/Conditional <h:p/>
+            <title><h:p>The TSF shall be capable of performing the following management functions: [<h:p/><h:br/><h:p/><h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b></h:p>
               <h:br/><h:br/>
               <h:b><ctr id="undefined" ctr-type="Table">: Management Functions</ctr></h:b>
               <h:br/><h:br/>
-              Status Markers:<h:br/> M - Mandatory<h:br/>X - Not permitted<h:br/><h:br/>
+              Status Markers:<h:br/> <h:p>M - Mandatory<h:p/>O - Optional/Selectable/Conditional<h:p/>X - Not permitted</h:p><h:br/>
               <management-function-set default="O"><manager cid="A">Admin</manager><manager cid="U">User</manager>
                 <management-function id="mf-admin-platform">
                   <text>
                     Ability to administer the platform
                     <selectables  ><selectable id="fmt_smf.1.1_1" >locally</selectable><selectable id="sel-smf-remote-admin" >remotely</selectable><selectable id="fmt_smf.1.1_2" exclusive="yes">not at all</selectable> </selectables></text>
-                  <M ref="A"/><O ref="U"/>
+                  <M ref="A"/><X ref="U"/>
                   <app-note>
                     Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
                     Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
@@ -3826,7 +3826,7 @@
                   <text>
                     Ability to configure and manage the audit functionality and audit data.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FAU_GEN.1 is claimed in the ST.
                   </app-note>
@@ -3836,7 +3836,7 @@
                   <text>
                     Ability to configure name/address of audit/logging server to which to send audit/logging records.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FAU_STG_EXT.1 is claimed in the ST.
                   </app-note>
@@ -3846,7 +3846,7 @@
                   <text>
                     Ability to review audit records.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FAU_SAR.1 is claimed in the ST.
                   </app-note>
@@ -3856,7 +3856,7 @@
                   <text>
                     Ability to initiate a trusted channel for remote administration.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FTP_TRP.1 is claimed in the ST.
                   </app-note>
@@ -3866,7 +3866,7 @@
                   <text>
                     Ability to set parameters for allowable number of authentication failures.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FIA_AFL_EXT.1 is claimed in the ST.
                   </app-note>
@@ -3876,7 +3876,7 @@
                   <text>
                     Ability to configure password length and complexity.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FIA_PMG_EXT.1 is claimed in the ST.<h:p/>
                     If password length and complexity are not configurable, then the Administrator
@@ -3888,7 +3888,7 @@
                   <text>
                     Ability to configure authentication throttling policy.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FIA_TRT_EXT.1 is claimed in the ST.<h:p/>
                     If authentication throttling policy is not configurable, then the Administrator
@@ -3901,7 +3901,7 @@
                     Ability to manage authentication methods and change default authorization
                     factors.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FIA_UAU.5 is claimed in the ST. <h:p/>
                     If authentication methods are not configurable, then the Administrator
@@ -3913,7 +3913,7 @@
                   <text>
                     Ability to configure of certificate revocation checking methods.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FIA_X509_EXT.1 is claimed in the ST. <h:p/>
                     If TOE does not support configuration of certificate revocation checking methods,
@@ -3926,7 +3926,7 @@
                     Ability to configure TSF behavior when certificate revocation status cannot be
                     determined.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FIA_X509_EXT.2 is claimed in the ST and
                     "<h:i> allow the administrator to choose whether to accept the certificate
@@ -3938,7 +3938,7 @@
                   <text>
                     Ability to configure default action to take on integrity failure.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FPT_ROT_EXT.2 or FPT_ROT_EXT.3 are claimed
                     in the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>"
@@ -3950,7 +3950,7 @@
                   <text>
                     Ability to configure default action to take on update failure.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FPT_TUD_EXT.2 or FPT_TUD_EXT.3 is claimed in
                     the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>"
@@ -3962,7 +3962,7 @@
                   <text>
                     Ability to initiate the update process.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if something other than "<h:i>no mechanism for platform firmware update</h:i>"
                     is selected in FPT_TUD_EXT.1.1.
@@ -4002,17 +4002,13 @@
                   <text>
                     Ability to manage import and export keys/secrets to and from protected storage.
                   </text>
-                  <O ref="A"/><O ref="U"/>
+                  <O ref="A"/><X ref="U"/>
                   <app-note>
                     This Function must be claimed if FCS_STG_EXT.1 is claimed in the ST.
                   </app-note>
                 </management-function>
               </management-function-set></title>
-            <note role="application">
-              These functions become Mandatory or Selectable as indicated in the Notes.<h:p/>
-              If "<h:i>not at all</h:i>" is selected in Function  <xref to="mf-admin-platform"></xref>, then no other management
-              Management Functions may be selected.
-            </note>
+            <note role="application"><h:p>These functions become Mandatory or Selectable as indicated in the Notes.<h:p/><h:br/><h:p/>If "<h:i>not at all</h:i>" is selected in Function <xref to="mf-admin-platform"></xref>, then no other management Management Functions may be selected.</h:p></note>
             <aactivity level="element">
               <TSS>The evaluator shall examine the TSS to ensure that it describes each management function
                 and its associated actions. <h:p/></TSS>
