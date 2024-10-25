@@ -4828,29 +4828,29 @@
                          The evaluator shall supply a single 3-tuple of pseudo-random values for each selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of AES-CBC encryption.
                         <p></p>
                         <pre>
-		# Input: PT, IV, Key
-		Key[0] = Key
-		IV[0] = IV
-		PT[0] = PT
-		for i = 0 to 99 {
-			Output Key[i], IV[i], PT[0]
-			for j = 0 to 999 {
-				if (j == 0) {
-					CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
-					PT[j+1] = IV[i]
-				} else {
-					CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
-					PT[j+1] = CT[j-1]
-				}
-			}
-			Output CT[j]
-			If (KeySize == 128) Key[i+1] = Key[i] xor CT[j] 
-			If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
-			If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
-			IV[i+1] = CT[j]
-			PT[0] = CT[j-1]
-		}
-		</pre>
+                # Input: PT, IV, Key
+                Key[0] = Key
+                IV[0] = IV
+                PT[0] = PT
+                for i = 0 to 99 {
+                Output Key[i], IV[i], PT[0]
+                for j = 0 to 999 {
+                if (j == 0) {
+                CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
+                PT[j+1] = IV[i]
+                } else {
+                CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
+                PT[j+1] = CT[j-1]
+                }
+                }
+                Output CT[j]
+                If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
+                If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
+                If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
+                IV[i+1] = CT[j]
+                PT[0] = CT[j-1]
+                }
+              </pre>
                         <p></p>
                          The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
                         <p></p>
@@ -4960,22 +4960,22 @@
                          The evaluator shall supply a single 2-tuple of pseudo-random values for each selected key size. This 2-tuple of plaintext and key is provided as input to the below algorithm to generate the remaining 99 2-tuples, and to run each 2-tuple through 1000 iterations of AES-CTR encryption.
                         <p></p>
                         <pre>
-		# Input: PT, Key
-		Key[0] = Key
-		PT[0] = PT
-		for i = 0 to 99 {
-			Output Key[i], PT[0]
-			for j = 0 to 999 {
-				CT[j] = AES-CTR-Encrypt(Key[i], PT[j])
-				PT[j+1] = CT[j]
-			}
-			Output CT[j]
-			If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
-			If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
-			If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
-			PT[0] = CT[j]
-		}
-		</pre>
+                # Input: PT, Key
+                Key[0] = Key
+                PT[0] = PT
+                for i = 0 to 99 {
+                Output Key[i], PT[0]
+                for j = 0 to 999 {
+                CT[j] = AES-CTR-Encrypt(Key[i], PT[j])
+                PT[j+1] = CT[j]
+                }
+                Output CT[j]
+                If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
+                If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
+                If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
+                PT[0] = CT[j]
+                }
+              </pre>
                         <p></p>
                          The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 2-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
                         <p></p>
@@ -5035,13 +5035,13 @@
                         <b>Test 5: (invalid padding bits):</b> If the implementation supports plaintext of length not a multiple of 64-bits, then
                         <p></p>
                         <pre>
-                            		for each PAD length [1..7]
-			for each byte in PAD set a zero PAD value;
-				replace current byte by a non-zero value and use the resulting plaintext as
-					input to algorithm KWP-AE to generate ciphertext;
-				verify that the implementation of KWP-AD in the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> outputs FAIL on
-					this input.
-		
+                                            for each PAD length [1..7]
+                for each byte in PAD set a zero PAD value;
+                replace current byte by a non-zero value and use the resulting plaintext as
+                input to algorithm KWP-AE to generate ciphertext;
+                verify that the implementation of KWP-AD in the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> outputs FAIL on
+                this input.
+              
                         </pre>
                         <p></p>
                         <b>AES-KW:</b>
