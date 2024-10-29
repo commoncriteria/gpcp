@@ -33,10 +33,10 @@
     <depends on-sel="sel-itc-ssh"/>
     <depends on-sel="sel-fia-uau-5-ssh"/>
   </include-pkg>
-  <pp-preferences>
-<!--        <pp-pref name="display-audit-with-sfrs">0</pp-pref> -->
-    	<audit-events-in-sfrs/>
-    </pp-preferences>
+  <modules/>
+  <ppPreference>
+    <preference><!--          <pp-pref name="display-audit-with-sfrs">0</pp-pref>   --><h:audit-events-in-sfrs/></preference>
+  </ppPreference>
   <sec:Introduction>
     <section title="Compliant Targets of Evaluation" id="TOEdescription">This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more general-purpose operating systems as defined by the Protection Profile for General Purpose Operating Systems, one or more virtualization systems as defined by the Protection Profile for Virtualization, or more than one application. Typical platform implementations include servers, PC clients, laptops, and tablets.<h:p/><h:br/><h:p/>Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and Network Device platforms as defined in the collaborative Protection Profile for Network Devices are out of scope of this PP. Mobile Device and Network Device platforms must be evaluated against the more specific requirements in their respective specialized PPs.<h:p/><h:br/><h:p/>The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware must be protected such that it is not permitted to execute if it has been modified outside of authorized and authenticated update processes. Other use-case-specific features include audit capabilities, Administrator authentication, and protections against physical tampering.</section>
     <tech-terms>
@@ -122,7 +122,7 @@
 			Software that manages physical and logical resources and provides services
 			for applications. Operating systems are the generally the primary tenant of a GPCP.
 		</term>
-      <term full="Physical Presence">
+      <term full="Physical Presence">a
 			A user or administrator having physical access to the TOE. An assertion of physical presence
 			can take the form, for example, of requiring entry of a password at a boot screen, unlocking 
 			of a physical lock (e.g., a motherboard jumper), or inserting a USB cable before permitting
@@ -2850,12 +2850,25 @@
           <depends>
             <optional/>
           </depends>
-          <comp-lev><h:p>requires random bit generation to be performed in accordance with selected standards and seeded by an entropy source.</h:p></comp-lev>
-          <audit><h:p>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST: Failure of the randomization process.</h:p></audit>
-          <dependencies><h:p>FCS_COP.1 Cryptographic Operation</h:p></dependencies>
+          <comp-lev>requires random bit generation to be performed in accordance with
+				selected standards and seeded by an entropy source.</comp-lev>
+          <audit>The following actions should be auditable if FAU_GEN Security audit data
+				generation is included in the PP/ST:
+				Failure of the randomization process.</audit>
+          <dependencies>FCS_COP.1 Cryptographic Operation</dependencies>
           <f-element id="fcs-rbg-ext-1e1">
             <title>The TSF shall perform all deterministic random bit generation services in accordance with ISO/IEC 18031:2011 using<selectables><selectable id="sel-rbg-hash">Hash_DRBG (any)</selectable><selectable id="sel-rbg-hmac">HMAC_DRBG (any)</selectable><selectable id="sel-rbg-ctr">CTR_DRBG (AES)</selectable> </selectables>.</title>
-            <note role="application"><h:p>This SFR must be included in the ST if random bits are provided by the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/><h:br/><h:p/>This SFR is also needed if the following SFRs are included in the ST: FCS_IPSEC_EXT.1, FCS_SLT_EXT.1, FCS_CKM.1/AK, FCS_CKM.1/SK, and FCS_COP.1/SigGen.<h:p/><h:br/><h:p/>Also, this SFR must be claimed if "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or "<h:i>KDF-DPI</h:i>" is selected in FCS_CKM_EXT.5.<h:p/><h:br/><h:p/>If "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/><h:br/><h:p/>If "<h:i>Hash_DRBG (any)</h:i>" is selected, then FCS_COP.1/Hash must be claimed. If "<h:i>CTR_DRBG (any)</h:i>" is selected, then FCS_COP.1/SKC must be claimed.</h:p></note>
+            <note role="application">
+					This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					This SFR is also needed if the following SFRs are included in the ST: FCS_IPSEC_EXT.1, 
+					FCS_SLT_EXT.1, FCS_CKM.1/AK, FCS_CKM.1/SK, and FCS_COP.1/SigGen.<h:p/>
+					Also, this SFR must be claimed if "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or
+					"<h:i>KDF-DPI</h:i>" is selected in FCS_CKM_EXT.5.<h:p/>
+					If "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
+					If "<h:i>Hash_DRBG (any)</h:i>" is selected, then FCS_COP.1/Hash must be claimed.
+					If "<h:i>CTR_DRBG (any)</h:i>" is selected, then FCS_COP.1/SKC must be claimed.
+				</note>
           </f-element>
           <f-element id="fcs-rbg-ext-1e2">
             <title>The deterministic RBG shall be seeded by at least one entropy source in accordance with NIST SP 800-90B that accumulates entropy from<selectables><selectable id="fcs_rbg_ext.1.2_2"><assignable>number of software-based sources</assignable></selectable><selectable id="fcs_rbg_ext.1.2_1">software-based noise source</selectable><selectable id="fcs_rbg_ext.1.2_4"><assignable>number of hardware-based sources</assignable></selectable><selectable id="fcs_rbg_ext.1.2_3">hardware-based noise source</selectable> </selectables>with a minimum of<selectables><selectable id="fcs_rbg_ext.1.2_5">128</selectable><selectable id="fcs_rbg_ext.1.2_6">192</selectable><selectable id="fcs_rbg_ext.1.2_7">256</selectable> </selectables>bits of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011, of the keys and CSPs that it will generate.</title>
@@ -3155,6 +3168,8 @@
         <!--FIA_AFL_EXT.1 Authentication Failure Handling-->
         <f-component cc-id="fia_afl_ext.1" id="sfr-fia-afl-ext-1" name="Authentication Failure Handling" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-basic"/>
+          <depends on-use="uc-server-enhanced"/>
           <comp-lev>requires the TSF to monitor authorization attempts, including counting and limiting the number of 
 				attempts at failed or passed authorizations. This extended component permits considerably
 				more flexibility for dealing with multiple authentication mechanisms than FIA_AFL.</comp-lev>
@@ -3303,6 +3318,8 @@
         <!--FIA_PMG_EXT.1 Password Management-->
         <f-component cc-id="fia_pmg_ext.1" id="sfr-fia-pmg-ext-1" name="Password Management" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-basic"/>
+          <depends on-use="uc-server-enhanced"/>
           <comp-lev>requires the TSF to support passwords with varying composition and length requirements.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:
 				Ability to configure password composition and length requirements 
@@ -3394,6 +3411,8 @@
         <!--FIA_UAU.5 Multiple Authentication Mechanisms-->
         <f-component cc-id="fia_uau.5" id="sfr-fia-uau-5" name="Multiple Authentication Mechanisms" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-basic"/>
+          <depends on-use="uc-server-enhanced"/>
           <f-element id="fia-uau-5e1">
             <title>The TSF shall provide password and<selectables><selectable id="sel-fia-uau-5-x509">X.509 certificate-based authentication</selectable><selectable id="sel-fia-uau-5-ssh">SSH-based authentication</selectable><selectable id="fia_uau.5.1_1">biometric authentication</selectable><selectable id="fia_uau.5.1_2">hybrid authentication</selectable><selectable id="fia_uau.5.1_3" exclusive="yes">no other authentication mechanism</selectable> </selectables>to support user authentication.</title>
             <note role="application">
@@ -3462,6 +3481,8 @@
         <!--FIA_UAU.7 Protected Authentication Feedback-->
         <f-component cc-id="fia_uau.7" id="sfr-fia-uau-7" name="Protected Authentication Feedback" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-basic"/>
+          <depends on-use="uc-server-enhanced"/>
           <f-element id="fia-uau-7e1">
             <title>The TSF shall provide only [ <h:i>obscured feedback</h:i>  ] to the user while the authentication is in progress.</title>
             <note role="application">
@@ -3526,6 +3547,8 @@
         <!--FIA_UIA_EXT.1 Administrator Identification and Authentication-->
         <f-component cc-id="fia_uia_ext.1" id="sfr-fia-uia-ext-1" name="Administrator Identification and Authentication" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-basic"/>
+          <depends on-use="uc-server-enhanced"/>
           <comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
 				are identified and authenticated prior to authorizing these actions to be performed.</comp-lev>
           <audit>The following actions should be auditable if FAU_GEN Security audit data 
@@ -3811,17 +3834,17 @@
         <!--FMT_SMF.1 Specification of Management Functions-->
         <f-component cc-id="fmt_smf.1" id="sfr-fmt-smf-1" name="Specification of Management Functions">
           <f-element id="fmt-smf-est-1e1">
-            <title>The TSF shall be capable of performing the following management functions: [ <h:p/> <h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b> <h:p/>  O - Optional/Selectable/Conditional <h:p/>
+            <title>The TSF shall be capable of performing the following management functions: [ <h:p/> <h:b> <ctr id="t-manfunc" ctr-type="Table">: Management Functions</ctr></h:b> <h:p/> <h:p/>
 			<h:br/><h:br/>
 			<h:b><ctr id="undefined" ctr-type="Table">: Management Functions</ctr></h:b>
 			<h:br/><h:br/>
-			Status Markers:<h:br/> M - Mandatory<h:br/>X - Not permitted<h:br/><h:br/>
+			Status Markers:<h:br/> M - Mandatory<h:br/>O - Optional/Selectable/Conditional<h:br/>X - Not permitted<h:br/><h:br/>
 		<management-function-set default="O"><manager cid="A">Admin</manager><manager cid="U">User</manager>
 				<management-function id="mf-admin-platform">
 					<text>
 								Ability to administer the platform
 								<selectables><selectable id="fmt_smf.1.1_1">locally</selectable><selectable id="sel-smf-remote-admin">remotely</selectable><selectable id="fmt_smf.1.1_2" exclusive="yes">not at all</selectable> </selectables></text>
-					<M ref="A"/><O ref="U"/>
+					<M ref="A"/><X ref="U"/>
 					<app-note>
 								Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
 								Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
@@ -3836,7 +3859,7 @@
 					<text>
 								Ability to configure and manage the audit functionality and audit data.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FAU_GEN.1 is claimed in the ST.
 							</app-note>
@@ -3846,7 +3869,7 @@
 					<text>
 								Ability to configure name/address of audit/logging server to which to send audit/logging records.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FAU_STG_EXT.1 is claimed in the ST.
 							</app-note>
@@ -3856,7 +3879,7 @@
 					<text>
 								Ability to review audit records.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FAU_SAR.1 is claimed in the ST.
 							</app-note>
@@ -3866,7 +3889,7 @@
 					<text>
 								Ability to initiate a trusted channel for remote administration.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FTP_TRP.1 is claimed in the ST.
 							</app-note>
@@ -3876,7 +3899,7 @@
 					<text>
 								Ability to set parameters for allowable number of authentication failures.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FIA_AFL_EXT.1 is claimed in the ST.
 							</app-note>
@@ -3886,7 +3909,7 @@
 					<text>
 								Ability to configure password length and complexity.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FIA_PMG_EXT.1 is claimed in the ST.<h:p/>
 								If password length and complexity are not configurable, then the Administrator 
@@ -3898,7 +3921,7 @@
 					<text>
 								Ability to configure authentication throttling policy.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FIA_TRT_EXT.1 is claimed in the ST.<h:p/>
 								If authentication throttling policy is not configurable, then the Administrator 
@@ -3911,7 +3934,7 @@
 								Ability to manage authentication methods and change default authorization 
 								factors.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FIA_UAU.5 is claimed in the ST. <h:p/> 
 								If authentication methods are not configurable, then the Administrator 
@@ -3923,7 +3946,7 @@
 					<text>
 								Ability to configure of certificate revocation checking methods.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FIA_X509_EXT.1 is claimed in the ST. <h:p/>
 								If TOE does not support configuration of certificate revocation checking methods,
@@ -3936,7 +3959,7 @@
 								Ability to configure TSF behavior when certificate revocation status cannot be 
 								determined.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FIA_X509_EXT.2 is claimed in the ST and 
 								"<h:i> allow the administrator to choose whether to accept the certificate
@@ -3948,7 +3971,7 @@
 					<text>
 								Ability to configure default action to take on integrity failure.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FPT_ROT_EXT.2 or FPT_ROT_EXT.3 are claimed 
 								in the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>" 
@@ -3960,7 +3983,7 @@
 					<text>
 								Ability to configure default action to take on update failure.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FPT_TUD_EXT.2 or FPT_TUD_EXT.3 is claimed in 
 								the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>" 
@@ -3972,7 +3995,7 @@
 					<text>
 								Ability to initiate the update process.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if something other than "<h:i>no mechanism for platform firmware update</h:i>"
 								is selected in FPT_TUD_EXT.1.1.
@@ -4012,7 +4035,7 @@
 					<text>
 								Ability to manage import and export keys/secrets to and from protected storage.
 							</text>
-					<O ref="A"/><O ref="U"/>
+					<O ref="A"/><X ref="U"/>
 					<app-note>
 								This Function must be claimed if FCS_STG_EXT.1 is claimed in the ST.
 							</app-note>
@@ -5593,10 +5616,48 @@
       </section>
     </section>
   </sec:Security_Requirements>
-  <appendix title="Implicitly Satisfied Requirements" id="satisfiedreqs"><h:b><ctr ctr-type="Table" pre="Table " id="imp-sat-reqs-table">: Implicitly Satisfied Requirements</ctr></h:b><h:table><h:tr class="header"><h:td>Requirement</h:td><h:td>Rationale for Satisfaction</h:td></h:tr><h:tr><h:td>FIA_UAU.1 – Timing of Authentication</h:td><h:td>
+  <appendix title="Implicitly Satisfied Requirements" id="satisfiedreqs"><!--   Boilerplate goes here   --><h:b><ctr ctr-type="Table" pre="Table " id="imp-sat-reqs-table">: Implicitly Satisfied Requirements</ctr></h:b><h:table><h:tr class="header"><h:td>Requirement</h:td><h:td>Rationale for Satisfaction</h:td></h:tr><h:tr><h:td>FIA_UAU.1 – Timing of Authentication</h:td><h:td>
 	  FMT_CFG_EXT.1 has a dependency on FIA_UAU.1 because it cannot exist unless the TOE supports an authentication
 		mechanism.
-	</h:td></h:tr></h:table></appendix>
+	</h:td></h:tr><!--  	<h:tr>
+	<h:td>FCS_CKM.4 – Cryptographic Key Destruction</h:td>
+	<h:td>
+	  FCS_CKM.2 has a dependency on FCS_CKM.4. The extended SFR FCS_CKM_EXT.4 addresses this dependency by 
+	  defining an alternate requirement for key destruction.
+	</h:td>
+	</h:tr>
+	<h:tr>
+	<h:td>FCS_CKM.4 – Cryptographic Key Destruction</h:td>
+	<h:td>
+	  Each iteration of FCS_COP.1 has a dependency on FCS_CKM.4. The extended SFR FCS_CKM_EXT.4 addresses this 
+	  dependency by defining an alternate requirement for key destruction.
+	</h:td>
+	</h:tr>
+	<h:tr>
+	<h:td>FIA_UID.1 – Timing of Identification</h:td>
+	<h:td>
+	  FMT_SMR.2 has a dependency on FIA_UID.1. The extended SFR FIA_UID_EXT.1 expresses this dependency by also requiring
+	  user identification for use of the TOE.
+	</h:td>
+	</h:tr>
+	<h:tr>
+	<h:td>FPT_STM.1 – Reliable Time Stamps</h:td>
+	<h:td>
+	  FAU_GEN.1 has a dependency on FPT_STM.1. While not explicitly stated in the PP, it is assumed
+	  that this will be provided by the underlying hardware platform on which the TOE is installed. 
+	  This is because the TOE is installed as a software or firmware product that runs on general-purpose 
+	  computing hardware so a hardware clock is assumed to be available.
+	</h:td>
+	</h:tr>
+	<h:tr>
+	<h:td>FPT_STM.1 – Reliable Time Stamps</h:td>
+	<h:td>
+ 	  FIA_X509_EXT.1 has a dependency on FPT_STM.1. While not explicitly stated in the PP, it is assumed that
+	  this will be provided by the underlying hardware platform on which the TOE is installed. This is 
+	  because the TOE is installed as a software or firmware product that runs on general-purpose computing
+	  hardware so a hardware clock is assumed to be available.
+	</h:td>
+	</h:tr>    --></h:table></appendix>
   <appendix title="Entropy Documentation and Assessment" id="appendix-entropy"><section id="s-design" title="Design Description">
         Documentation shall include the design of the entropy source as a whole, including the interaction of all entropy source
 		components. It will describe the operation of the entropy source to include how it works, how entropy is produced, and

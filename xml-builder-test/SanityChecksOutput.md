@@ -457,14 +457,10 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[15]""/f-element[13]""/note[1]"At this t"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[15]""/f-element[13]""/note[1]"At this t"/h:p[3]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[15]""/f-element[14]""/note[1]"If this f"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[4]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[5]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[6]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[7]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[8]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]"This SFR "/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]"This SFR "/h:p[3]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""/note[1]"This SFR "/h:p[4]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[3]""/note[1]"ISO/IEC 1"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[3]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[3]""/aactivity[1]""/TSS[1]"The evalu"/h:p[2]""
@@ -716,6 +712,21 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[6]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[7]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[5]"In order "/h:p[1]""
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
  Failed to find a reference to SecurityObjectivesTOE.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.

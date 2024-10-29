@@ -742,7 +742,7 @@ The following sections list Common Criteria and technology terms used in this do
 			Software that manages physical and logical resources and provides services
 			for applications. Operating systems are the generally the primary tenant of a GPCP.
 		</td></tr>
-<tr><td><div id="Physical_Presence">Physical Presence</div></td><td>
+<tr><td><div id="Physical_Presence">Physical Presence</div></td><td>a
 			A user or administrator having physical access to the TOE. An assertion of physical presence
 			can take the form, for example, of requiring entry of a password at a boot screen, unlocking 
 			of a physical lock (e.g., a motherboard jumper), or inserting a USB cable before permitting
@@ -3162,7 +3162,17 @@ The following sections list Common Criteria and technology terms used in this do
           
           <div class="element"><div class="reqid" id="FCS_RBG_EXT.1.1"><a href="#FCS_RBG_EXT.1.1" class="abbr">FCS_RBG_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform all deterministic random bit generation services in accordance with ISO/IEC 18031:2011 using[<b>selection</b>: <span class="selectable-content" id="sel-rbg-hash">Hash_DRBG (any)</span>, <span class="selectable-content" id="sel-rbg-hmac">HMAC_DRBG (any)</span>, <span class="selectable-content" id="sel-rbg-ctr">CTR_DRBG (AES)</span>].<div class="appnote"><span class="note-header">Application
       Note:
-    </span><span class="note"><p>This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if random bits are provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software, or if it is used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality.<p></p><br/><p></p>This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is also needed if the following <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> are included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>: <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a>, <a href="#FCS_SLT_EXT.1">FCS_SLT_EXT.1</a>, <a href="#FCS_CKM.1/AK">FCS_CKM.1/AK</a>, <a href="#FCS_CKM.1/SK">FCS_CKM.1/SK</a>, and <a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a>.<p></p><br/><p></p>Also, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be claimed if "<i>KDF-CTR</i>," "<i>KDF-FB</i>," or "<i>KDF-DPI</i>" is selected in <a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a>.<p></p><br/><p></p>If "<i>HMAC_DRBG (any)</i>" is selected, then <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> must be claimed.<p></p><br/><p></p>If "<i>Hash_DRBG (any)</i>" is selected, then <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> must be claimed. If "<i>CTR_DRBG (any)</i>" is selected, then <a href="#FCS_COP.1/SKC">FCS_COP.1/SKC</a> must be claimed.</p></span></div></div></div>
+    </span><span class="note">
+					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if random bits are provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software,
+					or if it is used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality.<p></p> 
+					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is also needed if the following <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> are included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>: <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a>, 
+					<a href="#FCS_SLT_EXT.1">FCS_SLT_EXT.1</a>, <a href="#FCS_CKM.1/AK">FCS_CKM.1/AK</a>, <a href="#FCS_CKM.1/SK">FCS_CKM.1/SK</a>, and <a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a>.<p></p>
+					Also, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be claimed if "<i>KDF-CTR</i>," "<i>KDF-FB</i>," or
+					"<i>KDF-DPI</i>" is selected in <a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a>.<p></p>
+					If "<i>HMAC_DRBG (any)</i>" is selected, then <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> must be claimed.<p></p>
+					If "<i>Hash_DRBG (any)</i>" is selected, then <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> must be claimed.
+					If "<i>CTR_DRBG (any)</i>" is selected, then <a href="#FCS_COP.1/SKC">FCS_COP.1/SKC</a> must be claimed.
+				</span></div></div></div>
           <div class="element"><div class="reqid" id="FCS_RBG_EXT.1.2"><a href="#FCS_RBG_EXT.1.2" class="abbr">FCS_RBG_EXT.1.2</a></div><div class="reqdesc">The deterministic RBG shall be seeded by at least one entropy source in accordance with NIST SP 800-90B that accumulates entropy from[<b>selection</b>: <span class="selectable-content" id="fcs_rbg_ext.1.2_2">[<b>assignment</b>: 
      <span class="assignable-content">number of software-based sources</span>]</span>, <span class="selectable-content" id="fcs_rbg_ext.1.2_1">software-based noise source</span>, <span class="selectable-content" id="fcs_rbg_ext.1.2_4">[<b>assignment</b>: 
      <span class="assignable-content">number of hardware-based sources</span>]</span>, <span class="selectable-content" id="fcs_rbg_ext.1.2_3">hardware-based noise source</span>]with a minimum of[<b>selection</b>: <span class="selectable-content" id="fcs_rbg_ext.1.2_5">128</span>, <span class="selectable-content" id="fcs_rbg_ext.1.2_6">192</span>, <span class="selectable-content" id="fcs_rbg_ext.1.2_7">256</span>]bits of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011, of the keys and CSPs that it will generate.<div class="appnote"><span class="note-header">Application
@@ -3441,6 +3451,8 @@ The following sections list Common Criteria and technology terms used in this do
           
           
           
+          
+          
           <div class="element"><div class="reqid" id="FIA_AFL_EXT.1.1"><a href="#FIA_AFL_EXT.1.1" class="abbr">FIA_AFL_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall consider password and [ <i>no other</i>  ] as critical authentication mechanisms.<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -3580,6 +3592,8 @@ The following sections list Common Criteria and technology terms used in this do
           
           
           
+          
+          
           <div class="element"><div class="reqid" id="FIA_PMG_EXT.1.1"><a href="#FIA_PMG_EXT.1.1" class="abbr">FIA_PMG_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall support the following for the Password Authentication Factor:  <ol><li>Passwords shall be able to be composed of any combination of 
 						[<b>selection</b>: <span class="selectable-content" id="fia_pmg_ext.1.1_1">upper and lower case letters</span>, <span class="selectable-content" id="fia_pmg_ext.1.1_3">[<b>assignment</b>: 
      <span class="assignable-content">a character set of at least 52 characters</span>]</span>], numbers, and special characters: 
@@ -3661,6 +3675,8 @@ The following sections list Common Criteria and technology terms used in this do
 	  <a href="#FMT_SMR.1.1">FMT_SMR.1.1</a>.
       </i></b></div>
           
+          
+          
           <div class="element"><div class="reqid" id="FIA_UAU.5.1"><a href="#FIA_UAU.5.1" class="abbr">FIA_UAU.5.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide password and[<b>selection</b>: <span class="selectable-content" id="sel-fia-uau-5-x509">X.509 certificate-based authentication</span>, <span class="selectable-content" id="sel-fia-uau-5-ssh">SSH-based authentication</span>, <span class="selectable-content" id="fia_uau.5.1_1">biometric authentication</span>, <span class="selectable-content" id="fia_uau.5.1_2">hybrid authentication</span>, <span class="selectable-content" id="fia_uau.5.1_3">no other authentication mechanism</span>]to support user authentication.<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -3733,6 +3749,8 @@ The following sections list Common Criteria and technology terms used in this do
 	  <a href="#FMT_SMR.1.1">FMT_SMR.1.1</a>.
       </i></b></div>
           
+          
+          
           <div class="element"><div class="reqid" id="FIA_UAU.7.1"><a href="#FIA_UAU.7.1" class="abbr">FIA_UAU.7.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide only [ <i>obscured feedback</i>  ] to the user while the authentication is in progress.<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -3798,6 +3816,8 @@ The following sections list Common Criteria and technology terms used in this do
         <div class="comp" id="FIA_UIA_EXT.1"><h4>FIA_UIA_EXT.1 Administrator Identification and Authentication</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
 	  <a href="#FMT_SMR.1.1">FMT_SMR.1.1</a>.
       </i></b></div>
+          
+          
           
           
           
@@ -4067,56 +4087,56 @@ The following sections list Common Criteria and technology terms used in this do
             </div></div></div>
         
         <div class="comp" id="FMT_SMF.1"><h4>FMT_SMF.1 Specification of Management Functions</h4>
-          <div class="element"><div class="reqid" id="FMT_SMF.1.1"><a href="#FMT_SMF.1.1" class="abbr">FMT_SMF.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be capable of performing the following management functions: [ <p></p> <b> <span class="ctr" data-myid="t-manfunc" data-counter-type="ct-Table" id="t-manfunc">Table <span class="counter">10</span>: Management Functions</span></b> <p></p>  O - Optional/Selectable/Conditional <p></p>
+          <div class="element"><div class="reqid" id="FMT_SMF.1.1"><a href="#FMT_SMF.1.1" class="abbr">FMT_SMF.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be capable of performing the following management functions: [ <p></p> <b> <span class="ctr" data-myid="t-manfunc" data-counter-type="ct-Table" id="t-manfunc">Table <span class="counter">10</span>: Management Functions</span></b> <p></p> <p></p>
 			<br/><br/>
 			<b><span class="ctr" data-myid="undefined" data-counter-type="ct-Table" id="undefined">Table <span class="counter">11</span>: Management Functions</span></b>
 			<br/><br/>
-			Status Markers:<br/> M - Mandatory<br/>X - Not permitted<br/><br/>
+			Status Markers:<br/> M - Mandatory<br/>O - Optional/Selectable/Conditional<br/>X - Not permitted<br/><br/>
 		<table class="mfs" style="width: 100%;"><tr class="header"><td>#</td><td>Management Function</td><td>Admin</td><td>User</td></tr>
 <tr id="mf-admin-platform"><td>1</td><td style="text-align:left">
 								Ability to administer the platform
-								[<b>selection</b>: <span class="selectable-content" id="fmt_smf.1.1_1">locally</span>, <span class="selectable-content" id="sel-smf-remote-admin">remotely</span>, <span class="selectable-content" id="fmt_smf.1.1_2">not at all</span>]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+								[<b>selection</b>: <span class="selectable-content" id="fmt_smf.1.1_1">locally</span>, <span class="selectable-content" id="sel-smf-remote-admin">remotely</span>, <span class="selectable-content" id="fmt_smf.1.1_2">not at all</span>]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td></td></tr>
 <tr id="mf-audit-admin"><td>2</td><td style="text-align:left">
 								Ability to configure and manage the audit functionality and audit data.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-audit-server"><td>3</td><td style="text-align:left">
 								Ability to configure name/address of audit/logging server to which to send audit/logging records.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-audit-review"><td>4</td><td style="text-align:left">
 								Ability to review audit records.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-init-channel"><td>5</td><td style="text-align:left">
 								Ability to initiate a trusted channel for remote administration.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-auth-fail-params"><td>6</td><td style="text-align:left">
 								Ability to set parameters for allowable number of authentication failures.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-config-pwd"><td>7</td><td style="text-align:left">
 								Ability to configure password length and complexity.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-config-throttling"><td>8</td><td style="text-align:left">
 								Ability to configure authentication throttling policy.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-auth-methods"><td>9</td><td style="text-align:left">
 								Ability to manage authentication methods and change default authorization 
 								factors.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-config-revocation-checking"><td>10</td><td style="text-align:left">
 								Ability to configure of certificate revocation checking methods.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-config-revocation-actions"><td>11</td><td style="text-align:left">
 								Ability to configure <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> behavior when certificate revocation status cannot be 
 								determined.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-config-integrity-failure-actions"><td>12</td><td style="text-align:left">
 								Ability to configure default action to take on integrity failure.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-config-default-update-failure-actions"><td>13</td><td style="text-align:left">
 								Ability to configure default action to take on update failure.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-initiate-update"><td>14</td><td style="text-align:left">
 								Ability to initiate the update process.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 <tr id="mf-determine-update-failure-action"><td>15</td><td style="text-align:left">
 								Ability to determine the action to take on update failure.
 							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
@@ -4125,7 +4145,7 @@ The following sections list Common Criteria and technology terms used in this do
 							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="mf-key-import-export"><td>17</td><td style="text-align:left">
 								Ability to manage import and export keys/secrets to and from protected storage.
-							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td></td></tr>
 </table><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
