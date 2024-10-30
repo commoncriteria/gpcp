@@ -934,11 +934,6 @@ The following sections list Common Criteria and technology terms used in this do
               <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">There are no <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this component.<p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">The evaluator shall review the AGD for the procedure on how to review the audit 
 						records.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea"> The evaluator shall verify that the audit records provide all of the information specified in 
-						<a href="#FAU_GEN.1">FAU_GEN.1</a> and that this information is suitable for human interpretation. The evaluation 
-						activity for this requirement is performed in conjunction with the evaluation activity for 
-						<a href="#FAU_GEN.1">FAU_GEN.1</a>. 
-					</div>
             </div></div></div>
         
         <div class="comp" id="FAU_STG.1"><h4>FAU_STG.1 Protected Audit Trail Storage</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -998,11 +993,6 @@ The following sections list Common Criteria and technology terms used in this do
               <div class="eacategory">Guidance</div><div class="ea">
 						The evaluator shall examine the AGD to ensure that it describes the means used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
 						to indicate that the audit trail is full and overwrite is about to commence.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						The evaluator shall cause audit records to be written until the size limits are met and exceeded.
-						The evaluator shall verify that the overwrite function works as described in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and that the 
-						indication of full audit trail is evident as described in the AGD.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FAU_STG_EXT.1"><h4>FAU_STG_EXT.1 Off-Loading of Audit Data</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -1117,7 +1107,7 @@ The following sections list Common Criteria and technology terms used in this do
 						private signature exponent d.<p></p>
 						FIPS PUB 186-4 Key Pair generation specifies 5 methods for generating the primes p
 						and q.<p></p>
-						These are:<ol><li>Random Primes:<ul><li>Provable primes</li><li>Probable primes</li></ul></li><li>Primes with Conditions:<ul><li>Primes p1, p2, q1, q2, p and q shall all be provable primes.</li><li>Primes p1, p2, q1, and q2 shall be provable primes and p and q shall be
+						These are:<ol type="1"><li>Random Primes:<ul><li>Provable primes</li><li>Probable primes</li></ul></li><li>Primes with Conditions:<ul><li>Primes p1, p2, q1, q2, p and q shall all be provable primes.</li><li>Primes p1, p2, q1, and q2 shall be provable primes and p and q shall be
 									probable primes</li><li>Primes p1, p2, q1, q2, p and q shall all be probable primes.</li></ul></li></ol>	
 						To test the key generation method for the Random Provable primes method and for
 						all the Primes with Conditions methods, the evaluator must seed the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> key
@@ -1177,12 +1167,7 @@ The following sections list Common Criteria and technology terms used in this do
 						Note: Assuming the PKV function of the good implementation will (using little-endian order):
 						<ul><li>Confirm the private and public keys are 32-byte values</li><li>Confirm the three least significant bits of the first byte of the private key are
 								zero</li><li>Confirm the most significant bit of the last byte is zero</li><li>Confirm the second most significant bit of the last byte is one</li><li>Calculate the expected public key from the private key and confirm it matches
-								the supplied public key</li></ul>
-						The evaluator shall generate 10 private/public key pairs using the key generation
-						function of a known good implementation and modify 5 of the public key values so
-						that they are incorrect, leaving five values unchanged (i.e. correct). The evaluator
-						shall obtain in response a set of 10 PASS/FAIL values.
-					</div>
+								the supplied public key</li></ul></div>
             </div></div></div>
         
         <div class="comp" id="FCS_CKM.1/SK"><h4>FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key)</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -1212,10 +1197,6 @@ The following sections list Common Criteria and technology terms used in this do
               <div class="eacategory">Guidance</div><div class="ea">
 						The evaluator shall verify that the AGD guidance instructs the administrator how
 						to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use the selected key types for all uses identified in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						The evaluator shall use the description of the RBG interface to verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> requests 
-						and receives an amount of RBG output greater than or equal to the requested key size.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FCS_CKM.2"><h4>FCS_CKM.2 Cryptographic Key Establishment (Refinement)</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -1263,10 +1244,6 @@ The following sections list Common Criteria and technology terms used in this do
               <div class="eacategory">Guidance</div><div class="ea">
 						The evaluator shall verify that the AGD instructs the administrator how to
 						configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use the selected key establishment scheme.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						Testing for this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is performed under the corresponding functions in
-						<a href="#FCS_COP.1/KAT">FCS_COP.1/KAT</a>.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FCS_CKM.4"><h4>FCS_CKM.4 Cryptographic Key Destruction</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -1370,7 +1347,7 @@ The following sections list Common Criteria and technology terms used in this do
 								memory and subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> (whether or not the
 								plaintext value is subsequently encrypted for storage in volatile or non-volatile
 								memory).<p></p>
-								The evaluator shall:<ol><li>Record the value of the key or keying material.</li><li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to dump the SDO/SDE memory of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> into a binary file.</li><li>Search the content of the binary file created in Step #2 to locate all
+								The evaluator shall:<ol type="1"><li>Record the value of the key or keying material.</li><li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to dump the SDO/SDE memory of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> into a binary file.</li><li>Search the content of the binary file created in Step #2 to locate all
 									instances of the known key value from Step #1.<p></p>
 									Note that the primary purpose of Step #3 is to demonstrate that appropriate
 									search commands are being used for Steps #8 and #9.</li><li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform normal cryptographic processing with the key
@@ -1394,7 +1371,7 @@ The following sections list Common Criteria and technology terms used in this do
                   <li class="test-"><a id="_t_4" class="defined" href="#_t_4">Test FCS_CKM.4.1:2</a>:
       
 								Applied to each key and keying material held in non-volatile memory and
-								subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.<ol><li>Record the value of the key or keying material.</li><li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform normal cryptographic processing with the key
+								subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.<ol type="1"><li>Record the value of the key or keying material.</li><li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform normal cryptographic processing with the key
 									from Step #1.</li><li>Search the non-volatile memory the key was stored in for instances of the
 									known key value from Step #1. <p></p>
 									Note that the primary purpose of Step #3 is to demonstrate that appropriate
@@ -1415,7 +1392,7 @@ The following sections list Common Criteria and technology terms used in this do
                   <li class="test-"><a id="_t_5" class="defined" href="#_t_5">Test FCS_CKM.4.1:3</a>:
       
 								Applied to each key and keying material held in non-volatile memory and
-								subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.<ol><li>Record memory of the key or keying material.</li><li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform normal cryptographic processing with the key
+								subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.<ol type="1"><li>Record memory of the key or keying material.</li><li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform normal cryptographic processing with the key
 									from Step #1.</li><li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to clear the key. Record the value to be used for the
 									overwrite of the key. </li><li>Examine the memory from Step #1 to ensure the appropriate pattern
 									(recorded in Step #3) is used. </li></ol>
@@ -1450,9 +1427,6 @@ The following sections list Common Criteria and technology terms used in this do
 						be expected to be destroyed.<p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">
 						There are no AGD evaluation activities for this component.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						There are no test evaluation activities for this component.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FCS_CKM_EXT.5"><h4>FCS_CKM_EXT.5 Cryptographic Key Derivation</h4><div class="statustag"><i><b>This is an optional component. However, applied modules or packages might redefine it as mandatory.</b></i></div>
@@ -1547,7 +1521,7 @@ The following sections list Common Criteria and technology terms used in this do
 						are supported:<p></p>
 						Preconditions for testing:<ul><li>Specification of input parameter to the key derivation function to be tested</li><li>Specification of further required input parameters</li><li>Access to derived keys</li></ul>
 						The following table maps the data fields in the tests below to the notations used in
-						SP 800-108 and SP 800-56C<p></p><table><tr class="header"><td>Data Fields</td><td colspan="2">Notations</td></tr><tr><td></td><td>SP 800-108</td><td>SP 800-56C</td></tr><tr><td>Pseudorandom function</td><td>PRF</td><td>PRF</td></tr><tr><td>Counter length</td><td>r</td><td>r</td></tr><tr><td>Length of output of PRF</td><td>r</td><td>r</td></tr><tr><td>Length of derived keying material</td><td>L</td><td>L</td></tr><tr><td>Length of input values</td><td>I_length</td><td>I_length</td></tr><tr><td>Pseudorandom input values I</td><td>K1 (key derivation key)</td><td>Z (shared secret)</td></tr><tr><td>Pseudorandom salt values</td><td></td><td>S</td></tr><tr><td>Randomness extraction MAC</td><td>n/a</td><td>MAC</td></tr></table>
+						SP 800-108 and SP 800-56C<p></p><table class="classic" style="width:75%"><tr class="header"><td>Data Fields</td><td colspan="2">Notations</td></tr><tr><td></td><td>SP 800-108</td><td>SP 800-56C</td></tr><tr><td>Pseudorandom function</td><td>PRF</td><td>PRF</td></tr><tr><td>Counter length</td><td>r</td><td>r</td></tr><tr><td>Length of output of PRF</td><td>r</td><td>r</td></tr><tr><td>Length of derived keying material</td><td>L</td><td>L</td></tr><tr><td>Length of input values</td><td>I_length</td><td>I_length</td></tr><tr><td>Pseudorandom input values I</td><td>K1 (key derivation key)</td><td>Z (shared secret)</td></tr><tr><td>Pseudorandom salt values</td><td></td><td>S</td></tr><tr><td>Randomness extraction MAC</td><td>n/a</td><td>MAC</td></tr></table>
 						The below tests are derived from Key Derivation using Pseudorandom Functions
 						(SP 800-108) Validation System (KBKDFVS), Updated 4 January 2016, Section
 						6.2, from the National Institute of Standards and Technology.<p></p><b>KDF-CTR: Counter Mode Tests:</b><p></p>
@@ -2155,7 +2129,7 @@ The following sections list Common Criteria and technology terms used in this do
 					The following or equivalent steps shall be taken to test the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.<p></p>
 					For each supported modulus size, underlying hash algorithm, and length of the
 					trailer field (1- or 2-byte), the evaluator shall generate NT sets of recoverable
-					message (M1), non-recoverable message (M2), salt, public key and signature (<i>Σ</i>).<p></p><ol><li><i>N</i> shall be greater than or equal to 20.</li><li>The length of salts shall be selected from its supported length range of salt.
+					message (M1), non-recoverable message (M2), salt, public key and signature (<i>Σ</i>).<p></p><ol type="1"><li><i>N</i> shall be greater than or equal to 20.</li><li>The length of salts shall be selected from its supported length range of salt.
 							The typical length of salt is equal to the output block length of underlying
 							hash algorithm (see 9.2.2 of ISO/IEC 9796-2:2010).</li><li>The length of recoverable messages should be selected by considering
 							modulus size, output block length of underlying hash algorithm, and length
@@ -2164,7 +2138,7 @@ The following sections list Common Criteria and technology terms used in this do
 							the maximum bit-length of recoverable message that is divisible by 512, for
 							some combinations of modulus size, underlying hash algorithm, and length
 							of salt.
-							<table><tr class="header"><td>Maximum length of recoverable message divisible by 512 (bits)</td><td>Modulus size (bits)</td><td>Underlying hash algorithm (bits)</td><td>Length of salt L (bits)</td></tr><tr><td>1536</td><td rowspan="5">2048</td><td rowspan="2">SHA-256</td><td>128</td></tr><tr><td>1024</td><td>256</td></tr><tr><td>1024</td><td rowspan="3">SHA-512</td><td>128</td></tr><tr><td>1024</td><td>256</td></tr><tr><td>512</td><td>512</td></tr><tr><td>2560</td><td rowspan="5">3072</td><td rowspan="2">SHA-256</td><td>128</td></tr><tr><td>2048</td><td>256</td></tr><tr><td>2048</td><td rowspan="3">SHA-512</td><td>128</td></tr><tr><td>2048</td><td>256</td></tr><tr><td>1536</td><td>512</td></tr><tr colspan="4">None that 2-byte trailer field is assumed in calculating the maximum length of recoverable message</tr></table></li><li>The length of non-recoverable messages should be selected by considering
+							<table class="classic" style="width:50%"><tr class="header"><td>Maximum length of recoverable message divisible by 512 (bits)</td><td>Modulus size (bits)</td><td>Underlying hash algorithm (bits)</td><td>Length of salt L (bits)</td></tr><tr><td>1536</td><td rowspan="5">2048</td><td rowspan="2">SHA-256</td><td>128</td></tr><tr><td>1024</td><td>256</td></tr><tr><td>1024</td><td rowspan="3">SHA-512</td><td>128</td></tr><tr><td>1024</td><td>256</td></tr><tr><td>512</td><td>512</td></tr><tr><td>2560</td><td rowspan="5">3072</td><td rowspan="2">SHA-256</td><td>128</td></tr><tr><td>2048</td><td>256</td></tr><tr><td>2048</td><td rowspan="3">SHA-512</td><td>128</td></tr><tr><td>2048</td><td>256</td></tr><tr><td>1536</td><td>512</td></tr><tr colspan="4">None that 2-byte trailer field is assumed in calculating the maximum length of recoverable message</tr></table></li><li>The length of non-recoverable messages should be selected by considering
 							the underlying hash algorithm and usages. If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is used for verifying
 							the authenticity of software/firmware updates, the length of non-recoverable
 							messages should be selected greater than or equal to 2048-bit. With this
@@ -2174,7 +2148,7 @@ The following sections list Common Criteria and technology terms used in this do
 							signature) in the sets. In altering public key exponent, the evaluator shall
 							alter the public key exponent while keeping the exponent odd. In altering
 							signatures, the following ways should be considered:
-							<ol><li>Altering a signature just by replacing a bit in the bit-string representation
+							<ol type="a"><li>Altering a signature just by replacing a bit in the bit-string representation
 									of the signature</li><li>Altering a signature so that the trailer in the message representative
 									cannot be interpreted. This can be achieved by following ways:<ul><li>Setting the rightmost four bits of the message representative to the
 										values other than '1100'.</li><li>In the case when 1-byte trailer is used, setting the rightmost byte of
@@ -2639,11 +2613,7 @@ The following sections list Common Criteria and technology terms used in this do
 						The evaluator shall examine the AGD to ensure that it describes how to configure 
 						entropy sources (if applicable) and how tenant software can access the sources. <p></p></div>
               <div class="eacategory">Tests</div><div class="ea">
-                        The evaluator shall perform the following test:<p></p>
-                                The evaluator shall invoke the entropy source(s) from tenant software.
-								The evaluator shall verify that the tenant acquires values from the 
-								interface.
-                    </div>
+                        The evaluator shall perform the following test:<p></p></div>
             </div></div></div>
         
         <div class="comp" id="FCS_HTTPS_EXT.1"><h4>FCS_HTTPS_EXT.1 HTTPS Protocol</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -2671,10 +2641,6 @@ The following sections list Common Criteria and technology terms used in this do
                         level of the processing stack. <p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">
 						There are no AGD evaluation activities for this component..<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-                        Testing for this activity is done as part of the TLS testing; this may result in additional 
-                        testing if the TLS tests are done at the TLS protocol level.
-                    </div>
             </div></div></div>
         
         <div class="comp" id="FCS_IPSEC_EXT.1"><h4>FCS_IPSEC_EXT.1 IPsec Protocol</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -3347,9 +3313,6 @@ The following sections list Common Criteria and technology terms used in this do
 					software-based key storage as claimed in <a href="#FCS_STG_EXT.2.1">FCS_STG_EXT.2.1</a>. <p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">
 					There are no AGD evaluation activities for this component.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-					There are no test evaluation activities for this component.
-				</div>
             </div></div></div>
         
         <div class="comp" id="FCS_STG_EXT.3"><h4>FCS_STG_EXT.3 Key Integrity Protection</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -3379,9 +3342,6 @@ The following sections list Common Criteria and technology terms used in this do
 						how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> protects the integrity of its keys.<p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">
 						There are no AGD evaluation activities for this component.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						There are no test evaluation activities for this component.
-					</div>
             </div></div></div>
       
       
@@ -3409,14 +3369,6 @@ The following sections list Common Criteria and technology terms used in this do
 						the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> shall describe integrity verification schemes employed.<p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">
 						There are no AGD evaluation activities for this component.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						For each supported import method selected in <a href="#FDP_ITC_EXT.1.1">FDP_ITC_EXT.1.1</a> and for each
-						supported integrity verification method selected in <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>. used by the
-						selected import method, provide one key/credential with valid integrity credentials, 
-						one with invalid integrity credentials (e.g. hash). The operations with invalid integrity
-						credentials must result in error. The operations with valid integrity credentials must
-						accept the keys/credentials.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FDP_TEE_EXT.1"><h4>FDP_TEE_EXT.1 Trusted Execution Environment for Tenant Software</h4><div class="statustag"><i><b>This is an optional component. However, applied modules or packages might redefine it as mandatory.</b></i></div>
@@ -3435,9 +3387,6 @@ The following sections list Common Criteria and technology terms used in this do
               <div class="eacategory">Guidance</div><div class="ea">
 						The evaluator shall examine the AGD to ensure that it describes the steps 
 						required for tenant software to invoke the TEE.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						There are no Test evaluation activities for this component.
-					</div>
             </div></div></div>
       
       
@@ -3628,15 +3577,7 @@ The following sections list Common Criteria and technology terms used in this do
 						perform the following tests. Note that one or more of these tests can be performed with a 
 						single test case.<p></p></div>
               <div class="eacategory">Tests</div><div class="ea">
-						The evaluator shall perform the following test:<p></p>
-								The evaluator shall compose passwords that either meet the requirements, or fail 
-								to meet the requirements, in some way. For each password, the evaluator shall 
-								verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports the password. While the evaluator is not required
-								(nor is it feasible) to test all possible compositions of passwords, the evaluator 
-								shall ensure that all characters, rule characteristics, and a minimum length
-								listed in the requirement are supported, and justify the subset of those 
-								characters chosen for testing.		
-					</div>
+						The evaluator shall perform the following test:<p></p></div>
             </div></div></div>
         
         <div class="comp" id="FIA_TRT_EXT.1"><h4>FIA_TRT_EXT.1 Authentication Throttling</h4><div class="statustag"><i><b>This is an optional component. However, applied modules or packages might redefine it as mandatory.</b></i></div>
@@ -3666,9 +3607,6 @@ The following sections list Common Criteria and technology terms used in this do
 						per 500 milliseconds for all authentication mechanisms selected in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.<p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">
 						There are no AGD evaluation activities for this component.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						There are no test evaluation activities for this component.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FIA_UAU.5"><h4>FIA_UAU.5 Multiple Authentication Mechanisms</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -3846,9 +3784,6 @@ The following sections list Common Criteria and technology terms used in this do
                         provides clear instructions for successfully logging on. If configuration is necessary
                         to ensure the services provided before login are limited, the evaluator shall determine that the
                         AGD provides sufficient instruction on limiting the allowed services.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						There are no Test evaluation activities for this component.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FIA_X509_EXT.1"><h4>FIA_X509_EXT.1 X.509 Certificate Validation</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -4083,7 +4018,6 @@ The following sections list Common Criteria and technology terms used in this do
 						administrator-configured policy and how. This activity will be performed in conjunction with
 						<a href="#FMT_SMF.1">FMT_SMF.1</a>.<p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">There are no AGD evaluation activities for this component.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">Testing of this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is covered in the tests for <a href="#FMT_SMF.1">FMT_SMF.1</a>.</div>
             </div></div></div>
         
         <div class="comp" id="FMT_SMF.1"><h4>FMT_SMF.1 Specification of Management Functions</h4>
@@ -4217,7 +4151,75 @@ The following sections list Common Criteria and technology terms used in this do
 								This Function must be claimed if <a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 							</p></span></div></div></div>
           
-        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="element-activity-header"><a href="#FMT_SMF.1.1">FMT_SMF.1.1</a></div>
+        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FMT_SMF.1">FMT_SMF.1</a></div>
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				<div class="element-activity-header"><a href="#FMT_SMF.1.1">FMT_SMF.1.1</a></div>
               <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure that it describes each management function
 						and its associated actions. <p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">
@@ -4228,9 +4230,129 @@ The following sections list Common Criteria and technology terms used in this do
               <div class="eacategory">Tests</div><div class="ea">
 						The evaluator shall test each management function included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> 
 			                        to demonstrate that the function can be performed only by the roles 
-						indicated in  <a onclick="showTarget('t-manfunc')" href="#t-manfunc" class="t-manfunc-ref">Table <span class="counter">10</span></a> and the result of the function is demonstrated. 
-					</div>
-            </div></div></div>
+						indicated in  <a onclick="showTarget('t-manfunc')" href="#t-manfunc" class="t-manfunc-ref">Table <span class="counter">10</span></a></div>
+            <div class="management_function_activities">
+	    The following EAs correspond to specific management functions.
+	    <div class="management_function_ea"><b>Function <a href="#mf-admin-platform">1</a></b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-audit-admin">2</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-audit-server">3</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-audit-review">4</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-init-channel">5</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-auth-fail-params">6</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-config-pwd">7</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-config-throttling">8</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-auth-methods">9</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-config-revocation-checking">10</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-config-revocation-actions">11</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-config-integrity-failure-actions">12</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-config-default-update-failure-actions">13</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-initiate-update">14</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-determine-update-failure-action">15</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-determine-integrity-failure-action">16</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div><div class="management_function_ea"><b>Function <a href="#mf-key-import-export">17</a> [CONDITIONAL] </b><br/>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
+			There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Guidance</div>
+			There are no additional Guidance evaluation activities for this management function.<br/><br/>
+					<div class="eacategory">Tests</div>
+			There are no test activities for this management function.<br/><br/>
+				<br/></div></div></div></div></div>
         
         <div class="comp" id="FMT_SMR.1"><h4>FMT_SMR.1 Security Roles</h4>
           <div class="element"><div class="reqid" id="FMT_SMR.1.1"><a href="#FMT_SMR.1.1" class="abbr">FMT_SMR.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall maintain the roles [ <i>User</i>  and[<b>selection</b>: <span class="selectable-content" id="sel-fmt-smr-1-admin">Administrator</span>, <span class="selectable-content" id="fmt_smr.1.1_1">no other roles</span>]].</div></div>
@@ -4315,10 +4437,7 @@ The following sections list Common Criteria and technology terms used in this do
               <div class="eacategory">Tests</div><div class="ea">
 						The following test requires the developer to provide access to a test platform that provides 
 						the evaluator with chip level access.<p></p>
-						[conditional] If "<i>disable access through hardware</i>" is selected:<br/>
-						The evaluator shall connect a packet analyzer to the JTAG ports. The evaluator shall query 
-						the JTAG port for its device ID and confirm that the device ID cannot be retrieved.
-					</div>
+						[conditional] If "<i>disable access through hardware</i>" is selected:<br/></div>
             </div></div></div>
         
         <div class="comp" id="FPT_PHP.1"><h4>FPT_PHP.1 Passive detection of physical attack</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -4339,12 +4458,6 @@ The following sections list Common Criteria and technology terms used in this do
               <div class="eacategory">Guidance</div><div class="ea">
 						The evaluator shall ensure that the AGD describes how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> indicates to users
 						and Administrators that it has detected tampering.  <p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						The evaluator shall verify that attempts to open the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> enclosure  
-						result in indications consistent with the operational guidance. Such indications 
-						could include damaged tamper seals, logged events, or other physical or 
-						electronic manifestations.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FPT_PHP.2"><h4>FPT_PHP.2 Notification of Physical Attack</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -4410,11 +4523,7 @@ The following sections list Common Criteria and technology terms used in this do
 					The evaluator shall examine the AGD to ensure that it describes the expected response
 					of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> when physical tampering is detected.<p></p></div>
               <div class="eacategory">Tests</div><div class="ea">
-						The evaluator shall perform the following test:<p></p>
-							For each physical tampering scenario and device/element 
-							listed in <a href="#FPT_PHP.3.1">FPT_PHP.3.1</a>, the evaluator shall verify that tampering attempts
-							result in a response from the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> consistent with the operational guidance.					
-				</div>
+						The evaluator shall perform the following test:<p></p></div>
             </div></div></div>
         
         <div class="comp" id="FPT_PPF_EXT.1"><h4>FPT_PPF_EXT.1 Protection of Platform Firmware and Critical Data</h4>
@@ -4444,15 +4553,7 @@ The following sections list Common Criteria and technology terms used in this do
 						securely modify the platform firmware and critical data using a mechanism specified in 
 						<a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a>.<p></p></div>
               <div class="eacategory">Tests</div><div class="ea">
-						The evaluator shall perform the following test:<p></p>
-							The evaluator shall attempt to overwrite or modify the platform firmware without invoking one of
-								the update mechanisms specified in <a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a> (e.g., using a modified Linux boot loader such 
-								as GRUB that attempts to write to the memory where platform firmware is stored). The test succeeds
-								if the attempts to overwrite platform firmware fail. The evaluator shall attempt at least two 
-								such tests--one that attempts to overwrite the first platform firmware that executes after boot,
-								and one that targets the secure update mechanism (if implemented), and one that targets firmware that
-								has been integrity-checked since the last boot.
-					</div>
+						The evaluator shall perform the following test:<p></p></div>
             </div></div></div>
         
         <div class="comp" id="FPT_ROT_EXT.1"><h4>FPT_ROT_EXT.1 Platform Integrity Root</h4>
@@ -4476,9 +4577,6 @@ The following sections list Common Criteria and technology terms used in this do
 						modification.<p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">
 						There are no AGD evaluation activities for this component.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						There are no Test evaluation activities for this component.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FPT_ROT_EXT.2"><h4>FPT_ROT_EXT.2 Platform Integrity Extension</h4>
@@ -4595,9 +4693,6 @@ The following sections list Common Criteria and technology terms used in this do
 						The evaluator shall examine the AGD to ensure that it describes the actions taken and notification
 						methods used in case of detection of a platform integrity violation. If the actions are 
 						configurable, the AGD shall explain how they are configured.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						There are no tests for this requirement.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FPT_RVR_EXT.1"><h4>FPT_RVR_EXT.1 Platform Firmware Recovery</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -4667,11 +4762,7 @@ The following sections list Common Criteria and technology terms used in this do
 					The evaluator shall examine the AGD to ensure it instructs the
 					Administrator on any mechanisms for configuring the time source.<p></p></div>
               <div class="eacategory">Tests</div><div class="ea">
-					The evaluator shall perform the following tests:<p></p>
-					[conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> provides a mechanism to manually set the time, the
-					evaluator shall use the guidance documentation to set the time. The evaluator shall
-					then use an available interface to observe that the time is reported correctly.
-				</div>
+					The evaluator shall perform the following tests:<p></p></div>
             </div></div></div>
         
         <div class="comp" id="FPT_TUD_EXT.1"><h4>FPT_TUD_EXT.1 TOE Firmware Update</h4>
@@ -5011,13 +5102,6 @@ The following sections list Common Criteria and technology terms used in this do
               <div class="eacategory">Guidance</div><div class="ea"> The evaluator shall confirm that the AGD contains
 						instructions for establishing connections to external IT entities and
 						remote users. <p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to communicate with each external IT entity 
-						and type of remote user identified in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>. The evaluator will monitor network
-						traffic while the VS performs communication with each of these destinations. The evaluator will ensure
-						that for each session a trusted channel was established in conformance with the protocols identified 
-						in the selection.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FTP_ITE_EXT.1"><h4>FTP_ITE_EXT.1 Encrypted Data Communications</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -5047,14 +5131,6 @@ The following sections list Common Criteria and technology terms used in this do
 						types of communications protected using each mechanism.<p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">
 						There are no AGD evaluation activities for this component.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to communicate with each external entity
-						identified in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>. The evaluator shall initiate a transaction that will result in
-						data being transferred to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> through the mechanism and other data returned
-						to the initiating entity through the mechanism. The evaluator must verify that the
-						data returned to the entity was encrypted using the documented mechanism when
-						received.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FTP_ITP_EXT.1"><h4>FTP_ITP_EXT.1 Physically Protected Channel</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
@@ -5079,9 +5155,6 @@ The following sections list Common Criteria and technology terms used in this do
 						communications protected using each mechanism.<p></p></div>
               <div class="eacategory">Guidance</div><div class="ea">
 						There are no AGD evaluation activities for this component.<p></p></div>
-              <div class="eacategory">Tests</div><div class="ea">
-						There are no test activities for this component.
-					</div>
             </div></div></div>
         
         <div class="comp" id="FTP_TRP.1"><h4>FTP_TRP.1 Trusted Path</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
