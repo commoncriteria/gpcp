@@ -716,3 +716,89 @@
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
+* Warning: Since FAU_STG_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_CKM_EXT.5.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_IPSEC_EXT.1.2 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_IPSEC_EXT.1.4 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_IPSEC_EXT.1.5 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_IPSEC_EXT.1.6 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_IPSEC_EXT.1.7 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_IPSEC_EXT.1.8 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_IPSEC_EXT.1.11 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_IPSEC_EXT.1.12 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_IPSEC_EXT.1.14 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_RBG_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_RBG_EXT.1.2 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_STG_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_STG_EXT.1.2 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_STG_EXT.1.3 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_STG_EXT.2.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_STG_EXT.3.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FCS_STG_EXT.3.2 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FDP_ITC_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FDP_ITC_EXT.1.2 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FIA_AFL_EXT.1.2 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FIA_AFL_EXT.1.5 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FIA_PMG_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FIA_TRT_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FIA_X509_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FIA_X509_EXT.2.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FIA_X509_EXT.2.2 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_JTA_EXT.2.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_ROT_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_ROT_EXT.2.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_ROT_EXT.2.2 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_ROT_EXT.3.2 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_RVR_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_TUD_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_TUD_EXT.2.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_TUD_EXT.2.2 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_TUD_EXT.2.5 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_TUD_EXT.3.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_TUD_EXT.3.4 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FPT_TUD_EXT.4.2 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FTP_ITC_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
+* Warning: Since FTP_ITE_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
