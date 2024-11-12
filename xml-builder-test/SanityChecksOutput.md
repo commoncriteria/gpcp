@@ -6,6 +6,12 @@
         /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[3]""/f-element[1]""
 * Error: f-element FCS_HTTPS_EXT.1.1  appears not to have an associated evaluation activity.:
         /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[14]""/f-element[1]""
+* Error: f-element FCS_IPSEC_EXT.1.10  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[15]""/f-element[10]""
+* Error: f-element FCS_IPSEC_EXT.1.12  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[15]""/f-element[12]""
+* Error: f-element FCS_IPSEC_EXT.1.13  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[15]""/f-element[13]""
 * Error: f-element FCS_RBG_EXT.1.1  appears not to have an associated evaluation activity.:
         /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/f-element[1]""
 * Error: f-element FCS_RBG_EXT.1.2  appears not to have an associated evaluation activity.:
@@ -38,6 +44,8 @@
         /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[8]""/f-element[1]""
 * Error: f-element FMT_SMR.1.1  appears not to have an associated evaluation activity.:
         /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[4]""/f-element[1]""
+* Error: f-element FMT_SMR.1.2  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[4]""/f-element[2]""
 * Error: f-element FPT_PHP.1.1  appears not to have an associated evaluation activity.:
         /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[3]""/f-element[1]""
 * Error: f-element FPT_PHP.2.1  appears not to have an associated evaluation activity.:
@@ -93,11 +101,14 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[5]""/f-element[1]""/aactivity[1]""/Guidance[1]"If "trust"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[5]""/f-element[1]""/aactivity[1]""/Tests[1]"If "trust"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[5]""/f-element[1]""/aactivity[1]""/Tests[1]"If "trust"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]"This SFR "/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]"This SFR "/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]"This SFR "/h:p[4]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]"This SFR "/h:p[5]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[3]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[4]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[5]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[6]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[7]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]""/h:p[1]"This SFR "/h:p[8]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[1]""
@@ -704,6 +715,21 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[6]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[7]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[5]"In order "/h:p[1]""
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
+DONTKNOWWHATIT IS:X
  Failed to find a reference to SecurityObjectivesTOE.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
