@@ -4202,10 +4202,7 @@
                     <a href="#FCS_CKM.1.1/AK" class="abbr">FCS_CKM.1.1/AK</a>
                 </div>
                 <div class="reqdesc">
-                    <p>
-                        The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall generate <b>asymmetric</b> cryptographic keys in accordance with a specified cryptographic key generation algorithm
-                    </p>
-                     [<b>selection</b>: <span class="selectable-content">Cryptographic key generation </span>]and specified cryptographic key sizes [<b>selection</b>: <span class="selectable-content">Cryptographic key sizes</span>]that meet the following: [<b>selection</b>: <span class="selectable-content">List of standards</span>]
+                    The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall generate <b>asymmetric</b> cryptographic keys in accordance with a specified cryptographic key generation algorithm [<b>selection</b>: <span class="selectable-content">Cryptographic key generation </span>]and specified cryptographic key sizes [<b>selection</b>: <span class="selectable-content">Cryptographic key sizes</span>]that meet the following: [<b>selection</b>: <span class="selectable-content">List of standards</span>]
                     <table>
                         <caption>
                             <span class="ctr" data-myid="fcs-ckm-1-ak-sels" data-counter-type="ct-Table" id="fcs-ckm-1-ak-sels">Table <span class="counter">11</span></span>: Choices for completion of the selection operations in <a href="#FCS_CKM.1.1/AK">FCS_CKM.1.1/AK</a>
@@ -4230,26 +4227,15 @@
                         </tr>
                     </table>
                     <div class="appnote">
-                        <span class="note-header">Application Note: </span><span class="note">
-                            <p>
-                                This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if asymmetric key generation is a service provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software, or if it is used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality.
-                            </p>
+                        <span class="note-header">Application Note: </span><span class="note"> This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if asymmetric key generation is a service provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software, or if it is used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality.
                             <p></p>
-                            <br>
+                             Also, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> is claimed, or if "<i>causing the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to generate [asymmetric] keys/secrets</i>" is selected in <a href="#FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</a>.
                             <p></p>
-                            Also, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> is claimed, or if "<i>causing the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to generate [asymmetric] keys/secrets</i>" is selected in <a href="#FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</a>.
+                             If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_CKM.4">FCS_CKM.4</a> and <a href="#FCS_RBG_EXT.1">FCS_RBG_EXT.1</a> must also be claimed.
                             <p></p>
-                            <br>
+                             DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated by FIPS PUB 186-4 though that size is still allowed for signature verification.
                             <p></p>
-                            If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_CKM.4">FCS_CKM.4</a> and <a href="#FCS_RBG_EXT.1">FCS_RBG_EXT.1</a> must also be claimed.
-                            <p></p>
-                            <br>
-                            <p></p>
-                            DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated by FIPS PUB 186-4 though that size is still allowed for signature verification.
-                            <p></p>
-                            <br>
-                            <p></p>
-                            For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.
+                             For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.
                             <p></p>
                         </span>
                     </div>
@@ -5513,7 +5499,10 @@
                     <a href="#FCS_COP.1.1/SKC" class="abbr">FCS_COP.1.1/SKC</a>
                 </div>
                 <div class="reqdesc">
-                    The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform <b>symmetric key encryption/decryption</b> in accordance with a specified cryptographic algorithm [<b>selection</b>: <span class="selectable-content">Cryptographic algorithm</span>]and cryptographic key sizes [<b>selection</b>: <span class="selectable-content">Cryptographic key sizes</span>]that meet the following: [<b>selection</b>: <span class="selectable-content">List of standards</span>]
+                    <p>
+                        The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform <b>symmetric key encryption/decryption</b> in accordance with a specified cryptographic algorithm
+                    </p>
+                     [<b>selection</b>: <span class="selectable-content">Cryptographic algorithm</span>]and cryptographic key sizes [<b>selection</b>: <span class="selectable-content">Cryptographic key sizes</span>]that meet the following: [<b>selection</b>: <span class="selectable-content">List of standards</span>]
                     <table>
                         <caption>
                             <span class="ctr" data-myid="fcs-cop-skc-sels" data-counter-type="ct-Table" id="fcs-cop-skc-sels">Table <span class="counter">15</span></span>: Choices for completion of the assignments in <a href="#FCS_COP.1.1/SKC">FCS_COP.1.1/SKC</a>
@@ -5544,18 +5533,24 @@
                         </tr>
                     </table>
                     <div class="appnote">
-                        <span class="note-header">Application Note: </span><span class="note"> This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if symmetric-key cryptography is a service provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software, or if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself uses SKC to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality.
+                        <span class="note-header">Application Note: </span><span class="note">
+                            <p>
+                                This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if symmetric-key cryptography is a service provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software, or if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself uses SKC to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality.
+                            </p>
                             <p></p>
-                             Specifically, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> includes <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> or <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>, or includes any of the following selections: 
+                            <br>
+                            <p></p>
+                            Specifically, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> includes <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> or <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>, or includes any of the following selections:
+                            <p></p>
                             <ul>
-                                <li>
-                                    "<i>CTR_DRBG (AES)</i>" in <a href="#FCS_RBG_EXT.1">FCS_RBG_EXT.1</a>
+                                <li data-list="bullet">
+                                    <span class="ql-ui" contenteditable="false"></span>"<i>CTR_DRBG (AES)</i>" in <a href="#FCS_RBG_EXT.1">FCS_RBG_EXT.1</a>
                                 </li>
-                                <li>
-                                    "<i>ECIES</i>" in <a href="#FCS_COP.1/KAT">FCS_COP.1/KAT</a>
+                                <li data-list="bullet">
+                                    <span class="ql-ui" contenteditable="false"></span>"<i>ECIES</i>" in <a href="#FCS_COP.1/KAT">FCS_COP.1/KAT</a>
                                 </li>
-                                <li>
-                                    "<i>AES-*</i>" in <a href="#FCS_STG_EXT.3">FCS_STG_EXT.3</a>
+                                <li data-list="bullet">
+                                    <span class="ql-ui" contenteditable="false"></span>"<i>AES-*</i>" in <a href="#FCS_STG_EXT.3">FCS_STG_EXT.3</a>
                                 </li>
                             </ul>
                         </span>
@@ -5639,29 +5634,29 @@
                          The evaluator shall supply a single 3-tuple of pseudo-random values for each selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of AES-CBC encryption.
                         <p></p>
                         <pre>
-                # Input: PT, IV, Key
-                Key[0] = Key
-                IV[0] = IV
-                PT[0] = PT
-                for i = 0 to 99 {
-                Output Key[i], IV[i], PT[0]
-                for j = 0 to 999 {
-                if (j == 0) {
-                CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
-                PT[j+1] = IV[i]
-                } else {
-                CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
-                PT[j+1] = CT[j-1]
-                }
-                }
-                Output CT[j]
-                If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
-                If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
-                If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
-                IV[i+1] = CT[j]
-                PT[0] = CT[j-1]
-                }
-              </pre>
+		# Input: PT, IV, Key
+		Key[0] = Key
+		IV[0] = IV
+		PT[0] = PT
+		for i = 0 to 99 {
+			Output Key[i], IV[i], PT[0]
+			for j = 0 to 999 {
+				if (j == 0) {
+					CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
+					PT[j+1] = IV[i]
+				} else {
+					CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
+					PT[j+1] = CT[j-1]
+				}
+			}
+			Output CT[j]
+			If (KeySize == 128) Key[i+1] = Key[i] xor CT[j] 
+			If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
+			If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
+			IV[i+1] = CT[j]
+			PT[0] = CT[j-1]
+		}
+		</pre>
                         <p></p>
                          The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
                         <p></p>
@@ -5771,22 +5766,22 @@
                          The evaluator shall supply a single 2-tuple of pseudo-random values for each selected key size. This 2-tuple of plaintext and key is provided as input to the below algorithm to generate the remaining 99 2-tuples, and to run each 2-tuple through 1000 iterations of AES-CTR encryption.
                         <p></p>
                         <pre>
-                # Input: PT, Key
-                Key[0] = Key
-                PT[0] = PT
-                for i = 0 to 99 {
-                Output Key[i], PT[0]
-                for j = 0 to 999 {
-                CT[j] = AES-CTR-Encrypt(Key[i], PT[j])
-                PT[j+1] = CT[j]
-                }
-                Output CT[j]
-                If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
-                If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
-                If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
-                PT[0] = CT[j]
-                }
-              </pre>
+		# Input: PT, Key
+		Key[0] = Key
+		PT[0] = PT
+		for i = 0 to 99 {
+			Output Key[i], PT[0]
+			for j = 0 to 999 {
+				CT[j] = AES-CTR-Encrypt(Key[i], PT[j])
+				PT[j+1] = CT[j]
+			}
+			Output CT[j]
+			If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
+			If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
+			If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
+			PT[0] = CT[j]
+		}
+		</pre>
                         <p></p>
                          The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 2-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
                         <p></p>
@@ -5846,13 +5841,13 @@
                         <b>Test 5: (invalid padding bits):</b> If the implementation supports plaintext of length not a multiple of 64-bits, then
                         <p></p>
                         <pre>
-                                            for each PAD length [1..7]
-                for each byte in PAD set a zero PAD value;
-                replace current byte by a non-zero value and use the resulting plaintext as
-                input to algorithm KWP-AE to generate ciphertext;
-                verify that the implementation of KWP-AD in the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> outputs FAIL on
-                this input.
-              
+                            		for each PAD length [1..7]
+			for each byte in PAD set a zero PAD value;
+				replace current byte by a non-zero value and use the resulting plaintext as
+					input to algorithm KWP-AE to generate ciphertext;
+				verify that the implementation of KWP-AD in the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> outputs FAIL on
+					this input.
+		
                         </pre>
                         <p></p>
                         <b>AES-KW:</b>
