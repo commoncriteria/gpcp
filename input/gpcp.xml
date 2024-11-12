@@ -810,7 +810,7 @@
             <optional/>
           </depends>
           <f-element id="fcs-ckm-1e1-ak">
-            <title>The TSF shall generate <h:b>asymmetric</h:b>  cryptographic keys in accordance with a specified cryptographic key generation algorithm<selectables><tabularize id="fcs-ckm-1-ak-sels" title="Choices for completion of the selection
+            <title><h:p>The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm</h:p><selectables><tabularize id="fcs-ckm-1-ak-sels" title="Choices for completion of the selection
 							operations in FCS_CKM.1.1/AK"><selectcol>Cryptographic key generation
             </selectcol><reqtext>and specified cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following: </reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-ckm-ak-rsa"><col>undefined</col><col>undefined</col><col>undefined</col><col><selectables  ><selectable id="sel-exp-ak-rsa-2048" >2048 bit</selectable><selectable id="sel-exp-ak-rsa-3072" >3072-bit</selectable> </selectables></col><col>FIPS PUB 186-4 sec. B.3 [key generation]</col></selectable><selectable id="sel-fcs-ckm-ak-eccn"><col>undefined</col><col>undefined</col><col>undefined</col><col><selectables  ><selectable id="sel-exp-ak-eccn-P256" >256 (P-256)</selectable><selectable id="sel-exp-ak-eccn-P384" >384 (P-384)</selectable><selectable id="sel-exp-ak-eccn-P521" >521 (P-521)</selectable> </selectables></col><col>FIPS PUB 186-4 sec. D.1.2 [NIST curves]
               FIPS PUB 186-4 sec. B.4 [key generation]</col></selectable><selectable id="sel-fcs-ckm-ak-eccb"><col>undefined</col><col>undefined</col><col>undefined</col><col><selectables  ><selectable id="sel-exp-ak-eccb-bpP256r1" >256 (brainpoolP256r1)</selectable><selectable id="sel-exp-ak-eccb-bpP384r1" >384 (brainpoolP384r1)</selectable><selectable id="sel-exp-ak-eccb-bpP512r1" >512 (brainpoolP512r1)</selectable> </selectables></col><col>RFC 5639 sec. 3 [Brainpool Curves]
@@ -818,16 +818,7 @@
               <selectables  ><selectable id="sel-exp-ak-dsa-2048-224" >(2048, 224)</selectable><selectable id="sel-exp-ak-dsa-2048-256" >(2048, 256)</selectable><selectable id="sel-exp-ak-dsa-3027-256" >(3027, 256)</selectable> </selectables></col><col>FIPS PUB 186-4 sec. B.1 [key generation]</col></selectable><selectable id="sel-fcs-ckm-ak-curve25519"><col>undefined</col><col>undefined</col><col>undefined</col><col>256 bits</col><col>RFC 7748 [Curve25519]
               FIPS PUB 186-4 sec. B.4 [key generation]
             </col></selectable></selectables></title>
-            <note role="application">
-              This SFR must be included in the ST if asymmetric key generation is a service provided by
-              the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
-              security functionality.<h:p/>
-              Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if
-              "<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
-              If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG_EXT.1 must also be claimed.<h:p/>
-              DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
-              by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
-              For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.<h:p/></note>
+            <note role="application"><h:p>This SFR must be included in the ST if asymmetric key generation is a service provided by the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/><h:br/><h:p/>Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if "<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/><h:br/><h:p/>If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG_EXT.1 must also be claimed.<h:p/><h:br/><h:p/>DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/><h:br/><h:p/>For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.</h:p></note>
             <aactivity level="element">
               <TSS>The evaluator shall examine the TSS to verify that it describes how the TOE
                 generates an asymmetric key based on the methods selected from  <xref to="fcs-ckm-1-ak-sels"></xref>.
@@ -1894,7 +1885,7 @@
             <optional/>
           </depends>
           <f-element id="fcs-cop-1e1-skc">
-            <title><h:p>The TSF shall perform <h:b>symmetric key encryption/decryption</h:b> in accordance with a specified cryptographic algorithm</h:p><selectables><tabularize id="fcs-cop-skc-sels" title="Choices for completion of the assignments
+            <title>The TSF shall perform <h:b>symmetric key encryption/decryption</h:b>  in accordance with a specified cryptographic algorithm<selectables><tabularize id="fcs-cop-skc-sels" title="Choices for completion of the assignments
 							in FCS_COP.1.1/SKC"><textcol>Identifier</textcol><reqtext></reqtext><selectcol>Cryptographic algorithm</selectcol><reqtext>and cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-cop-skc-aes-ccm"><col>AES-CCM</col><col>undefined</col><col>undefined</col><col><selectables  ><selectable id="fcs_cop.1.1_SKC_1" >128 bits</selectable><selectable id="fcs_cop.1.1_SKC_2" >192 bits</selectable><selectable id="fcs_cop.1.1_SKC_3" >256 bits</selectable> </selectables></col><col>
               ISO/IEC 18033-3, FIPS PUB 197 [AES]
               ISO/IEC 19772 cl. 8, NIST SP 800-38C [CCM]</col></selectable><selectable id="sel-fcs-cop-skc-aes-gcm"><col>AES-GCM</col><col>undefined</col><col>undefined</col><col><selectables  ><selectable id="fcs_cop.1.1_SKC_9" >128 bits</selectable><selectable id="fcs_cop.1.1_SKC_10" >192 bits</selectable><selectable id="fcs_cop.1.1_SKC_11" >256 bits</selectable> </selectables></col><col>
@@ -1912,7 +1903,12 @@
               ISO/IEC 18033-3, FIPS PUB 197 [AES]
               ISO/IEC 19772 cl. 7 [key wrap]
               NIST SP 800-38F, sec. 6.2 (KW)</col></selectable></selectables></title>
-            <note role="application"><h:p>This SFR must be included in the ST if symmetric-key cryptography is a service provided by the TOE to tenant software, or if the TOE itself uses SKC to support or implement PP-specified security functionality.<h:p/><h:br/><h:p/>Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STG_EXT.2, or includes any of the following selections:</h:p><h:ul><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG_EXT.1</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>"<h:i>ECIES</h:i>" in FCS_COP.1/KAT</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>"<h:i>AES-*</h:i>" in FCS_STG_EXT.3</h:li></h:ul></note>
+            <note role="application">
+              This SFR must be included in the ST if symmetric-key cryptography is a service provided by the TOE
+              to tenant software, or if the TOE itself uses SKC to support or implement PP-specified security
+              functionality.<h:p/>
+              Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STG_EXT.2, or includes
+              any of the following selections: <h:ul><h:li>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG_EXT.1</h:li><h:li>"<h:i>ECIES</h:i>" in FCS_COP.1/KAT</h:li><h:li>"<h:i>AES-*</h:i>" in FCS_STG_EXT.3</h:li></h:ul></note>
             <aactivity level="element">
               <TSS>The evaluator shall check that the TSS includes a description of encryption
                 functions used for symmetric key encryption. The evaluator should check that this
