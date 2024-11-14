@@ -811,13 +811,12 @@
           </depends>
           <f-element id="fcs-ckm-1e1-ak">
             <title>The TSF shall generate <h:b>asymmetric</h:b>  cryptographic keys in accordance with a specified cryptographic key generation algorithm<selectables><tabularize id="fcs-ckm-1-ak-sels" title="Choices for completion of the selection 
-							operations in FCS_CKM.1.1/AK"><selectcol>Cryptographic key generation 
-							</selectcol><reqtext>and specified cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following: </reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-ckm-ak-rsa"><col>undefined</col><col>undefined</col><col>undefined</col><col><selectables  ><selectable id="sel-exp-ak-rsa-2048" >2048 bit</selectable><selectable id="sel-exp-ak-rsa-3072" >3072-bit</selectable> </selectables></col><col>FIPS PUB 186-4 sec. B.3 [key generation]</col></selectable><selectable id="sel-fcs-ckm-ak-eccn"><col>undefined</col><col>undefined</col><col>undefined</col><col><selectables  ><selectable id="sel-exp-ak-eccn-P256" >256 (P-256)</selectable><selectable id="sel-exp-ak-eccn-P384" >384 (P-384)</selectable><selectable id="sel-exp-ak-eccn-P521" >521 (P-521)</selectable> </selectables></col><col>FIPS PUB 186-4 sec. D.1.2 [NIST curves]
-								FIPS PUB 186-4 sec. B.4 [key generation]</col></selectable><selectable id="sel-fcs-ckm-ak-eccb"><col>undefined</col><col>undefined</col><col>undefined</col><col><selectables  ><selectable id="sel-exp-ak-eccb-bpP256r1" >256 (brainpoolP256r1)</selectable><selectable id="sel-exp-ak-eccb-bpP384r1" >384 (brainpoolP384r1)</selectable><selectable id="sel-exp-ak-eccb-bpP512r1" >512 (brainpoolP512r1)</selectable> </selectables></col><col>RFC 5639 sec. 3 [Brainpool Curves]
-							FIPS PUB 186-4 sec. B.4 [key generation]</col></selectable><selectable id="sel-fcs-ckm-ak-dsa"><col>undefined</col><col>undefined</col><col>undefined</col><col>DSA Bit lengths of p and q respectively (L, N) 
-							<selectables  ><selectable id="sel-exp-ak-dsa-2048-224" >(2048, 224)</selectable><selectable id="sel-exp-ak-dsa-2048-256" >(2048, 256)</selectable><selectable id="sel-exp-ak-dsa-3027-256" >(3027, 256)</selectable> </selectables></col><col>FIPS PUB 186-4 sec. B.1 [key generation]</col></selectable><selectable id="sel-fcs-ckm-ak-curve25519"><col>undefined</col><col>undefined</col><col>undefined</col><col>256 bits</col><col>RFC 7748 [Curve25519]
+							operations in FCS_CKM.1.1/AK"><textcol>Identifier</textcol><selectcol>Cryptographic key generation 
+							</selectcol><reqtext>and specified cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following: </reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-ckm-ak-rsa"><col>RSA</col><col>undefined</col><col>undefined</col><col>FIPS PUB 186-4 sec. B.3 [key generation]</col><col>undefined</col></selectable><selectable id="sel-fcs-ckm-ak-eccn"><col>ECC-N</col><col>undefined</col><col>undefined</col><col>FIPS PUB 186-4 sec. D.1.2 [NIST curves]
+								FIPS PUB 186-4 sec. B.4 [key generation]</col><col>undefined</col></selectable><selectable id="sel-fcs-ckm-ak-eccb"><col>ECC-B</col><col>undefined</col><col>undefined</col><col>RFC 5639 sec. 3 [Brainpool Curves]
+							FIPS PUB 186-4 sec. B.4 [key generation]</col><col>undefined</col></selectable><selectable id="sel-fcs-ckm-ak-dsa"><col>DSA</col><col>undefined</col><col>undefined</col><col>FIPS PUB 186-4 sec. B.1 [key generation]</col><col>undefined</col></selectable><selectable id="sel-fcs-ckm-ak-curve25519"><col>Curve25519</col><col>undefined</col><col>undefined</col><col>RFC 7748 [Curve25519]
 							FIPS PUB 186-4 sec. B.4 [key generation]
-							</col></selectable></selectables></title>
+							</col><col>undefined</col></selectable></selectables></title>
             <note role="application">
 					This SFR must be included in the ST if asymmetric key generation is a service provided by 
 					the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
@@ -1394,7 +1393,7 @@
               <Guidance>
                         The evaluator checks the AGD to determine that any configuration that is required to 
                         be done to configure the functionality for the required hash sizes is present. <h:p/></Guidance>
-              <Tests><h:b></h:b><h:br/>
+              <Tests><h:b><h:u>SHA-1 and SHA-2 Tests</h:u></h:b><h:br/>
                         The TSF hashing functions can be implemented in one of two modes. The first mode is the byte-oriented
 						mode. In this mode the TSF only hashes messages that are an integral number of bytes in length;
 						i.e., the length (in bits) of the message to be hashed is divisible by 8. The second mode is the
@@ -1430,7 +1429,7 @@
                         hash function to be tested. The evaluator then formulates a set of 100 messages and
                         associated digests by following the algorithm provided in Figure 1 of [SHAVS]. The
                         evaluator then ensures that the correct result is produced when the messages are
-                        provided to the TSF.<h:p/><h:b></h:b><h:br/>
+                        provided to the TSF.<h:p/><h:b><h:u>SHA-3 Tests</h:u></h:b><h:br/>
 						The tests below are derived from the The Secure Hash Algorithm-3 Validation System (SHA3VS), 
 						Updated: April 7, 2016, from the National Institute of Standards and Technology.<h:p/>
 						For each SHA-3-XXX implementation, XXX represents d, the digest length in bits. The capacity, c,
@@ -1483,8 +1482,7 @@
             <optional/>
           </depends>
           <f-element id="fcs-cop-1e1-kat">
-            <title>The TSF shall perform [ <h:i>cryptographic key agreement/transport</h:i>  ] in accordance with a specified cryptographic algorithm<selectables><tabularize id="fcs-ckm-kat-sels" title="Choices for completion of the assignment operations in FCS_COP.1.1/KAT"><selectcol>Cryptographic algorithm</selectcol><reqtext>and cryptographic key sizes</reqtext><selectcol>Cryptographic key size</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-cop-kat-kas1"><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col><col>NIST SP 800-56B rev2 sec. 8.2</col></selectable><selectable id="sel-fcs-cop-kat-kas2"><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col><col>NIST SP 800-56B rev2 sec. 8.3</col></selectable><selectable id="sel-fcs-cop-kat-kts"><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col><col>NIST SP 800-56B rev2 sec. 9</col></selectable><selectable id="sel-fcs-cop-kat-rsaes"><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col><col>RFC 8017 sec. 7.2</col></selectable><selectable id="sel-fcs-cop-kat-ecdh-nist"><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col><col>NIST SP 800-56A rev3</col></selectable><selectable id="sel-fcs-cop-kat-ecdh-bpc"><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col><col>RFC 5639 sec. 3</col></selectable><selectable id="sel-fcs-cop-kat-dh"><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col><col>NIST SP 800-56A rev3,
-								<selectables  ><selectable id="fcs_cop.1.1_KAT_32">RFC 3526 sec.<selectables><selectable id="fcs_cop.1.1_KAT_33" >3</selectable><selectable id="fcs_cop.1.1_KAT_34" >4</selectable><selectable id="fcs_cop.1.1_KAT_35" >5</selectable><selectable id="fcs_cop.1.1_KAT_36" >6</selectable><selectable id="fcs_cop.1.1_KAT_37" >7</selectable></selectables></selectable><selectable id="fcs_cop.1.1_KAT_38">RFC 7919 App.<selectables><selectable id="fcs_cop.1.1_KAT_39" >A.1</selectable><selectable id="fcs_cop.1.1_KAT_40" >A.2</selectable><selectable id="fcs_cop.1.1_KAT_41" >A.3</selectable><selectable id="fcs_cop.1.1_KAT_42" >A.4</selectable><selectable id="fcs_cop.1.1_KAT_43" >A.5</selectable></selectables></selectable> </selectables></col></selectable><selectable id="sel-fcs-cop-kat-curve25519"><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col><col>RFC 7748</col></selectable><selectable id="sel-fcs-cop-kat-ecies"><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col><col><selectables  ><selectable id="fcs_cop.1.1_KAT_47" >ANSI X9.63</selectable><selectable id="fcs_cop.1.1_KAT_48" >IEEE 1363a</selectable><selectable id="fcs_cop.1.1_KAT_49" >ISO/IEC 18033-2 Part 2</selectable><selectable id="fcs_cop.1.1_KAT_50" >SECG SEC1 sec. 5.1</selectable> </selectables></col></selectable></selectables></title>
+            <title>The TSF shall perform [ <h:i>cryptographic key agreement/transport</h:i>  ] in accordance with a specified cryptographic algorithm<selectables><tabularize id="fcs-ckm-kat-sels" title="Choices for completion of the assignment operations in FCS_COP.1.1/KAT"><textcol>Identifier</textcol><selectcol>Cryptographic algorithm</selectcol><reqtext>and cryptographic key sizes</reqtext><selectcol>Cryptographic key size</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-cop-kat-kas1"><col>KAS1 (RSA single-party)</col><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-kas2"><col>KAS2 (RSA Two-party)</col><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-kts"><col>KTS-OAEP (RSA)</col><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-rsaes"><col>RSAES-PKCS1-v1_5 (RSA)</col><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-ecdh-nist"><col>ECDH-NIST (ECDH with NIST curves)</col><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-ecdh-bpc"><col>ECDH-BPC (ECDH with Brainpool curves)</col><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-dh"><col>DH (Diffie-Hellman)</col><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-curve25519"><col>ECDH-25519 (ECDH with Curve25519)</col><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-ecies"><col>ECIES</col><col>undefined</col><col>undefined</col><col>undefined</col><col>undefined</col></selectable></selectables></title>
             <note role="application">
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
@@ -1914,365 +1912,9 @@
 							NIST SP 800-38F, sec. 6.2 (KW)</col></selectable></selectables></title>
             <note role="application"><h:p>This SFR must be included in the ST if symmetric-key cryptography is a service provided by the TOE to tenant software, or if the TOE itself uses SKC to support or implement PP-specified security functionality.<h:p/><h:br/><h:p/>Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STG_EXT.2, or includes any of the following selections:</h:p><h:ul><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG_EXT.1</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>"<h:i>ECIES</h:i>" in FCS_COP.1/KAT</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>"<h:i>AES-*</h:i>" in FCS_STG_EXT.3</h:li></h:ul></note>
             <aactivity level="element">
-              <TSS>The evaluator shall check that the TSS includes a description of encryption
-						functions used for symmetric key encryption. The evaluator should check that this
-						description of the selected encryption function includes the key sizes and modes of
-						operations as specified in  <xref to="fcs-cop-skc-sels"></xref>.<h:p/>
-						The evaluator shall check that the TSS describes the means by which the TOE
-						satisfies constraints on algorithm parameters included in the selections made for
-						"cryptographic algorithm" and "list of standards."<h:p/></TSS>
-              <Guidance>
-						If the product supports multiple modes, the evaluator shall examine the AGD
-						to determine that the method of choosing a specific mode/key size
-						is described.<h:p/></Guidance>
-              <Tests>
-						The following tests require the developer to provide access to a test platform that
-						provides the evaluator with tools that are typically not found on factory products.<h:p/>
-						The following tests are conditional based upon the selections made in the SFR. The
-						evaluator shall perform the following test or witness respective tests executed by
-						the developer. The tests must be executed on a platform that is as close as practically
-						possible to the operational platform (but which may be instrumented in terms of,
-						for example, use of a debug mode). Where the test is not carried out on the TOE
-						itself, the test platform shall be identified and the differences between test
-						environment and TOE execution environment shall be described.<h:p/>
-						Preconditions for testing:<h:ul><h:li>Specification of keys as input parameter to the function to be tested</h:li><h:li>specification of required input parameters such as modes</h:li><h:li>Specification of user data (plaintext)</h:li><h:li>Tapping of encrypted user data (ciphertext) directly in the non-volatile memory</h:li></h:ul><h:p/><h:b>AES-CBC:</h:b><h:br/>
-						For the AES-CBC tests described below, the plaintext, ciphertext, and IV values
-						shall consist of 128-bit blocks. To determine correctness, the evaluator shall
-						compare the resulting values to those obtained by submitting the same inputs to a
-						known-good implementation.<h:p/>
-						These tests are intended to be equivalent to those described in NIST’s AES Algorithm Validation Suite (AESAVS)
-						( <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf">
-						http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf</h:a>). It is not
-						recommended that the evaluator use values obtained from static sources such as the
-						example NIST’s AES Known Answer Test Values from the AESAVS document,
-						or use values not generated expressly to exercise the AES-CBC implementation.<h:p/><h:b><h:i>AES-CBC Known Answer Tests</h:i></h:b><h:p/> To test the encrypt functionality of AES-CBC, the evaluator
-						shall supply a set of five different plaintext values for each selected key size and
-						obtain the ciphertext value that results from AES-CBC encryption of the given
-						plaintext using a key value of all zeros and an IV of all zeros.<h:p/>
-						To test the decrypt functionality of AES-CBC, the evaluator shall supply a set of
-						five different ciphertext values for each selected key size and obtain the plaintext
-						value that results from AES-CBC decryption of the given ciphertext using a key
-						value of all zeros and an IV of all zeros.<h:p/> To test the encrypt functionality of AES-CBC, the evaluator
-						shall supply a set of five different key values for each selected key size and obtain
-						the ciphertext value that results from AES-CBC encryption of an all-zeros plaintext
-						using the given key value and an IV of all zeros.<h:p/>
-						To test the decrypt functionality of AES-CBC, the evaluator shall supply a set of
-						five different key values for each selected key size and obtain the plaintext that
-						results from AES-CBC decryption of an all-zeros ciphertext using the given key
-						and an IV of all zeros.<h:p/> To test the encrypt functionality of AES-CBC, the evaluator
-						shall supply a set of keys for each selected key size (as described below) and obtain
-						the ciphertext value that results from AES encryption of an all-zeros plaintext using
-						each key and an IV of all zeros.<h:p/>
-						Key i in each set shall have the leftmost i bits set to ones and the remaining bits to
-						zeros, for values of i from 1 to the key size. The keys and corresponding ciphertext
-						are listed in AESAVS, Appendix E.<h:p/>
-						To test the decrypt functionality of AES-CBC, the evaluator shall use the same keys
-						as above to decrypt the ciphertext results from above. Each decryption should result
-						in an all-zeros plaintext.<h:p/> To test the encrypt functionality of AES-CBC, for each
-						selected key size, the evaluator shall supply a set of 128-bit plaintext values (as 
-						described below) and obtain the ciphertext values that result from AES-CBC
-						encryption of each plaintext value using a key of each size and IV consisting of all
-						zeros.<h:p/>
-						Plaintext value i shall have the leftmost i bits set to ones and the remaining bits set
-						to zeros, for values of i from 1 to 128. The plaintext values are listed in AESAVS,
-						Appendix D.<h:p/>
-						To test the decrypt functionality of AES-CBC, for each selected key size, use the
-						plaintext values from above as ciphertext input, and AES-CBC decrypt each
-						ciphertext value using key of each size consisting of all zeros and an IV of all zeros.<h:p/><h:b><h:i>AES-CBC Multi-Block Message Test</h:i></h:b><h:p/>
-						The evaluator shall test the encrypt functionality by encrypting nine i-block
-						messages for each selected key size, for 2 ≤ i ≤ 10. For each test, the 
-						evaluator shall supply a key, an IV, and a plaintext message of length i blocks, and encrypt the
-						message using AES-CBC. The resulting ciphertext values shall be compared to the
-						results of encrypting the plaintext messages using a known good implementation.<h:p/>
-						The evaluator shall test the decrypt functionality by decrypting nine i-block
-						messages for each selected key size, for 2 ≤ i ≤ 10. For each test, the evaluator shall
-						supply a key, an IV, and a ciphertext message of length i blocks, and decrypt the
-						message using AES-CBC. The resulting plaintext values shall be compared to the
-						results of decrypting the ciphertext messages using a known good implementation.<h:p/><h:b><h:i>AES-CBC Monte Carlo Tests</h:i></h:b><h:p/>
-						The evaluator shall test the encrypt functionality for each selected key size using
-						100 3-tuples of pseudo-random values for plaintext, IVs, and keys.<h:p/>
-						The evaluator shall supply a single 3-tuple of pseudo-random values for each
-						selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the
-						below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple
-						through 1000 iterations of AES-CBC encryption.<h:p/><h:pre>
-		# Input: PT, IV, Key
-		Key[0] = Key
-		IV[0] = IV
-		PT[0] = PT
-		for i = 0 to 99 {
-			Output Key[i], IV[i], PT[0]
-			for j = 0 to 999 {
-				if (j == 0) {
-					CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
-					PT[j+1] = IV[i]
-				} else {
-					CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
-					PT[j+1] = CT[j-1]
-				}
-			}
-			Output CT[j]
-			If (KeySize == 128) Key[i+1] = Key[i] xor CT[j] 
-			If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
-			If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
-			IV[i+1] = CT[j]
-			PT[0] = CT[j-1]
-		}
-		</h:pre><h:p/>
-						The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of
-						the 100 3-tuples for each selected key size. This result shall be compared to the
-						result of running 1000 iterations with the same values using a known good
-						implementation.<h:p/>
-						The evaluator shall test the decrypt functionality using the same test as above,
-						exchanging CT and PT, and replacing AES-CBC-Encrypt with AES-CBC-Decrypt.<h:p/><h:b>AES-CCM:</h:b><h:p/>
-						These tests are intended to be equivalent to those described in the NIST document,
-						“The CCM Validation System (CCMVS),” updated 9 Jan 2012, found at
-						 <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/mac/CCMVS.pdf">
-						http://csrc.nist.gov/groups/STM/cavp/documents/mac/CCMVS.pdf</h:a>.<h:p/>
-						It is not recommended that the evaluator use values obtained from static sources such
-						as http://csrc.nist.gov/groups/STM/cavp/documents/mac/ccmtestvectors.zip or use
-						values not generated expressly to exercise the AES-CCM implementation.<h:p/>
-						The evaluator shall test the generation-encryption and decryption-verification
-						functionality of AES-CCM for the following input parameter and tag lengths:<h:p/><h:ul><h:li><h:b>Keys:</h:b> All supported and selected key sizes (e.g., 128, 192, or 256 bits).</h:li><h:li><h:b>Associated Data:</h:b> Two or three values for associated data length: The minimum
-						(≥ 0 bytes) and maximum (≤ 32 bytes) supported associated data lengths, and
-						2^16 (65536) bytes, if supported.</h:li><h:li><h:b>Payload:</h:b> Two values for payload length: The minimum (≥ 0 bytes) and
-						maximum (≤ 32 bytes) supported payload lengths.</h:li><h:li><h:b>Nonces:</h:b> All supported nonce lengths (e.g., 8, 9, 10, 11, 12, 13) in bytes.</h:li><h:li><h:b>Tag:</h:b> All supported tag lengths (e.g., 4, 6, 8, 10, 12, 14, 16) in bytes.</h:li></h:ul>
-						The testing for CCM consists of five tests. To determine correctness in each of the
-						below tests, the evaluator shall compare the ciphertext with the result of encryption
-						of the same inputs with a known good implementation.<h:p/>
-						Variable Associated Data Test: For each supported key size and associated data
-						length, and any supported payload length, nonce length, and tag length, the
-						evaluator shall supply one key value, one nonce value, and 10 pairs of associated
-						data and payload values, and obtain the resulting ciphertext.<h:p/>
-						Variable Payload Text: For each supported key size and payload length, and any
-						supported associated data length, nonce length, and tag length, the evaluator shall 
-						supply one key value, one nonce value, and 10 pairs of associated data and payload
-						values, and obtain the resulting ciphertext.<h:p/>
-						Variable Nonce Test: For each supported key size and nonce length, and any
-						supported associated data length, payload length, and tag length, the evaluator shall
-						supply one key value, one nonce value, and 10 pairs of associated data and payload
-						values, and obtain the resulting ciphertext.<h:p/>
-						Variable Tag Test: For each supported key size and tag length, and any supported
-						associated data length, payload length, and nonce length, the evaluator shall supply
-						one key value, one nonce value, and 10 pairs of associated data and payload values,
-						and obtain the resulting ciphertext.<h:p/>
-						Decryption-Verification Process Test: To test the decryption-verification
-						functionality of AES-CCM, for each combination of supported associated data
-						length, payload length, nonce length, and tag length, the evaluator shall supply a
-						key value and 15 sets of input plus ciphertext, and obtain the decrypted payload.
-						Ten of the 15 input sets supplied should fail verification and five should pass.<h:p/><h:b>AES-GCM:</h:b>
-						These tests are intended to be equivalent to those described in the NIST document,
-						“The Galois/Counter Mode (GCM) and GMAC Validation System (GCMVS) with
-						the Addition of XPN Validation Testing,” rev. 15 Jun 2016, section 6.2, found at
-						 <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmvs.pdf">
-						http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmvs.pdf</h:a>.<h:p/>
-						It is not recommended that the evaluator use values obtained from static sources such
-						as http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmtestvectors.zip, or use
-						values not generated expressly to exercise the AES-GCM implementation.<h:p/>
-						The evaluator shall test the authenticated encryption functionality of AES-GCM by
-						supplying 15 sets of Key, Plaintext, AAD, IV, and Tag data for every combination
-						of the following parameters as selected in the ST and supported by the
-						implementation under test:<h:ul><h:li><h:b>Key size in bits:</h:b> Each selected and supported key size (e.g., 128, 192, or
-						256 bits).</h:li><h:li><h:b>Plaintext length in bits:</h:b> Up to four values for plaintext length: Two values
-						that are non-zero integer multiples of 128, if supported. And two values that
-						are non-multiples of 128, if supported.</h:li><h:li><h:b>AAD length in bits:</h:b> Up to five values for AAD length: Zero-length, if
-						supported. Two values that are non-zero integer multiples of 128, if
-						supported. And two values that are integer non-multiples of 128, if
-						supported.</h:li><h:li><h:b>IV length in bits:</h:b> Up to three values for IV length: 96 bits. Minimum and
-						maximum supported lengths, if different.</h:li><h:li><h:b>MAC length in bits:</h:b> Each supported length (e.g., 128, 120, 112, 104, 96).</h:li></h:ul>
-						To determine correctness, the evaluator shall compare the resulting values to those
-						obtained by submitting the same inputs to a known-good implementation.<h:p/>
-						The evaluator shall test the authenticated decrypt functionality of AES-GCM by
-						supplying 15 Ciphertext-Tag pairs for every combination of the above parameters,
-						replacing Plaintext length with Ciphertext length. For each parameter combination
-						the evaluator shall introduce an error into either the Ciphertext or the Tag such that
-						approximately half of the cases are correct and half the cases contain errors. To
-						determine correctness, the evaluator shall compare the resulting pass/fail status and
-						Plaintext values to the results obtained by submitting the same inputs to a known-good
-						implementation.<h:p/><h:b>AES-CTR:</h:b><h:p/>
-						For the AES-CTR tests described below, the plaintext and ciphertext values shall
-						consist of 128-bit blocks. To determine correctness, the evaluator shall compare the
-						resulting values to those obtained by submitting the same inputs to a known-good
-						implementation.<h:p/>
-						These tests are intended to be equivalent to those described in NIST’s AES
-						Algorithm Validation Suite (AESAVS)
-						( <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf">
-						http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf</h:a>). It is not
-						recommended that the evaluator use values obtained from static sources such as the
-						example NIST’s AES Known Answer Test Values from the AESAVS document,
-						or use values not generated expressly to exercise the AES-CTR implementation.<h:p/><h:b><h:i>AES-CTR Known Answer Tests</h:i></h:b><h:p/> To test the encrypt functionality of AES-CTR, the evaluator
-						shall supply a set of five different plaintext values for each selected key size and
-						obtain the ciphertext value that results from AES-CTR encryption of the given
-						plaintext using a key value of all zeros.<h:p/>
-						To test the decrypt functionality of AES-CTR, the evaluator shall supply a set of
-						five different ciphertext values for each selected key size and obtain the plaintext
-						value that results from AES-CTR decryption of the given ciphertext using a key
-						value of all zeros.<h:p/> To test the encrypt functionality of AES-CTR, the evaluator
-						shall supply a set of five different key values for each selected key size and obtain
-						the ciphertext value that results from AES-CTR encryption of an all-zeros plaintext
-						using the given key value.<h:p/>
-						To test the decrypt functionality of AES-CTR, the evaluator shall supply a set of
-						five different key values for each selected key size and obtain the plaintext that
-						results from AES-CTR decryption of an all-zeros ciphertext using the given key.<h:p/> To test the encrypt functionality of AES-CTR, the evaluator
-						shall supply a set of keys for each selected key size (as described below) and obtain
-						the ciphertext value that results from AES encryption of an all-zeros plaintext using
-						each key.<h:p/>
-						Key i in each set shall have the leftmost i bits set to ones and the remaining bits to
-						zeros, for values of i from 1 to the key size. The keys and corresponding ciphertext
-						are listed in AESAVS, Appendix E.<h:p/>
-						To test the decrypt functionality of AES-CTR, the evaluator shall use the same keys
-						as above to decrypt the ciphertext results from above. Each decryption should result
-						in an all-zeros plaintext.<h:p/> To test the encrypt functionality of AES-CTR, for each
-						selected key size, the evaluator shall supply a set of 128-bit plaintext values (as
-						described below) and obtain the ciphertext values that result from AES-CTR
-						encryption of each plaintext value using a key of each size.<h:p/>
-						Plaintext value i shall have the leftmost i bits set to ones and the remaining bits set
-						to zeros, for values of i from 1 to 128. The plaintext values are listed in AESAVS,
-						Appendix D.<h:p/>
-						To test the decrypt functionality of AES-CTR, for each selected key size, use the
-						plaintext values from above as ciphertext input, and AES-CTR decrypt each
-						ciphertext value using key of each size consisting of all zeros.<h:p/><h:b><h:i>AES-CTR Multi-Block Message Test</h:i></h:b><h:p/>
-						The evaluator shall test the encrypt functionality by encrypting nine i-block
-						messages for each selected key size, for 2 ≤ i ≤ 10. For each test, the evaluator shall
-						supply a key and a plaintext message of length i blocks, and encrypt the message
-						using AES-CTR. The resulting ciphertext values shall be compared to the results of
-						encrypting the plaintext messages using a known good implementation.<h:p/>
-						The evaluator shall test the decrypt functionality by decrypting nine i-block
-						messages for each selected key size, for 2 ≤ i ≤ 10. For each test, the evaluator shall
-						supply a key and a ciphertext message of length i blocks, and decrypt the message
-						using AES-CTR. The resulting plaintext values shall be compared to the results of
-						decrypting the ciphertext messages using a known good implementation.<h:p/><h:b><h:i>AES-CTR Monte Carlo Tests</h:i></h:b><h:p/>
-						The evaluator shall test the encrypt functionality for each selected key size using
-						100 2-tuples of pseudo-random values for plaintext and keys.<h:p/>
-						The evaluator shall supply a single 2-tuple of pseudo-random values for each
-						selected key size. This 2-tuple of plaintext and key is provided as input to the below
-						algorithm to generate the remaining 99 2-tuples, and to run each 2-tuple through
-						1000 iterations of AES-CTR encryption.<h:p/><h:pre>
-		# Input: PT, Key
-		Key[0] = Key
-		PT[0] = PT
-		for i = 0 to 99 {
-			Output Key[i], PT[0]
-			for j = 0 to 999 {
-				CT[j] = AES-CTR-Encrypt(Key[i], PT[j])
-				PT[j+1] = CT[j]
-			}
-			Output CT[j]
-			If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
-			If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
-			If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
-			PT[0] = CT[j]
-		}
-		</h:pre><h:p/>
-						The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of
-						the 100 2-tuples for each selected key size. This result shall be compared to the
-						result of running 1000 iterations with the same values using a known good
-						implementation.<h:p/>
-						The evaluator shall test the decrypt functionality using the same test as above,
-						exchanging CT and PT, and replacing AES-CTR-Encrypt with AES-CTR-Decrypt.
-						198 Note additional design considerations for this mode are addressed in the KMD
-						requirements.<h:p/><h:b>XTS-AES:</h:b>
-						These tests are intended to be equivalent to those described in the NIST document,
-						“The XTS-AES Validation System (XTSVS),” updated 5 Sept 2013, found at
-						 <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSVS.pdf">
-						http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSVS.pdf</h:a><h:p/>
-						It is not recommended that the evaluator use values obtained from static sources such
-						as the XTS-AES test vectors at
-						http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSTestVectors.zip or use
-						values not generated expressly to exercise the XTS-AES implementation.<h:p/>
-						The evaluator shall generate test values as follows:<h:p/>
-						For each supported key size (256 bit (for AES-128) and 512 bit (for AES-256)
-						keys), the evaluator shall provide up to five data lengths:<h:ul><h:li>Two data lengths divisible by the 128-bit block size, If data unit lengths of
-							complete block sizes are supported.</h:li><h:li>Two data lengths not divisible by the 128-bit block size, if data unit lengths
-							of partial block sizes are supported.</h:li><h:li>The largest data length supported by the implementation, or 2^16 (65536),
-							whichever is larger.</h:li></h:ul><h:p/>
-						The evaluator shall specify whether the implementation supports tweak values of
-						128-bit hexadecimal strings or a data unit sequence numbers, or both.<h:p/>
-						For each combination of key size and data length, the evaluator shall provide 100
-						sets of input data and obtain the ciphertext that results from XTS-AES encryption.
-						If both kinds of tweak values are supported, then each type of tweak value shall be
-						used in half of every 100 sets of input data, for all combinations of key size and data 
-						length. The evaluator shall verify that the resulting ciphertext matches the results
-						from submitting the same inputs to a known-good implementation of XTS-AES.<h:p/>
-						The evaluator shall test the decrypt functionality of XTS-AES using the same test
-						as for encrypt, replacing plaintext values with ciphertext values and XTS-AES
-						encrypt with XTS- AES decrypt.<h:p/>
-						The evaluator shall check that the full length keys are created by methods that
-						ensure that the two halves are different and independent.<h:p/><h:b>AES-KWP:</h:b><h:p/>
-						The tests below are derived from “The Key Wrap Validation System (KWVS),
-						Updated: June 20, 2014” from the National Institute of Standards and Technology.<h:p/>
-						The evaluator shall test the authenticated-encryption functionality of AES-KWP
-						(KWP-AE) using the same test as for AES-KW authenticated-encryption with the
-						following change in the five plaintext lengths:<h:ul><h:li>Four lengths that are multiples of 8 bits</h:li><h:li>The largest supported length less than or equal to 4096 bits.</h:li></h:ul><h:p/>
-						The evaluator shall test the authenticated-decryption (KWP-AD) functionality of
-						AES-KWP using the same test as for AES-KWP authenticated-encryption,
-						replacing plaintext values with ciphertext values and AES-KWP authenticated encryption with AES-KWP 
-						authenticated-decryption. For the Authenticated
-						Decryption test, 20 out of the 100 trials per plaintext length have ciphertext values
-						that fail authentication.<h:p/>
-						Additionally, the evaluator shall perform the following negative tests:<h:p/><h:b>Test 1: (invalid plaintext length):</h:b>
-						Determine the valid plaintext lengths of the implementation from the TOE
-						specification. Verify that the implementation of KWP-AE in the TOE rejects
-						plaintext of invalid length by testing plaintext of the following lengths: 1) plaintext
-						with length greater than 64 semi-blocks, 2) plaintext with bit-length not divisible
-						by 8, and 3) plaintext with length 0.<h:p/><h:b>Test 2: (invalid ciphertext length):</h:b>
-						Determine the valid ciphertext lengths of the implementation from the TOE
-						specification. Verify that the implementation of KWP-AD in the TOE rejects
-						ciphertext of invalid length by testing ciphertext of the following lengths: 1)
-						ciphertext with length greater than 65 semi-blocks, 2) ciphertext with bit-length not
-						divisible by 64, 3) ciphertext with length 0, and 4) ciphertext with length of one
-						semi-block.<h:p/><h:b>Test 3: (invalid ICV2):</h:b>
-						Test that the implementation detects invalid ICV2 values by encrypting any
-						plaintext value four times using a different value for ICV2 each time as follows:
-						Start with a base ICV2 of 0xA65959A6. For each of the four tests change a different 
-						byte of ICV2 to a different value, so that each of the four bytes is changed once.
-						Verify that the implementation of KWP-AD in the TOE outputs FAIL for each test.<h:p/><h:b>Test 4: (invalid padding length):</h:b>
-						Generate one ciphertext using algorithm KWP-AE with substring [len(P)/8]32 of S
-						replaced by each of the following 32-bit values, where len(P) is the length of P in
-						bits and [ ]32 denotes the representation of an integer in 32 bits:<h:ul><h:li>[0]32</h:li><h:li>[len(P)/8-8]32</h:li><h:li>[len(P)/8+8]32</h:li><h:li>[513]32.</h:li></h:ul><h:p/>
-						Verify that the implementation of KWP-AD in the TOE outputs FAIL on those
-						inputs.<h:p/><h:b>Test 5: (invalid padding bits):</h:b>
-						If the implementation supports plaintext of length not a multiple of 64-bits, then<h:p/><h:pre>
-		for each PAD length [1..7]
-			for each byte in PAD set a zero PAD value;
-				replace current byte by a non-zero value and use the resulting plaintext as
-					input to algorithm KWP-AE to generate ciphertext;
-				verify that the implementation of KWP-AD in the TOE outputs FAIL on
-					this input.
-		</h:pre><h:p/><h:b>AES-KW:</h:b><h:p/>
-						The tests below are derived from “The Key Wrap Validation System (KWVS),
-						Updated: June 20, 2014” from the National Institute of Standards and Technology.<h:p/>
-						The evaluator shall test the authenticated-encryption functionality of AES-KW for
-						each combination of the following input parameters:<h:ul><h:li>Supported key lengths selected in the ST (e.g. 128 bits, 256 bits)</h:li><h:li>Five plaintext lengths:<h:ul><h:li>Two lengths that are non-zero multiples of 128 bits (two semi-block
-								lengths)</h:li><h:li>Two lengths that are odd multiples of the semi-block length (64 bits)</h:li><h:li>The largest supported plaintext length less than or equal to 4096 bits.</h:li></h:ul></h:li></h:ul><h:p/>
-						For each set of the above parameters the evaluator shall generate a set of 100 key
-						and plaintext pairs and obtain the ciphertext that results from AES-KW
-						authenticated encryption. To determine correctness, the evaluator shall compare the 
-						results with those obtained from the AES-KW authenticated-encryption function of
-						a known good implementation.<h:p/>
-						The evaluator shall test the authenticated-decryption functionality of AES-KW
-						using the same test as for authenticated-encryption, replacing plaintext values with
-						ciphertext values and AES-KW authenticated-encryption (KW-AE) with AES-KW
-						authenticated-decryption (KW-AD). For the authenticated-decryption test, 20 out
-						of the 100 trials per plaintext length must have ciphertext values that are not
-						authentic; that is, they fail authentication.<h:p/>
-						Additionally, the evaluator shall perform the following negative tests:<h:p/><h:b>Test 1 (invalid plaintext length):</h:b>
-						Determine the valid plaintext lengths of the implementation from the TOE
-						specification. Verify that the implementation of KW-AES in the TOE rejects
-						plaintext of invalid length by testing plaintext of the following lengths: 1) plaintext
-						length greater than 64 semi-blocks, 2) plaintext bit-length not divisible by 64, 3)
-						plaintext with length 0, and 4) plaintext with one semi-block.<h:p/><h:b>Test 2 (invalid ciphertext length):</h:b>
-						Determine the valid ciphertext lengths of the implementation from the TOE
-						specification. Verify that the implementation of KW-AD in the TOE rejects
-						ciphertext of invalid length by testing ciphertext of the following lengths: 1)
-						ciphertext with length greater than 65 semi-blocks, 2) ciphertext with bit-length not
-						divisible by 64, 3) ciphertext with length 0, 4) ciphertext with length of one semiblock, 
-						and 5) ciphertext with length of two semi-blocks.<h:p/><h:b>Test 3 (invalid ICV1):</h:b>
-						Test that the implementation detects invalid ICV1 values by encrypting any
-						plaintext value eight times using a different value for ICV1 each time as follows:
-						Start with a base ICV1 of 0xA6A6A6A6A6A6A6A6. For each of the eight tests
-						change a different byte to a different value, so that each of the eight bytes is changed
-						once. Verify that the implementation of KW-AD in the TOE outputs FAIL for each
-						test.<h:p/></Tests>
+              <TSS><h:p>The evaluator shall check that the TSS includes a description of encryption functions used for symmetric key encryption. The evaluator should check that this description of the selected encryption function includes the key sizes and modes of operations as specified in <xref to="fcs-cop-skc-sels"></xref>.<h:p/><h:br/><h:p/>The evaluator shall check that the TSS describes the means by which the TOE satisfies constraints on algorithm parameters included in the selections made for "cryptographic algorithm" and "list of standards."</h:p></TSS>
+              <Guidance><h:p>If the product supports multiple modes, the evaluator shall examine the AGD to determine that the method of choosing a specific mode/key size is described.</h:p></Guidance>
+              <Tests><h:p>The following tests require the developer to provide access to a test platform that provides the evaluator with tools that are typically not found on factory products.<h:p/><h:br/><h:p/>The following tests are conditional based upon the selections made in the SFR. The evaluator shall perform the following test or witness respective tests executed by the developer. The tests must be executed on a platform that is as close as practically possible to the operational platform (but which may be instrumented in terms of, for example, use of a debug mode). Where the test is not carried out on the TOE itself, the test platform shall be identified and the differences between test environment and TOE execution environment shall be described.<h:p/><h:br/><h:p/>Preconditions for testing:</h:p><h:ol><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>Specification of keys as input parameter to the function to be tested</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>specification of required input parameters such as modes</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>Specification of user data (plaintext)</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>Tapping of encrypted user data (ciphertext) directly in the non-volatile memory</h:li></h:ol><h:p><h:br/><h:p/><h:b>AES-CBC:</h:b><h:p/> For the AES-CBC tests described below, the plaintext, ciphertext, and IV values shall consist of 128-bit blocks. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known-good implementation.<h:p/><h:br/><h:p/>These tests are intended to be equivalent to those described in NIST’s AES Algorithm Validation Suite (AESAVS) ( <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf" rel="noopener noreferrer" target="_blank"> http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf</h:a>). It is not recommended that the evaluator use values obtained from static sources such as the example NIST’s AES Known Answer Test Values from the AESAVS document, or use values not generated expressly to exercise the AES-CBC implementation.<h:p/><h:br/><h:p/><h:b><h:i>AES-CBC Known Answer Tests</h:i></h:b><h:p/><h:br/><h:p/><h:u>KAT-1 (GFSBox):</h:u> To test the encrypt functionality of AES-CBC, the evaluator shall supply a set of five different plaintext values for each selected key size and obtain the ciphertext value that results from AES-CBC encryption of the given plaintext using a key value of all zeros and an IV of all zeros.<h:p/><h:br/><h:p/>To test the decrypt functionality of AES-CBC, the evaluator shall supply a set of five different ciphertext values for each selected key size and obtain the plaintext value that results from AES-CBC decryption of the given ciphertext using a key value of all zeros and an IV of all zeros.<h:p/><h:br/><h:p/><h:u>KAT-2 (KeySBox):</h:u> To test the encrypt functionality of AES-CBC, the evaluator shall supply a set of five different key values for each selected key size and obtain the ciphertext value that results from AES-CBC encryption of an all-zeros plaintext using the given key value and an IV of all zeros.<h:p/><h:br/><h:p/>To test the decrypt functionality of AES-CBC, the evaluator shall supply a set of five different key values for each selected key size and obtain the plaintext that results from AES-CBC decryption of an all-zeros ciphertext using the given key and an IV of all zeros.<h:p/><h:br/><h:p/><h:u>KAT-3 (Variable Key):</h:u> To test the encrypt functionality of AES-CBC, the evaluator shall supply a set of keys for each selected key size (as described below) and obtain the ciphertext value that results from AES encryption of an all-zeros plaintext using each key and an IV of all zeros.<h:p/><h:br/><h:p/>Key i in each set shall have the leftmost i bits set to ones and the remaining bits to zeros, for values of i from 1 to the key size. The keys and corresponding ciphertext are listed in AESAVS, Appendix E.<h:p/><h:br/><h:p/>To test the decrypt functionality of AES-CBC, the evaluator shall use the same keys as above to decrypt the ciphertext results from above. Each decryption should result in an all-zeros plaintext.<h:p/><h:br/><h:p/><h:u>KAT-4 (Variable Text):</h:u> To test the encrypt functionality of AES-CBC, for each selected key size, the evaluator shall supply a set of 128-bit plaintext values (as described below) and obtain the ciphertext values that result from AES-CBC encryption of each plaintext value using a key of each size and IV consisting of all zeros.<h:p/><h:br/><h:p/>Plaintext value i shall have the leftmost i bits set to ones and the remaining bits set to zeros, for values of i from 1 to 128. The plaintext values are listed in AESAVS, Appendix D.<h:p/><h:br/><h:p/>To test the decrypt functionality of AES-CBC, for each selected key size, use the plaintext values from above as ciphertext input, and AES-CBC decrypt each ciphertext value using key of each size consisting of all zeros and an IV of all zeros.<h:p/><h:br/><h:p/><h:b><h:i>AES-CBC Multi-Block Message Test</h:i></h:b><h:p/><h:br/><h:p/>The evaluator shall test the encrypt functionality by encrypting nine i-block messages for each selected key size, for 2 ≤ i ≤ 10. For each test, the evaluator shall supply a key, an IV, and a plaintext message of length i blocks, and encrypt the message using AES-CBC. The resulting ciphertext values shall be compared to the results of encrypting the plaintext messages using a known good implementation.<h:p/><h:br/><h:p/>The evaluator shall test the decrypt functionality by decrypting nine i-block messages for each selected key size, for 2 ≤ i ≤ 10. For each test, the evaluator shall supply a key, an IV, and a ciphertext message of length i blocks, and decrypt the message using AES-CBC. The resulting plaintext values shall be compared to the results of decrypting the ciphertext messages using a known good implementation.<h:p/><h:br/><h:p/><h:b><h:i>AES-CBC Monte Carlo Tests</h:i></h:b><h:p/><h:br/><h:p/>The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, IVs, and keys.<h:p/><h:br/><h:p/>The evaluator shall supply a single 3-tuple of pseudo-random values for each selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of AES-CBC encryption.<h:p/><h:br/></h:p><h:div class="ql-code-block-container" spellcheck="false"><h:div class="ql-code-block" data-language="plain">		# Input: PT, IV, Key</h:div><h:div class="ql-code-block" data-language="plain">		Key[0] = Key</h:div><h:div class="ql-code-block" data-language="plain">		IV[0] = IV</h:div><h:div class="ql-code-block" data-language="plain">		PT[0] = PT</h:div><h:div class="ql-code-block" data-language="plain">		for i = 0 to 99 {</h:div><h:div class="ql-code-block" data-language="plain">			Output Key[i], IV[i], PT[0]</h:div><h:div class="ql-code-block" data-language="plain">			for j = 0 to 999 {</h:div><h:div class="ql-code-block" data-language="plain">				if (j == 0) {</h:div><h:div class="ql-code-block" data-language="plain">					CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])</h:div><h:div class="ql-code-block" data-language="plain">					PT[j+1] = IV[i]</h:div><h:div class="ql-code-block" data-language="plain">				} else {</h:div><h:div class="ql-code-block" data-language="plain">					CT[j] = AES-CBC-Encrypt(Key[i], PT[j])</h:div><h:div class="ql-code-block" data-language="plain">					PT[j+1] = CT[j-1]</h:div><h:div class="ql-code-block" data-language="plain">				}</h:div><h:div class="ql-code-block" data-language="plain">			}</h:div><h:div class="ql-code-block" data-language="plain">			Output CT[j]</h:div><h:div class="ql-code-block" data-language="plain">			If (KeySize == 128) Key[i+1] = Key[i] xor CT[j] </h:div><h:div class="ql-code-block" data-language="plain">			If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])</h:div><h:div class="ql-code-block" data-language="plain">			If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])</h:div><h:div class="ql-code-block" data-language="plain">			IV[i+1] = CT[j]</h:div><h:div class="ql-code-block" data-language="plain">			PT[0] = CT[j-1]</h:div><h:div class="ql-code-block" data-language="plain">		}</h:div><h:div class="ql-code-block" data-language="plain">		</h:div></h:div><h:p><h:br/><h:p/>The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.<h:p/><h:br/><h:p/>The evaluator shall test the decrypt functionality using the same test as above, exchanging CT and PT, and replacing AES-CBC-Encrypt with AES-CBC-Decrypt.<h:p/><h:br/><h:p/><h:b>AES-CCM:</h:b><h:p/><h:br/><h:p/>These tests are intended to be equivalent to those described in the NIST document, “The CCM Validation System (CCMVS),” updated 9 Jan 2012, found at <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/mac/CCMVS.pdf" rel="noopener noreferrer" target="_blank"> http://csrc.nist.gov/groups/STM/cavp/documents/mac/CCMVS.pdf</h:a>.<h:p/><h:br/><h:p/>It is not recommended that the evaluator use values obtained from static sources such as http://csrc.nist.gov/groups/STM/cavp/documents/mac/ccmtestvectors.zip or use values not generated expressly to exercise the AES-CCM implementation.<h:p/><h:br/><h:p/>The evaluator shall test the generation-encryption and decryption-verification functionality of AES-CCM for the following input parameter and tag lengths:<h:p/><h:br/></h:p><h:ol><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span><h:b>Keys:</h:b> All supported and selected key sizes (e.g., 128, 192, or 256 bits).</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span><h:b>Associated Data:</h:b> Two or three values for associated data length: The minimum (≥ 0 bytes) and maximum (≤ 32 bytes) supported associated data lengths, and 2^16 (65536) bytes, if supported.</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span><h:b>Payload:</h:b> Two values for payload length: The minimum (≥ 0 bytes) and maximum (≤ 32 bytes) supported payload lengths.</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span><h:b>Nonces:</h:b> All supported nonce lengths (e.g., 8, 9, 10, 11, 12, 13) in bytes.</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span><h:b>Tag:</h:b> All supported tag lengths (e.g., 4, 6, 8, 10, 12, 14, 16) in bytes.</h:li></h:ol><h:p>The testing for CCM consists of five tests. To determine correctness in each of the below tests, the evaluator shall compare the ciphertext with the result of encryption of the same inputs with a known good implementation.<h:p/><h:br/><h:p/>Variable Associated Data Test: For each supported key size and associated data length, and any supported payload length, nonce length, and tag length, the evaluator shall supply one key value, one nonce value, and 10 pairs of associated data and payload values, and obtain the resulting ciphertext.<h:p/><h:br/><h:p/>Variable Payload Text: For each supported key size and payload length, and any supported associated data length, nonce length, and tag length, the evaluator shall supply one key value, one nonce value, and 10 pairs of associated data and payload values, and obtain the resulting ciphertext.<h:p/><h:br/><h:p/>Variable Nonce Test: For each supported key size and nonce length, and any supported associated data length, payload length, and tag length, the evaluator shall supply one key value, one nonce value, and 10 pairs of associated data and payload values, and obtain the resulting ciphertext.<h:p/><h:br/><h:p/>Variable Tag Test: For each supported key size and tag length, and any supported associated data length, payload length, and nonce length, the evaluator shall supply one key value, one nonce value, and 10 pairs of associated data and payload values, and obtain the resulting ciphertext.<h:p/><h:br/><h:p/>Decryption-Verification Process Test: To test the decryption-verification functionality of AES-CCM, for each combination of supported associated data length, payload length, nonce length, and tag length, the evaluator shall supply a key value and 15 sets of input plus ciphertext, and obtain the decrypted payload. Ten of the 15 input sets supplied should fail verification and five should pass.<h:p/><h:br/><h:p/><h:b>AES-GCM:</h:b> These tests are intended to be equivalent to those described in the NIST document, “The Galois/Counter Mode (GCM) and GMAC Validation System (GCMVS) with the Addition of XPN Validation Testing,” rev. 15 Jun 2016, section 6.2, found at <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmvs.pdf" rel="noopener noreferrer" target="_blank"> http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmvs.pdf</h:a>.<h:p/><h:br/><h:p/>It is not recommended that the evaluator use values obtained from static sources such as http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmtestvectors.zip, or use values not generated expressly to exercise the AES-GCM implementation.<h:p/><h:br/><h:p/>The evaluator shall test the authenticated encryption functionality of AES-GCM by supplying 15 sets of Key, Plaintext, AAD, IV, and Tag data for every combination of the following parameters as selected in the ST and supported by the implementation under test:</h:p><h:ol><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span><h:b>Key size in bits:</h:b> Each selected and supported key size (e.g., 128, 192, or 256 bits).</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span><h:b>Plaintext length in bits:</h:b> Up to four values for plaintext length: Two values that are non-zero integer multiples of 128, if supported. And two values that are non-multiples of 128, if supported.</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span><h:b>AAD length in bits:</h:b> Up to five values for AAD length: Zero-length, if supported. Two values that are non-zero integer multiples of 128, if supported. And two values that are integer non-multiples of 128, if supported.</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span><h:b>IV length in bits:</h:b> Up to three values for IV length: 96 bits. Minimum and maximum supported lengths, if different.</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span><h:b>MAC length in bits:</h:b> Each supported length (e.g., 128, 120, 112, 104, 96).</h:li></h:ol><h:p>To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known-good implementation.<h:p/><h:br/><h:p/>The evaluator shall test the authenticated decrypt functionality of AES-GCM by supplying 15 Ciphertext-Tag pairs for every combination of the above parameters, replacing Plaintext length with Ciphertext length. For each parameter combination the evaluator shall introduce an error into either the Ciphertext or the Tag such that approximately half of the cases are correct and half the cases contain errors. To determine correctness, the evaluator shall compare the resulting pass/fail status and Plaintext values to the results obtained by submitting the same inputs to a known-good implementation.<h:p/><h:br/><h:p/><h:b>AES-CTR:</h:b><h:p/><h:br/><h:p/>For the AES-CTR tests described below, the plaintext and ciphertext values shall consist of 128-bit blocks. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known-good implementation.<h:p/><h:br/><h:p/>These tests are intended to be equivalent to those described in NIST’s AES Algorithm Validation Suite (AESAVS) ( <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf" rel="noopener noreferrer" target="_blank"> http://csrc.nist.gov/groups/STM/cavp/documents/aes/AESAVS.pdf</h:a>). It is not recommended that the evaluator use values obtained from static sources such as the example NIST’s AES Known Answer Test Values from the AESAVS document, or use values not generated expressly to exercise the AES-CTR implementation.<h:p/><h:br/><h:p/><h:b><h:i>AES-CTR Known Answer Tests</h:i></h:b><h:p/><h:br/><h:p/><h:u>KAT-1 (GFSBox):</h:u> To test the encrypt functionality of AES-CTR, the evaluator shall supply a set of five different plaintext values for each selected key size and obtain the ciphertext value that results from AES-CTR encryption of the given plaintext using a key value of all zeros.<h:p/><h:br/><h:p/>To test the decrypt functionality of AES-CTR, the evaluator shall supply a set of five different ciphertext values for each selected key size and obtain the plaintext value that results from AES-CTR decryption of the given ciphertext using a key value of all zeros.<h:p/><h:br/><h:p/><h:u>KAT-2 (KeySBox):</h:u> To test the encrypt functionality of AES-CTR, the evaluator shall supply a set of five different key values for each selected key size and obtain the ciphertext value that results from AES-CTR encryption of an all-zeros plaintext using the given key value.<h:p/><h:br/><h:p/>To test the decrypt functionality of AES-CTR, the evaluator shall supply a set of five different key values for each selected key size and obtain the plaintext that results from AES-CTR decryption of an all-zeros ciphertext using the given key.<h:p/><h:br/><h:p/><h:u>KAT-3 (Variable Key):</h:u> To test the encrypt functionality of AES-CTR, the evaluator shall supply a set of keys for each selected key size (as described below) and obtain the ciphertext value that results from AES encryption of an all-zeros plaintext using each key.<h:p/><h:br/><h:p/>Key i in each set shall have the leftmost i bits set to ones and the remaining bits to zeros, for values of i from 1 to the key size. The keys and corresponding ciphertext are listed in AESAVS, Appendix E.<h:p/><h:br/><h:p/>To test the decrypt functionality of AES-CTR, the evaluator shall use the same keys as above to decrypt the ciphertext results from above. Each decryption should result in an all-zeros plaintext.<h:p/><h:br/><h:p/><h:u>KAT-4 (Variable Text):</h:u> To test the encrypt functionality of AES-CTR, for each selected key size, the evaluator shall supply a set of 128-bit plaintext values (as described below) and obtain the ciphertext values that result from AES-CTR encryption of each plaintext value using a key of each size.<h:p/><h:br/><h:p/>Plaintext value i shall have the leftmost i bits set to ones and the remaining bits set to zeros, for values of i from 1 to 128. The plaintext values are listed in AESAVS, Appendix D.<h:p/><h:br/><h:p/>To test the decrypt functionality of AES-CTR, for each selected key size, use the plaintext values from above as ciphertext input, and AES-CTR decrypt each ciphertext value using key of each size consisting of all zeros.<h:p/><h:br/><h:p/><h:b><h:i>AES-CTR Multi-Block Message Test</h:i></h:b><h:p/><h:br/><h:p/>The evaluator shall test the encrypt functionality by encrypting nine i-block messages for each selected key size, for 2 ≤ i ≤ 10. For each test, the evaluator shall supply a key and a plaintext message of length i blocks, and encrypt the message using AES-CTR. The resulting ciphertext values shall be compared to the results of encrypting the plaintext messages using a known good implementation.<h:p/><h:br/><h:p/>The evaluator shall test the decrypt functionality by decrypting nine i-block messages for each selected key size, for 2 ≤ i ≤ 10. For each test, the evaluator shall supply a key and a ciphertext message of length i blocks, and decrypt the message using AES-CTR. The resulting plaintext values shall be compared to the results of decrypting the ciphertext messages using a known good implementation.<h:p/><h:br/><h:p/><h:b><h:i>AES-CTR Monte Carlo Tests</h:i></h:b><h:p/><h:br/><h:p/>The evaluator shall test the encrypt functionality for each selected key size using 100 2-tuples of pseudo-random values for plaintext and keys.<h:p/><h:br/><h:p/>The evaluator shall supply a single 2-tuple of pseudo-random values for each selected key size. This 2-tuple of plaintext and key is provided as input to the below algorithm to generate the remaining 99 2-tuples, and to run each 2-tuple through 1000 iterations of AES-CTR encryption.<h:p/><h:br/></h:p><h:div class="ql-code-block-container" spellcheck="false"><h:div class="ql-code-block" data-language="plain">		# Input: PT, Key</h:div><h:div class="ql-code-block" data-language="plain">		Key[0] = Key</h:div><h:div class="ql-code-block" data-language="plain">		PT[0] = PT</h:div><h:div class="ql-code-block" data-language="plain">		for i = 0 to 99 {</h:div><h:div class="ql-code-block" data-language="plain">			Output Key[i], PT[0]</h:div><h:div class="ql-code-block" data-language="plain">			for j = 0 to 999 {</h:div><h:div class="ql-code-block" data-language="plain">				CT[j] = AES-CTR-Encrypt(Key[i], PT[j])</h:div><h:div class="ql-code-block" data-language="plain">				PT[j+1] = CT[j]</h:div><h:div class="ql-code-block" data-language="plain">			}</h:div><h:div class="ql-code-block" data-language="plain">			Output CT[j]</h:div><h:div class="ql-code-block" data-language="plain">			If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]</h:div><h:div class="ql-code-block" data-language="plain">			If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])</h:div><h:div class="ql-code-block" data-language="plain">			If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])</h:div><h:div class="ql-code-block" data-language="plain">			PT[0] = CT[j]</h:div><h:div class="ql-code-block" data-language="plain">		}</h:div><h:div class="ql-code-block" data-language="plain">		</h:div></h:div><h:p><h:br/><h:p/>The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 2-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.<h:p/><h:br/><h:p/>The evaluator shall test the decrypt functionality using the same test as above, exchanging CT and PT, and replacing AES-CTR-Encrypt with AES-CTR-Decrypt. 198 Note additional design considerations for this mode are addressed in the KMD requirements.<h:p/><h:br/><h:p/><h:b>XTS-AES:</h:b> These tests are intended to be equivalent to those described in the NIST document, “The XTS-AES Validation System (XTSVS),” updated 5 Sept 2013, found at <h:a href="http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSVS.pdf" rel="noopener noreferrer" target="_blank"> http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSVS.pdf</h:a><h:p/><h:br/><h:p/>It is not recommended that the evaluator use values obtained from static sources such as the XTS-AES test vectors at http://csrc.nist.gov/groups/STM/cavp/documents/aes/XTSTestVectors.zip or use values not generated expressly to exercise the XTS-AES implementation.<h:p/><h:br/><h:p/>The evaluator shall generate test values as follows:<h:p/><h:br/><h:p/>For each supported key size (256 bit (for AES-128) and 512 bit (for AES-256) keys), the evaluator shall provide up to five data lengths:</h:p><h:ol><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>Two data lengths divisible by the 128-bit block size, If data unit lengths of complete block sizes are supported.</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>Two data lengths not divisible by the 128-bit block size, if data unit lengths of partial block sizes are supported.</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>The largest data length supported by the implementation, or 2^16 (65536), whichever is larger.</h:li></h:ol><h:p><h:br/><h:p/>The evaluator shall specify whether the implementation supports tweak values of 128-bit hexadecimal strings or a data unit sequence numbers, or both.<h:p/><h:br/><h:p/>For each combination of key size and data length, the evaluator shall provide 100 sets of input data and obtain the ciphertext that results from XTS-AES encryption. If both kinds of tweak values are supported, then each type of tweak value shall be used in half of every 100 sets of input data, for all combinations of key size and data length. The evaluator shall verify that the resulting ciphertext matches the results from submitting the same inputs to a known-good implementation of XTS-AES.<h:p/><h:br/><h:p/>The evaluator shall test the decrypt functionality of XTS-AES using the same test as for encrypt, replacing plaintext values with ciphertext values and XTS-AES encrypt with XTS- AES decrypt.<h:p/><h:br/><h:p/>The evaluator shall check that the full length keys are created by methods that ensure that the two halves are different and independent.<h:p/><h:br/><h:p/><h:b>AES-KWP:</h:b><h:p/><h:br/><h:p/>The tests below are derived from “The Key Wrap Validation System (KWVS), Updated: June 20, 2014” from the National Institute of Standards and Technology.<h:p/><h:br/><h:p/>The evaluator shall test the authenticated-encryption functionality of AES-KWP (KWP-AE) using the same test as for AES-KW authenticated-encryption with the following change in the five plaintext lengths:</h:p><h:ol><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>Four lengths that are multiples of 8 bits</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>The largest supported length less than or equal to 4096 bits.</h:li></h:ol><h:p><h:br/><h:p/>The evaluator shall test the authenticated-decryption (KWP-AD) functionality of AES-KWP using the same test as for AES-KWP authenticated-encryption, replacing plaintext values with ciphertext values and AES-KWP authenticated encryption with AES-KWP authenticated-decryption. For the Authenticated Decryption test, 20 out of the 100 trials per plaintext length have ciphertext values that fail authentication.<h:p/><h:br/><h:p/>Additionally, the evaluator shall perform the following negative tests:<h:p/><h:br/><h:p/><h:b>Test 1: (invalid plaintext length):</h:b> Determine the valid plaintext lengths of the implementation from the TOE specification. Verify that the implementation of KWP-AE in the TOE rejects plaintext of invalid length by testing plaintext of the following lengths: 1) plaintext with length greater than 64 semi-blocks, 2) plaintext with bit-length not divisible by 8, and 3) plaintext with length 0.<h:p/><h:br/><h:p/><h:b>Test 2: (invalid ciphertext length):</h:b> Determine the valid ciphertext lengths of the implementation from the TOE specification. Verify that the implementation of KWP-AD in the TOE rejects ciphertext of invalid length by testing ciphertext of the following lengths: 1) ciphertext with length greater than 65 semi-blocks, 2) ciphertext with bit-length not divisible by 64, 3) ciphertext with length 0, and 4) ciphertext with length of one semi-block.<h:p/><h:br/><h:p/><h:b>Test 3: (invalid ICV2):</h:b> Test that the implementation detects invalid ICV2 values by encrypting any plaintext value four times using a different value for ICV2 each time as follows: Start with a base ICV2 of 0xA65959A6. For each of the four tests change a different byte of ICV2 to a different value, so that each of the four bytes is changed once. Verify that the implementation of KWP-AD in the TOE outputs FAIL for each test.<h:p/><h:br/><h:p/><h:b>Test 4: (invalid padding length):</h:b> Generate one ciphertext using algorithm KWP-AE with substring [len(P)/8]32 of S replaced by each of the following 32-bit values, where len(P) is the length of P in bits and [ ]32 denotes the representation of an integer in 32 bits:</h:p><h:ol><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>[0]32</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>[len(P)/8-8]32</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>[len(P)/8+8]32</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>[513]32.</h:li></h:ol><h:p><h:br/><h:p/>Verify that the implementation of KWP-AD in the TOE outputs FAIL on those inputs.<h:p/><h:br/><h:p/><h:b>Test 5: (invalid padding bits):</h:b> If the implementation supports plaintext of length not a multiple of 64-bits, then<h:p/><h:br/></h:p><h:div class="ql-code-block-container" spellcheck="false"><h:div class="ql-code-block" data-language="plain">		for each PAD length [1..7]</h:div><h:div class="ql-code-block" data-language="plain">			for each byte in PAD set a zero PAD value;</h:div><h:div class="ql-code-block" data-language="plain">				replace current byte by a non-zero value and use the resulting plaintext as</h:div><h:div class="ql-code-block" data-language="plain">					input to algorithm KWP-AE to generate ciphertext;</h:div><h:div class="ql-code-block" data-language="plain">				verify that the implementation of KWP-AD in the TOE outputs FAIL on</h:div><h:div class="ql-code-block" data-language="plain">					this input.</h:div><h:div class="ql-code-block" data-language="plain">		</h:div></h:div><h:p><h:br/><h:p/><h:b>AES-KW:</h:b><h:p/><h:br/><h:p/>The tests below are derived from “The Key Wrap Validation System (KWVS), Updated: June 20, 2014” from the National Institute of Standards and Technology.<h:p/><h:br/><h:p/>The evaluator shall test the authenticated-encryption functionality of AES-KW for each combination of the following input parameters:</h:p><h:ol><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>Supported key lengths selected in the ST (e.g. 128 bits, 256 bits)</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>Five plaintext lengths:</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>Two lengths that are non-zero multiples of 128 bits (two semi-block lengths)</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>Two lengths that are odd multiples of the semi-block length (64 bits)</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"></h:span>The largest supported plaintext length less than or equal to 4096 bits.</h:li></h:ol><h:p><h:br/><h:p/>For each set of the above parameters the evaluator shall generate a set of 100 key and plaintext pairs and obtain the ciphertext that results from AES-KW authenticated encryption. To determine correctness, the evaluator shall compare the results with those obtained from the AES-KW authenticated-encryption function of a known good implementation.<h:p/><h:br/><h:p/>The evaluator shall test the authenticated-decryption functionality of AES-KW using the same test as for authenticated-encryption, replacing plaintext values with ciphertext values and AES-KW authenticated-encryption (KW-AE) with AES-KW authenticated-decryption (KW-AD). For the authenticated-decryption test, 20 out of the 100 trials per plaintext length must have ciphertext values that are not authentic; that is, they fail authentication.<h:p/><h:br/><h:p/>Additionally, the evaluator shall perform the following negative tests:<h:p/><h:br/><h:p/><h:b>Test 1 (invalid plaintext length):</h:b> Determine the valid plaintext lengths of the implementation from the TOE specification. Verify that the implementation of KW-AES in the TOE rejects plaintext of invalid length by testing plaintext of the following lengths: 1) plaintext length greater than 64 semi-blocks, 2) plaintext bit-length not divisible by 64, 3) plaintext with length 0, and 4) plaintext with one semi-block.<h:p/><h:br/><h:p/><h:b>Test 2 (invalid ciphertext length):</h:b> Determine the valid ciphertext lengths of the implementation from the TOE specification. Verify that the implementation of KW-AD in the TOE rejects ciphertext of invalid length by testing ciphertext of the following lengths: 1) ciphertext with length greater than 65 semi-blocks, 2) ciphertext with bit-length not divisible by 64, 3) ciphertext with length 0, 4) ciphertext with length of one semiblock, and 5) ciphertext with length of two semi-blocks.<h:p/><h:br/><h:p/><h:b>Test 3 (invalid ICV1):</h:b> Test that the implementation detects invalid ICV1 values by encrypting any plaintext value eight times using a different value for ICV1 each time as follows: Start with a base ICV1 of 0xA6A6A6A6A6A6A6A6. For each of the eight tests change a different byte to a different value, so that each of the eight bytes is changed once. Verify that the implementation of KW-AD in the TOE outputs FAIL for each test.</h:p></Tests>
             </aactivity>
           </f-element>
           <audit-event/>
