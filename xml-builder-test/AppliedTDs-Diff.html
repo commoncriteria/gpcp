@@ -370,35 +370,6 @@
         </dl>
          
         <h1 class="indexable" data-level="1" id="Security_Problem_Definition">3 Security Problem Definition</h1>
-        <p>The security problem is described in terms of the threats that the GPCP is expected to address, assumptions about the operational environment, and any organizational security policies that the GPCP is expected to enforce.</p>
-        <p></p>
-        <br>
-        <p></p>
-        The platform has three major security responsibilities:
-        <p></p>
-        <ul>
-            <li data-list="bullet">
-                <span class="ql-ui" contenteditable="false"></span>ensuring the integrity of its own firmware and hardware
-            </li>
-            <li data-list="bullet">
-                <span class="ql-ui" contenteditable="false"></span>ensuring that it is resilient
-            </li>
-            <li data-list="bullet">
-                <span class="ql-ui" contenteditable="false"></span>providing security services to tenant workloads
-            </li>
-        </ul>
-        <p>These responsibilities manifest as protecting:</p>
-        <ul>
-            <li data-list="bullet">
-                <span class="ql-ui" contenteditable="false"></span>Platform firmware and hardware
-            </li>
-            <li data-list="bullet">
-                <span class="ql-ui" contenteditable="false"></span>Platform firmware updates
-            </li>
-            <li data-list="bullet">
-                <span class="ql-ui" contenteditable="false"></span>Tenant initialization (boot)
-            </li>
-        </ul>
         <h2 class="indexable" data-level="2" id="Threats">3.1 Threats</h2>
          
         <dl>
@@ -5599,14 +5570,14 @@
                             <p></p>
                             <ol type="1">
                                 <li>
-                                    <i>N</i> shall be greater than or equal to 20.
+                                    <i>NT</i> shall be greater than or equal to 20.
                                 </li>
                                 <li>The length of salts shall be selected from its supported length range of salt. The typical length of salt is equal to the output block length of underlying hash algorithm (see 9.2.2 of ISO/IEC 9796-2:2010).</li>
                                 <li>
-                                    The length of recoverable messages should be selected by considering modulus size, output block length of underlying hash algorithm, and length of salt (<i>L</i>). As described in Annex D of ISO/IEC 9796-2:2010, it is desirable to maximize the length of recoverable message. The following table shows the maximum bit-length of recoverable message that is divisible by 512, for some combinations of modulus size, underlying hash algorithm, and length of salt. 
+                                    The length of recoverable messages should be selected by considering modulus size, output block length of underlying hash algorithm, and length of salt (<i>LS</i>). As described in Annex D of ISO/IEC 9796-2:2010, it is desirable to maximize the length of recoverable message. The following table shows the maximum bit-length of recoverable message that is divisible by 512, for some combinations of modulus size, underlying hash algorithm, and length of salt. 
                                     <table class="classic" style="width:50%">
                                         <tr class="header">
-                                            <td>Maximum length of recoverable message divisible by 512 (bits)</td><td>Modulus size (bits)</td><td>Underlying hash algorithm (bits)</td><td>Length of salt L (bits)</td>
+                                            <td>Maximum length of recoverable message divisible by 512 (bits)</td><td>Modulus size (bits)</td><td>Underlying hash algorithm (bits)</td><td>Length of salt LS (bits)</td>
                                         </tr>
                                         <tr>
                                             <td>1536</td><td rowspan="5">2048</td><td rowspan="2">SHA-256</td><td>128</td>
@@ -5645,7 +5616,7 @@
                                     The length of non-recoverable messages should be selected by considering the underlying hash algorithm and usages. If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is used for verifying the authenticity of software/firmware updates, the length of non-recoverable messages should be selected greater than or equal to 2048-bit. With this length range, it means that the underlying hash algorithm is also tested for two or more input blocks.
                                 </li>
                                 <li>
-                                    The evaluator shall select approximately one half of <i>N</i> sets and shall alter one of the values (non-recoverable message, public key exponent or signature) in the sets. In altering public key exponent, the evaluator shall alter the public key exponent while keeping the exponent odd. In altering signatures, the following ways should be considered: 
+                                    The evaluator shall select approximately one half of <i>NT</i> sets and shall alter one of the values (non-recoverable message, public key exponent or signature) in the sets. In altering public key exponent, the evaluator shall alter the public key exponent while keeping the exponent odd. In altering signatures, the following ways should be considered: 
                                     <ol type="a">
                                         <li>Altering a signature just by replacing a bit in the bit-string representation of the signature</li>
                                         <li>
@@ -5660,7 +5631,7 @@
                                             In the case when 2-byte trailer is used, altering a signature so that the hash algorithm identifier in the trailer (i.e. the left most byte of the trailer) does not correspond to hash algorithms identified in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>. The hash algorithm identifiers are 0x34 for SHA-256 (see Clause 10 of ISO/IEC 10118-3:2018), and 0x35 for SHA-512 (see Clause 11 of ISO/IEC 10118-3:2018).
                                         </li>
                                         <li>
-                                            Let <i>L</i> be the length of salt, altering a signature so that the intermediate bit string <i>D</i> in the message representative is set to all zeroes except for the rightmost <i>L</i> bits of <i>D</i>.
+                                            Let <i>LS</i> be the length of salt, altering a signature so that the intermediate bit string <i>D</i> in the message representative is set to all zeroes except for the rightmost <i>LS</i> bits of <i>D</i>.
                                         </li>
                                         <li>
                                              (non-conformant signature length) Altering a signature so that the length of signature <i>Σ</i> is changed to modulus size and the most significant bit of signature <i>Σ</i> is set equal to '1'.
