@@ -1797,21 +1797,21 @@
 					The following or equivalent steps shall be taken to test the TSF.<h:p/>
 					For each supported modulus size, underlying hash algorithm, and length of the
 					trailer field (1- or 2-byte), the evaluator shall generate NT sets of recoverable
-					message (M1), non-recoverable message (M2), salt, public key and signature (<h:i>Σ</h:i>).<h:p/><h:ol type="1"><h:li><h:i>N<sub>T</sub></h:i> shall be greater than or equal to 20.</h:li><h:li>The length of salts shall be selected from its supported length range of salt.
+					message (M1), non-recoverable message (M2), salt, public key and signature (<h:i>Σ</h:i>).<h:p/><h:ol type="1"><h:li><h:i>N<h:sub>T</h:sub></h:i> shall be greater than or equal to 20.</h:li><h:li>The length of salts shall be selected from its supported length range of salt.
 							The typical length of salt is equal to the output block length of underlying
 							hash algorithm (see 9.2.2 of ISO/IEC 9796-2:2010).</h:li><h:li>The length of recoverable messages should be selected by considering
 							modulus size, output block length of underlying hash algorithm, and length
-							of salt (<h:i>L<sub>S</sub></h:i>). As described in Annex D of ISO/IEC 9796-2:2010, it is desirable
+							of salt (<h:i>L<h:sub>S</h:sub></h:i>). As described in Annex D of ISO/IEC 9796-2:2010, it is desirable
 							to maximize the length of recoverable message. The following table shows
 							the maximum bit-length of recoverable message that is divisible by 512, for
 							some combinations of modulus size, underlying hash algorithm, and length
 							of salt.
-							<h:table class="classic" style="width:50%"><h:tr class="header"><h:td >Maximum length of recoverable message divisible by 512 (bits)</h:td><h:td >Modulus size (bits)</h:td><h:td >Underlying hash algorithm (bits)</h:td><h:td >Length of salt L<sub>S</sub> (bits)</h:td></h:tr><h:tr ><h:td >1536</h:td><h:td rowspan="5">2048</h:td><h:td rowspan="2">SHA-256</h:td><h:td >128</h:td></h:tr><h:tr ><h:td >1024</h:td><h:td >256</h:td></h:tr><h:tr ><h:td >1024</h:td><h:td rowspan="3">SHA-512</h:td><h:td >128</h:td></h:tr><h:tr ><h:td >1024</h:td><h:td >256</h:td></h:tr><h:tr ><h:td >512</h:td><h:td >512</h:td></h:tr><h:tr ><h:td >2560</h:td><h:td rowspan="5">3072</h:td><h:td rowspan="2">SHA-256</h:td><h:td >128</h:td></h:tr><h:tr ><h:td >2048</h:td><h:td >256</h:td></h:tr><h:tr ><h:td >2048</h:td><h:td rowspan="3">SHA-512</h:td><h:td >128</h:td></h:tr><h:tr ><h:td >2048</h:td><h:td >256</h:td></h:tr><h:tr ><h:td >1536</h:td><h:td >512</h:td></h:tr><h:tr colspan="4">None that 2-byte trailer field is assumed in calculating the maximum length of recoverable message</h:tr></h:table></h:li><h:li>The length of non-recoverable messages should be selected by considering
+							<h:table class="classic" style="width:50%"><h:tr class="header"><h:td >Maximum length of recoverable message divisible by 512 (bits)</h:td><h:td >Modulus size (bits)</h:td><h:td >Underlying hash algorithm (bits)</h:td><h:td >Length of salt L<h:sub>S</h:sub> (bits)</h:td></h:tr><h:tr ><h:td >1536</h:td><h:td rowspan="5">2048</h:td><h:td rowspan="2">SHA-256</h:td><h:td >128</h:td></h:tr><h:tr ><h:td >1024</h:td><h:td >256</h:td></h:tr><h:tr ><h:td >1024</h:td><h:td rowspan="3">SHA-512</h:td><h:td >128</h:td></h:tr><h:tr ><h:td >1024</h:td><h:td >256</h:td></h:tr><h:tr ><h:td >512</h:td><h:td >512</h:td></h:tr><h:tr ><h:td >2560</h:td><h:td rowspan="5">3072</h:td><h:td rowspan="2">SHA-256</h:td><h:td >128</h:td></h:tr><h:tr ><h:td >2048</h:td><h:td >256</h:td></h:tr><h:tr ><h:td >2048</h:td><h:td rowspan="3">SHA-512</h:td><h:td >128</h:td></h:tr><h:tr ><h:td >2048</h:td><h:td >256</h:td></h:tr><h:tr ><h:td >1536</h:td><h:td >512</h:td></h:tr><h:tr colspan="4">None that 2-byte trailer field is assumed in calculating the maximum length of recoverable message</h:tr></h:table></h:li><h:li>The length of non-recoverable messages should be selected by considering
 							the underlying hash algorithm and usages. If the TSF is used for verifying
 							the authenticity of software/firmware updates, the length of non-recoverable
 							messages should be selected greater than or equal to 2048-bit. With this
 							length range, it means that the underlying hash algorithm is also tested for
-							two or more input blocks.</h:li><h:li>The evaluator shall select approximately one half of <h:i>N<sub>T</sub></h:i> sets and shall alter
+							two or more input blocks.</h:li><h:li>The evaluator shall select approximately one half of <h:i>N<h:sub>T</h:sub></h:i> sets and shall alter
 							one of the values (non-recoverable message, public key exponent or
 							signature) in the sets. In altering public key exponent, the evaluator shall
 							alter the public key exponent while keeping the exponent odd. In altering
@@ -1828,9 +1828,9 @@
 									trailer) does not correspond to hash algorithms identified in the SFR.
 									The hash algorithm identifiers are 0x34 for SHA-256 (see Clause 10 of
 									ISO/IEC 10118-3:2018), and 0x35 for SHA-512 (see Clause 11 of
-									ISO/IEC 10118-3:2018).</h:li><h:li>Let <h:i>L<sub>S</sub></h:i> be the length of salt, altering a signature so that the intermediate
+									ISO/IEC 10118-3:2018).</h:li><h:li>Let <h:i>L<h:sub>S</h:sub></h:i> be the length of salt, altering a signature so that the intermediate
 									bit string <h:i>D</h:i> in the message representative is set to all zeroes except for
-									the rightmost <h:i>L<sub>S</sub></h:i> bits of <h:i>D</h:i>.</h:li><h:li> (non-conformant signature length) Altering a signature so that the length
+									the rightmost <h:i>L<h:sub>S</h:sub></h:i> bits of <h:i>D</h:i>.</h:li><h:li> (non-conformant signature length) Altering a signature so that the length
 									of signature <h:i>Σ</h:i> is changed to modulus size and the most significant bit of
 									signature <h:i>Σ</h:i> is set equal to '1'.</h:li><h:li>(non-conformant signature) Altering a signature so that the integer
 									converted from signature <h:i>Σ</h:i> is greater than modulus <h:i>n</h:i>.</h:li></h:ol></h:li></h:ol>
