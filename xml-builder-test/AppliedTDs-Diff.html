@@ -2406,7 +2406,7 @@
                         <a href="#AGD_OPE.1">AGD_OPE.1</a>
                     </div>
                      Some of the contents of the operational guidance are verified by the Evaluation Activities in <a href="#SFRs" class="dynref">Section 5.1 Security Functional Requirements</a> and evaluation of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> according to the <a href="#bibCEM" class="dynref" data-format=""></a>. The following additional information is also required:
-                    <ul>
+                    <ul class="ql-indent-0">
                         <li>
                             If cryptographic functions are provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the operational guidance shall contain instructions for configuring the cryptographic engine associated with the evaluated configuration of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. It shall provide a warning to the administrator that use of other cryptographic engines was not evaluated nor tested during the <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> evaluation of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.
                         </li>
@@ -2499,7 +2499,7 @@
                     The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall be labeled with a unique reference.
                     <div class="appnote">
                         <span class="note-header"> Note: </span><span class="note"> Unique reference information includes: 
-                            <ul>
+                            <ul class="ql-indent-0">
                                 <li>
                                     <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Model Name
                                 </li>
@@ -2886,29 +2886,56 @@
                         </tr>
                     </table>
                     <div class="appnote">
-                        <span class="note-header">Application Note: </span><span class="note"> The "key type" assignment should indicate the type type of key being derived, e.g. "<i>symmetric</i>," "<i>asymmetric</i>," or "<i>HMAC</i>."
+                        <span class="note-header">Application Note: </span><span class="note">
+                            <p>
+                                The "key type" assignment should indicate the type type of key being derived, e.g. "<i>symmetric</i>," "<i>asymmetric</i>," or "<i>HMAC</i>."
+                            </p>
                             <p></p>
-                             This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if key derivation is a service provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software, or if it is used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality.
+                            <br>
                             <p></p>
-                             If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_CKM.4">FCS_CKM.4</a> must also be claimed.
+                            This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if key derivation is a service provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software, or if it is used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality.
                             <p></p>
-                             If "<i>KDF-XOR</i>" and at least one of the SHA hashes is selected, then <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> must be claimed.
+                            <br>
                             <p></p>
-                             If "<i>KDF-HASH</i>" or "<i>KDF-MAC</i>" is selected, then <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> must be claimed.
+                            If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_CKM.4">FCS_CKM.4</a> must also be claimed.
                             <p></p>
-                             If "<i>KDF-MAC</i>" is selected, then <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> must be claimed.
+                            <br>
                             <p></p>
-                             If "<i>KDF-PBKDF</i>" is selected, then <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> must be claimed.
+                            If "<i>KDF-XOR</i>" and at least one of the SHA hashes is selected, then <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> must be claimed.
                             <p></p>
-                             If "<i>KDF-CTR</i>," "<i>KDF-FB</i>," or "<i>KDF-DPI</i>" is selected, then <a href="#FCS_RBG_EXT.1">FCS_RBG_EXT.1</a> must be claimed.
+                            <br>
                             <p></p>
-                             If "<i>KDF-CTR</i>," "<i>KDF-FB</i>," or "<i>KDF-DPI</i>" is selected, and HMAC is selected as part of the key derivation algorithm, then <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> must be claimed.
+                            If "<i>KDF-HASH</i>" or "<i>KDF-MAC</i>" is selected, then <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> must be claimed.
                             <p></p>
-                             For Authorization Factor Submasks, the key size to be used in the HMAC falls into a range between L1 and L2 defined in ISO/IEC 10118 for the appropriate hash function (for example for SHA-256 L1 = 512, L2 = 256) where L2 &lt; = k &lt; = L1.
+                            <br>
                             <p></p>
-                             NIST SP 800-131A Rev 1 allows the use of SHA-1 in these use cases.
+                            If "<i>KDF-MAC</i>" is selected, then <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> must be claimed.
                             <p></p>
-                             KDF-ENC and KDF-XOR create an &ldquo;inverted key hierarchy&rdquo; in which the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> will combine two or more keys to create a third key. These same KDFs may also use a submask key as input, which could be an authorization factor or derived from a PBKDF. In these cases the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author must explicitly declare this option and should present a reasonable argument that the entropy of the inputs to the KDFs will result in full entropy of the expected output. </span>
+                            <br>
+                            <p></p>
+                            If "<i>KDF-PBKDF</i>" is selected, then <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> must be claimed.
+                            <p></p>
+                            <br>
+                            <p></p>
+                            If "<i>KDF-CTR</i>," "<i>KDF-FB</i>," or "<i>KDF-DPI</i>" is selected, then <a href="#FCS_RBG_EXT.1">FCS_RBG_EXT.1</a> must be claimed.
+                            <p></p>
+                            <br>
+                            <p></p>
+                            If "<i>KDF-CTR</i>," "<i>KDF-FB</i>," or "<i>KDF-DPI</i>" is selected, and HMAC is selected as part of the key derivation algorithm, then <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> must be claimed.
+                            <p></p>
+                            <br>
+                            <p></p>
+                            For Authorization Factor Submasks, the key size to be used in the HMAC falls into a range between L1 and L2 defined in ISO/IEC 10118 for the appropriate hash function (for example for SHA-256 L1 = 512, L2 = 256) where L2 &lt; = k &lt; = L1.
+                            <p></p>
+                            <br>
+                            <p></p>
+                            NIST SP 800-131A Rev 1 allows the use of SHA-1 in these use cases.
+                            <p></p>
+                            <br>
+                            <p></p>
+                            KDF-ENC and KDF-XOR create an &ldquo;inverted key hierarchy&rdquo; in which the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> will combine two or more keys to create a third key. These same KDFs may also use a submask key as input, which could be an authorization factor or derived from a PBKDF. In these cases the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author must explicitly declare this option and should present a reasonable argument that the entropy of the inputs to the KDFs will result in full entropy of the expected output.
+                            <p></p>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -2925,31 +2952,45 @@
                     </div>
                     <div class="ea">
                         <div class="ea">
-                            The evaluator shall check that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes a description of the key derivation functions and shall check that this uses a key derivation algorithm and key sizes according to the specification selected in <a href="#fcs-ckm-keydrv-sels" class="fcs-ckm-keydrv-sels-ref">Table <span class="counter">17</span></a>. The evaluator shall confirm that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> supports the selected methods.
+                            <p>
+                                The evaluator shall check that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes a description of the key derivation functions and shall check that this uses a key derivation algorithm and key sizes according to the specification selected in <a href="#fcs-ckm-keydrv-sels" class="fcs-ckm-keydrv-sels-ref">Table <span class="counter">17</span></a>. The evaluator shall confirm that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> supports the selected methods.
+                            </p>
                             <p></p>
-                             If key combination is used to form a KEK, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the method of combination and that this method is either an XOR, a KDF, or encryption.
+                            <br>
                             <p></p>
-                             If a KDF is used to form a KEK, the evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes a description of the key derivation function and shall verify the key derivation uses an approved derivation mode and key expansion algorithm according to SP 800-108.
+                            If key combination is used to form a KEK, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the method of combination and that this method is either an XOR, a KDF, or encryption.
                             <p></p>
-                             If key concatenation is used to derive KEKs, the evaluator shall ensure the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes a description of the randomness extraction step, including the following:
+                            <br>
+                            <p></p>
+                            If a KDF is used to form a KEK, the evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes a description of the key derivation function and shall verify the key derivation uses an approved derivation mode and key expansion algorithm according to SP 800-108.
+                            <p></p>
+                            <br>
+                            <p></p>
+                            If key concatenation is used to derive KEKs, the evaluator shall ensure the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes a description of the randomness extraction step, including the following:
+                            <p></p>
+                            <br>
                             <p></p>
                             <ul>
-                                <li>
-                                    The description must include how an approved untruncated MAC function is being used for the randomness extraction step and the evaluator must verify the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes that the output length (in bits) of the MAC function is at least as large as the targeted security strength (in bits) of the parameter set employed by the key establishment scheme (see Tables 1-3 of SP 800-56C).
+                                <li data-list="bullet">
+                                    <span class="ql-ui" contenteditable="false"></span>The description must include how an approved untruncated MAC function is being used for the randomness extraction step and the evaluator must verify the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes that the output length (in bits) of the MAC function is at least as large as the targeted security strength (in bits) of the parameter set employed by the key establishment scheme (see Tables 1-3 of SP 800-56C).
                                 </li>
-                                <li>
-                                    The description must include how the MAC function being used for the randomness extraction step is related to the PRF used in the key expansion and verify the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> description includes the correct MAC function:
-                                    <ul>
-                                        <li>If an HMAC-hash is used in the randomness extraction step, then the same HMAC-hash (with the same hash function hash) is used as the PRF in the key expansion step.</li>
-                                        <li>If an AES-CMAC (with key length 128, 192, or 256 bits) is used in the randomness extraction step, then AES-CMAC with a 128-bit key is used as the PRF in the key expansion step.</li>
-                                    </ul>
+                                <li data-list="bullet">
+                                    <span class="ql-ui" contenteditable="false"></span>The description must include how the MAC function being used for the randomness extraction step is related to the PRF used in the key expansion and verify the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> description includes the correct MAC function:
                                 </li>
-                                <li>
-                                    The description must include the lengths of the salt values being used in the randomness extraction step and the evaluator shall verify the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> description includes correct salt lengths:
-                                    <ul>
-                                        <li>If an HMAC-hash is being used as the MAC, the salt length can be any value up to the maximum bit length permitted for input to the hash function hash.</li>
-                                        <li>If an AES-CMAC is being used as the MAC, the salt length shall be the same length as the AES key (i.e. 128, 192, or 256 bits).</li>
-                                    </ul>
+                                <li data-list="bullet" class="ql-indent-1">
+                                    <span class="ql-ui" contenteditable="false"></span>If an HMAC-hash is used in the randomness extraction step, then the same HMAC-hash (with the same hash function hash) is used as the PRF in the key expansion step.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-1">
+                                    <span class="ql-ui" contenteditable="false"></span>If an AES-CMAC (with key length 128, 192, or 256 bits) is used in the randomness extraction step, then AES-CMAC with a 128-bit key is used as the PRF in the key expansion step.
+                                </li>
+                                <li data-list="bullet">
+                                    <span class="ql-ui" contenteditable="false"></span>The description must include the lengths of the salt values being used in the randomness extraction step and the evaluator shall verify the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> description includes correct salt lengths:
+                                </li>
+                                <li data-list="bullet" class="ql-indent-1">
+                                    <span class="ql-ui" contenteditable="false"></span>If an HMAC-hash is being used as the MAC, the salt length can be any value up to the maximum bit length permitted for input to the hash function hash.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-1">
+                                    <span class="ql-ui" contenteditable="false"></span>If an AES-CMAC is being used as the MAC, the salt length shall be the same length as the AES key (i.e. 128, 192, or 256 bits).
                                 </li>
                             </ul>
                         </div>
@@ -2957,31 +2998,45 @@
                     <div class="eacategory">Guidance</div>
                     <div class="ea">
                         <div class="ea">
-                             The evaluator shall verify that the AGD instructs the administrator how to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use the selected key types for all uses identified in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
-                            <p></p>
+                            <p>
+                                The evaluator shall verify that the AGD instructs the administrator how to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use the selected key types for all uses identified in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+                            </p>
                         </div>
                     </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
                         <div class="ea">
-                             The following tests require the developer to provide access to a test platform that provides the evaluator with tools that are typically not found on factory products.
+                            <p>The following tests require the developer to provide access to a test platform that provides the evaluator with tools that are typically not found on factory products.</p>
                             <p></p>
-                             The evaluator shall perform one or more of the following tests to verify the correctness of the key derivation function, depending on the specific functions that are supported:
+                            <br>
                             <p></p>
-                             Preconditions for testing:
+                            The evaluator shall perform one or more of the following tests to verify the correctness of the key derivation function, depending on the specific functions that are supported:
+                            <p></p>
+                            <br>
+                            <p></p>
+                            Preconditions for testing:
+                            <p></p>
                             <ul>
-                                <li>Specification of input parameter to the key derivation function to be tested</li>
-                                <li>Specification of further required input parameters</li>
-                                <li>Access to derived keys</li>
+                                <li data-list="bullet">
+                                    <span class="ql-ui" contenteditable="false"></span>Specification of input parameter to the key derivation function to be tested
+                                </li>
+                                <li data-list="bullet">
+                                    <span class="ql-ui" contenteditable="false"></span>Specification of further required input parameters
+                                </li>
+                                <li data-list="bullet">
+                                    <span class="ql-ui" contenteditable="false"></span>Access to derived keys
+                                </li>
                             </ul>
-                             The following table maps the data fields in the tests below to the notations used in SP 800-108 and SP 800-56C
+                            <p>The following table maps the data fields in the tests below to the notations used in SP 800-108 and SP 800-56C</p>
                             <p></p>
-                            <table class="classic" style="width:75%">
+                            <br>
+                            <p></p>
+                            <table>
                                 <tr class="header">
-                                    <td>Data Fields</td><td colspan="2">Notations</td>
+                                    <td>Data Fields</td><td>Notations</td>
                                 </tr>
                                 <tr>
-                                    <td></td><td>SP 800-108</td><td>SP 800-56C</td>
+                                    <td>SP 800-108</td><td>SP 800-56C</td>
                                 </tr>
                                 <tr>
                                     <td>Pseudorandom function</td><td>PRF</td><td>PRF</td>
@@ -3002,113 +3057,202 @@
                                     <td>Pseudorandom input values I</td><td>K1 (key derivation key)</td><td>Z (shared secret)</td>
                                 </tr>
                                 <tr>
-                                    <td>Pseudorandom salt values</td><td></td><td>S</td>
+                                    <td>Pseudorandom salt values</td><td>S</td>
                                 </tr>
                                 <tr>
                                     <td>Randomness extraction MAC</td><td>n/a</td><td>MAC</td>
                                 </tr>
                             </table>
-                             The below tests are derived from Key Derivation using Pseudorandom Functions (SP 800-108) Validation System (KBKDFVS), Updated 4 January 2016, Section 6.2, from the National Institute of Standards and Technology.
+                            <p>The below tests are derived from Key Derivation using Pseudorandom Functions (SP 800-108) Validation System (KBKDFVS), Updated 4 January 2016, Section 6.2, from the National Institute of Standards and Technology.</p>
+                            <p></p>
+                            <br>
                             <p></p>
                             <b>KDF-CTR: Counter Mode Tests:</b>
                             <p></p>
-                             The evaluator shall determine the following characteristics of the key derivation function:
-                            <ul>
-                                <li>One or more pseudorandom functions that are supported by the implementation (PRF).</li>
-                                <li>One or more of the values {8, 16, 24, 32} that equal the length of the binary representation of the counter (r).</li>
-                                <li>The length (in bits) of the output of the PRF (h).</li>
-                                <li>Minimum and maximum values for the length (in bits) of the derived keying material (L). These values can be equal if only one value of L is supported. These must be evenly divisible by h.</li>
-                                <li>Up to two values of L that are NOT evenly divisible by h.</li>
-                                <li>
-                                    Location of the counter relative to fixed input data: before, after, or in the middle.
-                                    <ul>
-                                        <li>Counter before fixed input data: fixed input data string length (in bytes), fixed input data string value.</li>
-                                        <li>Counter after fixed input data: fixed input data string length (in bytes), fixed input data string value.</li>
-                                        <li>Counter in the middle of fixed input data: length of data before counter (in bytes), length of data after counter (in bytes), value of string input before counter, value of string input after counter.</li>
-                                    </ul>
-                                </li>
-                                <li>The length (I_length) of the input values I.</li>
-                            </ul>
-                             For each supported combination of I_length, MAC, salt, PRF, counter location, value of r, and value of L, the evaluator shall generate 10 test vectors that include pseudorandom input values I, and pseudorandom salt values. If there is only one value of L that is evenly divisible by h, the evaluator shall generate 20 test vectors for it. For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to produce the keying material output.
+                            <br>
                             <p></p>
-                             The results from each test may either be obtained by the evaluator directly or by supplying the inputs to the implementer and receiving the results in response. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
+                            The evaluator shall determine the following characteristics of the key derivation function:
+                            <p></p>
+                            <ul>
+                                <li data-list="bullet" class="ql-indent-1">
+                                    <span class="ql-ui" contenteditable="false"></span>One or more pseudorandom functions that are supported by the implementation (PRF).
+                                </li>
+                                <li data-list="bullet" class="ql-indent-1">
+                                    <span class="ql-ui" contenteditable="false"></span>One or more of the values {8, 16, 24, 32} that equal the length of the binary representation of the counter (r).
+                                </li>
+                                <li data-list="bullet" class="ql-indent-1">
+                                    <span class="ql-ui" contenteditable="false"></span>The length (in bits) of the output of the PRF (h).
+                                </li>
+                                <li data-list="bullet" class="ql-indent-1">
+                                    <span class="ql-ui" contenteditable="false"></span>Minimum and maximum values for the length (in bits) of the derived keying material (L). These values can be equal if only one value of L is supported. These must be evenly divisible by h.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-1">
+                                    <span class="ql-ui" contenteditable="false"></span>Up to two values of L that are NOT evenly divisible by h.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-1">
+                                    <span class="ql-ui" contenteditable="false"></span>Location of the counter relative to fixed input data: before, after, or in the middle.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-2">
+                                    <span class="ql-ui" contenteditable="false"></span>Counter before fixed input data: fixed input data string length (in bytes), fixed input data string value.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-2">
+                                    <span class="ql-ui" contenteditable="false"></span>Counter after fixed input data: fixed input data string length (in bytes), fixed input data string value.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-2">
+                                    <span class="ql-ui" contenteditable="false"></span>Counter in the middle of fixed input data: length of data before counter (in bytes), length of data after counter (in bytes), value of string input before counter, value of string input after counter.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-1">
+                                    <span class="ql-ui" contenteditable="false"></span>The length (I_length) of the input values I.
+                                </li>
+                            </ul>
+                            <p>
+                                For each supported combination of I_length, MAC, salt, PRF, counter location, value of r, and value of L, the evaluator shall generate 10 test vectors that include pseudorandom input values I, and pseudorandom salt values. If there is only one value of L that is evenly divisible by h, the evaluator shall generate 20 test vectors for it. For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to produce the keying material output.
+                            </p>
+                            <p></p>
+                            <br>
+                            <p></p>
+                            The results from each test may either be obtained by the evaluator directly or by supplying the inputs to the implementer and receiving the results in response. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
+                            <p></p>
+                            <br>
                             <p></p>
                             <b>KDF-FB: Feedback Mode Tests:</b>
                             <p></p>
-                             The evaluator shall determine the following characteristics of the key derivation function:
-                            <ul>
-                                <li>One or more pseudorandom functions that are supported by the implementation (PRF).</li>
-                                <li>The length (in bits) of the output of the PRF (h).</li>
-                                <li>Minimum and maximum values for the length (in bits) of the derived keying material (L). These values can be equal if only one value of L is supported. These must be evenly divisible by h.</li>
-                                <li>Up to two values of L that are NOT evenly divisible by h.</li>
-                                <li>Whether or not zero-length IVs are supported.</li>
-                                <li>
-                                    Whether or not a counter is used, and if so:
-                                    <ul>
-                                        <li>One or more of the values {8, 16, 24, 32} that equal the length of the binary representation of the counter (r).</li>
-                                        <li>
-                                            Location of the counter relative to fixed input data: before, after, or in the middle.
-                                            <ul>
-                                                <li>Counter before fixed input data: fixed input data string length (in bytes), fixed input data string value.</li>
-                                                <li>Counter after fixed input data: fixed input data string length (in bytes), fixed input data string value.</li>
-                                                <li>Counter in the middle of fixed input data: length of data before counter (in bytes), length of data after counter (in bytes), value of string input before counter, value of string input after counter.</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>The length (I_length) of the input values L.</li>
-                            </ul>
-                             For each supported combination of I_length, MAC, salt, PRF, counter location (if a counter is used), value of r (if a counter is used), and value of L, the evaluator shall generate 10 test vectors that include pseudorandom input values I and pseudorandom salt values. If the KDF supports zero-length IVs, five of these test vectors will be accompanied by pseudorandom IVs and the other five will use zero-length IVs. If zero-length IVs are not supported, each test vector will be accompanied by an pseudorandom IV. If there is only one value of L that is evenly divisible by h, the evaluator shall generate 20 test vectors for it.
+                            <br>
                             <p></p>
-                             For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to produce the keying material output. The results from each test may either be obtained by the evaluator directly or by supplying the inputs to the implementer and receiving the results in response. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
+                            The evaluator shall determine the following characteristics of the key derivation function:
+                            <p></p>
+                            <ul>
+                                <li data-list="bullet" class="ql-indent-2">
+                                    <span class="ql-ui" contenteditable="false"></span>One or more pseudorandom functions that are supported by the implementation (PRF).
+                                </li>
+                                <li data-list="bullet" class="ql-indent-2">
+                                    <span class="ql-ui" contenteditable="false"></span>The length (in bits) of the output of the PRF (h).
+                                </li>
+                                <li data-list="bullet" class="ql-indent-2">
+                                    <span class="ql-ui" contenteditable="false"></span>Minimum and maximum values for the length (in bits) of the derived keying material (L). These values can be equal if only one value of L is supported. These must be evenly divisible by h.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-2">
+                                    <span class="ql-ui" contenteditable="false"></span>Up to two values of L that are NOT evenly divisible by h.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-2">
+                                    <span class="ql-ui" contenteditable="false"></span>Whether or not zero-length IVs are supported.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-2">
+                                    <span class="ql-ui" contenteditable="false"></span>Whether or not a counter is used, and if so:
+                                </li>
+                                <li data-list="bullet" class="ql-indent-3">
+                                    <span class="ql-ui" contenteditable="false"></span>One or more of the values {8, 16, 24, 32} that equal the length of the binary representation of the counter (r).
+                                </li>
+                                <li data-list="bullet" class="ql-indent-3">
+                                    <span class="ql-ui" contenteditable="false"></span>Location of the counter relative to fixed input data: before, after, or in the middle.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-4">
+                                    <span class="ql-ui" contenteditable="false"></span>Counter before fixed input data: fixed input data string length (in bytes), fixed input data string value.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-4">
+                                    <span class="ql-ui" contenteditable="false"></span>Counter after fixed input data: fixed input data string length (in bytes), fixed input data string value.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-4">
+                                    <span class="ql-ui" contenteditable="false"></span>Counter in the middle of fixed input data: length of data before counter (in bytes), length of data after counter (in bytes), value of string input before counter, value of string input after counter.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-2">
+                                    <span class="ql-ui" contenteditable="false"></span>The length (I_length) of the input values L.
+                                </li>
+                            </ul>
+                            <p>For each supported combination of I_length, MAC, salt, PRF, counter location (if a counter is used), value of r (if a counter is used), and value of L, the evaluator shall generate 10 test vectors that include pseudorandom input values I and pseudorandom salt values. If the KDF supports zero-length IVs, five of these test vectors will be accompanied by pseudorandom IVs and the other five will use zero-length IVs. If zero-length IVs are not supported, each test vector will be accompanied by an pseudorandom IV. If there is only one value of L that is evenly divisible by h, the evaluator shall generate 20 test vectors for it.</p>
+                            <p></p>
+                            <br>
+                            <p></p>
+                            For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to produce the keying material output. The results from each test may either be obtained by the evaluator directly or by supplying the inputs to the implementer and receiving the results in response. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
+                            <p></p>
+                            <br>
                             <p></p>
                             <b>KDF-DPI: Double Pipeline Iteration Mode Tests:</b>
                             <p></p>
-                             The evaluator shall determine the following characteristics of the key derivation function:
-                            <ul>
-                                <li>One or more pseudorandom functions that are supported by the implementation (PRF).</li>
-                                <li>The length (in bits) of the output of the PRF (h).</li>
-                                <li>Minimum and maximum values for the length (in bits) of the derived keying material (L). These values can be equal if only one value of L is supported. These must be evenly divisible by h.</li>
-                                <li>Up to two values of L that are NOT evenly divisible by h.</li>
-                                <li>
-                                    Whether or not a counter is used, and if so:
-                                    <ul>
-                                        <li>One or more of the values {8, 16, 24, 32} that equal the length of the binary representation of the counter (r).</li>
-                                        <li>
-                                            Location of the counter relative to fixed input data: before, after, or in the middle.
-                                            <ul>
-                                                <li>Counter before fixed input data: fixed input data string length (in bytes), fixed input data string value.</li>
-                                                <li>Counter after fixed input data: fixed input data string length (in bytes), fixed input data string value.</li>
-                                                <li>Counter in the middle of fixed input data: length of data before counter (in bytes), length of data after counter (in bytes), value of string input before counter, value of string input after counter.</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>The length (I_length) of the input values I.</li>
-                            </ul>
-                             For each supported combination of I_length, MAC, salt, PRF, counter location (if a counter is used), value of r (if a counter is used), and value of L, the evaluator shall generate 10 test vectors that include pseudorandom input values I, and pseudorandom salt values. If there is only one value of L that is evenly divisible by h, the evaluator shall generate 20 test vectors for it.
+                            <br>
                             <p></p>
-                             For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to produce the keying material output. The results from each test may either be obtained by the evaluator directly or by supplying the inputs to the implementer and receiving the results in response. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
+                            The evaluator shall determine the following characteristics of the key derivation function:
+                            <p></p>
+                            <ul>
+                                <li data-list="bullet" class="ql-indent-3">
+                                    <span class="ql-ui" contenteditable="false"></span>One or more pseudorandom functions that are supported by the implementation (PRF).
+                                </li>
+                                <li data-list="bullet" class="ql-indent-3">
+                                    <span class="ql-ui" contenteditable="false"></span>The length (in bits) of the output of the PRF (h).
+                                </li>
+                                <li data-list="bullet" class="ql-indent-3">
+                                    <span class="ql-ui" contenteditable="false"></span>Minimum and maximum values for the length (in bits) of the derived keying material (L). These values can be equal if only one value of L is supported. These must be evenly divisible by h.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-3">
+                                    <span class="ql-ui" contenteditable="false"></span>Up to two values of L that are NOT evenly divisible by h.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-3">
+                                    <span class="ql-ui" contenteditable="false"></span>Whether or not a counter is used, and if so:
+                                </li>
+                                <li data-list="bullet" class="ql-indent-4">
+                                    <span class="ql-ui" contenteditable="false"></span>One or more of the values {8, 16, 24, 32} that equal the length of the binary representation of the counter (r).
+                                </li>
+                                <li data-list="bullet" class="ql-indent-4">
+                                    <span class="ql-ui" contenteditable="false"></span>Location of the counter relative to fixed input data: before, after, or in the middle.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-5">
+                                    <span class="ql-ui" contenteditable="false"></span>Counter before fixed input data: fixed input data string length (in bytes), fixed input data string value.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-5">
+                                    <span class="ql-ui" contenteditable="false"></span>Counter after fixed input data: fixed input data string length (in bytes), fixed input data string value.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-5">
+                                    <span class="ql-ui" contenteditable="false"></span>Counter in the middle of fixed input data: length of data before counter (in bytes), length of data after counter (in bytes), value of string input before counter, value of string input after counter.
+                                </li>
+                                <li data-list="bullet" class="ql-indent-3">
+                                    <span class="ql-ui" contenteditable="false"></span>The length (I_length) of the input values I.
+                                </li>
+                            </ul>
+                            <p>For each supported combination of I_length, MAC, salt, PRF, counter location (if a counter is used), value of r (if a counter is used), and value of L, the evaluator shall generate 10 test vectors that include pseudorandom input values I, and pseudorandom salt values. If there is only one value of L that is evenly divisible by h, the evaluator shall generate 20 test vectors for it.</p>
+                            <p></p>
+                            <br>
+                            <p></p>
+                            For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to produce the keying material output. The results from each test may either be obtained by the evaluator directly or by supplying the inputs to the implementer and receiving the results in response. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
+                            <p></p>
+                            <br>
                             <p></p>
                             <b>KDF-XOR: Intermediate Keys Method</b>
                             <p></p>
-                             If the selected algorithm is a hash, then the testing of the hash primitive is the only required Evaluation Activity. If the selected algorithm is XOR, then no separate primitive testing is necessary.
+                            <br>
+                            <p></p>
+                            If the selected algorithm is a hash, then the testing of the hash primitive is the only required Evaluation Activity. If the selected algorithm is XOR, then no separate primitive testing is necessary.
+                            <p></p>
+                            <br>
                             <p></p>
                             <b>KDF-ENC: Two Keys Method</b>
                             <p></p>
-                             The evaluator should confirm that the combined length of the two keys should be at least as long as the key size of the selected methods. There are no other tests other than for the methods selected for this row from FCD_COP.1/SK.
+                            <br>
+                            <p></p>
+                            The evaluator should confirm that the combined length of the two keys should be at least as long as the key size of the selected methods. There are no other tests other than for the methods selected for this row from FCD_COP.1/SK.
+                            <p></p>
+                            <br>
                             <p></p>
                             <b>KDF-HASH: Shared Secret, Salt, Output Length, Fixed Information Method</b>
                             <p></p>
-                             For each supported selection of PRF, length of shared secret (Z) [selection: 128, 256] bits, length of salt (S) [selection: length of input block of PRF, one-half length of input block of PRF, 0] bits, output length (L) [selection: 128, 256] bits, and length of fixed information (FixedInfo) [selection: length of input block of PRF, one-half length of input block of PRF, 0] bits, the evaluator shall generate 10 test vectors that include pseudorandom input values for Z, salt values (for non-zero lengths, otherwise, omit) and fixed information (for non-zero lengths, otherwise, omit).
+                            <br>
                             <p></p>
-                             For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to produce the keying material output. The results from each test may either be obtained by the evaluator directly or by supplying the inputs to the implementer and receiving the results in response. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
+                            For each supported selection of PRF, length of shared secret (Z) [selection: 128, 256] bits, length of salt (S) [selection: length of input block of PRF, one-half length of input block of PRF, 0] bits, output length (L) [selection: 128, 256] bits, and length of fixed information (FixedInfo) [selection: length of input block of PRF, one-half length of input block of PRF, 0] bits, the evaluator shall generate 10 test vectors that include pseudorandom input values for Z, salt values (for non-zero lengths, otherwise, omit) and fixed information (for non-zero lengths, otherwise, omit).
+                            <p></p>
+                            <br>
+                            <p></p>
+                            For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to produce the keying material output. The results from each test may either be obtained by the evaluator directly or by supplying the inputs to the implementer and receiving the results in response. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
+                            <p></p>
+                            <br>
                             <p></p>
                             <b>KDF-MAC: Shared Secret, Salt, IV, Output Length, Fixed Information Method</b>
                             <p></p>
-                             For each supported selection of PRF, length of shared secret (Z), length of salt, length of initialization vector (IV), output length (L), and length of fixed information (FixedInfo), the evaluator shall generate 10 test vectors that include pseudorandom input values for Z, salt values (for non-zero lengths, otherwise, omit), IV (for non-zero lengths, otherwise, use a vector of length equal to length of input block of PRF and fill with zeros), and fixed information (for non-zero lengths, otherwise, omit).
+                            <br>
                             <p></p>
-                             For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to produce the keying material output. The results from each test may either be obtained by the evaluator directly or by supplying the inputs to the implementer and receiving the results in response. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
+                            For each supported selection of PRF, length of shared secret (Z), length of salt, length of initialization vector (IV), output length (L), and length of fixed information (FixedInfo), the evaluator shall generate 10 test vectors that include pseudorandom input values for Z, salt values (for non-zero lengths, otherwise, omit), IV (for non-zero lengths, otherwise, use a vector of length equal to length of input block of PRF and fill with zeros), and fixed information (for non-zero lengths, otherwise, omit).
+                            <p></p>
+                            <br>
+                            <p></p>
+                            For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to produce the keying material output. The results from each test may either be obtained by the evaluator directly or by supplying the inputs to the implementer and receiving the results in response. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
                             <p></p>
                         </div>
                     </div>
@@ -3296,7 +3440,7 @@
                                     </li>
                                     <li class="test-">
                                         <a id="_t_31" class="defined" href="#_t_31">Test FCS_STG_EXT.1:2</a>: The evaluator shall write, or the developer shall provide access to, tenant software that uses a generated or imported key/secret:
-                                        <ul>
+                                        <ul class="ql-indent-0">
                                             <li>For RSA, the secret shall be used to sign data.</li>
                                             <li>For ECDSA, the secret shall be used to sign data.</li>
                                         </ul>
@@ -4443,17 +4587,17 @@
                              FIPS PUB 186-4 Key Pair generation specifies 5 methods for generating the primes p and q.
                             <p></p>
                              These are:
-                            <ol type="1">
+                            <ol type="1" class="ql-indent-0">
                                 <li>
                                     Random Primes:
-                                    <ul>
+                                    <ul class="ql-indent-1">
                                         <li>Provable primes</li>
                                         <li>Probable primes</li>
                                     </ul>
                                 </li>
                                 <li>
                                     Primes with Conditions:
-                                    <ul>
+                                    <ul class="ql-indent-1">
                                         <li>Primes p1, p2, q1, q2, p and q shall all be provable primes.</li>
                                         <li>Primes p1, p2, q1, and q2 shall be provable primes and p and q shall be probable primes</li>
                                         <li>Primes p1, p2, q1, q2, p and q shall all be probable primes.</li>
@@ -4465,7 +4609,7 @@
                              For each key length supported, the evaluator shall have the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> generate 25 key pairs. The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>&rsquo;s implementation by comparing values generated by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> with those generated by a known good implementation using the same input parameters.
                             <p></p>
                              If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> generates Random Probable Primes, then if possible, the Random Probable primes method should also be verified against a known good implementation as described above. If verification against a known good implementation is not possible, the evaluator shall have the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> generate 25 key pairs for each supported key length nlen and verify that all of the following are true:
-                            <ul>
+                            <ul class="ql-indent-1">
                                 <li>n = p*q</li>
                                 <li>p and q are probably prime according to Miller-Rabin tests with error probability &lt; 2^(-125)</li>
                                 <li>2^16 &lt; e &lt; 2^256 and e is an odd integer</li>
@@ -4497,17 +4641,17 @@
                              The evaluator shall verify the implementation of the Parameters Generation and the Key Generation for FFC by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> using the Parameter Generation and Key Generation test. This test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to correctly produce values for the field prime p, the cryptographic prime q (dividing p-1), the cryptographic group generator g, and the calculation of the private key x and public key y.
                             <p></p>
                              The Parameter generation specifies 2 ways (or methods) to generate the cryptographic prime q and the field prime p:
-                            <ul>
+                            <ul class="ql-indent-2">
                                 <li>Primes q and p shall both be provable primes</li>
                                 <li>Primes q and field prime p shall both be probable primes</li>
                             </ul>
                              and two ways to generate the cryptographic group generator g:
-                            <ul>
+                            <ul class="ql-indent-3">
                                 <li>Generator g constructed through a verifiable process</li>
                                 <li>Generator g constructed through an unverifiable process.</li>
                             </ul>
                              The Key generation specifies 2 ways to generate the private key x:
-                            <ul>
+                            <ul class="ql-indent-4">
                                 <li>len(q) bit output of RBG where 1 &le; x &le; q-1</li>
                                 <li>len(q) + 64 bit output of RBG, followed by a mod q-1 operation and a +1 operation, where 1&le; x&le;q-1. </li>
                             </ul>
@@ -4516,7 +4660,7 @@
                              To test the cryptographic and field prime generation method for the provable primes method or the group generator g for a verifiable process, the evaluator must seed the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> parameter generation routine with sufficient data to deterministically generate the parameter set.
                             <p></p>
                              For each key length supported, the evaluator shall have the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> generate 25 parameter sets and key pairs. The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>&rsquo;s implementation by comparing values generated by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> with those generated from a known good implementation. Verification must also confirm
-                            <ul>
+                            <ul class="ql-indent-5">
                                 <li>g != 0,1</li>
                                 <li>q divides p-1</li>
                                 <li>g^q mod p = 1</li>
@@ -4530,7 +4674,7 @@
                              The evaluator shall require the implementation under test (IUT) to generate 10 private/public key pairs. The private key shall be generated as specified in RFC 7748 using an approved random bit generator (RBG) and shall be written in little-endian order (least significant byte first. To determine correctness, the evaluator shall submit the generated key pairs to the public key verification (PKV) function of a known good implementation.
                             <p></p>
                              Note: Assuming the PKV function of the good implementation will (using little-endian order): 
-                            <ul>
+                            <ul class="ql-indent-6">
                                 <li>Confirm the private and public keys are 32-byte values</li>
                                 <li>Confirm the three least significant bits of the first byte of the private key are zero</li>
                                 <li>Confirm the most significant bit of the last byte is zero</li>
@@ -4648,7 +4792,7 @@
                              The elliptic curves used for the key establishment scheme correlate with the curves specified in <a href="#FCS_CKM.1/AK">FCS_CKM.1/AK</a>.
                             <p></p>
                              The selections in this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be consistent with those for <a href="#FCS_COP.1/KAT">FCS_COP.1/KAT</a>. Specifically: 
-                            <ul>
+                            <ul class="ql-indent-0">
                                 <li>
                                     If the first RSA scheme is selected, then "<i>KAS1</i>," "<i>KAS2</i>," or "<i>KTS_OAEP</i>" must be selected in <a href="#FCS_COP.1/KAT">FCS_COP.1/KAT</a>.
                                 </li>
@@ -4836,7 +4980,7 @@
                                         <a id="_t_3" class="defined" href="#_t_3">Test FCS_CKM.4:1</a>: Applied to each key or keying material held as plaintext in volatile memory and subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> (whether or not the plaintext value is subsequently encrypted for storage in volatile or non-volatile memory).
                                         <p></p>
                                          The evaluator shall:
-                                        <ol type="1">
+                                        <ol type="1" class="ql-indent-0">
                                             <li>Record the value of the key or keying material.</li>
                                             <li>
                                                 Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to dump the SDO/SDE memory of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> into a binary file.
@@ -4871,7 +5015,7 @@
                                     </li>
                                     <li class="test-">
                                         <a id="_t_4" class="defined" href="#_t_4">Test FCS_CKM.4:2</a>: Applied to each key and keying material held in non-volatile memory and subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.
-                                        <ol type="1">
+                                        <ol type="1" class="ql-indent-0">
                                             <li>Record the value of the key or keying material.</li>
                                             <li>
                                                 Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform normal cryptographic processing with the key from Step #1.
@@ -4894,7 +5038,7 @@
                                     </li>
                                     <li class="test-">
                                         <a id="_t_5" class="defined" href="#_t_5">Test FCS_CKM.4:3</a>: Applied to each key and keying material held in non-volatile memory and subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.
-                                        <ol type="1">
+                                        <ol type="1" class="ql-indent-0">
                                             <li>Record memory of the key or keying material.</li>
                                             <li>
                                                 Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform normal cryptographic processing with the key from Step #1.
@@ -5303,7 +5447,7 @@
                              This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> is claimed.
                             <p></p>
                              Also, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be claimed under the following conditions:
-                            <ul>
+                            <ul class="ql-indent-0">
                                 <li>
                                     If "<i>KDF-MAC</i>" or "<i>KDF-PBKDF</i>" is selected in <a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a>
                                 </li>
@@ -5568,7 +5712,7 @@
                             <p></p>
                              For each supported modulus size, underlying hash algorithm, and length of the trailer field (1- or 2-byte), the evaluator shall generate NT sets of recoverable message (M1), non-recoverable message (M2), salt, public key and signature (<i>Σ</i>).
                             <p></p>
-                            <ol type="1">
+                            <ol type="1" class="ql-indent-0">
                                 <li>
                                     <i>N</i> shall be greater than or equal to 20.
                                 </li>
@@ -5617,11 +5761,11 @@
                                 </li>
                                 <li>
                                     The evaluator shall select approximately one half of <i>N</i> sets and shall alter one of the values (non-recoverable message, public key exponent or signature) in the sets. In altering public key exponent, the evaluator shall alter the public key exponent while keeping the exponent odd. In altering signatures, the following ways should be considered: 
-                                    <ol type="a">
+                                    <ol type="a" class="ql-indent-1">
                                         <li>Altering a signature just by replacing a bit in the bit-string representation of the signature</li>
                                         <li>
                                             Altering a signature so that the trailer in the message representative cannot be interpreted. This can be achieved by following ways:
-                                            <ul>
+                                            <ul class="ql-indent-2">
                                                 <li>Setting the rightmost four bits of the message representative to the values other than '1100'.</li>
                                                 <li>In the case when 1-byte trailer is used, setting the rightmost byte of the message representative to the values other than '0xbc', while keeping the rightmost four bits to '1100'.</li>
                                                 <li>In the case when 2-byte trailer is used, setting the rightmost byte of the message representative to the values other than '0xcc', while keeping the rightmost four bits to '1100'.</li>
@@ -5717,7 +5861,7 @@
                         <span class="note-header">Application Note: </span><span class="note"> This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if symmetric-key cryptography is a service provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software, or if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself uses SKC to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality.
                             <p></p>
                              Specifically, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> includes <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> or <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>, or includes any of the following selections: 
-                            <ul>
+                            <ul class="ql-indent-0">
                                 <li>
                                     "<i>CTR_DRBG (AES)</i>" in <a href="#FCS_RBG_EXT.1">FCS_RBG_EXT.1</a>
                                 </li>
@@ -5766,7 +5910,7 @@
                              The following tests are conditional based upon the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>. The evaluator shall perform the following test or witness respective tests executed by the developer. The tests must be executed on a platform that is as close as practically possible to the operational platform (but which may be instrumented in terms of, for example, use of a debug mode). Where the test is not carried out on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself, the test platform shall be identified and the differences between test environment and <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> execution environment shall be described.
                             <p></p>
                              Preconditions for testing:
-                            <ul>
+                            <ul class="ql-indent-0">
                                 <li>Specification of keys as input parameter to the function to be tested</li>
                                 <li>specification of required input parameters such as modes</li>
                                 <li>Specification of user data (plaintext)</li>
@@ -5850,7 +5994,7 @@
                             <p></p>
                              The evaluator shall test the generation-encryption and decryption-verification functionality of AES-CCM for the following input parameter and tag lengths:
                             <p></p>
-                            <ul>
+                            <ul class="ql-indent-1">
                                 <li>
                                     <b>Keys:</b> All supported and selected key sizes (e.g., 128, 192, or 256 bits).
                                 </li>
@@ -5884,7 +6028,7 @@
                              It is not recommended that the evaluator use values obtained from static sources such as http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmtestvectors.zip, or use values not generated expressly to exercise the AES-GCM implementation.
                             <p></p>
                              The evaluator shall test the authenticated encryption functionality of AES-GCM by supplying 15 sets of Key, Plaintext, AAD, IV, and Tag data for every combination of the following parameters as selected in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and supported by the implementation under test:
-                            <ul>
+                            <ul class="ql-indent-2">
                                 <li>
                                     <b>Key size in bits:</b> Each selected and supported key size (e.g., 128, 192, or 256 bits).
                                 </li>
@@ -5974,7 +6118,7 @@
                              The evaluator shall generate test values as follows:
                             <p></p>
                              For each supported key size (256 bit (for AES-128) and 512 bit (for AES-256) keys), the evaluator shall provide up to five data lengths:
-                            <ul>
+                            <ul class="ql-indent-3">
                                 <li>Two data lengths divisible by the 128-bit block size, If data unit lengths of complete block sizes are supported.</li>
                                 <li>Two data lengths not divisible by the 128-bit block size, if data unit lengths of partial block sizes are supported.</li>
                                 <li>The largest data length supported by the implementation, or 2^16 (65536), whichever is larger.</li>
@@ -5993,7 +6137,7 @@
                              The tests below are derived from &ldquo;The Key Wrap Validation System (KWVS), Updated: June 20, 2014&rdquo; from the National Institute of Standards and Technology.
                             <p></p>
                              The evaluator shall test the authenticated-encryption functionality of AES-KWP (KWP-AE) using the same test as for AES-KW authenticated-encryption with the following change in the five plaintext lengths:
-                            <ul>
+                            <ul class="ql-indent-4">
                                 <li>Four lengths that are multiples of 8 bits</li>
                                 <li>The largest supported length less than or equal to 4096 bits.</li>
                             </ul>
@@ -6009,7 +6153,7 @@
                             <b>Test 3: (invalid ICV2):</b> Test that the implementation detects invalid ICV2 values by encrypting any plaintext value four times using a different value for ICV2 each time as follows: Start with a base ICV2 of 0xA65959A6. For each of the four tests change a different byte of ICV2 to a different value, so that each of the four bytes is changed once. Verify that the implementation of KWP-AD in the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> outputs FAIL for each test.
                             <p></p>
                             <b>Test 4: (invalid padding length):</b> Generate one ciphertext using algorithm KWP-AE with substring [len(P)/8]32 of S replaced by each of the following 32-bit values, where len(P) is the length of P in bits and [ ]32 denotes the representation of an integer in 32 bits:
-                            <ul>
+                            <ul class="ql-indent-5">
                                 <li>[0]32</li>
                                 <li>[len(P)/8-8]32</li>
                                 <li>[len(P)/8+8]32</li>
@@ -6035,13 +6179,13 @@
                              The tests below are derived from &ldquo;The Key Wrap Validation System (KWVS), Updated: June 20, 2014&rdquo; from the National Institute of Standards and Technology.
                             <p></p>
                              The evaluator shall test the authenticated-encryption functionality of AES-KW for each combination of the following input parameters:
-                            <ul>
+                            <ul class="ql-indent-6">
                                 <li>
                                     Supported key lengths selected in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> (e.g. 128 bits, 256 bits)
                                 </li>
                                 <li>
                                     Five plaintext lengths:
-                                    <ul>
+                                    <ul class="ql-indent-7">
                                         <li>Two lengths that are non-zero multiples of 128 bits (two semi-block lengths)</li>
                                         <li>Two lengths that are odd multiples of the semi-block length (64 bits)</li>
                                         <li>The largest supported plaintext length less than or equal to 4096 bits.</li>
@@ -6809,7 +6953,7 @@
                              If the RNG does not have prediction resistance, each trial consists of (1) instantiate DRBG, (2) generate the first block of random bits (3) reseed, (4) generate a second block of random bits (5) uninstantiate. The evaluator verifies that the second block of random bits is the expected value. The evaluator shall generate eight input values for each trial. The first is a count (0 &ndash; 14). The next three are entropy input, nonce, and personalization string for the instantiate operation. The fifth value is additional input to the first call to generate. The sixth and seventh are additional input and entropy input to the call to reseed. The final value is additional input to the second generate call.
                             <p></p>
                              The following paragraphs contain more information on some of the input values to be generated/selected by the evaluator. 
-                            <ul>
+                            <ul class="ql-indent-0">
                                 <li>
                                     <b>Entropy input:</b> the length of the entropy input value must equal the seed length.
                                 </li>
@@ -7514,7 +7658,7 @@
                         </li>
                         <li>
                             The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall validate the extendedKeyUsage field according to the following rules: 
-                            <ul>
+                            <ul class="ql-indent-0">
                                 <li>Certificates used for trusted updates and executable code integrity verification shall have the Code Signing Purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the extendedKeyUsage field.</li>
                                 <li>Server certificates presented for TLS shall have the Server Authentication purpose (id-kp 1 with OID 1.3.6.1.5.5.7.3.1) in the extendedKeyUsage field.</li>
                                 <li>Client certificates presented for TLS shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) in the EKU field.</li>
@@ -7579,7 +7723,7 @@
                                 <ul>
                                     <li class="test-">
                                         <a id="_t_41" class="defined" href="#_t_41">Test FIA_X509_EXT.1:1</a>: The evaluator shall demonstrate that validating a certificate without a valid certification path results in the function failing, for each of the following reasons, in turn: 
-                                        <ul>
+                                        <ul class="ql-indent-0">
                                             <li>by establishing a certificate path in which one of the issuing certificates is not a CA certificate,</li>
                                             <li>by omitting the basicConstraints field in one of the issuing certificates,</li>
                                             <li>by setting the basicConstraints field in an issuing certificate to have CA=False,</li>
@@ -7812,7 +7956,7 @@
                     The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide the capability to determine whether physical tampering with the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s devices or <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s elements has occurred.
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note"> This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> should be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements the following use cases:
-                            <ol>
+                            <ol class="ql-indent-0">
                                 <li>Portable Clients (laptops, tablets), Enhanced</li>
                                 <li>CSfC EUD</li>
                                 <li>IoT Devices</li>
@@ -7887,7 +8031,7 @@
                     For[<b>assignment</b>: <span class="assignable-content">list of <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> devices/elements for which active detection is required</span>], the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall monitor the devices and elements and notify[<b>assignment</b>: <span class="assignable-content">a designated user or role</span>]when physical tampering with the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s devices or <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s elements has occurred.
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note"> This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> should be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements the following use cases:
-                            <ol>
+                            <ol class="ql-indent-0">
                                 <li>Server-Class Platform, Enhanced</li>
                                 <li>CSfC EUD</li>
                             </ol>
@@ -7961,7 +8105,7 @@
                     The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall resist[<b>assignment</b>: <span class="assignable-content">physical tampering scenarios</span>]to the[<b>assignment</b>: <span class="assignable-content">list of <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> devices/elements</span>]by responding automatically such that the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> are always enforced.
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note"> This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> should be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements the following use cases:
-                            <ol>
+                            <ol class="ql-indent-0">
                                 <li>Server-Class Platform, Enhanced</li>
                                 <li>Tactical EUD</li>
                             </ol>
@@ -8031,7 +8175,7 @@
                     ].
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note"> This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if: 
-                            <ul>
+                            <ul class="ql-indent-0">
                                 <li>
                                     "<i>Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></i>" is selected in <a href="#FPT_ROT_EXT.2.2">FPT_ROT_EXT.2.2</a>,
                                 </li>
@@ -8895,8 +9039,12 @@
                         <a href="#FCS_CKM_EXT.4">FCS_CKM_EXT.4</a>, Cryptographic Key and Key Material Destruction Timing, specifies the timing for key destruction, which is not addressed by <a href="#FCS_CKM.4">FCS_CKM.4</a>.
                     </p>
                     <p>
-                        <a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a>, Cryptographic Key Derivation, requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to perform key derivation using a defined method, which is not addressed by any other FCS_CKM component.
+                        <a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a>, Cryptographic Key Derivation, 
                     </p>
+                    <p>
+                        requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to perform key derivation using a defined method, which is not addressed by any other FCS_CKM component.
+                    </p>
+                    <p></p>
                     <h4>Management: FCS_CKM_EXT.4</h4>
                     <p>There are no management functions foreseen.</p>
                     <h4>Audit: FCS_CKM_EXT.4</h4>
@@ -8925,7 +9073,11 @@
                                 <td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td>
                             </tr>
                             <tr style="background-color: inherit">
-                                <td>Dependencies to:</td><td> [FCS_CKM.1 Cryptographic Key Generation or <a href="#FDP_ITC_EXT.1">FDP_ITC_EXT.1</a> Key/Credential Import]</td>
+                                <td>Dependencies to:</td><td>
+                                    <p>
+                                        [FCS_CKM.1 Cryptographic Key Generation or <a href="#FDP_ITC_EXT.1">FDP_ITC_EXT.1</a> Key/Credential Import]
+                                    </p>
+                                </td>
                             </tr>
                         </table>
                         <h4 id="ext-comp-FCS_CKM_EXT.5.1">FCS_CKM_EXT.5.1</h4>
@@ -9535,7 +9687,7 @@
                             </li>
                             <li>
                                 The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall validate the extendedKeyUsage field according to the following rules: 
-                                <ul>
+                                <ul class="ql-indent-0">
                                     <li>Certificates used for trusted updates and executable code integrity verification shall have the Code Signing Purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the extendedKeyUsage field.</li>
                                     <li>Server certificates presented for TLS shall have the Server Authentication purpose (id-kp 1 with OID 1.3.6.1.5.5.7.3.1) in the extendedKeyUsage field.</li>
                                     <li>Client certificates presented for TLS shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) in the EKU field.</li>
