@@ -689,7 +689,7 @@
                 <td></td>
             </tr>
             <tr data-sortkey="FPT_ROT_EXT.2.6">
-                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_289">Failure of integrity verification</span>, <span class="selectable-content" id="_s_290">none</span>] </td><td>None.</td>
+                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_292">Failure of integrity verification</span>, <span class="selectable-content" id="_s_293">none</span>] </td><td>None.</td>
             </tr>
             <tr data-sortkey="FPT_STM.1">
                 <td rowspan="2"><a href="#FPT_STM.1">FPT_STM.1</a></td><td style="display:none"></td>
@@ -825,7 +825,6 @@
                      <b> <span class="ctr" data-myid="t-manfunc" data-counter-type="ct-Table" id="t-manfunc">Table <span class="counter">3</span>: Management Functions</span></b> 
                     <p></p>
                     <p></p>
-                     ]. 
                     <br>
                     <br>
                      <b><span class="ctr" data-myid="undefined" data-counter-type="ct-Table" id="undefined">Table <span class="counter">4</span>: Management Functions</span></b> 
@@ -835,24 +834,291 @@
                     <br>
                      M - Mandatory
                     <br>
-                    O - Optional/Selectable
+                    O - Optional/Selectable/Conditional
                     <br>
                     X - Not permitted
                     <br>
                     <br>
                     <table class="mfs" style="width: 100%;">
                         <tr class="header">
-                            <td>#</td><td>Management Function</td>
+                            <td>#</td><td>Management Function</td><td>Admin</td><td>User</td>
+                        </tr>
+                        <tr id="mf-admin-platform">
+                            <td>1</td><td style="text-align:left"> Ability to administer the platform [<b>selection</b>: <span class="selectable-content" id="fmt_smf.1.1_1">locally</span>, <span class="selectable-content" id="sel-smf-remote-admin">remotely</span>, <span class="selectable-content" id="fmt_smf.1.1_2">not at all</span>]</td><td>
+                                <div class="tooltipped">
+                                    M<span class="tooltiptext">Mandatory</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-audit-admin">
+                            <td>2</td><td style="text-align:left"> Ability to configure and manage the audit functionality and audit data. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-audit-server">
+                            <td>3</td><td style="text-align:left"> Ability to configure name/address of audit/logging server to which to send audit/logging records. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-audit-review">
+                            <td>4</td><td style="text-align:left"> Ability to review audit records. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-init-channel">
+                            <td>5</td><td style="text-align:left"> Ability to initiate a trusted channel for remote administration. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-auth-fail-params">
+                            <td>6</td><td style="text-align:left"> Ability to set parameters for allowable number of authentication failures. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-config-pwd">
+                            <td>7</td><td style="text-align:left"> Ability to configure password length and complexity. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-config-throttling">
+                            <td>8</td><td style="text-align:left"> Ability to configure authentication throttling policy. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-auth-methods">
+                            <td>9</td><td style="text-align:left"> Ability to manage authentication methods and change default authorization factors. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-config-revocation-checking">
+                            <td>10</td><td style="text-align:left"> Ability to configure of certificate revocation checking methods. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-config-revocation-actions">
+                            <td>11</td><td style="text-align:left"> Ability to configure <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> behavior when certificate revocation status cannot be determined. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-config-integrity-failure-actions">
+                            <td>12</td><td style="text-align:left"> Ability to configure default action to take on integrity failure. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-config-default-update-failure-actions">
+                            <td>13</td><td style="text-align:left"> Ability to configure default action to take on update failure. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-initiate-update">
+                            <td>14</td><td style="text-align:left"> Ability to initiate the update process. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-determine-update-failure-action">
+                            <td>15</td><td style="text-align:left"> Ability to determine the action to take on update failure. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-determine-integrity-failure-action">
+                            <td>16</td><td style="text-align:left"> Ability to determine the action to take on integrity check failure. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="mf-key-import-export">
+                            <td>17</td><td style="text-align:left"> Ability to manage import and export keys/secrets to and from protected storage. </td><td>
+                                <div class="tooltipped">
+                                    O<span class="tooltiptext">Optional/Conditional</span>
+                                </div>
+                            </td><td>
+                                <div class="tooltipped">
+                                    X<span class="tooltiptext">Not permitted</span>
+                                </div>
+                            </td>
                         </tr>
                     </table>
                     <div class="appnote">
-                        <span class="note-header">Application Note: </span><span class="note"> Note that all Administrator management functions except Function 1 are indicated as "Optional/Selectable." These functions become Mandatory or Selectable as indicated in the Notes.
+                        <span class="note-header">Application Note: </span><span class="note"> These functions become Mandatory or Selectable as indicated in the Notes.
                             <p></p>
-                             Administration is considered &ldquo;local&rdquo; if the Administrator is physically present at the GPCP.
+                             If "<i>not at all</i>" is selected in Function <a href="#mf-admin-platform">1</a>, then no other management Management Functions may be selected. 
+                            <br>
+                            <br>
+                            <b>Function-specific Application Notes:</b>
+                            <br>
+                            <br>
+                            <p> Administration is considered &ldquo;local&rdquo; if the Administrator is physically present at the GPCP.</p>
                             <p></p>
                              Administration is considered &ldquo;remote&rdquo; if communications between the Administrator and GPCP is over a network.
                             <p></p>
-                             "<i>Not at all</i>" is the proper selection for Function 1 only in the case where the GPCP is incapable of being Administered at all. </span>
+                             "<i>Not at all</i>" is the proper selection for Function <a href="#mf-admin-platform">1</a> only in the case where the GPCP is incapable of being Administered at all.
+                            <p></p>
+                             If "<i>remotely</i>" is selected, then <a href="#FTP_TRP.1">FTP_TRP.1</a> must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and Function <a href="#mf-init-channel">5</a> must be selected. 
+                            <p></p>
+                            <p>
+                                 This Function must be claimed if <a href="#FAU_GEN.1">FAU_GEN.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                            </p>
+                            <p>
+                                 This Function must be claimed if <a href="#FAU_STG_EXT.1">FAU_STG_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                            </p>
+                            <p>
+                                 This Function must be claimed if <a href="#FAU_SAR.1">FAU_SAR.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                            </p>
+                            <p>
+                                 This Function must be claimed if <a href="#FTP_TRP.1">FTP_TRP.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                            </p>
+                            <p>
+                                 This Function must be claimed if <a href="#FIA_AFL_EXT.1">FIA_AFL_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                            </p>
+                            <p>
+                                 This Function must be claimed if <a href="#FIA_PMG_EXT.1">FIA_PMG_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+                            </p>
+                            <p></p>
+                             If password length and complexity are not configurable, then the Administrator Option should be denied. 
+                            <p></p>
+                            <p>
+                                 This Function must be claimed if <a href="#FIA_TRT_EXT.1">FIA_TRT_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+                            </p>
+                            <p></p>
+                             If authentication throttling policy is not configurable, then the Administrator Option should be denied. 
+                            <p></p>
+                            <p>
+                                 This Function must be claimed if <a href="#FIA_UAU.5">FIA_UAU.5</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                            </p>
+                            <p></p>
+                             If authentication methods are not configurable, then the Administrator Option should be denied. 
+                            <p></p>
+                            <p>
+                                 This Function must be claimed if <a href="#FIA_X509_EXT.1">FIA_X509_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                            </p>
+                            <p></p>
+                             If <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> does not support configuration of certificate revocation checking methods, then the Administrator Option should be denied. 
+                            <p></p>
+                            <p>
+                                 This Function must be claimed if <a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and "<i> allow the administrator to choose whether to accept the certificate in these cases</i>" is selected in FIA_X509_RXT.2.2. 
+                            </p>
+                            <p>
+                                 This Function must be claimed if <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a> or <a href="#FPT_ROT_EXT.3">FPT_ROT_EXT.3</a> are claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and "<i>in accordance with Administrator-configurable policy</i>" is selected in <a href="#FPT_ROT_EXT.2.2">FPT_ROT_EXT.2.2</a> or <a href="#FPT_ROT_EXT.3.2">FPT_ROT_EXT.3.2</a>. 
+                            </p>
+                            <p>
+                                 This Function must be claimed if <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a> or <a href="#FPT_TUD_EXT.3">FPT_TUD_EXT.3</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and "<i>in accordance with Administrator-configurable policy</i>" is selected in <a href="#FPT_TUD_EXT.2.5">FPT_TUD_EXT.2.5</a> or <a href="#FPT_TUD_EXT.3.4">FPT_TUD_EXT.3.4</a>. 
+                            </p>
+                            <p>
+                                 This Function must be claimed if something other than "<i>no mechanism for platform firmware update</i>" is selected in <a href="#FPT_TUD_EXT.1.1">FPT_TUD_EXT.1.1</a>. 
+                            </p>
+                            <p>
+                                 This Function must be claimed if <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a> or <a href="#FPT_TUD_EXT.3">FPT_TUD_EXT.3</a> are claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+                            </p>
+                            <p></p>
+                             The Administrator Option must be selected if "<i>by express determination of an [Administrator]</i>" is selected in <a href="#FPT_TUD_EXT.2.5">FPT_TUD_EXT.2.5</a> or <a href="#FPT_TUD_EXT.3.4">FPT_TUD_EXT.3.4</a>. 
+                            <p></p>
+                             The User Option must be selected if "<i>by express determination of an [User]</i>" is selected in <a href="#FPT_TUD_EXT.2.5">FPT_TUD_EXT.2.5</a> or <a href="#FPT_TUD_EXT.3.4">FPT_TUD_EXT.3.4</a>. 
+                            <p></p>
+                            <p>
+                                 This Function must be claimed if <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a> or <a href="#FPT_ROT_EXT.3">FPT_ROT_EXT.3</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+                            </p>
+                            <p></p>
+                             The Administrator Option must be selected if "<i>by express determination of an [Administrator]</i>" is selected in <a href="#FPT_ROT_EXT.2.2">FPT_ROT_EXT.2.2</a> or <a href="#FPT_ROT_EXT.3.2">FPT_ROT_EXT.3.2</a>.
+                            <p></p>
+                             The User Option must be selected if "<i>by express determination of an [User]</i>" is selected in <a href="#FPT_ROT_EXT.2.2">FPT_ROT_EXT.2.2</a> or <a href="#FPT_ROT_EXT.3.2">FPT_ROT_EXT.3.2</a>. 
+                            <p></p>
+                            <p>
+                                 This Function must be claimed if <a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                            </p>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -886,6 +1152,332 @@
                     <div class="ea">
                         <div class="ea">
                              The evaluator shall test each management function included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> to demonstrate that the function can be performed only by the roles indicated in <a href="#t-manfunc" class="t-manfunc-ref">Table <span class="counter">3</span></a>
+                        </div>
+                    </div>
+                    <div class="management_function_activities">
+                         The following EAs correspond to specific management functions. 
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-admin-platform">1</a></b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-audit-admin">2</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-audit-server">3</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-audit-review">4</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-init-channel">5</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-auth-fail-params">6</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-config-pwd">7</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-config-throttling">8</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-auth-methods">9</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-config-revocation-checking">10</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-config-revocation-actions">11</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-config-integrity-failure-actions">12</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-config-default-update-failure-actions">13</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-initiate-update">14</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-determine-update-failure-action">15</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-determine-integrity-failure-action">16</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-key-import-export">17</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -1155,7 +1747,7 @@
                             <span class="selectable-content" id="sel-rot2-admin-config">in accordance with Administrator-configurable policy</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="fpt_rot_ext.2.2_6">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-rot2-admin-det">Administrator</span>, <span class="selectable-content" id="fpt_rot_ext.2.2_7">User</span>]</span>
+                            <span class="selectable-content" id="fpt_rot_ext.2.2_6">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-rot2-admin-det">Administrator</span>, <span class="selectable-content" id="sel-rot2-user-det">User</span>]</span>
                         </li>
                     </ul>
                     ].
@@ -1273,7 +1865,7 @@
                     The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall implement[<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="fpt_tud_ext.1.1_1">no mechanism for platform firmware update</span>
+                            <span class="selectable-content" id="sel-tud1-no-update">no mechanism for platform firmware update</span>
                         </li>
                         <li style="">
                             <span class="selectable-content" id="sel-tud1-auth-update">an authenticated platform firmware update mechanism as described in <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a></span>
@@ -2885,7 +3477,7 @@
                             <span class="selectable-content" id="sel-rot3-admin-config">in accordance with administrator-configurable policy</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="fpt_rot_ext.3.2_7">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-rot3-admin-det">Administrator</span>, <span class="selectable-content" id="fpt_rot_ext.3.2_8">User</span>]</span>
+                            <span class="selectable-content" id="fpt_rot_ext.3.2_7">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-rot3-admin-det">Administrator</span>, <span class="selectable-content" id="sel-rot3-user-det">User</span>]</span>
                         </li>
                     </ul>
                     ].
@@ -3247,13 +3839,13 @@
                 <td></td>
             </tr>
             <tr data-sortkey="FPT_TUD_EXT.2.10">
-                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_327">Failure of update authentication/integrity check/rollback</span>, <span class="selectable-content" id="_s_328">none</span>] </td><td>Version numbers of the current firmware and of the attempted update.</td>
+                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_330">Failure of update authentication/integrity check/rollback</span>, <span class="selectable-content" id="_s_331">none</span>] </td><td>Version numbers of the current firmware and of the attempted update.</td>
             </tr>
             <tr data-sortkey="FPT_TUD_EXT.2.11">
-                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_329">Failure of update operation</span>, <span class="selectable-content" id="_s_330">none</span>] </td><td>Version numbers of the current firmware and of the attempted update.</td>
+                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_332">Failure of update operation</span>, <span class="selectable-content" id="_s_333">none</span>] </td><td>Version numbers of the current firmware and of the attempted update.</td>
             </tr>
             <tr data-sortkey="FPT_TUD_EXT.2.12">
-                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_331">Success of update operation</span>, <span class="selectable-content" id="_s_332">none</span>] </td><td>Version numbers of the new and old firmware images.</td>
+                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_334">Success of update operation</span>, <span class="selectable-content" id="_s_335">none</span>] </td><td>Version numbers of the new and old firmware images.</td>
             </tr>
             <tr data-sortkey="FPT_TUD_EXT.3">
                 <td rowspan="4"><a href="#FPT_TUD_EXT.3">FPT_TUD_EXT.3</a></td><td style="display:none"></td>
@@ -3262,13 +3854,13 @@
                 <td></td>
             </tr>
             <tr data-sortkey="FPT_TUD_EXT.3.10">
-                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_349">Failure of update operation</span>, <span class="selectable-content" id="_s_350">none</span>] </td><td>Version numbers of the current firmware and of the attempted update.</td>
+                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_352">Failure of update operation</span>, <span class="selectable-content" id="_s_353">none</span>] </td><td>Version numbers of the current firmware and of the attempted update.</td>
             </tr>
             <tr data-sortkey="FPT_TUD_EXT.3.11">
-                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_351">Success of update operation</span>, <span class="selectable-content" id="_s_352">none</span>] </td><td>Version numbers of the new and old firmware images.</td>
+                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_354">Success of update operation</span>, <span class="selectable-content" id="_s_355">none</span>] </td><td>Version numbers of the new and old firmware images.</td>
             </tr>
             <tr data-sortkey="FPT_TUD_EXT.3.9">
-                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_347">Failure of update authentication/integrity/rollback check</span>, <span class="selectable-content" id="_s_348">none</span>] </td><td>Version numbers of the current firmware and of the attempted update.</td>
+                <td> [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_350">Failure of update authentication/integrity/rollback check</span>, <span class="selectable-content" id="_s_351">none</span>] </td><td>Version numbers of the current firmware and of the attempted update.</td>
             </tr>
             <tr data-sortkey="FPT_TUD_EXT.4">
                 <td rowspan="2"><a href="#FPT_TUD_EXT.4">FPT_TUD_EXT.4</a></td><td style="display:none"></td>
@@ -3285,14 +3877,14 @@
             <tr style="display:none;" data-sortkey="FTP_ITC_EXT.1#">
                 <td></td>
             </tr>
-            <tr data-sortkey="FTP_ITC_EXT.1.7">
-                <td>Initiation of the trusted channel.</td><td>User ID and remote source (IP Address) if feasible.</td>
+            <tr data-sortkey="FTP_ITC_EXT.1.10">
+                <td>Failures of the trusted path functions.</td><td>User ID and remote source (IP Address) if feasible.</td>
             </tr>
             <tr data-sortkey="FTP_ITC_EXT.1.8">
-                <td>Termination of the trusted channel.</td><td>User ID and remote source (IP Address) if feasible.</td>
+                <td>Initiation of the trusted channel.</td><td>User ID and remote source (IP Address) if feasible.</td>
             </tr>
             <tr data-sortkey="FTP_ITC_EXT.1.9">
-                <td>Failures of the trusted path functions.</td><td>User ID and remote source (IP Address) if feasible.</td>
+                <td>Termination of the trusted channel.</td><td>User ID and remote source (IP Address) if feasible.</td>
             </tr>
             <tr data-sortkey="FTP_ITE_EXT.1">
                 <td rowspan="2"><a href="#FTP_ITE_EXT.1">FTP_ITE_EXT.1</a></td><td style="display:none"></td>
@@ -3318,13 +3910,13 @@
             <tr style="display:none;" data-sortkey="FTP_TRP.1#">
                 <td></td>
             </tr>
-            <tr data-sortkey="FTP_TRP.1.3">
+            <tr data-sortkey="FTP_TRP.1.4">
                 <td>Initiation of the trusted channel.</td><td>Administrator ID and remote source (IP Address), if feasible.</td>
             </tr>
-            <tr data-sortkey="FTP_TRP.1.4">
+            <tr data-sortkey="FTP_TRP.1.5">
                 <td>Termination of the trusted channel.</td><td>Administrator ID and remote source (IP Address), if feasible.</td>
             </tr>
-            <tr data-sortkey="FTP_TRP.1.5">
+            <tr data-sortkey="FTP_TRP.1.6">
                 <td>Failures of the trusted path functions.</td><td>User ID and remote source (IP Address), if feasible.</td>
             </tr>
         </table>
@@ -5097,28 +5689,28 @@
                             <span class="ctr" data-myid="fcs-cop-skc-sels" data-counter-type="ct-Table" id="fcs-cop-skc-sels">Table <span class="counter">15</span></span>: Choices for completion of the assignments in <a href="#FCS_COP.1.1/SKC">FCS_COP.1.1/SKC</a>
                         </caption>
                         <tr>
-                            <th>Cryptographic algorithm</th><th>Cryptographic key sizes</th><th>List of standards</th>
+                            <th>Identifier</th><th>Cryptographic algorithm</th><th>Cryptographic key sizes</th><th>List of standards</th>
                         </tr>
                         <tr>
-                            <td>undefined</td>
+                            <td>AES-CCM</td>
                         </tr>
                         <tr>
-                            <td>undefined</td>
+                            <td>AES-GCM</td>
                         </tr>
                         <tr>
-                            <td>undefined</td>
+                            <td>AES-CBC</td>
                         </tr>
                         <tr>
-                            <td>undefined</td>
+                            <td>AES-CTR</td>
                         </tr>
                         <tr>
-                            <td>undefined</td>
+                            <td>XTS-AES</td>
                         </tr>
                         <tr>
-                            <td>undefined</td>
+                            <td>AES-KWP</td>
                         </tr>
                         <tr>
-                            <td>undefined</td>
+                            <td>AES-KW</td>
                         </tr>
                     </table>
                     <div class="appnote">
@@ -7590,7 +8182,7 @@
                             <span class="selectable-content" id="sel-tud2-admin-config">in accordance with administrator-configurable policy</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="fpt_tud_ext.2.5_8">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-tud2-admin-det">Administrator</span>, <span class="selectable-content" id="fpt_tud_ext.2.5_9">User</span>]</span>
+                            <span class="selectable-content" id="fpt_tud_ext.2.5_8">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-tud2-admin-det">Administrator</span>, <span class="selectable-content" id="sel-tud2-user-det">User</span>]</span>
                         </li>
                     </ul>
                     ].
@@ -7738,7 +8330,7 @@
                             <span class="selectable-content" id="sel-tud3-admin-config">in accordance with administrator-configurable policy</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="fpt_tud_ext.3.4_7">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-tud3-admin-det">Administrator</span>, <span class="selectable-content" id="fpt_tud_ext.3.4_8">User</span>]</span>
+                            <span class="selectable-content" id="fpt_tud_ext.3.4_7">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-tud3-admin-det">Administrator</span>, <span class="selectable-content" id="sel-tud3-user-det">User</span>]</span>
                         </li>
                     </ul>
                     ].
@@ -7922,7 +8514,7 @@
         <div class="comp" id="FTP_ITC_EXT.1">
             <h4>FTP_ITC_EXT.1 Trusted Channel Communication</h4>
             <div class="statustag">
-                <b><i>The inclusion of this selection-based component depends upon selection in <a href="#FAU_STG_EXT.1.1">FAU_STG_EXT.1.1</a>, <a href="#FDP_ITC_EXT.1.1">FDP_ITC_EXT.1.1</a>. </i></b>
+                <b><i>The inclusion of this selection-based component depends upon selection in <a href="#FAU_STG_EXT.1.1">FAU_STG_EXT.1.1</a>, <a href="#FDP_ITC_EXT.1.1">FDP_ITC_EXT.1.1</a>, <a href="#FMT_SMF.1.1">FMT_SMF.1.1</a>. </i></b>
             </div>
             <div class="element">
                 <div class="reqid" id="FTP_ITC_EXT.1.1">
@@ -8114,7 +8706,9 @@
         </div>
         <div class="comp" id="FTP_TRP.1">
             <h4>FTP_TRP.1 Trusted Path</h4>
-            <div class="statustag"></div>
+            <div class="statustag">
+                <b><i>The inclusion of this selection-based component depends upon selection in <a href="#FMT_SMF.1.1">FMT_SMF.1.1</a>. </i></b>
+            </div>
             <div class="element">
                 <div class="reqid" id="FTP_TRP.1.1">
                     <a href="#FTP_TRP.1.1" class="abbr">FTP_TRP.1.1</a>
@@ -9160,7 +9754,7 @@
                                 <span class="selectable-content" id="sel-rot2-admin-config">in accordance with Administrator-configurable policy</span>
                             </li>
                             <li style="">
-                                <span class="selectable-content" id="fpt_rot_ext.2.2_6">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-rot2-admin-det">Administrator</span>, <span class="selectable-content" id="fpt_rot_ext.2.2_7">User</span>]</span>
+                                <span class="selectable-content" id="fpt_rot_ext.2.2_6">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-rot2-admin-det">Administrator</span>, <span class="selectable-content" id="sel-rot2-user-det">User</span>]</span>
                             </li>
                         </ul>
                         ].
@@ -9212,7 +9806,7 @@
                                 <span class="selectable-content" id="sel-rot3-admin-config">in accordance with administrator-configurable policy</span>
                             </li>
                             <li style="">
-                                <span class="selectable-content" id="fpt_rot_ext.3.2_7">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-rot3-admin-det">Administrator</span>, <span class="selectable-content" id="fpt_rot_ext.3.2_8">User</span>]</span>
+                                <span class="selectable-content" id="fpt_rot_ext.3.2_7">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-rot3-admin-det">Administrator</span>, <span class="selectable-content" id="sel-rot3-user-det">User</span>]</span>
                             </li>
                         </ul>
                         ].
@@ -9350,7 +9944,7 @@
                         The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall implement[<b>selection</b>: 
                         <ul>
                             <li style="">
-                                <span class="selectable-content" id="fpt_tud_ext.1.1_1">no mechanism for platform firmware update</span>
+                                <span class="selectable-content" id="sel-tud1-no-update">no mechanism for platform firmware update</span>
                             </li>
                             <li style="">
                                 <span class="selectable-content" id="sel-tud1-auth-update">an authenticated platform firmware update mechanism as described in <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a></span>
@@ -9420,7 +10014,7 @@
                                 <span class="selectable-content" id="sel-tud2-admin-config">in accordance with administrator-configurable policy</span>
                             </li>
                             <li style="">
-                                <span class="selectable-content" id="fpt_tud_ext.2.5_8">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-tud2-admin-det">Administrator</span>, <span class="selectable-content" id="fpt_tud_ext.2.5_9">User</span>]</span>
+                                <span class="selectable-content" id="fpt_tud_ext.2.5_8">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-tud2-admin-det">Administrator</span>, <span class="selectable-content" id="sel-tud2-user-det">User</span>]</span>
                             </li>
                         </ul>
                         ].
@@ -9475,7 +10069,7 @@
                                 <span class="selectable-content" id="sel-tud3-admin-config">in accordance with administrator-configurable policy</span>
                             </li>
                             <li style="">
-                                <span class="selectable-content" id="fpt_tud_ext.3.4_7">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-tud3-admin-det">Administrator</span>, <span class="selectable-content" id="fpt_tud_ext.3.4_8">User</span>]</span>
+                                <span class="selectable-content" id="fpt_tud_ext.3.4_7">by express determination of an[<b>selection</b>: <span class="selectable-content" id="sel-tud3-admin-det">Administrator</span>, <span class="selectable-content" id="sel-tud3-user-det">User</span>]</span>
                             </li>
                         </ul>
                         ].
