@@ -499,33 +499,23 @@
 
 <!-- 2.0 Conformance Claims (this is all boilerplate) -->
 <!-- <sec:cclaims title="Conformance Claims"/>  -->
-<section title="Conformance Claims" id="ccl" boilerplate="no">
-	<cclaims>
-		<cclaim name="Conformance Statement">
-			<description>
-				A Security Target must claim exact conformance to this Protection Profile, 
-				as defined in the CC and CEM addenda for Exact Conformance, Selection-Based SFRs, and 
-					Optional SFRs (dated May 2017).<h:p/>
-			</description>
-		</cclaim>
-		<cclaim name="CC Conformance Claims">
-			<description>
-				This PP is conformant to Parts 2 (Extended) and 3 (Extended) of Common Criteria Version 3.1, 
-				Release 5 [CC].
-			</description>
-		</cclaim>
-		<cclaim name="PP Claim">
-			<description>This PP does not claim conformance to any other PP.</description>
-		</cclaim>
-		<cclaim name="Package Claim">
-			<description>
-				This PP is Functional Package for Transport Layer Security (TLS), version 1.1 Conformant and 
-				Functional Package for Secure Shell (SSH), version 1.0 Conformant. 
-			</description>
-		</cclaim>
-	</cclaims>
+	<sec:Conformance_Claims boilerplate="no">
+		<!-- The new CClaimsInfo construct -->
+		<CClaimsInfo cc-version="cc-2022r1" cc-approach="direct-rationale">
+			<cc-st-conf>exact</cc-st-conf>       
+			<cc-pt2-conf>extended</cc-pt2-conf>
+			<cc-pt3-conf>extended</cc-pt3-conf>
+			<cc-pp-conf/>
+			<cc-pp-config-with/>       
+			<!--	<Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 2.4</Mod-cc-ref> -->  
+			<cc-pkg-claim>
+				<FP-cc-ref conf="conformant">Functional Package for Transport Layer Security Version 2.1</FP-cc-ref>
+				<FP-cc-ref conf="conformant">Functional Package for X.509 Version 1.0</FP-cc-ref>
+			</cc-pkg-claim>
+		</CClaimsInfo>	
+	
 <!--	</sec:cclaims>  -->
-</section>  	
+	</sec:Conformance_Claims>
 
 	
 <!-- 3.0 Security Problem Description -->
