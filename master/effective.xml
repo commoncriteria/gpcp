@@ -859,7 +859,7 @@
 				<addressed-by>FCS_COP.1/SigGen (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for digital signature generation.</rationale>
 				<addressed-by>FCS_COP.1/SigVer (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for digital signature verification.</rationale>
 				<addressed-by>FCS_COP.1/SKC (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for symmetric-key cryptography.</rationale>
-				<addressed-by>FCS_RBG_EXT.1 (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for random-bit generation services.</rationale>
+				<addressed-by>FCS_RBG.1 (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for random-bit generation services.</rationale>
 			</SO>
 			<SO name="O.SECURITY_FUNCTIONALITY_INTEGRITY">
 				<description>The TOE should be able not be able to operate with failed or degraded
@@ -888,7 +888,7 @@
 					<h:li>Requirements for supporting secure storage of tenant credentials</h:li>
 					<h:li>Requirements for supporting secure boot of a tenant operating system</h:li>			
 					</h:ul></description>
-				<addressed-by>FCS_ENT_EXT.1 (optional)</addressed-by><rationale>Supports the objective by requiring that the TOE provide entropy to tenant software.</rationale>
+				<addressed-by>FCS_RBG.6 (optional)</addressed-by><rationale>Supports the objective by requiring that the TOE provide entropy to tenant software.</rationale>
 				<addressed-by>FCS_STG_EXT.1 (optional)</addressed-by><rationale>Supports the objective by specifying the types of credential storage supported by the TOE.</rationale>
 				<addressed-by>FDP_TEE_EXT.1 (optional)</addressed-by><rationale>Supports the objective by specifying the requirements for a trusted execution environment.</rationale>
 				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by specifying the types of material that must be encrypted for storage.</rationale>
@@ -1367,10 +1367,6 @@
 				FCS_CKM_EXT.5 is necessary to express requirements for key derivation, which are missing from Part 2. 
 				</fam-behavior>
 		</ext-comp-def>
-		<ext-comp-def title="Entropy for Virtual Machines" fam-id="FCS_ENT_EXT">
-			<fam-behavior>This family defines requirements for availability of entropy data
-				generated or collected by the TSF.</fam-behavior>
-		</ext-comp-def>
 	 	<ext-comp-def title="HTTPS Protocol" fam-id="FCS_HTTPS_EXT">
 			<fam-behavior>This family defines requirements for protecting HTTP communications between the TOE and
 				an external IT entity.
@@ -1378,9 +1374,6 @@
 		</ext-comp-def>
 		<ext-comp-def title="IPsec Protocol" fam-id="FCS_IPSEC_EXT">
 			<fam-behavior>This family defines requirements for protecting communications using IPsec.</fam-behavior>
-		</ext-comp-def>
-	   	<ext-comp-def title="Cryptographic Operation (Random Bit Generation)" fam-id="FCS_RBG_EXT">
-			<fam-behavior>This family defines requirements for random bit/number generation.</fam-behavior>
 		</ext-comp-def>
 	   	<ext-comp-def title="Cryptographic Salt Generation" fam-id="FCS_SLT_EXT">
 			<fam-behavior>This family defines requirements for cryptographic salt generation.</fam-behavior>
@@ -1460,7 +1453,7 @@
 					security functionality.<h:p/> 
 					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
 					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG_EXT.1 must also be claimed.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG.1 must also be claimed.<h:p/>
 					DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
 					by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
 					For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.<h:p/>
@@ -1540,7 +1533,7 @@
 						For each selected curve, and for each key pair generation method as described in
 						FIPS PUB 186-4, section B.4, the evaluator shall require the implementation under test
 						to generate 10 private/public key pairs (d, Q). The private key, d, shall be generated 
-						using a random bit generator as specified in FCS_RBG_EXT.1. The private key, d,
+						using a random bit generator as specified in FCS_RBG.1. The private key, d,
 						is used to compute the public key, Q’. The evaluator shall confirm that 0&lt;d&lt;n
 						(where n is the order of the group), and the computed value (Q’) is then compared to
 						public key (Q) of the generated public/private key pair to confirm that Q and Q' are equal.<h:p/>
@@ -1618,7 +1611,7 @@
 				<title>					
 				The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with a specified 
 				cryptographic key generation algorithm 
-				<h:i>[Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1]</h:i>
+				<h:i>[Direct Generation from a Random Bit Generator as specified in FCS_RBG.1]</h:i>
 				and specified cryptographic key sizes 
 				<selectables>
 					<selectable>128 bits</selectable>
@@ -1632,15 +1625,15 @@
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR must be included in the ST if "<h:i>causing the TOE to generate [symmetric] keys/secrets</h:i>"
 					is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG_EXT.1 must also be claimed.
+					If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG.1 must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to verify that it describes how the TOE obtains
-						an SK through direct generation as specified in FCS_RBG_EXT.1. 
-						The evaluator shall review the TSS to verify that it describes how the ST invokes the 
-						functionality described by FCS_RBG_EXT.1.<h:p/>
-						The evaluator shall use the description of the RBG functionality in FCS_RBG_EXT.1 or 
+						an SK through direct generation as specified in FCS_RBG.1. 
+						The evaluator shall review the TSS to verify that it describes how the TSF invokes the 
+						functionality described by FCS_RBG.1.<h:p/>
+						The evaluator shall use the description of the RBG functionality in FCS_RBG.1 or 
 						documentation available for the operational environment to determine that the key size being 
 						requested is greater than or equal to the key size and mode to be used for the
 						encryption/decryption of the data.<h:p/>
@@ -1833,7 +1826,7 @@
 					the mappings of logical addresses to the erased memory locations are erased as well as the data
 					itself.<h:p/>
 					Some selections allow assignment of “some value that does not contain any CSP.” This means
-					that the TOE uses some specified data not drawn from an RBG meeting FCS_RBG_EXT
+					that the TOE uses some specified data not drawn from an RBG meeting FCS_RBG
 					requirements, and not being any of the particular values listed as other selection options. The point
 					of the phrase “does not contain any sensitive data” is to ensure that the overwritten data is
 					carefully selected, and not taken from a general pool that might contain current or residual data
@@ -2065,7 +2058,7 @@
 						<selectable id="sel-fcs-ckm-ext-5-kdf-ctr">
 							<col>KDF-CTR</col>  <!-- formerly KeyDrv1 -->
 							<col><selectables>
-								<selectable id="sel-fcs-ckm-5-kdf-ctr-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG.1</selectable>
 								<selectable>Concatenated keys</selectable>
 							</selectables></col>
 							<col>KDF in Counter Mode using <selectables>
@@ -2096,7 +2089,7 @@
 						<selectable id="sel-fcs-ckm-ext-5-kdf-fb">
 						<col>KDF-FB</col>  <!-- formerly KeyDrv2  -->
 						<col><selectables>
-							<selectable id="sel-fcs-ckm-5-kdf-fb-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
+							<selectable id="sel-fcs-ckm-5-kdf-fb-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG.1</selectable>
 							<selectable>Concatenated keys</selectable>
 							</selectables></col>
 						<col>KDF in Feedback Mode using <selectables>
@@ -2126,7 +2119,7 @@
 		
 						<selectable id="sel-fcs-ckm-ext-5-kdf-dpi">
 						<col>KDF-DPI</col> <!-- formerly KeyDrv3  -->
-							<col><selectables><selectable id="sel-fcs-ckm-5-kdf-dpi-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable>
+							<col><selectables><selectable id="sel-fcs-ckm-5-kdf-dpi-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG.1</selectable>
 							<selectable>Concatenated keys</selectable>
 							</selectables></col>
 						<col>KDF in Double Pipeline Iteration Mode using <selectables>
@@ -2269,7 +2262,7 @@
 					If "<h:i>KDF-MAC</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
 					If "<h:i>KDF-PBKDF</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
 					If "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or "<h:i>KDF-DPI</h:i>" is selected, then
-					FCS_RBG_EXT.1 must be claimed.<h:p/>
+					FCS_RBG.1 must be claimed.<h:p/>
 					If "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or "<h:i>KDF-DPI</h:i>" is selected, and 
 					HMAC is selected as part of the key derivation algorithm, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
 					For Authorization Factor Submasks, the key size to be used in the HMAC falls into a range between
@@ -2521,7 +2514,7 @@
 		<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing) -->
 		<f-component id="sfr-fcs-cop-1-hash" cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
 			<depends on-sel="sel-rot2-hash"/>  <!-- FPT_ROT_EXT.2.1 -->
-			<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG_EXT.1.1 -->
+			<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG.1.1 -->
 			<depends on-sel="sel-tud2-hash"/>  <!-- FPT_TUD_EXT.2.1 -->
 <!--			<depends on-sel="sel-fcs-cop-kat-ecies"/>  --> <!-- FCS_COP.1.1/KAT -->
 			<depends on-sel="sel-fcs-ckm-ext-5-kdf-hash"/> <!-- FCS_CKM_EXT.5.1 -->
@@ -2560,7 +2553,7 @@
 			    	It must be included in the ST if "<h:i>hash value of the public key</h:i>" is selected in FPT_TUD_EXT.2.1. <h:p/>	
 				It must be included  in the ST if "<h:i>KDF-HASH</h:i>" or "<h:i>KDF-MAC</h:i>" or one of the SHA hashes is selected within 
 				"<h:i>KDF-XOR</h:i>" in FCS_CKM_EXT.5.1.<h:p/>
-				It must be included  in the ST if "<h:i>Hash_DRBG (any)</h:i>" or "<h:i>HMAC_DRBG (any)</h:i>" is selected in FCS_RBG_EXT.1.1.<h:p/>
+				It must be included  in the ST if "<h:i>Hash_DRBG (any)</h:i>" or "<h:i>HMAC_DRBG (any)</h:i>" is selected in FCS_RBG.1.1.<h:p/>
 				It must be included  in the ST if "<h:i>cryptographic hash as specified in FCS_COP.1/Hash</h:i>" is selected in FDP_ITC_EXT.1.2. <h:p/>
 				It must be included  in the ST if "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected in FPT_ROT_EXT.2.1. <h:p/>			
 					The hash selection should be consistent with the overall strength of the algorithm used for
@@ -2683,7 +2676,7 @@
 	
 		<!-- FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash) -->
 		<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="sel-based">
-			<depends on-sel="sel-rbg-hmac"/>  		<!-- FCS_RBG_EXT.1.1 -->
+			<depends on-sel="sel-rbg-hmac"/>  		<!-- FCS_RBG.1.1 -->
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>	<!-- FCS_COP.1.1/KAT -->	
 			<depends on-sel="sel-fdp-itc-ext-1e2-mac"/>  <!-- from FDP_ITC_EXT.1 -->		
 			<depends on-sel="sel-stg3-hmac"/>		<!-- FCS_STG_EXT.3.1 -->
@@ -2721,7 +2714,7 @@
 					<h:li>If "<h:i>A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</h:i>"
 					is selected in FCS_STG_EXT.3.1</h:li>
 					<h:li>If "<h:i>ECIES</h:i>" is selected in FCS_COP.1/KAT</h:li>
-					<h:li>If "<h:i>HMAC_DRBG (any)</h:i>" is selected in FCS_RBG_EXT.1.1</h:li>
+					<h:li>If "<h:i>HMAC_DRBG (any)</h:i>" is selected in FCS_RBG.1.1</h:li>
 					<h:li>If "<h:i>keyed hash as specified in FCS_COP.1/KeyedHash</h:i>" is selected in FDP_ITC_EXT.1.2</h:li>
 					</h:ul>
 					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/>
@@ -3246,7 +3239,7 @@
 					PP-specified security functionality.<h:p/> 
 					Specifically, this SFR must be included if "<h:i>A digital signature of the stored key in accordance with FCS_COP.1/SigGen
 					using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</h:i>" is selected in FCS_STG_EXT.3.<h:p/>
-					If this SFR is included in the ST, then FCS_COP.1/Hash and FCS_RBG_EXT.1 must also be claimed.
+					If this SFR is included in the ST, then FCS_COP.1/Hash and FCS_RBG.1 must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -3624,7 +3617,7 @@
 		
 		<!-- FCS_COP.1/SKC Cryptographic Operation (Symmetric Key Cryptography) -->	
 		<f-component id="sfr-fcs-cop-1-skc" cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (Symmetric Key Cryptography)" status="sel-based">
-			<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG_EXT.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
+			<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
 			<depends on-incl="sfr-fcs-stg-ext-2"/>	
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>
@@ -3764,7 +3757,7 @@
 					functionality.<h:p/> 
 					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STG_EXT.2, or includes
 					any of the following selections: <h:ul>
-						<h:li>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG_EXT.1</h:li>
+						<h:li>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG.1</h:li>
 						<h:li>"<h:i>ECIES</h:i>" in FCS_COP.1/KAT</h:li>
 						<h:li>"<h:i>AES-*</h:i>" in FCS_STG_EXT.3</h:li>
 					</h:ul>
@@ -4222,47 +4215,6 @@
 			<audit-event/>
 		</f-component>
 		
-		
-		<!-- FCS_ENT_EXT.1 Entropy for Tenant Software -->
-        <f-component id="sfr-fcs-ent-ext-1" cc-id="fcs_ent_ext.1" name="Entropy for Tenant Software" status="optional">
-			<consistency-rationale/>
-			<comp-lev>requires the TSF to provide entropy data to tenant software in a specified manner.</comp-lev>
-			<management/>
-			<audit/>
-			<dependencies><h:br/>FCS_RBG_EXT.1 Cryptographic Operation (Random Bit Generation)</dependencies>
-            <f-element id="fcs-ent-ext-1e1">
-                <title>The TSF shall provide one or more mechanisms to make entropy that meets FCS_RBG_EXT.1
-				available to tenant software.
-                </title>
-                <note role="application">
-					This SFR must be included in the ST if the TOE provides an entropy source accessible to tenant software.<h:p/>
-                    This requirement ensures that the TOE makes available sufficient entropy to any tenant
-					that requires it. Every entropy source need not provide high-quality entropy, but tenant
-					software must have a means of acquiring sufficient entropy.
-                </note>
-                <aactivity>
-                    <TSS>
-                        The evaluator shall verify that the TSS documents the entropy sources implemented by the TOE.
-						It is not necessary to document all the platform features that can be used by tenant software to 
-						contribute to entropy, rather only those features expressly provided as entropy sources.<h:p/> 
-                    </TSS>
-					<Guidance>
-						The evaluator shall examine the AGD to ensure that it describes how to configure 
-						entropy sources (if applicable) and how tenant software can access the sources. <h:p/>
-					</Guidance>
-					<KMD>
-						There are no KMD evaluation activities for this component.<h:p/>
-					</KMD>
-                    <Tests>
-                        The evaluator shall perform the following test:<h:p/>
-                                The evaluator shall invoke the entropy source(s) from tenant software.
-								The evaluator shall verify that the tenant acquires values from the 
-								interface.
-                    </Tests>
-                </aactivity>
-            </f-element>
-			<audit-event/>
-        </f-component>
 
         <!-- FCS_HTTPS_EXT.1 -->
         <!-- Depends on HTTPS being selected for trusted channel -->
@@ -4348,7 +4300,7 @@
 			<dependencies><h:br/>FCS_CKM.1 Cryptographic Key Generation<h:br/>
 					FCS_CKM.2 Cryptographic Key Establishment<h:br/>
 					FCS_COP.1 Cryptographic Operation<h:br/>
-					FCS_RBG_EXT.1 Cryptographic Operation (Random Bit Generation)<h:br/>
+					FCS_RBG.1 Random Bit Generation<h:br/>
 					FIA_X509_EXT.1 X.509 Certificate Validation
 			</dependencies>
             <f-element id="fcs-ipsec-ext-1e1">
@@ -4861,7 +4813,7 @@
             <f-element id="fcs-ipsec-ext-1e9">
                 <title>The TSF shall generate the secret value x used in the IKE Diffie-Hellman key
 					exchange (“x” in gx mod p) using the random bit generator specified in
-					FCS_RBG_EXT.1, and having a length of at least 
+					FCS_RBG.1, and having a length of at least 
 					<assignable>(one or more) number(s) of bits that is at least twice the “bits of
 					security” value associated with the negotiated Diffie-Hellman group as 
 					listed in Table 2 of NIST SP 800-57, Recommendation for Key Management – Part
@@ -5158,8 +5110,9 @@
 			</audit-event>
 		</f-component>
 	
-		<!-- FCS_RBG_EXT.1 Random Bit Generation -->
-		<f-component id="sfr-fcs-rbg-ext-1" cc-id="fcs_rbg_ext.1" name="Random Bit Generation" status="sel-based">
+		<!-- FCS_RBG.1 Random Bit Generation -->
+		<!-- CC:2022 replacement for FCS_RBG_EXT.1 -->
+		<f-component cc-id="fcs_rbg.1" name="Random Bit Generation (RBG)" status="sel-based">
 			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
@@ -5169,32 +5122,25 @@
 			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
-			<consistency-rationale/>
-			<comp-lev>requires random bit generation to be performed in accordance with
-				selected standards and seeded by an entropy source.</comp-lev>
-			<management/>
-			<audit>The following actions should be auditable if FAU_GEN Security audit data
-				generation is included in the PP/ST:
-				<h:ol type="a">
-					<h:li>Failure of the randomization process.</h:li>
-				</h:ol>
-			</audit>
-			<dependencies><h:br/>FCS_COP.1 Cryptographic Operation</dependencies>
-			<f-element id="fcs-rbg-ext-1e1">
-				<title>The TSF shall perform all deterministic random bit generation services in
-					accordance with ISO/IEC 18031:2011 using 
-					<selectables>
+			<f-element id="fel-rbg-init-seed">
+				<title>
+					The TSF shall perform deterministic random bit generation services using 
+					<selectables linebreak="yes">
 						<selectable id="sel-rbg-hash">Hash_DRBG (any)</selectable>
 						<selectable id="sel-rbg-hmac">HMAC_DRBG (any)</selectable>
 						<selectable id="sel-rbg-ctr">CTR_DRBG (AES)</selectable>
-					</selectables>.
+					</selectables>
+					in accordance
+					with [<h:i>NIST SP 800-90A</h:i>] after initialization with a seed.              
 				</title>
-				<ext-comp-def-title>
-				<title>The TSF shall perform all deterministic random bit generation services in
-					accordance with ISO/IEC 18031:2011 using <assignable>DRBG type</assignable>.
-				</title>
-				</ext-comp-def-title>
 				<note role="application">
+					<h:p>
+					NIST SP 800-90A contains three different methods of generating random numbers;
+					each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers).
+					The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement or in the TSS.
+					While any of the identified hash functions (SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
+					only AES-based implementations for CTR_DRBG are allowed.
+					</h:p><h:p>
 					This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR is also needed if the following SFRs are included in the ST: FCS_IPSEC_EXT.1, 
@@ -5204,117 +5150,303 @@
 					If "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
 					If "<h:i>Hash_DRBG (any)</h:i>" is selected, then FCS_COP.1/Hash must be claimed.
 					If "<h:i>CTR_DRBG (any)</h:i>" is selected, then FCS_COP.1/SKC must be claimed.
+					</h:p>
 				</note>
+				<aactivity level="element">
+					<TSS>The evaluator shall verify that the TSS identifies the DRBGs used by the TOE.</TSS>
+					<Guidance>If the DRBG functionality is configurable, the evaluator shall verify that the operational guidance includes instructions on how to configure this behavior.</Guidance>
+					<KMD>
+						There are no KMD evaluation activities for this element.<h:p/>
+					</KMD>
+					<Tests>
+						<h:p>
+							The evaluator shall perform the following tests:
+						</h:p><h:p>
+							The evaluator shall perform 15 trials for the RNG implementation. If the RNG
+							is configurable, the evaluator shall perform 15 trials for each configuration. The
+							evaluator shall also confirm that the operational guidance contains appropriate
+							instructions for configuring the RNG functionality.
+						</h:p><h:p>
+							If the RNG has  prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
+							generate the first block of random bits (3) generate a second block of random bits
+							(4) uninstantiate. The evaluator verifies that the second block of random bits is
+							the expected value. The evaluator shall generate eight input values for each
+							trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
+							personalization string for the instantiate operation. The next two are additional
+							input and entropy input for the first call to generate. The final two are
+							additional input and entropy input for the second call to generate. These values
+							are randomly generated. "generate one block of random bits" means to generate
+							random bits with number of returned bits equal to the Output Block Length (as
+							defined in NIST SP 800-90A).
+						</h:p><h:p>
+							If the RNG does not have prediction resistance,
+							each trial consists of (1) instantiate DRBG, (2) generate the first block of
+							random bits (3) reseed, (4) generate a second block of random bits (5)
+							uninstantiate. The evaluator verifies that the second block of random bits is the
+							expected value. The evaluator shall generate eight input values for each trial.
+							The first is a count (0 – 14). The next three are entropy input, nonce, and
+							personalization string for the instantiate operation. The fifth value is
+							additional input to the first call to generate. The sixth and seventh are
+							additional input and entropy input to the call to reseed. The final value is
+							additional input to the second generate call.
+						</h:p><h:p>
+							The following list contains more information on some of the input values to be generated/selected by the evaluator.
+							<h:ul>
+								<h:li> <h:b>Entropy input:</h:b> The length of the entropy input value must equal the seed
+									length.</h:li>
+								
+								<h:li><h:b>Nonce:</h:b> If a nonce is supported (CTR_DRBG with no Derivation Function does
+									not use a nonce), the nonce bit length is one-half the seed length. </h:li>
+								<h:li><h:b>Personalization string:</h:b> The length of the personalization string must be
+									less than or equal to seed length. If the implementation only supports one
+									personalization string length, then the same length can be used for both values.
+									If more than one string length is support, the evaluator shall use personalization
+									strings of two different lengths. If the implementation does not use a
+									personalization string, no value needs to be supplied. </h:li>
+								<h:li><h:b>Additional input:</h:b> The additional input bit lengths have the same defaults
+									and restrictions as the personalization string lengths.</h:li>
+							</h:ul>
+						</h:p>
+					</Tests>
+				</aactivity>
 			</f-element>
-			<f-element id="fcs-rbg-ext-1e2">
-				<title>The deterministic RBG shall be seeded by at least one entropy source in
-					accordance with NIST SP 800-90B that accumulates entropy from 
-					<selectables>
-						<selectable><assignable>number of software-based sources</assignable>
-							software-based noise source</selectable>
-						<selectable><assignable>number of hardware-based sources</assignable>
-							hardware-based noise source</selectable>
-					</selectables> with a minimum of 
-					<selectables>
-						<selectable>128</selectable>
-						<selectable>192</selectable>
-						<selectable>256</selectable>
-					</selectables> bits of entropy at least equal to the greatest security strength, 
-					according to ISO/IEC 18031:2011, of the keys and CSPs that it will generate.
-				</title>
-				<ext-comp-def-title>
-				<title>The deterministic RBG shall be seeded by at least one entropy source in
-					accordance with NIST SP 800-90B that accumulates entropy from 
-					<assignable>seed source</assignable> with a minimum of 
-					<assignable>bits of entropy</assignable> bits of entropy at least equal to the greatest security strength, 
-					according to ISO/IEC 18031:2011, of the keys and CSPs that it will generate.
-				</title>
-				</ext-comp-def-title>					
-				<note role="application">
-					For the selection in FCS_RBG_EXT.1.2, the ST Author selects the appropriate number 
-					of bits of entropy that corresponds to the greatest security strength of the
-					algorithms included in the ST. Security strength is defined in Tables 2 and 3 of 
-					NIST SP 800-57A. For example, if the implementation includes 2048-bit RSA (security
-					strength of 112 bits), AES 128 (security strength 128 bits), and HMAC-SHA-256
-					(security strength 256 bits), then the ST Author would select 256 bits.
-				</note>
-			</f-element>
-			<f-element id="fcs-rbg-ext-1e3">
+			<f-element id="fel-rbg-init-seed-how">
 				<title>
-					The TSF shall be capable of providing output of the RBG to tenant software on the TOE
-					that request random bits.
+					The TSF shall use a <selectables>
+						<selectable id="internal-seed">TSF noise source <assignable>name of noise source</assignable></selectable>
+						<selectable id="internal-seeds"><h:b>multiple TSF noise sources <assignable>names of noise sources</assignable></h:b></selectable>
+						<selectable id="external-seed">TSF interface for seeding</selectable>
+					</selectables>
+					for initialized seeding.
 				</title>
 				<note role="application">
-					ISO/IEC 18031:2011 contains three different methods of generating random numbers. Each of
-					these in turn depends on underlying cryptographic primitives (hash functions/ciphers). This PP
-					allows SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512 for Hash_DRBG or HMAC_DRBG
-					and only AES-based implementations for CTR_DRBG. <h:p/>
-					This requirement must be included in the ST if the TOE generates keys, signatures, or salts for its
-					own use or for tenant software (FCS_CKM.1/AK, FCS_CKM.1/SK, FCS_COP.1/SigGen, FCS_SLT_EXT.1) or if it provides 
-					RNG services for tenant software (FCS_RBG_EXT.1).
+					<h:p>
+						For the 
+						selection in this requirement, the ST author selects "TSF noise source" if
+						a single noise source is used as input to the DRBG. The ST author selects "multiple TSF noise sources" if a seed is formed from a combination of two or more noise sources within the TOE boundary. If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should be iterated for each DRBG. It multiple distinct noise sources exist such that each DRBG only uses one of them, then each iteration would select "TSF noise source"; "multiple TSF noise sources" is only selected if a single DRBG uses multiple noise sources for its seed. The ST author selects "TSF interface for seeding" if noise source data is generated outside the TOE boundary.
+					</h:p>
+					<h:p>
+						If "TSF noise source" is selected, FCS_RBG.3 must be claimed.
+					</h:p>
+					<h:p>
+						If "multiple TSF noise sources" is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed. 
+					</h:p>
+					<h:p>
+						If "TSF interface for seeding" is selected, FCS_RBG.2 must be claimed. 
+					</h:p>
+					<h:p>
+						The security strength of the entropy used for seeding depends on the functions for which the TSF uses entropy. The security strength for the various functions is defined in Tables 2 and 3 of NIST SP 800-57A. 
+					</h:p>
+				</note>
+				<aactivity level="element">
+					<h:p>
+						Documentation will be produced - and the evaluator shall perform the
+						activities - in accordance with <xref to="entropyappendix"/> and
+						the
+						<h:a href="https://old.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">Clarification to the Entropy Documentation and Assessment Annex</h:a>.
+					</h:p>
+					<TSS/>
+					<Guidance/>
+					<KMD>
+						There are no KMD evaluation activities for this element.<h:p/>
+					</KMD>
+					<Tests/>
+					
+				</aactivity>
+			</f-element>
+			
+			<f-element id="fel-rbg-init-seed-when">
+				<title>
+					The TSF shall update the RBG state by <selectables>
+						<selectable>reseeding</selectable>
+						<selectable>uninstantiating and reinstantiating</selectable>
+					</selectables> using a <selectables>
+						<selectable>TSF noise source <assignable>name of noise source</assignable></selectable>
+						<selectable>TSF interface for seeding</selectable></selectables>
+					in the following situations: <selectables linebreak="yes">
+						<selectable>on demand</selectable>
+						<selectable>on the condition: <assignable>condition</assignable></selectable>
+						<selectable>after <assignable>time</assignable></selectable>
+					</selectables>
+					in accordance with <assignable>list of standards</assignable>.
+				</title>
+				<aactivity level="element">              
+					<TSS>
+						The evaluator shall verify that the TSS identifies how the DRBG state is updated, and the situations under which this may occur.
+					</TSS>
+					<Guidance>If the ST claims that the DRBG state can be updated on demand, the evaluator shall verify that the operational guidance has instructions for how to perform this operation.</Guidance>
+					<KMD>
+						There are no KMD evaluation activities for this element.<h:p/>
+					</KMD>
+					<Tests/>
+				</aactivity>
+			</f-element>
+			<audit-event>
+				<audit-event-descr>Failure of the randomization process</audit-event-descr>
+				<audit-event-info>None.</audit-event-info>
+			</audit-event>
+		</f-component>    
+		
+		<!-- FCS_RBG.2 Random Bit Generation (External Seeding) -->
+		<!-- Claimed when FCS_RBG.1.2 selects "TSF interface for seeding -->
+		<f-component cc-id="fcs_rbg.2" name="Random Bit Generation (External Seeding)" status="sel-based">
+			<depends on="external-seed"/>
+			<f-element id="fe1-rbg-seed">
+				<title>
+					The TSF shall be able to accept a minimum input of <assignable>minimum input length greater than zero</assignable>
+					from a TSF interface for the purpose of seeding.
+				</title>
+				<note role="application">
+					This requirement is claimed when a DRBG is seeded with entropy from one or more noise source that is outside the TOE
+					boundary. In the case of a general purpose computing platform this would likely only occur when the entropy source is a Dedicated Security Component that is integrated with the TOE. Typically the entropy produced by an environmental noise source is conditioned such that the input length has
+					full entropy and is therefore  usable as the seed. However, if this is not the case, it should be noted what the minimum
+					entropy rate of the noise source is so that the TSF can collect a sufficiently large sample of noise data to be
+					conditioned into a seed value.
+				</note>
+				<aactivity>
+					<h:p>
+						The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, the TSF external interface used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
+					</h:p>
+					<TSS/>
+					<Guidance/>
+					<KMD>
+						There are no KMD evaluation activities for this component.<h:p/>
+					</KMD>
+					<Tests/>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
+		<!-- FCS_RBG.3 Random Bit Generation (Internal Seeding - Single Source) -->
+		<!-- Claimed when FCS_RBG.1.2 selects "TSF noise source..." -->
+		<f-component cc-id="fcs_rbg.3" name="Random Bit Generation (Internal Seeding - Single Source)" status="sel-based">
+			<depends on="internal-seed"/>
+			<f-element id="fel-rbg-seed-int-sing">
+				<title>
+					The TSF shall be able to seed the RBG using a <selectables onlyone="yes">
+						<selectable>TSF software-based noise source</selectable>
+						<selectable>TSF hardware-based noise source <assignable>name of noise source</assignable></selectable></selectables>
+					with a minimum of <assignable>number of bits</assignable> bits of min-entropy.
+				</title>        
+				<note role="application">This requirement is claimed when a DRBG is seeded with entropy from a single noise source that is within the TOE boundary. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data is reduced in size to the seed.</note>
+				
+				<aactivity>
+					<h:p>
+						The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, the TSF noise source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
+					</h:p>
+					<TSS/>
+					<Guidance/>
+					<KMD>
+						There are no KMD evaluation activities for this component.<h:p/>
+					</KMD>
+					<Tests/>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
+		<!-- FCS_RBG.4 Random Bit Generation (Internal Seeding - Multiple Sources) -->
+		<!-- Claimed when FCS_RBG.1.2 selects "multiple TSF noise sources..." -->
+		<f-component cc-id="fcs_rbg.4" name="Random Bit Generation (Internal Seeding - Multiple Sources)" status="sel-based">
+			<depends on="internal-seeds"/>
+			<f-element id="fel-rbg-seed-int-mult">
+				<title>
+					The TSF shall be able to seed the RBG using <selectables>
+						<selectable><assignable>number</assignable> TSF software-based noise source(s)</selectable>
+						<selectable><assignable>number</assignable> TSF hardware-based noise source(s)</selectable>
+					</selectables>.
+				</title>
+				<note role="application">
+					This requirement is claimed when a DRBG is seeded with entropy from multiple noise sources that are within the TOE boundary. 
+					FCS_RBG.5 defines the mechanism by which these sources are combined to ensure sufficient minimum entropy.
+				</note>
+				<aactivity>
+					<h:p>
+						The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, each TSF noise source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data from each data source.
+					</h:p>
+					<TSS/>
+					<Guidance/>
+					<KMD>
+						There are no KMD evaluation activities for this component.<h:p/>
+					</KMD>
+					<Tests/>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
+		<!-- FCS_RBG.5 Random Bit Generation (Combining Noise Sources) -->
+		<!-- Claimed when FCS_RBG.1.2 selects "multiple TSF noise sources..." -->
+		<f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Noise Sources)" status="sel-based">
+			<depends on="internal-seeds"/>
+			<f-element id="fel-rbg-comb">
+				<title>
+					The TSF shall <assignable>combining operation</assignable> <selectables>
+						<selectable>output from TSF noise source(s)</selectable>
+						<selectable>input from TSF interface(s) for seeding</selectable></selectables>
+					to create the entropy input into the derivation function as defined in <assignable>list of standards</assignable>, resulting
+					in a minimum of <assignable>number of bits</assignable> bits of min-entropy.              
+				</title>        
+				<aactivity>
+					<h:p>
+						Using the entropy sources specified in FCS_RBG.4, the evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it describes the method by which the various entropy sources are combined into a single seed. This should include an estimation of the rate at which each noise source outputs data and whether this is dependent on any system-specific factors so that each source's relative contribution to the overall entropy is understood. The evaluator shall verify that the resulting combination of sampled data and the min-entropy rate of the sampled data is described in sufficient detail to determine that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
+					</h:p>
+					<TSS/>
+					<Guidance/>
+					<KMD>
+						There are no KMD evaluation activities for this component.<h:p/>
+					</KMD>
+					<Tests/>
+				</aactivity>
+				<audit-event/>
+			</f-element>
+		</f-component>  
+		
+		
+		
+		<!-- FCS_ENT_EXT.1 Entropy for Tenant Software -->
+		<f-component id="sfr-fcs-rbg-6" cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="optional">
+			<consistency-rationale/>
+			
+			<f-element id="fcs-rbg-6e1">
+				<title>The TSF shall provide a 
+					<selectables>
+						<selectable>hardware</selectable>
+						<selectable>software</selectable>
+						<selectable><assignable>other interafce type</assignable></selectable></selectables>
+					interface to make the RBG output, as specified in FCS_RBG.1 Random bit generation (RBG),
+					available as a service to entities outside of the TOE.
+				</title>
+				<note role="application">
+					This SFR must be included in the ST if the TOE provides an entropy source accessible to tenant software.<h:p/>
+					This requirement ensures that the TOE makes available sufficient entropy to any tenant
+					that requires it. Every entropy source need not provide high-quality entropy, but tenant
+					software must have a means of acquiring sufficient entropy.
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator shall examine the TSS to determine that it specifies the DRBG type,
-						identifies the entropy sources seeding the DRBG, and state the assumed or
-						calculated min-entropy supplied either separately by each source or the min-entropy
-						contained in the combined seed value.<h:p/>
-						In addition to the materials below, documentation shall be produced—and the
-						evaluator shall perform the activities—in accordance with 
-						<xref to="appendix-entropy"/>.<h:p/>
+						The evaluator shall verify that the TSS documents the entropy sources implemented by the TOE.
+						It is not necessary to document all the platform features that can be used by tenant software to 
+						contribute to entropy, rather only those features expressly provided as entropy sources.<h:p/> 
 					</TSS>
 					<Guidance>
-						There are no AGD evaluation activities for this component.<h:p/>
+						The evaluator shall examine the AGD to ensure that it describes how to configure 
+						entropy sources (if applicable) and how tenant software can access the sources. <h:p/>
 					</Guidance>
 					<KMD>
 						There are no KMD evaluation activities for this component.<h:p/>
 					</KMD>
 					<Tests>
-						The following tests require the developer to provide access to a test platform that
-						provides the evaluator with tools that are typically not found on factory products.<h:p/>
-						The evaluator shall perform 15 trials for the RNG implementation. If the RNG is
-						configurable, the evaluator shall perform 15 trials for each configuration.<h:p/>
-						If the RNG has prediction resistance enabled, each trial consists of (1) instantiate
-						DRBG, (2) generate the first block of random bits (3) generate a second block of
-						random bits (4) uninstantiate. The evaluator verifies that the second block of
-						random bits is the expected value. The evaluator shall generate eight input values
-						for each trial. The first is a count (0 – 14). The next three are entropy input, nonce,
-						and personalization string for the instantiate operation. The next two are additional
-						input and entropy input for the first call to generate. The final two are additional
-						input and entropy input for the second call to generate. These values are randomly
-						generated. “generate one block of random bits” means to generate random bits with
-						number of returned bits equal to the Output Block Length (as defined in NIST
-						SP 800-90A).<h:p/>
-						If the RNG does not have prediction resistance, each trial consists of (1) instantiate
-						DRBG, (2) generate the first block of random bits (3) reseed, (4) generate a second
-						block of random bits (5) uninstantiate. The evaluator verifies that the second block
-						of random bits is the expected value. The evaluator shall generate eight input values
-						for each trial. The first is a count (0 – 14). The next three are entropy input, nonce,
-						and personalization string for the instantiate operation. The fifth value is additional
-						input to the first call to generate. The sixth and seventh are additional input and
-						entropy input to the call to reseed. The final value is additional input to the second
-						generate call.<h:p/>
-						The following paragraphs contain more information on some of the input values to
-						be generated/selected by the evaluator. <h:ul>
-						<h:li><h:b>Entropy input:</h:b> the length of the entropy input value must equal the seed length.</h:li>
-						<h:li><h:b>Nonce:</h:b> If a nonce is supported (CTR_DRBG with no Derivation Function does
-						not use a nonce), the nonce bit length is one-half the seed length.</h:li>
-						<h:li><h:b>Personalization string:</h:b> The length of the personalization string must be ≤
-						seed length. If the implementation only supports one personalization string
-						length, then the same length can be used for both values. If more than one string
-						length is support, the evaluator shall use personalization strings of two different
-						lengths. If the implementation does not use a personalization string, no value
-						needs to be supplied.</h:li>
-						<h:li><h:b>Additional input:</h:b> the additional input bit lengths have the same defaults and
-						restrictions as the personalization string lengths.</h:li></h:ul>
+						The evaluator shall perform the following test:<h:p/>
+						The evaluator shall invoke the entropy source(s) from tenant software.
+						The evaluator shall verify that the tenant acquires values from the 
+						interface.
 					</Tests>
 				</aactivity>
 			</f-element>
-            <audit-event>
-				<audit-event-descr>Failure of the randomization process</audit-event-descr>
-			<audit-event-info>None.</audit-event-info>
-			</audit-event>
-		</f-component>		
+			<audit-event/>
+		</f-component>
 		
 		<!-- FCS_SLT_EXT.1 Cryptographic Salt Generation -->
 		<f-component id="sfr-fcs-slt-ext-1" cc-id="fcs_slt_ext.1" name="Cryptographic Salt Generation" status="optional">
@@ -5322,10 +5454,10 @@
 			<comp-lev>requires the TSF to generate salt values in a specified manner.</comp-lev>
 			<management/>
 			<audit/>
-			<dependencies><h:br/>FCS_RBG_EXT.1 Cryptographic Operation (Random Bit Generation)</dependencies>
+			<dependencies><h:br/>FCS_RBG.1 Random Bit Generation</dependencies>
 			<f-element id="fcs-slt-ext-1e1">
 				<title>The TSF shall use salts and nonces generated by an RBG as specified in
-					FCS_RBG_EXT.1.
+					FCS_RBG.1.
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
@@ -6394,7 +6526,7 @@
 				</h:ol>
 			</audit>
 			<dependencies><h:br/>FCS_COP.1 Cryptographic Operation<h:br/>
-				FCS_RBG_EXT.1 Cryptographic Operation (Random Bit Generation)<h:br/>
+				FCS_RBG.1 Cryptographic Operation (Random Bit Generation)<h:br/>
 				FPT_STM.1 Reliable Time Stamps
 			</dependencies>
             <f-element id="fia-x509-ext-1e1">
@@ -7093,6 +7225,47 @@
 			<fam-behavior>This family defines requirements for updating platform firmware.</fam-behavior>
 		</ext-comp-def>
 		
+		
+		
+		<!-- FPT_FLS.1 -->
+		<!-- Claimed when the TOE implements a DRBG - this is a dependency on FCS_RBG.1 -->
+		<f-component cc-id="fpt_fls.1" name="Failure with Preservation of Secure State" status="sel-based">
+			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-incl="sfr-fcs-ckm-1-sk"/>   <!-- FCS_CKM.1/SK -->
+			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
+			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
+			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
+			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
+			<f-element id="fel-pres-sec-state">
+				<title>
+					The TSF shall preserve a secure state when the following types of failures occur: [<h:i>DRBG self-test failure</h:i>].              
+				</title>
+				<note role="application">The intent of this requirement is to ensure that cryptographic services requiring random bit generation cannot be performed if a failure of a self-test defined in FPT_TST.1 occurs.</note>
+				<aactivity>              
+					<TSS>
+						The evaluator shall verify that the TSF describes how the TOE enters an error state in the event of a DRBG self-test failure.
+					</TSS>
+					<Guidance>
+						The evaluator shall verify that the guidance documentation describes the error state that results from a DRBG self-test failure and the actions that a user or administrator should take in response to attempt to resolve the error state.
+					</Guidance>
+					<KMD>
+						There are no KMD evaluation activities for this component.
+					</KMD>
+					<Tests/>
+				</aactivity>
+				<audit-event>
+					<audit-event-descr>
+						Failure of the TSF.
+					</audit-event-descr>
+					<audit-event-info>None.</audit-event-info>
+				</audit-event>
+			</f-element>
+			
+		</f-component>	     
+		
 		<!-- FPT_JTA_EXT.1 JTAG/Debug Port Access -->
 		<f-component id="sfr-fpt-jta-ext-1" cc-id="fpt_jta_ext.1" name="JTAG/Debug Port Access">
 			<consistency-rationale/>
@@ -7138,6 +7311,9 @@
 			</f-element>
 			<audit-event/>
 		</f-component>
+
+
+
 
 		<!-- FPT_JTA_EXT.2 JTAG/Debug Port Disablement -->
 		<!-- Should be included for use cases where physical protections are required. -->
@@ -7827,6 +8003,76 @@
 				</aactivity>
 			</f-element>
 			<audit-event/>
+		</f-component>
+		
+		
+		<!-- FPT_TST.1 -->
+		<!-- Claimed when the TOE implements a DRBG - this is a dependency on FCS_RBG.1 -->
+		
+		<f-component cc-id="fpt_tst.1" name="TSF Self-Testing" status="sel-based">
+			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-incl="sfr-fcs-ckm-1-sk"/>   <!-- FCS_CKM.1/SK -->
+			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
+			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
+			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
+			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
+			<f-element id="fel-tsf-self-test">
+				<title>
+					The TSF shall run a suite of the following self-tests <selectables>
+						<selectable>during initial start-up</selectable>
+						<selectable>periodically during normal operation</selectable>
+						<selectable>at the request of the authorized user</selectable>
+						<selectable>at the conditions <assignable>conditions under which self-test should occur</assignable></selectable>
+					</selectables>
+					to demonstrate the correct operation of [<h:i>TSF DRBG specified in FCS_RBG.1</h:i>].              
+				</title>
+			</f-element>
+			
+			<f-element id="fel-tsf-ver-int-data">
+				<title>
+					The TSF shall provide authorized users with the capability to verify the integrity of [<h:i>[DRBG seed/output data]</h:i>].
+				</title>
+			</f-element>
+			
+			<f-element id="fel-tsf-ver-int">
+				<title>
+					The TSF shall provide authorized users with the capability to verify the integrity of [<h:i>[TSF DRBG specified in FCS_RBG.1]</h:i>].
+				</title>
+				<note role="application">This SFR is a required dependency of FCS_RBG.1. It is intended to require that any DRBG implemented by the TOE undergo health testing to ensure that the random bit generation functionality has not been degraded. If the TSF supports multiple DRBGs, this SFR should be iterated to describe the self-test behavior for each.</note>
+				<aactivity>
+					<TSS>
+						<h:p>
+							The	evaluator shall examine the TSS to ensure that it details the self-tests that are run by the TSF along with how they are run. This description should include an outline of what the tests are actually doing. The evaluator shall ensure that the TSS makes an argument that the tests are sufficient to demonstrate that the DRBG is operating correctly.
+						</h:p><h:p>
+							Note that this information may also be placed in the entropy documentation specified by <xref to="entropyappendix"/>. 
+						</h:p>
+					</TSS>
+					<Guidance>
+						<h:p>
+							If a self-test can be executed at the request of an authorized user, the evaluator shall verify that the operational guidance provides instructions on how to execute that self-test.
+						</h:p>
+					</Guidance>
+					<KMD>
+						There are no KMD evaluation activities for this component.
+					</KMD>
+					<Tests>
+						<h:p>
+							For each self-test, the evaluator shall verify that evidence is produced that the self-test is executed when specified by FPT_TST.1.1.
+						</h:p><h:p>
+							If a self-test can be executed at the request of an authorized user, the evaluator shall verify that following the steps documented in the operational guidance to perform the self-test will result in execution of the self-test.
+						</h:p>
+					</Tests>
+				</aactivity>
+			</f-element>   
+			<audit-event>
+				<audit-event-descr>
+					Execution of self-tests.
+				</audit-event-descr>
+				<audit-event-info>None.</audit-event-info>
+			</audit-event>
 		</f-component>
 		
 		
