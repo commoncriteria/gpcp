@@ -347,8 +347,8 @@
 					<ref-id>sfr-fau-gen-1</ref-id>
 					<ref-id>sfr-fau-sar-1</ref-id>
 					<ref-id>sfr-fau-stg-1</ref-id>
-					<ref-id>sfr-fau-stg-4</ref-id>
-					<ref-id>sfr-fau-stg-ext-1</ref-id>
+					<ref-id>sfr-fau-stg-2</ref-id>
+					<ref-id>sfr-fau-stg-5</ref-id>
 				</config>
 			</usecase>
 			<usecase title="Server-Class Platform, Enhanced" id="uc-server-enhanced">
@@ -365,8 +365,8 @@
 					<ref-id>sfr-fau-gen-1</ref-id>
 					<ref-id>sfr-fau-sar-1</ref-id>
 					<ref-id>sfr-fau-stg-1</ref-id>
-					<ref-id>sfr-fau-stg-4</ref-id>
-					<ref-id>sfr-fau-stg-ext-1</ref-id>
+					<ref-id>sfr-fau-stg-2</ref-id>
+					<ref-id>sfr-fau-stg-5</ref-id>
 					<ref-id>sfr-fpt-php-2</ref-id> 
 					<ref-id>sfr-fpt-php-3</ref-id> 
 					<ref-id>sfr-fpt-jta-ext-2</ref-id>
@@ -408,8 +408,8 @@
 					<ref-id>sfr-fau-gen-1</ref-id>
 					<ref-id>sfr-fau-sar-1</ref-id>
 					<ref-id>sfr-fau-stg-1</ref-id>
-					<ref-id>sfr-fau-stg-4</ref-id>
-					<ref-id>sfr-fau-stg-ext-1</ref-id>
+					<ref-id>sfr-fau-stg-2</ref-id>
+					<ref-id>sfr-fau-stg-5</ref-id>
 <!--					<ref-id>t-physical</ref-id>				-->
 <!--					<not><ref-id>a-physical-protection</ref-id></not>				-->
 				</config>
@@ -436,8 +436,8 @@
 					<ref-id>sfr-fau-gen-1</ref-id>
 					<ref-id>sfr-fau-sar-1</ref-id>
 					<ref-id>sfr-fau-stg-1</ref-id>
-					<ref-id>sfr-fau-stg-4</ref-id>
-					<ref-id>sfr-fau-stg-ext-1</ref-id>
+					<ref-id>sfr-fau-stg-2</ref-id>
+					<ref-id>sfr-fau-stg-5</ref-id>
 				</config>
 			</usecase>
 			<usecase title="IoT Devices" id="uc-iot-device">
@@ -789,9 +789,9 @@
 				<addressed-by>FPT_STM.1</addressed-by><rationale>Supports the objective by ensuring that audit events are marked with reliable time stamps.</rationale>
 				<addressed-by>FAU_GEN.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring reporting of security-related audit events.</rationale>
 				<addressed-by>FAU_SAR.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring that audit events be readable by an Administrator.</rationale>
-				<addressed-by>FAU_STG.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring that audit records be protected from unauthorized deletion.</rationale>
-				<addressed-by>FAU_STG.4 (sel-based)</addressed-by><rationale>Supports the objective by requiring that audit records be protected from automatic deletion.</rationale>
-				<addressed-by>FAU_STG_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring that audit records be off-loaded to an external IT entity.</rationale>
+				<addressed-by>FAU_STG.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring that audit records be off-loaded to an external IT entity.</rationale>
+				<addressed-by>FAU_STG.2 (sel-based)</addressed-by><rationale>Supports the objective by requiring that audit records be protected from unauthorized deletion.</rationale>
+				<addressed-by>FAU_STG.5 (sel-based)</addressed-by><rationale>Supports the objective by requiring that audit records be protected from automatic deletion.</rationale>
 				<addressed-by>FPT_PHP.1 (sel-based)</addressed-by><rationale>Supports the objective through passive detection of physical tampering.</rationale>
 				<addressed-by>FPT_PHP.3 (sel-based)</addressed-by><rationale>Supports the objective through resistance to physical tampering.</rationale>
 			</SO>
@@ -873,8 +873,7 @@
 					</h:ul></description>
 				<addressed-by>FPT_PPF_EXT.1</addressed-by><rationale>Supports the objective by requiring that platform firmware be modifiable only through the update process.</rationale>
 				<addressed-by>FCS_STG_EXT.1 (optional)</addressed-by><rationale>Supports the objective by specifying the types of credential storage supported by the TOE.</rationale>		  
-				<addressed-by>FCS_CKM.4 (sel-based)</addressed-by><rationale>Supports the objective by specifying the requirements for credential and key destruction.</rationale>
-				<addressed-by>FCS_CKM_EXT.4 (sel-based)</addressed-by><rationale>Supports the objective by specifying the timing for credential and key destruction.</rationale>
+				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Supports the objective by specifying the mechanism and timing for credential and key destruction.</rationale>
 				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by specifying the types of material that must be encrypted for storage.</rationale>
 				<addressed-by>FCS_STG_EXT.3 (sel-based)</addressed-by><rationale>Supports the objective by specifying the encryption requirements for credential storage.</rationale>
 				<addressed-by>FDP_ITC_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the requirements for import of keys and credentials.</rationale>
@@ -993,11 +992,6 @@
 
 		<section id="fau" title="Class: Security Audit (FAU)">
 		
-			<ext-comp-def title="Off-Loading of Audit Data" fam-id="FAU_STG_EXT">
-			<fam-behavior>This family defines requirements for the TSF to securely 
-				transmit or move audit data from the TOE.</fam-behavior>
-			</ext-comp-def>
-
 		<!-- FAU_GEN.1 Audit Data Generation-->
 		<f-component id="sfr-fau-gen-1" cc-id="fau_gen.1" name="Audit Data Generation" status="sel-based">
 			<depends on-sel="sel-rot2-audit"/>  <!-- FPT_ROT_EXT.2.2 -->
@@ -1009,7 +1003,7 @@
 			<depends on-use="uc-csfc-eud"/>
 			<depends on-use="uc-ent-clients-desktop"/>
 			<f-element id="fau-gen-1e1">
-				<title>The TSF shall be able to generate an audit record of the following auditable events:<h:br/>
+				<title>The TSF shall be able to generate audit data of the following auditable events:<h:br/>
 					<h:ol type="1">
 						<h:li>Start-up and shutdown of the audit functions</h:li>
 						<h:li>All administrative actions</h:li>
@@ -1030,7 +1024,7 @@
 				</title>
 			</f-element>
             <f-element id="fau-gen-1e2">
-                <title>The TSF shall record within each audit record at least the following information:
+                <title>The TSF shall record within the audit data at least the following information:
                     <h:ol type="a">
                         <h:li>Date and time of the event</h:li>
                         <h:li>Type of event</h:li>
@@ -1135,10 +1129,10 @@
 			<f-element id="fau-sar-1e1">
 				<title>The TSF shall provide <refinement>the Administrator</refinement> with the
 					capability to read <refinement>all audited events and record contents</refinement>
-					from the audit records.</title>
+					from the audit data.</title>
 			</f-element>
 			<f-element id="fau-sar-1e2">
-				<title>The TSF shall provide the audit records in a manner suitable for the <refinement>Administrator
+				<title>The TSF shall provide the audit data in a manner suitable for the <refinement>Administrator
 					</refinement> to interpret the information.</title>
 				<note role="application">
 					This SFR must be included in the ST if FAU_GEN.1 is claimed.
@@ -1162,11 +1156,83 @@
 			</f-element>
         </f-component>
 
-		<!-- FAU_STG.1 Protectd Audit Trail Storage -->
+
+
+			<!-- FAU_STG.1 Audit Data Storage Location -->
+			<!-- Must be included if FAU_GEN.1 is included. -->
+			<f-component id="sfr-fau-stg-1" cc-id="fau_stg.1" name="Audit Data Storage Location" status="sel-based">
+				<depends on-incl="sfr-fau-gen-1"/>  
+				<!--	<depends on-sel="sel-rot2-audit"/>  -->
+				<!--	<depends on-sel="sel-rot3-audit"/>  -->
+				<!--	<depends on-sel="sel-tud2-audit"/>  -->
+				<!--	<depends on-sel="sel-tud3-audit"/>  -->
+				<!--	<depends on-use="uc-server-enhanced"/>  -->
+				<!--	<depends on-use="uc-csfc-eud"/>  -->
+				<!--	<depends on-use="uc-ent-clients-desktop"/>  -->
+				<consistency-rationale/>
+				<f-element id="fau-stg-1e1">
+					<title>The TSF shall be able to transfer generated audit data on the <selectables>
+						<selectable>transmit the generated audit data to an external IT entity using a trusted channel according to FTP_ITC<h:b>_EXT.1</h:b></selectable>
+						<selectable>[removable media]</selectable></selectables>  
+					</title>
+					<note role="application">
+						The ST Author must select "<h:i>trusted channel</h:i>" and include FTP_ITC_EXT.1 in the ST if the TOE offloads
+						audit data to external IT entity over a network connection. Protocols used for implementing the trusted
+						channel must be selected in FTP_ITC_EXT.1. <h:p/>
+						The ST Author must select "<h:i>removable media</h:i>" if the TOE supports offload of audit data using 
+						removable media such as thumb drives or disks.
+					</note>
+					<aactivity level="element">
+						<TSS>
+							The evaluator shall examine the TSS to ensure it describes the means by which 
+							the audit data are transferred to the external audit server.<h:br/> 
+						</TSS>
+						<Guidance>
+							If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
+							trusted channel to the audit server, as well as describe any requirements 
+							on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
+							as configuration of the TOE needed to communicate with the audit server. Furthermore, it must describe whether the 
+							transfer mechanism is periodic or continuous, and what happens in the event of a loss of connectivity. <h:p/>
+							If "removable media" is selected, the evaluator shall ensure that the AGD describes the process for
+							accessing audit data and copying it to media. The AGD must also include high-level guidance on 
+							how frequently this operation may need to be done to minimize risk of data loss.<h:br/>
+						</Guidance>
+						<KMD>
+							There are no KMD evaluation activities for this component.<h:br/>
+						</KMD>
+						<Tests>
+							If "trusted channel" is selected above, testing of the trusted channel mechanism itself is to be performed 
+							as specified in the evaluation activities for FTP_ITC_EXT.1. In addition, the evaluator must 
+							perform the following test:<h:p/>
+							The evaluator shall establish a session between the TOE and the audit server according
+							to the configuration guidance provided. The evaluator shall then examine the traffic
+							that passes between the audit server and the TOE during several activities of the 
+							evaluator’s choice designed to generate audit data to be transferred to the audit server. 
+							The evaluator shall observe that these data are not able to be viewed in the clear during
+							this transfer, and that they are successfully received by the audit server. The evaluator
+							shall record the particular software (name, version) used on the audit server during 
+							testing.
+							<h:p/>
+							If "removable media" is selected above, the evaluator must run the system for a time long enough to generate
+							some audit data and then collect audit data onto removable media for transfer to another machine. On another 
+							machine, the evaluator shall examine the audit data to ensure that it appears to be complete and correct. This test
+							may be performed in conjunction with any other requirement that generates audit events.<h:br/>
+						</Tests>
+					</aactivity>
+				</f-element>
+				<audit-event>
+					<audit-event-descr>
+						On failure of logging function, capture record of failure and record upon restart of logging function.
+					</audit-event-descr>
+					<audit-event-info>None.</audit-event-info>
+				</audit-event>
+			</f-component>        
+
+		<!-- FAU_STG.2 Protected Audit Trail Storage -->
 		<!-- Must be included if FAU_GEN.1 is included -->
 		<!-- Requires that there be an Administrator. -->
 		<!-- Management function: deletion of audit records? -->
-		<f-component id="sfr-fau-stg-1" cc-id="fau_stg.1" name="Protected Audit Trail Storage" status="sel-based">
+		<f-component id="sfr-fau-stg-2" cc-id="fau_stg.2" name="Protected Audit Trail Storage" status="sel-based">
 			<depends on-incl="sfr-fau-gen-1"/>  
 		<!--	<depends on-sel="sel-rot2-audit"/>  -->
 		<!--	<depends on-sel="sel-rot3-audit"/>  -->
@@ -1175,14 +1241,14 @@
 		<!--	<depends on-use="uc-server-enhanced"/>  -->
 		<!--	<depends on-use="uc-csfc-eud"/> -->
 		<!--	<depends on-use="uc-ent-clients-desktop"/>  -->
-			<f-element id="fau-stg-1e1">
+			<f-element id="fau-stg-2e1">
 				<title>
-					The TSF shall protect the stored audit records in the audit trail from unauthorized deletion.
+					The TSF shall protect the stored audit data in the audit trail from unauthorized deletion.
 				</title>
 			</f-element>
-			<f-element id="fau-stg-1e2">
+			<f-element id="fau-stg-2e2">
 				<title>
-					The TSF shall be able to prevent unauthorized modifications to the stored audit records
+					The TSF shall be able to [<h:i>prevent</h:i>] unauthorized modifications to the stored audit data
 					in the audit trail.
 				</title>
 				<note role="application">
@@ -1221,9 +1287,9 @@
 			<audit-event/>
 		</f-component>
 
-		<!-- FAU_STG.4 Prevention of Audit Data Loss -->
+		<!-- FAU_STG.5 Prevention of Audit Data Loss -->
 		<!-- Must be included if FAU_GEN.1 is included. -->
-		<f-component id="sfr-fau-stg-4" cc-id="fau_stg.4" name="Prevention of Audit Data Loss" status="sel-based">
+		<f-component id="sfr-fau-stg-5" cc-id="fau_stg.5" name="Prevention of Audit Data Loss" status="sel-based">
 			<depends on-incl="sfr-fau-gen-1"/>  
 		<!--	<depends on-sel="sel-rot2-audit"/>  -->
 		<!--	<depends on-sel="sel-rot3-audit"/>  -->
@@ -1232,9 +1298,9 @@
 		<!--	<depends on-use="uc-server-enhanced"/>  -->
 		<!--	<depends on-use="uc-csfc-eud"/>  -->
 		<!--	<depends on-use="uc-ent-clients-desktop"/>  -->
-			<f-element id="fau-stg-4e1">
+			<f-element id="fau-stg-5e1">
 				<title>
-					The TSF shall overwrite the oldest stored audit records if the audit trail is full.
+					The TSF shall [<h:i>overwrite the oldest stored audit records</h:i>] if the audit data storage is full.
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if FAU_GEN.1 is claimed.
@@ -1262,99 +1328,7 @@
 			</f-element>
 			<audit-event/>
 		</f-component>
-
-        <!-- FAU_STG_EXT.1 Off-Loading of Audit Data -->
-		<!-- Must be included if FAU_GEN.1 is included. -->
-        <f-component id="sfr-fau-stg-ext-1" cc-id="fau_stg_ext.1" name="Off-Loading of Audit Data" status="sel-based">
-			<depends on-incl="sfr-fau-gen-1"/>  
-		<!--	<depends on-sel="sel-rot2-audit"/>  -->
-		<!--	<depends on-sel="sel-rot3-audit"/>  -->
-		<!--	<depends on-sel="sel-tud2-audit"/>  -->
-		<!--	<depends on-sel="sel-tud3-audit"/>  -->
-		<!--	<depends on-use="uc-server-enhanced"/>  -->
-		<!--	<depends on-use="uc-csfc-eud"/>  -->
-		<!--	<depends on-use="uc-ent-clients-desktop"/>  -->
-			<consistency-rationale/>
-			<comp-lev>specifies how audit data may be transmitted or removed from the TOE, which is not 
-				covered by any FCS_STG component.</comp-lev>
-			<management>The following actions could be considered for the management functions in FMT:
-				<h:ol type="a">
-					<h:li>Ability to configure and manage the audit system and audit data,
-					including the ability to configure name/address of audit/logging server
-					to which to send audit/logging records.</h:li>
-				</h:ol>
-			</management>
-			<audit>The following actions should be auditable if FAU_GEN Security audit data generation 
-				is included in the PP/ST:
-				<h:ol type="a">
-					<h:li>On failure of logging function, capture record of failure and record upon restart of logging function.</h:li>
-				</h:ol>
-			</audit>
-			<dependencies><h:br/>
-				FAU_GEN.1 Audit Data Generation</dependencies>
-            <f-element id="fau-stg-ext-1e1">
-                <title>The TSF shall be able to transfer generated audit data to an external IT entity using 
-				<selectables linebreak="yes">
-					<selectable id="sel-fau-itc">a trusted channel as specified in FTP_ITC_EXT.1</selectable>
-					<selectable>removable media requiring physical access to the platform</selectable>
-				</selectables>.
-                </title>
-		    <ext-comp-def-title>
-			    <title>The TSF shall be able to transfer generated audit data to an external IT entity using 
-				    <assignable>mechanism for moving audit data</assignable>. 
-			    </title></ext-comp-def-title>				    
-				<note role="application">
-					The ST Author must select "<h:i>trusted channel</h:i>" and include FTP_ITC_EXT.1 in the ST if the TOE offloads
-					audit data to external IT entity over a network connection. Protocols used for implementing the trusted
-					channel must be selected in FTP_ITC_EXT.1. <h:p/>
-					The ST Author must select "<h:i>removable media</h:i>" if the TOE supports offload of audit data using 
-					removable media such as thumb drives or disks.
-				</note>
-                <aactivity level="element">
-                    <TSS>
-                        The evaluator shall examine the TSS to ensure it describes the means by which 
-                        the audit data are transferred to the external audit server.<h:br/> 
-                    </TSS>
-                    <Guidance>
-                        If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
-						trusted channel to the audit server, as well as describe any requirements 
-                        on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
-                        as configuration of the TOE needed to communicate with the audit server. Furthermore, it must describe whether the 
-			    transfer mechanism is periodic or continuous, and what happens in the event of a loss of connectivity. <h:p/>
-						If "removable media" is selected, the evaluator shall ensure that the AGD describes the process for
-						accessing audit data and copying it to media. The AGD must also include high-level guidance on 
-				  		how frequently this operation may need to be done to minimize risk of data loss.<h:br/>
-                    </Guidance>
-					<KMD>
-						There are no KMD evaluation activities for this component.<h:br/>
-					</KMD>
-                    <Tests>
-                        If "trusted channel" is selected above, testing of the trusted channel mechanism itself is to be performed 
-						as specified in the evaluation activities for FTP_ITC_EXT.1. In addition, the evaluator must 
-                        perform the following test:<h:p/>
-                        The evaluator shall establish a session between the TOE and the audit server according
-								to the configuration guidance provided. The evaluator shall then examine the traffic
-								that passes between the audit server and the TOE during several activities of the 
-								evaluator’s choice designed to generate audit data to be transferred to the audit server. 
-								The evaluator shall observe that these data are not able to be viewed in the clear during
-								this transfer, and that they are successfully received by the audit server. The evaluator
-								shall record the particular software (name, version) used on the audit server during 
-								testing.
-                        <h:p/>
-						If "removable media" is selected above, the evaluator must run the system for a time long enough to generate
-						some audit data and then collect audit data onto removable media for transfer to another machine. On another 
-						machine, the evaluator shall examine the audit data to ensure that it appears to be complete and correct. This test
-						may be performed in conjunction with any other requirement that generates audit events.<h:br/>
-                    </Tests>
-                </aactivity>
-            </f-element>
-			<audit-event>
-                <audit-event-descr>
-					On failure of logging function, capture record of failure and record upon restart of logging function.
-                </audit-event-descr>
-			<audit-event-info>None.</audit-event-info>
-			</audit-event>
-        </f-component>         
+ 
 				
 	</section>   <!-- FAU -->
 
@@ -1362,8 +1336,6 @@
 		
 	    <ext-comp-def title="Cryptographic Key Management" fam-id="FCS_CKM_EXT">
 			<fam-behavior>This family defines requirements for management of cryptographic keys.
-				FCS_CKM_EXT.4 is necessary because FCS_CKM.4 does not include a requirement for the timing of 
-				key destruction.
 				FCS_CKM_EXT.5 is necessary to express requirements for key derivation, which are missing from Part 2. 
 				</fam-behavior>
 		</ext-comp-def>
@@ -1453,7 +1425,7 @@
 					security functionality.<h:p/> 
 					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
 					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG.1 must also be claimed.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.<h:p/>
 					DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
 					by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
 					For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.<h:p/>
@@ -1625,7 +1597,7 @@
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR must be included in the ST if "<h:i>causing the TOE to generate [symmetric] keys/secrets</h:i>"
 					is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 and FCS_RBG.1 must also be claimed.
+					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -1665,7 +1637,7 @@
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-ckm-2e1">
 				<title><h:b>Refinement:</h:b> The TSF shall <h:b>establish</h:b> cryptographic keys in accordance with a specified
-					cryptographic key establishment method: 
+					cryptographic key <h:b>establishment</h:b> method: 
 					<selectables linebreak="yes">
 						<selectable id="sel-fcs-ckm-2-rsa">RSA-based key establishment schemes that meet the following: NIST Special
 							Publication 800-56B Revision 2, “Recommendation for Pair-Wise Key Establishment
@@ -1703,7 +1675,7 @@
 					security functionality.<h:p/> 
 					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
 					"<h:i>Keys established according to FCS_CKM.2</h:i>" is selected in FTP_ITE_EXT.1.1.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.6 must also be claimed.<h:p/>
 					The ST Author selects all key establishment schemes used for the selected cryptographic protocols.<h:p/>
 				<!--	The RSA-based key establishment schemes are described in Section 8 of NIST SP 800-56B Revision
 					2 [NIST-RSA]; however, Section 8 relies on implementation of other sections in SP 800-56B Revision 2.<h:p/> -->
@@ -1743,8 +1715,8 @@
 			<audit-event/>
 		</f-component>
 
-		<!-- FCS_CKM.4 Cryptographic Key Destruction -->
-		<f-component id="sfr-fcs-ckm-4" cc-id="fcs_ckm.4" name="Cryptographic Key Destruction" status="sel-based">
+		<!-- FCS_CKM.6 Timing and Event of Cryptographic Key Destruction -->
+		<f-component id="sfr-fcs-ckm-6" cc-id="fcs_ckm.6" name="Timing and Event of Cryptographic Key Destruction" status="sel-based">
 			<depends on-incl="sfr-fcs-ckm-1-sk"/>
 			<depends on-incl="sfr-fcs-ckm-1-ak"/>
 			<depends on-incl="sfr-fcs-ckm-2"/>
@@ -1752,9 +1724,14 @@
 			<depends on-incl="sfr-fcs-cop-1-kat"/>
 			<depends on-incl="sfr-fcs-stg-ext-1"/> 
 			<depends on-incl="sfr-fia-afl-ext-1"/>   <!-- Required for wipe on multiple auth failures -->
-			<f-element id="fcs-ckm-4e1">
-				<title>The TSF shall destroy cryptographic keys and keying material in accordance
-					with a specified cryptographic key destruction method 
+			<f-element id="fcs-ckm-6e1">
+				<title>
+					The TSF shall destroy <assignable>list of cryptographic keys (including keying material)</assignable> when [<h:i>no longer needed</h:i>]. 
+				</title>
+			</f-element>
+			<f-element id="fcs-ckm-6e2">
+				<title>The TSF shall destroy cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance
+					with a specified cryptographic key destruction method [<h:i>
 					<h:ul><h:li>For volatile memory, the destruction shall be executed by a 
 						<selectables linebreak="yes">
 							<selectable>single overwrite consisting of 
@@ -1801,7 +1778,7 @@
 										whereupon an error is returned</selectable>
 									<selectable>block erase</selectable>
 								</selectables></selectable>
-						</selectables></h:li></h:ul>
+						</selectables></h:li></h:ul></h:i>]
 					that meets the following: [<h:i>no standard</h:i>].
 				</title>
 				<note role="application">
@@ -1809,12 +1786,12 @@
 					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SFR
 					must be included in the ST if any of the following SFRs are claimed: FCS_CKM.1/AK, FCS_CKM.1/SK,
 					FCS_CKM.2, FCS_CKM_EXT.5, FCS_COP.1/KAT, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
-					If this SFR is included in the ST, then FCS_CKM_EXT.4 must also be claimed.<h:p/>
 					The term “cryptographic keys” in this SFR includes
 					the authorization data that is the entry point to a key chain and all other cryptographic keys and
-					keying material (whether in plaintext or encrypted form). This SFR does not apply to the public
+					keying material (whether in plaintext or encrypted form). Examples of keys and key material include intermediate keys, encryption keys, signing keys, verification keys, authentication tokens, and submasks.
+					This SFR does not apply to the public
 					component of asymmetric key pairs, or to keys that are permitted to remain stored such as device
-					identification keys.<h:p/>
+					identification keys. The TOE will have mechanisms to destroy keys and key material when the keys and key material is no longer needed. Based on their implementations, vendors will explain when certain keys are no longer needed.<h:p/>
 					In the case of volatile memory, the selection “<h:i>removal of all references to the key directly followed
 					by a request for garbage collection</h:i>” is used in a situation where the TSF cannot address the
 					specific physical memory locations holding the data to be erased and therefore relies on
@@ -1976,53 +1953,6 @@
 								is not found, then the test fails.
 							</test>
 						</testlist>
-					</Tests>
-				</aactivity>
-			</f-element>
-			<audit-event/>
-		</f-component>
-
-		<!-- FCS_CKM_EXT.4 Cryptographic Key and Key Material Destruction Timing -->
-		<f-component id="sfr-fcs-ckm-ext-4" cc-id="fcs_ckm_ext.4" name="Cryptographic Key and Key Material Destruction Timing" status="sel-based">
-			<depends on-incl="sfr-fcs-ckm-4"/>
-			<consistency-rationale/>
-			<comp-lev>specifies the timing for key destruction, which is not addressed by FCS_CKM.4.</comp-lev>
-			<management/>
-			<audit/>
-			<dependencies><h:br/>FCS_CKM.4 Cryptographic Key Destruction</dependencies>
-			<f-element id="fcs-ckm-ext-1e1">
-				<title>
-					The TSF shall destroy all keys and keying material when no longer needed.
-				</title>
-				<note role="application">
-					This SFR must be included in the ST if FCS_CKM.4 is claimed.<h:p/>
-					The TOE must have mechanisms to destroy keys and key material in persistent storage using an 
-					approved method as specified in FCS_CKM.4. Examples of keys and key material include intermediate
-					keys, encryption keys, signing keys, verification keys, authentication tokens, and submasks. <h:p/>
-					The TOE will have mechanisms to destroy keys and key material when the keys and key material 
-					is no longer needed. Based on their implementations, vendors will explain when certain keys are no
-					longer needed.
-				</note>
-				<aactivity>
-					<TSS>
-						The evaluator shall verify the TSS provides a high-level description of what it
-						means for keys and key material to be no longer needed and when this data should
-						be expected to be destroyed.<h:p/>
-					</TSS>
-					<Guidance>
-						There are no AGD evaluation activities for this component.<h:p/>
-					</Guidance>
-					<KMD>
-						The evaluator shall verify that the KMD includes a description of the areas where
-						keys and key material reside and when this material is no longer needed.<h:p/>
-						The evaluator shall verify that the KMD includes a key lifecycle that includes a
-						description where key materials reside, how the key materials are used, how it is 
-						determined that keys and key material are no longer needed, and how the material is
-						destroyed once it is no longer needed. The evaluator shall also verify that all key
-						destruction operations are performed in a manner specified by FCS_CKM.4.<h:p/>
-					</KMD>
-					<Tests>
-						There are no test evaluation activities for this component.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -2256,7 +2186,7 @@
 					"<h:i>asymmetric</h:i>," or "<h:i>HMAC</h:i>."<h:p/>
 					This SFR must be included in the ST if key derivation is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.6 must also be claimed.<h:p/>
 					If "<h:i>KDF-XOR</h:i>" and at least one of the SHA hashes is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
 					If "<h:i>KDF-HASH</h:i>" or "<h:i>KDF-MAC</h:i>" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
 					If "<h:i>KDF-MAC</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
@@ -2897,7 +2827,7 @@
 					Also, this SFR must be included in the TOE if FCS_CKM.2 is claimed and a key establishment
 					scheme other than FFC is selected.<h:p/>
 					If "<h:i>ECIES</h:i>" is selected, then FCS_COP.1/KeyedHash and FCS_COP.1/SKC must be claimed.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.
+					If this SFR is included in the ST, then FCS_CKM.6 must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -5495,7 +5425,7 @@
 				<h:ul><h:li>Ability to manage import and export keys/secrets to and from protected storage.</h:li></h:ul>
 			</management>
 			<audit/>
-			<dependencies><h:br/>FCS_CKM.4 Cryptographic Key Destruction</dependencies>
+			<dependencies><h:br/>FCS_CKM.6 Timing and Event of Cryptographic Key Destruction</dependencies>
 			<f-element id="fcs-stg-ext-1e1">
 				<title>
 					The TSF shall provide 
@@ -5527,7 +5457,7 @@
 					If "<h:i>software-based</h:i>" is selected,
 					the ST Author is expected to select "<h:i>software-based key storage</h:i>" in FCS_STG_EXT.2
 					and also claim FCS_STG_EXT.3.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.
+					If this SFR is included in the ST, then FCS_CKM.6 must also be claimed.
 				</note>
 			</f-element>
 			<f-element id="fcs-stg-ext-1e2">
@@ -5934,7 +5864,7 @@
 				<h:ul><h:li>Set authorization failure parameters</h:li></h:ul></management>
 			<audit>If FAU_GEN.1 is included in the ST, then the following audit events should be considered:
 				<h:ul><h:li>Administrator authentication failures.</h:li></h:ul></audit>
-			<dependencies><h:br/>FCS_CKM_EXT.4 Key Destruction<h:br/>
+			<dependencies><h:br/>FCS_CKM.6 Timing and Event of Cryptographic Key Destruction<h:br/>
 				FIA_SMF.1 Specification of Management Functions
 				</dependencies>
 			<f-element id="fia-afl-ext-1e1">
@@ -5951,7 +5881,7 @@
 					This SFR is included in the ST if the "<h:i>Administrator</h:i>" role is selected
 					in FMT_SMR.1, or if the "<h:i>Server-Class Platform, Basic</h:i>" or "<h:i>Server-Class Platform, Enhanced</h:i>"
 					use cases are selected.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.4 must also be claimed.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.6 must also be claimed.<h:p/>
 					This SFR specifies the actions to be taken in the event of multiple authentication failures.<h:p/>
 <!--					If no additional authentication mechanisms are selected in FIA_UAU.5.1, then "<h:i>no other</h:i>" must 
 					be selected. If an additional authentication mechanism is selected in FIA_UAU.5.1, then it 
@@ -6039,7 +5969,7 @@
 						</selectables>.
 				</title>
 				<note role="application">
-					Wipe is performed in accordance with FCS_CKM_EXT.4. Protected data is all non-TSF data, 
+					Wipe is performed in accordance with FCS_CKM.6. Protected data is all non-TSF data, 
 					including all user or enterprise data. Some or all of this data may be considered sensitive
 					data as well.<h:p/>
 					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption
@@ -6285,14 +6215,14 @@
 			<depends on-sel="sel-fmt-smr-1-admin"/>  <!-- FMT_SMR.1 Admin Role -->
 			<f-element id="fia-uau-5e1">
 				<title>
-					The TSF shall provide password and 
+					The TSF shall provide [<h:i>password and 
 					<selectables>
 						<selectable id="sel-fia-uau-5-x509">X.509 certificate-based authentication</selectable>
 						<selectable id="sel-fia-uau-5-ssh">SSH-based authentication</selectable>
 						<selectable>biometric authentication</selectable>
 						<selectable>hybrid authentication</selectable>
 						<selectable exclusive="yes">no other authentication mechanism</selectable>
-					</selectables> to support user authentication.
+					</selectables></h:i>] to support user authentication.
 				</title>
 				<note role="application">
 					This SFR is included in the ST if the "<h:i>Administrator</h:i>" role is selected
@@ -6317,8 +6247,8 @@
 			<f-element id="fia-uau-5e2">
 				<title>
 					The TSF shall authenticate any user's claimed identity according to the 
-					<assignable>rules describing how each authentication mechanism selected in FIA_UAU.5.1
-					provides authentication</assignable>.
+					<assignable>rules describing how the multiple authentication mechanisms
+					provide authentication</assignable>.
 				</title>
 				<note role="application">
 					Rules regarding how the authentication factors interact in terms of unsuccessful authentication
@@ -6909,14 +6839,14 @@
 
 						<!-- 3 -->
 						<management-function id="mf-audit-server">	
-							<depends on-sfr="sfr-fau-stg-ext-1"/>
+							<depends on-sfr="sfr-fau-stg-1"/>
 							<text>
 								Ability to configure name/address of audit/logging server to which to send audit/logging records.
 							</text>
 							<O ref="A"/>
 							<X ref="U"/>
                             <app-note>
-								This Function must be claimed if FAU_STG_EXT.1 is claimed in the ST.
+								This function must be claimed if FAU_STG.1 is claimed in the ST.
 							</app-note>
 						</management-function>
 
@@ -7419,7 +7349,7 @@
 			<depends on-use="uc-csfc-eud"/>  
 			<f-element id="fpt-php-2e1">
 				<title>The TSF shall provide unambiguous detection of physical tampering that
-					might compromise the TSF.
+					can compromise the TSF.
 				</title>
 			</f-element>
 			<f-element id="fpt-php-2e2">
@@ -7724,7 +7654,7 @@
 					If "Administrator" is selected anywhere in FPT_ROT_EXT.2.2, or if "in accordance with Administrator-configurable
 					policy" is selected, then all Administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
-					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
+					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.2, and FAU_STG.5 must be included in the ST.<h:p/>
 					If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected, then FCS_COP.1/Hash must be included in the ST.<h:p/>
 					If "<h:i>verification of a digital signature by trusted code/data</h:i>" is selected, then FCS_COP.1/SigVer must be included in the ST.<h:p/>
 					If "<h:i>Initiate a recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
@@ -7863,7 +7793,7 @@
 					If "<h:i>administrator</h:i>" is selected anywhere in FPT_ROT_EXT.3.2, or if "<h:i>in accordance with administrator-configurable
 					policy</h:i>" is selected, then all administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).<h:p/>				
-					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.4, and FAU_STG_EXT.1 must be included in the ST.<h:p/>
+					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.2, and FAU_STG.5, must be included in the ST.<h:p/>
 					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
 					must be claimed in the ST.
 				</note>
@@ -8696,7 +8626,7 @@
 					</selectables>				
 					to provide a communication channel between itself and 
 					<selectables linebreak="yes">
-						<selectable>audit servers (as required by FAU_STG_EXT.1)</selectable>
+						<selectable>audit servers (as required by FAU_STG.1.1 if selected)</selectable>
 						<selectable>remote administrators (as required by FTP_TRP.1.1 if selected in FMT_MOF_EXT.1)</selectable>
 						<selectable><assignable>other capabilities</assignable></selectable>
 						<selectable exclusive="yes">no other capabilities</selectable>
@@ -8717,8 +8647,8 @@
 				<note role="application"> 
 					This SFR is included in the ST if a trusted channel is used to offload audit data 
 					or if the platform is administered remotely. That is, if "<h:i>a trusted channel as specified in FTP_ITC_EXT.1</h:i>" 
-					is selected in FAU_STG_EXT.1.1, if "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is 
-					selected in FDP_ITC_EXT.1., or if "<h:i>remotely</h:i>" is selected in Management Function 1 in FMT_SMF.1.1.<h:p/>
+					is selected in FAU_STG.1.1, if "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is 
+					selected in FDP_ITC_EXT.1.1, or if "<h:i>remotely</h:i>" is selected in Management Function 1 in FMT_SMF.1.1.<h:p/>
 					If the ST Author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TSF must be validated against the 
 					Functional Package for TLS. This PP does not mandate that a product implement TLS with mutual authentication,
 					but if the product includes the capability to perform TLS with mutual authentication, then
@@ -8885,7 +8815,7 @@
                 </title>
             </f-element>
             <f-element id="ftp-trp-1e2">
-			    <title>The TSF shall permit [<h:i>remote Administrators</h:i>] to initiate communication via the trusted path.
+            	<title>The TSF shall permit [<h:i>remote <h:b>Administrators</h:b></h:i>] to initiate communication via the trusted path.
                 </title>
             </f-element>
 			<f-element id="ftp-trp-1e3">
