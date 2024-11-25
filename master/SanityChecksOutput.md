@@ -79,7 +79,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[4]"For purpo"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[4]"For purpo"/h:p[3]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[4]"For purpo"/h:p[4]""
-* Warning: Detected an empty _p_ element./PP[1]""/section[1]""/cclaims[1]""/cclaim[1]""/description[1]"A Securit"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:spd[1]"The secur"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[1]""/f-element[2]""/note[1]"The ST Au"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[1]""/f-element[2]""/note[1]"The ST Au"/h:p[2]""
