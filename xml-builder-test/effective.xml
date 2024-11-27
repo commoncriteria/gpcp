@@ -36,7 +36,23 @@
   <modules/>
   <pp-preferences><!--          <pp-pref name="display-audit-with-sfrs">0</pp-pref>   --><audit-events-in-sfrs/></pp-preferences>
   <sec:Introduction>
-    <section title="Compliant Targets of Evaluation" id="TOEdescription">This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more general-purpose operating systems as defined by the Protection Profile for General Purpose Operating Systems, one or more virtualization systems as defined by the Protection Profile for Virtualization, or more than one application. Typical platform implementations include servers, PC clients, laptops, and tablets.<h:p/><h:br/><h:p/>Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and Network Device platforms as defined in the collaborative Protection Profile for Network Devices are out of scope of this PP. Mobile Device and Network Device platforms must be evaluated against the more specific requirements in their respective specialized PPs.<h:p/><h:br/><h:p/>The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware must be protected such that it is not permitted to execute if it has been modified outside of authorized and authenticated update processes. Other use-case-specific features include audit capabilities, Administrator authentication, and protections against physical tampering.</section>
+    <section title="Compliant Targets of Evaluation" id="TOEdescription">
+		This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements 
+		for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more 
+		general-purpose operating systems as defined by the Protection Profile for General Purpose 
+		Operating Systems, one or more virtualization systems as defined by the Protection Profile for 
+		Virtualization, or more than one application. Typical platform 
+		implementations include servers, PC clients, laptops, and tablets.<h:p/>
+		Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and 
+		Network Device platforms as defined in the collaborative Protection Profile for Network Devices 
+		are out of scope of this PP.  Mobile Device and Network Device platforms must be evaluated 
+		against the more specific requirements in their respective specialized PPs.<h:p/>
+		The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware
+		must be protected such that it is not permitted to execute if it has been modified outside of authorized and
+		authenticated update processes. Other use-case-specific features include audit capabilities, Administrator
+		authentication, and protections against physical tampering.
+
+		</section>
     <tech-terms>
       <term full="Administrator">
 			An Administrator is responsible for management activities, including setting policies that are 
@@ -158,31 +174,77 @@
 		</term>
     </tech-terms>
     <sec:Use_Cases>
-      This Protection Profile supports several use cases. The cases enumerated below add requirements to the baseline for GPCP due to additional threats or changes in assumptions about the operational environment. Use cases not listed below (e.g. consumer-grade desktop computers) need be evaluated only against the baseline requirements subject to the appropriate selections.
+      
+		This Protection Profile supports several use cases. The cases
+		enumerated below add requirements to the baseline for GPCP due to additional threats or changes in assumptions
+		about the operational environment. Use cases not listed below (e.g. consumer-grade desktop computers) 
+		need be evaluated only against the baseline requirements subject to the appropriate selections.
+		
       <usecases>
         <usecase title="Server-Class Platform, Basic" id="uc-server-basic">
-          <description>This use case encompasses server-class hardware in a data center. There are no additional physical protections required because the platform is assumed to be protected by the operational environment as indicated by A.PHYSICAL_PROTECTION. The platform is administered through a management controller that accesses the MC through a console or remotely. This use case adds audit requirements and Administrator authentication requirements to the base mandatory requirements.</description>
+          <description>
+					This use case encompasses server-class hardware in a data center. There are 
+					no additional physical protections required because the platform is assumed to be protected 
+					by the operational environment as indicated by A.PHYSICAL_PROTECTION.
+					The platform is administered through a management controller 
+					that accesses the MC through a console or remotely.
+					This use case adds audit requirements and Administrator authentication requirements to 
+					the base mandatory requirements.
+				</description>
         </usecase>
         <usecase title="Server-Class Platform, Enhanced" id="uc-server-enhanced">
-          <description>This use case adds physical protections to the base requirements for server-class hardware. Additional physical protections are required because the platform us assumed to be minimally protected by the by the operational environment. This use case can also be invoked for servers in data centers where there are enhanced security requirements. This use case adds requirements for audit, physical protections, and Administrator authentication to the base mandatory SFRs. It removes the assumption that the TOE is physically protected by the OE.</description>
+          <description>
+					This use case adds physical protections to the base requirements for server-class hardware.
+					Additional physical protections are required because the platform us assumed to be minimally 
+					protected by the by the operational environment. This use case can also be invoked for servers in 
+					data centers where there are enhanced security requirements.
+					This use case adds requirements for audit, physical protections, and Administrator 
+					authentication to the base mandatory SFRs. 
+					It removes the assumption that the TOE is physically protected by the OE.
+				</description>
         </usecase>
         <usecase title="Portable Clients (laptops, tablets), Basic" id="uc-client-portable-basic">
-          <description>This use case defines the base requirements for portable clients. This use case adds no requirements to the base mandatory SFRs.</description>
+          <description>
+					This use case defines the base requirements for portable clients. 
+					This use case adds no requirements to the base mandatory SFRs.
+				</description>
         </usecase>
         <usecase title="Portable Clients (laptops, tablets), Enhanced" id="uc-client-portable-enhanced">
-          <description>This use case adds physical protections to the base requirements for portable clients or end-user devices. It is intended for devices that are used in high-assurance scenarios.</description>
+          <description>
+					This use case adds physical protections to the base requirements for portable clients or end-user 
+					devices. It is intended for devices that are used in high-assurance scenarios.
+				</description>
         </usecase>
         <usecase title="CSfC EUD" id="uc-csfc-eud">
-          <description>EUDs used in accordance with the CSfC Mobile Access Capability Package can include smart phones, tablets, and laptops. This use case covers the basic CSfC requirements for tablet and laptop EUDs (mobile devices are out of scope for this PP). Although CSfC requires that users maintain physical control of EUDs at all times, this use case removes the assumption that the TOE is protected by the OE and adds requirements for audit and basic tamper detection and reporting.</description>
+          <description>
+					EUDs used in accordance with the CSfC Mobile Access Capability Package can include 
+					smart phones, tablets, and laptops. This use case covers the basic CSfC requirements 
+					for tablet and laptop EUDs (mobile devices are out of scope for this PP).
+					Although CSfC requires that users maintain physical control of EUDs at all times,
+					this use case removes the assumption that the TOE is protected by the OE and 
+					adds requirements for audit and basic tamper detection and reporting.
+				</description>
         </usecase>
         <usecase title="Tactical EUD" id="uc-tactical-eud">
-          <description>This use case adds requirements for portable end user computing devices in a tactical environment.</description>
+          <description>
+					This use case adds requirements for portable end user computing devices in a tactical
+					environment. 
+				</description>
         </usecase>
         <usecase title="Enterprise Desktop clients" id="uc-ent-clients-desktop">
-          <description>This use case covers the requirements for non-portable desktop computing devices in a low-threat enterprise physical environment. This use case adds only audit to the base mandatory SFRs.</description>
+          <description>
+					This use case covers the requirements for non-portable desktop computing devices in a low-threat
+					enterprise physical environment.
+					This use case adds only audit to the base mandatory SFRs.
+				</description>
         </usecase>
         <usecase title="IoT Devices" id="uc-iot-device">
-          <description>IoT devices are field-located devices without human interfaces when in normal operation. In order to qualify for evaluation under this PP, the device must meet the basic criteria for a general-purpose platform, and not meet the requirements for a mobile device or network device.</description>
+          <description>
+					IoT devices are field-located devices without human interfaces when in normal 
+					operation. In order to qualify for evaluation under this PP, the device must meet 
+					the basic criteria for a general-purpose platform, and not meet the requirements
+					for a mobile device or network device.
+				</description>
         </usecase>
       </usecases>
     </sec:Use_Cases>
@@ -190,22 +252,38 @@
   <sec:Conformance_Claims boilerplate="no">
     <cclaims>
       <cclaim name="Conformance Statement">
-        <description>A Security Target must claim exact conformance to this Protection Profile, as defined in the CC and CEM addenda for Exact Conformance, Selection-Based SFRs, and Optional SFRs (dated May 2017).</description>
+        <description>
+				A Security Target must claim exact conformance to this Protection Profile, 
+				as defined in the CC and CEM addenda for Exact Conformance, Selection-Based SFRs, and 
+					Optional SFRs (dated May 2017).<h:p/></description>
       </cclaim>
       <cclaim name="CC Conformance Claims">
-        <description>This PP is conformant to Parts 2 (Extended) and 3 (Extended) of Common Criteria Version 3.1, Release 5 [CC].</description>
+        <description>
+				This PP is conformant to Parts 2 (Extended) and 3 (Extended) of Common Criteria Version 3.1, 
+				Release 5 [CC].
+			</description>
       </cclaim>
       <cclaim name="PP Claims">
         <description>This PP does not claim conformance to any other PP.</description>
       </cclaim>
       <cclaim name="Package Claims">
-        <description>This PP is Functional Package for Transport Layer Security (TLS), version 1.1 Conformant and Functional Package for Secure Shell (SSH), version 1.0 Conformant.</description>
+        <description>
+				This PP is Functional Package for Transport Layer Security (TLS), version 1.1 Conformant and 
+				Functional Package for Secure Shell (SSH), version 1.0 Conformant. 
+			</description>
       </cclaim>
     </cclaims>
   </sec:Conformance_Claims>
   <!-- 3.0 Security Problem Definition-->
   <sec:Security_Problem_Definition>
-    <h:p>The security problem is described in terms of the threats that the GPCP is expected to address, assumptions about the operational environment, and any organizational security policies that the GPCP is expected to enforce.<h:p/><h:br/><h:p/>The platform has three major security responsibilities:</h:p><h:ul><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"/>ensuring the integrity of its own firmware and hardware</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"/>ensuring that it is resilient</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"/>providing security services to tenant workloads</h:li></h:ul><h:p>These responsibilities manifest as protecting:</h:p><h:ul><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"/>Platform firmware and hardware</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"/>Platform firmware updates</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"/>Tenant initialization (boot)</h:li></h:ul>
+    
+	The security problem is described in terms of the threats that the GPCP is expected to address, assumptions 
+	about the operational environment, and any organizational security policies that the GPCP
+   	is expected to enforce.<h:p/>
+  	The platform has three major security responsibilities:
+	<h:ul><h:li>ensuring the integrity of its own firmware and hardware</h:li><h:li>ensuring that it is resilient</h:li><h:li>providing security services to tenant workloads</h:li></h:ul>
+	These responsibilities manifest as protecting: 
+	<h:ul><h:li>Platform firmware and hardware</h:li><h:li>Platform firmware updates</h:li><h:li>Tenant initialization (boot)</h:li></h:ul>
     <!-- 3.1 Threats -->
     <sec:Threats>
       <threats>
@@ -216,7 +294,7 @@
           </objective-refer>
         </threat>
         <threat name="T.PERSISTENCE">
-          <description>An attacker might be able to establish a permanent presence on the TOE infirmware. This could result in permanent compromise of tenant information, aswell as TOE updates. This threat does not encompass attacker presence in tenantsoftware, as tenant software is not part of the TOE.</description>
+          <description>An attacker might be able to establish a permanent presence on the TOE infirmware. This could result in permanent compromise of tenant information, aswell as TOE updates. This threat does not encompass attacker presence in tenantsoftware, as tenant software is not part of the TOE. </description>
           <objective-refer ref="O.PROTECTED_FIRMWARE">
             <rationale>The threat T.PERSISTENCE is countered by O.PROTECTED_FIRMWARE as thisobjective supports maintenance of platform firmware integrity.</rationale>
           </objective-refer>
@@ -278,63 +356,88 @@
     <sec:Assumptions>
       <assumptions>
         <assumption name="A.CORRECT_INITIAL_CONFIGURATION">
-          <description>It is assumed that the initial setup and configuration of the TOE at its operational site is correct and in accordance with organizational security policy and operational use case.</description>
+          <description>It is assumed that the initial setup and configuration of the TOE at its operational 
+					site is correct and in accordance with organizational security policy and operational use case.
+				</description>
           <objective-refer ref="OE.TRUSTED_ADMIN">
             <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
 						A.TRUSTED_ADMIN.</rationale>
           </objective-refer>
         </assumption>
         <assumption name="A.MFR_ROT">
-          <description>The root signing credential of the manufacturer is assumed to be secure and has not been compromised.</description>
+          <description> The root signing credential of the manufacturer is assumed to be secure and has not been 
+					compromised.
+				</description>
           <objective-refer ref="OE.TRUSTED_ADMIN">
             <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
 						A.TRUSTED_ADMIN.</rationale>
           </objective-refer>
         </assumption>
         <assumption name="A.PHYSICAL_PROTECTION">
-          <description>The TOE is assumed to be physically protected in its operational environment and thus is not subject to physical attacks that could compromise its security or its ability to support the security of tenant workloads. This assumption does not apply if the TOE implements any of the below, in which case physical protection from the Operational Environment is not assumed and the threat T.PHYSICAL and its associated TOE Objectives apply: Server-Class Platform, EnhancedPortable Clients (laptops, tablets), EnhancedCSfC EUDTactical EUDIoT Devices</description>
+          <description>The TOE is assumed to be physically protected in its operational environment and
+					thus is not subject to physical attacks that could compromise its security or its ability
+					to support the security of tenant workloads. This assumption does not apply if the TOE
+					implements any of the below, in which case physical protection from the 
+					Operational Environment is not assumed and the threat T.PHYSICAL and its
+					associated TOE Objectives apply:
+					Server-Class Platform, EnhancedPortable Clients (laptops, tablets), EnhancedCSfC EUDTactical EUDIoT Devices</description>
           <objective-refer ref="OE.PHYSICAL_PROTECTION">
             <rationale> The operational environment objective OE.PHYSICAL_PROTECTION is realized through
 						A.PHYSICAL_PROTECTION. </rationale>
           </objective-refer>
         </assumption>
         <assumption name="A.REGULAR_UPDATES">
-          <description>It is assumed that the manufacturer provides updates to TOE firmware in a timely manner in response to known vulnerabilities, and that Administrators apply these updates when they are received.</description>
+          <description>It is assumed that the manufacturer provides updates to TOE firmware in a timely manner
+					in response to known vulnerabilities, and that Administrators apply these updates when they are
+					received.
+				</description>
           <objective-refer ref="OE.TRUSTED_ADMIN">
             <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
 					A.TRUSTED_ADMIN.</rationale>
           </objective-refer>
         </assumption>
         <assumption name="A.ROT_INTEGRITY">
-          <description>The TOE includes one or more Roots of Trust composed of TOE firmware, hardware, and pre-installed credentials. Roots of Trust are assumed to be free of malicious capabilities as their integrity cannot be verified.</description>
+          <description>The TOE includes one or more Roots of Trust composed of TOE firmware, hardware, and
+					pre-installed credentials. Roots of Trust are assumed to be free of malicious capabilities as
+					their integrity cannot be verified. </description>
           <objective-refer ref="OE.SUPPLY_CHAIN">
             <rationale>The operational environment objective OE.SUPPLY_CHAIN is realized through
 					A.ROT_INTEGRITY.</rationale>
           </objective-refer>
         </assumption>
         <assumption name="A.SUPPLY_CHAIN_SECURITY">
-          <description>The hardware components that comprise the TOE are assumed to be non-hostile and not compromised at the time of TOE construction. Likewise, the TOE is assumed to retain its integrity throughout transportation until delivery to its operational site.</description>
+          <description>The hardware components that comprise the TOE are assumed to be non-hostile and not
+					compromised at the time of TOE construction. Likewise, the TOE is assumed to retain its integrity
+					throughout transportation until delivery to its operational site.
+				</description>
           <objective-refer ref="OE.TRUSTED_ADMIN">
             <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
 						A.TRUSTED_ADMIN.</rationale>
           </objective-refer>
         </assumption>
         <assumption name="A.TRUSTED_ADMIN">
-          <description>TOE Security Administrator are assumed to be trusted and to act in the best interest of security for the organization. The TOE is not expected to be capable of defending against a malicious Administrator that actively works to bypass or compromise the security of the platform.</description>
+          <description> TOE Security Administrator are assumed to be trusted and to act in the best interest
+					of security for the organization. The TOE is not expected to be capable of defending against a 
+					malicious Administrator that actively works to bypass or compromise the security of the platform.
+				</description>
           <objective-refer ref="OE.TRUSTED_ADMIN">
             <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
 					A.TRUSTED_ADMIN.</rationale>
           </objective-refer>
         </assumption>
         <assumption name="A.TRUSTED_DEVELOPMENT_AND_BUILD_PROCESSES">
-          <description>The TOE cannot protect itself during its own development and build processes. Therefore it is assumed that the developers and participants in the build process are not hostile.</description>
+          <description> The TOE cannot protect itself during its own development and build processes. Therefore
+					it is assumed that the developers and participants in the build process are not hostile.
+				</description>
           <objective-refer ref="OE.TRUSTED_ADMIN">
             <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
 						A.TRUSTED_ADMIN.</rationale>
           </objective-refer>
         </assumption>
         <assumption name="A.TRUSTED_USERS">
-          <description>Physically present non-administrative users of the TOE are assumed to be trusted as far as they are assumed to not be actively trying to subvert the system. (Not for all use cases).</description>
+          <description>Physically present non-administrative users of the TOE are assumed to be trusted as 
+					far as they are assumed to not be actively trying to subvert the system. (Not for all use cases).
+				</description>
           <objective-refer ref="OE.TRUSTED_ADMIN">
             <rationale>The operational environment objective OE.TRUSTED_ADMIN is realized through
 					A.TRUSTED_ADMIN.</rationale>
@@ -360,7 +463,9 @@
     <sec:Security_Objectives_for_the_TOE>
       <SOs>
         <SO name="O.ATTACK_DETECTION_AND_RESPONSE">
-          <description>The TOE must be capable of detecting attempts to compromise the physical or logical integrity of the TOE and respond by notifying a user or reporting the attempt to an enterprise security authority. This includes specification of:Requirements for responses to particular detected events. (resilience, secure state, etc.)Requirements for basic auditing capabilities and protection of audit records.Requirements for secure transmission of audit records (if applicable)</description>
+          <description>The TOE must be capable of detecting attempts to compromise the physical or logical integrity
+					of the TOE and respond by notifying a user or reporting the attempt to an enterprise security
+					authority. This includes specification of:Requirements for responses to particular detected events. (resilience, secure state, etc.)Requirements for basic auditing capabilities and protection of audit records.Requirements for secure transmission of audit records (if applicable)</description>
           <addressed-by>FAU_GEN.1</addressed-by>
           <rationale>Supports the objective by requiring reporting of security-related audit events.</rationale>
           <addressed-by>FAU_SAR.1</addressed-by>
@@ -381,7 +486,8 @@
           <rationale>Supports the objective by ensuring that audit events are marked with reliable time stamps.</rationale>
         </SO>
         <SO name="O.AUTHORIZED_ADMINISTRATOR">
-          <description>The TOE must ensure that Administrative actions can be taken only by authorized Administrators. This includes specification of:Requirements specifying actions allowable for the Administrator roleRequirements for processes for authenticating AdministratorsRequirements for protection of Administrator credentialsRequirements for setup and operation of a secure channel for remote administrationRequirements for management of administrator sessions.</description>
+          <description>The TOE must ensure that Administrative actions can be taken only by authorized Administrators. This includes 
+					specification of:Requirements specifying actions allowable for the Administrator roleRequirements for processes for authenticating AdministratorsRequirements for protection of Administrator credentialsRequirements for setup and operation of a secure channel for remote administrationRequirements for management of administrator sessions.</description>
           <addressed-by>FIA_AFL_EXT.1</addressed-by>
           <rationale>Supports the objective by requiring that Administrators be authenticated.</rationale>
           <addressed-by>FIA_PMG_EXT.1</addressed-by>
@@ -406,7 +512,8 @@
           <rationale>Supports the objective by defining the roles of Administrator and User.</rationale>
         </SO>
         <SO name="O.CONFIGURATION_INTEGRITY">
-          <description>The TOE should detect or prevent unauthorized users from being able to modify the system configuration. This includes:Requirements for authentication of Administrators before application of configuration modifications.Requirements for detection and reporting of attempts to modify the TOE configuration.</description>
+          <description>The TOE should detect or prevent unauthorized users from being able to modify the system configuration.
+					This includes:Requirements for authentication of Administrators before application of configuration modifications.Requirements for detection and reporting of attempts to modify the TOE configuration.</description>
           <addressed-by>FIA_UIA_EXT.1</addressed-by>
           <rationale>Supports the objective by requiring Administrators be authenticated before making changes.</rationale>
           <addressed-by>FMT_CFG_EXT.1</addressed-by>
@@ -417,7 +524,8 @@
           <rationale>Supports the objective by defining the roles of Administrator and User.</rationale>
         </SO>
         <SO name="O.MITIGATE_FUNDAMENTAL_FLAWS">
-          <description>The TOE must have a capability for mitigating or fixing fundamental flaws through update or some other technical or operational means. This includes specifications of:Requirements for updateability of TOE firmware.</description>
+          <description>The TOE must have a capability for mitigating or fixing fundamental flaws through update 
+					or some other technical or operational means. This includes specifications of:Requirements for updateability of TOE firmware.</description>
           <addressed-by>FPT_TUD_EXT.1</addressed-by>
           <rationale>Supports the objective through requiring that a TOE be either updateable or immutable.</rationale>
           <addressed-by>FPT_TUD_EXT.2</addressed-by>
@@ -428,7 +536,11 @@
           <rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>
         </SO>
         <SO name="O.PHYSICAL_INTEGRITY">
-          <description>The TOE must be able to protect the physical platform and interfaces from access by physical means such as probing, physical manipulation, fault-injection, side-channel analysis, environmental stress, or activating disabled features or pre-delivery services. This includes specification of:Requirements for tamper detectionRequirements for disabling or protection of external debug interfacesRequirements for updateabilityRequirements for environmental shielding This Objective applies only if the TOE implements a use case that addresses the threat T.PHYSICAL.</description>
+          <description>The TOE must be able to protect the physical platform and interfaces from access by physical means such as
+					probing, physical manipulation, fault-injection, side-channel analysis, environmental stress, or 
+					activating disabled features or pre-delivery services. This includes specification of:Requirements for tamper detectionRequirements for disabling or protection of external debug interfacesRequirements for updateabilityRequirements for environmental shielding
+					This Objective applies only if the TOE implements a use case that addresses the threat T.PHYSICAL.
+				</description>
           <addressed-by>FPT_JTA_EXT.1</addressed-by>
           <rationale>Supports the objective through restricting access to debug ports.</rationale>
           <addressed-by>FPT_JTA_EXT.2</addressed-by>
@@ -451,7 +563,11 @@
           <rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>
         </SO>
         <SO name="O.PROTECTED_FIRMWARE">
-          <description>TOE must ensure that its firmware cannot be modified other than through a non-bypassable trusted update process. This ensures the integrity of firmware both during the update process and while at rest. This includes specification of:Requirements for invocation of the trusted update processRequirements for non-bypassability of the update processRequirements for detection and reporting of attempts to modify TOE firmware outside of the trusted update process.</description>
+          <description>TOE must ensure that its firmware cannot be modified other than through 
+					a non-bypassable trusted update process. This ensures the integrity of firmware
+					both during the update process and while at rest. This includes
+					specification of:Requirements for invocation of the trusted update processRequirements for non-bypassability of the update processRequirements for detection and reporting of attempts to modify TOE 
+						firmware outside of the trusted update process.</description>
           <addressed-by>FPT_PPF_EXT.1</addressed-by>
           <rationale>Supports the objective by requiring that platform firmware be modifiable only through the update process.</rationale>
           <addressed-by>FPT_ROT_EXT.1</addressed-by>
@@ -470,7 +586,10 @@
           <rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>
         </SO>
         <SO name="O.SECURITY_FUNCTIONALITY_INTEGRITY">
-          <description>The TOE should be able not be able to operate with failed or degraded security functionality in such a way as might compromise the security or integrity of the TOE or of TOE data.Requirements for detection of degraded or failed security functionality.Requirements for protection of platform credentials against compromise (secret keys, passwords, etc.)Requirements for secure destruction of platform credentials (if applicable)Requirements for quality of credentials (password lengths and the like)</description>
+          <description>The TOE should be able not be able to operate with failed or degraded
+					security functionality in such a way as might compromise the security or integrity of 
+					the TOE or of TOE data.Requirements for detection of degraded or failed security functionality.Requirements for protection of platform credentials against compromise (secret keys,
+						passwords, etc.)Requirements for secure destruction of platform credentials (if applicable)Requirements for quality of credentials (password lengths and the like)</description>
           <addressed-by>FCS_CKM.4</addressed-by>
           <rationale>Supports the objective by specifying the requirements for credential and key destruction.</rationale>
           <addressed-by>FCS_CKM_EXT.4</addressed-by>
@@ -487,7 +606,9 @@
           <rationale>Supports the objective by requiring that platform firmware be modifiable only through the update process.</rationale>
         </SO>
         <SO name="O.STRONG_CRYPTOGRAPHY">
-          <description>Cryptography must meet the standards required for protection of National Security Systems data (in accordance with CNSSP 15, "Use of Public Standards for Secure Information Sharing"). This includes specification of:Requirements for use and configuration of cryptographic operations.Requirements for key generationRequirements for random bit generation support.</description>
+          <description>Cryptography must meet the standards required for protection of National Security Systems data 
+					(in accordance with CNSSP 15, "Use of Public Standards for Secure Information Sharing"). This includes 
+					specification of:Requirements for use and configuration of cryptographic operations.Requirements for key generationRequirements for random bit generation support.</description>
           <addressed-by>FCS_CKM.1/AK</addressed-by>
           <rationale>Supports the objective by specifying the requirements for generating asymmetric keys.</rationale>
           <addressed-by>FCS_CKM.1/SK</addressed-by>
@@ -514,7 +635,9 @@
           <rationale>Supports the objective by specifying the requirements for cryptographic salt generation.</rationale>
         </SO>
         <SO name="O.TENANT_SECURITY">
-          <description>The TOE should provide capabilities and security services to tenant software to help tenants help themselves. This includes specification of:Requirements for providing cryptographic support to tenants (random bit generation, crypto support instructions).Requirements for support for separation of tenant workloadsRequirements for supporting secure storage of tenant credentialsRequirements for supporting secure boot of a tenant operating system</description>
+          <description>The TOE should provide capabilities and security services to tenant software 
+					to help tenants help themselves. This includes specification of:Requirements for providing cryptographic support to tenants (random bit generation,
+						crypto support instructions).Requirements for support for separation of tenant workloadsRequirements for supporting secure storage of tenant credentialsRequirements for supporting secure boot of a tenant operating system</description>
           <addressed-by>FCS_ENT_EXT.1</addressed-by>
           <rationale>Supports the objective by requiring that the TOE provide entropy to tenant software.</rationale>
           <addressed-by>FCS_STG_EXT.1</addressed-by>
@@ -529,7 +652,10 @@
           <rationale>Supports the objective by specifying the requirements for a trusted execution environment.</rationale>
         </SO>
         <SO name="O.TRUSTED_CHANNELS">
-          <description>The TOE must protect certain network communications through guaranteed confidentiality, integrity, and authenticity. Such traffic includes communications with remote administrators, audit servers, update servers, and credential managers. This objective includes specification of:Requirements for the use of secure network protocolsRequirements for the use of public key certificatesRequirements for the authentication of endpoints</description>
+          <description>The TOE must protect certain network communications through guaranteed 
+					confidentiality, integrity, and authenticity. Such traffic includes communications with remote 
+					administrators, audit servers, update servers, and credential managers. This objective includes 
+					specification of:Requirements for the use of secure network protocolsRequirements for the use of public key certificatesRequirements for the authentication of endpoints</description>
           <addressed-by>FCS_HTTPS_EXT.1</addressed-by>
           <rationale>Supports the objective by specifying requirements for the HTTPS protocol.</rationale>
           <addressed-by>FCS_IPSEC_EXT.1</addressed-by>
@@ -540,7 +666,10 @@
           <rationale>Supports the objective by specifying how X.509 certificate authentication is performed.</rationale>
         </SO>
         <SO name="O.UPDATE_INTEGRITY">
-          <description>The TOE must ensure that updates to TOE firmware are authorized, authenticated, and properly validated prior to installation. This includes specification of:Requirements for protection of updatesRequirements for authentication of update packagesRequirements for management of updatesRequirements for detection and reporting of update events, whether authorized or not.</description>
+          <description>The TOE must ensure that updates to TOE firmware are authorized, 
+					authenticated, and properly validated prior
+					to installation. This includes specification of:Requirements for protection of updatesRequirements for authentication of update packagesRequirements for management of updatesRequirements for detection and reporting of update events, whether authorized or not.
+					</description>
           <addressed-by>FPT_PPF_EXT.1</addressed-by>
           <rationale>Supports the objective by requiring that platform firmware be modifiable only through the update process.</rationale>
           <addressed-by>FPT_ROT_EXT.2</addressed-by>
@@ -560,13 +689,20 @@
     <sec:Security_Objectives_for_the_Operational_Environment>
       <SOEs>
         <SOE name="OE.PHYSICAL_PROTECTION">
-          <description>Platforms that operate within data centers or in other access-controlled environments are expected to receive a considerable degree of protection from these environments. In addition to physical protection, these environments often provide malware-detection and behavior-monitoring services for networked computing assets.</description>
+          <description>Platforms that operate within data centers or in other access-controlled environments are 
+				expected to receive a considerable degree of protection from these environments. In addition to physical 
+				protection, these environments often provide malware-detection and behavior-monitoring services
+				for networked computing assets.</description>
         </SOE>
         <SOE name="OE.SUPPLY_CHAIN">
-          <description>The manufacturer is expected to implement processes to ensure that TOE hardware and firmware is not compromised between time of TOE manufacture and delivery to its operational site.</description>
+          <description>The manufacturer is expected to implement processes to ensure that TOE hardware and
+					firmware is not compromised between time of TOE manufacture and delivery to its operational site. 
+				</description>
         </SOE>
         <SOE name="OE.TRUSTED_ADMIN">
-          <description>The administrator of the GPCP is not careless, willfully negligent or hostile, and administers the platform within compliance of enterprise security policy.</description>
+          <description> The administrator of the GPCP is not careless, willfully
+					negligent or hostile, and administers the platform within compliance of enterprise
+					security policy. </description>
         </SOE>
       </SOEs>
     </sec:Security_Objectives_for_the_Operational_Environment>
@@ -805,12 +941,7 @@
           </depends>
           <f-element id="fcs-ckm-1e1-ak">
             <title>The TSF shall generate <h:b>asymmetric</h:b>  cryptographic keys in accordance with a specified cryptographic key generation algorithm<selectables><tabularize id="fcs-ckm-1-ak-sels" title="Choices for completion of the selection         operations in FCS_CKM.1.1/AK"><selectcol>Cryptographic key generation 
-							</selectcol><reqtext>and specified cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following: </reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-ckm-ak-rsa"><col>RSA</col><col><selectables><selectable id="sel-exp-ak-rsa-2048">2048 bit</selectable><selectable id="sel-exp-ak-rsa-3072">3072-bit</selectable> </selectables></col><col>FIPS PUB 186-4 sec. B.3 [key generation]</col></selectable><selectable id="sel-fcs-ckm-ak-eccn"><col>ECC-N</col><col><selectables><selectable id="sel-exp-ak-eccn-P256">256 (P-256)</selectable><selectable id="sel-exp-ak-eccn-P384">384 (P-384)</selectable><selectable id="sel-exp-ak-eccn-P521">521 (P-521)</selectable> </selectables></col><col>FIPS PUB 186-4 sec. D.1.2 [NIST curves]
-								FIPS PUB 186-4 sec. B.4 [key generation]</col></selectable><selectable id="sel-fcs-ckm-ak-eccb"><col>ECC-B</col><col><selectables><selectable id="sel-exp-ak-eccb-bpP256r1">256 (brainpoolP256r1)</selectable><selectable id="sel-exp-ak-eccb-bpP384r1">384 (brainpoolP384r1)</selectable><selectable id="sel-exp-ak-eccb-bpP512r1">512 (brainpoolP512r1)</selectable> </selectables></col><col>RFC 5639 sec. 3 [Brainpool Curves]
-							FIPS PUB 186-4 sec. B.4 [key generation]</col></selectable><selectable id="sel-fcs-ckm-ak-dsa"><col>DSA</col><col>DSA Bit lengths of p and q respectively (L, N) 
-							<selectables><selectable id="sel-exp-ak-dsa-2048-224">(2048, 224)</selectable><selectable id="sel-exp-ak-dsa-2048-256">(2048, 256)</selectable><selectable id="sel-exp-ak-dsa-3027-256">(3027, 256)</selectable> </selectables></col><col>FIPS PUB 186-4 sec. B.1 [key generation]</col></selectable><selectable id="sel-fcs-ckm-ak-curve25519"><col>Curve25519</col><col>256 bits</col><col>RFC 7748 [Curve25519]
-							FIPS PUB 186-4 sec. B.4 [key generation]
-							</col></selectable></selectables></title>
+							</selectcol><reqtext>and specified cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following: </reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-ckm-ak-rsa"><col>undefined</col></selectable><selectable id="sel-fcs-ckm-ak-eccn"><col>undefined</col></selectable><selectable id="sel-fcs-ckm-ak-eccb"><col>undefined</col></selectable><selectable id="sel-fcs-ckm-ak-dsa"><col>undefined</col></selectable><selectable id="sel-fcs-ckm-ak-curve25519"><col>undefined</col></selectable></selectables></title>
             <note role="application">
 					This SFR must be included in the ST if asymmetric key generation is a service provided by 
 					the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
@@ -1159,7 +1290,7 @@
 			[FCS_CKM.1 Cryptographic Key Generation or
 			FDP_ITC_EXT.1 Key/Credential Import]</dependencies>
           <f-element id="fcs-ckm-ext-5e1">
-            <title>The TSF shall derive cryptographic keys of type<assignable>key type</assignable><selectables><tabularize id="fcs-ckm-keydrv-sels" title="Choices for completion of the assignment operations in FCS_CKM_EXT.5.1"><textcol>Identifier</textcol><reqtext>from input parameters</reqtext><selectcol>Input parameters</selectcol><reqtext>in accordance with a specified key derivation algorithm</reqtext><selectcol>Key derivation algorithm</selectcol><reqtext>and specified cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-ckm-ext-5-kdf-ctr"><col>KDF-CTR</col><col><selectables><selectable id="sel-fcs-ckm-5-kdf-ctr-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable><selectable id="fcs_ckm_ext.5.1_2">Concatenated keys</selectable> </selectables></col><col>KDF in Counter Mode using <selectables><selectable id="fcs_ckm_ext.5.1_3">CMAC-AES-128</selectable><selectable id="fcs_ckm_ext.5.1_4">CMAC-AES-192</selectable><selectable id="fcs_ckm_ext.5.1_5">CMAC-AES-256</selectable><selectable id="fcs_ckm_ext.5.1_6">HMAC-SHA-1</selectable><selectable id="fcs_ckm_ext.5.1_7">HMAC-SHA-256</selectable><selectable id="fcs_ckm_ext.5.1_8">HMAC-SHA-512</selectable> </selectables> as the PRF</col><col><selectables><selectable id="fcs_ckm_ext.5.1_9">128</selectable><selectable id="fcs_ckm_ext.5.1_10">192</selectable><selectable id="fcs_ckm_ext.5.1_11">256</selectable> </selectables> bits</col><col>NIST SP 800-108 sec. 5.1 (KDF in Counter Mode)<selectables><selectable id="fcs_ckm_ext.5.1_12">ISO/IEC 9797-1:2011 (CMAC)</selectable><selectable id="fcs_ckm_ext.5.1_13">NIST SP 800-38B (CMAC)</selectable><selectable id="fcs_ckm_ext.5.1_14">ISO/IEC 18033-3:2010 (AES)</selectable><selectable id="fcs_ckm_ext.5.1_15">ISO/IEC 9797-2:2011 (HMAC)</selectable><selectable id="fcs_ckm_ext.5.1_16">FIPS PUB 198-1 (HMAC)</selectable><selectable id="fcs_ckm_ext.5.1_17">ISO/IEC 10118-3:2018 (SHA)</selectable><selectable id="fcs_ckm_ext.5.1_18">FIPS PUB 180-4 (SHA)</selectable> </selectables></col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-fb"><col>KDF-FB</col><col><selectables><selectable id="sel-fcs-ckm-5-kdf-fb-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable><selectable id="fcs_ckm_ext.5.1_19">Concatenated keys</selectable> </selectables></col><col>KDF in Feedback Mode using <selectables><selectable id="fcs_ckm_ext.5.1_20">CMAC-AES-128</selectable><selectable id="fcs_ckm_ext.5.1_21">CMAC-AES-192</selectable><selectable id="fcs_ckm_ext.5.1_22">CMAC-AES-256</selectable><selectable id="fcs_ckm_ext.5.1_23">HMAC-SHA-1</selectable><selectable id="fcs_ckm_ext.5.1_24">HMAC-SHA-256</selectable><selectable id="fcs_ckm_ext.5.1_25">HMAC-SHA-512</selectable> </selectables> as the PRF</col><col><selectables><selectable id="fcs_ckm_ext.5.1_26">128</selectable><selectable id="fcs_ckm_ext.5.1_27">192</selectable><selectable id="fcs_ckm_ext.5.1_28">256</selectable> </selectables> bits</col><col>NIST SP 800-108 sec 5.2 (KDF in Feedback Mode)<selectables><selectable id="fcs_ckm_ext.5.1_29">ISO/IEC 9797-1:2011 (CMAC)</selectable><selectable id="fcs_ckm_ext.5.1_30">NIST SP 800-38B (CMAC)</selectable><selectable id="fcs_ckm_ext.5.1_31">ISO/IEC 18033-3:2010 (AES)</selectable><selectable id="fcs_ckm_ext.5.1_32">ISO/IEC 9797-2:2011 (HMAC)</selectable><selectable id="fcs_ckm_ext.5.1_33">FIPS PUB 198-1 (HMAC)</selectable><selectable id="fcs_ckm_ext.5.1_34">ISO/IEC 10118-3:2018 (SHA)</selectable><selectable id="fcs_ckm_ext.5.1_35">FIPS PUB 180-4 (SHA)</selectable> </selectables></col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-dpi"><col>KDF-DPI</col><col><selectables><selectable id="sel-fcs-ckm-5-kdf-dpi-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG_EXT.1</selectable><selectable id="fcs_ckm_ext.5.1_36">Concatenated keys</selectable> </selectables></col><col>KDF in Double Pipeline Iteration Mode using <selectables><selectable id="fcs_ckm_ext.5.1_37">CMAC-AES-128</selectable><selectable id="fcs_ckm_ext.5.1_38">CMAC-AES-192</selectable><selectable id="fcs_ckm_ext.5.1_39">CMAC-AES-256</selectable><selectable id="fcs_ckm_ext.5.1_40">HMAC-SHA-1</selectable><selectable id="fcs_ckm_ext.5.1_41">HMAC-SHA-256</selectable><selectable id="fcs_ckm_ext.5.1_42">HMAC-SHA-512</selectable> </selectables> as the PRF</col><col><selectables><selectable id="fcs_ckm_ext.5.1_43">128</selectable><selectable id="fcs_ckm_ext.5.1_44">192</selectable><selectable id="fcs_ckm_ext.5.1_45">256</selectable> </selectables>bits</col><col>NIST SP 800-108 sec. 5.3 (KDF in n Double Pipeline Iteration Mode)<selectables><selectable id="fcs_ckm_ext.5.1_46">ISO/IEC 9797-1:2011 (CMAC)</selectable><selectable id="fcs_ckm_ext.5.1_47">NIST SP 800-38B (CMAC)</selectable><selectable id="fcs_ckm_ext.5.1_48">ISO/IEC 18033-3:2010 (AES)</selectable><selectable id="fcs_ckm_ext.5.1_49">ISO/IEC 9797-2:2011 (HMAC)</selectable><selectable id="fcs_ckm_ext.5.1_50">FIPS PUB 198-1 (HMAC)</selectable><selectable id="fcs_ckm_ext.5.1_51">ISO/IEC 10118-3:2018 (SHA)</selectable><selectable id="fcs_ckm_ext.5.1_52">FIPS PUB 180-4 (SHA)</selectable> </selectables></col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-xor"><col>KDF-XOR</col><col>Intermediary keys</col><col><selectables><selectable id="fcs_ckm_ext.5.1_53">exclusive OR (XOR)</selectable><selectable id="fcs_ckm_ext.5.1_54">SHA-256</selectable><selectable id="fcs_ckm_ext.5.1_55">SHA-512</selectable> </selectables></col><col><selectables><selectable id="fcs_ckm_ext.5.1_56">128</selectable><selectable id="fcs_ckm_ext.5.1_57">192</selectable><selectable id="fcs_ckm_ext.5.1_58">256</selectable> </selectables> bits</col><col><selectables><selectable id="fcs_ckm_ext.5.1_59">ISO/IEC 10118-3:2018 (SHA)</selectable><selectable id="fcs_ckm_ext.5.1_60">FIPS PUB 180-4 (SHA)</selectable> </selectables></col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-enc"><col>KDF-ENC</col><col>Two keys</col><col>Encryption using <selectables><selectable id="fcs_ckm_ext.5.1_61">AES-CCM</selectable><selectable id="fcs_ckm_ext.5.1_62">AES-GCM</selectable><selectable id="fcs_ckm_ext.5.1_63">AES-CBC</selectable><selectable id="fcs_ckm_ext.5.1_64">AES-KWP</selectable><selectable id="fcs_ckm_ext.5.1_65">AES-KW</selectable> </selectables></col><col><selectables><selectable id="fcs_ckm_ext.5.1_66">128</selectable><selectable id="fcs_ckm_ext.5.1_67">192</selectable><selectable id="fcs_ckm_ext.5.1_68">256</selectable> </selectables> bits</col><col><selectables><selectable id="fcs_ckm_ext.5.1_69">ISO/IEC 18033-3:2010 (subclause 5.2) (AES)</selectable><selectable id="fcs_ckm_ext.5.1_70">FIPS PUB 197 (AES)</selectable><selectable id="fcs_ckm_ext.5.1_71">ISO/IEC 10116:2017 (clause 7) (CBC)</selectable><selectable id="fcs_ckm_ext.5.1_72">NIST SP 800-38A sec. 6.2 (CBC)</selectable><selectable id="fcs_ckm_ext.5.1_73">ISO/IEC 19772:2009 (clause 8) (CCM)</selectable><selectable id="fcs_ckm_ext.5.1_74">NIST SP 800-38C (CCM)</selectable><selectable id="fcs_ckm_ext.5.1_75">ISO/IEC 19772:2009 (clause 11) (GCM)</selectable><selectable id="fcs_ckm_ext.5.1_76">NIST SP 800-38D (GCM)</selectable><selectable id="fcs_ckm_ext.5.1_77">IEEE Std. 1619-2007 (XTS)</selectable><selectable id="fcs_ckm_ext.5.1_78">NIST SP 800-38E (XTS)</selectable><selectable id="fcs_ckm_ext.5.1_79">ISO/IEC 19772:2009, clause 7 (Key wrap)</selectable><selectable id="fcs_ckm_ext.5.1_80">NIST SP 800-38F sec. 6.2 (KW)</selectable><selectable id="fcs_ckm_ext.5.1_81">NIST SP 800-38F sec. 6.3 (KWP)</selectable> </selectables></col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-hash"><col>KDF-HASH</col><col>Shared secret, salt, output length, fixed information</col><col><assignable>keyed hash from FCS_COP.1/KeyedHash</assignable></col><col><selectables><selectable id="fcs_ckm_ext.5.1_82">128</selectable><selectable id="fcs_ckm_ext.5.1_83">192</selectable><selectable id="fcs_ckm_ext.5.1_84">256</selectable> </selectables> bits</col><col>NIST SP 800-56C rev2, sec. 4</col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-mac"><col>KDF-MAC</col><col>Shared secret, salt, IV, output length, fixed information</col><col><assignable>keyed hash from FCS_COP.1/KeyedHash</assignable></col><col><selectables><selectable id="fcs_ckm_ext.5.1_85">128</selectable><selectable id="fcs_ckm_ext.5.1_86">192</selectable><selectable id="fcs_ckm_ext.5.1_87">256</selectable> </selectables> bits</col><col>NIST SP 800-56C rev2, sec. 4</col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-pb"><col>KDF-PBKDF</col><col>Password, salt, iteration count</col><col><selectables><selectable id="fcs_ckm_ext.5.1_88">HMAC-SHA-1</selectable><selectable id="fcs_ckm_ext.5.1_89">HMAC-SHA-224</selectable><selectable id="fcs_ckm_ext.5.1_90">HMAC-SHA-256</selectable><selectable id="fcs_ckm_ext.5.1_91">HMAC-SHA-384</selectable><selectable id="fcs_ckm_ext.5.1_92">HMAC-SHA-512</selectable><selectable id="fcs_ckm_ext.5.1_93">HMAC-SHA-512/224</selectable><selectable id="fcs_ckm_ext.5.1_94">HMAC-SHA-512/256</selectable><selectable id="fcs_ckm_ext.5.1_95">HMAC-SHA3-224</selectable><selectable id="fcs_ckm_ext.5.1_96">HMAC-SHA3-256</selectable><selectable id="fcs_ckm_ext.5.1_97">HMAC-SHA3-384</selectable><selectable id="fcs_ckm_ext.5.1_98">HMAC-SHA3-512</selectable> </selectables></col><col><selectables><selectable id="fcs_ckm_ext.5.1_99">128</selectable><selectable id="fcs_ckm_ext.5.1_100">192</selectable><selectable id="fcs_ckm_ext.5.1_101">256</selectable> </selectables> bits</col><col>NIST SP 800-132</col></selectable></selectables></title>
+            <title>The TSF shall derive cryptographic keys of type<assignable>key type</assignable><selectables><tabularize id="fcs-ckm-keydrv-sels" title="Choices for completion of the assignment operations in FCS_CKM_EXT.5.1"><textcol>Identifier</textcol><reqtext>from input parameters</reqtext><selectcol>Input parameters</selectcol><reqtext>in accordance with a specified key derivation algorithm</reqtext><selectcol>Key derivation algorithm</selectcol><reqtext>and specified cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-ckm-ext-5-kdf-ctr"><col>KDF-CTR</col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-fb"><col>KDF-FB</col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-dpi"><col>KDF-DPI</col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-xor"><col>KDF-XOR</col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-enc"><col>KDF-ENC</col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-hash"><col>KDF-HASH</col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-mac"><col>KDF-MAC</col></selectable><selectable id="sel-fcs-ckm-ext-5-kdf-pb"><col>KDF-PBKDF</col></selectable></selectables></title>
             <note role="application">
 					The "key type" assignment should indicate the type type of key being derived, e.g. "<h:i>symmetric</h:i>,"
 					"<h:i>asymmetric</h:i>," or "<h:i>HMAC</h:i>."<h:p/>
@@ -1462,8 +1593,7 @@
             <optional/>
           </depends>
           <f-element id="fcs-cop-1e1-kat">
-            <title>The TSF shall perform [ <h:i>cryptographic key agreement/transport</h:i>  ] in accordance with a specified cryptographic algorithm<selectables><tabularize id="fcs-ckm-kat-sels" title="Choices for completion of the assignment operations in FCS_COP.1.1/KAT"><selectcol>Cryptographic algorithm</selectcol><reqtext>and cryptographic key sizes</reqtext><selectcol>Cryptographic key size</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-cop-kat-kas1"><col>KAS1 (RSA single-party)</col><col><selectables><selectable id="fcs_cop.1.1_KAT_1">2048</selectable><selectable id="fcs_cop.1.1_KAT_2">3072</selectable><selectable id="fcs_cop.1.1_KAT_3">4096</selectable><selectable id="fcs_cop.1.1_KAT_4">6144</selectable><selectable id="fcs_cop.1.1_KAT_5">8192</selectable> </selectables> bits</col><col>NIST SP 800-56B rev2 sec. 8.2</col></selectable><selectable id="sel-fcs-cop-kat-kas2"><col>KAS2 (RSA Two-party)</col><col><selectables><selectable id="fcs_cop.1.1_KAT_6">2048</selectable><selectable id="fcs_cop.1.1_KAT_7">3072</selectable><selectable id="fcs_cop.1.1_KAT_8">4096</selectable><selectable id="fcs_cop.1.1_KAT_9">6144</selectable><selectable id="fcs_cop.1.1_KAT_10">8192</selectable> </selectables> bits</col><col>NIST SP 800-56B rev2 sec. 8.3</col></selectable><selectable id="sel-fcs-cop-kat-kts"><col>KTS-OAEP (RSA)</col><col><selectables><selectable id="fcs_cop.1.1_KAT_11">2048</selectable><selectable id="fcs_cop.1.1_KAT_12">3072</selectable><selectable id="fcs_cop.1.1_KAT_13">4096</selectable><selectable id="fcs_cop.1.1_KAT_14">6144</selectable><selectable id="fcs_cop.1.1_KAT_15">8192</selectable> </selectables> bits</col><col>NIST SP 800-56B rev2 sec. 9</col></selectable><selectable id="sel-fcs-cop-kat-rsaes"><col>RSAES-PKCS1-v1_5 (RSA)</col><col><selectables><selectable id="fcs_cop.1.1_KAT_16">2048</selectable><selectable id="fcs_cop.1.1_KAT_17">3072</selectable><selectable id="fcs_cop.1.1_KAT_18">4096</selectable><selectable id="fcs_cop.1.1_KAT_19">6144</selectable><selectable id="fcs_cop.1.1_KAT_20">8192</selectable> </selectables> bits</col><col>RFC 8017 sec. 7.2</col></selectable><selectable id="sel-fcs-cop-kat-ecdh-nist"><col>ECDH-NIST (ECDH with NIST curves)</col><col><selectables><selectable id="fcs_cop.1.1_KAT_21">256 (P-256)</selectable><selectable id="fcs_cop.1.1_KAT_22">384 (P-384)</selectable><selectable id="fcs_cop.1.1_KAT_23">512 (P-521)</selectable> </selectables></col><col>NIST SP 800-56A rev3</col></selectable><selectable id="sel-fcs-cop-kat-ecdh-bpc"><col>ECDH-BPC (ECDH with Brainpool curves)</col><col><selectables><selectable id="fcs_cop.1.1_KAT_24">256 (brainpoolP256r1)</selectable><selectable id="fcs_cop.1.1_KAT_25">384 (brainpoolP384r1</selectable><selectable id="fcs_cop.1.1_KAT_26">512 (brainpoolP512r1)</selectable> </selectables></col><col>RFC 5639 sec. 3</col></selectable><selectable id="sel-fcs-cop-kat-dh"><col>DH (Diffie-Hellman)</col><col><selectables><selectable id="fcs_cop.1.1_KAT_27">2048</selectable><selectable id="fcs_cop.1.1_KAT_28">3072</selectable><selectable id="fcs_cop.1.1_KAT_29">4096</selectable><selectable id="fcs_cop.1.1_KAT_30">6144</selectable><selectable id="fcs_cop.1.1_KAT_31">8192</selectable> </selectables> bits</col><col>NIST SP 800-56A rev3,
-								<selectables><selectable id="fcs_cop.1.1_KAT_32">RFC 3526 sec.<selectables><selectable id="fcs_cop.1.1_KAT_33">3</selectable><selectable id="fcs_cop.1.1_KAT_34">4</selectable><selectable id="fcs_cop.1.1_KAT_35">5</selectable><selectable id="fcs_cop.1.1_KAT_36">6</selectable><selectable id="fcs_cop.1.1_KAT_37">7</selectable></selectables></selectable><selectable id="fcs_cop.1.1_KAT_38">RFC 7919 App.<selectables><selectable id="fcs_cop.1.1_KAT_39">A.1</selectable><selectable id="fcs_cop.1.1_KAT_40">A.2</selectable><selectable id="fcs_cop.1.1_KAT_41">A.3</selectable><selectable id="fcs_cop.1.1_KAT_42">A.4</selectable><selectable id="fcs_cop.1.1_KAT_43">A.5</selectable></selectables></selectable> </selectables></col></selectable><selectable id="sel-fcs-cop-kat-curve25519"><col>ECDH-25519 (ECDH with Curve25519)</col><col>256 bits</col><col>RFC 7748</col></selectable><selectable id="sel-fcs-cop-kat-ecies"><col>ECIES</col><col><selectables><selectable id="fcs_cop.1.1_KAT_44">256</selectable><selectable id="fcs_cop.1.1_KAT_45">384</selectable><selectable id="fcs_cop.1.1_KAT_46">512</selectable> </selectables> bits</col><col><selectables><selectable id="fcs_cop.1.1_KAT_47">ANSI X9.63</selectable><selectable id="fcs_cop.1.1_KAT_48">IEEE 1363a</selectable><selectable id="fcs_cop.1.1_KAT_49">ISO/IEC 18033-2 Part 2</selectable><selectable id="fcs_cop.1.1_KAT_50">SECG SEC1 sec. 5.1</selectable> </selectables></col></selectable></selectables></title>
+            <title>The TSF shall perform [ <h:i>cryptographic key agreement/transport</h:i>  ] in accordance with a specified cryptographic algorithm<selectables><tabularize id="fcs-ckm-kat-sels" title="Choices for completion of the assignment operations in FCS_COP.1.1/KAT"><selectcol>Cryptographic algorithm</selectcol><reqtext>and cryptographic key sizes</reqtext><selectcol>Cryptographic key size</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-cop-kat-kas1"><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-kas2"><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-kts"><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-rsaes"><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-ecdh-nist"><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-ecdh-bpc"><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-dh"><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-curve25519"><col>undefined</col></selectable><selectable id="sel-fcs-cop-kat-ecies"><col>undefined</col></selectable></selectables></title>
             <note role="application">
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
@@ -1679,16 +1809,7 @@
             <optional/>
           </depends>
           <f-element id="fcs-cop-1e1-siggen">
-            <title>The TSF shall perform <h:b>digital signature generation</h:b>  in accordance with a specified cryptographic algorithm<selectables><tabularize id="tab-fcs-cop-siggen-sels" title="Choices for completion of the assignments in         FCS_COP.1.1/SigGen."><textcol>Identifier</textcol><reqtext/><selectcol>Cryptographic algorithm</selectcol><reqtext>and cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-cop-siggen-rsa-pkcs1"><col>RSASSA-PKCS1</col><col>RSASSA-PKCS1-v1_5 using
-							<selectables><selectable id="fcs_cop.1.1_SigGen_1">SHA-256</selectable><selectable id="fcs_cop.1.1_SigGen_2">SHA-384</selectable><selectable id="fcs_cop.1.1_SigGen_3">SHA-512</selectable><selectable id="fcs_cop.1.1_SigGen_4">SHA3-256</selectable><selectable id="fcs_cop.1.1_SigGen_5">SHA3-384</selectable><selectable id="fcs_cop.1.1_SigGen_6">SHA3-512</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigGen_7">2048 bit</selectable><selectable id="fcs_cop.1.1_SigGen_8">3072 bit</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigGen_9">RFC 8017</selectable><selectable id="fcs_cop.1.1_SigGen_10">PKCS #1 v2.2 (sec. 8.2)</selectable><selectable id="fcs_cop.1.1_SigGen_11">FIPS PUB 186-4, (sec. 5.5)</selectable> </selectables>(RSASSA-PKCS1-v1_5)<selectables><selectable id="fcs_cop.1.1_SigGen_12">ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigGen_13">FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigGen_14">FIPS PUB 202 [SHA3]</selectable> </selectables></col></selectable><selectable id="sel-fcs-cop-siggen-dss2"><col>DSS2</col><col>Digital signature scheme 2 using
-							<selectables><selectable id="fcs_cop.1.1_SigGen_15">SHA-256</selectable><selectable id="fcs_cop.1.1_SigGen_16">SHA-384</selectable><selectable id="fcs_cop.1.1_SigGen_17">SHA-512</selectable><selectable id="fcs_cop.1.1_SigGen_18">SHA3-256</selectable><selectable id="fcs_cop.1.1_SigGen_19">SHA3-384</selectable><selectable id="fcs_cop.1.1_SigGen_20">SHA3-512</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigGen_21">2048 bit</selectable><selectable id="fcs_cop.1.1_SigGen_22">3072 bit</selectable> </selectables></col><col>
-							ISO/IEC 9796-2 (cl. 9) [Digital signature scheme 2]<selectables><selectable id="fcs_cop.1.1_SigGen_23">ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigGen_24">FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigGen_25">FIPS PUB 202 [SHA3]</selectable> </selectables></col></selectable><selectable id="sel-fcs-cop-siggen-dss3"><col>DSS3</col><col>Digital signature scheme 3 using
-							<selectables><selectable id="fcs_cop.1.1_SigGen_26">SHA-256</selectable><selectable id="fcs_cop.1.1_SigGen_27">SHA-384</selectable><selectable id="fcs_cop.1.1_SigGen_28">SHA-512</selectable><selectable id="fcs_cop.1.1_SigGen_29">SHA3-256</selectable><selectable id="fcs_cop.1.1_SigGen_30">SHA3-384</selectable><selectable id="fcs_cop.1.1_SigGen_31">SHA3-512</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigGen_32">2048 bit</selectable><selectable id="fcs_cop.1.1_SigGen_33">3072 bit</selectable> </selectables></col><col>
-							ISO/IEC 9796-2 (cl. 10) [Digital signature scheme 3]<selectables><selectable id="fcs_cop.1.1_SigGen_34">ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigGen_35">FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigGen_36">FIPS PUB 202 [SHA3]</selectable> </selectables></col></selectable><selectable id="sel-fcs-cop-siggen-rsa-pss"><col>RSASSA-PSS</col><col>RSASSA-PSS using
-							<selectables><selectable id="fcs_cop.1.1_SigGen_37">SHA-256</selectable><selectable id="fcs_cop.1.1_SigGen_38">SHA-384</selectable><selectable id="fcs_cop.1.1_SigGen_39">SHA-512</selectable><selectable id="fcs_cop.1.1_SigGen_40">SHA3-256</selectable><selectable id="fcs_cop.1.1_SigGen_41">SHA3-384</selectable><selectable id="fcs_cop.1.1_SigGen_42">SHA3-512</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigGen_43">2048 bit</selectable><selectable id="fcs_cop.1.1_SigGen_44">3072 bit</selectable> </selectables></col><col>
-							RFC 8017, PKCS#1v2.2 sec. 8.1 [RSASSAPSS]<selectables><selectable id="fcs_cop.1.1_SigGen_45">ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigGen_46">FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigGen_47">FIPS PUB 202 [SHA3]</selectable> </selectables></col></selectable><selectable id="sel-fcs-cop-siggen-ecdsa"><col>ECDSA</col><col>ECDSA on 
-							<selectables><selectable id="fcs_cop.1.1_SigGen_48">brainpoolP256r1</selectable><selectable id="fcs_cop.1.1_SigGen_49">brainpoolP384r1</selectable><selectable id="fcs_cop.1.1_SigGen_50">brainpoolP512r1</selectable><selectable id="fcs_cop.1.1_SigGen_51">NIST P-256</selectable><selectable id="fcs_cop.1.1_SigGen_52">NIST P-384</selectable><selectable id="fcs_cop.1.1_SigGen_53">NIST P-521</selectable> </selectables> using
-							<selectables><selectable id="fcs_cop.1.1_SigGen_54">SHA-256</selectable><selectable id="fcs_cop.1.1_SigGen_55">SHA-384</selectable><selectable id="fcs_cop.1.1_SigGen_56">SHA-512</selectable><selectable id="fcs_cop.1.1_SigGen_57">SHA3-256</selectable><selectable id="fcs_cop.1.1_SigGen_58">SHA3-384</selectable><selectable id="fcs_cop.1.1_SigGen_59">SHA3-512</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigGen_60">2048 bit</selectable><selectable id="fcs_cop.1.1_SigGen_61">3072 bit</selectable> </selectables></col><col><selectables linebreak="yes"><selectable id="fcs_cop.1.1_SigGen_62"><selectables><selectable id="fcs_cop.1.1_SigGen_63">ISO/IEC 14888-3</selectable><selectable id="fcs_cop.1.1_SigGen_64">FIPS PUB 186-4 (sec. 6)</selectable></selectables>(EDCSA)</selectable><selectable id="fcs_cop.1.1_SigGen_65">RFC 5639 (sec. 3) [Brainpool Curves]</selectable><selectable id="fcs_cop.1.1_SigGen_66">FIPS PUB 186-4 (app. D.1.2) [NIST Curves]</selectable> </selectables><selectables><selectable id="fcs_cop.1.1_SigGen_67">ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigGen_68">FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigGen_69">FIPS PUB 202 [SHA3]</selectable> </selectables></col></selectable></selectables></title>
+            <title>The TSF shall perform <h:b>digital signature generation</h:b>  in accordance with a specified cryptographic algorithm<selectables><tabularize id="tab-fcs-cop-siggen-sels" title="Choices for completion of the assignments in         FCS_COP.1.1/SigGen."><textcol>Identifier</textcol><reqtext/><selectcol>Cryptographic algorithm</selectcol><reqtext>and cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-cop-siggen-rsa-pkcs1"><col>RSASSA-PKCS1</col></selectable><selectable id="sel-fcs-cop-siggen-dss2"><col>DSS2</col></selectable><selectable id="sel-fcs-cop-siggen-dss3"><col>DSS3</col></selectable><selectable id="sel-fcs-cop-siggen-rsa-pss"><col>RSASSA-PSS</col></selectable><selectable id="sel-fcs-cop-siggen-ecdsa"><col>ECDSA</col></selectable></selectables></title>
             <note role="application">			
 					This SFR must be included in the ST if digital signature generation is a service provided by the TOE to 
 					tenant software, or if digital signature generation is used by the TOE itself to support or implement 
@@ -1744,21 +1865,119 @@
             <optional/>
           </depends>
           <f-element id="fcs-cop-1e1-sigver">
-            <title><h:p>The TSF shall perform <h:b>digital signature verification</h:b> in accordance with a specified cryptographic algorithm</h:p><selectables><tabularize id="tab-fcs-cop-sigver-sels" title="Choices for completion of the assignments        in FCS_COP.1.1/SigVer."><textcol>Identifier</textcol><reqtext/><selectcol>Cryptographic algorithm</selectcol><reqtext>and cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-cop-sigver-rsa-pkcs"><col>RSASSA-PKCS1</col><col>RSASSA-PKCS1-v1_5 using
-						<selectables><selectable id="fcs_cop.1.1_SigVer_1">SHA-256</selectable><selectable id="fcs_cop.1.1_SigVer_2">SHA-384</selectable><selectable id="fcs_cop.1.1_SigVer_3">SHA-512</selectable><selectable id="fcs_cop.1.1_SigVer_4">SHA3-256</selectable><selectable id="fcs_cop.1.1_SigVer_5">SHA3-384</selectable><selectable id="fcs_cop.1.1_SigVer_6">SHA3-512</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigVer_7">2048 bit</selectable><selectable id="fcs_cop.1.1_SigVer_8">3072 bit</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigVer_9">RFC 8017</selectable><selectable id="fcs_cop.1.1_SigVer_10">PKCS #1 v2.2 (sec. 8.2)</selectable><selectable id="fcs_cop.1.1_SigVer_11">FIPS PUB 186-4, (sec 5.5)</selectable> </selectables>[RSASSA-PKCS1-v1_5]<selectables><selectable id="fcs_cop.1.1_SigVer_12">ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigVer_13">FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigVer_14">FIPS PUB 202 [SHA3]</selectable> </selectables></col></selectable><selectable id="sel-fcs-cop-sigver-dss2"><col>DSS2</col><col>Digital signature scheme 2 using
-						<selectables><selectable id="fcs_cop.1.1_SigVer_15">SHA-256</selectable><selectable id="fcs_cop.1.1_SigVer_16">SHA-384</selectable><selectable id="fcs_cop.1.1_SigVer_17">SHA-512</selectable><selectable id="fcs_cop.1.1_SigVer_18">SHA3-256</selectable><selectable id="fcs_cop.1.1_SigVer_19">SHA3-384</selectable><selectable id="fcs_cop.1.1_SigVer_20">SHA3-512</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigVer_21">2048 bit</selectable><selectable id="fcs_cop.1.1_SigVer_22">3072 bit</selectable> </selectables></col><col>
-						ISO/IEC 9796-2 (cl. 9) [Digital signature scheme 2]<selectables><selectable id="fcs_cop.1.1_SigVer_23">ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigVer_24">FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigVer_25">FIPS PUB 202 [SHA3]</selectable> </selectables></col></selectable><selectable id="sel-fcs-cop-sigver-dss3"><col>DSS3</col><col>Digital signature scheme 3 using
-						<selectables><selectable id="fcs_cop.1.1_SigVer_26">SHA-256</selectable><selectable id="fcs_cop.1.1_SigVer_27">SHA-384</selectable><selectable id="fcs_cop.1.1_SigVer_28">SHA-512</selectable><selectable id="fcs_cop.1.1_SigVer_29">SHA3-256</selectable><selectable id="fcs_cop.1.1_SigVer_30">SHA3-384</selectable><selectable id="fcs_cop.1.1_SigVer_31">SHA3-512</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigVer_32">2048 bit</selectable><selectable id="fcs_cop.1.1_SigVer_33">3072 bit</selectable> </selectables></col><col>
-						ISO/IEC 9796-2, (Clause 10) (Digital signature scheme 3)<selectables><selectable id="fcs_cop.1.1_SigVer_34">ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigVer_35">FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigVer_36">FIPS PUB 202 [SHA3]</selectable> </selectables></col></selectable><selectable id="sel-fcs-cop-sigver-rsa-pss"><col>RSASSA-PSS</col><col>RSASSA-PSS using
-						<selectables><selectable id="fcs_cop.1.1_SigVer_37">SHA-256</selectable><selectable id="fcs_cop.1.1_SigVer_38">SHA-384</selectable><selectable id="fcs_cop.1.1_SigVer_39">SHA-512</selectable><selectable id="fcs_cop.1.1_SigVer_40">SHA3-256</selectable><selectable id="fcs_cop.1.1_SigVer_41">SHA3-384</selectable><selectable id="fcs_cop.1.1_SigVer_42">SHA3-512</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigVer_43">2048 bit</selectable><selectable id="fcs_cop.1.1_SigVer_44">3072 bit</selectable> </selectables></col><col>
-						[RFC 8017, PKCS#1v2.2 (Section 8.1)] (RSASSAPSS)<selectables><selectable id="fcs_cop.1.1_SigVer_45">ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigVer_46">FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigVer_47">FIPS PUB 202 [SHA3]</selectable> </selectables></col></selectable><selectable id="sel-fcs-cop-sigver-5"><col>ECDSA</col><col>ECDSA on 
-						<selectables><selectable id="fcs_cop.1.1_SigVer_48">brainpoolP256r1</selectable><selectable id="fcs_cop.1.1_SigVer_49">brainpoolP384r1</selectable><selectable id="fcs_cop.1.1_SigVer_50">brainpoolP512r1</selectable><selectable id="fcs_cop.1.1_SigVer_51">NIST P-256</selectable><selectable id="fcs_cop.1.1_SigVer_52">NIST P-384</selectable><selectable id="fcs_cop.1.1_SigVer_53">NIST P-521</selectable> </selectables> using
-						<selectables><selectable id="fcs_cop.1.1_SigVer_54">SHA-256</selectable><selectable id="fcs_cop.1.1_SigVer_55">SHA-384</selectable><selectable id="fcs_cop.1.1_SigVer_56">SHA-512</selectable><selectable id="fcs_cop.1.1_SigVer_57">SHA3-256</selectable><selectable id="fcs_cop.1.1_SigVer_58">SHA3-384</selectable><selectable id="fcs_cop.1.1_SigVer_59">SHA3-512</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SigVer_60">2048 bit</selectable><selectable id="fcs_cop.1.1_SigVer_61">3072 bit</selectable> </selectables></col><col><selectables linebreak="yes"><selectable id="fcs_cop.1.1_SigVer_62"><selectables><selectable id="fcs_cop.1.1_SigVer_63">ISO/IEC 14888-3</selectable><selectable id="fcs_cop.1.1_SigVer_64">FIPS PUB 186-4 (Section 6)</selectable></selectables>(EDCSA)</selectable><selectable id="fcs_cop.1.1_SigVer_65">RFC 5639 (Section 3)(Brainpool Curves)</selectable><selectable id="fcs_cop.1.1_SigVer_66">FIPS PUB 186-4 (Appendix D.1.2) (NIST Curves)</selectable> </selectables><selectables><selectable id="fcs_cop.1.1_SigVer_67">ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigVer_68">FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable><selectable id="fcs_cop.1.1_SigVer_69">FIPS PUB 202 [SHA3]</selectable> </selectables></col></selectable></selectables></title>
-            <note role="application"><h:p>This SFR must be included in the ST if digital signature verification is a service provided by the TOE to tenant software, or if digital signature verification is used by the TOE itself to support or implement PP-specified security functionality.<h:p/><h:br/><h:p/>Specifically, this SFR must be included if the ST Author chooses "<h:i>implement an authenticated platform firmware update mechanism as described in FPT_TUD_EXT.2</h:i>" or "<h:i>implement a delayed-authentication platform firmware update mechanism as described in FPT_TUD_EXT.3</h:i>" in FPT_TUD_EXT.1; or if the ST Author selects "<h:i>verification of a digital signature by trusted code/data</h:i>" in FPT_ROT_EXT.2.<h:p/><h:br/><h:p/>If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/><h:br/><h:p/>The ST Author should choose the algorithm implemented to perform verification of digital signatures. For the algorithm chosen, the ST Author should make the appropriate assignments/selections to specify the parameters that are implemented for that algorithm. In particular, if ECDSA is selected as one of the signature algorithms, the key size specified must match the selection for the curve used in the algorithm.<h:p/><h:br/><h:p/>For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the base point. As the preferred approach for digital signatures, elliptic curves will be required after all the necessary standards and other supporting information are fully established.</h:p></note>
+            <title>The TSF shall perform <h:b>digital signature verification</h:b>  in accordance with a specified cryptographic algorithm<selectables><tabularize id="tab-fcs-cop-sigver-sels" title="Choices for completion of the assignments        in FCS_COP.1.1/SigVer."><textcol>Identifier</textcol><reqtext/><selectcol>Cryptographic algorithm</selectcol><reqtext>and cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-cop-sigver-rsa-pkcs"><col>RSASSA-PKCS1</col></selectable><selectable id="sel-fcs-cop-sigver-dss2"><col>DSS2</col></selectable><selectable id="sel-fcs-cop-sigver-dss3"><col>DSS3</col></selectable><selectable id="sel-fcs-cop-sigver-rsa-pss"><col>RSASSA-PSS</col></selectable><selectable id="sel-fcs-cop-sigver-5"><col>ECDSA</col></selectable></selectables></title>
+            <note role="application">
+					This SFR must be included in the ST if digital signature verification is a service provided by 
+					the TOE to tenant software, or if digital signature verification is used by the TOE itself to 
+					support or implement PP-specified security functionality.<h:p/> 
+					Specifically, this SFR must be included if the ST Author chooses "<h:i>implement an authenticated platform
+					firmware update mechanism as described in FPT_TUD_EXT.2</h:i>" or "<h:i>implement a delayed-authentication platform
+					firmware update mechanism as described in FPT_TUD_EXT.3</h:i>" in FPT_TUD_EXT.1; or if the ST Author 
+					selects "<h:i>verification of a digital signature by trusted code/data</h:i>" in FPT_ROT_EXT.2.<h:p/>	
+					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/>
+					The ST Author should choose the algorithm implemented to perform verification of digital signatures. 
+					For the algorithm chosen, the ST Author should make the appropriate assignments/selections to specify the 
+					parameters that are implemented for that algorithm. In particular, if ECDSA is selected as one of the signature
+					algorithms, the key size specified must match the selection for the curve used in the algorithm.<h:p/>
+					For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the
+					base point. As the preferred approach for digital signatures, elliptic curves will be required after all the
+					necessary standards and other supporting information are fully established.
+				</note>
             <aactivity level="component">
-              <TSS><h:p>The evaluator shall check the TSS to ensure that it describes the overall flow of the signature verification. This should at least include identification of the format and general location (e.g., "firmware on the hard drive device" rather than “memory location 0x00007A4B") of the data to be used in verifying the digital signature; how the data received from the operational environment are brought onto the device; and any processing that is performed that is not part of the digital signature algorithm (for instance, checking of certificate revocation lists).</h:p></TSS>
-              <Guidance><h:p>There are no AGD evaluation activities for this component.</h:p></Guidance>
-              <Tests><h:p>The following tests require the developer to provide access to a test platform that provides the evaluator with tools that are typically not found on factory products.<h:p/><h:br/><h:p/>Each section below contains tests the evaluator must perform for each selected digital signature scheme. Based on the assignments and selections in the requirement, the evaluator chooses the specific activities that correspond to those selections.<h:p/><h:br/><h:p/>The following tests require the developer to provide access to a test platform that provides the evaluator with tools that are not found on the TOE in its evaluated configuration.<h:p/><h:br/><h:p/><h:b><h:i>RSASSA-PKCS1-v1_5 and RSASSA-PSS</h:i></h:b><h:p/><h:br/><h:p/>These tests are derived from The 186-4 RSA Validation System (RSA2VS), updated 8 Jul 2014, Section 6.4.<h:p/><h:br/><h:p/>The FIPS 186-4 RSA Signature Verification Test tests the ability of the TSF to recognize valid and invalid signatures. The evaluator shall provide a modulus and three associated key pairs (d, e) for each combination of selected SHA algorithm, modulus size and hash size. Each private key d is used to sign six pseudorandom messages each of 1024 bits. For five of the six messages, the public key (e), message, IR format, padding, or signature is altered so that signature verification should fail. The test passes only if all the signatures made using unaltered parameters result in successful signature verification, and all the signatures made using altered parameters result in unsuccessful signature verification.<h:p/><h:br/><h:p/><h:b><h:i>ECDSA on NIST and Brainpool Curves</h:i></h:b><h:p/><h:br/><h:p/>These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature Algorithm Validation System (ECDSA2VS), updated 18 Mar 2014, Section 6.5.<h:p/><h:br/><h:p/>The FIPS 186-4 ECC Signature Verification Test tests the ability of the TSF to recognize valid and invalid signatures. The evaluator shall provide a modulus and associated key pair (x, y) for each combination of selected curve, SHA algorithm, modulus size, and hash size. Each private key (x) is used to sign 15 pseudorandom messages of 1024 bits. For eight of the fifteen messages, the message, IR format, padding, or signature is altered so that signature verification should fail. The test passes only if all the signatures made using unaltered parameters result in successful signature verification, and all the signatures made using altered parameters result in unsuccessful signature verification.<h:p/><h:br/><h:p/><h:b><h:i>Digital Signature Scheme 2</h:i></h:b><h:p/><h:br/><h:p/>The following or equivalent steps shall be taken to test the TSF.<h:p/><h:br/><h:p/>For each supported modulus size, underlying hash algorithm, and length of the trailer field (1- or 2-byte), the evaluator shall generate NT sets of recoverable message (M1), non-recoverable message (M2), salt, public key and signature (<h:i>Σ</h:i>).<h:p/><h:br/></h:p><h:ol><h:li data-list="ordered"><h:span class="ql-ui" contenteditable="false"/><h:i>N</h:i><h:sub><h:i>T</h:i></h:sub> shall be greater than or equal to 20.</h:li><h:li data-list="ordered"><h:span class="ql-ui" contenteditable="false"/>The length of salts shall be selected from its supported length range of salt. The typical length of salt is equal to the output block length of underlying hash algorithm (see 9.2.2 of ISO/IEC 9796-2:2010).</h:li><h:li data-list="ordered"><h:span class="ql-ui" contenteditable="false"/>The length of recoverable messages should be selected by considering modulus size, output block length of underlying hash algorithm, and length of salt (<h:i>L</h:i><h:sub><h:i>S</h:i></h:sub>). As described in Annex D of ISO/IEC 9796-2:2010, it is desirable to maximize the length of recoverable message. The following table shows the maximum bit-length of recoverable message that is divisible by 512, for some combinations of modulus size, underlying hash algorithm, and length of salt. None that 2-byte trailer field is assumed in calculating the maximum length of recoverable message</h:li></h:ol><h:table><h:tr class="header"><h:td>Maximum length of recoverable message divisible by 512 (bits)</h:td><h:td>Modulus size (bits)</h:td><h:td>Underlying hash algorithm (bits)</h:td><h:td>Length of salt LS (bits)</h:td></h:tr><h:tr><h:td>1536</h:td><h:td rowspan="5">2048</h:td><h:td rowspan="2">SHA-256</h:td><h:td>128</h:td></h:tr><h:tr><h:td>1024</h:td><h:td>256</h:td></h:tr><h:tr><h:td>1024</h:td><h:td rowspan="3">SHA-512</h:td><h:td>128</h:td></h:tr><h:tr><h:td>1024</h:td><h:td>256</h:td></h:tr><h:tr><h:td>512</h:td><h:td>512</h:td></h:tr><h:tr><h:td>2560</h:td><h:td rowspan="5">3072</h:td><h:td rowspan="2">SHA-256</h:td><h:td>128</h:td></h:tr><h:tr><h:td>2048</h:td><h:td>256</h:td></h:tr><h:tr><h:td>2048</h:td><h:td rowspan="3">SHA-512</h:td><h:td>128</h:td></h:tr><h:tr><h:td>2048</h:td><h:td>256</h:td></h:tr><h:tr><h:td>1536</h:td><h:td>512</h:td></h:tr></h:table><h:ol><h:li data-list="ordered"><h:span class="ql-ui" contenteditable="false"/>The length of non-recoverable messages should be selected by considering the underlying hash algorithm and usages. If the TSF is used for verifying the authenticity of software/firmware updates, the length of non-recoverable messages should be selected greater than or equal to 2048-bit. With this length range, it means that the underlying hash algorithm is also tested for two or more input blocks.</h:li><h:li data-list="ordered"><h:span class="ql-ui" contenteditable="false"/>The evaluator shall select approximately one half of <h:i>N</h:i><h:sub><h:i>T</h:i></h:sub> sets and shall alter one of the values (non-recoverable message, public key exponent or signature) in the sets. In altering public key exponent, the evaluator shall alter the public key exponent while keeping the exponent odd. In altering signatures, the following ways should be considered:</h:li><h:li data-list="ordered"><h:span class="ql-ui" contenteditable="false"/>Altering a signature just by replacing a bit in the bit-string representation of the signature</h:li><h:li data-list="ordered"><h:span class="ql-ui" contenteditable="false"/>Altering a signature so that the trailer in the message representative cannot be interpreted. This can be achieved by following ways:</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"/>Setting the rightmost four bits of the message representative to the values other than '1100'.</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"/>In the case when 1-byte trailer is used, setting the rightmost byte of the message representative to the values other than '0xbc', while keeping the rightmost four bits to '1100'.</h:li><h:li data-list="bullet"><h:span class="ql-ui" contenteditable="false"/>In the case when 2-byte trailer is used, setting the rightmost byte of the message representative to the values other than '0xcc', while keeping the rightmost four bits to '1100'.</h:li><h:li data-list="ordered"><h:span class="ql-ui" contenteditable="false"/>In the case when 2-byte trailer is used, altering a signature so that the hash algorithm identifier in the trailer (i.e. the left most byte of the trailer) does not correspond to hash algorithms identified in the SFR. The hash algorithm identifiers are 0x34 for SHA-256 (see Clause 10 of ISO/IEC 10118-3:2018), and 0x35 for SHA-512 (see Clause 11 of ISO/IEC 10118-3:2018).</h:li><h:li data-list="ordered"><h:span class="ql-ui" contenteditable="false"/>Let <h:i>L</h:i><h:sub><h:i>S</h:i></h:sub> be the length of salt, altering a signature so that the intermediate bit string <h:i>D</h:i> in the message representative is set to all zeroes except for the rightmost <h:i>L</h:i><h:sub><h:i>S</h:i></h:sub> bits of <h:i>D</h:i>.</h:li><h:li data-list="ordered"><h:span class="ql-ui" contenteditable="false"/>(non-conformant signature length) Altering a signature so that the length of signature <h:i>Σ</h:i> is changed to modulus size and the most significant bit of signature <h:i>Σ</h:i> is set equal to '1'.</h:li><h:li data-list="ordered"><h:span class="ql-ui" contenteditable="false"/>(non-conformant signature) Altering a signature so that the integer converted from signature <h:i>Σ</h:i> is greater than modulus <h:i>n</h:i>.</h:li></h:ol><h:p>The evaluator shall supply the NT sets to the TSF and obtain in response a set of NT Verification-Success or Verification-Fail values. When the Verification-Success is obtained, the evaluator shall also obtain recovered message (M 1*).<h:p/><h:br/><h:p/>The evaluator shall verify that Verification-Success results correspond to the unaltered sets and Verification-Fail results correspond to the altered sets.<h:p/><h:br/><h:p/>For each recovered message, the evaluator shall compare the recovered message (M1*) with the corresponding recoverable message (M 1) in the unaltered sets.<h:p/><h:br/><h:p/>The test passes only if all the signatures made using unaltered sets result in Verification-Success, each recovered message (M 1*) is equal to corresponding M 1 in the unaltered sets, and all the signatures made using altered sets result in Verification-Fail.<h:p/><h:br/><h:p/><h:b><h:i>Digital Signature Scheme 3</h:i></h:b><h:p/><h:br/><h:p/>The evaluator shall perform the test described for Digital Signature Scheme 2 while using a fixed salt for NT sets.</h:p></Tests>
+              <TSS>The evaluator shall check the TSS to ensure that it describes the overall flow of the
+					signature verification. This should at least include identification of the format and
+					general location (e.g., "firmware on the hard drive device" rather than “memory
+					location 0x00007A4B") of the data to be used in verifying the digital signature; how
+					the data received from the operational environment are brought onto the device; and
+					any processing that is performed that is not part of the digital signature algorithm
+					(for instance, checking of certificate revocation lists).<h:p/></TSS>
+              <Guidance>
+					There are no AGD evaluation activities for this component.<h:p/></Guidance>
+              <Tests>
+					The following tests require the developer to provide access to a test platform that
+					provides the evaluator with tools that are typically not found on factory products.<h:p/>
+					Each section below contains tests the evaluator must perform for each selected
+					digital signature scheme. Based on the assignments and selections in the
+					requirement, the evaluator chooses the specific activities that correspond to those
+					selections.<h:p/>
+					The following tests require the developer to provide access to a test platform that
+					provides the evaluator with tools that are not found on the TOE in its evaluated
+					configuration.<h:p/><h:b><h:i>RSASSA-PKCS1-v1_5 and RSASSA-PSS</h:i></h:b><h:p/>
+					These tests are derived from The 186-4 RSA Validation System (RSA2VS),
+					updated 8 Jul 2014, Section 6.4.<h:p/>
+					The FIPS 186-4 RSA Signature Verification Test tests the ability of the TSF to
+					recognize valid and invalid signatures. The evaluator shall provide a modulus and
+					three associated key pairs (d, e) for each combination of selected SHA algorithm,
+					modulus size and hash size. Each private key d is used to sign six pseudorandom
+					messages each of 1024 bits. For five of the six messages, the public key (e),
+					message, IR format, padding, or signature is altered so that signature verification
+					should fail. The test passes only if all the signatures made using unaltered
+					parameters result in successful signature verification, and all the signatures made
+					using altered parameters result in unsuccessful signature verification.<h:p/><h:b><h:i>ECDSA on NIST and Brainpool Curves</h:i></h:b><h:p/>
+					These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
+					Algorithm Validation System (ECDSA2VS), updated 18 Mar 2014, Section 6.5.<h:p/>
+					The FIPS 186-4 ECC Signature Verification Test tests the ability of the TSF to
+					recognize valid and invalid signatures. The evaluator shall provide a modulus and
+					associated key pair (x, y) for each combination of selected curve, SHA algorithm,
+					modulus size, and hash size. Each private key (x) is used to sign 15 pseudorandom 
+					messages of 1024 bits. For eight of the fifteen messages, the message, IR format,
+					padding, or signature is altered so that signature verification should fail. The test
+					passes only if all the signatures made using unaltered parameters result in successful
+					signature verification, and all the signatures made using altered parameters result in
+					unsuccessful signature verification.<h:p/><h:b><h:i>Digital Signature Scheme 2</h:i></h:b><h:p/>
+					The following or equivalent steps shall be taken to test the TSF.<h:p/>
+					For each supported modulus size, underlying hash algorithm, and length of the
+					trailer field (1- or 2-byte), the evaluator shall generate NT sets of recoverable
+					message (M1), non-recoverable message (M2), salt, public key and signature (<h:i>Σ</h:i>).<h:p/><h:ol type="1"><h:li><h:i>N<h:sub>T</h:sub></h:i> shall be greater than or equal to 20.</h:li><h:li>The length of salts shall be selected from its supported length range of salt.
+							The typical length of salt is equal to the output block length of underlying
+							hash algorithm (see 9.2.2 of ISO/IEC 9796-2:2010).</h:li><h:li>The length of recoverable messages should be selected by considering
+							modulus size, output block length of underlying hash algorithm, and length
+							of salt (<h:i>L<h:sub>S</h:sub></h:i>). As described in Annex D of ISO/IEC 9796-2:2010, it is desirable
+							to maximize the length of recoverable message. The following table shows
+							the maximum bit-length of recoverable message that is divisible by 512, for
+							some combinations of modulus size, underlying hash algorithm, and length
+							of salt.
+							<h:table class="classic" style="width:50%"><h:tr class="header"><h:td>Maximum length of recoverable message divisible by 512 (bits)</h:td><h:td>Modulus size (bits)</h:td><h:td>Underlying hash algorithm (bits)</h:td><h:td>Length of salt L<h:sub>S</h:sub> (bits)</h:td></h:tr><h:tr><h:td>1536</h:td><h:td rowspan="5">2048</h:td><h:td rowspan="2">SHA-256</h:td><h:td>128</h:td></h:tr><h:tr><h:td>1024</h:td><h:td>256</h:td></h:tr><h:tr><h:td>1024</h:td><h:td rowspan="3">SHA-512</h:td><h:td>128</h:td></h:tr><h:tr><h:td>1024</h:td><h:td>256</h:td></h:tr><h:tr><h:td>512</h:td><h:td>512</h:td></h:tr><h:tr><h:td>2560</h:td><h:td rowspan="5">3072</h:td><h:td rowspan="2">SHA-256</h:td><h:td>128</h:td></h:tr><h:tr><h:td>2048</h:td><h:td>256</h:td></h:tr><h:tr><h:td>2048</h:td><h:td rowspan="3">SHA-512</h:td><h:td>128</h:td></h:tr><h:tr><h:td>2048</h:td><h:td>256</h:td></h:tr><h:tr><h:td>1536</h:td><h:td>512</h:td></h:tr><h:tr colspan="4">None that 2-byte trailer field is assumed in calculating the maximum length of recoverable message</h:tr></h:table></h:li><h:li>The length of non-recoverable messages should be selected by considering
+							the underlying hash algorithm and usages. If the TSF is used for verifying
+							the authenticity of software/firmware updates, the length of non-recoverable
+							messages should be selected greater than or equal to 2048-bit. With this
+							length range, it means that the underlying hash algorithm is also tested for
+							two or more input blocks.</h:li><h:li>The evaluator shall select approximately one half of <h:i>N<h:sub>T</h:sub></h:i> sets and shall alter
+							one of the values (non-recoverable message, public key exponent or
+							signature) in the sets. In altering public key exponent, the evaluator shall
+							alter the public key exponent while keeping the exponent odd. In altering
+							signatures, the following ways should be considered:
+							<h:ol type="a"><h:li>Altering a signature just by replacing a bit in the bit-string representation
+									of the signature</h:li><h:li>Altering a signature so that the trailer in the message representative
+									cannot be interpreted. This can be achieved by following ways:<h:ul><h:li>Setting the rightmost four bits of the message representative to the
+										values other than '1100'.</h:li><h:li>In the case when 1-byte trailer is used, setting the rightmost byte of
+										the message representative to the values other than '0xbc', while
+										keeping the rightmost four bits to '1100'.</h:li><h:li>In the case when 2-byte trailer is used, setting the rightmost byte of
+										the message representative to the values other than '0xcc', while
+										keeping the rightmost four bits to '1100'.</h:li></h:ul></h:li><h:li>In the case when 2-byte trailer is used, altering a signature so that the
+									hash algorithm identifier in the trailer (i.e. the left most byte of the
+									trailer) does not correspond to hash algorithms identified in the SFR.
+									The hash algorithm identifiers are 0x34 for SHA-256 (see Clause 10 of
+									ISO/IEC 10118-3:2018), and 0x35 for SHA-512 (see Clause 11 of
+									ISO/IEC 10118-3:2018).</h:li><h:li>Let <h:i>L<h:sub>S</h:sub></h:i> be the length of salt, altering a signature so that the intermediate
+									bit string <h:i>D</h:i> in the message representative is set to all zeroes except for
+									the rightmost <h:i>L<h:sub>S</h:sub></h:i> bits of <h:i>D</h:i>.</h:li><h:li> (non-conformant signature length) Altering a signature so that the length
+									of signature <h:i>Σ</h:i> is changed to modulus size and the most significant bit of
+									signature <h:i>Σ</h:i> is set equal to '1'.</h:li><h:li>(non-conformant signature) Altering a signature so that the integer
+									converted from signature <h:i>Σ</h:i> is greater than modulus <h:i>n</h:i>.</h:li></h:ol></h:li></h:ol>
+					The evaluator shall supply the NT sets to the TSF and obtain in response a set of
+					NT Verification-Success or Verification-Fail values. When the Verification-Success is 
+					obtained, the evaluator shall also obtain recovered message (M 1*).<h:p/>
+					The evaluator shall verify that Verification-Success results correspond to the
+					unaltered sets and Verification-Fail results correspond to the altered sets.<h:p/>
+					For each recovered message, the evaluator shall compare the recovered message
+					(M1*) with the corresponding recoverable message (M 1) in the unaltered sets.<h:p/>
+					The test passes only if all the signatures made using unaltered sets result in
+					Verification-Success, each recovered message (M 1*) is equal to corresponding M 
+					1 in the unaltered sets, and all the signatures made using altered sets result in
+					Verification-Fail.<h:p/><h:b><h:i>Digital Signature Scheme 3</h:i></h:b><h:p/>
+					The evaluator shall perform the test described for Digital Signature Scheme
+					2 while using a fixed salt for NT sets.<h:p/></Tests>
             </aactivity>
           </f-element>
           <audit-event/>
@@ -1776,29 +1995,7 @@
             <optional/>
           </depends>
           <f-element id="fcs-cop-1e1-skc">
-            <title>The TSF shall perform <h:b>symmetric key encryption/decryption</h:b>  in accordance with a specified cryptographic algorithm<selectables><tabularize id="fcs-cop-skc-sels" title="Choices for completion of the assignments         in FCS_COP.1.1/SKC"><textcol>Identifier</textcol><reqtext/><selectcol>Cryptographic algorithm</selectcol><reqtext>and cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-cop-skc-aes-ccm"><col>AES-CCM</col><col>AES in CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits</col><col><selectables><selectable id="fcs_cop.1.1_SKC_1">128 bits</selectable><selectable id="fcs_cop.1.1_SKC_2">192 bits</selectable><selectable id="fcs_cop.1.1_SKC_3">256 bits</selectable> </selectables></col><col>
-							ISO/IEC 18033-3, FIPS PUB 197 [AES]
-							ISO/IEC 19772 cl. 8, NIST SP 800-38C [CCM]</col></selectable><selectable id="sel-fcs-cop-skc-aes-gcm"><col>AES-GCM</col><col>AES in GCM mode with non-repeating IVs; IV length must be equal to 96
-							bits; the deterministic IV construction method (SP 800-38D, Section 8.2.1) must
-							be used; the MAC length t must be one of the values 
-							<selectables><selectable id="fcs_cop.1.1_SKC_4">96</selectable><selectable id="fcs_cop.1.1_SKC_5">104</selectable><selectable id="fcs_cop.1.1_SKC_6">112</selectable><selectable id="fcs_cop.1.1_SKC_7">120</selectable><selectable id="fcs_cop.1.1_SKC_8">128</selectable> </selectables></col><col><selectables><selectable id="fcs_cop.1.1_SKC_9">128 bits</selectable><selectable id="fcs_cop.1.1_SKC_10">192 bits</selectable><selectable id="fcs_cop.1.1_SKC_11">256 bits</selectable> </selectables></col><col>
-							ISO/IEC 18033-3, FIPS PUB 197 [AES]
-							ISO/IEC 19772 cl. 11, NIST SP 800-38D [GCM]</col></selectable><selectable id="sel-fcs-cop-skc-aes-cbc"><col>AES-CBC</col><col>AES in CBC mode with non-repeating and unpredictable IVs</col><col><selectables><selectable id="fcs_cop.1.1_SKC_12">128 bits</selectable><selectable id="fcs_cop.1.1_SKC_13">192 bits</selectable><selectable id="fcs_cop.1.1_SKC_14">256 bits</selectable> </selectables></col><col>
-							ISO/IEC 18033-3, FIPS PUB 197 [AES]
-							ISO/IEC 10116, NIST SP 800-38A [CBC]</col></selectable><selectable id="sel-fcs-cop-skc-aes-ctr"><col>AES-CTR</col><col>AES in counter mode with a non-repeating initial counter and with no
-							repeated use of counter values across multiple messages with the same
-							secret key</col><col><selectables><selectable id="fcs_cop.1.1_SKC_15">128 bits</selectable><selectable id="fcs_cop.1.1_SKC_16">192 bits</selectable><selectable id="fcs_cop.1.1_SKC_17">256 bits</selectable> </selectables></col><col>
-							ISO/IEC 18033-3, FIPS PUB 197 [AES]
-							ISO/IEC 10116, NIST SP 800-38A [CTR]</col></selectable><selectable id="sel-fcs-cop-skc-xts-aes"><col>XTS-AES</col><col>AES in XTS mode with unique 
-							<selectables><selectable id="fcs_cop.1.1_SKC_18">consecutive non-negative integers starting at an arbitrary non-negative integer</selectable><selectable id="fcs_cop.1.1_SKC_19">data unit sequence numbers</selectable> </selectables> tweak values</col><col><selectables><selectable id="fcs_cop.1.1_SKC_20">256 bits</selectable><selectable id="fcs_cop.1.1_SKC_21">512 bits</selectable> </selectables></col><col>
-							ISO/IEC 18033-3, FIPS PUB 197 [AES]
-							IEEE 1619, NIST SP 800-38E [XTS]</col></selectable><selectable id="sel-fcs-cop-skc-aes-kwp"><col>AES-KWP</col><col>KWP based on AES </col><col><selectables><selectable id="fcs_cop.1.1_SKC_22">128 bits</selectable><selectable id="fcs_cop.1.1_SKC_23">192 bits</selectable><selectable id="fcs_cop.1.1_SKC_24">256 bits</selectable> </selectables></col><col>
-							ISO/IEC 18033-3, FIPS PUB 197 [AES]
-							ISO/IEC 19772 cl. 7 [key wrap]
-							NIST SP 800-38F sec. 6.3 [KWP]</col></selectable><selectable id="sel-fcs-cop-skc-aes-kw"><col>AES-KW</col><col>KW based on AES </col><col><selectables><selectable id="fcs_cop.1.1_SKC_25">128 bits</selectable><selectable id="fcs_cop.1.1_SKC_26">192 bits</selectable><selectable id="fcs_cop.1.1_SKC_27">256 bits</selectable> </selectables></col><col>
-							ISO/IEC 18033-3, FIPS PUB 197 [AES]
-							ISO/IEC 19772 cl. 7 [key wrap]
-							NIST SP 800-38F, sec. 6.2 (KW)</col></selectable></selectables></title>
+            <title>The TSF shall perform <h:b>symmetric key encryption/decryption</h:b>  in accordance with a specified cryptographic algorithm<selectables><tabularize id="fcs-cop-skc-sels" title="Choices for completion of the assignments         in FCS_COP.1.1/SKC"><textcol>Identifier</textcol><reqtext/><selectcol>Cryptographic algorithm</selectcol><reqtext>and cryptographic key sizes</reqtext><selectcol>Cryptographic key sizes</selectcol><reqtext>that meet the following:</reqtext><selectcol>List of standards</selectcol></tabularize><selectable id="sel-fcs-cop-skc-aes-ccm"><col>AES-CCM</col></selectable><selectable id="sel-fcs-cop-skc-aes-gcm"><col>AES-GCM</col></selectable><selectable id="sel-fcs-cop-skc-aes-cbc"><col>AES-CBC</col></selectable><selectable id="sel-fcs-cop-skc-aes-ctr"><col>AES-CTR</col></selectable><selectable id="sel-fcs-cop-skc-xts-aes"><col>XTS-AES</col></selectable><selectable id="sel-fcs-cop-skc-aes-kwp"><col>AES-KWP</col></selectable><selectable id="sel-fcs-cop-skc-aes-kw"><col>AES-KW</col></selectable></selectables></title>
             <note role="application">
 					This SFR must be included in the ST if symmetric-key cryptography is a service provided by the TOE 
 					to tenant software, or if the TOE itself uses SKC to support or implement PP-specified security 
@@ -5047,7 +5244,28 @@
     </sec:SFRs>
     <!--5.2 Security Assurance Requirements-->
     <section title="Security Assurance Requirements" id="SARs">
-      <h:p>The Security Objectives in <xref to="SecurityObjectivesTOE"/> were constructed to address threats identified in <xref to="Threats"/>. The Security Functional Requirements (SFRs) in <xref to="SFRs"/> are a formal instantiation of the Security Objectives. The PP identifies the Security Assurance Requirements (SARs) to frame the extent to which the evaluator assesses the documentation applicable for the evaluation and performs independent testing.<h:p/><h:br/><h:p/>This section lists the set of SARs from CC part 3 that are required in evaluations against this PP. Individual Evaluation Activities to be performed are specified both in <xref to="SFRs"/> as well as in this section.<h:p/><h:br/><h:p/>The general model for evaluation of GPCPs against STs written to conform to this PP is as follows:<h:p/><h:br/><h:p/>After the ST has been approved for evaluation, the ITSEF will obtain the TOE, supporting environmental IT, and the administrative/user guides for the TOE. The ITSEF is expected to perform actions mandated by the Common Evaluation Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the Evaluation Activities contained within <xref to="SFRs"/>, which are intended to be an interpretation of the other CEM assurance requirements as they apply to the specific technology instantiated in the TOE. The Evaluation Activities that are captured in <xref to="SFRs"/> also provide clarification as to what the developer needs to provide to demonstrate the TOE is compliant with the PP.</h:p>
+      
+		The Security Objectives in  <xref to="SecurityObjectivesTOE"/> were constructed to address threats identified in
+		 <xref to="Threats"/>. The Security Functional Requirements (SFRs)
+		in  <xref to="SFRs"/> are a formal instantiation of the Security Objectives. The PP
+		identifies the Security Assurance Requirements (SARs) to frame the extent to
+		which the evaluator assesses the documentation applicable for the evaluation and performs
+		independent testing. <h:p/>
+		This section lists the set of SARs from CC part 3 that are required in evaluations against this PP. 
+		Individual Evaluation Activities to be performed are specified both in  <xref to="SFRs"/> 
+		as well as in this section. <h:p/> 
+		The general model for evaluation of GPCPs against STs written to conform to this PP is as follows: <h:p/> 
+		After the ST has been approved for evaluation, the ITSEF will obtain the
+        TOE, supporting environmental IT, and the administrative/user guides for
+		the TOE. The ITSEF is expected to perform actions mandated by the Common Evaluation
+		Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the Evaluation Activities
+		contained within  <xref to="SFRs"/>, which are intended to be an interpretation of the
+		other CEM assurance requirements as they apply to the specific technology instantiated in the
+		TOE. The Evaluation Activities that are captured in  <xref to="SFRs"/> also provide
+		clarification as to what the developer needs to provide to demonstrate the TOE is compliant
+		with the PP. 
+		
+	    
       <section title="Class ASE: Security Target" id="ase">
 			As per ASE activities defined in  <xref to="bibCEM"/>.
 		</section>
