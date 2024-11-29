@@ -1,13 +1,3 @@
-* Error: f-element FMT_SMR.1.1  appears not to have an associated evaluation activity.:
-        /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[4]""/f-element[1]""
-* Error: f-element FMT_SMR.1.2  appears not to have an associated evaluation activity.:
-        /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[4]""/f-element[2]""
-* Error: Detected dangling id-reference to sel-fcs-ckm-5-kdf-ctr-dirgen from attribute
-        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[6]""/on-sel[1]""
-* Error: Detected dangling id-reference to sel-fcs-ckm-5-kdf-fb-dirgen from attribute
-        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[7]""/on-sel[1]""
-* Error: Detected dangling id-reference to sel-fcs-ckm-5-kdf-dpi-dirgen from attribute
-        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[8]""/on-sel[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"This Prot"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"This Prot"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Conformance_Claims[1]""/cclaims[1]""/cclaim[1]""/description[1]"A Securit"/h:p[1]""
