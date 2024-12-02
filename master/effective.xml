@@ -32,9 +32,9 @@
 	<include-pkg id="pkg-tls">
 		<git>
 		  <url>https://github.com/commoncriteria/tls</url>
-		  <branch>release-1.1</branch>
+		  <branch>release-2.1</branch>
 		</git>
-		<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>
+		<url>https://www.niap-ccevs.org/static_html/protection-profile/465/Functional%20Package%20for%20Transport%20Layer%20Security/index.html</url>
         <depends on-sel="sel-itc-tls"/>
         <depends on-sel="sel-itc-https"/>
 	</include-pkg>
@@ -42,13 +42,23 @@
     <include-pkg id="pkg-ssh">
 	    <git>
 			<url>https://github.com/commoncriteria/ssh</url>
-			<branch>release-1.0</branch>
+			<branch>release-2.0</branch>
 		</git>
-		<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459</url>
+    	<url>https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm</url>
 		<depends on-sel="sel-itc-ssh"/>
 		<depends on-sel="sel-fia-uau-5-ssh"/>
    </include-pkg>	
 
+
+	<include-pkg id="pkg-x509">
+		<git>
+			<url>https://github.com/commoncriteria/ssh</url>
+			<branch>release-1.0</branch>
+		</git>
+		<url>https://commoncriteria.github.io/X509/master/X509-release.html</url>
+		<depends on-sel="sel-itc-ssh"/>
+		<depends on-sel="sel-fia-uau-5-ssh"/>
+	</include-pkg>	
 	
     <pp-preferences>
 <!--        <pp-pref name="display-audit-with-sfrs">0</pp-pref> -->
@@ -491,6 +501,7 @@
 			<cc-pp-config-with/>       
 			<!--	<Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 2.4</Mod-cc-ref> -->  
 			<cc-pkg-claim>
+				<FP-cc-ref conf="conformant">Functional Package for Secure Shell (SSH) Version 2.0</FP-cc-ref>
 				<FP-cc-ref conf="conformant">Functional Package for Transport Layer Security Version 2.1</FP-cc-ref>
 				<FP-cc-ref conf="conformant">Functional Package for X.509 Version 1.0</FP-cc-ref>
 			</cc-pkg-claim>
@@ -525,10 +536,7 @@
 				<description>An attacker with physical access might be able to compromise TOE integrity, subvert
 					TOE protections, or access tenant data through hardware attacks such as probing, physical
 					manipulation, fault-injection, side-channel analysis, environmental stress, or activating
-					disabled features or pre-delivery services. This threat is addressed by TOE Objectives 
-					O.PHYSICAL_SECURITY and O.ATTACK_DETECTION_AND_RESPONSE for the use cases listed below. 
-					For other use cases, this threat is mitigated by Operational Environment Objective 
-					OE.PHYSICAL_PROTECTION as mapped to Assumption A.PHYSICAL_PROTECTION. 
+					disabled features or pre-delivery services. This threat is mitigated by TOE functionality for the use cases listed below; for other use cases, the expectation is that the environmental security objectives are sufficient mitigation for this threat.   
 					<h:ul>
 						<h:li>Server-Class Platform, Enhanced</h:li>
 						<h:li>Portable Clients (laptops, tablets), Enhanced</h:li>
@@ -536,99 +544,47 @@
 						<h:li>Tactical EUD</h:li>
 						<h:li>IoT Devices</h:li></h:ul>
 				</description>
-				<objective-refer ref="O.PHYSICAL_INTEGRITY">
-					<rationale>The threat T.PHYSICAL is countered by O.PHYSICAL_INTEGRITY as this
-						objective supports detection or prevention of attempts to compromise
-						the physical platform.</rationale>
-				</objective-refer>
-				<objective-refer ref="O.ATTACK_DETECTION_AND_RESPONSE">
-					<rationale>The threat T.PHYSICAL is countered by O.ATTACK_DETECTION_AND_RESPONSE as this
-						objective supports detection and reporting of attempts to compromise the TOE.</rationale>
-				</objective-refer>
 			</threat>
 			<threat name="T.SIDE_CHANNEL_LEAKAGE">
 				<description>An attacker running in a tenant context might be able to leverage physical
 					effects caused by the operation of the TOE to derive sensitive information about
 					other tenants or the TOE.</description>
-				<objective-refer ref="O.MITIGATE_FUNDAMENTAL_FLAWS">
-					<rationale>The threat T.SIDE_CHANNEL_LEAKAGE is countered by O.MITIGATE_FUNDAMENTAL_FLAWS as this
-						objective supports the remedy of critical flaws through update or other technical or
-						operational means.</rationale>
-				</objective-refer>
 			</threat>
 			<threat name="T.PERSISTENCE">
 				<description>An attacker might be able to establish a permanent presence on the TOE in
 					firmware. This could result in permanent compromise of tenant information, as
 					well as TOE updates. This threat does not encompass attacker presence in tenant
 					software, as tenant software is not part of the TOE. </description>
-				<objective-refer ref="O.PROTECTED_FIRMWARE">
-					<rationale>The threat T.PERSISTENCE is countered by O.PROTECTED_FIRMWARE as this
-						objective supports maintenance of platform firmware integrity.</rationale>
-				</objective-refer>
 			</threat>
 			<threat name="T.UPDATE_COMPROMISE">
 				<description>An attacker may attempt to provide a compromised update of TOE firmware. 
 					Such updates can undermine the security functionality of the device if they are
 					unauthorized, unauthenticated, or are improperly validated using non-secure or
 					weak cryptography.</description>
-				<objective-refer ref="O.UPDATE_INTEGRITY">
-					<rationale>The threat T.UPDATE_COMPROMISE is countered by O.UPDATE_INTEGRITY as this
-						objective supports ensuring that platform firmware updates are authentic and 
-						properly validated prior to installation.</rationale>
-				</objective-refer>
-				<objective-refer ref="O.STRONG_CRYPTOGRAPHY">
-					<rationale>The threat T.UPDATE_COMPROMISE is countered by O.STRONG_CRYPTOGRAPHY as this
-						objective supports use of proven, standards-based cryptographic mechanisms 
-						for ensuring that updates are authentic and maintain their integrity.</rationale>
-				</objective-refer>
-				<objective-refer ref="O.ATTACK_DETECTION_AND_RESPONSE">
-					<rationale>The threat T.UPDATE_COMPROMISE is countered by O.ATTACK_DETECTION_AND_RESPONSE as this
-						objective supports detection and reporting of attempts to compromise the TOE.</rationale>
-				</objective-refer>
 			</threat>
 			<threat name="T.SECURITY_FUNCTIONALITY_FAILURE">
 				<description>An attacker could leverage failed or compromised security functionality to 
 					access, change, or modify tenant data, TOE data, or other security functionality
 					of the device.</description>
-				<objective-refer ref="O.SECURITY_FUNCTIONALITY_INTEGRITY">
-					<rationale>The threat T.SECURITY_FUNCTIONALITY_FAILURE is countered by O.SECURITY_FUNCTIONALITY_INTEGRITY
-						as this objective supports integrity and proper functioning of security functionality.</rationale>
-				</objective-refer>
 			</threat>
 			<threat name="T.TENANT_BASED_ATTACK">
 				<description>An attacker running software as a tenant can attempt to access or modify
 					TOE firmware or functionality. Note that direct tenant attacks against other
 					tenants are not encompassed by this threat as they are out of scope.</description>
-				<objective-refer ref="O.TENANT_SECURITY">
-					<rationale>The threat T.TENANT_BASED_ATTACK is countered by O.TENANT_SECURITY as this
-						objective supports tenant-based security mechanisms to prevent tenant compromise.</rationale>
-				</objective-refer>
 			</threat>
 			<threat name="T.NETWORK_BASED_ATTACK">
 				<description>An attacker from off the TOE can attempt to compromise the TOE
 					through a network interface connected to an active TOE component, such
 					as a management subsystem.</description>
-				<objective-refer ref="O.TRUSTED_CHANNELS">
-					<rationale>The threat T.NETWORK_BASED_ATTACK is countered by O.TRUSTED_CHANNELS as this
-						provides for integrity and confidentiality of transmitted data.</rationale>
-				</objective-refer>
 			</threat>
 			<threat name="T.UNAUTHORIZED_RECONFIGURATION">
 				<description>An attacker might be able to modify the configuration of the TOE and alter its 
 					functionality. This might include, activating dormant subsystems, disabling hardware assists,
 					or altering boot-time behaviors.</description>
-				<objective-refer ref="O.CONFIGURATION_INTEGRITY">
-					<rationale>The threat T.UNAUTHORIZED_RECONFIGURATION is countered by O.CONFIGURATION_INTEGRITY as this
-						provides for integrity of platform configuration.</rationale>
-				</objective-refer>
 			</threat>
 			<threat name="T.UNAUTHORIZED_PLATFORM_ADMINISTRATOR">
 				<description>An attacker might be able to attain platform administrator status by defeating or bypassing
 					authentication measures.</description>
-				<objective-refer ref="O.AUTHORIZED_ADMINISTRATOR">
-					<rationale>The threat T.UNAUTHORIZED_PLATFORM_ADMINISTRATOR is countered by O.AUTHORIZED_ADMINISTRATOR as this
-						provides for authentication of privileged Administrators.</rationale>
-				</objective-refer>
 			</threat>
 		</threats>
     </sec:Threats>
@@ -905,8 +861,6 @@
 					</h:ul></description>
 				<addressed-by>FCS_HTTPS_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying requirements for the HTTPS protocol.</rationale>
 				<addressed-by>FCS_IPSEC_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying requirements for the IPSec protocol.</rationale>
-				<addressed-by>FIA_X509_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying how X.509 certificate validation is performed.</rationale>
-				<addressed-by>FIA_X509_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by specifying how X.509 certificate authentication is performed.</rationale>
 				<addressed-by>FTP_ITC_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying allowable trusted channel protocols.</rationale>
 				<addressed-by>FTP_ITE_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying requirements for moving data through untrusted channels.</rationale>
 				<addressed-by>FTP_ITP_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by allowing physically protected communications channels.</rationale>
@@ -940,8 +894,6 @@
 				<addressed-by>FIA_UAU.5 (sel-based)</addressed-by><rationale>Supports the objective by specifying supported authentication mechanisms.</rationale>
 				<addressed-by>FIA_UAU.7 (sel-based)</addressed-by><rationale>Supports the objective by requiring that authentication factor feedback be suppressed.</rationale>
 				<addressed-by>FIA_UIA_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring Administrators be authenticated before making changes.</rationale>
-				<addressed-by>FIA_X509_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying how X.509 certificate validation is performed.</rationale>
-				<addressed-by>FIA_X509_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by specifying how X.509 certificate authentication is performed.</rationale>
 				<addressed-by>FMT_MOF_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying that management functions be performed by Administrators.</rationale>
 				<addressed-by>FMT_SMF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
 				<addressed-by>FMT_SMR.1 (sel-based)</addressed-by><rationale>Supports the objective by defining the roles of Administrator and User.</rationale>
@@ -1016,7 +968,7 @@
 								for Objective requirements</selectable>
 							<selectable>Specifically defined auditable event in <xref g="t-audit-sel-based"/> 
 								for Selection-based requirements</selectable>
-							<selectable>Additional information for the <xref to="pkg-tls"/> listed in <xref to="atref-pkgs"/></selectable>
+							<selectable>Additional information defined in the audit table for the <xref to="pkg-tls"/></selectable>
 							<selectable>Additional information defined in the audit table for the <xref to="pkg-ssh"/></selectable>
 							<selectable exclusive="yes">no additional auditable events</selectable>
 						</selectables>.</h:li>
@@ -1035,7 +987,7 @@
                             <selectable>Additional information defined in <xref g="t-audit-optional"/> for Strictly Optional SFRs</selectable>
                             <selectable>Additional information defined in <xref g="t-audit-objective"/> for Objective SFRs</selectable>
                             <selectable>Additional information defined in <xref g="t-audit-sel-based"/> for Selection-Based SFRs</selectable>
-							<selectable>Additional information for the <xref to="pkg-tls"/> listed in <xref to="atref-pkgs"/></selectable>
+							<selectable>Additional information defined in the audit table for the <xref to="pkg-tls"/></selectable>
 							<selectable>Additional information defined in the audit table for the <xref to="pkg-ssh"/></selectable>
                             <selectable exclusive="yes">no other information</selectable>
 						</selectables>.</refinement></h:li>
@@ -1050,36 +1002,7 @@
 					Appropriate entries from <xref g="t-audit-optional"/>, <xref g="t-audit-objective"/>, and
 					<xref g="t-audit-sel-based"/> should be included in the ST if the 
 					associated SFRs and selections are included.<h:p/>
-					The following table contains the events enumerated in the auditable events table for 
-					the TLS Functional Package. Inclusion of these events in the ST is subject to selection above,
-					inclusion of the corresponding SFRs in the ST, and support in the Package as represented by a selection in the 
-					table below.<h:p/>
-					<h:b><ctr ctr-type="Table" id="atref-pkgs">: Auditable Events for the TLS Functional Package</ctr></h:b><h:br/>							
-					<h:table>
-						<h:tr><h:td>FCS_TLSC_EXT.1</h:td>
-						<h:td>Failure to establish a session.</h:td>
-						<h:td>Reason for failure.</h:td></h:tr>
-								
-						<h:tr><h:td>FCS_TLSC_EXT.1</h:td>
-						<h:td>Failure to verify presented identifier.</h:td>
-						<h:td>Presented identifier and reference identifier.</h:td></h:tr>
-
-						<h:tr><h:td>FCS_TLSC_EXT.1</h:td>
-						<h:td>Establishment/termination of a TLS session.</h:td>
-						<h:td>Non-TOE endpoint of connection.</h:td></h:tr>
-
-						<h:tr><h:td>FCS_TLSS_EXT.1</h:td>
-						<h:td>Failure to establish a session.</h:td>
-						<h:td>Reason for failure.</h:td></h:tr>
-
-						<h:tr><h:td>FCS_DTLSC_EXT.1</h:td>
-						<h:td>Failure of the certificate validity check.</h:td>
-						<h:td>Issuer Name and Subject Name of certificate.</h:td></h:tr>
-							
-						<h:tr><h:td>FCS_DTLSS_EXT.1</h:td>
-						<h:td>Failure of the certificate validity check.</h:td>
-						<h:td>Issuer Name and Subject Name of certificate.</h:td></h:tr>
-					</h:table>
+					Specific auditable events required for SFRs from the functional packages are defined in the respective packages.<h:p/>
                 </note>
 				<aactivity>
                     <TSS>
@@ -4150,7 +4073,6 @@
         <!-- Depends on HTTPS being selected for trusted channel -->
         <f-component id="sfr-fcs-https-ext-1" cc-id="fcs_https_ext.1" name="HTTPS Protocol" status="sel-based">
             <depends on-sel="sel-itc-https"/>
-			<depends on-sel="sel-x509-2-https"/>
 			<consistency-rationale/>
 			<comp-lev>defines requirements for the implementation of the HTTPS protocol.</comp-lev>
 			<management/>
@@ -4171,9 +4093,9 @@
                 </title>
                 <note role="application">
 					This SFR is included in the ST if the ST Author selects "<h:i>TLS/HTTPS</h:i>" in 
-					FTP_ITC_EXT.1.1 or "<h:i>HTTPS</h:i>" in FIA_X509_EXT.2.<h:p/>
-					If this SFR is included in the ST, then the <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">
-					<h:i>Functional Package for Transport Layer Security</h:i></h:a> must also be claimed.
+					FTP_ITC_EXT.1.1.<h:p/>
+                	If this SFR is included in the ST, then the <xref to="pkg-tls"/>
+					must also be claimed.
 				</note>
             </f-element>
             <f-element id="fcs-https-ext-1e2">
@@ -4212,7 +4134,7 @@
 		<!-- FCS_IPSEC_EXT.1 IPsec Protocol -->
         <f-component id="sfr-fcs-ipsec-ext-1" cc-id="fcs_ipsec_ext.1" name="IPsec Protocol" status="sel-based">
 			<depends on-sel="sel-itc-ipsec"/>
-			<depends on-sel="sel-x509-2-ipsec"/>
+			
 			<consistency-rationale/>
 			<comp-lev>requires that IPsec be implemented as specified manner.</comp-lev>
 			<management>The following actions could be considered for the management functions in FMT: 
@@ -4237,8 +4159,7 @@
                 <title>The TSF shall implement the IPsec architecture as specified in RFC 4301.
                 </title>
                 <note role="application">
-					This SFR must be included in the ST if the ST Author selects "<h:i>IPsec</h:i>" in FTP_ITC_EXT.1.1
-					or in FIA_X509_EXT.2.1.<h:p/>
+					This SFR must be included in the ST if the ST Author selects "<h:i>IPsec</h:i>" in FTP_ITC_EXT.1.1.<h:p/>
 					If this SFR is claimed, then FCS_COP.1/KeyedHash and FCS_RBG.1 must also be claimed.<h:p/>
 					RFC 4301 calls for an IPsec implementation to protect IP traffic through the use
 					of a Security Policy Database (SPD). The SPD is used to define how IP packets are
@@ -4798,12 +4719,14 @@
 		    </ext-comp-def-title>
                 <note role="application">
 					At least one public-key-based Peer Authentication method is required in order to
-					conform to this PP-Module. One or more of the public key schemes is chosen by
+					conform to this PP. One or more of the public key schemes is chosen by
 					the ST Author to reflect what is implemented. The ST Author also ensures that
 					appropriate FCS requirements reflecting the algorithms used (and key
-					generation capabilities, if provided) are listed to support those methods.<h:p/>
+					generation capabilities, if provided) are listed to support those methods. Applicable claims from the <xref to="pkg-x509"/> are made to support X.509 validation functionality,  most notably FIA_XCU_EXT.1 (mandatory requirement defining the TOE's use of certificates), FIA_X509_EXT.1 (X.509 certificate validation) and FIA_X509_EXT.2 (X.509 certificate authentication).<h:p/>
+                	<!--
 					If “<h:i>pre-shared keys</h:i>” is selected, the selection-based requirement FIA_PSK_EXT.1
-					must be claimed.
+					must be claimed. 
+                	-->
 				</note>
                 <aactivity level="element">
                     <TSS>
@@ -4836,7 +4759,7 @@
 					</KMD>
 					<Tests>
 						For efficiency’s sake, the testing that is performed here has been combined with the testing for
-						FIA_X509_EXT.2 and FIA_X509_EXT.3 (for IPsec connections and depending on the Base-PP),
+						X.509 certificate validation defined by <xref to="pkg-x509"/>,
 						FCS_IPSEC_EXT.1.12, and FCS_IPSEC_EXT.1.13. The following tests shall be repeated for each peer
 						authentication protocol selected in the FCS_IPSEC_EXT.1.11 selection above:<h:p/>
 						<testlist>
@@ -5344,7 +5267,7 @@
 					<selectables>
 						<selectable>hardware</selectable>
 						<selectable>software</selectable>
-						<selectable><assignable>other interafce type</assignable></selectable></selectables>
+						<selectable><assignable>other interface type</assignable></selectable></selectables>
 					interface to make the RBG output, as specified in FCS_RBG.1 Random bit generation (RBG),
 					available as a service to entities outside of the TOE.
 				</title>
@@ -5847,9 +5770,7 @@
 			<fam-behavior>This family defines requirements for ensuring that access to the TSF
 				is not granted to unauthenticated subjects.</fam-behavior>
 		</ext-comp-def>
-	    <ext-comp-def title="X.509 Certificate Handling" fam-id="FIA_X509_EXT">
-			<fam-behavior>This family defines requirements for the validation and use of X.509 certificates.</fam-behavior>
-		</ext-comp-def>
+
 
 		<!-- FIA_AFL_EXT.1 Authentication Failure Handling -->
 		<f-component id="sfr-fia-afl-ext-1" cc-id="fia_afl_ext.1" name="Authentication Failure Handling" status="sel-based">
@@ -6238,10 +6159,10 @@
 					selected if the biometric authentication can be used independent of the hybrid authentication, 
 					i.e. without having to enter a PIN/password.<h:p/>
 					If "<h:i>X.509 certificate-based authentication</h:i>" is selected, then the ST must include 
-					FIA_X509_EXT.1 and FIA_X509_EXT.2.<h:p/>
+					FIA_X509_EXT.1 and FIA_X509_EXT.2 from <xref to="pkg-x509"/>.<h:p/>
 					The ST Author should select "<h:i>SSH-based authentication</h:i>" if the TOE supports 
 					SSH-based authentication, whether public key-, password-, or certificate-based. In this case,
-					the ST should include the <xref to="pkg-ssh"/>.					
+					the ST claims the <xref to="pkg-ssh"/>.					
 				</note>
 			</f-element>
 			<f-element id="fia-uau-5e2">
@@ -6434,8 +6355,8 @@
 	
         <!-- FIA_X509_EXT.1 -->
         <!-- Depends on x509 certificates being used for administrator authentication -->
+		<!--
         <f-component id="sfr-fia-x509-ext-1" cc-id="fia_x509_ext.1" name="X.509 Certificate Validation" status="sel-based">
-	<!--	<depends on-incl="sfr-fcs-ipsec-ext-1"/>   -->  <!-- FCS_IPSEC_EXT.1 -->
             <depends on-sel="sel-fia-uau-5-x509"/> 
 			<depends on-sel="sel-itc-certauth"/>
 			<depends on-sel="sel-itc-tls"/>
@@ -6586,13 +6507,14 @@
                 <audit-event-info>Reason for failure.</audit-event-info>
 			</audit-event>
         </f-component>
-
+-->
         <!-- FIA_X509_EXT.2 -->
         <!-- Depends on digital signatures being used for trusted updates or administrator authentication -->
-        <f-component id="sfr-fia-x509-ext-2" cc-id="fia_x509_ext.2" name="X.509 Certificate Authentication" status="sel-based">
-			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
-<!--            <depends on-sel="sel-tud-digsign-cert"/>   -->
-            <depends on-sel="sel-fia-uau-5-x509"/> 
+		<!--
+        <f-component id="sfr-fia-x509-ext-2" cc-id="fia_x509_ext.2" name="X.509 Certificate Authentication"  status="sel-based">
+			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  
+
+            <depends on-sel="sel-fia-uau-5-x509" /> 
 			<depends on-sel="sel-itc-certauth"/>
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to identify the functions for which it uses X.509 
@@ -6691,8 +6613,10 @@
                     </Tests>
                 </aactivity>
             </f-element>
-			<audit-event/>
+			<audit-event />
         </f-component>
+		-->
+		
 		
 	</section>   <!-- FIA -->
 	    
@@ -6944,9 +6868,9 @@
 							<O ref="A"/>
 							<X ref="U"/>
                             <app-note>
-								This Function must be claimed if FIA_X509_EXT.1 is claimed in the ST. <h:p/>
+								This function must be claimed if FIA_X509_EXT.1 is claimed in the ST (i.e., the TOE claimes conformance to <xref to="pkg-x509"/>. <h:p/>
 								If TOE does not support configuration of certificate revocation checking methods,
-								then the Administrator Option should be denied.
+								then the Administrator option should be denied.
 							</app-note>
 						</management-function>
 
@@ -6960,9 +6884,7 @@
 							<O ref="A"/>
 							<X ref="U"/>
                             <app-note>
-								This Function must be claimed if FIA_X509_EXT.2 is claimed in the ST and 
-								"<h:i> allow the administrator to choose whether to accept the certificate
-								in these cases</h:i>" is selected in FIA_X509_RXT.2.2.
+                            	This function must be claimed if FIA_X509_EXT.2 is claimed in the ST (i.e., the TOE claimes conformance to <xref to="pkg-x509"/>. and the claims made in the SFR indicate that the administrator is allowed to configure how the TSF treats a certificate with undetermined revocation status.
 							</app-note>
 						</management-function>
 
@@ -7299,11 +7221,10 @@
 		<!-- FPT_PHP.1: Passive Detection of Physical Attack.  -->
 		<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="sel-based">
 			<depends on-use="uc-client-portable-enhanced"/>
-			<depends on-use="uc-csfc-eud"/> 
 			<depends on-use="uc-iot-device"/>
 			<f-element id="fpt-php-1e1">
 				<title>The TSF shall provide unambiguous detection of physical tampering
-					that might compromise the TSF.
+					that can compromise the TSF.
 				</title>
 			</f-element>
 			<f-element id="fpt-php-1e2">
@@ -7314,8 +7235,8 @@
 				<note role="application">
 					This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
 					<h:li>Portable Clients (laptops, tablets), Enhanced</h:li>
-					<h:li>CSfC EUD</h:li> 
 					<h:li>IoT Devices</h:li></h:ol>
+					CSfC EUDs also require detection of physical attack, but in this case FPT_PHP.2 is required instead.
 				</note>
 				<aactivity>
 					<TSS>
@@ -7369,6 +7290,7 @@
 					This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
 					<h:li>Server-Class Platform, Enhanced</h:li>
 					<h:li>CSfC EUD</h:li></h:ol>
+					FPT_PHP.2 is hierarchical to FPT_PHP.1 which means that all requirements of FPT_PHP.1 are also included as part of FPT_PHP.2. A TOE that conforms to FPT_PHP.2 therefore does not claim FPT_PHP.1. 
 				</note>
 			<aactivity>
 				<TSS>
@@ -8303,7 +8225,7 @@
 				included in the PP/ST:<h:ul><h:li>Failure of update authentication/integrity check/rollback</h:li>
 				<h:li>Failure of update operation</h:li>
 				<h:li>Success of update operation</h:li></h:ul></audit>
-			<dependencies>No dependencies.</dependencies>
+			<dependencies>FPT_ROT_EXT.2 Platform Integrity Extension</dependencies>
 			<f-element id="fpt-tud-ext-3e1">
 				<title>
 					The TSF shall allow execution or use of platform firmware updates only if new platform firmware
@@ -8610,13 +8532,11 @@
 			<f-element id="ftp-itc-ext-1e1">
 				<title>The TSF shall use
 					<selectables linebreak="yes">
-						<selectable id="sel-itc-tls">TLS as conforming to the <h:a href="https://www.niap-ccevs.org/MMO/PP/-439-/">
-							<h:i>Functional Package for Transport Layer Security</h:i></h:a></selectable>
+						<selectable id="sel-itc-tls">TLS as conforming to the <xref to="pkg-tls"/></selectable>
 						<selectable id="sel-itc-https">TLS/HTTPS as conforming to FCS_HTTPS_EXT.1</selectable>
 						<selectable id="sel-itc-ipsec">IPsec as conforming to FCS_IPSEC_EXT.1</selectable>
 						<selectable id="sel-itc-ssh">SSH as conforming to the
-							<h:a href="https://www.niap-ccevs.org/MMO/PP/-389-/"><h:i>Functional Package
-							for Secure Shell</h:i></h:a></selectable>
+							<xref to="pkg-ssh"/></selectable>
 					</selectables> 
 					protocols with 
 					<selectables linebreak="yes" onlyone="yes">
@@ -8649,14 +8569,17 @@
 					or if the platform is administered remotely. That is, if "<h:i>a trusted channel as specified in FTP_ITC_EXT.1</h:i>" 
 					is selected in FAU_STG.1.1, if "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is 
 					selected in FDP_ITC_EXT.1.1, or if "<h:i>remotely</h:i>" is selected in Management Function 1 in FMT_SMF.1.1.<h:p/>
-					If the ST Author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TSF must be validated against the 
+					If the ST Author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TOE must be validated against the 
 					Functional Package for TLS. This PP does not mandate that a product implement TLS with mutual authentication,
 					but if the product includes the capability to perform TLS with mutual authentication, then
-					mutual authentication must be included within the TOE boundary. The TLS Package requires that the X509 
-					requirements be included by the PP, so selection of TLS or HTTPS causes FIA_X509_EXT.* to be selected.<h:p/>
-					If the ST Author selects "<h:i>SSH</h:i>," the TSF must be validated against the Functional Package for Secure Shell.<h:p/>
-					If the ST Author selects "<h:i>certificate-based authentication of the remote peer</h:i>," then FIA_X509_EXT.1 and FIA_X509_EXT.2
-					must be included in the ST. "<h:i>No authentication of the remote peer</h:i>" should be selected only if the TOE is acting 
+					mutual authentication must be included within the TOE boundary.<h:p/>
+					If the ST Author selects "<h:i>SSH</h:i>," the TOE must be validated against the Functional Package for Secure Shell.<h:p/>
+					If the ST Author selects "<h:i>certificate-based authentication of the remote peer</h:i>," then the TOE must conform to <xref to="pkg-x509"/>.<h:p/>
+					Claims from this package are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
+					<h:p/>	
+					If the TSF implements a protocol that requires the validation of a certificate presented by an external entity, FIA_X509_EXT.1 and FIA_X509_EXT.2 will be claimed. FIA_TSM_EXT.1 may also be claimed if the TSF implements its own trust store. If the TSF implements a protocol that requires the presentation of any certificates to an external entity, FIA_XCU_EXT.2 will be claimed. FIA_X509_EXT.3 will also be claimed, along with any applicable dependencies, depending on how the certificates presented by the TOE are obtained.
+					<h:p/>	
+					"<h:i>No authentication of the remote peer</h:i>" should be selected only if the TOE is acting 
 					as a server in a non-mutual authentication configuration.<h:p/>.
 				</note>
 				<aactivity>
