@@ -563,48 +563,152 @@
 						<h:li>Tactical EUD</h:li>
 						<h:li>IoT Devices</h:li></h:ul>
 				</description>
+				
+				<addressed-by>FPT_JTA_EXT.1</addressed-by><rationale>Mitigates threat by restricting access to debug ports to authorized Administrators or physical presence.</rationale>
+				<addressed-by>FPT_ROT_EXT.3 (objective)</addressed-by><rationale>Mitigates threat by ensuring integrity of physical components and responding to integrity failures.</rationale>
+				<addressed-by>FPT_JTA_EXT.2 (sel-based)</addressed-by><rationale>Mitigates threat by enforcing access control to debug ports.</rationale>
+				<addressed-by>FPT_PHP.1 (sel-based)</addressed-by><rationale>Mitigates threat by passively detecting physical tampering.</rationale>
+				<addressed-by>FPT_PHP.2 (sel-based)</addressed-by><rationale>Mitigates threat by providing methods to detect and report physical tampering.</rationale>
+				<addressed-by>FPT_PHP.3 (sel-based)</addressed-by><rationale>Mitigates threat by resisting physical tampering.</rationale>
+				
 			</threat>
 			<threat name="T.SIDE_CHANNEL_LEAKAGE">
 				<description>An attacker running in a tenant context might be able to leverage physical
 					effects caused by the operation of the TOE to derive sensitive information about
 					other tenants or the TOE.</description>
+				<addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Mitigates threat by providing a means to eliminate side-channel flaws through updates.</rationale>
+				
 			</threat>
 			<threat name="T.PERSISTENCE">
 				<description>An attacker might be able to establish a permanent presence on the TOE in
 					firmware. This could result in permanent compromise of tenant information, as
 					well as TOE updates. This threat does not encompass attacker presence in tenant
 					software, as tenant software is not part of the TOE. </description>
+				
+				<addressed-by>FPT_ROT_EXT.1</addressed-by><rationale>Mitigates threat by providing platform integrity to prevent intrusion of a persistent presence on the platform.</rationale>
+				<addressed-by>FPT_RVR_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat with firmware recovery mechanism in case of failure.</rationale>
+				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Mitigates threat by enforcing access control on key data to prevent its unauthorized disclosure.</rationale>
+				
 			</threat>
 			<threat name="T.UPDATE_COMPROMISE">
 				<description>An attacker may attempt to provide a compromised update of TOE firmware. 
 					Such updates can undermine the security functionality of the device if they are
 					unauthorized, unauthenticated, or are improperly validated using non-secure or
 					weak cryptography.</description>
+				
+				<addressed-by>FPT_PPF_EXT.1</addressed-by><rationale>Mitigates threat by using the offical update process to be the only method to modify platform firmware.</rationale>
+				<addressed-by>FPT_ROT_EXT.2</addressed-by><rationale>Mitigates threat by providing a means to attest the validity of updates.</rationale>
+				<addressed-by>FCS_COP.1/Hash (sel-based)</addressed-by><rationale>Mitigates threat by providing a means to validate the integrity of an update using a hash.</rationale>
+				<addressed-by>FCS_COP.1/SigVer (sel-based)</addressed-by><rationale>Mitigates threat by providing a means to validate the integrity of an update using a hash.</rationale>
+				<addressed-by>FPT_TUD_EXT.2 (sel-based)</addressed-by><rationale>Mitigates threat by using a digital signature mechanism to verify the integrity of updates and a rollback protection mechanism to prevent application of an unauthorized update.</rationale>
+				<addressed-by>FPT_TUD_EXT.3 (sel-based)</addressed-by><rationale>Mitigates threat by using the TOE's root of trust to validate the authenticity and integrity of an update when it is applied.</rationale>
+				<addressed-by>FPT_TUD_EXT.4 (sel-based)</addressed-by><rationale>Mitigates threat through an update mechanism that requires physical access to the TOE to use.</rationale>
+				
 			</threat>
 			<threat name="T.SECURITY_FUNCTIONALITY_FAILURE">
 				<description>An attacker could leverage failed or compromised security functionality to 
 					access, change, or modify tenant data, TOE data, or other security functionality
 					of the device.</description>
+				
+				<addressed-by>FCS_STG_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by generating keys/secrets and storing them in a secure manner, as well as destroying them on request.</rationale>
+				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates threat by using appropriate key destruction methods to protect the confidentiality of credential data.</rationale>
+				<addressed-by>FCS_COP.1/SigGen (sel-based)</addressed-by><rationale>Mitigates threat by generating digital signatures with strong encryption.</rationale>
+				<addressed-by>FCS_COP.1/SKC (sel-based)</addressed-by><rationale>Mitigates threat by establishing strong symmetric-key cryptography.</rationale>
+				<addressed-by>FPT_FLS.1 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring a DRBG self-test failure causes the TOE to enter an error state where it cannot perform secure functions using that DRBG.</rationale>
+				<addressed-by>FDP_ITC_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by importing keys and credentials in a secure fashion.</rationale>
+				<addressed-by>FCS_RBG.1 (sel-based)</addressed-by><rationale>Mitigates threat by performing random-bit generation with sufficient complexity.</rationale>
+				<addressed-by>FCS_RBG.2 (sel-based)</addressed-by><rationale>Mitigates threat by using an external seed source to ensure sufficiently strong random-bit generation.</rationale>
+				<addressed-by>FCS_RBG.3 (sel-based)</addressed-by><rationale>Mitigates threat by using an internal seed source to ensure sufficiently strong random-bit generation.</rationale>
+				<addressed-by>FCS_RBG.4 (sel-based)</addressed-by><rationale>Mitigates threat by using multiple internal seed sources to ensure sufficiently strong random-bit generation.</rationale>
+				<addressed-by>FCS_RBG.5 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring that each noise source's random data is combined to ensure strong entropy when multiple sources are used.</rationale>
+				<addressed-by>FPT_TST.1 (sel-based)</addressed-by><rationale>Mitigates threat by using self-tests to ensure correct operation of the DRBG.</rationale>
+				
 			</threat>
 			<threat name="T.TENANT_BASED_ATTACK">
 				<description>An attacker running software as a tenant can attempt to access or modify
 					TOE firmware or functionality. Note that direct tenant attacks against other
 					tenants are not encompassed by this threat as they are out of scope.</description>
+				
+				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates threat by ensuring that audit data indicating a potential attack is accurately timestamped.</rationale>
+				<addressed-by>FCS_RBG.6 (optional)</addressed-by><rationale>Mitigates threat by providing a well-defined interface by which tenant software can access the TSF to obtain random data.</rationale>
+				<addressed-by>FCS_SLT_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using salts to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
+				<addressed-by>FDP_TEE_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by establishing a trusted execution environment for tenant software to use.</rationale>
+				<addressed-by>FCS_CKM.1/AK (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect stored data.</rationale>
+				<addressed-by>FCS_CKM.1/SK (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect stored data.</rationale>
+				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key destruction to prevent the disclosure of keys used to protect stored data.</rationale>
+				<addressed-by>FCS_CKM_EXT.5 (sel-based)</addressed-by><rationale>Mitigates threat by utilizing strong algorithms to derive keys that protect stored data.</rationale>
+				<addressed-by>FCS_COP.1/Hash (sel-based)</addressed-by><rationale>Mitigates threat by implemeting hash functions used for trusted communications.</rationale>
+				<addressed-by>FCS_COP.1/KeyedHash (sel-based)</addressed-by><rationale>Mitigates threat by implementing MAC functions used for trusted communications.</rationale>
+				<addressed-by>FCS_COP.1/SigGen (sel-based)</addressed-by><rationale>Mitigates threat by implemeting signature generation functions used for protected storage.</rationale>
+				<addressed-by>FCS_COP.1/SigVer (sel-based)</addressed-by><rationale>Mitigates threat by implemeting signature verification functions used for protected storage.</rationale>
+				<addressed-by>FCS_COP.1/SKC (sel-based)</addressed-by><rationale>Mitigates threat by implemeting symmetric encryption functions used for protected storage.</rationale>
+				<addressed-by>FAU_GEN.1 (sel-based)</addressed-by><rationale>Mitigates threat by generating audit records that could provide evidence of attack or misuse.</rationale>
+				<addressed-by>FAU_SAR.1 (sel-based)</addressed-by><rationale>Mitigates threat by recording audit data in a manner that could be interpreted to discover evidence of attack.</rationale>
+				<addressed-by>FAU_STG.1 (sel-based)</addressed-by><rationale>Mitigates threat by using an external server to preserve audit data that may provide evidence of an attack.</rationale>
+				<addressed-by>FAU_STG.2 (sel-based)</addressed-by><rationale>Mitigates threat by preventing audit records indicating a potential attack from being destroyed.</rationale>
+				<addressed-by>FAU_STG.5 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring that exhaustion of audit storage does not prevent audit data indicating a potential attack from being generated.</rationale>
+				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Mitigates threat by using cryptography to protect the confidentiality of key data from outside access.</rationale>
+				<addressed-by>FCS_STG_EXT.3 (sel-based)</addressed-by><rationale>Mitigates threat by using cryptography to protect the integrity of key data from outside modification.</rationale>
+				
 			</threat>
 			<threat name="T.NETWORK_BASED_ATTACK">
 				<description>An attacker from off the TOE can attempt to compromise the TOE
 					through a network interface connected to an active TOE component, such
 					as a management subsystem.</description>
+				
+				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates threat by ensuring that audit data indicating a potential attack is accurately timestamped.</rationale>
+				<addressed-by>FCS_SLT_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using salts to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
+				<addressed-by>FCS_CKM.1/AK (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect data in transit.</rationale>
+				<addressed-by>FCS_CKM.1/SK (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect data in transit.</rationale>
+				<addressed-by>FCS_CKM.2 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key establishment to negotiate trusted channels to protect data in transit.</rationale>
+				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key destruction to prevent the compromise of trusted channels.</rationale>
+				<addressed-by>FCS_COP.1/Hash (sel-based)</addressed-by><rationale>Mitigates threat by implemeting hash functions used for trusted communications.</rationale>
+				<addressed-by>FCS_COP.1/KAT (sel-based)</addressed-by><rationale>Mitigates threat by implementing key agreement and transport functions used for trusted communications.</rationale>
+				<addressed-by>FCS_COP.1/KeyedHash (sel-based)</addressed-by><rationale>Mitigates threat by implementing MAC functions used for trusted communications.</rationale>
+				<addressed-by>FCS_COP.1/SigGen (sel-based)</addressed-by><rationale>Mitigates threat by implemeting signature generation functions used for trusted communications.</rationale>
+				<addressed-by>FCS_COP.1/SigVer (sel-based)</addressed-by><rationale>Mitigates threat by implemeting signature verification functions used for trusted communications.</rationale>
+				<addressed-by>FCS_COP.1/SKC (sel-based)</addressed-by><rationale>Mitigates threat by implemeting symmetric encryption functions used for trusted communications.</rationale>
+				<addressed-by>FAU_GEN.1 (sel-based)</addressed-by><rationale>Mitigates threat by generating audit records that could provide evidence of attack or misuse.</rationale>
+				<addressed-by>FCS_HTTPS_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by implementing HTTPS as a means to protect data in transit.</rationale>
+				<addressed-by>FCS_IPSEC_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by implementing IPsec as a means to protect data in transit.</rationale>
+				<addressed-by>FTP_ITC_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring that sensitive data in transit uses trusted protocols.</rationale>
+				<addressed-by>FTP_ITE_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring that sensitive data transmitted over untrusted channels is encrypted prior to transit.</rationale>
+				<addressed-by>FTP_ITP_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by using a physically protected channel to protect data in transit.</rationale>
+				<addressed-by>FAU_SAR.1 (sel-based)</addressed-by><rationale>Mitigates threat by recording audit data in a manner that could be interpreted to discover evidence of attack.</rationale>
+				<addressed-by>FAU_STG.1 (sel-based)</addressed-by><rationale>Mitigates threat by using an external server to preserve audit data that may provide evidence of an attack.</rationale>
+				<addressed-by>FAU_STG.2 (sel-based)</addressed-by><rationale>Mitigates threat by preventing audit records indicating a potential attack from being destroyed.</rationale>
+				<addressed-by>FAU_STG.5 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring that exhaustion of audit storage does not prevent audit data indicating a potential attack from being generated.</rationale>
+				<addressed-by>FTP_TRP.1 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring that remote administration only uses trusted channels.</rationale>
+				
+				
+				
 			</threat>
 			<threat name="T.UNAUTHORIZED_RECONFIGURATION">
 				<description>An attacker might be able to modify the configuration of the TOE and alter its 
 					functionality. This might include, activating dormant subsystems, disabling hardware assists,
 					or altering boot-time behaviors.</description>
+				
+				<addressed-by>FMT_CFG_EXT.1</addressed-by><rationale>Mitigates threat by preventing knowledge of a default credential from being used to access the TSF without authorization.</rationale>
+				<addressed-by>FMT_MOF.1</addressed-by><rationale>Mitigates threat by permitting management functions to be used only by authorized users.</rationale>
+				<addressed-by>FMT_SMF.1</addressed-by><rationale>Mitigates threat by specifying the management functions implemented by the TSF.</rationale>
+				<addressed-by>FMT_SMR.1</addressed-by><rationale>Mitigates threat by defining the management roles which can be used to grant access to management functions.</rationale>
+				<addressed-by>FIA_UIA_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by preventing the TSF from being modified by an unauthenticated subject.</rationale>
+				
+				
 			</threat>
 			<threat name="T.UNAUTHORIZED_PLATFORM_ADMINISTRATOR">
 				<description>An attacker might be able to attain platform administrator status by defeating or bypassing
 					authentication measures.</description>
+				
+				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates threat by ensuring that time-based authentication throttling or lockout is accurately enforced.</rationale>
+				
+				<addressed-by>FIA_TRT_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by throttling authentication to prevent access via brute force.</rationale>
+				<addressed-by>FIA_AFL_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by limiting further authentication attempts once a failure threshold of a critical authentication mechanism has been reached.</rationale>
+				<addressed-by>FIA_PMG_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by enforcing password complexity requirements to prevent credentials from being easily guessed.</rationale>
+				<addressed-by>FIA_UAU.5 (sel-based)</addressed-by><rationale>Mitigates threat by implementing multiple authentication mechanisms for accessing the TSF.</rationale>
+				<addressed-by>FIA_UAU.7 (sel-based)</addressed-by><rationale>Mitigates threat by preventing disclsoure of authentication data during authentication attempts.</rationale>
 			</threat>
+			
 		</threats>
     </sec:Threats>
 	  
@@ -893,7 +997,7 @@
 						</h:ul></description>
 				<addressed-by>FMT_CFG_EXT.1</addressed-by><rationale>Supports the objective by requiring that default Administrator credentials be changed.</rationale>
 				<addressed-by>FIA_UIA_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring Administrators be authenticated before making changes.</rationale>
-				<addressed-by>FMT_MOF_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying that management functions be performed by Administrators.</rationale>
+				<addressed-by>FMT_MOF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying that management functions be performed by Administrators.</rationale>
 				<addressed-by>FMT_SMF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
 				<addressed-by>FMT_SMR.1 (sel-based)</addressed-by><rationale>Supports the objective by defining the roles of Administrator and User.</rationale>
 			</SO>
@@ -913,7 +1017,7 @@
 				<addressed-by>FIA_UAU.5 (sel-based)</addressed-by><rationale>Supports the objective by specifying supported authentication mechanisms.</rationale>
 				<addressed-by>FIA_UAU.7 (sel-based)</addressed-by><rationale>Supports the objective by requiring that authentication factor feedback be suppressed.</rationale>
 				<addressed-by>FIA_UIA_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring Administrators be authenticated before making changes.</rationale>
-				<addressed-by>FMT_MOF_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying that management functions be performed by Administrators.</rationale>
+				<addressed-by>FMT_MOF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying that management functions be performed by Administrators.</rationale>
 				<addressed-by>FMT_SMF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
 				<addressed-by>FMT_SMR.1 (sel-based)</addressed-by><rationale>Supports the objective by defining the roles of Administrator and User.</rationale>
 			</SO>
@@ -2548,82 +2652,8 @@
             </f-element>
 			<audit-event />
         </f-component>
-	
-		<!-- FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash) -->
-		<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="sel-based">
-			<depends on-sel="sel-rbg-hmac"/>  		<!-- FCS_RBG.1.1 -->
-			<depends on-sel="sel-fcs-cop-kat-ecies"/>	<!-- FCS_COP.1.1/KAT -->	
-			<depends on-sel="sel-fdp-itc-ext-1e2-mac"/>  <!-- from FDP_ITC_EXT.1 -->		
-			<depends on-sel="sel-stg3-hmac"/>		<!-- FCS_STG_EXT.3.1 -->
-			<depends on-sel="sel-fcs-ckm-ext-5-kdf-mac"/>   <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-sel="sel-fcs-ckm-ext-5-kdf-pb"/>    <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
-			<depends><optional/></depends>    		<!-- May be also included optionally -->
-			<f-element id="fcs-cop-1e1-hmac">
-				<title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
-					with a specified cryptographic algorithm 
-					<selectables>
-						<selectable>HMAC-SHA-1</selectable>
-						<selectable>HMAC-SHA-256</selectable>
-						<selectable>HMAC-SHA-384</selectable>
-						<selectable>HMAC-SHA-512</selectable>
-						<selectable>KMAC-128</selectable>
-						<selectable>KMAC-256</selectable>
-					</selectables> and cryptographic key sizes <assignable>key size (in bits)</assignable>
-					that meet the following: 
-					<selectables>
-						<selectable>ISO/IEC 9797-2:2021 sec. 7 (HMAC)</selectable>
-						<selectable>ISO/IEC 9797-2:2021 sec. 9 (KMAC)</selectable>
-						<selectable>FIPS PUB 198-1 (HMAC)</selectable>
-						<selectable>NIST SP 800-185 sec. 4 (KMAC)</selectable>
-					</selectables>.
-				</title>
-				<note role="application">
-					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
-					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-					This SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed.<h:p/>
-					Also, this SFR must be claimed under the following conditions:<h:ul>
-					<h:li>If "<h:i>KDF-MAC</h:i>" or "<h:i>KDF-PBKDF</h:i>" is selected in FCS_CKM_EXT.5</h:li>
-					<h:li>If "<h:i>KDF-CTR,</h:i>" "<h:i>KDF-FB,</h:i>" "<h:i></h:i>"KDF-DPI is selected in FCS_CKM_EXT.5 
-					and HMAC is selected for use by the key derivation algorithm.</h:li>
-					<h:li>If "<h:i>A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</h:i>"
-					is selected in FCS_STG_EXT.3.1</h:li>
-					<h:li>If "<h:i>ECIES</h:i>" is selected in FCS_COP.1/KAT</h:li>
-					<h:li>If "<h:i>HMAC_DRBG (any)</h:i>" is selected in FCS_RBG.1.1</h:li>
-					<h:li>If "<h:i>keyed hash as specified in FCS_COP.1/KeyedHash</h:i>" is selected in FDP_ITC_EXT.1.2</h:li>
-					</h:ul>
-					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/>
-					The HMAC key size falls into a range between L1 and L2 defined in ISO/IEC 10118 for the
-					appropriate hash function (e.g., for SHA-256 L1 = 512, L2 = 256) where L2 ≤ k ≤ L1.
-				</note>
-				<aactivity>
-					<TSS>
-						The evaluator shall examine the TSS to ensure that it specifies the following values
-						used by the HMAC and KMAC functions: output MAC length used.<h:p/>
-					</TSS>
-					<Guidance>
-						There are no AGD evaluation activities for this component.<h:p/>
-					</Guidance>
-					<KMD>
-						There are no KMD evaluation activities for this component.<h:p/>
-					</KMD>
-					<Tests>
-						The following test requires the developer to provide access to a test platform that
-						provides the evaluator with tools that are typically not found on factory products.<h:p/>
-						This test is derived from The Keyed-Hash Message Authentication Code Validation
-						System (HMACVS), updated 6 May 2016.<h:p/>
-						The evaluator shall provide 15 sets of messages and keys for each selected hash
-						algorithm and hash length/key size/MAC size combination. The evaluator shall
-						have the TSF generate HMAC or KMAC tags for these sets of test data. The
-						evaluator shall verify that the resulting HMAC or KMAC tags match the results
-						from submitting the same inputs to a known-good implementation of the HMAC or
-						KMAC function, having the same characteristics.<h:p/>
-					</Tests>
-				</aactivity>
-			</f-element>
-			<audit-event/>
-		</f-component>
-
+		
+		
 		<!-- FCS_COP.1/KAT Cryptographic Operation (Key Agreement/Transport) -->
 		<f-component id="sfr-fcs-cop-1-kat" cc-id="fcs_cop.1" iteration="KAT" name="Cryptographic Operation (Key Agreement/Transport)" status="sel-based">
 			<depends on-sel="sel-fcs-ckm-2-rsa"/>  		<!-- FCS_CKM.2 -->
@@ -2949,6 +2979,82 @@
 			</f-element>
 			<audit-event/>
 		</f-component>
+	
+		<!-- FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash) -->
+		<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="sel-based">
+			<depends on-sel="sel-rbg-hmac"/>  		<!-- FCS_RBG.1.1 -->
+			<depends on-sel="sel-fcs-cop-kat-ecies"/>	<!-- FCS_COP.1.1/KAT -->	
+			<depends on-sel="sel-fdp-itc-ext-1e2-mac"/>  <!-- from FDP_ITC_EXT.1 -->		
+			<depends on-sel="sel-stg3-hmac"/>		<!-- FCS_STG_EXT.3.1 -->
+			<depends on-sel="sel-fcs-ckm-ext-5-kdf-mac"/>   <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-ext-5-kdf-pb"/>    <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
+			<f-element id="fcs-cop-1e1-hmac">
+				<title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
+					with a specified cryptographic algorithm 
+					<selectables>
+						<selectable>HMAC-SHA-1</selectable>
+						<selectable>HMAC-SHA-256</selectable>
+						<selectable>HMAC-SHA-384</selectable>
+						<selectable>HMAC-SHA-512</selectable>
+						<selectable>KMAC-128</selectable>
+						<selectable>KMAC-256</selectable>
+					</selectables> and cryptographic key sizes <assignable>key size (in bits)</assignable>
+					that meet the following: 
+					<selectables>
+						<selectable>ISO/IEC 9797-2:2021 sec. 7 (HMAC)</selectable>
+						<selectable>ISO/IEC 9797-2:2021 sec. 9 (KMAC)</selectable>
+						<selectable>FIPS PUB 198-1 (HMAC)</selectable>
+						<selectable>NIST SP 800-185 sec. 4 (KMAC)</selectable>
+					</selectables>.
+				</title>
+				<note role="application">
+					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
+					This SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed.<h:p/>
+					Also, this SFR must be claimed under the following conditions:<h:ul>
+					<h:li>If "<h:i>KDF-MAC</h:i>" or "<h:i>KDF-PBKDF</h:i>" is selected in FCS_CKM_EXT.5</h:li>
+					<h:li>If "<h:i>KDF-CTR,</h:i>" "<h:i>KDF-FB,</h:i>" "<h:i></h:i>"KDF-DPI is selected in FCS_CKM_EXT.5 
+					and HMAC is selected for use by the key derivation algorithm.</h:li>
+					<h:li>If "<h:i>A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</h:i>"
+					is selected in FCS_STG_EXT.3.1</h:li>
+					<h:li>If "<h:i>ECIES</h:i>" is selected in FCS_COP.1/KAT</h:li>
+					<h:li>If "<h:i>HMAC_DRBG (any)</h:i>" is selected in FCS_RBG.1.1</h:li>
+					<h:li>If "<h:i>keyed hash as specified in FCS_COP.1/KeyedHash</h:i>" is selected in FDP_ITC_EXT.1.2</h:li>
+					</h:ul>
+					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/>
+					The HMAC key size falls into a range between L1 and L2 defined in ISO/IEC 10118 for the
+					appropriate hash function (e.g., for SHA-256 L1 = 512, L2 = 256) where L2 ≤ k ≤ L1.
+				</note>
+				<aactivity>
+					<TSS>
+						The evaluator shall examine the TSS to ensure that it specifies the following values
+						used by the HMAC and KMAC functions: output MAC length used.<h:p/>
+					</TSS>
+					<Guidance>
+						There are no AGD evaluation activities for this component.<h:p/>
+					</Guidance>
+					<KMD>
+						There are no KMD evaluation activities for this component.<h:p/>
+					</KMD>
+					<Tests>
+						The following test requires the developer to provide access to a test platform that
+						provides the evaluator with tools that are typically not found on factory products.<h:p/>
+						This test is derived from The Keyed-Hash Message Authentication Code Validation
+						System (HMACVS), updated 6 May 2016.<h:p/>
+						The evaluator shall provide 15 sets of messages and keys for each selected hash
+						algorithm and hash length/key size/MAC size combination. The evaluator shall
+						have the TSF generate HMAC or KMAC tags for these sets of test data. The
+						evaluator shall verify that the resulting HMAC or KMAC tags match the results
+						from submitting the same inputs to a known-good implementation of the HMAC or
+						KMAC function, having the same characteristics.<h:p/>
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+
 
 		<!-- FCS_COP.1/SigGen Cryptographic Operation (Signature Generation) -->
 		<f-component id="sfr-fcs-cop-1-siggen" cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation (Signature Generation)" status="sel-based">
@@ -7607,7 +7713,7 @@
 					If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected, then FCS_COP.1/Hash must be included in the ST.<h:p/>
 					If "<h:i>verification of a digital signature by trusted code/data</h:i>" is selected, then FCS_COP.1/SigVer must be included in the ST.<h:p/>
 					If "<h:i>Initiate a recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
-					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
+					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF.1 and FMT_SMF.1
 					must be included in the ST.<h:p/>
 				</note>
 				<aactivity>
@@ -7743,7 +7849,7 @@
 					policy</h:i>" is selected, then all administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).<h:p/>				
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.2, and FAU_STG.5, must be included in the ST.<h:p/>
-					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF_EXT.1 and FMT_SMF.1
+					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF.1 and FMT_SMF.1
 					must be claimed in the ST.
 				</note>
 				<aactivity>
@@ -8574,7 +8680,7 @@
 					to provide a communication channel between itself and 
 					<selectables linebreak="yes">
 						<selectable>audit servers (as required by FAU_STG.1.1 if selected)</selectable>
-						<selectable>remote administrators (as required by FTP_TRP.1.1 if selected in FMT_MOF_EXT.1)</selectable>
+						<selectable>remote administrators (as required by FTP_TRP.1.1 if selected in FMT_MOF.1)</selectable>
 						<selectable><assignable>other capabilities</assignable></selectable>
 						<selectable exclusive="yes">no other capabilities</selectable>
 					</selectables>
@@ -8753,7 +8859,7 @@
 		
 		
         <!-- FTP_TRP.1 -->
-        <!-- Included in th ST if "remote" is selected in FMT_MOF_EXT.1. -->
+        <!-- Included in th ST if "remote" is selected in FMT_MOF.1 -->
         <f-component id="sfr-ftp-trp-1" cc-id="ftp_trp.1" name="Trusted Path" status="sel-based">
 			<depends on-sel="sel-smf-remote-admin"/> 
             <f-element id="ftp-trp-1e1">
