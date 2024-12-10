@@ -47,7 +47,7 @@
 		</entry>
 	</RevisionHistory>
 
-	<!-- Include SSH and TLS packages -->
+	<!-- Include SSH, TLS, and X.509 packages -->
 	<include-pkg id="pkg-tls">
 		<git>
 		  <url>https://github.com/commoncriteria/tls</url>
@@ -71,12 +71,14 @@
 
 	<include-pkg id="pkg-x509">
 		<git>
-			<url>https://github.com/commoncriteria/ssh</url>
+			<url>https://github.com/commoncriteria/x509</url>
 			<branch>release-1.0</branch>
 		</git>
 		<url>https://commoncriteria.github.io/X509/master/X509-release.html</url>
-		<depends on-sel="sel-itc-ssh"/>
-		<depends on-sel="sel-fia-uau-5-ssh"/>
+		<depends on-sel="sel-fia-uau-5-x509"/>
+		<depends on-sel="sel-itc-certauth"/>
+		<depends on-sel="sel-ipsec-rsa-auth"/>
+		<depends on-sel="sel-ipsec-ecdsa-auth"/>
 	</include-pkg>	
 	
     <pp-preferences>
@@ -831,200 +833,9 @@
 	    
 <!-- 4.0 Security Objectives -->
 <sec:Security_Objectives>
+	 
 	  
-	<!--   4.1 Security Objectives for the TOE -->
-    <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
-		<SOs>
-			<SO name="O.PHYSICAL_INTEGRITY">
-				<description>The TOE must be able to protect the physical platform and interfaces from access by physical means such as
-					probing, physical manipulation, fault-injection, side-channel analysis, environmental stress, or 
-					activating disabled features or pre-delivery services. This includes specification of:<h:ul>
-					<h:li>Requirements for tamper detection</h:li>
-					<h:li>Requirements for disabling or protection of external debug interfaces</h:li>
-					<h:li>Requirements for updateability</h:li>
-					<h:li>Requirements for environmental shielding</h:li></h:ul>
-					This Objective applies only if the TOE implements a use case that addresses the threat T.PHYSICAL.
-				</description>
-				<addressed-by>FPT_JTA_EXT.1</addressed-by><rationale>Supports the objective through restricting access to debug ports.</rationale>		  
-				<addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Supports the objective through requiring that a TOE be either updateable or immutable.</rationale>
-				<addressed-by>FPT_ROT_EXT.3 (objective)</addressed-by><rationale>Supports the objective through requiring supply chain traceability.</rationale>		  
-				<addressed-by>FPT_JTA_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective through requiring debug ports to be disabled.</rationale>		  
-				<addressed-by>FPT_PHP.1 (sel-based)</addressed-by><rationale>Supports the objective through passive detection of physical tampering.</rationale>
-				<addressed-by>FPT_PHP.2 (sel-based)</addressed-by><rationale>Supports the objective through detection and reporting of physical tampering.</rationale>
-				<addressed-by>FPT_PHP.3 (sel-based)</addressed-by><rationale>Supports the objective through resistance to physical tampering.</rationale>
-				<addressed-by>FPT_TUD_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective through specifying an authenticated firmware update mechanism.</rationale>
-				<addressed-by>FPT_TUD_EXT.3 (sel-based)</addressed-by><rationale>Supports the objective through specifying a firmware update mechanism with delayed authentication.</rationale>
-				<addressed-by>FPT_TUD_EXT.4 (sel-based)</addressed-by><rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>		  
-			</SO>
-			<SO name="O.ATTACK_DETECTION_AND_RESPONSE">
-				<description>The TOE must be capable of detecting attempts to compromise the physical or logical integrity
-					of the TOE and respond by notifying a user or reporting the attempt to an enterprise security
-					authority. This includes specification of:<h:ul>
-					<h:li>Requirements for responses to particular detected events. (resilience, secure state, etc.)</h:li>
-					<h:li>Requirements for basic auditing capabilities and protection of audit records.</h:li>
-					<h:li>Requirements for secure transmission of audit records (if applicable)</h:li></h:ul>
-				</description>
-				<addressed-by>FPT_ROT_EXT.2</addressed-by><rationale>Supports the objective by indicating integrity failures in platform firmware.</rationale>
-				<addressed-by>FPT_STM.1</addressed-by><rationale>Supports the objective by ensuring that audit events are marked with reliable time stamps.</rationale>
-				<addressed-by>FAU_GEN.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring reporting of security-related audit events.</rationale>
-				<addressed-by>FAU_SAR.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring that audit events be readable by an Administrator.</rationale>
-				<addressed-by>FAU_STG.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring that audit records be off-loaded to an external IT entity.</rationale>
-				<addressed-by>FAU_STG.2 (sel-based)</addressed-by><rationale>Supports the objective by requiring that audit records be protected from unauthorized deletion.</rationale>
-				<addressed-by>FAU_STG.5 (sel-based)</addressed-by><rationale>Supports the objective by requiring that audit records be protected from automatic deletion.</rationale>
-				<addressed-by>FPT_PHP.1 (sel-based)</addressed-by><rationale>Supports the objective through passive detection of physical tampering.</rationale>
-				<addressed-by>FPT_PHP.3 (sel-based)</addressed-by><rationale>Supports the objective through resistance to physical tampering.</rationale>
-			</SO>
-			<SO name="O.MITIGATE_FUNDAMENTAL_FLAWS">
-				<description>The TOE must have a capability for mitigating or fixing fundamental flaws through update 
-					or some other technical or operational means. This includes specifications of:<h:ul>
-					<h:li>Requirements for updateability of TOE firmware.</h:li></h:ul>
-				</description>
-				<addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Supports the objective through requiring that a TOE be either updateable or immutable.</rationale>
-				<addressed-by>FPT_TUD_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective through specifying an authenticated firmware update mechanism.</rationale>
-				<addressed-by>FPT_TUD_EXT.3 (sel-based)</addressed-by><rationale>Supports the objective through specifying a firmware update mechanism with delayed authentication.</rationale>
-				<addressed-by>FPT_TUD_EXT.4 (sel-based)</addressed-by><rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>		  
-			</SO>
-			<SO name="O.PROTECTED_FIRMWARE">
-				<description>TOE must ensure that its firmware cannot be modified other than through 
-					a non-bypassable trusted update process. This ensures the integrity of firmware
-					both during the update process and while at rest. This includes
-					specification of:<h:ul>
-					<h:li>Requirements for invocation of the trusted update process</h:li>
-					<h:li>Requirements for non-bypassability of the update process</h:li>
-					<h:li>Requirements for detection and reporting of attempts to modify TOE 
-						firmware outside of the trusted update process.</h:li></h:ul>
-				</description>
-				<addressed-by>FPT_ROT_EXT.1</addressed-by><rationale>Supports the objective by ensuring that platform integrity is rooted in a trust anchor.</rationale>
-				<addressed-by>FPT_PPF_EXT.1</addressed-by><rationale>Supports the objective by requiring that platform firmware be modifiable only through the update process.</rationale>
-				<addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Supports the objective through requiring that a TOE be either updateable or immutable.</rationale>
-				<addressed-by>FPT_ROT_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by detecting integrity failures in platform firmware.</rationale>
-				<addressed-by>FPT_RVR_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying a means for recovery from a boot firmware failure.</rationale>
-				<addressed-by>FPT_TUD_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective through specifying an authenticated firmware update mechanism.</rationale>
-				<addressed-by>FPT_TUD_EXT.3 (sel-based)</addressed-by><rationale>Supports the objective through specifying a firmware update mechanism with delayed authentication.</rationale>
-				<addressed-by>FPT_TUD_EXT.4 (sel-based)</addressed-by><rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>		  
-			</SO>
-			<SO name="O.UPDATE_INTEGRITY">
-				<description>The TOE must ensure that updates to TOE firmware are authorized, 
-					authenticated, and properly validated prior
-					to installation. This includes specification of:<h:ul>
-					<h:li>Requirements for protection of updates</h:li>
-					<h:li>Requirements for authentication of update packages</h:li>
-					<h:li>Requirements for management of updates</h:li>
-					<h:li>Requirements for detection and reporting of update events, whether authorized or not.
-					</h:li></h:ul></description>
-				<addressed-by>FPT_PPF_EXT.1</addressed-by><rationale>Supports the objective by requiring that platform firmware be modifiable only through the update process.</rationale>
-				<addressed-by>FPT_ROT_EXT.2</addressed-by><rationale>Supports the objective by validating the integrity of platform firmware prior to execution.</rationale>
-				<addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Supports the objective through requiring that a TOE be either updateable or immutable.</rationale>
-				<addressed-by>FPT_TUD_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective through specifying an authenticated firmware update mechanism.</rationale>
-				<addressed-by>FPT_TUD_EXT.3 (sel-based)</addressed-by><rationale>Supports the objective through specifying a firmware update mechanism with delayed authentication.</rationale>
-				<addressed-by>FPT_TUD_EXT.4 (sel-based)</addressed-by><rationale>Supports the objective through specifying a secure local firmware update mechanism.</rationale>		  
-			</SO>
-			<SO name="O.STRONG_CRYPTOGRAPHY">
-				<description>Cryptography must meet the standards required for protection of National Security Systems data 
-					(in accordance with CNSSP 15, "Use of Public Standards for Secure Information Sharing"). This includes 
-					specification of:<h:ul>
-					<h:li>Requirements for use and configuration of cryptographic operations.</h:li>
-					<h:li>Requirements for key generation</h:li>
-					<h:li>Requirements for random bit generation support.</h:li>
-					</h:ul></description>
-				<addressed-by>FCS_SLT_EXT.1 (optional)</addressed-by><rationale>Supports the objective by specifying the requirements for cryptographic salt generation.</rationale>
-				<addressed-by>FCS_CKM.1/AK (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for generating asymmetric keys.</rationale>
-				<addressed-by>FCS_CKM.1/SK (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for generating symmetric keys.</rationale>
-				<addressed-by>FCS_CKM.2 (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for cryptographic key establishment.</rationale>		  
-				<addressed-by>FCS_CKM_EXT.5 (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for cryptographic key derivation.</rationale>
-				<addressed-by>FCS_COP.1/Hash (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for cryptographic hashing.</rationale>
-				<addressed-by>FCS_COP.1/KAT (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for key agreement and transport.</rationale>
-				<addressed-by>FCS_COP.1/KeyedHash (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for keyed hashes.</rationale>
-				<addressed-by>FCS_COP.1/SigGen (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for digital signature generation.</rationale>
-				<addressed-by>FCS_COP.1/SigVer (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for digital signature verification.</rationale>
-				<addressed-by>FCS_COP.1/SKC (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for symmetric-key cryptography.</rationale>
-				<addressed-by>FCS_RBG.1 (sel-based/optional)</addressed-by><rationale>Supports the objective by specifying the requirements for random-bit generation services.</rationale>
-			</SO>
-			<SO name="O.SECURITY_FUNCTIONALITY_INTEGRITY">
-				<description>The TOE should be able not be able to operate with failed or degraded
-					security functionality in such a way as might compromise the security or integrity of 
-					the TOE or of TOE data.<h:ul>
-					<h:li>Requirements for detection of degraded or failed security functionality.</h:li>
-					<h:li>Requirements for protection of platform credentials against compromise (secret keys,
-						passwords, etc.)</h:li>
-					<h:li>Requirements for secure destruction of platform credentials (if applicable)</h:li>
-					<h:li>Requirements for quality of credentials (password lengths and the like)</h:li>			
-					</h:ul></description>
-				<addressed-by>FPT_PPF_EXT.1</addressed-by><rationale>Supports the objective by requiring that platform firmware be modifiable only through the update process.</rationale>
-				<addressed-by>FCS_STG_EXT.1 (optional)</addressed-by><rationale>Supports the objective by specifying the types of credential storage supported by the TOE.</rationale>		  
-				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Supports the objective by specifying the mechanism and timing for credential and key destruction.</rationale>
-				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by specifying the types of material that must be encrypted for storage.</rationale>
-				<addressed-by>FCS_STG_EXT.3 (sel-based)</addressed-by><rationale>Supports the objective by specifying the encryption requirements for credential storage.</rationale>
-				<addressed-by>FDP_ITC_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the requirements for import of keys and credentials.</rationale>
-			</SO>
-			<SO name="O.TENANT_SECURITY">
-				<description>The TOE should provide capabilities and security services to tenant software 
-					to help tenants help themselves. This includes specification of:<h:ul>
-					<h:li>Requirements for providing cryptographic support to tenants (random bit generation,
-						crypto support instructions).</h:li>
-					<h:li>Requirements for support for separation of tenant workloads</h:li>
-					<h:li>Requirements for supporting secure storage of tenant credentials</h:li>
-					<h:li>Requirements for supporting secure boot of a tenant operating system</h:li>			
-					</h:ul></description>
-				<addressed-by>FCS_RBG.6 (optional)</addressed-by><rationale>Supports the objective by requiring that the TOE provide entropy to tenant software.</rationale>
-				<addressed-by>FCS_STG_EXT.1 (optional)</addressed-by><rationale>Supports the objective by specifying the types of credential storage supported by the TOE.</rationale>
-				<addressed-by>FDP_TEE_EXT.1 (optional)</addressed-by><rationale>Supports the objective by specifying the requirements for a trusted execution environment.</rationale>
-				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Supports the objective by specifying the types of material that must be encrypted for storage.</rationale>
-				<addressed-by>FCS_STG_EXT.3 (sel-based)</addressed-by><rationale>Supports the objective by specifying the encryption requirements for credential storage.</rationale>		  
-				<addressed-by>FDP_ITC_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the requirements for import of keys and credentials.</rationale>
-			</SO>
-			<SO name="O.TRUSTED_CHANNELS">
-				<description>The TOE must protect certain network communications through guaranteed 
-					confidentiality, integrity, and authenticity. Such traffic includes communications with remote 
-					administrators, audit servers, update servers, and credential managers. This objective includes 
-					specification of:<h:ul>
-					<h:li>Requirements for the use of secure network protocols</h:li>
-					<h:li>Requirements for the use of public key certificates</h:li>
-					<h:li>Requirements for the authentication of endpoints</h:li>
-					</h:ul></description>
-				<addressed-by>FCS_HTTPS_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying requirements for the HTTPS protocol.</rationale>
-				<addressed-by>FCS_IPSEC_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying requirements for the IPSec protocol.</rationale>
-				<addressed-by>FTP_ITC_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying allowable trusted channel protocols.</rationale>
-				<addressed-by>FTP_ITE_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying requirements for moving data through untrusted channels.</rationale>
-				<addressed-by>FTP_ITP_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by allowing physically protected communications channels.</rationale>
-				<addressed-by>FTP_TRP.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying allowable uses for trusted channels.</rationale>
-			</SO>
-			<SO name="O.CONFIGURATION_INTEGRITY">
-				<description>The TOE should detect or prevent unauthorized users from being able to modify the system configuration.
-					This includes:<h:ul>
-						<h:li>Requirements for authentication of Administrators before application of configuration modifications.</h:li>
-						<h:li>Requirements for detection and reporting of attempts to modify the TOE configuration.</h:li>
-						</h:ul></description>
-				<addressed-by>FMT_CFG_EXT.1</addressed-by><rationale>Supports the objective by requiring that default Administrator credentials be changed.</rationale>
-				<addressed-by>FIA_UIA_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring Administrators be authenticated before making changes.</rationale>
-				<addressed-by>FMT_MOF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying that management functions be performed by Administrators.</rationale>
-				<addressed-by>FMT_SMF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
-				<addressed-by>FMT_SMR.1 (sel-based)</addressed-by><rationale>Supports the objective by defining the roles of Administrator and User.</rationale>
-			</SO>
-			<SO name="O.AUTHORIZED_ADMINISTRATOR">
-				<description>The TOE must ensure that Administrative actions can be taken only by authorized Administrators. This includes 
-					specification of:<h:ul>
-					<h:li>Requirements specifying actions allowable for the Administrator role</h:li>
-					<h:li>Requirements for processes for authenticating Administrators</h:li>
-					<h:li>Requirements for protection of Administrator credentials</h:li>
-					<h:li>Requirements for setup and operation of a secure channel for remote administration</h:li>
-					<h:li>Requirements for management of administrator sessions.</h:li>
-					</h:ul></description>
-				<addressed-by>FMT_CFG_EXT.1</addressed-by><rationale>Supports the objective by requiring that default Administrator credentials be changed.</rationale>
-				<addressed-by>FIA_TRT_EXT.1 (optional)</addressed-by><rationale>Supports the objective by limiting the number of automated authentication attempts.</rationale>
-				<addressed-by>FIA_AFL_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring that Administrators be authenticated.</rationale>
-				<addressed-by>FIA_PMG_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying password complexity requirements.</rationale>
-				<addressed-by>FIA_UAU.5 (sel-based)</addressed-by><rationale>Supports the objective by specifying supported authentication mechanisms.</rationale>
-				<addressed-by>FIA_UAU.7 (sel-based)</addressed-by><rationale>Supports the objective by requiring that authentication factor feedback be suppressed.</rationale>
-				<addressed-by>FIA_UIA_EXT.1 (sel-based)</addressed-by><rationale>Supports the objective by requiring Administrators be authenticated before making changes.</rationale>
-				<addressed-by>FMT_MOF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying that management functions be performed by Administrators.</rationale>
-				<addressed-by>FMT_SMF.1 (sel-based)</addressed-by><rationale>Supports the objective by specifying the management functions implemented by the TOE.</rationale>
-				<addressed-by>FMT_SMR.1 (sel-based)</addressed-by><rationale>Supports the objective by defining the roles of Administrator and User.</rationale>
-			</SO>
-		</SOs>
-    </section>
-	  
-	<!--   4.2 Security Objectives for the Operational Environment -->
+	<!--   4.1 Security Objectives for the Operational Environment -->
     <section title="Security Objectives for the Operational Environment"
 		id="SecurityObjectivesTOEorEnvironment">
 		The following security objectives for the operational environment assist the GPCP in correctly providing its
@@ -1425,7 +1236,7 @@
 							<col><selectables>
 								<selectable id="sel-exp-ak-rsa-2048">2048 bit</selectable>
 								<selectable id="sel-exp-ak-rsa-3072">3072-bit</selectable></selectables></col>
-							<col>FIPS PUB 186-4 sec. B.3 [key generation]</col>
+							<col>FIPS PUB 186-5 sec. A.1 [key generation]</col>
 						</selectable>
 
 						<selectable id="sel-fcs-ckm-ak-eccn">
@@ -1434,8 +1245,8 @@
 								<selectable id="sel-exp-ak-eccn-P256">256 (P-256)</selectable>
 								<selectable id="sel-exp-ak-eccn-P384">384 (P-384)</selectable>
 								<selectable id="sel-exp-ak-eccn-P521">521 (P-521)</selectable></selectables></col>
-							<col>FIPS PUB 186-4 sec. D.1.2 [NIST curves]<h:p/>
-								FIPS PUB 186-4 sec. B.4 [key generation]</col>
+							<col>NIST SP 800-186 sec. 3.2.1 [NIST curves]<h:p/>
+								FIPS PUB 186-5 sec. A.2 [key generation]</col>
 						</selectable>
 
 						<selectable id="sel-fcs-ckm-ak-eccb">
@@ -1445,24 +1256,14 @@
 							<selectable id="sel-exp-ak-eccb-bpP384r1">384 (brainpoolP384r1)</selectable>
 							<selectable id="sel-exp-ak-eccb-bpP512r1">512 (brainpoolP512r1)</selectable></selectables></col>
 						<col>RFC 5639 sec. 3 [Brainpool Curves]<h:p/>
-							FIPS PUB 186-4 sec. B.4 [key generation]</col>
-						</selectable>
-
-						<selectable id="sel-fcs-ckm-ak-dsa">
-						<col>DSA</col>
-						<col>DSA Bit lengths of p and q respectively (L, N) 
-							<selectables>
-								<selectable id="sel-exp-ak-dsa-2048-224">(2048, 224)</selectable>
-								<selectable id="sel-exp-ak-dsa-2048-256">(2048, 256)</selectable>
-								<selectable id="sel-exp-ak-dsa-3027-256">(3027, 256)</selectable></selectables></col>
-						<col>FIPS PUB 186-4 sec. B.1 [key generation]</col>
+							FIPS PUB 186-5 sec. A.2 [key generation]</col>
 						</selectable>
 
 						<selectable id="sel-fcs-ckm-ak-curve25519">
 						<col>Curve25519</col>
 						<col>256 bits</col>
 						<col>RFC 7748 [Curve25519]<h:p/>
-							FIPS PUB 186-4 sec. B.4 [key generation]
+							FIPS PUB 186-5 sec. A.2 [key generation]
 							</col>
 						</selectable>
 					</selectables>
@@ -1474,9 +1275,6 @@
 					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
 					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
 					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.<h:p/>
-					DSA will be deprecated by FIPS PUB 186-5, when published. DSA keys of size (1024, 160) were deprecated
-					by FIPS PUB 186-4 though that size is still allowed for signature verification.<h:p/>
-					For Curve25519, see also, final draft NIST FIPS PUB 186-5, Oct 2019.<h:p/>
 				</note>
 				<aactivity>
 					<TSS>
@@ -1502,7 +1300,7 @@
 						The following tests require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
 						<h:br/><h:b>RSA: RSA Key Generation</h:b><h:p/>
-						The below tests are derived from The 186-4 RSA Validation System (RSA2VS),
+						The below tests are derived from The 186-5 RSA Validation System (RSA2VS),
 						Updated 8 July 2014, Section 6.2, from the National Institute of Standards and
 						Technology.<h:p/>
 						The evaluator shall verify the implementation of RSA Key Generation by the TOE
@@ -1510,7 +1308,7 @@
 						produce values for the key components including the public verification exponent
 						e, the private prime factors p and q, the public modulus n and the calculation of the
 						private signature exponent d.<h:p/>
-						FIPS PUB 186-4 Key Pair generation specifies 5 methods for generating the primes p
+						FIPS PUB 186-5 Key Pair generation specifies five methods for generating the primes p
 						and q.<h:p/>
 						These are:<h:ol type="1">
 							<h:li>Random Primes:<h:ul>
@@ -1547,11 +1345,11 @@
 						<h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li>
 						<h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/>
 						<h:br/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
-						These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
+						These tests are derived from The FIPS 186-5 Elliptic Curve Digital Signature
 						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/>
 						<h:b>  ECC Key Generation Test</h:b><h:br/>
 						For each selected curve, and for each key pair generation method as described in
-						FIPS PUB 186-4, section B.4, the evaluator shall require the implementation under test
+						FIPS PUB 186-5, section A.2, the evaluator shall require the implementation under test
 						to generate 10 private/public key pairs (d, Q). The private key, d, shall be generated 
 						using a random bit generator as specified in FCS_RBG.1. The private key, d,
 						is used to compute the public key, Q’. The evaluator shall confirm that 0&lt;d&lt;n
@@ -1564,39 +1362,7 @@
 						(i.e., correct). To determine correctness, the evaluator shall submit the 12 key pairs
 						to the public key validation (PKV) function of the TOE and shall confirm that the
 						results correspond as expected to the modified and unmodified values.<h:p/>
-						<h:br/><h:b>DSA: DSA Key Generation using Finite-Field Cryptography (FFC)</h:b><h:p/>
-						<!-- Apparently not based on DSA2VS? -->
-						The evaluator shall verify the implementation of the Parameters Generation and the
-						Key Generation for FFC by the TOE using the Parameter Generation and Key
-						Generation test. This test verifies the ability of the TSF to correctly produce values
-						for the field prime p, the cryptographic prime q (dividing p-1), the cryptographic
-						group generator g, and the calculation of the private key x and public key y.<h:p/>
-						The Parameter generation specifies 2 ways (or methods) to generate the
-						cryptographic prime q and the field prime p:<h:ul>
-							<h:li>Primes q and p shall both be provable primes</h:li>
-							<h:li>Primes q and field prime p shall both be probable primes</h:li></h:ul>
-						and two ways to generate the cryptographic group generator g:<h:ul>
-							<h:li>Generator g constructed through a verifiable process</h:li>
-							<h:li>Generator g constructed through an unverifiable process.</h:li></h:ul>
-						The Key generation specifies 2 ways to generate the private key x:<h:ul>
-							<h:li>len(q) bit output of RBG where 1 &#8804; x &#8804; q-1</h:li>
-							<h:li>len(q) + 64 bit output of RBG, followed by a mod q-1 operation and a +1
-								operation, where 1&#8804; x&#8804;q-1. </h:li></h:ul>
-						The security strength of the RBG must be at least that of the security offered by the
-						FFC parameter set.<h:p/>
-						To test the cryptographic and field prime generation method for the provable primes
-						method or the group generator g for a verifiable process, the evaluator must seed
-						the TSF parameter generation routine with sufficient data to deterministically
-						generate the parameter set.<h:p/>
-						For each key length supported, the evaluator shall have the TSF generate 25
-						parameter sets and key pairs. The evaluator shall verify the correctness of the TSF’s
-						implementation by comparing values generated by the TSF with those generated
-						from a known good implementation. Verification must also confirm<h:ul>
-						<h:li>g != 0,1</h:li>
-						<h:li>q divides p-1</h:li>
-						<h:li>g^q mod p = 1</h:li>
-						<h:li>g^x mod p = y</h:li></h:ul>
-						for each FFC parameter set and key pair.<h:p/>
+					
 						<h:br/><h:b>Curve25519: Curve25519 Key Generation</h:b><h:p/>
 						The evaluator shall require the implementation under test (IUT) to generate 10
 						private/public key pairs. The private key shall be generated as specified in RFC
@@ -3094,7 +2860,7 @@
 							<selectables>
 								<selectable>RFC 8017</selectable>
 								<selectable>PKCS #1 v2.2 (sec. 8.2)</selectable>
-								<selectable>FIPS PUB 186-4, (sec. 5.5)</selectable>
+								<selectable>FIPS PUB 186-5 (sec. 5.4)</selectable>
 							</selectables>(RSASSA-PKCS1-v1_5)<h:p/>
 							<selectables>
 								<selectable>ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable>
@@ -3203,10 +2969,10 @@
 								<selectable>
 									<selectables>
 										<selectable>ISO/IEC 14888-3</selectable>
-										<selectable>FIPS PUB 186-4 (sec. 6)</selectable>
+										<selectable>FIPS PUB 186-5 (sec. 6)</selectable>
 									</selectables>(EDCSA)</selectable>
 								<selectable>RFC 5639 (sec. 3) [Brainpool Curves]</selectable>
-								<selectable>FIPS PUB 186-4 (app. D.1.2) [NIST Curves]</selectable>
+								<selectable>NIST SP 800-186 (sec. 3.2.1) [NIST Curves]</selectable>
 							</selectables><h:p/>
 							<selectables>
 								<selectable>ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable>
@@ -3259,7 +3025,7 @@
 						SHA algorithm, hash size and key size. The evaluator them uses a known-good
 						implementation and the associated public keys to verify the signatures.<h:p/>
 						<h:b>If ECDSA is claimed:</h:b><h:p/>
-						The below test is derived from The FIPS 186-4 Elliptic Curve Digital Signature
+						The below test is derived from The FIPS 186-5 Elliptic Curve Digital Signature
 						Algorithm Validation System (ECDSA2VS). Updated 18 March 2014, Section 6.4,
 						from the National Institute of Standards and Technology.<h:p/>
 						To test the implementation of ECDSA signature generation the evaluator uses the
@@ -3314,7 +3080,7 @@
 						<selectables>
 							<selectable>RFC 8017</selectable>
 							<selectable>PKCS #1 v2.2 (sec. 8.2)</selectable>
-							<selectable>FIPS PUB 186-4, (sec 5.5)</selectable>
+							<selectable>FIPS PUB 186-5, (sec 5.4)</selectable>
 						</selectables>[RSASSA-PKCS1-v1_5]<h:p/>
 						<selectables>
 							<selectable>ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable>
@@ -3423,10 +3189,10 @@
 							<selectable>
 								<selectables>
 									<selectable>ISO/IEC 14888-3</selectable>
-									<selectable>FIPS PUB 186-4 (Section 6)</selectable>
+									<selectable>FIPS PUB 186-5 (sec. 6)</selectable>
 								</selectables>(EDCSA)</selectable>
-							<selectable>RFC 5639 (Section 3)(Brainpool Curves)</selectable>
-							<selectable>FIPS PUB 186-4 (Appendix D.1.2) (NIST Curves)</selectable>
+							<selectable>RFC 5639 (sec. 3)(Brainpool Curves)</selectable>
+							<selectable>FIPS PUB 186-5 (sec. 3.2.1) (NIST Curves)</selectable>
 						</selectables><h:p/>
 						<selectables>
 							<selectable>ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable>
@@ -3494,7 +3260,7 @@
 					<h:b><h:i>ECDSA on NIST and Brainpool Curves</h:i></h:b><h:p/>
 					These tests are derived from The FIPS 186-4 Elliptic Curve Digital Signature
 					Algorithm Validation System (ECDSA2VS), updated 18 Mar 2014, Section 6.5.<h:p/>
-					The FIPS 186-4 ECC Signature Verification Test tests the ability of the TSF to
+					The FIPS 186-5 ECC Signature Verification Test tests the ability of the TSF to
 					recognize valid and invalid signatures. The evaluator shall provide a modulus and
 					associated key pair (x, y) for each combination of selected curve, SHA algorithm,
 					modulus size, and hash size. Each private key (x) is used to sign 15 pseudorandom 
@@ -4834,8 +4600,8 @@
             <f-element id="fcs-ipsec-ext-1e11">
                 <title>The TSF shall ensure that all IKE protocols perform peer authentication using a
 					<selectables>
-						<selectable>RSA</selectable>
-						<selectable>ECDSA</selectable>
+						<selectable id="sel-ipsec-rsa-auth">RSA</selectable>
+						<selectable id="sel-ipsec-ecdsa-auth">ECDSA</selectable>
 					</selectables> that use X.509v3 certificates that conform to RFC 4945 and 
 					<selectables onlyone="yes">
 						<selectable>Pre-shared Keys</selectable>
@@ -8706,7 +8472,7 @@
 					Functional Package for TLS. This PP does not mandate that a product implement TLS with mutual authentication,
 					but if the product includes the capability to perform TLS with mutual authentication, then
 					mutual authentication must be included within the TOE boundary.<h:p/>
-					If the ST Author selects "<h:i>SSH</h:i>," the TOE must be validated against the Functional Package for Secure Shell.<h:p/>
+					If the ST Author selects "<h:i>SSH</h:i>," the TOE must conform to <xref to="pkg-ssh"/>.<h:p/>
 					If the ST Author selects "<h:i>certificate-based authentication of the remote peer</h:i>," then the TOE must conform to <xref to="pkg-x509"/>.<h:p/>
 					Claims from this package are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
 					<h:p/>	
