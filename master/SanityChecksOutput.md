@@ -107,14 +107,12 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[5]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[5]""/f-element[1]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[5]""/f-element[1]""/aactivity[1]""/KMD[1]"There are"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/selectable[2]""/col[3]"FIPS PUB "/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/selectable[2]""/col[3]"NIST SP 8"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/selectable[3]""/col[3]"RFC 5639 "/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/selectable[5]""/col[3]"RFC 7748 "/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/selectable[4]""/col[3]"RFC 7748 "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]"This SFR "/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]"This SFR "/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]"This SFR "/h:p[4]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/note[1]"This SFR "/h:p[5]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[1]""
@@ -131,11 +129,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[12]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[13]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[14]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[15]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[16]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[17]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[18]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[19]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/note[1]"This SFR "/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
@@ -785,6 +778,19 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[6]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[7]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[5]"In order "/h:p[1]""
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
+ Failed to find a reference to SecurityObjectivesTOE.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
@@ -792,8 +798,34 @@ warning: failed to load external entity "output/pkg-ssh.xml"
 warning: failed to load external entity "output/pkg-ssh.xml"
 warning: failed to load external entity "output/pkg-ssh.xml"
 warning: failed to load external entity "output/pkg-ssh.xml"
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
 warning: failed to load external entity "output/pkg-ssh.xml"
 warning: failed to load external entity "output/pkg-ssh.xml"
  Failed to find a reference to entropyappendix.
 warning: failed to load external entity "output/pkg-ssh.xml"
 warning: failed to load external entity "output/pkg-ssh.xml"
+warning: failed to load external entity "output/pkg-ssh.xml"
+warning: failed to load external entity "output/pkg-ssh.xml"
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
+output/pkg-x509.xml:1: parser error : Document is empty
+
+^
