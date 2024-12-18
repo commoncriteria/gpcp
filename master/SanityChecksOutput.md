@@ -794,10 +794,6 @@ output/pkg-x509.xml:1: parser error : Document is empty
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
-warning: failed to load external entity "output/pkg-ssh.xml"
-warning: failed to load external entity "output/pkg-ssh.xml"
-warning: failed to load external entity "output/pkg-ssh.xml"
-warning: failed to load external entity "output/pkg-ssh.xml"
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
@@ -816,13 +812,7 @@ output/pkg-x509.xml:1: parser error : Document is empty
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
-warning: failed to load external entity "output/pkg-ssh.xml"
-warning: failed to load external entity "output/pkg-ssh.xml"
  Failed to find a reference to entropyappendix.
-warning: failed to load external entity "output/pkg-ssh.xml"
-warning: failed to load external entity "output/pkg-ssh.xml"
-warning: failed to load external entity "output/pkg-ssh.xml"
-warning: failed to load external entity "output/pkg-ssh.xml"
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
