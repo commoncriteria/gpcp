@@ -36,7 +36,7 @@ jobs:
       run: echo "action_projname=${PWD##*/}" >> $GITHUB_ENV
       
     - name: Spew
-      run: make inter && cp abc.xml ou
+      run: make inter && cp abc.xml output
         
     - name:  Prepare checkout
       run: |
@@ -52,6 +52,7 @@ jobs:
       run: |
         rm -rf gh-pages/${{ env.action_branch }}
         mv output gh-pages/${{ env.action_branch }}
+        echo moved to gh-pages/${{ env.action_branch }}
         
     - name: Make listing
       run: |
