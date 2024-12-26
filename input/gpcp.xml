@@ -9,8 +9,13 @@
       We need a selection to trigger trusted path/remote management.
       Also, need selections in the audit (and update?) to trigger trusted path.
       Maybe this can all be in SMF or MOF?  
+	 
 -->
 
+<!-- Incorporates:
+	TRRT 1560:	Removes PHP.1 and PHP.2 from CSfC EUD use case, and makes those SFRs Objective.
+	
+-->
 
 <PP target-product="General-Purpose Computing Platforms" 
     xmlns="https://niap-ccevs.org/cc/v1"
@@ -419,8 +424,8 @@
 				<config>
 					<ref-id>sfr-fpt-php-1</ref-id> 
 					<ref-id>sfr-fpt-jta-ext-2</ref-id>
-<!--	TRRT 1560				<ref-id>t-physical</ref-id>				 -->
-<!--	TRRT 1560				<not><ref-id>a-physical-protection</ref-id></not>			-->	
+<!--					<ref-id>t-physical</ref-id>				 -->
+<!--					<not><ref-id>a-physical-protection</ref-id></not>			-->	
 				</config>
 			</usecase>
 			<usecase title="CSfC EUD" id="uc-csfc-eud">
@@ -428,21 +433,22 @@
 					EUDs used in accordance with the CSfC Mobile Access Capability Package can include 
 					smart phones, tablets, and laptops. This use case covers the basic CSfC requirements 
 					for tablet and laptop EUDs (mobile devices are out of scope for this PP).<h:p/>
-					Although CSfC requires that users maintain physical control of EUDs at all times,
-					this use case removes the assumption that the TOE is protected by the OE and 
-					adds requirements for audit and basic tamper detection and reporting.
+					<!--Although -->CSfC requires that users maintain physical control of EUDs at all times.
+					This use case <!--removes the assumption that the TOE is protected by the OE and 
+					-->adds requirements for audit and for protection of debug ports
+					<!-- and basic tamper detection and reporting-->.
 				</description>
 				<config>
-					<ref-id>sfr-fpt-php-1</ref-id> 
-					<ref-id>sfr-fpt-php-2</ref-id> 
+<!--	TRRT 1560				<ref-id>sfr-fpt-php-1</ref-id> -->
+<!--	TRRT 1560					<ref-id>sfr-fpt-php-2</ref-id>  -->
 					<ref-id>sfr-fpt-jta-ext-2</ref-id>
 					<ref-id>sfr-fau-gen-1</ref-id>
 					<ref-id>sfr-fau-sar-1</ref-id>
 					<ref-id>sfr-fau-stg-1</ref-id>
 					<ref-id>sfr-fau-stg-2</ref-id>
 					<ref-id>sfr-fau-stg-5</ref-id>
-<!--	TRRT 1560				<ref-id>t-physical</ref-id>				-->
-<!--	TRRT 1560				<not><ref-id>a-physical-protection</ref-id></not>				-->
+<!--				<ref-id>t-physical</ref-id>				-->
+<!--				<not><ref-id>a-physical-protection</ref-id></not>				-->
 				</config>
 			</usecase>
 			<usecase title="Tactical EUD" id="uc-tactical-eud">
