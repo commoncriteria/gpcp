@@ -419,8 +419,8 @@
 				<config>
 					<ref-id>sfr-fpt-php-1</ref-id> 
 					<ref-id>sfr-fpt-jta-ext-2</ref-id>
-<!--					<ref-id>t-physical</ref-id>				 -->
-<!--					<not><ref-id>a-physical-protection</ref-id></not>			-->	
+<!--	TRRT 1560				<ref-id>t-physical</ref-id>				 -->
+<!--	TRRT 1560				<not><ref-id>a-physical-protection</ref-id></not>			-->	
 				</config>
 			</usecase>
 			<usecase title="CSfC EUD" id="uc-csfc-eud">
@@ -441,8 +441,8 @@
 					<ref-id>sfr-fau-stg-1</ref-id>
 					<ref-id>sfr-fau-stg-2</ref-id>
 					<ref-id>sfr-fau-stg-5</ref-id>
-<!--					<ref-id>t-physical</ref-id>				-->
-<!--					<not><ref-id>a-physical-protection</ref-id></not>				-->
+<!--	TRRT 1560				<ref-id>t-physical</ref-id>				-->
+<!--	TRRT 1560				<not><ref-id>a-physical-protection</ref-id></not>				-->
 				</config>
 			</usecase>
 			<usecase title="Tactical EUD" id="uc-tactical-eud">
@@ -7121,6 +7121,7 @@
 		<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="sel-based">
 			<depends on-use="uc-client-portable-enhanced"/>
 			<depends on-use="uc-iot-device"/>
+			<depends><objective/></depends>    <!-- TRRT 1560 -->
 			<f-element id="fpt-php-1e1">
 				<title>The TSF shall provide unambiguous detection of physical tampering
 					that can compromise the TSF.
@@ -7167,6 +7168,7 @@
 		<f-component id="sfr-fpt-php-2" cc-id="fpt_php.2" name="Notification of Physical Attack" status="sel-based">
 			<depends on-use="uc-server-enhanced"/>
 			<depends on-use="uc-csfc-eud"/>  
+			<depends><objective/></depends>   <!-- TRRT 1560 -->
 			<f-element id="fpt-php-2e1">
 				<title>The TSF shall provide unambiguous detection of physical tampering that
 					can compromise the TSF.
