@@ -1,8 +1,8 @@
-compilation error: file transforms/xsl/ppcommons.xsl line 250 element vslue-of
+compilation error: file transforms/xsl/ppcommons.xsl line 257 element vslue-of
 xsltStylePreCompute: unknown xsl:vslue-of
-compilation error: file transforms/xsl/ppcommons.xsl line 263 element vslue-of
+compilation error: file transforms/xsl/ppcommons.xsl line 270 element vslue-of
 xsltStylePreCompute: unknown xsl:vslue-of
-compilation error: file transforms/xsl/ppcommons.xsl line 266 element vslue-of
+compilation error: file transforms/xsl/ppcommons.xsl line 273 element vslue-of
 xsltStylePreCompute: unknown xsl:vslue-of
 * Error: Detected dangling id-reference to sfr-fia-x509-ext-1 from attribute
         on-sfr/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[10]""/depends[1]""/on-sfr[1]""
