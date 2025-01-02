@@ -1,9 +1,3 @@
-compilation error: file transforms/xsl/ppcommons.xsl line 257 element vslue-of
-xsltStylePreCompute: unknown xsl:vslue-of
-compilation error: file transforms/xsl/ppcommons.xsl line 270 element vslue-of
-xsltStylePreCompute: unknown xsl:vslue-of
-compilation error: file transforms/xsl/ppcommons.xsl line 273 element vslue-of
-xsltStylePreCompute: unknown xsl:vslue-of
 * Error: Detected dangling id-reference to sfr-fia-x509-ext-1 from attribute
         on-sfr/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[10]""/depends[1]""/on-sfr[1]""
 * Error: Detected dangling id-reference to sel-x509-adminset from attribute
@@ -612,8 +606,6 @@ xsltStylePreCompute: unknown xsl:vslue-of
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[6]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[7]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[5]"In order "/h:p[1]""
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
@@ -626,97 +618,32 @@ output/pkg-x509.xml:1: parser error : Document is empty
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
  Failed to find a reference to SecurityObjectivesTOE.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
  Failed to find a reference to entropyappendix.
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
-xsltApplySequenceConstructor: vslue-of was not compiled
