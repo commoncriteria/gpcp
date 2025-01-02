@@ -1,3 +1,9 @@
+compilation error: file transforms/xsl/ppcommons.xsl line 250 element vslue-of
+xsltStylePreCompute: unknown xsl:vslue-of
+compilation error: file transforms/xsl/ppcommons.xsl line 263 element vslue-of
+xsltStylePreCompute: unknown xsl:vslue-of
+compilation error: file transforms/xsl/ppcommons.xsl line 266 element vslue-of
+xsltStylePreCompute: unknown xsl:vslue-of
 * Error: Detected dangling id-reference to sfr-fia-x509-ext-1 from attribute
         on-sfr/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[10]""/depends[1]""/on-sfr[1]""
 * Error: Detected dangling id-reference to sel-x509-adminset from attribute
@@ -92,7 +98,7 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[1]""/f-element[2]""/note[1]"The ST Au"/h:p[4]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[1]""/f-element[2]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[1]""/f-element[2]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[1]""/f-element[2]""/aactivity[1]""/KMD[1]"There are"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[1]""/f-element[2]""/aactivity[1]""/CustomEA[1]"There are"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[1]""/f-element[2]""/aactivity[1]""/Tests[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[2]""/f-element[2]""/aactivity[1]""/TSS[1]"There are"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[2]""/f-element[2]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
