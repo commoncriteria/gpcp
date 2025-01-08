@@ -634,6 +634,7 @@ output/pkg-x509.xml:1: parser error : Document is empty
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
+ Failed to find a reference to entropyappendix.
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
