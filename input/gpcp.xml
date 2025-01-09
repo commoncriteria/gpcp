@@ -14,8 +14,10 @@
 
 <!-- Incorporates:
 	TRRT 1560:	Removes PHP.1 and PHP.2 from CSfC EUD use case, and makes those SFRs Objective.
-	TRRT 1564:  Add text to use cases clarifying that some use case encapsulate others.
-	
+	TRRT 1564:  Add text to Use Cases section clarifying that some use case encapsulate others.
+	TRRT 1567:  Add language to TOE Overview allowing FDE to be excluded from the TOE under certain conditions.
+	            This may also apply to DSCs, but I've not added that language.
+				Eventually these issues should be resolved through composed TOEs.
 -->
 
 <PP target-product="General-Purpose Computing Platforms" 
@@ -350,7 +352,15 @@
 			in grey. Platform components are in blue.<h:p/>
 			In general, the TOE consists of the platform components represented 
 			by the blue boxes, along with their associated firmware. Any particular platform may have 
-			additional hardware components, or fewer than those illustrated.
+			additional hardware components, or fewer than those illustrated.<h:p/>
+			<!-- TRRT 1567 -->
+			If the GPCP includes Full Drive Encryption (FDE), and the FDE component has been previously evaluated against 
+			the FDEcPPs, or will be evaluated against the FDEcPPs concurrently with the GPCP evaluation, then the FDE component may be
+			excluded from the TOE for purposes of the GPCP evaluation.
+<!--
+			<h:p/>Likewise, if the GPCP includes a Dedicated Security Component (DSC) that has been previously evaluated against 
+			the DSCcPP, or will be evaluated against the DSCcPP concurrently with the GPCP evaluation, then the DSC component may be
+			excluded from the TOE for purposes of the GPCP evaluation.  -->
       </section>
 
 		<!-- 1.3.2 TOE Operational Environment -->
@@ -376,7 +386,7 @@
 		<h:ul>
 			<h:li>a TOE that meets <xref to="uc-server-enhanced"/> also meets <xref to="uc-server-basic"/></h:li>
 			<h:li>a TOE that meets <xref to="uc-csfc-eud"/> also meets <xref to="uc-client-portable-enhanced"/> and <xref to="uc-client-portable-basic"/>, and</h:li>
-			<h:li>a TOE that meets <xref to="uc-tactical-eud"/> also meets <xref to="uc-client-portable-enhanced"/> and <xref to="uc-client-portable-basic"/>, and</h:li>
+			<h:li>a TOE that meets <xref to="uc-tactical-eud"/> also meets <xref to="uc-client-portable-enhanced"/> and <xref to="uc-client-portable-basic"/>.</h:li>
 		</h:ul>	
 		
 		<usecases>
