@@ -627,7 +627,7 @@ function showTarget(id){
 	            img[src="images/collapsed.png"] { display:none;}
 
           }
-    </style></head><body onLoad="init()"><h1 class="title" style="page-break-before:auto;">DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"><br>
+    </style></head><body onLoad="init()"><div id="commmentbox-"><a href="#Comment-1-">Comment: Comment-1-</a><br><a href="#Comment-2-">Comment: Comment-2-</a><br></div><h1 class="title" style="page-break-before:auto;">DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"><br>
       Version: 2.0<br>2025-01-13<br><b>National Information Assurance Partnership</b><br></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>0.1</td><td>2020-11-16</td><td>Started</td></tr>
 <tr><td>1.0</td><td>2022-02-10</td><td>Initial publication<a id="period_0" href="#period_0">. </a></td></tr>
 <tr><td>1.1</td><td>2024-12-13</td><td>Updates for <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022</td></tr>
@@ -736,7 +736,8 @@ The following sections list Common Criteria and technology terms used in this do
 <tr><td><div id="Data-at-Rest_(DAR)_Protection">Data-at-Rest (DAR) Protection</div></td><td>
 			Countermeasures that prevent attackers, even those with physical access, from extracting data from non-volatile storage<a id="period_38" href="#period_38">. </a>			Common techniques include data encryption and wiping<a id="period_39" href="#period_39">. </a>		</td></tr>
 <tr><td><div id="Developer">Developer</div></td><td>
-			An entity that writes OS software<a id="period_40" href="#period_40">. </a>For the purposes of this document, vendors and developers are the same<a id="period_41" href="#period_41">. </a>		</td></tr>
+			An entity that manufactures platform hardware or writes platform software/firmware<a id="period_40" href="#period_40">. </a>For the purposes of 
+			this document, vendors and developers are the same<a id="period_41" href="#period_41">. </a>		</td></tr>
 <tr><td><div id="Diffie-Hellman_Key_Exchange">Diffie-Hellman Key Exchange (DH)</div></td><td>
 			A cryptographic key exchange protocol using public/private key pairs<a id="period_42" href="#period_42">. </a>		</td></tr>
 <tr><td><div id="Distinguished_Name">Distinguished Name (DN)</div></td><td>
@@ -831,6 +832,7 @@ The following sections list Common Criteria and technology terms used in this do
 			by the blue boxes, along with their associated firmware<a id="period_88" href="#period_88">. </a>Any particular platform may have 
 			additional hardware components, or fewer than those illustrated<a id="period_89" href="#period_89">. </a><p></p>
 			
+			<span style="" class="comment " id="Comment-1-">Addresses TRRT 1567</span>
 			If the <abbr class="dyn-abbr"><a href="#abbr_GPCP">GPCP</a></abbr> includes Full Drive Encryption (FDE), and the FDE component has been previously evaluated against 
 			the FDEcPPs, or will be evaluated against the FDEcPPs concurrently with the <abbr class="dyn-abbr"><a href="#abbr_GPCP">GPCP</a></abbr> evaluation, then the FDE component may be
 			excluded from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> for purposes of the <abbr class="dyn-abbr"><a href="#abbr_GPCP">GPCP</a></abbr> evaluation<a id="period_90" href="#period_90">. </a>
@@ -880,6 +882,7 @@ The following sections list Common Criteria and technology terms used in this do
 					This use case adds physical protections to the base requirements for portable clients or end-user 
 					devices<a id="period_114" href="#period_114">. </a>It is intended for devices that are used in high-assurance scenarios<a id="period_115" href="#period_115">. </a>				</span><p>
             For changes to included <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>, selections, and assignments required for this use case, see <a href="#appendix-uc-client-portable-enhanced" class="dynref">G.4 Portable Clients (laptops, tablets), Enhanced</a><a id="period_116" href="#period_116">. </a>          </p></dd><dt id="uc-csfc-eud"> [USE CASE 5] CSfC EUD</dt><dd><span class="description">
+				    <span style="" class="comment " id="Comment-2-">Modified to address TRRT 1560</span>
 					EUDs used in accordance with the <abbr class="dyn-abbr"><a href="#abbr_CSfC">CSfC</a></abbr> Mobile Access Capability Package can include 
 					smart phones, tablets, and laptops<a id="period_117" href="#period_117">. </a>This use case covers the basic <abbr class="dyn-abbr"><a href="#abbr_CSfC">CSfC</a></abbr> requirements 
 					for tablet and laptop EUDs (mobile devices are out of scope for this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>)<a id="period_118" href="#period_118">. </a><p></p>
@@ -973,7 +976,9 @@ The following sections list Common Criteria and technology terms used in this do
 		<dl><dt class="threat defined" id="T.PHYSICAL">T.PHYSICAL</dt><dd><span class="description">An attacker with physical access might be able to compromise <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> integrity, subvert
 					<abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> protections, or access tenant data through hardware attacks such as probing, physical
 					manipulation, fault-injection, side-channel analysis, environmental stress, or activating
-					disabled features or pre-delivery services<a id="period_156" href="#period_156">. </a>This threat is mitigated by <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> functionality for the use cases listed below; for other use cases, the expectation is that the environmental security objectives are sufficient mitigation for this threat<a id="period_157" href="#period_157">. </a>  
+					disabled features or pre-delivery services<a id="period_156" href="#period_156">. </a>This threat is mitigated by <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> functionality for 
+					the use cases listed below; for other use cases, the expectation is that the environmental 
+					security objectives are sufficient mitigation for this threat<a id="period_157" href="#period_157">. </a>  
 					<ul>
 						<li>Server-Class Platform, Enhanced</li>
 						<li>Portable Clients (laptops, tablets), Enhanced</li>
@@ -1277,7 +1282,7 @@ The following sections list Common Criteria and technology terms used in this do
 								The User Option must be selected if "<i>by express determination of an [User]</i>" is selected
 								in <a href="#FPT_ROT_EXT.2.2">FPT_ROT_EXT.2.2</a> or <a href="#FPT_ROT_EXT.3.2">FPT_ROT_EXT.3.2</a><a id="period_268" href="#period_268">. </a>							</p></td></tr>
 <tr id="mf-key-import-export"><td>17</td><td style="text-align:left">
-								Ability to manage import and export keys/secrets to and from protected storage<a id="period_269" href="#period_269">. </a>							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">X<span class="tooltiptext">Not permitted</span></div></td><td style="text-align:left"><p>
+								Ability to manage import and export of keys/secrets to and from protected storage<a id="period_269" href="#period_269">. </a>							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">X<span class="tooltiptext">Not permitted</span></div></td><td style="text-align:left"><p>
 								This Function must be claimed if <a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr><a id="period_270" href="#period_270">. </a>							</p></td></tr>
 </table>
 				<div class="appnote"><span class="note-header">Application
@@ -1434,10 +1439,10 @@ The following sections list Common Criteria and technology terms used in this do
 						The evaluator shall attempt to overwrite or modify the platform firmware without invoking one of
 						the update mechanisms specified in <a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a> (e.g., using a modified Linux boot loader such 
 						as GRUB that attempts to write to the memory where platform firmware is stored)<a id="period_303" href="#period_303">. </a>The test succeeds
-						if the attempts to overwrite platform firmware fail<a id="period_304" href="#period_304">. </a>The evaluator shall attempt at least two 
+						if the attempts to overwrite platform firmware fail<a id="period_304" href="#period_304">. </a>The evaluator shall attempt at least three 
 						such tests--one that attempts to overwrite the first platform firmware that executes after boot,
-						and one that targets the secure update mechanism (if implemented), and one that targets firmware that
-						has been integrity-checked since the last boot<a id="period_305" href="#period_305">. </a>					</div></div></div></div></div>
+						one that targets the secure update mechanism (if implemented), and one that targets firmware 
+						that has been integrity-checked since the last boot<a id="period_305" href="#period_305">. </a>					</div></div></div></div></div>
 	
 		
 		<div class="comp" id="FPT_ROT_EXT.1"><h4>FPT_ROT_EXT.1 Platform Integrity Root</h4>
@@ -1461,9 +1466,9 @@ The following sections list Common Criteria and technology terms used in this do
 					
 					
 					
-				<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the Root of Trust on which initial integrity of platform firmware is anchored, consistent 
-						with the selection above<a id="period_314" href="#period_314">. </a>The description shall include means by which the Root of Trust is protected from 
-						modification<a id="period_315" href="#period_315">. </a>					</div></div><div class="eacategory">Guidance</div><div class="ea">
+				<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the Root of Trust on which initial integrity 
+						of platform firmware is anchored, consistent with the selection above<a id="period_314" href="#period_314">. </a>The description shall
+						include means by which the Root of Trust is protected from modification<a id="period_315" href="#period_315">. </a>					</div></div><div class="eacategory">Guidance</div><div class="ea">
 			There are no additional Guidance evaluation activities for this component<a id="period_316" href="#period_316">. </a><br></div><div class="eacategory">Tests</div><div class="ea">
 			There are no test activities for this component<a id="period_317" href="#period_317">. </a><br></div></div></div></div>
 
