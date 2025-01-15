@@ -211,7 +211,8 @@
 			Common techniques include data encryption and wiping.
 		</term>
 		<term full="Developer">
-			An entity that writes OS software. For the purposes of this document, vendors and developers are the same.
+			An entity that manufactures platform hardware or writes platform software/firmware. For the purposes of 
+			this document, vendors and developers are the same.
 		</term>
 		<term full="Diffie-Hellman Key Exchange" abbr="DH">
 			A cryptographic key exchange protocol using public/private key pairs.
@@ -363,6 +364,7 @@
 			by the blue boxes, along with their associated firmware. Any particular platform may have 
 			additional hardware components, or fewer than those illustrated.<h:p/>
 			<!-- TRRT 1567 -->
+			<comment>Addresses TRRT 1567</comment>
 			If the GPCP includes Full Drive Encryption (FDE), and the FDE component has been previously evaluated against 
 			the FDEcPPs, or will be evaluated against the FDEcPPs concurrently with the GPCP evaluation, then the FDE component may be
 			excluded from the TOE for purposes of the GPCP evaluation.
@@ -460,6 +462,7 @@
 			</usecase>
 			<usecase title="CSfC EUD" id="uc-csfc-eud">
 				<description>
+				    <comment>Modified to address TRRT 1560</comment>
 					EUDs used in accordance with the CSfC Mobile Access Capability Package can include 
 					smart phones, tablets, and laptops. This use case covers the basic CSfC requirements 
 					for tablet and laptop EUDs (mobile devices are out of scope for this PP).<h:p/>
@@ -593,7 +596,9 @@
 				<description>An attacker with physical access might be able to compromise TOE integrity, subvert
 					TOE protections, or access tenant data through hardware attacks such as probing, physical
 					manipulation, fault-injection, side-channel analysis, environmental stress, or activating
-					disabled features or pre-delivery services. This threat is mitigated by TOE functionality for the use cases listed below; for other use cases, the expectation is that the environmental security objectives are sufficient mitigation for this threat.   
+					disabled features or pre-delivery services. This threat is mitigated by TOE functionality for 
+					the use cases listed below; for other use cases, the expectation is that the environmental 
+					security objectives are sufficient mitigation for this threat.   
 					<h:ul>
 						<h:li>Server-Class Platform, Enhanced</h:li>
 						<h:li>Portable Clients (laptops, tablets), Enhanced</h:li>
@@ -6756,7 +6761,7 @@
 						<management-function id="mf-key-import-export">
 							<depends on-sfr="sfr-fcs-stg-ext.1"/>
 							<text>
-								Ability to manage import and export keys/secrets to and from protected storage.
+								Ability to manage import and export of keys/secrets to and from protected storage.
 							</text>
 							<O ref="A"/>
 							<X ref="U"/>
@@ -7160,10 +7165,10 @@
 						The evaluator shall attempt to overwrite or modify the platform firmware without invoking one of
 						the update mechanisms specified in FPT_TUD_EXT.1 (e.g., using a modified Linux boot loader such 
 						as GRUB that attempts to write to the memory where platform firmware is stored). The test succeeds
-						if the attempts to overwrite platform firmware fail. The evaluator shall attempt at least two 
+						if the attempts to overwrite platform firmware fail. The evaluator shall attempt at least three 
 						such tests--one that attempts to overwrite the first platform firmware that executes after boot,
-						and one that targets the secure update mechanism (if implemented), and one that targets firmware that
-						has been integrity-checked since the last boot.
+						one that targets the secure update mechanism (if implemented), and one that targets firmware 
+						that has been integrity-checked since the last boot.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -7202,9 +7207,9 @@
 					Selection of "<h:i>a separate management controller...</h:i>" implies the existence of an Administrator role.
 				</note>
 				<aactivity>
-					<TSS>The evaluator shall verify that the TSS describes the Root of Trust on which initial integrity of platform firmware is anchored, consistent 
-						with the selection above. The description shall include means by which the Root of Trust is protected from 
-						modification.
+					<TSS>The evaluator shall verify that the TSS describes the Root of Trust on which initial integrity 
+						of platform firmware is anchored, consistent with the selection above. The description shall
+						include means by which the Root of Trust is protected from modification.
 					</TSS>
 					<Guidance/>
 					<Tests/>
