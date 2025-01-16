@@ -439,8 +439,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[13]""/f-element[11]""/aactivity[1]""/Tests[1]"For effic"/testlist[1]""/test[4]"[conditio"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[13]""/f-element[11]""/aactivity[1]""/Tests[1]"For effic"/testlist[1]""/test[6]"For each "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[13]""/f-element[13]""/note[1]"At this t"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[13]""/f-element[13]""/note[1]"At this t"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[13]""/f-element[13]""/note[1]"At this t"/h:p[3]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[13]""/f-element[14]""/note[1]"If this f"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[13]""/f-element[14]""/aactivity[1]""/Tests[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[14]""/f-element[1]""/note[1]""/h:p[2]"This SFR "/h:p[1]""
