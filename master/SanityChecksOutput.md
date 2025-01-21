@@ -1,18 +1,14 @@
 * Warning: This document still has at least one comment.
+* Error: Detected dangling id-reference to sfr-fcs-ckm-1-sk from attribute
+        on-incl/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[4]""/depends[1]""/on-incl[1]""
 * Error: Detected dangling id-reference to sfr-fcs-ckm-1-ak from attribute
         on-incl/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[4]""/depends[2]""/on-incl[1]""
-* Error: Detected dangling id-reference to sfr-fcs-ckm-1-ak from attribute
-        on-incl/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[14]""/depends[7]""/on-incl[1]""
 * Error: Detected dangling id-reference to sfr-fia-x509-ext-1 from attribute
         on-sfr/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[10]""/depends[1]""/on-sfr[1]""
 * Error: Detected dangling id-reference to sel-x509-adminset from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[11]""/depends[1]""/on-sel[1]""
 * Error: Detected dangling id-reference to sfr-fcs-stg-ext.1 from attribute
         on-sfr/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/depends[1]""/on-sfr[1]""
-* Error: Detected dangling id-reference to sfr-fcs-ckm-1-ak from attribute
-        on-incl/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[1]""/depends[7]""/on-incl[1]""
-* Error: Detected dangling id-reference to sfr-fcs-ckm-1-ak from attribute
-        on-incl/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[13]""/depends[7]""/on-incl[1]""
 * Error: Detected dangling id-reference to sel-fau-itc from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[8]""/f-component[1]""/depends[1]""/on-sel[1]""
 * Warning: Potentially illegal 'depends' element.
@@ -651,6 +647,7 @@ output/pkg-x509.xml:1: parser error : Document is empty
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
+ Failed to find a reference to fcs-ckm-1-ak-sels.
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
