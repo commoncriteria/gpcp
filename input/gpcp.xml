@@ -1757,6 +1757,32 @@
 		</f-component>
 		
 
+		<!-- FCS_CKM.2 Cryptographic Key Distribution -->
+		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Distribution" status="sel-based">
+			<depends on-incl="sfr-fcs-ipsec-ext-1"/> 	<!-- FCS_IPSEC_EXT.1 -->
+			<depends on-sel="sel-ftp-ite-ext-1-est"/>   <!-- FTP_ITE_EXT.1 -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
+			<f-element id="fcs-ckm-2e1">
+				<title>The TSF shall distribute cryptographic keys in accordance with a specified cryptographic 
+					key distribution method <selectables>
+						<selectable>key encapsulation</selectable>
+						<selectable>key wrapping</selectable>
+						<selectable>encrypted channels</selectable> that meets the following: [none].
+				</title>
+				<note role="application">
+					If “key encapsulation” is selected, FCS_COP.1/KeyEncap must be claimed, which specifies 
+					the relevant list of standards.  <h:p/>
+					If “key wrapping” is selected, FCS_COP.1/KeyWrap must be claimed, which specifies the 
+					relevant list of standards.<h:p/>
+					If “encrypted channels” is selected, FTP_PRO.1 must be claimed, which specifies the relevant 
+					list of standards.
+				</note>
+				<aactivity/>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
+<?ignore
 		<!-- FCS_CKM.2 Cryptographic Key Establishment -->
 		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Establishment (Refinement)" status="sel-based">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/> 	<!-- FCS_IPSEC_EXT.1 -->
@@ -1838,6 +1864,7 @@
 			</f-element>
 			<audit-event/>
 		</f-component>
+?>
 
 		<!-- FCS_CKM.6 Timing and Event of Cryptographic Key Destruction -->
 		<f-component id="sfr-fcs-ckm-6" cc-id="fcs_ckm.6" name="Timing and Event of Cryptographic Key Destruction" status="sel-based">
