@@ -104,8 +104,8 @@
     </pp-preferences>
 
 <!-- DSC Exportable Functions 
-	x Asymmetric-Key Generation [FCS_CKM.1/AK]
-	x Symmetric-Key Generation [FCS_CKM.1/SK]
+	x Asymmetric-Key Generation [FCS_CKM.1/AKG]
+	x Symmetric-Key Generation [FCS_CKM.1/SKG]
 	x Private-Key Cryptography FCS_CKM.2
 	x Public-Key Cryptography FCS_CKM.2
 	x Symmetric-Key Cryptography FCS_COP.1/SKC
@@ -676,8 +676,8 @@
 				<addressed-by>FCS_RBG.6 (optional)</addressed-by><rationale>Mitigates threat by providing a well-defined interface by which tenant software can access the TSF to obtain random data.</rationale>
 				<addressed-by>FCS_SLT_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using salts to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
 				<addressed-by>FDP_TEE_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by establishing a trusted execution environment for tenant software to use.</rationale>
-				<addressed-by>FCS_CKM.1/AK (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect stored data.</rationale>
-				<addressed-by>FCS_CKM.1/SK (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect stored data.</rationale>
+				<addressed-by>FCS_CKM.1/AKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect stored data.</rationale>
+				<addressed-by>FCS_CKM.1/SKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect stored data.</rationale>
 				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key destruction to prevent the disclosure of keys used to protect stored data.</rationale>
 				<addressed-by>FCS_CKM_EXT.5 (sel-based)</addressed-by><rationale>Mitigates threat by utilizing strong algorithms to derive keys that protect stored data.</rationale>
 				<addressed-by>FCS_COP.1/Hash (sel-based)</addressed-by><rationale>Mitigates threat by implementing hash functions used for trusted communications.</rationale>
@@ -701,8 +701,8 @@
 				
 				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates threat by ensuring that audit data indicating a potential attack is accurately timestamped.</rationale>
 				<addressed-by>FCS_SLT_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using salts to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
-				<addressed-by>FCS_CKM.1/AK (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect data in transit.</rationale>
-				<addressed-by>FCS_CKM.1/SK (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect data in transit.</rationale>
+				<addressed-by>FCS_CKM.1/AKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect data in transit.</rationale>
+				<addressed-by>FCS_CKM.1/SKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect data in transit.</rationale>
 				<addressed-by>FCS_CKM.2 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key establishment to negotiate trusted channels to protect data in transit.</rationale>
 				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key destruction to prevent the compromise of trusted channels.</rationale>
 				<addressed-by>FCS_COP.1/Hash (sel-based)</addressed-by><rationale>Mitigates threat by implementing hash functions used for trusted communications.</rationale>
@@ -1246,7 +1246,7 @@
 				<title>
 					The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with
 					a specified cryptographic key generation algorithm<selectables>
-						<tabularize id="fcs-ckm-1-ak-sels" title="AKG Asymmetric Cryptographic Key Generation">
+						<tabularize id="fcs-ckm-1-akg-sels" title="Recommended choices for FCS_CKM.1/AKG">
 							<textcol>Identifier</textcol>
 							<selectcol>Cryptographic key generation algorithm</selectcol>
 							<reqtext>and specified cryptographic <h:b>algorithm parameters</h:b> <h:s>key sizes</h:s></reqtext>
@@ -1689,22 +1689,35 @@
 			<audit-event/>
 		</f-component>
 	  
-		<!-- FCS_CKM.1/SK Cryptographic Key Generation (Symmetric Encryption Key) -->
-		<f-component id="sfr-fcs-ckm-1-sk" cc-id="fcs_ckm.1" iteration="SK" name="Cryptographic Key Generation (Symmetric Encryption Key)" status="sel-based">
+		<!-- FCS_CKM.1/SKG Cryptographic Key Generation - Symmetric Key -->
+		<f-component id="sfr-fcs-ckm-1-skg" cc-id="fcs_ckm.1" iteration="SKG" name="Cryptographic Key Generation - Symmetric Key" status="sel-based">
 			<depends on-sel="sel-fcs-stg-ext-1e2-sk"/>  <!-- from FCS_STG_EXT.1 -->
 			<depends><optional/></depends>		<!-- May be manually added -->
-			<f-element id="fcs-ckm-1e1-sk">
-				<title>					
-				The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with a specified 
-				cryptographic key generation algorithm 
-				<h:i>[Direct Generation from a Random Bit Generator as specified in FCS_RBG.1]</h:i>
-				and specified cryptographic key sizes 
-				<selectables>
-					<selectable>128 bits</selectable>
-					<selectable>192 bits</selectable>
-					<selectable>256 bits</selectable>
-					</selectables> that meet the following: 
-				[<h:i>NIST SP 800-133 Rev 2 sec. 6.1</h:i>].
+			<f-element id="fcs-ckm-1e1-skg">
+				<title>
+					The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with
+					a specified cryptographic key generation algorithm<selectables>
+						<tabularize id="fcs-ckm-1-skg-sels" title="Recommended choices for FCS_CKM.1/SKG">
+							<textcol>Identifier</textcol>
+							<selectcol>Cryptographic Key Generation Algorithm</selectcol>
+							<reqtext>and specified cryptographic key sizes</reqtext>
+							<selectcol>Cryptographic Key Sizes</selectcol>
+							<reqtext>that meet the following: </reqtext>
+							<selectcol>List of standards</selectcol>
+						</tabularize>
+
+						<!-- RSK -->
+						<selectable id="sel-fcs-ckm-sk-rsk">
+							<col>RSK</col>
+							<col>Direct Generation from a Random Bit Generator as specified in FCS_RBG.1</col>
+							<col><selectables>
+								<selectable id="sel-exp-skg-128">123</selectable>
+								<selectable id="sel-exp-skg-256">256</selectable>
+								<selectable id="sel-exp-skg-512">512</selectable></selectables> bits
+							</col>
+							<col>NIST SP 800-133 Revision 2 (Section 6.1)[Direct generation of symmetric keys]</col>
+						</selectable>
+					</selectables>
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
@@ -1794,7 +1807,7 @@
 				<!--	The RSA-based key establishment schemes are described in Section 8 of NIST SP 800-56B Revision
 					2 [NIST-RSA]; however, Section 8 relies on implementation of other sections in SP 800-56B Revision 2.<h:p/> -->
 					The elliptic curves used for the key establishment scheme correlate with the curves specified in
-					FCS_CKM.1/AK.<h:p/>
+					FCS_CKM.1/AKG.<h:p/>
 					The selections in this SFR must be consistent with those for FCS_COP.1/KAT. Specifically:
 					<h:ul>
 						<h:li>If the first RSA scheme is selected, then "<h:i>KAS1</h:i>," "<h:i>KAS2</h:i>," or	
@@ -1895,7 +1908,7 @@
 				<note role="application">
 					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
 					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SFR
-					must be included in the ST if any of the following SFRs are claimed: FCS_CKM.1/AK, FCS_CKM.1/SK,
+					must be included in the ST if any of the following SFRs are claimed: FCS_CKM.1/AKG, FCS_CKM.1/SKG,
 					FCS_CKM.2, FCS_CKM_EXT.5, FCS_COP.1/KAT, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
 					The term “cryptographic keys” in this SFR includes
 					the authorization data that is the entry point to a key chain and all other cryptographic keys and
@@ -2872,7 +2885,7 @@
 					<TSS>
 						The evaluator shall ensure that the selected RSA and ECDH key
 						agreement/transport schemes correspond to the key generation schemes selected in
-						FCS_CKM.1/AK, and the key establishment schemes selected in FCS_CKM.2 If
+						FCS_CKM.1/AKG, and the key establishment schemes selected in FCS_CKM.2 If
 						the ST selects DH, the TSS shall describe how the implementation meets the
 						relevant sections of RFC 3526 (Section 3-7) and RFC 7919 (Appendices A.1-A.5).
 						If the ST selects ECIES, the TSS shall describe the key sizes and algorithms (e.g.
@@ -5089,10 +5102,10 @@
 			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-incl="sfr-fcs-ckm-1-sk"/>   <!-- FCS_CKM.1/SK -->
+			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
-			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
+			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fel-rbg-init-seed">
@@ -5117,7 +5130,7 @@
 					This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR is also needed if the following SFRs are included in the ST: FCS_IPSEC_EXT.1, 
-					FCS_SLT_EXT.1, FCS_CKM.1/AK, FCS_CKM.1/SK, and FCS_COP.1/SigGen.<h:p/>
+					FCS_SLT_EXT.1, FCS_CKM.1/AKG, FCS_CKM.1/SKG, and FCS_COP.1/SigGen.<h:p/>
 					Also, this SFR must be claimed if "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or
 					"<h:i>KDF-DPI</h:i>" is selected in FCS_CKM_EXT.5.<h:p/>
 					If "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
@@ -5519,7 +5532,7 @@
 				</ext-comp-def-title>					
 				<note role="application">
 					If "causing the TOE to generate keys/secrets" is selected in FCS_STG_EXT.1.2, then the 
-					ST must include at least one of FCS_CKM.1/AK or FCS_CKM.1/SK depending on the value of the 
+					ST must include at least one of FCS_CKM.1/AKG or FCS_CKM.1/SKG depending on the value of the 
 					internal selection.
 				</note>
 			</f-element>
@@ -7128,10 +7141,10 @@
 			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-incl="sfr-fcs-ckm-1-sk"/>   <!-- FCS_CKM.1/SK -->
+			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
-			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
+			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fel-pres-sec-state">
@@ -7869,10 +7882,10 @@
 			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-incl="sfr-fcs-ckm-1-sk"/>   <!-- FCS_CKM.1/SK -->
+			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
-			<depends on-incl="sfr-fcs-ckm-1-ak"/>   <!-- FCS_CKM.1/AK is included -->
+			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fel-tsf-self-test">
