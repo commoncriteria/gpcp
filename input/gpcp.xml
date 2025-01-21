@@ -1246,7 +1246,7 @@
 				<title>
 					The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with
 					a specified cryptographic key generation algorithm<selectables>
-						<tabularize id="fcs-ckm-1-akg-sels" title="Recommended choices for FCS_CKM.1/AKG">
+						<tabularize id="fcs-ckm-1-ak-sels" title="Recommended choices for FCS_CKM.1/AKG">
 							<textcol>Identifier</textcol>
 							<selectcol>Cryptographic key generation algorithm</selectcol>
 							<reqtext>and specified cryptographic <h:b>algorithm parameters</h:b> <h:s>key sizes</h:s></reqtext>
@@ -1872,14 +1872,6 @@
 
 		<!-- FCS_CKM_EXT.5 Cryptographic Key Derivation -->
 		<f-component id="sfr-fcs-ckm-ext-5" cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="optional">
-			<consistency-rationale/>
-			<comp-lev>requires the TSF to perform key derivation using a defined method, which is 
-				not addressed by any other FCS_CKM component.</comp-lev>
-			<management/>
-			<audit/>
-			<dependencies><h:br/>
-			[FCS_CKM.1 Cryptographic Key Generation or<h:br/>
-			FDP_ITC_EXT.1 Key/Credential Import]</dependencies>
 			<f-element id="fcs-ckm-ext-5e1">
 				<title>
 					The TSF shall derive cryptographic keys
@@ -2113,13 +2105,6 @@
 						</selectable>
 					</selectables>
 				</title>
-				<ext-comp-def-title><title>
-					The TSF shall derive cryptographic keys of type <assignable>Key type</assignable>
-					from input parameters <assignable>Input parameters</assignable>
-					in accordance with a specified key derivation algorithm <assignable>Key derivation algorithm</assignable>
-					and specified cryptographic key sizes <assignable>Cryptographic key sizes</assignable>
-					that meet the following: <assignable>List of standards</assignable>.</title>
-				</ext-comp-def-title>				
 				<note role="application">
 					The "key type" assignment should indicate the type type of key being derived, e.g. "<h:i>symmetric</h:i>,"
 					"<h:i>asymmetric</h:i>," or "<h:i>HMAC</h:i>."<h:p/>
@@ -2390,7 +2375,7 @@
 		<!-- FCS_CKM.6 Timing and Event of Cryptographic Key Destruction -->
 		<f-component id="sfr-fcs-ckm-6" cc-id="fcs_ckm.6" name="Timing and Event of Cryptographic Key Destruction" status="sel-based">
 			<depends on-incl="sfr-fcs-ckm-1-sk"/>
-			<depends on-incl="sfr-fcs-ckm-1-ak"/>
+			<depends on-incl="sfr-fcs-ckm-1-akg"/>
 			<depends on-incl="sfr-fcs-ckm-2"/>
 			<depends on-incl="sfr-fcs-ckm-ext-5"/>
 			<depends on-incl="sfr-fcs-cop-1-kat"/>
