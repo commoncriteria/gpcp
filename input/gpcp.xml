@@ -3583,11 +3583,8 @@
 		</f-component>
 
 
-
-
-
-		<!-- FCS_COP.1/Hash Cryptographic Operation (Hashing) -->
-		<f-component id="sfr-fcs-cop-1-hash" cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hashing)" status="sel-based">
+		<!-- FCS_COP.1/Hash Cryptographic Operation - Hashing -->
+		<f-component id="sfr-fcs-cop-1-hash" cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation - Hashing)" status="sel-based">
 			<depends on-sel="sel-rot2-hash"/>  <!-- FPT_ROT_EXT.2.1 -->
 			<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG.1.1 -->
 			<depends on-sel="sel-tud2-hash"/>  <!-- FPT_TUD_EXT.2.1 -->
@@ -3604,6 +3601,7 @@
 				cryptographic algorithm 
                     <selectables>
                         <selectable id="sel-cop1-sha1">SHA-1</selectable>
+                        <selectable id="sel-cop1-sha224">SHA-224</selectable>
                         <selectable id="sel-cop1-sha256">SHA-256</selectable>
                         <selectable id="sel-cop1-sha384">SHA-384</selectable>
                         <selectable id="sel-cop1-sha512">SHA-512</selectable>
@@ -3615,9 +3613,9 @@
 						<selectable id="sel-cop1-sha3-512">SHA-3-512</selectable>		    
                     </selectables> that meet the following:
 					<selectables>
-						<selectable>ISO/IEC 10118-3:2018</selectable>
-						<selectable>FIPS PUB 180-4 (SHA1/2)</selectable>
-						<selectable>FIPS PUB 202 (SHA3)</selectable>
+						<selectable>ISO/IEC 10118-3:2018 [SHA, SHA3]</selectable>
+						<selectable>FIPS PUB 180-4 [SHA]</selectable>
+						<selectable>FIPS PUB 202 [SHA3]</selectable>
 					</selectables>.   
                 </title>
                 <note role="application">
@@ -3626,11 +3624,11 @@
 					Also, this SFR must be included in the ST if FCS_COP.1/KeyedHash, FCS_COP.1/SigGen, or FCS_COP.1/SigVer
 					are claimed.<h:p/>
 			    	It must be included in the ST if "<h:i>hash value of the public key</h:i>" is selected in FPT_TUD_EXT.2.1. <h:p/>	
-				It must be included  in the ST if "<h:i>KDF-HASH</h:i>" or "<h:i>KDF-MAC</h:i>" or one of the SHA hashes is selected within 
-				"<h:i>KDF-XOR</h:i>" in FCS_CKM_EXT.5.1.<h:p/>
-				It must be included  in the ST if "<h:i>Hash_DRBG (any)</h:i>" or "<h:i>HMAC_DRBG (any)</h:i>" is selected in FCS_RBG.1.1.<h:p/>
-				It must be included  in the ST if "<h:i>cryptographic hash as specified in FCS_COP.1/Hash</h:i>" is selected in FDP_ITC_EXT.1.2. <h:p/>
-				It must be included  in the ST if "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected in FPT_ROT_EXT.2.1. <h:p/>			
+					It must be included  in the ST if "<h:i>KDF-HASH</h:i>" or "<h:i>KDF-MAC</h:i>" or one of the SHA hashes is selected within 
+					"<h:i>KDF-XOR</h:i>" in FCS_CKM_EXT.5.1.<h:p/>
+					It must be included  in the ST if "<h:i>Hash_DRBG (any)</h:i>" or "<h:i>HMAC_DRBG (any)</h:i>" is selected in FCS_RBG.1.1.<h:p/>
+					It must be included  in the ST if "<h:i>cryptographic hash as specified in FCS_COP.1/Hash</h:i>" is selected in FDP_ITC_EXT.1.2. <h:p/>
+					It must be included  in the ST if "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected in FPT_ROT_EXT.2.1. <h:p/>			
 					The hash selection should be consistent with the overall strength of the algorithm used for
 					signature generation. For example, the ST Author should choose SHA-256 for 2048-bit RSA or ECC 
 					with P-256, SHA-384 for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 for ECC
@@ -3639,6 +3637,16 @@
 					authentication codes (HMACs), key derivation functions (KDFs), and random bit/number
 					generation.  In certain cases, SHA-1 may also be used for verifying old digital signatures and time
 					stamps, provided that this is explicitly allowed by the application domain.
+					<h:p/>
+					<comment>From catalog</comment>The hash selection should be consistent with the overall strength of the 
+					algorithm used for signature generation. For example, the TOE should choose SHA-256 for 2048-bit RSA or
+					ECC with P-256; SHA-384 for 3072-bit RSA, 4096-bit RSA, or ECC with P-384; and SHA-512 for ECC with
+					P-521. The ST author selects the standard based on the algorithms selected.  <h:p/>
+					SHA-1 may be used as a general hash function and for the following applications: generating and 
+					verifying hash-based message authentication codes (HMACs), key derivation functions (KDFs), and random
+					bit/number generation.  SHA-1 may also be used for verifying old digital signatures and time stamps,
+					if this is explicitly allowed by the application domain.  SHA-1 should not be used in applications in 
+					which collision resistance is needed.
                 </note>
                 <aactivity> 
                     <TSS>
