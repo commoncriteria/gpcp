@@ -3527,7 +3527,60 @@
 		</f-component>
 
 
+		<!-- FCS_COP.1/CMAC Cryptographic Operation - CMAC -->
+		<f-component id="sfr-fcs-cop-1-cmac" cc-id="fcs_cop.1" iteration="CMAC" name="Cryptographic Operation - CMAC" status="sel-based">
+			<depends on-sel="sel-stg3-digsig"/>	<!-- FCS_STG_EXT.3.1 -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
+			<f-element id="fcs-cop-1e1-cmac">
+				<title> The TSF shall perform [CMAC] in accordance with a specified cryptographic algorithm 
+					<selectables>
+						<tabularize id="tab-fcs-cop-cmac-sels" title="Recommended choices for FCS_COP.1/CMAC">
+							<textcol>Identifier</textcol>
+							<reqtext></reqtext>
+							<selectcol>Cryptographic algorithm</selectcol>
+							<reqtext>and cryptographic key sizes</reqtext>
+							<selectcol>Cryptographic key sizes</selectcol>
+							<reqtext>that meet the following:</reqtext>
+							<selectcol>List of standards</selectcol>
+						</tabularize>
+						
+						<selectable id="sel-fcs-cop-cmac-aes">
+							<col>AEC-CMAC</col>
+							<col>AES using CMAC mode</col>
+						<col><selectables>
+								<selectable>128 bits</selectable>
+								<selectable>192 bits</selectable>
+								<selectable>256 bits</selectable>
+							</selectables></col>
+						<col><selectables>
+							<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
+							<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
+							<selectables>
+							<selectable>: ISO/IEC 9797-1:2011 Subclause 7.6</selectable> 
+							<selectable>NIST SP 800-38B</selectable></selectables> [CMAC]
+						</col></selectable>
 
+						<selectable id="sel-fcs-cop-cmac-cam">
+							<col>CAM-CMAC</col>
+							<col>Camillia using CMAC mode</col>
+						<col><selectables>
+								<selectable>128 bits</selectable>
+								<selectable>192 bits</selectable>
+								<selectable>256 bits</selectable>
+							</selectables></col>
+						<col>ISO/IEC 18033-3:2010 Subclause 5.3 [Camellia]<h:p/>
+							<selectables>
+							<selectable>: ISO/IEC 9797-1:2011 Subclause 7.6</selectable> 
+							<selectable>NIST SP 800-38B</selectable></selectables> [CMAC]
+						</col></selectable>
+					</selectables>
+				</title>
+				<aactivity>
+					<no-tests>TBD</no-tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
 
 
 
