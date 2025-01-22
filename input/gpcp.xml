@@ -2566,7 +2566,280 @@
 			<audit-event/>
 		</f-component>
 
-		
+		<!-- FCS_CKM_EXT.7 Cryptographic Key Agreement -->
+		<f-component id="sfr-fcs-ckm-ext-7" cc-id="fcs_ckm_ext.7" name="Cryptographic Key Agreement" status="sel-based">
+			<depends on-sel="sel-fcs-ckm-2-rsa"/>  		<!-- FCS_CKM.2 -->
+			<depends on-sel="sel-fcs-ckm-2-rsaaes"/> 	<!-- FCS_CKM.2 -->
+			<depends on-sel="sel-fcs-ckm-2-ecc"/>  		<!-- FCS_CKM.2 -->
+			<depends on-sel="sel-fcs-ckm-2-ecies"/>  	<!-- FCS_CKM.2 -->
+			<depends><optional/></depends>    		<!-- May be also included optionally -->
+			<f-element id="fcs-ckm-ext-7e1">
+				<title>
+					The TSF shall derive shared cryptographic keys with input from multiple parties in accordance 
+					with specified cryptographic key agreement algorithms  
+					<selectables>
+						<tabularize id="fcs-ckm-ext-7-sels" 
+							    title="Recommended choices for FCS_CKM_EXT.7">
+							<textcol>Identifier</textcol>
+							<selectcol>Cryptographic algorithm</selectcol>
+							<reqtext>and specified cryptographic parameters</reqtext>
+							<selectcol>Cryptographic parameters</selectcol>
+							<reqtext>that meet the following:</reqtext>
+							<selectcol>List of standards</selectcol>
+						</tabularize>
+
+						<selectable id="sel-fcs-ckm-kat-kas2">
+							<col>KAS2</col>
+							<col>RSA</col>
+							<col>Modulus size <selectables>
+								<selectable>2048</selectable>
+								<selectable>3072</selectable>
+								<selectable>4096</selectable>
+								<selectable>6144</selectable>
+								<selectable>8192</selectable>
+							</selectables> bits</col>
+							<col>NIST SP 800-56B Revision 2 (Section 8.3) [KAS2]</col>
+						</selectable>
+
+						<selectable id="sel-fcs-ckm-kat-dh">
+							<col>DH</col>
+							<col>Finite Field Cryptography Diffie-Hellman</col>
+							<col>Static domain parameters approved for <selectables>
+								<selectable>IKE Groups <selectables>
+									<selectable id="sel-kat-ffc-modp2048">MODP-2048</selectable>
+									<selectable id="sel-kat-ffc-modp3072">MODP-3072</selectable>
+									<selectable id="sel-kat-ffc-modp4096">MODP-4096</selectable>
+									<selectable id="sel-kat-ffc-modp6144">MODP-6144</selectable>
+									<selectable id="sel-kat-ffc-modp8192">MODP-8192</selectable>
+								</selectables></selectable>
+								<selectable>TLS Groups <selectables>
+									<selectable id="sel-kat-ffc-ffdhe2048">ffdhe2048</selectable>
+									<selectable id="sel-kat-ffc-ffdhe3072">ffdhe3072</selectable>
+									<selectable id="sel-kat-ffc-ffdhe4096">ffdhe4096</selectable>
+									<selectable id="sel-kat-ffc-ffdhe6144">ffdhe6144</selectable>
+									<selectable id="sel-kat-ffc-ffdhe8192">ffdhe8192</selectable>
+								</selectables></selectable></selectables>
+							</col>
+							<col>
+								NIST SP 800-56A Revision 3 (Section 5.7.1.1) [DH]<h:p/>
+								<selectables>
+								<selectable>RFC 3526 [IKE groups]</selectable>
+								<selectable>RFC 7919 [TLS groups]</selectable></selectables>
+							</col>
+						</selectable>
+
+						<selectable id="sel-fcs-ckm-kat-ecdh">
+							<col>ECDH</col>
+							<col>Elliptic Curve Diffie-Hellman</col>
+							<col>Elliptic Curve <selectables>
+								<selectable id="sel-exp-kat-ecdh-P256">P-256</selectable>
+								<selectable id="sel-exp-kat-ecdh-brainpoolP256r1">brainpoolP256r1</selectable>
+								<selectable id="sel-exp-kat-ecdh-P384">P-384</selectable>
+								<selectable id="sel-exp-kat-ecdh-brainpoolP384r1">brainpoolP384r1</selectable>
+								<selectable id="sel-exp-kat-ecdh-P521">P-521</selectable>
+								<selectable id="sel-exp-kat-ecdh-brainpoolP512r1">brainpoolP512r1</selectable></selectables>
+							</col>
+							<col>
+								NIST SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<h:p/>
+								<selectables>
+								<selectable>: NIST SP 800-186 (Section 3.2.1) [NIST Curves]</selectable>
+								<selectable>RFC 5639 (Section 3) [Brainpool curves]</selectable></selectables>
+							</col>
+						</selectable>
+
+						<selectable id="sel-fcs-ckm-kat-eddsa">
+							<col>ECDH-Ed</col>
+							<col>ECDH with Montgomery Curves</col>
+							<col>Domain parameters approved for elliptic curves 
+								<selectables>
+								<selectable>curve25519</selectable>
+								<selectable>curve448</selectable></selectables>
+							</col>
+							<col>
+								RFC 7748 (Section 5) [ECDH-Ed]<h:p/>
+								NIST SP 800-186 (Section 3.2.2) [Montgomery Curves]
+							</col>
+						</selectable>
+					</selectables>
+				</title>
+				<note role="application">
+					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
+					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
+					functionality.<h:p/> 
+					Also, this SFR must be included in the TOE if FCS_CKM.2 is claimed and a key establishment
+					scheme other than FFC is selected.<h:p/>
+					If "<h:i>ECIES</h:i>" is selected, then FCS_COP.1/KeyedHash and FCS_COP.1/SKC must be claimed.<h:p/>
+					If this SFR is included in the ST, then FCS_CKM.6 must also be claimed.
+				</note>
+				<aactivity>
+					<TSS>
+						The evaluator shall ensure that the selected RSA and ECDH key
+						agreement/transport schemes correspond to the key generation schemes selected in
+						FCS_CKM.1/AKG, and the key establishment schemes selected in FCS_CKM.2 If
+						the ST selects DH, the TSS shall describe how the implementation meets the
+						relevant sections of RFC 3526 (Section 3-7) and RFC 7919 (Appendices A.1-A.5).
+						If the ST selects ECIES, the TSS shall describe the key sizes and algorithms (e.g.
+						elliptic curve point multiplication, ECDH with either NIST or Brainpool curves,
+						AES in a mode permitted by FCS_COP.1/SKC, a SHA-2 hash algorithm permitted
+						by FCS_COP.1/Hash, and a MAC algorithm permitted by FCS_COP.1/KeyedHash)
+						that are supported for the ECIES implementation.<h:p/>
+						The evaluator shall ensure that, for each key agreement/transport scheme, the size
+						of the derived keying material is at least the same as the intended strength of the 
+						key agreement/transport scheme, and where feasible this should be twice the
+						intended security strength of the key agreement/transport scheme.<h:p/>
+						Table 2 of NIST SP 800-57 identifies the key strengths for the different algorithms
+						that can be used for the various key agreement/transport schemes.
+					</TSS>
+					<Guidance/>
+					<Tests>
+						The following tests require the developer to provide access to a test platform that
+						provides the evaluator with tools that are typically not found on factory products.<h:p/>
+						The evaluator shall verify the implementation of the key generation routines of the
+						supported schemes using the following tests:<h:p/>
+						<h:b>If ECDH-NIST or ECDH-BPC is claimed:</h:b><h:p/>
+						<h:b>SP 800-56A Key Agreement Schemes</h:b><h:p/>
+						The evaluator shall verify a TOE's implementation of SP 800-56A key agreement
+						schemes using the following Function and Validity tests. These validation tests for
+						each key agreement scheme verify that a TOE has implemented the components of
+						the key agreement scheme according to the specifications in the Recommendation.
+						These components include the calculation of the DLC primitives (the shared secret
+						value Z) and the calculation of the derived keying material (DKM) via the Key
+						Derivation Function (KDF). If key confirmation is supported, the evaluator shall
+						also verify that the components of key confirmation have been implemented
+						correctly, using the test procedures described below. This includes the parsing of
+						the DKM, the generation of MACdata and the calculation of MACtag.<h:p/>
+						<h:i>Function Test</h:i><h:p/>
+						The Function test verifies the ability of the TOE to implement the key agreement
+						schemes correctly. To conduct this test the evaluator shall generate or obtain test
+						vectors from a known good implementation of the TOE supported schemes. For
+						each supported key agreement scheme-key agreement role combination, KDF type,
+						and, if supported, key confirmation role-key confirmation type combination, the
+						tester shall generate 10 sets of test vectors. The data set consists of one set of domain
+						parameter values (FFC) or the NIST approved curve (ECC) per 10 sets of public
+						keys. These keys are static, ephemeral or both depending on the scheme being
+						tested.<h:p/>
+						The evaluator shall obtain the DKM, the corresponding TOE’s public keys (static
+						or ephemeral), the MAC tags, and any inputs used in the KDF, such as the Other
+						Information field OI and TOE id fields.<h:p/>
+						If the TOE does not use a KDF defined in SP 800-56A, the evaluator shall obtain
+						only the public keys and the hashed value of the shared secret. <h:p/>
+						The evaluator shall verify the correctness of the TSF’s implementation of a given
+						scheme by using a known good implementation to calculate the shared secret value,
+						derive the keying material DKM, and compare hashes or MAC tags generated from
+						these values.<h:p/>
+						If key confirmation is supported, the TSF shall perform the above for each
+						implemented approved MAC algorithm.<h:p/>
+						<h:i>Validity Test</h:i><h:p/>
+						The Validity test verifies the ability of the TOE to recognize another party’s valid
+						and invalid key agreement results with or without key confirmation. To conduct this
+						test, the evaluator shall obtain a list of the supporting cryptographic functions
+						included in the SP 800-56A key agreement implementation to determine which
+						errors the TOE should be able to recognize. The evaluator generates a set of 24
+						(FFC) or 30 (ECC) test vectors consisting of data sets including domain parameter
+						values or NIST approved curves, the evaluator’s public keys, the TOE’s
+						public/private key pairs, MACTag, and any inputs used in the KDF, such as the
+						other info and TOE id fields.<h:p/>
+						The evaluator shall inject an error in some of the test vectors to test that the TOE
+						recognizes invalid key agreement results caused by the following fields being
+						incorrect: the shared secret value Z, the DKM, the other information field OI, the
+						data to be MACed, or the generated MACTag. If the TOE contains the full or partial
+						(only ECC) public key validation, The evaluator shall also individually inject errors
+						in both parties’ static public keys, both parties’ ephemeral public keys and the
+						TOE’s static private key to assure the TOE detects errors in the public key validation
+						function or the partial key validation function (in ECC only). At least two of the test
+						vectors shall remain unmodified and therefore should result in valid key agreement
+						results (they should pass).<h:p/>
+						The TOE shall use these modified test vectors to emulate the key agreement scheme
+						using the corresponding parameters. The evaluator shall compare the TOE’s results
+						with the results using a known good implementation verifying that the TOE detects
+						these errors.<h:p/>
+						<h:b>If KAS1, KAS2, KTS-OAEP, or RSAES-PKCS1-v1_5 is claimed:</h:b><h:p/>
+						<h:b>SP 800-56B and PKCS#1 Key Establishment Schemes</h:b><h:p/>
+						If the TOE acts as a sender, the following evaluation activity shall be performed to
+						ensure the proper operation of every TOE supported combination of RSA-based
+						key establishment scheme:<h:p/>
+						To conduct this test the evaluator shall generate or obtain test vectors from a known
+						good implementation of the TOE supported schemes. For each combination of
+						supported key establishment scheme and its options (with or without key
+						confirmation if supported, for each supported key confirmation MAC function if
+						key confirmation is supported, and for each supported mask generation function if
+						KTS-OAEP is supported), the tester shall generate 10 sets of test vectors. Each test
+						vector shall include the RSA public key, the plaintext keying material, any
+						additional input parameters if applicable, the MacKey and MacTag if key 
+						confirmation is incorporated, and the outputted ciphertext. For each test vector, the
+						evaluator shall perform a key establishment encryption operation on the TOE with
+						the same inputs (in cases where key confirmation is incorporated, the test shall use
+						the MacKey from the test vector instead of the randomly generated MacKey used
+						in normal operation) and ensure that the outputted ciphertext is equivalent to the
+						ciphertext in the test vector.<h:p/>
+						If the TOE acts as a receiver, the following evaluation activities shall be performed
+						to ensure the proper operation of every TOE supported combination of RSA-based
+						key establishment scheme:<h:p/>
+						To conduct this test the evaluator shall generate or obtain test vectors from a known
+						good implementation of the TOE supported schemes. For each combination of
+						supported key establishment scheme and its options (with our without key
+						confirmation if supported, for each supported key confirmation MAC function if
+						key confirmation is supported, and for each supported mask generation function if
+						KTSOAEP is supported), the tester shall generate 10 sets of test vectors. Each test
+						vector shall include the RSA private key, the plaintext keying material (KeyData),
+						any additional input parameters if applicable, the MacTag in cases where key
+						confirmation is incorporated, and the outputted ciphertext. For each test vector, the
+						evaluator shall perform the key establishment decryption operation on the TOE and
+						ensure that the outputted plaintext keying material (KeyData) is equivalent to the
+						plain text keying material in the test vector. In cases where key confirmation is
+						incorporated, the evaluator shall perform the key confirmation steps and ensure that
+						the outputted MacTag is equivalent to the MacTag in the test vector.<h:p/>
+						The evaluator shall ensure that the TSS describes how the TOE handles decryption
+						errors. In accordance with NIST Special Publication 800-56B, the TOE must not
+						reveal the particular error that occurred, either through the contents of any outputted
+						or logged error message or through timing variations. If KTS-OAEP is supported,
+						the evaluator shall create separate contrived ciphertext values that trigger each of
+						the three decryption error checks described in NIST Special Publication 800-56B
+						section 7.2.2.3, ensure that each decryption attempt results in an error, and ensure
+						that any outputted or logged error message is identical for each.<h:p/>
+						<h:b>DH:</h:b><h:p/>
+						The evaluator shall verify the correctness of each TSF implementation of each
+						supported Diffie-Hellman group by comparison with a known good
+						implementation.<h:p/>
+						<h:b>Curve25519:</h:b><h:p/>
+						The evaluator shall verify a TOE's implementation of the key agreement scheme
+						using the following Function and Validity tests. These validation tests for each key
+						agreement scheme verify that a TOE has implemented the components of the key
+						agreement scheme according to the specification. These components include the
+						calculation of the shared secret K and the hash of K.<h:p/>
+						<h:b>Function Test</h:b><h:p/>
+						The Function test verifies the ability of the TOE to implement the key agreement
+						schemes correctly. To conduct this test the evaluator shall generate or obtain test
+						vectors from a known good implementation of the TOE supported schemes. For
+						each supported key agreement role and hash function combination, the tester shall
+						generate 10 sets of public keys. These keys are static, ephemeral or both depending
+						on the scheme being tested.<h:p/>
+						The evaluator shall obtain the shared secret value K, and the hash of K. The
+						evaluator shall verify the correctness of the TSF’s implementation of a given
+						scheme by using a known good implementation to calculate the shared secret value
+						K and compare the hash generated from this value.<h:p/>
+						<h:b>Validity Test</h:b><h:p/>
+						The Validity test verifies the ability of the TOE to recognize another party’s valid
+						and invalid key agreement results. To conduct this test, the evaluator generates a set
+						of 30 test vectors consisting of data sets including the evaluator’s public keys and
+						the TOE’s public/private key pairs.<h:p/>
+						The evaluator shall inject an error in some of the test vectors to test that the TOE
+						recognizes invalid key agreement results caused by the following fields being
+						incorrect: the shared secret value K or the hash of K. At least two of the test vectors
+						shall remain unmodified and therefore should result in valid key agreement results
+						(they should pass).<h:p/>
+						The TOE shall use these modified test vectors to emulate the key agreement scheme
+						using the corresponding parameters. The evaluator shall compare the TOE’s results
+						with the results using a known good implementation verifying that the TOE detects
+						these errors.<h:p/>
+						<h:b>ECIES:</h:b><h:p/>
+						The evaluator shall verify the correctness of each TSF implementation of each
+						supported use of ECIES by comparison with a known good implementation.
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
 
 
 
