@@ -1543,7 +1543,7 @@
 					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
 					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.<h:p/>
 					
-					For RSA the choice of the modulus implies the resulting key sizes of the public and 
+					<comment>From catalog</comment>For RSA the choice of the modulus implies the resulting key sizes of the public and 
 					private keys generated using the specified standard methods.<h:p/>
 
 					For Finite Field Cryptography (FFC) DSA, ST authors should consult schemes for 
@@ -2046,7 +2046,7 @@
 					argument that the entropy of the inputs to the KDFs will result in full entropy of the expected
 					output.<h:p/><h:p/>
 					
-					In KDF-MAC-2S, if a CMAC is selected in the MAC step, then select AES-128-CMAC or 
+					<comment>From catalog</comment>In KDF-MAC-2S, if a CMAC is selected in the MAC step, then select AES-128-CMAC or 
 					Camellia-128-CMAC in the KDF step and select 128 as the output key size.  If HMAC is 
 					selected in the MAC step, then select the same HMAC in the KDF.<h:p/>
 
@@ -2299,8 +2299,23 @@
 			<depends on-incl="sfr-fia-afl-ext-1"/>   <!-- Required for wipe on multiple auth failures -->
 			<f-element id="fcs-ckm-6e1">
 				<title>
-					The TSF shall destroy <assignable>list of cryptographic keys (including keying material)</assignable> when [<h:i>no longer needed</h:i>]. 
+					The TSF shall destroy <assignable>list of cryptographic keys (including keying 
+					material)</assignable> when <selectables>
+						<selectable>no longer needed</selectable>
+						<selectable><assignable>other circumstances for key or keying material destruction</assignable>
+						</selectable></selectables>
 				</title>
+				<note role="application">
+					<comment>From catalog</comment>The TOE will have mechanisms to destroy keys, including intermediate keys and key material, by using
+					an approved method as specified in FCS_CKM.6.2.  Examples of keys include intermediate keys, leaf keys, 
+					encryption keys, and signing keys.  Key material includes seeds, authentication secrets, passwords, 
+					PINs, and other secret values used to derive keys.  The ST Author shall list all such keys and keying
+					material that are subject to destruction in the first assignment.<h:p/>
+ 
+					This SFR does not apply to the public component of asymmetric key pairs or to keys that are permitted
+					to remain stored, such as device identification keys. 
+				</note>
+				
 			</f-element>
 			<f-element id="fcs-ckm-6e2">
 				<title>The TSF shall destroy cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance
@@ -2383,6 +2398,23 @@
 					of the phrase “does not contain any sensitive data” is to ensure that the overwritten data is
 					carefully selected, and not taken from a general pool that might contain current or residual data
 					that itself requires confidentiality protection.<h:p/>
+					<h:p/>
+					<comment>From crypto catalog</comment>In the case of volatile memory, the selection “removal of all references to the key directly followed 
+					by a request for garbage collection” is used in a situation where the TSF cannot address the specific 
+					physical memory locations holding the data to be erased and therefore relies on addressing logical 
+					addresses (which frees the relevant physical addresses holding the old data) and then requesting the 
+					platform to ensure that the data in the physical addresses is no longer available for reading (i.e. 
+					the “garbage collection” referred to in the SFR text). <h:p/>
+
+					The selection for destruction of data in non-volatile memory includes block erase as an option, and 
+					this option applies only to flash memory.  A block erase does not require a read verify, since the
+					mappings of logical addresses to the erased memory locations are erased, as well as the data itself.<h:p/>
+
+					Some selections allow the assignment of “some value that does not contain any CSP.” This means that 
+					the TOE uses some specified data not drawn from an RBG meeting FCS_RBG requirements, and not being 
+					any of the values listed as other selection options.  The point of the phrase “does not contain any 
+					CSP” is to ensure that the overwritten data is carefully selected, and not taken from a general pool 
+					that might contain data that itself requires confidentiality protection. 
 				</note>
 				<aactivity>
 					<TSS>
@@ -2533,6 +2565,8 @@
 			</f-element>
 			<audit-event/>
 		</f-component>
+
+		
 
 
 
