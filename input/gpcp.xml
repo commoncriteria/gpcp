@@ -3931,6 +3931,58 @@
 		</f-component>
 
 
+		<!-- FCS_COP.1/KeyEncap Cryptographic Operation - Key Encapsulation -->
+		<f-component id="sfr-fcs-cop-1-keyencap" cc-id="fcs_cop.1" iteration="KeyEncap" name="Cryptographic Operation - Key Encapsulation">
+			<f-element id="fcs-cop-1e1-keyencap">
+				<title> The TSF shall perform [key encapsulation] in accordance with a specified cryptographic algorithm 
+					<selectables>
+						<tabularize id="tab-fcs-cop-keyencap-sels" title="Recommended choices for FCS_COP.1/KeyEncap">
+							<textcol>Identifier</textcol>
+							<reqtext></reqtext>
+							<selectcol>Cryptographic algorithm</selectcol>
+							<reqtext>and cryptographic key sizes</reqtext>
+							<selectcol>Cryptographic key sizes</selectcol>
+							<reqtext>that meet the following:</reqtext>
+							<selectcol>List of standards</selectcol>
+						</tabularize>
+						
+						<selectable id="sel-fcs-cop-keyencap-kas1">
+							<col>KAS1</col>
+							<col>KAS1 [RSA-single party]</col>
+						<col><selectables>
+							<selectable>2048 bit</selectable>
+							<selectable>3072 bit</selectable>
+							<selectable>4096 bit</selectable>
+							<selectable>8192 bit</selectable>
+						</selectables></col>
+						<col>NIST SP 800-56B Revision  2 (Sections 6.3 & 8.2)</col>
+						</selectable>
+						
+						<selectable id="sel-fcs-cop-keyencap-kts">
+							<col>KTS-OAEP</col>
+							<col>KTS-OAEP [RSA-OAEP]</col>
+						<col><selectables>
+							<selectable>2048 bit</selectable>
+							<selectable>3072 bit</selectable>
+							<selectable>4096 bit</selectable>
+							<selectable>8192 bit</selectable>
+						</selectables></col>
+						<col>NIST SP 800-56B Revision  2 (Sections 6.3 & 9)</col>
+						</selectable>
+					</selectables>
+				</title>
+				<note role="application">
+					NIST SP 800-57 Part 1 Revision 5 Section 5.6.2 specifies that the size of key used to protect the
+					key being transported should be at least the security strength of the key it is protecting.
+				</note>
+				<aactivity>
+					<no-tests>TBD</no-tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+
+
 		<!-- FCS_COP.1/SigGen Cryptographic Operation (Signature Generation) -->
 		<f-component id="sfr-fcs-cop-1-siggen" cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation (Signature Generation)" status="sel-based">
 			<depends on-sel="sel-stg3-digsig"/>	<!-- FCS_STG_EXT.3.1 -->
