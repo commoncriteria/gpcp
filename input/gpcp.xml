@@ -3756,8 +3756,8 @@
 		
 		
 	
-		<!-- FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash) -->
-		<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash)" status="sel-based">
+		<!-- FCS_COP.1/KeyedHash Cryptographic Operation - Keyed Hash -->
+		<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation - Keyed Hash" status="sel-based">
 			<depends on-sel="sel-rbg-hmac"/>  		<!-- FCS_RBG.1.1 -->
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>	<!-- FCS_COP.1.1/KAT -->	
 			<depends on-sel="sel-fdp-itc-ext-1e2-mac"/>  <!-- from FDP_ITC_EXT.1 -->		
@@ -3766,25 +3766,122 @@
 			<depends on-sel="sel-fcs-ckm-ext-5-kdf-pb"/>    <!-- FCS_CKM_EXT.5.1 -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
-			<f-element id="fcs-cop-1e1-hmac">
-				<title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
+			<f-element id="fcs-cop-1e1-keyedhash">
+				<title>The TSF shall perform [keyed hash message authentication] in accordance
 					with a specified cryptographic algorithm 
 					<selectables>
-						<selectable>HMAC-SHA-1</selectable>
-						<selectable>HMAC-SHA-256</selectable>
-						<selectable>HMAC-SHA-384</selectable>
-						<selectable>HMAC-SHA-512</selectable>
-						<selectable>KMAC-128</selectable>
-						<selectable>KMAC-256</selectable>
-					</selectables> and cryptographic key sizes <assignable>key size (in bits)</assignable>
-					that meet the following: 
-					<selectables>
-						<selectable>ISO/IEC 9797-2:2021 sec. 7 (HMAC)</selectable>
-						<selectable>ISO/IEC 9797-2:2021 sec. 9 (KMAC)</selectable>
-						<selectable>FIPS PUB 198-1 (HMAC)</selectable>
-						<selectable>NIST SP 800-185 sec. 4 (KMAC)</selectable>
-					</selectables>.
-				</title>
+						<tabularize id="tab-fcs-cop-keyedhash-sels" title="Recommended choices for FCS_COP.1/KeyedHash">
+							<selectcol>Keyed Hash Algorithm</selectcol>
+							<reqtext>and cryptographic key sizes</reqtext>
+							<selectcol>Cryptographic key sizes</selectcol>
+							<reqtext>that meet the following:</reqtext>
+							<selectcol>List of standards</selectcol>
+						</tabularize>
+						
+						<selectable id="sel-fcs-cop-keyedhash-hmac-sha-1">
+							<col>HMAC-SHA-1</col>
+							<col><selectables>
+								<selectable>(ISO, FIPS) 160</selectable>
+								<selectable>(FIPS) 128</selectable></selectables> bits
+							</col>
+							<col><selectables>
+								<selectable>ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”)</selectable>
+								<selectable>FIPS PUB 198-1</selectable></selectables>
+							</col>
+						</selectable>
+					
+						<selectable id="sel-fcs-cop-keyedhash-hmac-sha-224">
+							<col>HMAC-SHA-224</col>
+							<col><selectables>
+								<selectable>224 (ISO, FIPS)</selectable>
+								<selectable>192 (FIPS)</selectable>
+								<selectable>128 (FIPS)</selectable></selectables> bits
+							</col>
+							<col><selectables>
+								<selectable>ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”)</selectable>
+								<selectable>FIPS PUB 198-1</selectable></selectables>
+							</col>
+						</selectable>
+					
+						<selectable id="sel-fcs-cop-keyedhash-hmac-sha-256">
+							<col>HMAC-SHA-256</col>
+							<col><selectables>
+								<selectable>256 (ISO, FIPS)</selectable>
+								<selectable>192 (FIPS)</selectable>
+								<selectable>128 (FIPS)</selectable></selectables> bits
+							</col>
+							<col><selectables>
+								<selectable>ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”)</selectable>
+								<selectable>FIPS PUB 198-1</selectable></selectables>
+							</col>
+						</selectable>
+
+						<selectable id="sel-fcs-cop-keyedhash-hmac-sha-384">
+							<col>HMAC-SHA-384</col>
+							<col><selectables>
+								<selectable>384 (ISO, FIPS)</selectable>
+								<selectable>256 (FIPS)</selectable>
+								<selectable>192 (FIPS)</selectable>
+								<selectable>128 (FIPS)</selectable></selectables> bits
+							</col>
+							<col><selectables>
+								<selectable>ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”)</selectable>
+								<selectable>FIPS PUB 198-1</selectable></selectables>
+							</col>
+						</selectable>
+
+						<selectable id="sel-fcs-cop-keyedhash-hmac-sha-512">
+							<col>HMAC-SHA-512</col>
+							<col><selectables>
+								<selectable>512 (ISO, FIPS)</selectable>
+								<selectable>384 (FIPS)</selectable>
+								<selectable>256 (FIPS)</selectable>
+								<selectable>192 (FIPS)</selectable>
+								<selectable>128 (FIPS)</selectable></selectables> bits
+							</col>
+							<col><selectables>
+								<selectable>ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”)</selectable>
+								<selectable>FIPS PUB 198-1</selectable></selectables>
+							</col>
+						</selectable>
+
+						<selectable id="sel-fcs-cop-keyedhash-kmac-128">
+							<col>KMAC128</col>
+							<col>128 bits</col>
+							<col><selectables>
+								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
+								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
+							</col>
+						</selectable>
+
+						<selectable id="sel-fcs-cop-keyedhash-kmac-256">
+							<col>KMAC256</col>
+							<col>256 bits</col>
+							<col><selectables>
+								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
+								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
+							</col>
+						</selectable>
+
+						<selectable id="sel-fcs-cop-keyedhash-kmacxof-128">
+							<col>KMACXOF128</col>
+							<col><assignable>integer 256 le Lk lt 2^2040</assignable></col>
+							<col><selectables>
+								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
+								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
+							</col>
+						</selectable>
+
+						<selectable id="sel-fcs-cop-keyedhash-kmacxof-256">
+							<col>KMACXOF256</col>
+							<col><assignable>integer 256 le Lk lt 2^2040</assignable></col>
+							<col><selectables>
+								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
+								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
+							</col>
+						</selectable>
+					</selectables>
+					
 				<note role="application">
 					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
@@ -3802,6 +3899,13 @@
 					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/>
 					The HMAC key size falls into a range between L1 and L2 defined in ISO/IEC 10118 for the
 					appropriate hash function (e.g., for SHA-256 L1 = 512, L2 = 256) where L2 ≤ k ≤ L1.
+					<h:p/>
+					<comment>From catalog</comment>
+					The HMAC minimum key sizes in the table are specified in ISO/IEC 9797-2:2021, which requires that the
+					minimum key size be equal to the digest size. The FIPS standard specifies no minimum or maximum 
+					key sizes, so if FIPS PUB 198-1 is selected, larger or smaller key sizes may be used. This is 
+					indicated by the parenthesized annotations in the Cryptographic Key Sizes column.  <h:p/>
+					If “KMACXOF128” or “KMACXOF256” is selected as Keyed Hash Algorithm, then FCS_COP.1/XOF must be claimed.
 				</note>
 				<aactivity>
 					<TSS>
