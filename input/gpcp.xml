@@ -3983,16 +3983,15 @@
 		</f-component>
 
 
-		<!-- FCS_COP.1/SigGen Cryptographic Operation (Signature Generation) -->
-		<f-component id="sfr-fcs-cop-1-siggen" cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation (Signature Generation)" status="sel-based">
+		<!-- FCS_COP.1/SigGen Cryptographic Operation - Signature Generation -->
+		<f-component id="sfr-fcs-cop-1-siggen" cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation - Signature Generation" status="sel-based">
 			<depends on-sel="sel-stg3-digsig"/>	<!-- FCS_STG_EXT.3.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-siggen">
-				<title> The TSF shall perform <h:b>digital signature generation</h:b> in accordance with a specified 
+				<title> The TSF shall perform [digital signature generation] in accordance with a specified 
 					cryptographic algorithm 
 					<selectables>
-						<tabularize id="tab-fcs-cop-siggen-sels" title="Choices for completion of the assignments in 
-							FCS_COP.1.1/SigGen.">
+						<tabularize id="tab-fcs-cop-siggen-sels" title="Recommended choices for FCS_COP.1/SigGen">
 							<textcol>Identifier</textcol>
 							<reqtext></reqtext>
 							<selectcol>Cryptographic algorithm</selectcol>
@@ -4002,10 +4001,14 @@
 							<selectcol>List of standards</selectcol>
 						</tabularize>
 						
-						<selectable id="sel-fcs-cop-siggen-rsa-pkcs1">
-							<col>RSASSA-PKCS1</col>
-							<col>RSASSA-PKCS1-v1_5 using
-							<selectables>
+						<selectable id="sel-fcs-cop-siggen-rsa-pkcs">
+							<col>RSA-PKCS</col>
+							<col>RSASSA-PKCS1-v1_5</col>
+							<col>Modulus of size <selectables>
+								<selectable>2048</selectable>
+								<selectable>3072</selectable>
+								<selectable>4096</selectable>
+							</selectables> bits, hash or XOF <selectables>
 								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
@@ -4013,134 +4016,240 @@
 								<selectable>SHA3-384</selectable>
 								<selectable>SHA3-512</selectable>
 							</selectables></col>
-						<col><selectables>
-							<selectable>2048 bit</selectable>
-							<selectable>3072 bit</selectable>
-						</selectables></col>
-						<col>
-							<selectables>
-								<selectable>RFC 8017</selectable>
-								<selectable>PKCS #1 v2.2 (sec. 8.2)</selectable>
-								<selectable>FIPS PUB 186-5 (sec. 5.4)</selectable>
-							</selectables>(RSASSA-PKCS1-v1_5)<h:p/>
-							<selectables>
-								<selectable>ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable>
-								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
-								<selectable>FIPS PUB 202 [SHA3]</selectable>
-							</selectables></col>
-					</selectable>
+							<col>
+								RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
+								FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]
+							</col>
+						</selectable>
 
-					<selectable id="sel-fcs-cop-siggen-dss2">
-						<col>DSS2</col>
-						<col>Digital signature scheme 2 using
-							<selectables>
+						<selectable id="sel-fcs-cop-siggen-rsa-pss">
+							<col>RSA-PSS</col>
+							<col>RSASSA-PSS</col>
+							<col>Modulus of size <selectables>
+								<selectable>2048</selectable>
+								<selectable>3072</selectable>
+								<selectable>4096</selectable>
+							</selectables> bits, hash or XOF <selectables>
 								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
 								<selectable>SHA3-256</selectable>
 								<selectable>SHA3-384</selectable>
 								<selectable>SHA3-512</selectable>
+								<selectable>SHAKE128</selectable>
+								<selectable>SHAKE256</selectable>
 							</selectables></col>
-						<col><selectables>
-							<selectable>2048 bit</selectable>
-							<selectable>3072 bit</selectable>
-						</selectables></col>
-						<col>
-							ISO/IEC 9796-2 (cl. 9) [Digital signature scheme 2]<h:p/>
-							<selectables>
-								<selectable>ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable>
-								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
-								<selectable>FIPS PUB 202 [SHA3]</selectable>
-							</selectables></col>
-					</selectable>
+							<col>
+								RFC 8017 (Section 8.1) [PKCS#1 v2.2]<h:p/>
+								FIPS PUB 186-5 (Section 5.4) [RSASSA-PSS]
+							</col>
+						</selectable>
 
-					<selectable id="sel-fcs-cop-siggen-dss3">
-						<col>DSS3</col>
-						<col>Digital signature scheme 3 using
-							<selectables>
-								<selectable>SHA-256</selectable>
-								<selectable>SHA-384</selectable>
-								<selectable>SHA-512</selectable>
-								<selectable>SHA3-256</selectable>
-								<selectable>SHA3-384</selectable>
-								<selectable>SHA3-512</selectable>
-							</selectables></col>
-						<col><selectables>
-							<selectable>2048 bit</selectable>
-							<selectable>3072 bit</selectable>
-						</selectables></col>
-						<col>
-							ISO/IEC 9796-2 (cl. 10) [Digital signature scheme 3]<h:p/>
-							<selectables>
-								<selectable>ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable>
-								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
-								<selectable>FIPS PUB 202 [SHA3]</selectable>
-							</selectables></col>
-					</selectable>
-
-					<selectable id="sel-fcs-cop-siggen-rsa-pss">
-						<col>RSASSA-PSS</col>
-						<col>RSASSA-PSS using
-							<selectables>
-								<selectable>SHA-256</selectable>
-								<selectable>SHA-384</selectable>
-								<selectable>SHA-512</selectable>
-								<selectable>SHA3-256</selectable>
-								<selectable>SHA3-384</selectable>
-								<selectable>SHA3-512</selectable>
-							</selectables></col>
-						<col><selectables>
-							<selectable>2048 bit</selectable>
-							<selectable>3072 bit</selectable>
-						</selectables></col>
-						<col>
-							RFC 8017, PKCS#1v2.2 sec. 8.1 [RSASSAPSS]<h:p/>
-							<selectables>
-								<selectable>ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable>
-								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
-								<selectable>FIPS PUB 202 [SHA3]</selectable>
-							</selectables></col>
-					</selectable>
-
-					<selectable id="sel-fcs-cop-siggen-ecdsa">
-						<col>ECDSA</col>
-						<col>ECDSA on 
-							<selectables>
-								<selectable>brainpoolP256r1</selectable>
-								<selectable>brainpoolP384r1</selectable>
-								<selectable>brainpoolP512r1</selectable>
+						<selectable id="sel-fcs-cop-siggen-ecdsa">
+							<col>ECDSA</col>
+							<col>ECDSA</col> 
+							<col>Elliptic Curve <selectables>
 								<selectable>NIST P-256</selectable>
+								<selectable>brainpoolP256r1</selectable>
 								<selectable>NIST P-384</selectable>
+								<selectable>brainpoolP384r1</selectable>
 								<selectable>NIST P-521</selectable>
-							</selectables> using
-							<selectables>
+								<selectable>brainpoolP512r1</selectable>
+							</selectables>, per-message secret number generation <selectables>
+								<selectable>extra random bits</selectable>
+								<selectable>rejection sampling</selectable>
+								<selectable>deterministic</selectable>
+							</selectables> and hash or XOF function using<selectables>
 								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
 								<selectable>SHA3-256</selectable>
 								<selectable>SHA3-384</selectable>
 								<selectable>SHA3-512</selectable>
+								<selectable>SHAKE128</selectable>
+								<selectable>SHAKE256</selectable>
 							</selectables></col>
-						<col><selectables>
-							<selectable>2048 bit</selectable>
-							<selectable>3072 bit</selectable>
-						</selectables></col>
-						<col>
-							<selectables linebreak="yes">
-								<selectable>
-									<selectables>
-										<selectable>ISO/IEC 14888-3</selectable>
-										<selectable>FIPS PUB 186-5 (sec. 6)</selectable>
-									</selectables>(EDCSA)</selectable>
-								<selectable>RFC 5639 (sec. 3) [Brainpool Curves]</selectable>
-								<selectable>NIST SP 800-186 (sec. 3.2.1) [NIST Curves]</selectable>
-							</selectables><h:p/>
-							<selectables>
-								<selectable>ISO/IEC 10118-3 (cl. 10, 11) [SHA1/2]</selectable>
-								<selectable>FIPS PUB 180-4 (sec. 6) [SHA1/2]</selectable>
-								<selectable>FIPS PUB 202 [SHA3]</selectable>
+							<col><selectables>
+									<selectable>ISO/IEC 14888-3:2018 (Subclause 6.6)</selectable>
+									<selectable>FIPS PUB 186-5 (Sections 6.3.1, 6.4.1]</selectable>
+								</selectables>[ECDSA]<h:p/><selectables>
+									<selectable>RFC 5639 (Section 3) [Brainpool Curves]</selectable>
+									<selectable>NIST SP-800 186 (Section 4) [NIST Curves]]</selectable>
+								</selectables>
+							</col>
+						</selectable>
+						
+						<selectable id="sel-fcs-cop-siggen-kcdsa">
+							<col>KCDSA</col>
+							<col>KCDSA</col> 
+							<col>hash function using<selectables>
+								<selectable>SHA-224</selectable>
+								<selectable>SHA-256</selectable>
+								<selectable>SHA-384</selectable>
+								<selectable>SHA-512</selectable>
 							</selectables></col>
-					</selectable>
+							<col>ISO/IEC 14888-3:2018 (Subclause 6.3) [KCDSA]</col>
+						</selectable>
+
+						<selectable id="sel-fcs-cop-siggen-eckcdsa">
+							<col>EC-KCDSA</col>
+							<col>EC-KCDSA</col> 
+							<col>Elliptic Curve <selectables>
+								<selectable>P-224</selectable>
+								<selectable>P-256</selectable>
+								<selectable>B-233</selectable>
+								<selectable>B-283</selectable>
+								<selectable>K-233</selectable>
+								<selectable>K-283</selectable>
+							</selectables> using hash <selectables>
+								<selectable>SHA-224</selectable>
+								<selectable>SHA-256</selectable>
+								<selectable>SHA-384</selectable>
+								<selectable>SHA-512</selectable>
+							</selectables></col>
+							<col>ISO/IEC 14888-3:2018 (Subclause 6.7) [EC-KCDSA]<h:p/>
+									NIST SP 800-186 (Section 3) [NIST Curves]
+							</col>
+						</selectable>
+
+						<selectable id="sel-fcs-cop-siggen-eddsa">
+							<col>EdDSA</col>
+							<col>Edwards-Curve Digital Signature Algorithm </col> 
+							<col>Domain parameters approved for elliptic curves <selectables>
+								<selectable>Edwards25519</selectable>
+								<selectable>Edwards448</selectable>
+							</selectables></col>
+							<col>NIST FIPS PUB 186-5 (Section 7.6) [EdDSA]<h:p/>
+									RFC 8032 [Edwards Curves]
+							</col>
+						</selectable>
+
+						
+						<!-- LMS -->
+						<selectable id="sel-fcs-cop-siggen-lms">
+							<col>LMS</col>
+							<col>LMS</col>
+							<col>Private key size = <selectables>
+								<selectable>192 bits with <selectables>
+									<selectable>SHA-256/192</selectable>
+									<selectable>SHAKE256/192</selectable>
+								</selectables></selectable>
+								<selectable>256 bits with <selectables>
+									<selectable>SHA-256</selectable>
+									<selectable>SHAKE256</selectable>
+								</selectables></selectable>
+								</selectables><h:p/>
+								Winternitz parameter = <selectables>
+									<selectable>1</selectable>
+									<selectable>2</selectable>
+									<selectable>4</selectable>
+									<selectable>8</selectable></selectables><h:p/>
+								Tree height = <selectables>
+									<selectable>5</selectable>
+									<selectable>10</selectable>
+									<selectable>15</selectable>
+									<selectable>20</selectable>
+									<selectable>25</selectable></selectables>
+							</col>
+							<col>RFC 8554 [LMS]<h:p/>
+								 NIST SP 800-208 [parameters]
+							</col>
+						</selectable>
+						
+						<!-- HSS -->
+						<selectable id="sel-fcs-cop-siggen-hss">
+							<col>HSS</col>
+							<col>Multitree version of LMS</col>
+							<col>Private key size = <selectables>
+								<selectable>192 bits with <selectables>
+									<selectable>SHA-256/192</selectable>
+									<selectable>SHAKE256/192</selectable>
+								</selectables></selectable>
+								<selectable>256 bits with <selectables>
+									<selectable>SHA-256</selectable>
+									<selectable>SHAKE256</selectable>
+								</selectables></selectable>
+								</selectables><h:p/>
+								Winternitz parameter = <selectables>
+									<selectable>1</selectable>
+									<selectable>2</selectable>
+									<selectable>4</selectable>
+									<selectable>8</selectable></selectables><h:p/>
+								Tree height = <selectables>
+									<selectable>5</selectable>
+									<selectable>10</selectable>
+									<selectable>15</selectable>
+									<selectable>20</selectable>
+									<selectable>25</selectable></selectables><h:p/>
+								Number of levels = <selectables>
+									<selectable>1</selectable>
+									<selectable>2</selectable>
+									<selectable>3</selectable>
+									<selectable>4</selectable>
+									<selectable>5</selectable>
+									<selectable>6</selectable>
+									<selectable>7</selectable>
+									<selectable>8</selectable></selectables>
+							</col>
+							<col>RFC 8554 [HSS]<h:p/>
+								 NIST SP 800-208 [parameters]
+							</col>
+						</selectable>
+						
+						<!-- XMSS -->
+						<selectable id="sel-fcs-cop-siggen-xmss">
+							<col>XMSS</col>
+							<col>XMSS</col>
+							<col>Private key size = <selectables>
+								<selectable>192 bits with <selectables>
+									<selectable>SHA-256/192</selectable>
+									<selectable>SHAKE256/192</selectable>
+								</selectables></selectable>
+								<selectable>256 bits with <selectables>
+									<selectable>SHA-256</selectable>
+									<selectable>SHAKE256</selectable>
+								</selectables></selectable>
+								</selectables><h:p/>
+								Tree height = <selectables>
+									<selectable>10</selectable>
+									<selectable>16</selectable>
+									<selectable>20</selectable>
+								</selectables>
+							</col>
+							<col>RFC 8391 [XMSS]<h:p/>
+								 NIST SP 800-208 [parameters]
+							</col>
+						</selectable>
+
+						<!-- XMSS(TM) -->
+						<selectable id="sel-fcs-cop-siggen-xmssmt">
+							<col>XMSS(MT)</col>
+							<col>Multitree version of XMSS</col>
+							<col>Private key size = <selectables>
+								<selectable>192 bits with <selectables>
+									<selectable>SHA-256/192</selectable>
+									<selectable>SHAKE256/192</selectable>
+								</selectables></selectable>
+								<selectable>256 bits with <selectables>
+									<selectable>SHA-256</selectable>
+									<selectable>SHAKE256</selectable>
+								</selectables></selectable>
+								</selectables><h:p/>
+								(Total Tree height, Number of Levels) = <selectables>
+									<selectable>(20, 2)</selectable>
+									<selectable>(20, 4)</selectable>
+									<selectable>(40, 2)</selectable>
+									<selectable>(40, 4)</selectable>
+									<selectable>(40, 8)</selectable>
+									<selectable>(60, 3)</selectable>
+									<selectable>(60, 6)</selectable>
+									<selectable>(60, 12)</selectable>
+								</selectables>
+							</col>
+							<col>RFC 8391 [XMSS(MT)]<h:p/>
+								 NIST SP 800-208 [parameters]
+							</col>
+						</selectable>
 					</selectables>
 				</title>
 				<note role="application">			
@@ -4149,7 +4258,9 @@
 					PP-specified security functionality.<h:p/> 
 					Specifically, this SFR must be included if "<h:i>A digital signature of the stored key in accordance with FCS_COP.1/SigGen
 					using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</h:i>" is selected in FCS_STG_EXT.3.<h:p/>
-					If this SFR is included in the ST, then FCS_COP.1/Hash and FCS_RBG.1 must also be claimed.
+					If this SFR is included in the ST, then FCS_COP.1/Hash and FCS_RBG.1 must also be claimed.<h:p/>
+					<comment>From catalog</comment>The dependency on FCS_OTV_EXT.1 is needed only for signature schemes that require random
+					bits, such as ECDSA. 
 				</note>
 				<aactivity>
 					<TSS>
