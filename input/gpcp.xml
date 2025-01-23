@@ -6716,7 +6716,7 @@
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
-			<f-element id="fel-fcs-rbg-1-1">
+			<f-element id="fcs-rbg-1e1">
 				<title>
 					TSF shall perform deterministic random bit generation services using   
 					<selectables>
@@ -6858,7 +6858,7 @@
 					</Tests>
 				</aactivity>
 			</f-element>
-			<f-element id="fel-fcs-rbg-1-2">
+			<f-element id="fcs-rbg-1e2">
 				<title>
 					The TSF shall use a <selectables>
 						<selectable id="internal-seed">TSF noise source <assignable>name of noise source</assignable></selectable>
@@ -6896,7 +6896,7 @@
 				</aactivity>
 			</f-element>
 			
-			<f-element id="fel-fcs-rbg-1-3">
+			<f-element id="fcs-rbg-1e3">
 				<title>
 					The TSF shall update the DRBG state by <selectables>
 						<selectable>reseeding</selectable>
@@ -6949,7 +6949,7 @@
 		<!-- Claimed when FCS_RBG.1.2 selects "TSF interface for seeding -->
 		<f-component cc-id="fcs_rbg.2" name="Random Bit Generation (External Seeding)"  status="sel-based">
 			<depends on="external-seed"/>
-			<f-element id="fe1-fcs-rbg-2">
+			<f-element id="fcs-rbg-2e1">
 				<title>
 					The TSF shall be able to accept a minimum input of <assignable>minimum input length greater than zero</assignable>
 					from a TSF interface for the purpose of obtaining entropy.
@@ -6989,7 +6989,7 @@
 		<!-- Claimed when FCS_RBG.1.2 selects "TSF noise source..." -->
 		<f-component cc-id="fcs_rbg.3" name="Random Bit Generation (Internal Seeding - Single Source)" status="sel-based">
 			<depends on="internal-seed"/>
-			<f-element id="fel-rbg-seed-int-sing">
+			<f-element id="fcs-rbg-3e1">
 				<title>
 					The TSF shall be able to seed the DRBG using a <selectables choose-one-of="yes">
 						<selectable>TSF software-based entropy source</selectable>
@@ -7035,7 +7035,7 @@
 		<!-- Claimed when FCS_RBG.1.2 selects "multiple TSF noise sources..." -->
 		<f-component cc-id="fcs_rbg.4" name="Random Bit Generation (Internal Seeding - Multiple Sources)" status="sel-based">
 			<depends on="internal-seeds"/>
-			<f-element id="fel-fcs-rbg-4">
+			<f-element id="fcs-rbg-4e1">
 				<title>
 					The TSF shall be able to seed the DRBG using <selectables>
 						<selectable><assignable>number</assignable> TSF software-based entropy source(s)</selectable>
@@ -7062,7 +7062,7 @@
 		<!-- Claimed when FCS_RBG.1.2 selects "multiple TSF noise sources..." -->
 		<f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Entropy Sources)" status="sel-based">
 			<depends on="internal-seeds"/>
-			<f-element id="fel-fcs-rbg-5">
+			<f-element id="fcs-rbg-5e1">
 				<title>
 					The TSF shall <selectables>
 						<selectable>hash</selectable>
@@ -7118,8 +7118,8 @@
 		
 
 		<!-- FCS_RBG.6 Random Bit Generation Service -->
-		<f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Entropy Sources)">
-			<f-element id="fel-fcs-rbg-6">
+		<f-component cc-id="fcs_rbg.6" name="Random Bit Generation (Combining Entropy Sources)">
+			<f-element id="fcs-rbg-6e1">
 				<title>
 					The TSF shall provide a <selectables>
 						<selectable>hardware</selectable>
@@ -7139,6 +7139,7 @@
 		
 		<!-- FCS_ENT_EXT.1 Entropy for Tenant Software -->
 		<!-- This might be replaced by FCS_RBG.6 above -->
+<!--
 		<f-component id="sfr-fcs-rbg-6" cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="optional">
 			<consistency-rationale/>
 			
@@ -7177,8 +7178,10 @@
 			</f-element>
 			<audit-event/>
 		</f-component>
+-->
 		
 		<!-- FCS_SLT_EXT.1 Cryptographic Salt Generation -->
+		<!-- May be replaced by FCS_OTV_EXT -->
 		<f-component id="sfr-fcs-slt-ext-1" cc-id="fcs_slt_ext.1" name="Cryptographic Salt Generation" status="optional">
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to generate salt values in a specified manner.</comp-lev>
