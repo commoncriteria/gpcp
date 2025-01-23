@@ -5660,6 +5660,73 @@
 			<audit-event/>
 		</f-component>
 		
+		<!-- FCS_COP.1/XOF Cryptographic Operation - Extendable-Output Function  -->
+		<f-component id="sfr-fcs-cop-1-xof" cc-id="fcs_cop.1" iteration="XOF" name="Cryptographic Operation - Extendable-Output Function">
+			<f-element id="fcs-cop-1e1-xof">
+				<title>
+					The TSF shall perform [extendable-output function] in accordance with a specified cryptographic algorithm  
+					<selectables>
+						<tabularize id="fcs-cop-xof-sels" title="Recommended choices for FCS_COP.1/XOF">
+							<selectcol>Cryptographic algorithm</selectcol>
+							<reqtext>and and parameters</reqtext>
+							<selectcol>Parameters</selectcol>
+							<reqtext>that meet the following:</reqtext>
+							<selectcol>List of standards</selectcol>
+							<reqtext><h:p/><h:p/>The following table provides the recommended choices for
+								completion of the selection operations of FCS_COP.1/XOF.</reqtext>
+						</tabularize>
+						
+						<!-- cSHAKE -->
+						<selectable id="sel-fcs-cop-xof-cshake">
+							<col>cSHAKE</col>
+							<col>Output length d = <selectables>
+								<selectable>128</selectable>
+								<selectable>256</selectable>
+								</selectables> bits and function <selectables>
+								<selectable>SHAKEd</selectable>
+								<selectable>KECCAK[<h:i>2d</h:i>]</selectable></selectables>
+							</col>
+							<col>NIST SP 800-185  Section 3 [cSHAKE], Section 6.2 [SHAKE]<h:p/>
+								NIST FIPS PUB 202 Section 5 [KECCAK]
+							</col>
+						</selectable>
+
+						<!-- KMACXOF -->
+						<selectable id="sel-fcs-cop-xof-kmacxof">
+							<col>KMACXOF</col>
+							<col>Output length d = <selectables>
+								<selectable>128</selectable>
+								<selectable>256</selectable>
+								</selectables> bits
+							</col>
+							<col>NIST SP 800-185 Section 4.3.1 [KMACXOF]</col>
+						</selectable>
+
+						<!-- SHAKE -->
+						<selectable id="sel-fcs-cop-xof-shake">
+							<col>SHAKE</col>
+							<col>Output length d = <selectables>
+								<selectable>128</selectable>
+								<selectable>256</selectable>
+								</selectables> bits
+							</col>
+							<col>NIST FIPS PUB 202 Section 6.2 [SHAKE]</col>
+						</selectable>
+					</selectables>
+				</title>
+				<note role="application">
+					The functions in cSHAKE depend on the output length d. i.e. SHAKEd is either SHAKE128 
+					for d = 128 or SHAKE256 for d = 256.  Similarly, KECCAK[2d] is either KECCAK[256] for d = 128 
+					or KECCAK[512] for d = 256.  Note that KECCAK is a cryptographic primitive which should have 
+					no direct interface exposed to the user of the TOE.
+				</note>
+				<aactivity>
+					<no-tests>TBD</no-tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
 
         <!-- FCS_HTTPS_EXT.1 -->
         <!-- Depends on HTTPS being selected for trusted channel -->
