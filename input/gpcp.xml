@@ -1608,7 +1608,20 @@
 						described.<h:p/>			
 					
 						<h:br/><h:b>RSA Key Generation</h:b><h:p/>
-						<!--insert table here -->
+						<h:table>
+							<h:tr>
+								<h:th>Identifier</h:th>
+								<h:th>Cryptographic Key Generation Algorithm</h:th>
+								<h:th>Cryptographic Algorithm Parameters</h:th>
+								<h:th>List of Standards</h:th>
+							</h:tr>
+							<h:tr>
+								<h:td>RSA</h:td>
+								<h:td>RSA</h:td>
+								<h:td>Modulus of size [selection: 2048, 3072, 4096] bits </h:td>
+								<h:td>NIST FIPS PUB 186-5 (Section A.1.1)</h:td>
+							</h:tr>							
+						</h:table><h:p/>
 						FIPS PUB 186-5 Key Pair generation specifies five methods for generating the 
 						primes <h:i>p</h:i> and <h:i>q</h:i>.<h:p/>
 						These are:<h:nl> 
@@ -1655,8 +1668,8 @@
 						<h:li>GCD(<h:i>p</h:i>-1,<h:i>e</h:i>) = 1</h:li>
 						<h:li>GCD(<h:i>q</h:i>-1,<h:i>e</h:i>) = 1</h:li>
 						<h:li>|<h:i>p</h:i>-<h:i>q</h:i>| &gt; 2<h:sup>(<h:i>nlen</h:i>/2 – 100)</h:sup></h:li>
-						<h:li><h:i>p</h:i> &ge; squareroot(2)*( 2<h:sup>(<h:i>nlen</h:i>/2 -1)</h:sup> )</h:li>
-						<h:li><h:i>q</h:i> &ge; squareroot(2)*( 2<h:sup>(<h:i>nlen</h:i>/2 -1)</h:sup> )</h:li>
+						<h:li><h:i>p</h:i> &#8805; squareroot(2)*( 2<h:sup>(<h:i>nlen</h:i>/2 -1)</h:sup> )</h:li>
+						<h:li><h:i>q</h:i> &#8805; squareroot(2)*( 2<h:sup>(<h:i>nlen</h:i>/2 -1)</h:sup> )</h:li>
 						<h:li>2^(<h:i>nlen</h:i>/2) &lt; d &lt; LCM(<h:i>p</h:i>-1,<h:i>q</h:i>-1)</h:li>
 						<h:li>e*d = 1 mod LCM(<h:i>p</h:i>-1,<h:i>q</h:i>-1)</h:li></h:ul>
  
