@@ -1580,72 +1580,86 @@
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator shall examine the TSS to verify that it describes how the TOE
-						generates an asymmetric key based on the methods selected from <xref to="fcs-ckm-1-ak-sels"/>.
-						The evaluator shall examine the TSS to verify that it describes how the TOE invokes the methods
-						selected in the ST from the table. The evaluator shall examine the TSS to
-						verify that it identifies the usage for each row identifier (key type, key size, and list
-						of standards) selected in the ST.
+						<comment>From CWG Draft 20250218, make below ref a link</comment>
+						The evaluator shall examine the TSS to verify that it describes how the TOE 
+						obtains a key based on input from a random bit generator as specified in
+						FCS_RBG.1. The evaluator shall review the TSS to verify that it describes how 
+						the functionality described by FCS_RBG.1 is invoked. The evaluator shall 
+						examine the TSS to verify that it identifies the usage for each row identifier 
+						(key name, key size, standards) selected in the ST.<h:p/>
+						The evaluator shall examine the TSS to verify that it identifies the key types 
+						(e.g., see NIST SP 800-57 Part 1 Release 5, Section 5), key usage, and key
+						lifecycle for keys generated using each selected algorithm.
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that the AGD guidance instructs the administrator how
-						to configure the TOE to use the selected key types for all uses identified in the ST.
+						<comment>From CWG Draft 20250218</comment>
+						The evaluator shall verify that the AGD instructs the administrator how to 
+						configure the TOE to generate keys for the selected key generation algorithms
+						for all key types and uses identified in the TSS.
 					</Guidance>
-					<CustomEA name="KMD">
-						If the TOE uses the generated key in a key chain/hierarchy, then the evaluator shall
-						confirm that the KMD describes:<h:ul>
-						<h:li>If "<h:i>RSA</h:i>" is selected, then the KMD describes which methods for generating p
-							and q are used</h:li>
-						<h:li>How the key is used as part of the key chain/hierarchy. </h:li></h:ul>
-					</CustomEA>
 					<Tests>
-						The following tests require the developer to provide access to a test platform that
-						provides the evaluator with tools that are typically not found on factory products.<h:p/>
-						<h:br/><h:b>RSA: RSA Key Generation</h:b><h:p/>
-						The below tests are derived from The 186-5 RSA Validation System (RSA2VS),
-						Updated 8 July 2014, Section 6.2, from the National Institute of Standards and
-						Technology.<h:p/>
-						The evaluator shall verify the implementation of RSA Key Generation by the TOE
-						using the Key Generation test. This test verifies the ability of the TSF to correctly
-						produce values for the key components including the public verification exponent
-						e, the private prime factors p and q, the public modulus n and the calculation of the
-						private signature exponent d.<h:p/>
-						FIPS PUB 186-5 Key Pair generation specifies five methods for generating the primes p
-						and q.<h:p/>
-						These are:<h:ol type="1">
-							<h:li>Random Primes:<h:ul>
-								<h:li>Provable primes</h:li>
-								<h:li>Probable primes</h:li></h:ul></h:li>
-							<h:li>Primes with Conditions:<h:ul>
-								<h:li>Primes p1, p2, q1, q2, p and q shall all be provable primes.</h:li>
-								<h:li>Primes p1, p2, q1, and q2 shall be provable primes and p and q shall be
-									probable primes</h:li>
-								<h:li>Primes p1, p2, q1, q2, p and q shall all be probable primes.</h:li></h:ul></h:li>
-						</h:ol>	
+						The following tests are conditional based upon the selections made in the SFR. 
+						The evaluator shall perform the following test or witness respective tests 
+						executed by the developer. The tests must be executed on a platform that is as 
+						close as practically possible to the operational platform (but which may be 
+						instrumented in terms of, for example, use of a debug mode). Where the test is
+						not carried out on the TOE itself, the test platform shall be identified and the
+						differences between test environment and TOE execution environment shall be 
+						described.<h:p/>			
+					
+						<h:br/><h:b>RSA Key Generation</h:b><h:p/>
+						<!--insert table here -->
+						FIPS PUB 186-5 Key Pair generation specifies five methods for generating the 
+						primes <h:i>p</h:i> and <h:i>q</h:i>.<h:p/>
+						These are:<h:nl> 
+						<h:li>Random Provable primes</h:li>
+						<h:li>Random Probable primes</h:li>
+						<h:li>Provable primes with conditions based on auxiliary provable primes</h:li>
+						<h:li>Probable primes with conditions based on auxiliary provable primes</h:li>
+						<h:li>Probable primes with conditions based on auxiliary probable primes</h:li>
+						</h:nl><h:p/>
+						In addition to the key generation method, the input parameters are:<h:ul>
+						<h:li>Modulus [2048, 3072, 4096]</h:li>
+						<h:li>Hash algorithm [SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256, SHA3-224, SHA3-256, SHA3-384, SHA3-512] (methods 1, 3, 4 only)</h:li>
+						<h:li>Rabin-Miller prime test [2<h:sup>100</h:sup>, 2<h:sup>Security String</h:sup>] (methods 2, 4, 5 only)</h:li> 
+						<h:li><h:i>p</h:i> mod 8 value [0,1,3,5,7]</h:li>
+						<h:li><h:i>q</h:i> mod 8 value [0,1,3,5,7]</h:li>
+						<h:li>Private key format [standard, Chinese Remainder Theorem]</h:li>
+						<h:li>Public exponent [fixed value, random]</h:li></h:ul><h:p/>
+						The evaluator shall verify the ability of the TSF to correctly produce values
+						for the RSA key components, including the public verification exponent <h:i>e</h:i>, the
+						private prime factors <h:i>p</h:i> and <h:i>q</h:i>, the public modulus <h:i>n</h:i> and 
+						the calculation of the private signature exponent <h:i>d</h:i>.<h:p/>
+						
+						<h:br><h:i><h:b>Testing for Random Provable Primes and Conditional Methods</h:b></h:i><h:p/> 
 						To test the key generation method for the Random Provable primes method and for
-						all the Primes with Conditions methods, the evaluator must seed the TSF key
-						generation routine with sufficient data to deterministically generate the RSA key
-						pair.<h:p/>
-						For each key length supported, the evaluator shall have the TSF generate 25 key
-						pairs. The evaluator shall verify the correctness of the TSF’s implementation by
-						comparing values generated by the TSF with those generated by a known good
-						implementation using the same input parameters.<h:p/>
-						If the TOE generates Random Probable Primes, then if possible, the Random
-						Probable primes method should also be verified against a known good
+						all the Primes with Conditions methods (methods 1, 3-5), the evaluator must seed 
+						the TSF key generation routine with sufficient data to deterministically 
+						generate the RSA key pair. <h:p/>
+						For each supported combination of the above input parameters, the evaluator
+						shall have the TSF generate 25 key pairs. The evaluator shall verify the
+						correctness of the TSF’s implementation by comparing values generated by the TSF 
+						with those generated by a known good implementation using the same input 
+						parameters.<h:p/>
+						<h:br><h:i><h:b>Testing for Random Probable Primes Method</h:b></h:i><h:p/>
+						If the TOE generates Random Probable Primes (method 2) then, if possible, the 
+						Random Probable primes method should also be verified against a known good
 						implementation as described above. If verification against a known good
 						implementation is not possible, the evaluator shall have the TSF generate 25 key
-						pairs for each supported key length nlen and verify that all of the following are true:<h:ul>
-						<h:li>n = p*q</h:li>
-						<h:li>p and q are probably prime according to Miller-Rabin tests with error
-							probability &lt;2^(-125)</h:li>
-						<h:li>2^16 &lt; e &lt; 2^256 and e is an odd integer</h:li>
-						<h:li>GCD(p-1,e) = 1</h:li>
-						<h:li>GCD(q-1,e) = 1</h:li>
-						<h:li>|p-q| > 2^(nlen/2 - 100)</h:li>
-						<h:li>p >= squareroot(2)*( 2^(nlen/2 -1) )</h:li>
-						<h:li>q >= squareroot(2)*( 2^(nlen/2 -1) )</h:li>
-						<h:li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1)</h:li>
-						<h:li>e*d = 1 mod LCM(p-1,q-1)</h:li></h:ul><h:p/>
+						pairs for each supported key length nlen and verify that all of the following 
+						are true:<h:p/><h:ul>
+						<h:li><h:i>n</h:i> = <h:i>p</h:i>*<h:i>q</h:i>
+						<h:li><h:i>p</h:i> and <h:i>q</h:i> are probably prime according to Miller-Rabin tests with error
+							probability &lt;2<h:sup>(-125)</h:sup></h:li>
+						<h:li>2<h:sup>16</h:sup> &lt; <h:i>e</h:i> &lt; 2<h:sup>256</h:sup> and <h:i>e</h:i> is an odd integer</h:li>
+						<h:li>GCD(<h:i>p</h:i>-1,<h:i>e</h:i>) = 1</h:li>
+						<h:li>GCD(<h:i>q</h:i>-1,<h:i>e</h:i>) = 1</h:li>
+						<h:li>|<h:i>p</h:i>-<h:i>q</h:i>| &gt; 2<h:sup>(<h:i>nlen</h:i>/2 – 100)</h:sup></h:li>
+						<h:li><h:i>p</h:i> &ge; squareroot(2)*( 2<h:sup>(<h:i>nlen</h:i>/2 -1)</h:sup> )</h:li>
+						<h:li><h:i>q</h:i> &ge; squareroot(2)*( 2<h:sup>(<h:i>nlen</h:i>/2 -1)</h:sup> )</h:li>
+						<h:li>2^(<h:i>nlen</h:i>/2) &lt; d &lt; LCM(<h:i>p</h:i>-1,<h:i>q</h:i>-1)</h:li>
+						<h:li>e*d = 1 mod LCM(<h:i>p</h:i>-1,<h:i>q</h:i>-1)</h:li></h:ul>
+ 
 						<h:br/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
 						These tests are derived from The FIPS 186-5 Elliptic Curve Digital Signature
 						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/>
