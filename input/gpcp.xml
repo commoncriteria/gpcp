@@ -1674,24 +1674,62 @@
 						<h:li>2<h:sup>(<h:i>nlen</h:i>/2)</h:sup> &lt; d &lt; LCM(<h:i>p</h:i>-1,<h:i>q</h:i>-1)</h:li>
 						<h:li>e*d = 1 mod LCM(<h:i>p</h:i>-1,<h:i>q</h:i>-1)</h:li></h:ul>
  
-						<h:br/><h:b>ECC-N &amp; ECC-B: ECC Key Generation with NIST and Brainpool Curves</h:b><h:p/>
-						These tests are derived from The FIPS 186-5 Elliptic Curve Digital Signature
-						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<h:p/>
-						<h:b>  ECC Key Generation Test</h:b><h:br/>
-						For each selected curve, and for each key pair generation method as described in
-						FIPS PUB 186-5, section A.2, the evaluator shall require the implementation under test
-						to generate 10 private/public key pairs (d, Q). The private key, d, shall be generated 
-						using a random bit generator as specified in FCS_RBG.1. The private key, d,
-						is used to compute the public key, Q’. The evaluator shall confirm that 0&lt;d&lt;n
-						(where n is the order of the group), and the computed value (Q’) is then compared to
-						public key (Q) of the generated public/private key pair to confirm that Q and Q' are equal.<h:p/>
-						<h:b>  Public Key Validation (PKV) Test</h:b><h:br/>
-						For each supported curve, the evaluator shall generate 12 private/public key pairs
-						using the key generation function of a known good implementation and modify six
-						of the public key values so that they are incorrect, leaving six values unchanged
-						(i.e., correct). To determine correctness, the evaluator shall submit the 12 key pairs
-						to the public key validation (PKV) function of the TOE and shall confirm that the
-						results correspond as expected to the modified and unmodified values.<h:p/>
+						<h:br/><h:b>Eliptic Curve Key Generation</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptographic Key Generation Algorithm</h:td>
+								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ECC-ERB</h:td>
+								<h:td valign="top">ECC - Extra Random Bits</h:td>
+								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521, brainpoolP512r1]</h:td>
+								<h:td valign="top">NIST FIPS PUB 186-5 (Section A.2.1)<h:p/>
+													[<h:b>selection:</h:b> NIST SP 800-186 (Section 3) [NIST Curves], 
+													RFC 5639 (Section 3) [Brainpool curves]]</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ECC-RS</h:td>
+								<h:td valign="top">ECC - Rejection Sampling</h:td>
+								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521, brainpoolP512r1]</h:td>
+								<h:td valign="top">NIST FIPS PUB 186-5 (Section A.2.2)<h:p/>
+													[<h:b>selection:</h:b> NIST SP 800-186 (Section 3) [NIST Curves], 
+													RFC 5639 (Section 3) [Brainpool curves]]</h:td>
+							</h:tr>
+						</h:table><h:p/>						
+						To test the TOE’s ability to generate asymmetric cryptographic keys using
+						elliptic curves, the evaluator shall perform the ECC Key Generation Test 
+						and the ECC Key Validation Test using the following input parameters:<h:ul>
+						<h:li>Elliptic curve [P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521, brainpoolP512r1]</h:li>
+						<h:li>Key pair generation method [extra random bits, rejection sampling]</h:li></h:ul><h:p/>
+						
+						<h:br/><h:i><h:b>ECC Key Generation Test</h:b></h:i><h:br/>
+						For each supported combination of the above input parameters the evaluator shall
+						require the implementation under test to generate 10 private/public key pairs
+						(<h:i>d, Q</h:i>). The private key, <h:i>d</h:i>, shall be generated using a
+						random bit generator as specified in FCS_RBG.1. The private key, <h:i>d</h:i>, is
+						used to compute the public key, <h:i>Q’</h:i>. The evaluator shall confirm that
+						0&lt;<h:i>d</h:i>&lt;<h:i>n</h:i> (where <h:i>n</h:i> is the order of the group),
+						and the computed value <h:i>Q’</h:i> is then compared to the generated 
+						public/private key pairs’ public key, <h:i>Q</h:i>, to confirm that <h:i>Q</h:i> is 
+						equal to <h:i>Q’</h:i>.	<h:p/>					
+						
+						<h:br/><h:i><h:b>ECC Key Validation Test</h:b></h:i><h:br/>
+						For each supported combination of the above parameters the evaluator shall
+						generate 12 private/public key pairs using the key generation function of a 
+						known-good implementation. For each set of 12 public keys, the evaluator shall
+						modify four public key values by shifting <h:i>x</h:i> or <h:i>y</h:i> out of 
+						range by adding the order of the field and modify four other public key values 
+						by shifting <h:i>x</h:i> or <h:i>y</h:i> so that they are still in bounds, but 
+						not on the curve. The remaining public key values are left unchanged (i.e., 
+						correct). To determine correctness, the evaluator shall submit the public keys
+						to the public key validation (PKV) function of the TOE and shall confirm that 
+						the results correspond as expected for the modified and unmodified values.
+					
+					
+					
 					
 						<h:br/><h:b>Curve25519: Curve25519 Key Generation</h:b><h:p/>
 						The evaluator shall require the implementation under test (IUT) to generate 10
