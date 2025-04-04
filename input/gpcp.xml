@@ -1569,18 +1569,18 @@
 					in FCS_COP.1/SigGen, then “EdDSA” must be claimed here.  The chosen domain
 					parameters determine the size of the private keys and the public keys.<h:p/>
 
-					For LMS, HSS, XMSS, and XMSSMT, the key sizes do not represent the expected 
+					For LMS, HSS, XMSS, and XMSS<h:sup>MT</h:sup>, the key sizes do not represent the expected 
 					security strength.  All key sizes given here correspond to an expected security 
 					strength of 128 bits, per NIST SP 800-208.<h:p/>
 
-					For HSS and XMSSMT the same hash or XOF function must be used at each level.  
+					For HSS and XMSS<h:sup>MT</h:sup> the same hash or XOF function must be used at each level.  
 					Within each level, the same Winternitz parameter must be used but can be 
 					different for each level.  For HSS, within each level, the same tree height 
 					must be used but can be different for each level.
 				</note>
 				<aactivity>
 					<TSS>
-						<comment>From CWG Draft 20250218, make below ref a link</comment>
+						<comment>All below from CWG Draft 20250218</comment>
 						The evaluator shall examine the TSS to verify that it describes how the TOE 
 						obtains a key based on input from a random bit generator as specified in
 						FCS_RBG.1. The evaluator shall review the TSS to verify that it describes how 
@@ -1592,13 +1592,11 @@
 						lifecycle for keys generated using each selected algorithm.
 					</TSS>
 					<Guidance>
-						<comment>From CWG Draft 20250218</comment>
 						The evaluator shall verify that the AGD instructs the administrator how to 
 						configure the TOE to generate keys for the selected key generation algorithms
 						for all key types and uses identified in the TSS.
 					</Guidance>
 					<Tests>
-						<comment>From CWG Draft 20250218</comment>
 						The following tests are conditional based upon the selections made in the SFR. 
 						The evaluator shall perform the following test or witness respective tests 
 						executed by the developer. The tests must be executed on a platform that is as 
@@ -1935,7 +1933,7 @@
 						<h:b><h:div style="text-align: center;">
 							<ctr ctr-type="Table" pre="Table " id="lms-test-cases">: Number of LMS Test Cases</ctr>
 							</h:div>
-						</h:b><h:br/>
+						</h:b>
 							
 						<h:table border="1" style="width:50%">
 							<h:tr class="header" bgcolor="#cccccc">
@@ -2014,7 +2012,14 @@
 						<h:li>Tree height [10, 16, 20] (XMSS only)</h:li>
 						<h:li>Tree height/levels [20/2, 20/4, 40/2, 40/4, 40/8, 60/3, 60/6, 60/12] (XMSS<h:sup>MT</h:sup> only)</h:li></h:ul><h:p/>
 
-						<h:b><ctr ctr-type="Table" pre="Table " id="xmss-test-cases">: Number of Test Cases for XMSS and XMSS<h:sup>MT</h:sup></ctr></h:b><h:br/>
+						<h:b><h:div style="text-align: center;">
+							<ctr ctr-type="Table" pre="Table " id="lms-test-cases">: Number of LMS Test Cases</ctr>
+							</h:div>
+						</h:b>
+
+						<h:b><h:div style="text-align: center;">
+							<ctr ctr-type="Table" pre="Table " id="xmss-test-cases">: Number of Test Cases for XMSS and XMSS<h:sup>MT</h:sup></ctr>
+						</h:div></h:b>
 						<h:table border="1" style="width:50%">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Height</h:td>
