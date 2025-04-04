@@ -4206,24 +4206,62 @@ The following sections list Common Criteria and technology terms used in this do
 						<li>2<sup>(<i>nlen</i>/2)</sup> &lt; d &lt; LCM(<i>p</i>-1,<i>q</i>-1)</li>
 						<li>e*d = 1 mod LCM(<i>p</i>-1,<i>q</i>-1)</li></ul>
  
-						<br/><b>ECC-N &amp; ECC-B: ECC Key Generation with <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> and Brainpool Curves</b><p></p>
-						These tests are derived from The <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> 186-5 Elliptic Curve Digital Signature
-						Algorithm Validation System (ECDSA2VS), Updated 18 Mar 2014, Section 6.<p></p>
-						<b>  ECC Key Generation Test</b><br/>
-						For each selected curve, and for each key pair generation method as described in
-						<abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-5, section A.2, the evaluator shall require the implementation under test
-						to generate 10 private/public key pairs (d, Q). The private key, d, shall be generated 
-						using a random bit generator as specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>. The private key, d,
-						is used to compute the public key, Q’. The evaluator shall confirm that 0&lt;d&lt;n
-						(where n is the order of the group), and the computed value (Q’) is then compared to
-						public key (Q) of the generated public/private key pair to confirm that Q and Q' are equal.<p></p>
-						<b>  Public Key Validation (PKV) Test</b><br/>
-						For each supported curve, the evaluator shall generate 12 private/public key pairs
-						using the key generation function of a known good implementation and modify six
-						of the public key values so that they are incorrect, leaving six values unchanged
-						(i.e., correct). To determine correctness, the evaluator shall submit the 12 key pairs
-						to the public key validation (PKV) function of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and shall confirm that the
-						results correspond as expected to the modified and unmodified values.<p></p>
+						<br/><b>Eliptic Curve Key Generation</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Identifier</td>
+								<td valign="top">Cryptographic Key Generation Algorithm</td>
+								<td valign="top">Cryptographic Algorithm Parameters</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top">ECC-ERB</td>
+								<td valign="top">ECC - Extra Random Bits</td>
+								<td valign="top">Elliptic Curve [<b>selection:</b> P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521, brainpoolP512r1]</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-5 (Section A.2.1)<p></p>
+													[<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-186 (Section 3) [<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Curves], 
+													<abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5639 (Section 3) [Brainpool curves]]</td>
+							</tr>
+							<tr>
+								<td valign="top">ECC-RS</td>
+								<td valign="top">ECC - Rejection Sampling</td>
+								<td valign="top">Elliptic Curve [<b>selection:</b> P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521, brainpoolP512r1]</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-5 (Section A.2.2)<p></p>
+													[<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-186 (Section 3) [<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Curves], 
+													<abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5639 (Section 3) [Brainpool curves]]</td>
+							</tr>
+						</table><p></p>						
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to generate asymmetric cryptographic keys using
+						elliptic curves, the evaluator shall perform the ECC Key Generation Test 
+						and the ECC Key Validation Test using the following input parameters:<ul>
+						<li>Elliptic curve [P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521, brainpoolP512r1]</li>
+						<li>Key pair generation method [extra random bits, rejection sampling]</li></ul><p></p>
+						
+						<br/><i><b>ECC Key Generation Test</b></i><br/>
+						For each supported combination of the above input parameters the evaluator shall
+						require the implementation under test to generate 10 private/public key pairs
+						(<i>d, Q</i>). The private key, <i>d</i>, shall be generated using a
+						random bit generator as specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>. The private key, <i>d</i>, is
+						used to compute the public key, <i>Q’</i>. The evaluator shall confirm that
+						0&lt;<i>d</i>&lt;<i>n</i> (where <i>n</i> is the order of the group),
+						and the computed value <i>Q’</i> is then compared to the generated 
+						public/private key pairs’ public key, <i>Q</i>, to confirm that <i>Q</i> is 
+						equal to <i>Q’</i>.	<p></p>					
+						
+						<br/><i><b>ECC Key Validation Test</b></i><br/>
+						For each supported combination of the above parameters the evaluator shall
+						generate 12 private/public key pairs using the key generation function of a 
+						known-good implementation. For each set of 12 public keys, the evaluator shall
+						modify four public key values by shifting <i>x</i> or <i>y</i> out of 
+						range by adding the order of the field and modify four other public key values 
+						by shifting <i>x</i> or <i>y</i> so that they are still in bounds, but 
+						not on the curve. The remaining public key values are left unchanged (i.e., 
+						correct). To determine correctness, the evaluator shall submit the public keys
+						to the public key validation (PKV) function of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and shall confirm that 
+						the results correspond as expected for the modified and unmodified values.
+					
+					
+					
 					
 						<br/><b>Curve25519: Curve25519 Key Generation</b><p></p>
 						The evaluator shall require the implementation under test (IUT) to generate 10
