@@ -629,7 +629,7 @@ function showTarget(id){
 	            img[src="images/collapsed.png"] { display:none;}
 
           }
-    </style></head><body onLoad="init()"><div id="commmentbox-"><a href="#Comment-1-">Comment: Comment-1-</a><br/><a href="#Comment-2-">Comment: Comment-2-</a><br/><a href="#Comment-3-">Comment: Comment-3-</a><br/><a href="#Comment-4-">Comment: Comment-4-</a><br/><a href="#Comment-5-">Comment: Comment-5-</a><br/><a href="#Comment-6-">Comment: Comment-6-</a><br/><a href="#Comment-7-">Comment: Comment-7-</a><br/><a href="#Comment-8-">Comment: Comment-8-</a><br/><a href="#Comment-9-">Comment: Comment-9-</a><br/><a href="#Comment-10-">Comment: Comment-10-</a><br/><a href="#Comment-11-">Comment: Comment-11-</a><br/><a href="#Comment-12-">Comment: Comment-12-</a><br/><a href="#Comment-13-">Comment: Comment-13-</a><br/><a href="#Comment-14-">Comment: Comment-14-</a><br/><a href="#Comment-15-">Comment: Comment-15-</a><br/><a href="#Comment-16-">Comment: Comment-16-</a><br/><a href="#Comment-17-">Comment: Comment-17-</a><br/></div><h1 class="title" style="page-break-before:auto;">DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
+    </style></head><body onLoad="init()"><div id="commmentbox-"><a href="#Comment-1-">Comment: Comment-1-</a><br/><a href="#Comment-2-">Comment: Comment-2-</a><br/><a href="#Comment-3-">Comment: Comment-3-</a><br/><a href="#Comment-4-">Comment: Comment-4-</a><br/><a href="#Comment-5-">Comment: Comment-5-</a><br/><a href="#Comment-6-">Comment: Comment-6-</a><br/><a href="#Comment-7-">Comment: Comment-7-</a><br/><a href="#Comment-8-">Comment: Comment-8-</a><br/><a href="#Comment-9-">Comment: Comment-9-</a><br/><a href="#Comment-10-">Comment: Comment-10-</a><br/><a href="#Comment-11-">Comment: Comment-11-</a><br/><a href="#Comment-12-">Comment: Comment-12-</a><br/><a href="#Comment-13-">Comment: Comment-13-</a><br/><a href="#Comment-14-">Comment: Comment-14-</a><br/><a href="#Comment-15-">Comment: Comment-15-</a><br/><a href="#Comment-16-">Comment: Comment-16-</a><br/><a href="#Comment-17-">Comment: Comment-17-</a><br/><a href="#Comment-18-">Comment: Comment-18-</a><br/><a href="#Comment-19-">Comment: Comment-19-</a><br/><a href="#Comment-20-">Comment: Comment-20-</a><br/><a href="#Comment-21-">Comment: Comment-21-</a><br/><a href="#Comment-22-">Comment: Comment-22-</a><br/></div><h1 class="title" style="page-break-before:auto;">DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
       Version: 2.0<br/>2025-01-13<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>0.1</td><td>2020-11-16</td><td>Started</td></tr>
 <tr><td>1.0</td><td>2022-02-10</td><td>Initial publication.</td></tr>
 <tr><td>1.1</td><td>2024-12-13</td><td>Updates for <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022</td></tr>
@@ -3169,8 +3169,14 @@ The following sections list Common Criteria and technology terms used in this do
 							to justify that the effective entropy of each factor is preserved.</li>
 						</ul>
 					</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
-						The following tests require the developer to provide access to a test platform that
-						provides the evaluator with tools that are typically not found on factory products.<p></p>
+						The evaluator shall perform the following test or witness respective tests 
+						executed by the developer. The tests must be executed on a platform that is as 
+						close as practically possible to the operational platform (but which may be 
+						instrumented in terms of, for example, use of a debug mode). Where the test is
+						not carried out on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself, the test platform shall be identified and
+						the differences between test environment and <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> execution environment shall be
+						described.<p></p>
+						
 						The evaluator shall perform one or more of the following tests to verify the
 						correctness of the key derivation function, depending on the specific functions that
 						are supported:<p></p>
@@ -3192,148 +3198,355 @@ The following sections list Common Criteria and technology terms used in this do
 						<tr><td>Pseudorandom salt values</td><td></td><td>S</td></tr>
 						<tr><td>Randomness extraction <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr></td><td>n/a</td><td><abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr></td></tr>
 						</table>
-						The below tests are derived from Key Derivation using Pseudorandom Functions
-						(SP 800-108) Validation System (KBKDFVS), Updated 4 January 2016, Section
-						6.2, from the National Institute of Standards and Technology.<p></p>
-						<b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-CTR: Counter Mode Tests:</b><p></p>
-						The evaluator shall determine the following characteristics of the key derivation
-						function:<ul>
-						<li>One or more pseudorandom functions that are supported by the
-							implementation (PRF).</li>
-						<li>One or more of the values {8, 16, 24, 32} that equal the length of the binary
-							representation of the counter (r).</li>
-						<li>The length (in bits) of the output of the PRF (h).</li>
-						<li>Minimum and maximum values for the length (in bits) of the derived keying
-							material (L). These values can be equal if only one value of L is supported.
-							These must be evenly divisible by h.</li>
-						<li>Up to two values of L that are NOT evenly divisible by h.</li>
-						<li>Location of the counter relative to fixed input data: before, after, or in the
-							middle.<ul>
-							<li>Counter before fixed input data: fixed input data string length (in bytes),
-								fixed input data string value.</li>
-							<li>Counter after fixed input data: fixed input data string length (in bytes),
-								fixed input data string value.</li>
-							<li>Counter in the middle of fixed input data: length of data before counter (in
-								bytes), length of data after counter (in bytes), value of string input before
-								counter, value of string input after counter.</li></ul></li>
-						<li>The length (I_length) of the input values I.</li></ul>
-						For each supported combination of I_length, <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>, salt, PRF, counter location,
-						value of r, and value of L, the evaluator shall generate 10 test vectors that include
-						pseudorandom input values I, and pseudorandom salt values. If there is only one
-						value of L that is evenly divisible by h, the evaluator shall generate 20 test vectors
-						for it. For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order
-						to produce the keying material output.<p></p>
-						The results from each test may either be obtained by the evaluator directly or by
-						supplying the inputs to the implementer and receiving the results in response. To
-						determine correctness, the evaluator shall compare the resulting values to those
-						obtained by submitting the same inputs to a known good implementation.<p></p>
-						<b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-FB: Feedback Mode Tests:</b><p></p>
-						The evaluator shall determine the following characteristics of the key derivation
-						function:<ul>
-						<li>One or more pseudorandom functions that are supported by the
-							implementation (PRF).</li>
-						<li>The length (in bits) of the output of the PRF (h).</li>
-						<li>Minimum and maximum values for the length (in bits) of the derived keying
-							material (L). These values can be equal if only one value of L is supported.
-							These must be evenly divisible by h.</li>
-						<li>Up to two values of L that are NOT evenly divisible by h.</li>
-						<li>Whether or not zero-length IVs are supported.</li>
-						<li>Whether or not a counter is used, and if so:<ul>
-							<li>One or more of the values {8, 16, 24, 32} that equal the length of the
-								binary representation of the counter (r).</li>
-							<li>Location of the counter relative to fixed input data: before, after, or in the
-								middle.<ul>
-								<li>Counter before fixed input data: fixed input data string length (in
-									bytes), fixed input data string value.</li>
-								<li>Counter after fixed input data: fixed input data string length (in bytes),
-									fixed input data string value.</li>
-								<li>Counter in the middle of fixed input data: length of data before counter
-									(in bytes), length of data after counter (in bytes), value of string input
-									before counter, value of string input after counter.</li></ul></li></ul></li>
-						<li>The length (I_length) of the input values L.</li></ul>
-						For each supported combination of I_length, <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>, salt, PRF, counter location (if
-						a counter is used), value of r (if a counter is used), and value of L, the evaluator
-						shall generate 10 test vectors that include pseudorandom input values I and
-						pseudorandom salt values. If the <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> supports zero-length IVs, five of these test
-						vectors will be accompanied by pseudorandom IVs and the other five will use zero-length IVs. If zero-length 
-						IVs are not supported, each test vector will be
-						accompanied by an pseudorandom IV. If there is only one value of L that is evenly
-						divisible by h, the evaluator shall generate 20 test vectors for it.<p></p>
-						For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to
-						produce the keying material output. The results from each test may either be
-						obtained by the evaluator directly or by supplying the inputs to the implementer and
-						receiving the results in response. To determine correctness, the evaluator shall
-						compare the resulting values to those obtained by submitting the same inputs to a
-						known good implementation.<p></p>
-						<b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-DPI: Double Pipeline Iteration Mode Tests:</b><p></p>
-						The evaluator shall determine the following characteristics of the key derivation
-						function:<ul>
-						<li>One or more pseudorandom functions that are supported by the
-							implementation (PRF).</li>
-						<li>The length (in bits) of the output of the PRF (h).</li>
-						<li>Minimum and maximum values for the length (in bits) of the derived keying
-							material (L). These values can be equal if only one value of L is supported.
-							These must be evenly divisible by h.</li>
-						<li>Up to two values of L that are NOT evenly divisible by h.</li>
-						<li>Whether or not a counter is used, and if so:<ul>
-							<li>One or more of the values {8, 16, 24, 32} that equal the length of the
-								binary representation of the counter (r).</li>
-							<li>Location of the counter relative to fixed input data: before, after, or in the
-								middle.<ul>
-								<li>Counter before fixed input data: fixed input data string length (in
-									bytes), fixed input data string value.</li>
-								<li>Counter after fixed input data: fixed input data string length (in bytes),
-								fixed input data string value.</li>
-								<li>Counter in the middle of fixed input data: length of data before counter
-								(in bytes), length of data after counter (in bytes), value of string input
-								before counter, value of string input after counter.</li></ul></li></ul></li>
-						<li>The length (I_length) of the input values I.</li></ul>
-						For each supported combination of I_length, <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>, salt, PRF, counter location (if
-						a counter is used), value of r (if a counter is used), and value of L, the evaluator
-						shall generate 10 test vectors that include pseudorandom input values I, and
-						pseudorandom salt values. If there is only one value of L that is evenly divisible by
-						h, the evaluator shall generate 20 test vectors for it.<p></p>
-						For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to
-						produce the keying material output. The results from each test may either be
-						obtained by the evaluator directly or by supplying the inputs to the implementer and
-						receiving the results in response. To determine correctness, the evaluator shall
-						compare the resulting values to those obtained by submitting the same inputs to a
-						known good implementation.<p></p>
-						<b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-XOR: Intermediate Keys Method</b><p></p>
-						If the selected algorithm is a hash, then the testing of the hash primitive is the only
-						required Evaluation Activity. If the selected algorithm is <abbr class="dyn-abbr"><a href="#abbr_XOR">XOR</a></abbr>, then no separate
-						primitive testing is necessary.<p></p>
-						<b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-ENC: Two Keys Method</b><p></p>
-						The evaluator should confirm that the combined length of the two keys should be
-						at least as long as the key size of the selected methods. There are no other tests other
-						than for the methods selected for this row from FCD_COP.1/<abbr class="dyn-abbr"><a href="#abbr_SK">SK</a></abbr>.<p></p>
-						<b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-HASH: Shared Secret, Salt, Output Length, Fixed Information Method</b><p></p>
-						For each supported selection of PRF, length of shared secret (Z) [selection: 128,
-						256] bits, length of salt (S) [selection: length of input block of PRF, one-half length
-						of input block of PRF, 0] bits, output length (L) [selection: 128, 256] bits, and length
-						of fixed information (FixedInfo) [selection: length of input block of PRF, one-half length of input block of PRF, 0] bits, the evaluator shall generate 10 test vectors
-						that include pseudorandom input values for Z, salt values (for non-zero lengths,
-						otherwise, omit) and fixed information (for non-zero lengths, otherwise, omit).<p></p>
-						For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to
-						produce the keying material output. The results from each test may either be
-						obtained by the evaluator directly or by supplying the inputs to the implementer and
-						receiving the results in response. To determine correctness, the evaluator shall
-						compare the resulting values to those obtained by submitting the same inputs to a
-						known good implementation.<p></p>
-						<b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-MAC: Shared Secret, Salt, IV, Output Length, Fixed Information Method</b><p></p>
-						For each supported selection of PRF, length of shared secret (Z), length of salt,
-						length of initialization vector (IV), output length (L), and length of fixed
-						information (FixedInfo), the evaluator shall generate 10 test vectors that include
-						pseudorandom input values for Z, salt values (for non-zero lengths, otherwise,
-						omit), IV (for non-zero lengths, otherwise, use a vector of length equal to length of
-						input block of PRF and fill with zeros), and fixed information (for non-zero lengths,
-						otherwise, omit).<p></p>
-						For each test vector, the evaluator shall supply this data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to
-						produce the keying material output. The results from each test may either be
-						obtained by the evaluator directly or by supplying the inputs to the implementer and
-						receiving the results in response. To determine correctness, the evaluator shall
-						compare the resulting values to those obtained by submitting the same inputs to a
-						known good implementation.
+						
+						
+						<br/><b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Counter Mode</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Key Type</td>
+								<td valign="top">Input Parameters</td>
+								<td valign="top">Key Derivation Algorithm</td>
+								<td valign="top">Key Sizes</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-CTR</td>
+								<td valign="top">[<b>selection:</b> Direct Generation from a Random Bit Generator as 
+									specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>, Concatenated keys]</td>
+								<td valign="top">KPF2 - <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Counter Mode using [<b>selection:</b> 
+									<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-192-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC; 
+									Camellia-128-CMAC; Camellia-192-CMAC; Camellia-256-CMAC;
+									<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-HIGHT-128;
+									<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-128; <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-256;
+									<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-SEED-128;
+									<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512] as the PRF</td>
+								<td valign="top">[<b>selection:</b> 128, 192, 256, 512] bits</td>
+								<td valign="top">[<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_ISO">ISO</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_IEC">IEC</a></abbr> 11770-6:2016
+									(Subclause 7.3.2) [KPF2], <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-108 Revision 1 Update 1 (Section 4.1) 
+									[<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Counter Mode]]</td>
+							</tr>
+						</table><p></p>						
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Counter 
+						Mode/KDF2, the evaluator shall perform the Counter <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Algorithm Functional
+						Test using the following input parameters:<ul>
+						<li>Pseudo Random Function (PRF) [<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128-CMAC, <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-192-CMAC, <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC,
+							Camellia-128-CMAC, Camellia-192-CMAC, Camellia-256-CMAC, <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-HIGHT-128, 
+							<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-128, <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-256, <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-SEED-128, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256, 
+							<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
+						<li>Derived key length [128, 192, 256, 512] bits</li>
+						<li>Location of the counter [after fixed data, before fixed data, middle fixed data]</li>
+						<li>Counter length [8, 16, 24, 32] bits</li></ul><p></p>
+						<br/><i><b>Counter <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Algorithm Functional Test</b></i><br/>
+						For each supported combination of the above input parameters the evaluator 
+						shall require the implementation under test to derive two keys using random 
+						data. The evaluator shall compare the resulting keys with keys generated using 
+						a known-good implementation using the same input parameters.<p></p>
+						
+						
+						<br/><b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Feedback Mode</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Key Type</td>
+								<td valign="top">Input Parameters</td>
+								<td valign="top">Key Derivation Algorithm</td>
+								<td valign="top">Key Sizes</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-FB</td>
+								<td valign="top">[<b>selection:</b> Direct Generation from a Random Bit Generator as 
+									specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>, Concatenated keys]</td>
+								<td valign="top">KPF3 - <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Feedback Mode using [<b>selection:</b> 
+									<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-192-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC; 
+									Camellia-128-CMAC; Camellia-192-CMAC; Camellia-256-CMAC;
+									<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-HIGHT-128;
+									<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-128; <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-256;
+									<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-SEED-128;
+									<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512] as the PRF</td>
+								<td valign="top">[<b>selection:</b> 128, 192, 256, 512] bits</td>
+								<td valign="top">[<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_ISO">ISO</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_IEC">IEC</a></abbr> 11770-6:2016
+									(Subclause 7.3.3) [KPF3], <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-108 Revision 1 Update 1 (Section 4.2) 
+									[<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Feedback Mode]]</td>
+							</tr>
+						</table><p></p>						
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Feedback 
+						Mode/KDF3, the evaluator shall perform the Feedback <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Algorithm Functional
+						Test using the following input parameters:<ul>
+						<li>Pseudo Random Function (PRF) [<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128-CMAC, <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-192-CMAC, <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC,
+							Camellia-128-CMAC, Camellia-192-CMAC, Camellia-256-CMAC, <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-HIGHT-128, 
+							<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-128, <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-256, <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-SEED-128, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256, 
+							<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
+						<li>Derived key length [128, 192, 256, 512] bits</li>
+						<li>Location of the counter [none, after fixed data, before fixed data, before iterator]</li>
+						<li>Counter length [0, 8, 16, 24, 32] bits</li></ul><p></p>		
+						<br/><i><b>Feedback <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Algorithm Functional Test</b></i><br/>
+						For each supported combination of the above input parameters the evaluator 
+						shall require the implementation under test to derive two keys using random 
+						data. The evaluator shall compare the resulting keys with keys generated using 
+						a known-good implementation using the same input parameters.<p></p>
+
+						
+						<br/><b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Double-Pipeline Iteraton Mode</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Key Type</td>
+								<td valign="top">Input Parameters</td>
+								<td valign="top">Key Derivation Algorithm</td>
+								<td valign="top">Key Sizes</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-DPI</td>
+								<td valign="top">[<b>selection:</b> Direct Generation from a Random Bit Generator as 
+									specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>, Concatenated keys]</td>
+								<td valign="top">KPF4 - <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Double-Pipeline Iteration Mode using [<b>selection:</b> 
+									<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-192-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC; 
+									Camellia-128-CMAC; Camellia-192-CMAC; Camellia-256-CMAC;
+									<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-HIGHT-128;
+									<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-128; <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-256;
+									<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-SEED-128;
+									<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512] as the PRF</td>
+								<td valign="top">[<b>selection:</b> 128, 192, 256, 512] bits</td>
+								<td valign="top">[<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_ISO">ISO</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_IEC">IEC</a></abbr> 11770-6:2016
+									(Subclause 7.3.4) [KPF4], <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-108 Revision 1 Update 1 (Section 4.3) 
+									[<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Double-Pipeline Iteration Mode]]</td>
+							</tr>
+						</table><p></p>						
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Double Pipeline Iteration  
+						Mode/KDF4, the evaluator shall perform the Double Pipeline Iteration <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Algorithm Functional
+						Test using the following input parameters:<ul>
+						<li>Pseudo Random Function (PRF) [<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128-CMAC, <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-192-CMAC, <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC,
+							Camellia-128-CMAC, Camellia-192-CMAC, Camellia-256-CMAC, <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-HIGHT-128, 
+							<abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-128, <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-LEA-256, <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr>-SEED-128, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256, 
+							<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
+						<li>Derived key length [128, 192, 256, 512] bits</li>
+						<li>Location of the counter [none, after fixed data, before fixed data, before iterator]</li>
+						<li>Counter length [0, 8, 16, 24, 32] bits</li></ul><p></p>
+						<br/><i><b>Double Pipeline Iteration <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Algorithm Functional Test</b></i><br/>
+						For each supported combination of the above input parameters the evaluator 
+						shall require the implementation under test to derive two keys using random 
+						data. The evaluator shall compare the resulting keys with keys generated using 
+						a known-good implementation using the same input parameters.<p></p>
+
+						
+						<br/><b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> XORing Keys</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Key Type</td>
+								<td valign="top">Input Parameters</td>
+								<td valign="top">Key Derivation Algorithm</td>
+								<td valign="top">Key Sizes</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-XOR</td>
+								<td valign="top">More than one intermediary keys</td>
+								<td valign="top">exclusive OR (<abbr class="dyn-abbr"><a href="#abbr_XOR">XOR</a></abbr>)</td>
+								<td valign="top">[<b>selection:</b> 128, 192, 256, 512] bits</td>
+								<td valign="top">N/A</td>
+							</tr>
+						</table><p></p>						
+						There are no tests for this key derivation method. <p></p>
+
+						
+						<br/><b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> by Encrypting Keys</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Key Type</td>
+								<td valign="top">Input Parameters</td>
+								<td valign="top">Key Derivation Algorithm</td>
+								<td valign="top">Key Sizes</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-ENC</td>
+								<td valign="top">Two keys</td>
+								<td valign="top">Encrypting using an algorithm specified in 
+									[<b>selection:</b> <a href="#FCS_COP.1/SKC">FCS_COP.1/SKC</a>,  <a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a>]</td>
+								<td valign="top">[<b>selection:</b> 128, 192, 256, 512] bits</td>
+								<td valign="top">N/A</td>
+							</tr>
+						</table><p></p>						
+						Specific testing for this key derivation method is covered by testing for the
+						supported symmetric encryption algorithms in <a href="#FCS_COP.1/SKC">FCS_COP.1/SKC</a> or <a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a>.<p></p>
+
+						
+						<br/><b><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> by Hashing a Shared Secret</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Key Type</td>
+								<td valign="top">Input Parameters</td>
+								<td valign="top">Key Derivation Algorithm</td>
+								<td valign="top">Key Sizes</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-HASH</td>
+								<td valign="top">Shared secret</td>
+								<td valign="top">Hash function from <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a></td>
+								<td valign="top">[<b>selection:</b> 128, 192, 256, 512] bits</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-56C Revision 2 (Section 4.1, Option 1) 
+									[One-Step Key Derivation]</td>
+							</tr>
+						</table><p></p>						
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys by hashing a shared 
+						secret (a.k.a. One-Step HASH-based Key Derivation), the evaluator shall perform 
+						the Algorithm Functional Test and Validation Test using the following input
+						parameters:<ul>
+						<li>Auxiliary Function [<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-224, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512/224,
+							<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512/256, SHA3-224, SHA3-256, SHA3-384, SHA3-512]</li>
+						<li>Derived key length [128, 192, 256, 512] bits</li>
+						<li>Fixed information pattern </li></ul><p></p>
+						<br/><i><b>Algorithm Functional Test</b></i><br/>
+						For each supported fixed information pattern and combination of the above input
+						parameters the evaluator shall require the implementation under test to derive
+						five keys using random data for a shared secret that is the same size as the 
+						derived key. The evaluator shall compare the resulting keys with keys derived
+						using a known-good implementation using the same fixed information patterns and
+						input parameters.<p></p>
+						<br/><i><b>Validation Test</b></i><br/>
+						<span style="" class="comment " id="Comment-6-">Catalog EA not finalized</span>For each supported fixed information pattern and combination of the above input
+						parameters the evaluator shall require the implementation under test to derive
+						fifteen keys using random data for a shared secret that is the same size as the
+						derived key. The evaluator will modify one of every five derived keys so that
+						the derived key material is invalid. To determine correctness, the evaluator
+						shall confirm that the results correspond as expected for the modified and 
+						unmodified values.<p></p>
+
+						
+						<br/><b>One-Step <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>-based <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr></b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Key Type</td>
+								<td valign="top">Input Parameters</td>
+								<td valign="top">Key Derivation Algorithm</td>
+								<td valign="top">Key Sizes</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-MAC-1S</td>
+								<td valign="top">Shared secret, salt, output length, fixed information</td>
+								<td valign="top">Keyed Hash function from <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a></td>
+								<td valign="top">[<b>selection:</b> 128, 192, 256, 512] bits</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-56C Revision 2 (Section 4.1, Options 2, 3) 
+									[One-Step Key Derivation]</td>
+							</tr>
+						</table><p></p>			
+						<span style="" class="comment " id="Comment-7-">Catalog EA not finalized</span>
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using One-Step
+						<abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>-based Key Derivation, the evaluator shall perform the Algorithm Functional
+						Test and Validation Test using the following input parameters:<ul>
+						<li>Auxiliary Function [<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-224, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-384,
+							<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512, KMAC128, KMAC256, KMACXOF128, KMACXOF256]</li>
+						<li>Salt [0s, random]</li>
+						<li>Derived key length [128, 192, 256, 512] bits</li>
+						<li>Fixed information pattern </li></ul><p></p>		
+						<br/><i><b>Algorithm Functional Test</b></i><br/>
+						For each supported fixed information pattern and combination of the above input
+						parameters the evaluator shall require the implementation under test to derive
+						five keys using random data for a shared secret. The evaluator shall compare 
+						the resulting keys with keys derived using a known-good implementation using the 
+						same fixed information patterns and input parameters.<p></p>
+						<br/><i><b>Validation Test</b></i><br/>
+						<span style="" class="comment " id="Comment-8-">Catalog EA not finalized</span>For each supported fixed information
+						pattern and combination of the above input parameters the evaluator shall
+						require the implementation under test to derive five keys using random data for
+						a shared secret. The evaluator will modify one of every five keys so that the 
+						derived key material is invalid [What specific ways is the key to be modified?].
+						To determine correctness, the evaluator shall submit the derived key material to
+						the key validation function of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and shall confirm that the results
+						correspond as expected for the modified and unmodified values.<p></p>
+
+						
+						<br/><b>Two-Step <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>-based <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr></b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Key Type</td>
+								<td valign="top">Input Parameters</td>
+								<td valign="top">Key Derivation Algorithm</td>
+								<td valign="top">Key Sizes</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-MAC-2S</td>
+								<td valign="top">Shared secret, salt, IV, output length, fixed information</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> Step [<b>selection:</b> 
+									<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-192-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC; 
+									Camellia-128-CMAC; Camellia-192-CMAC; Camellia-256-CMAC;
+									<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512] as randomness extraction and; 
+									<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Step [<b>selection:</b> 
+									<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-CTR, <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-FB, <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-DPI] using [<b>selection:</b> 
+									<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-192-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC; 
+									Camellia-128-CMAC; Camellia-192-CMAC; Camellia-256-CMAC;
+									<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512] as PRF</td>
+								<td valign="top">[<b>selection:</b> 128, 192, 256, 512] bits</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-56C Revision 2 (Section 5) [Two-Step Key Derivation]</td>
+							</tr>
+						</table><p></p>			
+						<span style="" class="comment " id="Comment-9-">Catalog EA not finalized</span>
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using Two-Step <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>-based
+						Key Derivation, the evaluator shall perform the Algorithm Functional Test and 
+						Validation Test using the following input parameters:<ul>
+						<li><abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> mode [<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-192-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC; Camellia-128-CMAC;
+							Camellia-192-CMAC; Camellia-256-CMAC; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
+						<li><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Mode [Counter, feedback, Double Pipeline iteration]</li>
+						<li>Salt [0s, random]</li>
+						<li>Length of shared secret [224-65535]</li>
+						<li>Hybrid shared secret ???, aux Shared Secret length??</li>
+						<li>Derived key length [128, 192, 256, 512] bits</li>
+						<li>Fixed information pattern </li>
+						<li>Counter location [none, before fixed data, after fixed data, before iterator]</li>
+						<li>Counter length [0, 8, 16, 24, 32]</li></ul><p></p>		
+						<br/><i><b>Algorithm Functional Test</b></i><br/>
+						For each supported fixed information pattern and combination of the above input 
+						parameters the evaluator shall require the implementation under test to derive 
+						five keys using random data for a shared secret. The evaluator shall compare the
+						resulting keys with keys derived using a known-good implementation using the 
+						same fixed information patterns and input parameters.<p></p>
+						<br/><i><b>Validation Test</b></i><br/>
+						<span style="" class="comment " id="Comment-10-">Catalog EA not finalized</span>For each supported fixed information
+						pattern and combination of the above input parameters the evaluator shall 
+						require the implementation under test to derive five keys using random data for
+						a shared secret. The evaluator will modify one of every five keys so that the
+						derived key material is invalid [What specific ways is the key to be modified?].
+						To determine correctness, the evaluator shall submit the derived key material 
+						to the key validation function of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and shall confirm that the results 
+						correspond as expected for the modified and unmodified values.<p></p>
+
+						
+						<br/><b><abbr class="dyn-abbr"><a href="#abbr_KMAC">KMAC</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr></b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Key Type</td>
+								<td valign="top">Input Parameters</td>
+								<td valign="top">Key Derivation Algorithm</td>
+								<td valign="top">Key Sizes</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-KMAC</td>
+								<td valign="top">Key, context string, output length, label</td>
+								<td valign="top">[<b>selection:</b> KMAC128, KMAC256]</td>
+								<td valign="top">[<b>selection:</b> 128, 192, 256, 512] bits</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-108 Revision 1 Update 1 (Section 4.4 “<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Using <abbr class="dyn-abbr"><a href="#abbr_KMAC">KMAC</a></abbr>”)</td>
+							</tr>
+						</table><p></p>			
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using <abbr class="dyn-abbr"><a href="#abbr_KMAC">KMAC</a></abbr> Key Derivation, the evaluator shall
+						perform the Algorithm Functional Test using the following input parameters:<ul>
+						<li><abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> Function [KMAC128, KMAC256]</li>
+						<li>Key Derivation Key Length [112-4096 by 8] bits</li>
+						<li>Context length [8-4096 by 8] bits</li>
+						<li>Label length [8-4096 by 8] bits</li>
+						<li>Derived key length [128, 192, 256, 512] bits</li></ul><p></p>
+					
+						<br/><i><b>Algorithm Functional Test</b></i><br/>
+						For each supported <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> function [KMAC128, KMAC256], for each supported minimum and maximum key
+						length:<p></p>
+						Generate 50 test cases using random data for Key Derivation Key, Context, and 
+						Label. The length of each derived key shall be randomly selected from all 
+						supported values such that the minimum and maximum lengths are chosen once each.
+						The evaluator shall compare the resulting derived keys with keys derived using 
+						a known-good implementation using the same input parameters.<p></p>
 					</div></div></div></div></div><div class="comp" id="FCS_CKM_EXT.8"><h4>FCS_CKM_EXT.8 Password-Based Key Derivation</h4>
 			<div class="element"><div class="reqid" id="FCS_CKM_EXT.8.1"><a href="#FCS_CKM_EXT.8.1" class="abbr">FCS_CKM_EXT.8.1</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform password-based key derivation functions in accordance with a specified 
@@ -4671,8 +4884,19 @@ The following sections list Common Criteria and technology terms used in this do
 						If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses the generated key in a key chain/hierarchy, then the KMD
 							shall describe how the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> uses the key as part of the key chain/hierarchy.		
 					</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
-						The evaluator shall use the description of the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> interface to verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> requests 
-						and receives an amount of <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> output greater than or equal to the requested key size.
+						The following tests are conditional based upon the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.
+						The evaluator shall perform the following test or witness respective tests 
+						executed by the developer. The tests must be executed on a platform that is as 
+						close as practically possible to the operational platform (but which may be 
+						instrumented in terms of, for example, use of a debug mode). Where the test 
+						is not carried out on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself, the test platform shall be identified and
+						the differences between test environment and <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> execution environment shall be
+						described.<p></p>
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to generate symmetric cryptographic keys using a 
+						random bit generator, the evaluator shall configure the asymmetric cryptographic 
+						key generation capability for each claimed key size. The evaluator shall use the
+						description of the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> interface to verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> requests and receives an
+						amount of <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> output greater than or equal to the requested key size.
 					</div></div></div></div></div><div class="comp" id="FCS_CKM.2"><h4>FCS_CKM.2 Cryptographic Key Distribution</h4><div class="statustag"><b><i>The inclusion of this selection-based component depends upon selection in
            <a href="#FTP_ITE_EXT.1.1">FTP_ITE_EXT.1.1</a>.
            </i></b><p></p><b><i>This component must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if any of the following <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> are included:</i></b><br/><ul><li><b><i><a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a></i></b></li></ul><p><i><b>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</b></i></p></div>
@@ -4711,7 +4935,7 @@ The following sections list Common Criteria and technology terms used in this do
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					<span style="" class="comment " id="Comment-6-">From catalog</span>The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will have mechanisms to destroy keys, including intermediate keys and key material, by using
+					<span style="" class="comment " id="Comment-11-">From catalog</span>The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will have mechanisms to destroy keys, including intermediate keys and key material, by using
 					an approved method as specified in <a href="#FCS_CKM.6.2">FCS_CKM.6.2</a>.  Examples of keys include intermediate keys, leaf keys, 
 					encryption keys, and signing keys.  Key material includes seeds, authentication secrets, passwords, 
 					PINs, and other secret values used to derive keys.  The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author shall list all such keys and keying
@@ -4773,7 +4997,7 @@ The following sections list Common Criteria and technology terms used in this do
 					carefully selected, and not taken from a general pool that might contain current or residual data
 					that itself requires confidentiality protection.<p></p>
 					<p></p>
-					<span style="" class="comment " id="Comment-7-">From crypto catalog</span>In the case of volatile memory, the selection “removal of all references to the key directly followed 
+					<span style="" class="comment " id="Comment-12-">From crypto catalog</span>In the case of volatile memory, the selection “removal of all references to the key directly followed 
 					by a request for garbage collection” is used in a situation where the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> cannot address the specific 
 					physical memory locations holding the data to be erased and therefore relies on addressing logical 
 					addresses (which frees the relevant physical addresses holding the old data) and then requesting the 
@@ -5339,7 +5563,7 @@ The following sections list Common Criteria and technology terms used in this do
 						<li>"<i><abbr class="dyn-abbr"><a href="#abbr_ECIES">ECIES</a></abbr></i>" in FCS_COP.1/KAT</li>
 						<li>"<i><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-*</i>" in <a href="#FCS_STG_EXT.3">FCS_STG_EXT.3</a></li>
 					</ul>
-					<span style="" class="comment " id="Comment-8-">From catalog</span>If the selected cryptographic algorithm requires an IV or nonce, 
+					<span style="" class="comment " id="Comment-13-">From catalog</span>If the selected cryptographic algorithm requires an IV or nonce, 
 					then <a href="#FCS_OTV_EXT.1">FCS_OTV_EXT.1</a> must be claimed.
 				</span></div></div></div>
 			
@@ -5888,7 +6112,7 @@ The following sections list Common Criteria and technology terms used in this do
 					generation.  In certain cases, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1 may also be used for verifying old digital signatures and time
 					stamps, provided that this is explicitly allowed by the application domain.
 					<p></p>
-					<span style="" class="comment " id="Comment-9-">From catalog</span>The hash selection should be consistent with the overall strength of the 
+					<span style="" class="comment " id="Comment-14-">From catalog</span>The hash selection should be consistent with the overall strength of the 
 					algorithm used for signature generation. For example, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> should choose <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256 for 2048-bit RSA or
 					ECC with P-256; <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 for 3072-bit RSA, 4096-bit RSA, or ECC with P-384; and <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512 for ECC with
 					P-521. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects the standard based on the algorithms selected.  <p></p>
@@ -6137,7 +6361,7 @@ The following sections list Common Criteria and technology terms used in this do
 					The <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> key size falls into a range between L1 and L2 defined in <abbr class="dyn-abbr"><a href="#abbr_ISO">ISO</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_IEC">IEC</a></abbr> 10118 for the
 					appropriate hash function (e.g., for <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256 L1 = 512, L2 = 256) where L2 ≤ k ≤ L1.
 					<p></p>
-					<span style="" class="comment " id="Comment-10-">From catalog</span>
+					<span style="" class="comment " id="Comment-15-">From catalog</span>
 					The <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> minimum key sizes in the table are specified in <abbr class="dyn-abbr"><a href="#abbr_ISO">ISO</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_IEC">IEC</a></abbr> 9797-2:2021, which requires that the
 					minimum key size be equal to the digest size. The <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> standard specifies no minimum or maximum 
 					key sizes, so if <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 198-1 is selected, larger or smaller key sizes may be used. This is 
@@ -6324,7 +6548,7 @@ The following sections list Common Criteria and technology terms used in this do
 					Specifically, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included if "<i>A digital signature of the stored key in accordance with <a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a>
 					using an asymmetric key that is protected in accordance with <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a></i>" is selected in <a href="#FCS_STG_EXT.3">FCS_STG_EXT.3</a>.<p></p>
 					If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> and <a href="#FCS_RBG.1">FCS_RBG.1</a> must also be claimed.<p></p>
-					<span style="" class="comment " id="Comment-11-">From catalog</span>The dependency on <a href="#FCS_OTV_EXT.1">FCS_OTV_EXT.1</a> is needed only for signature schemes that require random
+					<span style="" class="comment " id="Comment-16-">From catalog</span>The dependency on <a href="#FCS_OTV_EXT.1">FCS_OTV_EXT.1</a> is needed only for signature schemes that require random
 					bits, such as <abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr>. 
 				</span></div></div></div>
 			
@@ -6549,7 +6773,7 @@ The following sections list Common Criteria and technology terms used in this do
 					For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the
 					base point. As the preferred approach for digital signatures, elliptic curves will be required after all the
 					necessary standards and other supporting information are fully established.<p></p>
-					<span style="" class="comment " id="Comment-12-">From catalog</span>
+					<span style="" class="comment " id="Comment-17-">From catalog</span>
 					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may contain a public key which is integrity protected (e.g., in hardware), in which 
 					case the FDP_ITC.1 and FDP_ITC.2 dependencies do not apply.  In this case, no dependencies 
 					may be chosen.  For signature verifications, private keys are not necessary, so there are no
@@ -6957,7 +7181,7 @@ The following sections list Common Criteria and technology terms used in this do
 					</ul>
 					
 					<p></p>
-					<span style="" class="comment " id="Comment-13-">From catalog</span>
+					<span style="" class="comment " id="Comment-18-">From catalog</span>
 					If the selected “cryptographic algorithm" requires an IV, counter, or tweak value,
 					then <a href="#FCS_OTV_EXT.1">FCS_OTV_EXT.1</a> must be claimed.
 				</span></div></div></div>
@@ -8209,7 +8433,7 @@ The following sections list Common Criteria and technology terms used in this do
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					<span style="" class="comment " id="Comment-14-">From catalog</span>
+					<span style="" class="comment " id="Comment-19-">From catalog</span>
 					No rationale is acceptable for not satisfying one of these dependencies.<p></p>
 					If a reseeding is selected in the first selection and something other than “never” is 
 					selected in the third selection of <a href="#FCS_RBG.1.3">FCS_RBG.1.3</a>, but reseeding is not feasible, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> will
@@ -8311,7 +8535,7 @@ The following sections list Common Criteria and technology terms used in this do
 					full entropy and is therefore  usable as the seed. However, if this is not the case, it should be noted what the minimum
 					entropy rate of the noise source is so that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can collect a sufficiently large sample of noise data to be
 					conditioned into a seed value.
-					<span style="" class="comment " id="Comment-15-">From catalog</span>
+					<span style="" class="comment " id="Comment-20-">From catalog</span>
 					In order to maintain compliance with <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-90A Revision 1, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> accepts enough 
 					bits of input from an external noise source to satisfy the entropy requirements of the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>.
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> should also protect the integrity and confidentiality of the entropy it receives from
@@ -8347,7 +8571,7 @@ The following sections list Common Criteria and technology terms used in this do
 					is within the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> boundary. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the 
 					total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data 
 					is reduced in size to the seed.
-					<span style="" class="comment " id="Comment-16-">From catalog</span>
+					<span style="" class="comment " id="Comment-21-">From catalog</span>
 					If an <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author wishes to use multiple internal noise sources, they iterate this requirement
 					for each noise source used by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.<p></p>
 					Hardware-based noise sources are entropy sources whose primary function is noise generation, 
@@ -8407,7 +8631,7 @@ The following sections list Common Criteria and technology terms used in this do
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					<span style="" class="comment " id="Comment-17-">From catalog</span>
+					<span style="" class="comment " id="Comment-22-">From catalog</span>
 					One can apply <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-90B (or AIS-31) statistical tests against internal noise sources 
 					(a.k.a. raw entropy) to confirm the min-entropy of the noise sources either in aggregate or 
 					individually.  One should not apply <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-90B (or AIS-31) statistical tests against 
