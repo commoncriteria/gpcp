@@ -5279,149 +5279,178 @@ The following sections list Common Criteria and technology terms used in this do
 						that can be used for the various key agreement/transport schemes.
 					</div></div><div class="eacategory">Guidance</div><div class="ea">
 			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
-						The following tests require the developer to provide access to a test platform that
-						provides the evaluator with tools that are typically not found on factory products.<p></p>
-						The evaluator shall verify the implementation of the key generation routines of the
-						supported schemes using the following tests:<p></p>
-						<b>If ECDH-NIST or ECDH-BPC is claimed:</b><p></p>
-						<b>SP 800-56A Key Agreement Schemes</b><p></p>
-						The evaluator shall verify a <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s implementation of SP 800-56A key agreement
-						schemes using the following Function and Validity tests. These validation tests for
-						each key agreement scheme verify that a <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> has implemented the components of
-						the key agreement scheme according to the specifications in the Recommendation.
-						These components include the calculation of the DLC primitives (the shared secret
-						value Z) and the calculation of the derived keying material (DKM) via the Key
-						Derivation Function (<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>). If key confirmation is supported, the evaluator shall
-						also verify that the components of key confirmation have been implemented
-						correctly, using the test procedures described below. This includes the parsing of
-						the DKM, the generation of MACdata and the calculation of MACtag.<p></p>
-						<i>Function Test</i><p></p>
-						The Function test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to implement the key agreement
-						schemes correctly. To conduct this test the evaluator shall generate or obtain test
-						vectors from a known good implementation of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supported schemes. For
-						each supported key agreement scheme-key agreement role combination, <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> type,
-						and, if supported, key confirmation role-key confirmation type combination, the
-						tester shall generate 10 sets of test vectors. The data set consists of one set of domain
-						parameter values (FFC) or the <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> approved curve (ECC) per 10 sets of public
-						keys. These keys are static, ephemeral or both depending on the scheme being
-						tested.<p></p>
-						The evaluator shall obtain the DKM, the corresponding <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s public keys (static
-						or ephemeral), the <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> tags, and any inputs used in the <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>, such as the Other
-						Information field OI and <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> id fields.<p></p>
-						If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> does not use a <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> defined in SP 800-56A, the evaluator shall obtain
-						only the public keys and the hashed value of the shared secret. <p></p>
-						The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>’s implementation of a given
-						scheme by using a known good implementation to calculate the shared secret value,
-						derive the keying material DKM, and compare hashes or <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> tags generated from
-						these values.<p></p>
-						If key confirmation is supported, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform the above for each
-						implemented approved <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> algorithm.<p></p>
-						<i>Validity Test</i><p></p>
-						The Validity test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to recognize another party’s valid
-						and invalid key agreement results with or without key confirmation. To conduct this
-						test, the evaluator shall obtain a list of the supporting cryptographic functions
-						included in the SP 800-56A key agreement implementation to determine which
-						errors the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> should be able to recognize. The evaluator generates a set of 24
-						(FFC) or 30 (ECC) test vectors consisting of data sets including domain parameter
-						values or <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> approved curves, the evaluator’s public keys, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s
-						public/private key pairs, MACTag, and any inputs used in the <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>, such as the
-						other info and <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> id fields.<p></p>
-						The evaluator shall inject an error in some of the test vectors to test that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
-						recognizes invalid key agreement results caused by the following fields being
-						incorrect: the shared secret value Z, the DKM, the other information field OI, the
-						data to be MACed, or the generated MACTag. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> contains the full or partial
-						(only ECC) public key validation, The evaluator shall also individually inject errors
-						in both parties’ static public keys, both parties’ ephemeral public keys and the
-						<abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s static private key to assure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> detects errors in the public key validation
-						function or the partial key validation function (in ECC only). At least two of the test
-						vectors shall remain unmodified and therefore should result in valid key agreement
-						results (they should pass).<p></p>
-						The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall use these modified test vectors to emulate the key agreement scheme
-						using the corresponding parameters. The evaluator shall compare the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s results
-						with the results using a known good implementation verifying that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> detects
-						these errors.<p></p>
-						<b>If KAS1, KAS2, KTS-OAEP, or RSAES-PKCS1-v1_5 is claimed:</b><p></p>
-						<b>SP 800-56B and <abbr class="dyn-abbr"><a href="#abbr_PKCS">PKCS</a></abbr>#1 Key Establishment Schemes</b><p></p>
-						If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> acts as a sender, the following evaluation activity shall be performed to
-						ensure the proper operation of every <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supported combination of RSA-based
-						key establishment scheme:<p></p>
-						To conduct this test the evaluator shall generate or obtain test vectors from a known
-						good implementation of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supported schemes. For each combination of
-						supported key establishment scheme and its options (with or without key
-						confirmation if supported, for each supported key confirmation <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> function if
-						key confirmation is supported, and for each supported mask generation function if
-						KTS-OAEP is supported), the tester shall generate 10 sets of test vectors. Each test
-						vector shall include the RSA public key, the plaintext keying material, any
-						additional input parameters if applicable, the MacKey and MacTag if key 
-						confirmation is incorporated, and the outputted ciphertext. For each test vector, the
-						evaluator shall perform a key establishment encryption operation on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with
-						the same inputs (in cases where key confirmation is incorporated, the test shall use
-						the MacKey from the test vector instead of the randomly generated MacKey used
-						in normal operation) and ensure that the outputted ciphertext is equivalent to the
-						ciphertext in the test vector.<p></p>
-						If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> acts as a receiver, the following evaluation activities shall be performed
-						to ensure the proper operation of every <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supported combination of RSA-based
-						key establishment scheme:<p></p>
-						To conduct this test the evaluator shall generate or obtain test vectors from a known
-						good implementation of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supported schemes. For each combination of
-						supported key establishment scheme and its options (with our without key
-						confirmation if supported, for each supported key confirmation <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> function if
-						key confirmation is supported, and for each supported mask generation function if
-						KTSOAEP is supported), the tester shall generate 10 sets of test vectors. Each test
-						vector shall include the RSA private key, the plaintext keying material (KeyData),
-						any additional input parameters if applicable, the MacTag in cases where key
-						confirmation is incorporated, and the outputted ciphertext. For each test vector, the
-						evaluator shall perform the key establishment decryption operation on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and
-						ensure that the outputted plaintext keying material (KeyData) is equivalent to the
-						plain text keying material in the test vector. In cases where key confirmation is
-						incorporated, the evaluator shall perform the key confirmation steps and ensure that
-						the outputted MacTag is equivalent to the MacTag in the test vector.<p></p>
-						The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> handles decryption
-						errors. In accordance with <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56B, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must not
-						reveal the particular error that occurred, either through the contents of any outputted
-						or logged error message or through timing variations. If KTS-OAEP is supported,
-						the evaluator shall create separate contrived ciphertext values that trigger each of
-						the three decryption error checks described in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56B
-						section 7.2.2.3, ensure that each decryption attempt results in an error, and ensure
-						that any outputted or logged error message is identical for each.<p></p>
-						<b><abbr class="dyn-abbr"><a href="#abbr_DH">DH</a></abbr>:</b><p></p>
-						The evaluator shall verify the correctness of each <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implementation of each
-						supported Diffie-Hellman group by comparison with a known good
-						implementation.<p></p>
-						<b>Curve25519:</b><p></p>
-						The evaluator shall verify a <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s implementation of the key agreement scheme
-						using the following Function and Validity tests. These validation tests for each key
-						agreement scheme verify that a <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> has implemented the components of the key
-						agreement scheme according to the specification. These components include the
-						calculation of the shared secret K and the hash of K.<p></p>
-						<b>Function Test</b><p></p>
-						The Function test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to implement the key agreement
-						schemes correctly. To conduct this test the evaluator shall generate or obtain test
-						vectors from a known good implementation of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supported schemes. For
-						each supported key agreement role and hash function combination, the tester shall
-						generate 10 sets of public keys. These keys are static, ephemeral or both depending
-						on the scheme being tested.<p></p>
-						The evaluator shall obtain the shared secret value K, and the hash of K. The
-						evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>’s implementation of a given
-						scheme by using a known good implementation to calculate the shared secret value
-						K and compare the hash generated from this value.<p></p>
-						<b>Validity Test</b><p></p>
-						The Validity test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to recognize another party’s valid
-						and invalid key agreement results. To conduct this test, the evaluator generates a set
-						of 30 test vectors consisting of data sets including the evaluator’s public keys and
-						the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s public/private key pairs.<p></p>
-						The evaluator shall inject an error in some of the test vectors to test that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
-						recognizes invalid key agreement results caused by the following fields being
-						incorrect: the shared secret value K or the hash of K. At least two of the test vectors
-						shall remain unmodified and therefore should result in valid key agreement results
-						(they should pass).<p></p>
-						The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall use these modified test vectors to emulate the key agreement scheme
-						using the corresponding parameters. The evaluator shall compare the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s results
-						with the results using a known good implementation verifying that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> detects
-						these errors.<p></p>
-						<b><abbr class="dyn-abbr"><a href="#abbr_ECIES">ECIES</a></abbr>:</b><p></p>
-						The evaluator shall verify the correctness of each <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implementation of each
-						supported use of <abbr class="dyn-abbr"><a href="#abbr_ECIES">ECIES</a></abbr> by comparison with a known good implementation.
+						The following tests are conditional based upon the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.
+						The evaluator shall perform the following test or witness respective tests
+						executed by the developer. The tests must be executed on a platform that is as 
+						close as practically possible to the operational platform (but which may be 
+						instrumented in terms of, for example, use of a debug mode). Where the test is 
+						not carried out on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself, the test platform shall be identified and the 
+						differences between test environment and <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> execution environment shall be 
+						described.<p></p>
+					
+						
+						<br/><b>KAS2</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Identifier</td>
+								<td valign="top">Cryptographic Algorithm</td>
+								<td valign="top">Cryptographic Parameters</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top">KAS2</td>
+								<td valign="top">RSA</td>
+								<td valign="top">Modulus Size [<b>selection:</b> 2048, 3072, 4096,
+									6144, 8192] bits</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-56B Revision 2 (Section 8.3) [KAS2]</td>
+							</tr>
+						</table><p></p>						
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s implementation of the of the KAS2 RSA Key Agreement scheme, the evaluator
+						shall perform the Algorithm Functional Test and Validation Test using the 
+						following input parameters:<ul>
+						<li>RSA Private key format [Basic, Prime Factor, Chinese Remainder Theorem]</li>
+						<li>Modulo value [2048, 3072, 4096, 6144, 8192]</li>
+						<li>Role [initiator, responder]</li></ul><p></p>
+						The evaluator shall generate a test group (i.e. set of tests) for each parameter
+						value of the above parameter type with the largest number of supported values.
+						For example, if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports all five Modulo values, then the evaluator 
+						shall generate five test groups. Each of the above supported parameter values
+						must be included in at least one test group.<p></p>
+						Regardless of how many parameter values are supported, there must be at least two 
+						test groups.<p></p>
+						Half of the test groups are designated as Algorithm Functional Tests (AFT) and the 
+						remainder are designated as Validation Tests (VAT). If there is an odd number of 
+						groups, then the extra group is designated randomly as either AFT or VAT.<p></p>
+						<br/><i><b>Algorithm Functional Test</b></i><br/>
+						For each test group designated as AFT, the evaluator shall generate 10 test 
+						cases using random data (except for a fixed public exponent, if supported). 
+						The resulting shared secrets shall be compared with those generated by a 
+						known-good implementation using the same inputs.<p></p>
+						<br/><i><b>Validation Test</b></i><br/>
+						For each test group designated as VAT, the evaluator shall generate 25 test cases are
+						using random data (except for a fixed public exponent, if supported). Of the 25
+						test cases:<ul>
+						<li>Two test cases must have a shared secret with a leading nibble of 0s,</li>
+						<li>Two test cases have modified derived key material,</li>
+						<li>Two test cases have modified tags, if key conformation is supported,</li>
+						<li>Two test cases have modified MACs, if key confirmation is used, and</li>
+						<li>The remaining test cases are not modified.</li></ul><p></p>
+						To determine correctness, the evaluator shall confirm that the resulting 25 shared 
+						secrets correspond as expected for both the modified and unmodified values.<p></p>
+					
+						
+						<br/><b>FFC Diffie-Hellman Key Agreement</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Identifier</td>
+								<td valign="top">Cryptographic Algorithm</td>
+								<td valign="top">Cryptographic Parameters</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_DH">DH</a></abbr></td>
+								<td valign="top">Finite Field Cryptography Diffie-Hellman</td>
+								<td valign="top">Static domain parameters approved for [<b>selection:</b>
+									IKE groups [<b>selection:</b> MODP-2048, MODP-3072, MODP-4096,
+									MODP-6144, MODP-8192], <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> groups [<b>selection:</b> ffdhe2048, 
+									ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]]]</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-56A Revision 3 (Section 5.7.1.1) [<abbr class="dyn-abbr"><a href="#abbr_DH">DH</a></abbr>]<p></p>
+									[<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 3526 [IKE Groups], <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 7919 [<abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Groups]]</td>
+							</tr>
+						</table><p></p>						
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s implementation of FFC Diffie-Hellman Key Agreement, the evaluator shall
+						perform the Algorithm Functional Test and Validation Test using the following 
+						input parameters:<ul>
+						<li>Domain Parameter Group [MODP-2048, MODP-3072, MODP-4096, MODP-6144, MODP-8192, ffdhe2048,
+							ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]</li></ul><p></p>
+						<br/><i><b>Algorithm Functional Test</b></i><br/>
+						For each supported domain parameter group, the evaluator shall generate 10 test
+						cases by generating the initiator and responder secret keys using random data,
+						calculating the responder public key, and creating the shared secret. The 
+						resulting shared secrets shall be compared with those generated by a known-good 
+						implementation using the same inputs.<p></p>
+						<br/><i><b>Validation Test</b></i><br/>
+						For each supported combination of the above parameters the evaluator shall
+						generate 15 Diffie Hellman initiator/responder key pairs using the key generation
+						function of a known-good implementation. For each set of key pairs, the 
+						evaluator shall modify five initiator private key values. The remaining key
+						values are left unchanged (i.e., correct). To determine correctness, the 
+						evaluator shall confirm that the 15 shared secrets correspond as expected for 
+						both the modified and unmodified inputs.<p></p>
+
+						
+						<br/><b>Elliptic Curve Diffie-Hellman Key Agreement</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Identifier</td>
+								<td valign="top">Cryptographic Algorithm</td>
+								<td valign="top">Cryptographic Parameters</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top">ECDH</td>
+								<td valign="top">Elliptic Curve Diffie-Hellman</td>
+								<td valign="top">Elliptic Curve [<b>selection:</b> P-256, brainpoolP256r1,
+									P-384, brainpoolP384r1, P-521, brainpoolP512r1]</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<p></p>
+									[<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-186 (Section 3.2.1) [<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Curves],
+										<abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5639 (Section 3) [Brainpool Curves]]</td>
+							</tr>
+						</table><p></p>						
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s implementation of Elliptic Curve Diffie-Hellman Key Agreement,
+						the evaluator shall perform the Algorithm Functional Test and Validation Test 
+						using the following input parameters:<ul>
+						<li>Elliptic Curve [P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521, brainpoolP512r1]</li></ul><p></p>
+						<br/><i><b>Algorithm Functional Test</b></i><br/>
+						For each supported Elliptic Curve the evaluator shall generate 10 test cases by
+						generating the initiator and responder secret keys using random data, calculating 
+						the responder public key, and creating the shared secret. The resulting shared 
+						secrets shall be compared with those generated by a known-good implementation using
+						the same inputs.<p></p>
+						<br/><i><b>Validation Test</b></i><br/>
+						For each supported Elliptic Curve the evaluator shall generate 15 Diffie Hellman
+						initiator/responder key pairs using the key generation function of a known-good 
+						implementation. For each set of key pairs, the evaluator shall modify five 
+						initiator private key values. The remaining key values are left unchanged (i.e.,
+						correct). To determine correctness, the evaluator shall confirm that the 15 
+						shared secrets correspond as expected for the modified and unmodified values.<p></p>
+					
+						
+						<br/><b>Elliptic Curve Diffie-Hellman Key Agreement with Montgomery Curves</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Identifier</td>
+								<td valign="top">Cryptographic Algorithm</td>
+								<td valign="top">Cryptographic Parameters</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top">ECDH-Ed</td>
+								<td valign="top">ECDH with Montgomery Curves</td>
+								<td valign="top">Domain parameters approved for elliptic curves
+									[<b>selection:</b> curve25519, curve448]</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 7748 (Section 5) [ECDH-Ed]<p></p>
+									<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-186 (Section 3.2.2) [Montgomery Curves]</td>
+							</tr>
+						</table><p></p>						
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s implementation of Elliptic Curve Diffie-Hellman Key Agreement
+						with Montgomery Curves, the evaluator shall perform the Algorithm Functional
+						Test and Validation Test using the following input parameters:<ul>
+						<li>-	Domain Parameters for elliptic curves [curve25519, curve448]</li></ul><p></p>
+						<br/><i><b>Algorithm Functional Test</b></i><br/>
+						For each supported set of domain parameters, the evaluator shall generate 10 
+						test cases by generating the initiator and responder secret keys using random 
+						data, calculating the responder public key, and creating the shared secret. The 
+						resulting shared secrets shall be compared with those generated by a known-good
+						implementation using the same inputs<p></p>
+						<br/><i><b>Validation Test</b></i><br/>
+						For each supported combination of the above parameters the evaluator shall
+						generate 15 Diffie Hellman initiator/responder key pairs using the key 
+						generation function of a known-good implementation. For each set of key pairs,
+						modify five initiator private keys values. The remaining key values are left
+						unchanged (i.e., correct). To determine correctness, the evaluator shall confirm
+						that the 15 shared secrets correspond as expected for the modified and unmodified
+						values.<p></p>
 					</div></div></div></div></div><div class="comp" id="FCS_COP.1/AEAD"><h4>FCS_COP.1/AEAD Cryptographic Operation – Authenticated Encryption with Associated Data</h4><div class="statustag"><b><i>The inclusion of this selection-based component depends upon selection in
            <a href="#FCS_STG_EXT.3.1">FCS_STG_EXT.3.1</a>, <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>.
            </i></b><p></p><b><i>This component must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if any of the following <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> are included:</i></b><br/><ul><li><b><i><a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a></i></b></li><li><b><i><a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a></i></b></li></ul><p><i><b>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</b></i></p></div>
