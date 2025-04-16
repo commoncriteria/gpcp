@@ -406,8 +406,8 @@
 					This use case encompasses server-class hardware in a data center. There are 
 					no additional physical protections required because the platform is assumed to be protected 
 					by the operational environment as indicated by A.PHYSICAL_PROTECTION.
-					The platform is administered through a management controller 
-					that accesses the MC through a console or remotely.<h:p/>
+					The platform is administered using a management controller 
+					that is accessed remotely or through a console.<h:p/>
 					This use case adds audit requirements and Administrator authentication requirements to 
 					the base mandatory requirements.
 				</description>
@@ -422,7 +422,7 @@
 			<usecase title="Server-Class Platform, Enhanced" id="uc-server-enhanced">
 				<description>
 					This use case adds physical protections to the base requirements for server-class hardware.
-					Additional physical protections are required because the platform us assumed to be minimally 
+					Additional physical protections are required because the platform is assumed to be minimally 
 					protected by the by the operational environment. This use case can also be invoked for servers in 
 					data centers where there are enhanced security requirements.<h:p/>
 					This use case adds requirements for audit, physical protections, and Administrator 
@@ -1606,21 +1606,20 @@
 				</note>
 				<aactivity>
 					<TSS>
-						<comment>All below from CWG Draft 20250218</comment>
-						The evaluator shall examine the TSS to verify that it describes how the TOE 
-						obtains a key based on input from a random bit generator as specified in
-						FCS_RBG.1. The evaluator shall review the TSS to verify that it describes how 
-						the functionality described by FCS_RBG.1 is invoked. The evaluator shall 
-						examine the TSS to verify that it identifies the usage for each row identifier 
-						(key name, key size, standards) selected in the ST.<h:p/>
-						The evaluator shall examine the TSS to verify that it identifies the key types 
-						(e.g., see NIST SP 800-57 Part 1 Release 5, Section 5), key usage, and key
-						lifecycle for keys generated using each selected algorithm.
+						<comment>All below from CWG Draft 20250415</comment>
+						The evaluator shall examine the TSS to verify that it describes how the TOE generates a key
+						based on output from a random bit generator as specified in FCS_RBG.1. The evaluator shall
+						review the TSS to verify that it describes how the functionality described by FCS_RBG.1 is
+						invoked.<h:p/>
+						The evaluator shall examine the TSS to verify that it identifies the usage, and key lifecycle
+						for keys generated using each selected algorithm.<h:p/>
+						If the TOE uses the generated key in a key chain/hierarchy then the evaluator shall verify that the
+						TSS describes how the key is used as part of the key chain/hierarchy.
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that the AGD instructs the administrator how to 
-						configure the TOE to generate keys for the selected key generation algorithms
-						for all key types and uses identified in the TSS.
+						The evaluator shall verify that the AGD instructs the administrator how to configure the TOE to
+						generate keys for the selected key generation algorithms for all key types and uses identified in
+						the TSS.
 					</Guidance>
 					<Tests>
 						The following tests are conditional based upon the selections made in the SFR. 
@@ -2220,25 +2219,19 @@
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator shall examine the TSS to verify that it describes how the TOE obtains
-						an SK through direct generation as specified in FCS_RBG.1. 
-						The evaluator shall review the TSS to verify that it describes how the TSF invokes the 
-						functionality described by FCS_RBG.1.<h:p/>
-						The evaluator shall use the description of the RBG functionality in FCS_RBG.1 or 
-						documentation available for the operational environment to determine that the key size being 
-						requested is greater than or equal to the key size and mode to be used for the
-						encryption/decryption of the data.
+						The evaluator shall examine the TSS to verify that it describes how the TOE obtains a symmetric
+						cryptographic key through direct generation from a random bit generator as specified in
+						FCS_RBG.1. The evaluator shall review the TSS to verify that it describes how the functionality
+						described by FCS_RBG.1 is invoked.<h:p/>
+						The evaluator shall examine the TSS to verify that it identifies the usage, and key lifecycle for
+						keys generated using each selected algorithm.<h:p/>
+						If the TOE uses the generated key in a key chain/hierarchy then the evaluator shall verify that the
+						TSS describes how the key is used as part of the key chain/hierarchy.
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that the AGD guidance instructs the administrator how
-						to configure the TOE to use the selected key types for all uses identified in the ST.
+						The evaluator shall verify that the AGD instructs the administrator how to configure the TOE to
+						use the RBG to generate symmetric keys for all uses identified in the ST.
 					</Guidance>
-					<CustomEA name="KMD">
-						The evaluator shall confirm that the KMD describes the RBG interface and how the TOE uses it
-						in symmetric key generation. 
-						If the TOE uses the generated key in a key chain/hierarchy, then the KMD
-							shall describe how the ST uses the key as part of the key chain/hierarchy.		
-					</CustomEA>
 					<Tests>
 						The following tests are conditional based upon the selections made in the SFR.
 						The evaluator shall perform the following test or witness respective tests 
@@ -2282,7 +2275,22 @@
 					list of standards.
 				</note>
 				<aactivity>
-					<no-tests>Tests are TBD</no-tests>
+					<TSS>
+						The evaluator shall ensure that the TSS documents that the security strength supported by
+						the selected key distribution methods is sufficient for the security strength of the keys
+						distributed through those methods.<h:p/>
+						It is not necessary to identify the services that use each key distribution method here. That
+						information should be documented in the requirements for the individual services and
+						protocols that invoke key distribution.
+					</TSS>
+					<Guidance>
+						The evaluator shall verify that the AGD guidance instructs the administrator
+						how to configure the TOE to use the selected key distribution methods.
+					</Guidance>
+					<Tests>
+						Specific testing for this component is covered by testing for the claimed components in
+						FCS_COP.1/KeyEncap, FCS_COP.1/KeyWrap, or FTP_PRO.1.
+					</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event/>
@@ -7355,7 +7363,7 @@
 							
 						<selectable id="sel-fcs-otv-kmac">
 							<col>KMAC</col>
-							<col>NIST SP 800-185<h:br/>
+							<col>NIST SP 800-185,<h:br/>
 								 NIST SP 800-56C Revision  2
 							</col>
 							<col>Depending on the use case, salts can be secret or known, randomly generated or all zero.
@@ -7365,8 +7373,8 @@
 	
 						<selectable id="sel-fcs-otv-kdf">
 							<col>KDF</col>
-							<col>NIST SP 800-108 Revision 1<h:br/>
-								 NIST SP 800-135 Revision 1<h:br/>
+							<col>NIST SP 800-108 Revision 1,<h:br/>
+								 NIST SP 800-135 Revision 1,<h:br/>
 								 ISO/IEC 11770-6:2016 (Subclause 7.3.2)							 
 							</col>
 							<col>Salts and IVs are generated as directed for HMAC, AES, and CAM cryptographic
@@ -7411,7 +7419,7 @@
 
 						<selectable id="sel-fcs-otv-xts">
 							<col>XTS</col>
-							<col>NIST SP 800-38E<h:br/>
+							<col>NIST SP 800-38E,<h:br/>
 								IEEE Std 1619-2018</col>
 							<col>Tweak values shall be non-negative integers, assigned consecutively, and starting
 								at an arbitrary non-negative integer (i.e., sequential nonces).</col>
