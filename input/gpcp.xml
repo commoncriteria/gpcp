@@ -1535,6 +1535,32 @@
 								 NIST SP 800-208 [parameters]
 							</col>
 						</selectable>
+
+						<!-- ML-KEM Key Generation -->
+						<selectable id="sel-fcs-ckm-ak-mlkem">
+							<col>ML-KEM</col>
+							<col>ML-KEM KeyGen</col>
+							<col>Parameter set = <selectables>
+								<selectable>ML-KEM-512</selectable>
+								<selectable>ML-KEM-768</selectable>
+								<selectable>ML-KEM-1024</selectable>
+								</selectables>
+							</col>
+							<col>NIST FIPS 203 (Section 7.1)</col>
+						</selectable>
+
+						<!-- ML-DSA Key Generation -->
+						<selectable id="sel-fcs-ckm-ak-mldsa">
+							<col>ML-DSA</col>
+							<col>ML-DSA KeyGen</col>
+							<col>Parameter set = <selectables>
+								<selectable>ML-DSA-44</selectable>
+								<selectable>ML-DSA-65</selectable>
+								<selectable>ML-DSA-87</selectable>
+								</selectables>
+							</col>
+							<col>NIST FIPS 204 (Section 5.1)</col>
+						</selectable>
 					</selectables>
 				</title>
 				<note role="application">
@@ -2062,6 +2088,91 @@
 						
 						Note: The number of test cases is limited due to the extreme amount of time it can
 						take to generate XMSS trees.<h:p/>
+						
+						<h:br/><h:b>ML-KEM Key Generation</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptographic Key Generation Algorithm</h:td>
+								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-KEM</h:td>
+								<h:td valign="top">ML-KEM Key Generation</h:td>
+								<h:td valign="top">Parameter set = [<h:b>selection:</h:b> ML-KEM-512, ML-KEM-768, ML-KEM-1024]</h:td>
+								<h:td valign="top">NIST FIPS PUB 203 (Section 7.1)</h:td>
+							</h:tr>
+						</h:table><h:p/>						
+							TBD
+<!--						To test the TOE’s ability to generate asymmetric cryptographic keys using 
+						Edwards key generation, the evaluator shall perform the EdDSA Key Generation 
+						Test and the EdDSA Key Validation Test using the following input parameter:<h:ul>
+						<h:li>Elliptic curve [Edwards25519, Edwards448]</h:li></h:ul><h:p/>
+
+						<h:br/><h:i><h:b>EdDSA Key Generation Test</h:b></h:i><h:br/>
+						For each supported curve the evaluator shall require the implementation under 
+						test to generate 10 private/public key pairs (<h:i>d, Q</h:i>). The private key, 
+						<h:i>d</h:i>, shall be generated using a random bit generator as specified in 
+						FCS_RBG.1. The private key, <h:i>d</h:i>, is used to compute the public key,
+						<h:i>Q’</h:i>. The evaluator shall confirm that 0&lt;<h:i>d</h:i>&lt;<h:i>n</h:i> 
+						(where <h:i>n</h:i> is the order of the group), and the computed value <h:i>Q’</h:i> is 
+						then compared to the generated public/private key pairs’ public key, <h:i>Q</h:i>, to 
+						confirm that <h:i>Q</h:i> is equal to <h:i>Q’</h:i>. <h:p/>
+
+						<h:br/><h:i><h:b>EdDSA Key Validation  Test</h:b></h:i><h:br/>
+						For each supported curve, the evaluator shall generate 10 private/public key 
+						pairs using the key generation function of a known good implementation, For
+						each set of 10 public keys the evaluator shall modify five public key values by 
+						shifting <h:i>x</h:i> or <h:i>y</h:i> so that they are still in bounds, but not 
+						on the curve. The remaining values are left unmodified (i.e. correct). To 
+						determine correctness, the evaluator shall submit the public keys to the public
+						key validation (PKV) function of the TOE and shall confirm that the results 
+						correspond as expected for the modified and unmodified values.<h:p/>
+-->
+
+						<h:br/><h:b>ML-DSA Key Generation</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptographic Key Generation Algorithm</h:td>
+								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA</h:td>
+								<h:td valign="top">ML-DSA Key Generation</h:td>
+								<h:td valign="top">Parameter set = [<h:b>selection:</h:b> ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:td>
+								<h:td valign="top">NIST FIPS PUB 204 (Section 5.1)</h:td>
+							</h:tr>
+						</h:table><h:p/>						
+							TBD
+<!--						To test the TOE’s ability to generate asymmetric cryptographic keys using 
+						Edwards key generation, the evaluator shall perform the EdDSA Key Generation 
+						Test and the EdDSA Key Validation Test using the following input parameter:<h:ul>
+						<h:li>Elliptic curve [Edwards25519, Edwards448]</h:li></h:ul><h:p/>
+
+						<h:br/><h:i><h:b>EdDSA Key Generation Test</h:b></h:i><h:br/>
+						For each supported curve the evaluator shall require the implementation under 
+						test to generate 10 private/public key pairs (<h:i>d, Q</h:i>). The private key, 
+						<h:i>d</h:i>, shall be generated using a random bit generator as specified in 
+						FCS_RBG.1. The private key, <h:i>d</h:i>, is used to compute the public key,
+						<h:i>Q’</h:i>. The evaluator shall confirm that 0&lt;<h:i>d</h:i>&lt;<h:i>n</h:i> 
+						(where <h:i>n</h:i> is the order of the group), and the computed value <h:i>Q’</h:i> is 
+						then compared to the generated public/private key pairs’ public key, <h:i>Q</h:i>, to 
+						confirm that <h:i>Q</h:i> is equal to <h:i>Q’</h:i>. <h:p/>
+
+						<h:br/><h:i><h:b>EdDSA Key Validation  Test</h:b></h:i><h:br/>
+						For each supported curve, the evaluator shall generate 10 private/public key 
+						pairs using the key generation function of a known good implementation, For
+						each set of 10 public keys the evaluator shall modify five public key values by 
+						shifting <h:i>x</h:i> or <h:i>y</h:i> so that they are still in bounds, but not 
+						on the curve. The remaining values are left unmodified (i.e. correct). To 
+						determine correctness, the evaluator shall submit the public keys to the public
+						key validation (PKV) function of the TOE and shall confirm that the results 
+						correspond as expected for the modified and unmodified values.<h:p/>
+-->
+												
 					</Tests>				
 				</aactivity>
 			</f-element>
@@ -3269,6 +3380,7 @@
 								NIST SP 800-186 (Section 3.2.2) [Montgomery Curves]
 							</col>
 						</selectable>
+
 					</selectables>
 				</title>
 				<note role="application">
@@ -3278,7 +3390,8 @@
 					Also, this SFR must be included in the TOE if FCS_CKM.2 is claimed and a key establishment
 					scheme other than FFC is selected.<h:p/>
 					If "<h:i>ECIES</h:i>" is selected, then FCS_COP.1/KeyedHash and FCS_COP.1/SKC must be claimed.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.6 must also be claimed.
+					If this SFR is included in the ST, then FCS_CKM.6 must also be claimed.<h:p/>
+					This SFR has dependencies FCS_COP.1/Hash and FCS_COP.1/XOF only is ML-KEM is selected.
 				</note>
 				<aactivity>
 					<TSS>
@@ -3473,6 +3586,9 @@
 						unchanged (i.e., correct). To determine correctness, the evaluator shall confirm
 						that the 15 shared secrets correspond as expected for the modified and unmodified
 						values.<h:p/>
+
+
+
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -4614,8 +4730,20 @@
 							<selectable>4096 bit</selectable>
 							<selectable>8192 bit</selectable>
 						</selectables></col>
-						<col>NIST SP 800-56B Revision  2 (Sections 6.3 and 9)</col>
+						<col>NIST SP 800-56B Revision 2 (Sections 6.3 and 9)</col>
 						</selectable>
+						
+						<selectable id="sel-fcs-cop-keyencap-mlkem">
+							<col>ML-KEM</col>
+							<col>ML-KEM Key Encapsulation</col>
+							<col>Parameter set = <selectables>
+								<selectable>ML-KEM-512</selectable>
+								<selectable>ML-KEM-768</selectable>
+								<selectable>ML-KEM-1024</selectable></selectables>
+							</col>
+							<col>NIST FIPS 203 (Section 7.2)</col>
+						</selectable>			
+						
 					</selectables>
 				</title>
 				<note role="application">
@@ -4870,35 +4998,19 @@
 							</col>
 						</selectable>
 
-						<!-- XMSS(TM) -->
-						<selectable id="sel-fcs-cop-siggen-xmssmt">
-							<col>XMSS(MT)</col>
-							<col>Multitree version of XMSS</col>
-							<col>Private key size = <selectables>
-								<selectable>192 bits with <selectables>
-									<selectable>SHA-256/192</selectable>
-									<selectable>SHAKE256/192</selectable>
-								</selectables></selectable>
-								<selectable>256 bits with <selectables>
-									<selectable>SHA-256</selectable>
-									<selectable>SHAKE256</selectable>
-								</selectables></selectable>
-								</selectables><h:p/>
-								(Total Tree height, Number of Levels) = <selectables>
-									<selectable>(20, 2)</selectable>
-									<selectable>(20, 4)</selectable>
-									<selectable>(40, 2)</selectable>
-									<selectable>(40, 4)</selectable>
-									<selectable>(40, 8)</selectable>
-									<selectable>(60, 3)</selectable>
-									<selectable>(60, 6)</selectable>
-									<selectable>(60, 12)</selectable>
+						<!-- ML-DSA Signature Generation -->
+						<selectable id="sel-fcs-cop-siggen-mldsa">
+							<col>ML-DSA</col>
+							<col>ML-DSA Signature Generation</col>
+							<col>Perameter set = <selectables>
+								<selectable>ML-DSA-44</selectable>
+								<selectable>ML-DSA-65</selectable>
+								<selectable>ML-DSA-87</selectable>
 								</selectables>
 							</col>
-							<col>RFC 8391 [XMSS(MT)]<h:p/>
-								 NIST SP 800-208 [parameters]
-							</col>
+							<col>NIST FIPS 204 (Section 5.2)</col>
 						</selectable>
+
 					</selectables>
 				</title>
 				<note role="application">			
@@ -4909,7 +5021,7 @@
 					using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</h:i>" is selected in FCS_STG_EXT.3.<h:p/>
 					If this SFR is included in the ST, then FCS_COP.1/Hash and FCS_RBG.1 must also be claimed.<h:p/>
 					<comment>From catalog</comment>The dependency on FCS_OTV_EXT.1 is needed only for signature schemes that require random
-					bits, such as ECDSA. 
+					bits, such as ECDSA, LMS, HSS, XMSS, XMSS(h:sup>MT</h:sup>, and ML-DSA. 
 				</note>
 				<aactivity>
 					<TSS>
@@ -5235,6 +5347,20 @@
 								 NIST SP 800-208 [parameters]
 							</col>
 						</selectable>
+						
+						<!-- ML-DSA Signature Verification -->
+						<selectable id="sel-fcs-cop-sigver-mldsa">
+							<col>ML-DSA</col>
+							<col>ML-DSA Signature Verification</col>
+							<col>Perameter set = <selectables>
+								<selectable>ML-DSA-44</selectable>
+								<selectable>ML-DSA-65</selectable>
+								<selectable>ML-DSA-87</selectable>
+								</selectables>
+							</col>
+							<col>NIST FIPS 204 (Section 5.3)</col>
+						</selectable>
+				
 					</selectables>
 				</title>
 				<note role="application">
