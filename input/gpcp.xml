@@ -36,9 +36,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-04-16</PPPubDate>
-<!--			<dateTimeStamp/>   -->
-			<Keywords>General-Purpose Computing Platforms</Keywords>
+			<PPPubDate>2025-04-17</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -389,20 +387,20 @@
     <section title="Use Cases" id="usecases">
 		This Protection Profile supports several use cases. The cases
 		enumerated below add requirements to the baseline for GPCP due to additional threats or changes in assumptions
-		about the operational environment. Use cases not listed below (e.g. consumer-grade desktop computers) 
-		need be evaluated only against the baseline requirements subject to the appropriate selections.
+		about the operational environment. Use cases not listed below (e.g. consumer-grade desktop, laptop, and 
+		tablet computers) need be evaluated only against the baseline requirements subject to the appropriate selections.
 		<h:p/>
 		<!-- TRRT 1564 -->
 		The requirements associated with some use case encompass those of other use cases. In these situations,
 		a TOE that meets the larger set of requirements meets both use cases. Specifically
 		<h:ul>
-			<h:li>a TOE that meets <xref to="uc-server-enhanced"/> also meets <xref to="uc-server-basic"/></h:li>
-			<h:li>a TOE that meets <xref to="uc-csfc-eud"/> also meets <xref to="uc-client-portable-enhanced"/> and <xref to="uc-client-portable-basic"/>, and</h:li>
-			<h:li>a TOE that meets <xref to="uc-tactical-eud"/> also meets <xref to="uc-client-portable-enhanced"/> and <xref to="uc-client-portable-basic"/>.</h:li>
+			<h:li>a TOE that meets <xref to="uc-server-enhanced"/> also meets <xref to="uc-server-secureenv"/></h:li>
+			<h:li>a TOE that meets <xref to="uc-csfc-eud"/> also meets <xref to="uc-client-portable-enhanced"/></h:li>
+			<h:li>a TOE that meets <xref to="uc-tactical-eud"/> also meets <xref to="uc-client-portable-enhanced"/>.</h:li>
 		</h:ul>	
 		
 		<usecases>
-			<usecase title="Server-Class Platform, Basic" id="uc-server-basic">
+			<usecase title="Server-Class Platform, Physically Secure Environment" id="uc-server-secureenv">
 				<description>
 					This use case encompasses server-class hardware in a data center. There are 
 					no additional physical protections required because the platform is assumed to be protected 
@@ -420,12 +418,16 @@
 					<ref-id>sfr-fau-stg-5</ref-id>
 				</config>
 			</usecase>
-			<usecase title="Server-Class Platform, Enhanced" id="uc-server-enhanced">
+			<usecase title="Server-Class Platform, Enhanced Security Requirements" id="uc-server-enhanced">
 				<description>
 					This use case adds physical protections to the base requirements for server-class hardware.
 					Additional physical protections are required because the platform is assumed to be minimally 
-					protected by the by the operational environment. This use case can also be invoked for servers in 
-					data centers where there are enhanced security requirements.<h:p/>
+					protected by the operational environment or because of the data center imposes enhanced
+					security requirements on the TOE.<h:p/>
+					<comment>operational constraints? impose enhanced security requirements on the TOE?
+					OE protections are assumed to be inadequate for the environment or operations. 
+					Removes the assumption that environmental protections are sufficient 
+					Given the threat environment or the sensitivity of information processed ?</comment>
 					This use case adds requirements for audit, physical protections, and Administrator 
 					authentication to the base mandatory SFRs. 
 					It removes the assumption that the TOE is physically protected by the OE.
@@ -443,16 +445,11 @@
 <!--					<not><ref-id>a-physical-protection</ref-id></not>  -->
 				</config>
 			</usecase>
-			<usecase title="Portable Clients (laptops, tablets), Basic" id="uc-client-portable-basic">
-				<description>
-					This use case defines the base requirements for portable clients. <h:p/>
-					This use case adds no requirements to the base mandatory SFRs.
-				</description>
-			</usecase>
-			<usecase title="Portable Clients (laptops, tablets), Enhanced" id="uc-client-portable-enhanced">
+			<usecase title="Portable Clients (laptops, tablets), Enhanced Security Requirements" id="uc-client-portable-enhanced">
 				<description>
 					This use case adds physical protections to the base requirements for portable clients or end-user 
-					devices. It is intended for devices that are used in high-assurance scenarios.
+					devices. It is intended for devices that are used in high-assurance scenarios.<comment>This should change to 
+					correspond to the servers </comment>
 				</description>
 				<config>
 					<ref-id>sfr-fpt-php-1</ref-id> 
@@ -465,8 +462,8 @@
 				<description>
 				    <comment>Modified to address TRRT 1560</comment>
 					EUDs used in accordance with the CSfC Mobile Access Capability Package can include 
-					smart phones, tablets, and laptops. This use case covers the basic CSfC requirements 
-					for tablet and laptop EUDs (mobile devices are out of scope for this PP).<h:p/>
+					smart phones, tablets, desktops, and laptops. This use case covers the basic CSfC requirements 
+					for EUDs other than modile devices (mobile devices are out of scope for this PP).<h:p/>
 					<!--Although -->CSfC requires that users maintain physical control of EUDs at all times.
 					This use case <!--removes the assumption that the TOE is protected by the OE and 
 					-->adds requirements for audit and for protection of debug ports
@@ -927,7 +924,7 @@
 			<depends on-sel="sel-rot3-audit"/>  <!-- FPT_ROT_EXT.3.2 -->
 			<depends on-sel="sel-tud2-audit"/>  <!-- FPT_TUD_EXT.2.5 -->
 			<depends on-sel="sel-tud3-audit"/>  <!-- FPT_TUD_EXT.3.4 -->
-			<depends on-use="uc-server-basic"/>
+			<depends on-use="uc-server-secureenv"/>
 			<depends on-use="uc-server-enhanced"/>
 			<depends on-use="uc-csfc-eud"/>
 			<depends on-use="uc-ent-clients-desktop"/>
@@ -8389,7 +8386,7 @@
 
 		<!-- FIA_AFL_EXT.1 Authentication Failure Handling -->
 		<f-component id="sfr-fia-afl-ext-1" cc-id="fia_afl_ext.1" name="Authentication Failure Handling" status="sel-based">
-			<depends on-uc="uc-server-basic"/>		<!-- Server, basic use case-->
+			<depends on-uc="uc-server-secureenv"/>		<!-- Server, basic use case-->
 			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
 			<depends on-sel="sel-fmt-smr-1-admin"/>  <!-- FMT_SMR.1 Admin Role -->
 			<consistency-rationale/>
@@ -8590,7 +8587,7 @@
 		
 		<!-- FIA_PMG_EXT.1 Password Mangement -->
 		<f-component id="sfr-fia-pmg-ext-1" cc-id="fia_pmg_ext.1" name="Password Management" status="sel-based">
-			<depends on-uc="uc-server-basic"/>		<!-- Server, basic use case-->
+			<depends on-uc="uc-server-secureenv"/>		<!-- Server, basic use case-->
 			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
 			<depends on-sel="sel-fmt-smr-1-admin"/>  <!-- FMT_SMR.1 Admin Role -->
 			<consistency-rationale/>
@@ -8731,7 +8728,7 @@
 		
 		<!-- FIA_UAU.5 Multiple Authentication Mechanisms -->
 		<f-component id="sfr-fia-uau-5" cc-id="fia_uau.5" name="Multiple Authentication Mechanisms" status="sel-based">
-			<depends on-uc="uc-server-basic"/>		<!-- Server, basic use case-->
+			<depends on-uc="uc-server-secureenv"/>		<!-- Server, basic use case-->
 			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
 			<depends on-sel="sel-fmt-smr-1-admin"/>  <!-- FMT_SMR.1 Admin Role -->
 			<f-element id="fia-uau-5e1">
@@ -8816,7 +8813,7 @@
 		
 		<!-- FIA_UAU.7 Protected Authentication Feedback -->
 		<f-component id="sfr-fia-uau-7" cc-id="fia_uau.7" name="Protected Authentication Feedback" status="sel-based">
-			<depends on-uc="uc-server-basic"/>		<!-- Server, basic use case-->
+			<depends on-uc="uc-server-secureenv"/>		<!-- Server, basic use case-->
 			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
 			<depends on-sel="sel-fmt-smr-1-admin"/>  <!-- FMT_SMR.1 Admin Role -->
 			<f-element id="fia-uau-7e1">
@@ -8889,7 +8886,7 @@
         <!-- FIA_UIA_EXT.1 Administrator Identification and Authentication -->
 		<!-- ManFunc: Adding additional Administrators to the system?? -->
         <f-component id="sfr-fia-uia-ext-1" cc-id="fia_uia_ext.1" name="Administrator Identification and Authentication" status="sel-based"> 
-			<depends on-uc="uc-server-basic"/>		<!-- Server, basic use case-->
+			<depends on-uc="uc-server-secureenv"/>		<!-- Server, basic use case-->
 			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
 			<depends on-sel="sel-fmt-smr-1-admin"/>  <!-- FMT_SMR.1 Admin Role -->
 			<consistency-rationale/>
