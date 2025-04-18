@@ -21,9 +21,9 @@
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[11]""/depends[1]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-fcs-cop-kat-ecies from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[11]""/depends[2]""/on-sel[1]""
-* Error: Detected dangling id-reference to sel-fcs-ckm-ext-5-kdf-mac from attribute
+* Error: Detected dangling id-reference to sel-fcs-ckm-5-kdf-mac from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[11]""/depends[5]""/on-sel[1]""
-* Error: Detected dangling id-reference to sel-fcs-ckm-ext-5-kdf-pb from attribute
+* Error: Detected dangling id-reference to sel-fcs-ckm-5-kdf-pb from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[11]""/depends[6]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-rbg-ctr from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[1]""/on-sel[1]""
