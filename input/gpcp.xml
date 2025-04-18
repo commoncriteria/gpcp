@@ -677,7 +677,7 @@
 				<addressed-by>FCS_CKM.1/AKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect stored data.</rationale>
 				<addressed-by>FCS_CKM.1/SKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect stored data.</rationale>
 				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key destruction to prevent the disclosure of keys used to protect stored data.</rationale>
-				<addressed-by>FCS_CKM_EXT.5 (sel-based)</addressed-by><rationale>Mitigates threat by utilizing strong algorithms to derive keys that protect stored data.</rationale>
+				<addressed-by>FCS_CKM.5 (sel-based)</addressed-by><rationale>Mitigates threat by utilizing strong algorithms to derive keys that protect stored data.</rationale>
 				<addressed-by>FCS_COP.1/Hash (sel-based)</addressed-by><rationale>Mitigates threat by implementing hash functions used for trusted communications.</rationale>
 				<addressed-by>FCS_COP.1/KeyedHash (sel-based)</addressed-by><rationale>Mitigates threat by implementing MAC functions used for trusted communications.</rationale>
 				<addressed-by>FCS_COP.1/SigGen (sel-based)</addressed-by><rationale>Mitigates threat by implementing signature generation functions used for protected storage.</rationale>
@@ -1216,7 +1216,7 @@
 		
 	    <ext-comp-def title="Cryptographic Key Management" fam-id="FCS_CKM_EXT">
 			<fam-behavior>This family defines requirements for management of cryptographic keys.
-				FCS_CKM_EXT.5 is necessary to express requirements for key derivation, which are missing from Part 2. 
+				Add any FCS_CKM extended components here (FCS_CKM_EXT.7 & FCS_CKM_EXT.8) is necessary to express requirements for key derivation, which are missing from Part 2. 
 				</fam-behavior>
 		</ext-comp-def>
 	 	<ext-comp-def title="HTTPS Protocol" fam-id="FCS_HTTPS_EXT">
@@ -2295,9 +2295,9 @@
 		</f-component>
 		
 
-		<!-- FCS_CKM_EXT.5 Cryptographic Key Derivation -->
-		<f-component id="sfr-fcs-ckm-ext-5" cc-id="fcs_ckm_ext.5" name="Cryptographic Key Derivation" status="optional">
-			<f-element id="fcs-ckm-ext-5e1">
+		<!-- FCS_CKM.5 Cryptographic Key Derivation -->
+		<f-component id="sfr-fcs-ckm-5" cc-id="fcs_ckm.5" name="Cryptographic Key Derivation" status="optional">
+			<f-element id="fcs-ckm-5e1">
 				<title>
 					The TSF shall derive cryptographic keys
 					<selectables>
@@ -2316,7 +2316,7 @@
 						</tabularize>
 
 						<!-- KDF-CTR -->
-						<selectable id="sel-fcs-ckm-ext-5-kdf-ctr">
+						<selectable id="sel-fcs-ckm-5-kdf-ctr">
 							<col>KDF-CTR</col>  <!-- formerly KeyDrv1 -->
 							<col><selectables>
 								<selectable id="sel-fcs-ckm-5-kdf-ctr-dirgen">Direct Generation from a Random
@@ -2351,7 +2351,7 @@
 						</selectable>
 
 						<!-- KDF-FB -->
-						<selectable id="sel-fcs-ckm-ext-5-kdf-fb">
+						<selectable id="sel-fcs-ckm-5-kdf-fb">
 							<col>KDF-FB</col>  <!-- formerly KeyDrv2  -->
 							<col><selectables>
 								<selectable id="sel-fcs-ckm-5-kdf-fb-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG.1</selectable>
@@ -2385,7 +2385,7 @@
 						</selectable>
 
 						<!-- KDF-DPI -->
-						<selectable id="sel-fcs-ckm-ext-5-kdf-dpi">
+						<selectable id="sel-fcs-ckm-5-kdf-dpi">
 							<col>KDF-DPI</col> <!-- formerly KeyDrv3  -->
 								<col><selectables><selectable id="sel-fcs-ckm-5-kdf-dpi-dirgen">Direct Generation from a Random Bit Generator as specified in FCS_RBG.1</selectable>
 								<selectable>Concatenated keys</selectable>
@@ -2418,7 +2418,7 @@
 						</selectable>
 						
 						<!-- KDF-XOR -->
-						<selectable id="sel-fcs-ckm-ext-5-kdf-xor">
+						<selectable id="sel-fcs-ckm-5-kdf-xor">
 							<col>KDF-XOR</col>  <!-- formerly KeyDrv4  -->
 							<col>More than one intermediary key</col>
 							<col>exclusive OR (XOR)</col>
@@ -2432,7 +2432,7 @@
 						</selectable>
 
 						<!-- KDF-ENC -->
-						<selectable id="sel-fcs-ckm-ext-5-kdf-enc">
+						<selectable id="sel-fcs-ckm-5-kdf-enc">
 							<col>KDF-ENC</col>  <!-- formerly KeyDrv6 -->
 							<col>Two keys</col>
 							<col>Encrypting using an algorithm specified in <selectables>
@@ -2449,7 +2449,7 @@
 						</selectable>
 
 						<!-- KDF-HASH -->
-						<selectable id="sel-fcs-ckm-ext-5-kdf-hash">
+						<selectable id="sel-fcs-ckm-5-kdf-hash">
 							<col>KDF-HASH</col>  <!-- formerly KeyDrv7 -->
 							<col>Shared secret</col>
 							<col>Hash function from FCS_COP.1/Hash</col> 
@@ -2463,7 +2463,7 @@
 						</selectable>
 
 						<!-- KDF-MAC-1S -->
-						<selectable id="sel-fcs-ckm-ext-5-kdf-mac-1S">
+						<selectable id="sel-fcs-ckm-5-kdf-mac-1S">
 							<col>KDF-MAC-1S</col>  <!-- formerly KeyDrv8 -->
 							<col>Shared secret, salt, IV, output length, fixed information</col>
 							<col>Keyed hash from FCS_COP.1/KeyedHash</col>
@@ -2477,7 +2477,7 @@
 						</selectable>
 
 						<!-- KDF-MAC-2S -->
-						<selectable id="sel-fcs-ckm-ext-5-kdf-mac-2S">
+						<selectable id="sel-fcs-ckm-5-kdf-mac-2S">
 							<col>KDF-MAC-2S</col>  
 							<col>Shared secret, salt, IV, output length, fixed information</col>
 							<col>MAC Step <selectables>
@@ -2515,7 +2515,7 @@
 						</selectable>
 
 						<!-- KDF-KMAC -->
-						<selectable id="sel-fcs-ckm-ext-5-kdf-kmac">
+						<selectable id="sel-fcs-ckm-5-kdf-kmac">
 							<col>KDF-KMAC</col>
 							<col>Key, context string, output length, label</col>
 							<col><selectables>
@@ -3017,7 +3017,7 @@
 			<depends on-incl="sfr-fcs-ckm-1-sk"/>
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>
 			<depends on-incl="sfr-fcs-ckm-2"/>
-			<depends on-incl="sfr-fcs-ckm-ext-5"/>
+			<depends on-incl="sfr-fcs-ckm-5"/>
 			<depends on-incl="sfr-fcs-cop-1-kat"/>
 			<depends on-incl="sfr-fcs-stg-ext-1"/> 
 			<depends on-incl="sfr-fia-afl-ext-1"/>   <!-- Required for wipe on multiple auth failures -->
@@ -3097,7 +3097,7 @@
 					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
 					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SFR
 					must be included in the ST if any of the following SFRs are claimed: FCS_CKM.1/AKG, FCS_CKM.1/SKG,
-					FCS_CKM.2, FCS_CKM_EXT.5, FCS_COP.1/KAT, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
+					FCS_CKM.2, FCS_CKM.5, FCS_COP.1/KAT, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
 					The term “cryptographic keys” in this SFR includes
 					the authorization data that is the entry point to a key chain and all other cryptographic keys and
 					keying material (whether in plaintext or encrypted form). Examples of keys and key material include intermediate keys, 
@@ -3297,6 +3297,9 @@
 			<depends on-sel="sel-fcs-ckm-2-ecc"/>  		<!-- FCS_CKM.2 -->
 			<depends on-sel="sel-fcs-ckm-2-ecies"/>  	<!-- FCS_CKM.2 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
+
+			<!-- Need to add ECD info -->
+
 			<f-element id="fcs-ckm-ext-7e1">
 				<title>
 					The TSF shall derive shared cryptographic keys with input from multiple parties in accordance 
@@ -3604,6 +3607,9 @@
 
 		<!-- FCS_CKM_EXT.8 Password-Based Key Derivation -->
 		<f-component id="sfr-fcs-ckm-ext-8" cc-id="fcs_ckm_ext.8" name="Password-Based Key Derivation" status="optional">
+
+			<!-- Need to add ECD info -->
+
 			<f-element id="fcs-ckm-ext-8-1">
 				<title>
 					The TSF shall perform password-based key derivation functions in accordance with a specified 
@@ -4353,7 +4359,7 @@
 			<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG.1.1 -->
 			<depends on-sel="sel-tud2-hash"/>  <!-- FPT_TUD_EXT.2.1 -->
 <!--			<depends on-sel="sel-fcs-cop-kat-ecies"/>  --> <!-- FCS_COP.1.1/KAT -->
-			<depends on-sel="sel-fcs-ckm-ext-5-kdf-hash"/> <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-hash"/> <!-- FCS_CKM.5.1 -->
 			<depends on-sel="sel-fdp-itc-ext-1e2-hash"/>  <!-- from FDP_ITC_EXT.1 -->
 			<depends on-incl="sfr-fcs-cop-1-keyedhash"/>   <!-- FCS_COP.1/KeyedHash -->
 			<depends on-incl="sfr-fcs-cop-1-sigver"/>    <!-- FCS_COP.1/SigVer -->
@@ -4389,7 +4395,7 @@
 					are claimed.<h:p/>
 			    	It must be included in the ST if "<h:i>hash value of the public key</h:i>" is selected in FPT_TUD_EXT.2.1. <h:p/>	
 					It must be included  in the ST if "<h:i>KDF-HASH</h:i>" or "<h:i>KDF-MAC</h:i>" or one of the SHA hashes is selected within 
-					"<h:i>KDF-XOR</h:i>" in FCS_CKM_EXT.5.1.<h:p/>
+					"<h:i>KDF-XOR</h:i>" in FCS_CKM.5.1.<h:p/>
 					It must be included  in the ST if "<h:i>Hash_DRBG (any)</h:i>" or "<h:i>HMAC_DRBG (any)</h:i>" is selected in FCS_RBG.1.1.<h:p/>
 					It must be included  in the ST if "<h:i>cryptographic hash as specified in FCS_COP.1/Hash</h:i>" is selected in FDP_ITC_EXT.1.2. <h:p/>
 					It must be included  in the ST if "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected in FPT_ROT_EXT.2.1. <h:p/>			
@@ -4526,8 +4532,8 @@
 			<depends on-sel="sel-fcs-cop-kat-ecies"/>	<!-- FCS_COP.1.1/KAT -->	
 			<depends on-sel="sel-fdp-itc-ext-1e2-mac"/>  <!-- from FDP_ITC_EXT.1 -->		
 			<depends on-sel="sel-stg3-hmac"/>		<!-- FCS_STG_EXT.3.1 -->
-			<depends on-sel="sel-fcs-ckm-ext-5-kdf-mac"/>   <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-sel="sel-fcs-ckm-ext-5-kdf-pb"/>    <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-mac"/>   <!-- FCS_CKM.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-pb"/>    <!-- FCS_CKM.5.1 -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-keyedhash">
@@ -4653,8 +4659,8 @@
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed.<h:p/>
 					Also, this SFR must be claimed under the following conditions:<h:ul>
-					<h:li>If "<h:i>KDF-MAC</h:i>" or "<h:i>KDF-PBKDF</h:i>" is selected in FCS_CKM_EXT.5</h:li>
-					<h:li>If "<h:i>KDF-CTR,</h:i>" "<h:i>KDF-FB,</h:i>" "<h:i></h:i>"KDF-DPI is selected in FCS_CKM_EXT.5 
+					<h:li>If "<h:i>KDF-MAC</h:i>" or "<h:i>KDF-PBKDF</h:i>" is selected in FCS_CKM.5</h:li>
+					<h:li>If "<h:i>KDF-CTR,</h:i>" "<h:i>KDF-FB,</h:i>" "<h:i></h:i>"KDF-DPI is selected in FCS_CKM.5 
 					and HMAC is selected for use by the key derivation algorithm.</h:li>
 					<h:li>If "<h:i>A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</h:i>"
 					is selected in FCS_STG_EXT.3.1</h:li>
@@ -7469,9 +7475,9 @@
 		<!-- FCS_RBG.1 Random Bit Generation -->
 		<!-- CC:2022 replacement for FCS_RBG_EXT.1 -->
 		<f-component cc-id="fcs_rbg.1" name="Random Bit Generation (RBG)" status="sel-based">
-			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM.5.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
@@ -7559,7 +7565,7 @@
 					This SFR is also needed if the following SFRs are included in the ST: FCS_IPSEC_EXT.1, 
 					FCS_SLT_EXT.1, FCS_CKM.1/AKG, FCS_CKM.1/SKG, and FCS_COP.1/SigGen.<h:p/>
 					Also, this SFR must be claimed if "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or
-					"<h:i>KDF-DPI</h:i>" is selected in FCS_CKM_EXT.5.<h:p/>
+					"<h:i>KDF-DPI</h:i>" is selected in FCS_CKM.5.<h:p/>
 					If "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
 					If "<h:i>Hash_DRBG (any)</h:i>" is selected, then FCS_COP.1/Hash must be claimed.
 					If "<h:i>CTR_DRBG (any)</h:i>" is selected, then FCS_COP.1/SKC must be claimed.
@@ -7988,6 +7994,8 @@
 			<dependencies><h:br/>FCS_CKM.6 Timing and Event of Cryptographic Key Destruction</dependencies>
 			<f-element id="fcs-stg-ext-1e1">
 				<title>
+					<comment>Look at replacing this SFR with FCS_CKM_EXT.3. At least look at moving it out of FCS 
+					since it really isnt cryptography.</comment>
 					The TSF shall provide 
 					<selectables>
 						<selectable>mutable hardware-based</selectable>
@@ -9651,9 +9659,9 @@
 		<!-- FPT_FLS.1 -->
 		<!-- Claimed when the TOE implements a DRBG - this is a dependency on FCS_RBG.1 -->
 		<f-component cc-id="fpt_fls.1" name="Failure with Preservation of Secure State" status="sel-based">
-			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM.5.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
@@ -10392,9 +10400,9 @@
 		<!-- Claimed when the TOE implements a DRBG - this is a dependency on FCS_RBG.1 -->
 		
 		<f-component cc-id="fpt_tst.1" name="TSF Self-Testing" status="sel-based">
-			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
-			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM_EXT.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM.5.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM.5.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
