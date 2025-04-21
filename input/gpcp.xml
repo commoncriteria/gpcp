@@ -36,7 +36,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-04-17</PPPubDate>
+			<PPPubDate>2025-04-21</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -109,7 +109,7 @@
 	x Public-Key Cryptography FCS_CKM.2
 	x Symmetric-Key Cryptography FCS_COP.1/SKC
 	x KEK Creation FCS_CKM.1/KEK  - removed
-	x Random-Bit Generation FCS_RBG_EXT.1, [FCS_ENT_EXT.1]
+	x Random-Bit Generation FCS_RBG_EXT.1, [FCS_RBG.6]
 	x RNG Seeding FCS_RBG_EXT.1, [FCS_RBG_EXT.2]
 	x Key Wrapping FCS_COP.1/KeyEnc - removed
 	x Cryptographic Hashing FCS_COP.1/Hash
@@ -672,7 +672,7 @@
 				
 				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates threat by ensuring that audit data indicating a potential attack is accurately timestamped.</rationale>
 				<addressed-by>FCS_RBG.6 (optional)</addressed-by><rationale>Mitigates threat by providing a well-defined interface by which tenant software can access the TSF to obtain random data.</rationale>
-				<addressed-by>FCS_SLT_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using salts to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
+				<addressed-by>FCS_OTV_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using one-time value to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
 				<addressed-by>FDP_TEE_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by establishing a trusted execution environment for tenant software to use.</rationale>
 				<addressed-by>FCS_CKM.1/AKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect stored data.</rationale>
 				<addressed-by>FCS_CKM.1/SKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect stored data.</rationale>
@@ -698,7 +698,7 @@
 					as a management subsystem.</description>
 				
 				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates threat by ensuring that audit data indicating a potential attack is accurately timestamped.</rationale>
-				<addressed-by>FCS_SLT_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using salts to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
+				<addressed-by>FCS_OTV_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using one-time values to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
 				<addressed-by>FCS_CKM.1/AKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect data in transit.</rationale>
 				<addressed-by>FCS_CKM.1/SKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect data in transit.</rationale>
 				<addressed-by>FCS_CKM.2 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key establishment to negotiate trusted channels to protect data in transit.</rationale>
@@ -1216,7 +1216,7 @@
 		
 	    <ext-comp-def title="Cryptographic Key Management" fam-id="FCS_CKM_EXT">
 			<fam-behavior>This family defines requirements for management of cryptographic keys.
-				Add any FCS_CKM extended components here (FCS_CKM_EXT.7 and FCS_CKM_EXT.8) is necessary to express requirements for key derivation, which are missing from Part 2. 
+				Add any FCS_CKM extended components here (FCS_CKM_EXT.3, FCS_CKM_EXT.7, and FCS_CKM_EXT.8) is necessary to express requirements for key derivation, which are missing from Part 2. 
 				</fam-behavior>
 		</ext-comp-def>
 	 	<ext-comp-def title="HTTPS Protocol" fam-id="FCS_HTTPS_EXT">
@@ -1227,8 +1227,10 @@
 		<ext-comp-def title="IPsec Protocol" fam-id="FCS_IPSEC_EXT">
 			<fam-behavior>This family defines requirements for protecting communications using IPsec.</fam-behavior>
 		</ext-comp-def>
-	   	<ext-comp-def title="Cryptographic Salt Generation" fam-id="FCS_SLT_EXT">
-			<fam-behavior>This family defines requirements for cryptographic salt generation.</fam-behavior>
+	   	<ext-comp-def title="Cryptographic One-Time Value Generation" fam-id="FCS_OTV_EXT">
+			<fam-behavior>
+				This family defines requirements for generation of one-time values such as nonces, IVs, salts, and initialization counters. 
+			</fam-behavior>
 		</ext-comp-def>
 	   	<ext-comp-def title="Cryptographic Key Storage" fam-id="FCS_STG_EXT">
 			<fam-behavior>This family defines requirements for ensuring the protection of keys and secrets.</fam-behavior>
@@ -2294,7 +2296,67 @@
 			<audit-event/>
 		</f-component>
 		
+		<!-- FCS_CKM_EXT.3 Cryptographic Key Access -->
+		<f-component id="sfr-fcs-ckm-ext-3" cc-id="fcs_ckm_ext.3" name="Cryptographic Key Access">
 
+<!-- Need to add ECD info 
+
+			<ecd-info>
+				<comp-lev> requires access to cryptographic keys stored outside the TOE to be 
+						performed in accordance with a specified access method
+				</comp-lev>
+				<manageable-actions/>
+				<auditable-actions>
+					<action-descr>minimal: Success and failure of the activity;</action-descr>
+					<action-descr>basic: The object attribute(s), and object value(s) excluding 
+						any sensitive information.</action-descr>
+				</auditable-actions>
+			</ecd-info>
+			<comp-rel>
+				<hierarchical-to/>
+				<dependencies-to>
+					<or-dep>
+						<comp-ref>FCS_CKM.1 Cryptographic key generation</comp-ref> 
+						<comp-ref>FCS_CKM.5 Cryptographic key derivation</comp-ref> 
+						<comp-ref>FCS_CKM_EXT.8 Password-based key derivation</comp-ref> 
+					</or-dep>
+					<comp-ref>FCS_CKM.6 Timing and event of cryptographic key destruction</comp-ref>
+					<or-dep>
+						<comp-ref>FCS_COP.1/KeyEncap Key Encapsulation</comp-ref>
+						<comp-ref>FCS_COP.1/KeyWrap Key Wrapping</comp-ref>
+						<comp-ref>FCS_COP.1/SKC Symmetric Key Cryptography</comp-ref>
+						<comp-ref>FCS_COP.1/AEAD Authenticated Encryption with Associated Data]</comp-ref>
+					</or-dep>
+				</dependencies-to>
+			</comp-rel> 
+-->
+			<f-element id="fcs-ckm-ext-3e1">
+				<title>The TSF shall use specified cryptographic key access methods <selectables>
+						<selectable>key encapsulation</selectable>
+						<selectable>key wrapping</selectable>
+						<selectable>key encryption</selectable>
+					</selectables> to access keys when performing <selectables>
+						<selectable>cryptographic key archival</selectable>
+						<selectable>cryptographic key backup</selectable>
+						<selectable>cryptographic key escrow</selectable>
+						<selectable>cryptographic key recovery</selectable>
+						<selectable>cryptographic key import</selectable>
+						<selectable>cryptographic key export</selectable>
+					</selectables>
+				</title>
+				<note role="application">
+					If “key encapsulation” is selected, FCS_COP.1/KeyEncap must be claimed. <h:p/>
+					If “key wrapping” is selected, FCS_COP.1/KeyWrap must be claimed.<h:p/>
+					If “key encryption” is selected, FCS_COP.1/SKC or FCS_COP.1/AEAD must be claimed. 
+				</note>
+				<aactivity>
+					<no-tests>Tests are TBD</no-tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		
+	
 		<!-- FCS_CKM.5 Cryptographic Key Derivation -->
 		<f-component id="sfr-fcs-ckm-5" cc-id="fcs_ckm.5" name="Cryptographic Key Derivation" status="optional">
 			<f-element id="fcs-ckm-5e1">
@@ -3634,7 +3696,6 @@
 				<note role="application">
 					NIST recommends a minimum “number of iterations” of 1000 but prefers the largest number feasible
 					given performance constraints.<h:p/>
-					
 					NIST recommends that the randomly generated portion of the salt have length of at least 128 bits 
 					and must be derived from a Random Bit Generation.  Therefore FCS_OTV_EXT.1 must be claimed.
 				</note>
@@ -7337,7 +7398,30 @@
 	
 	
 		<!-- FCS_OTV_EXT.1 One-Time Value  -->
-		<f-component id="sfr-fcs-otv-ext-1" cc-id="fcs_otv_ext.1" name="One-Time Value">
+		<f-component id="sfr-fcs-otv-ext-1" cc-id="fcs_otv_ext.1" name="One-Time Value" status="sel-based">
+			<depends on-sfr="sfr-fcs-cop-1-skc"/>
+			<!-- There are more dependencies -->
+			<consistency-rationale/>
+			<comp-lev>requires that values such as salts, nonces, IVs, and initial counters be generated using random bit generation.</comp-lev>
+			<management/>
+			<audit>
+				The following audit events should be considered if FAU_GEN Security audit data generation is included in 
+				the PP, PP-Module, functional package or ST: <h:ul>
+					<h:li>minimal: Success and failure of the activity; </h:li>
+					<h:li>basic: The object attribute(s), and object value(s) excluding any sensitive information.</h:li>
+				</h:ul>
+			</audit>
+			<dependencies><h:br/>
+				FCS_RBG.1 Random Bit Generation<h:br/>
+				[FCS_COP.1/HMAC Key Hash, or<h:br/>
+				FCS_COP.1/SKC Symmetric key cryptography, or<h:br/>
+				FCS_CKM.5 Key Derivation, or<h:br/>
+				FCS_CKM_EXT.8 Password-Based Key Derivation, or<h:br/>
+				FCS_COP.1/CMAC CMAC, or<h:br/>
+				FCS_COP.1/KeyWrap Key Wrapping<h:br/>
+				FCS_COP.1/AEAD Authenticated Encryption with Associated Data, or<h:br/>
+				FCS_COP.1/KeyEncap Key Encapsulation]<h:br/>			
+			</dependencies>
 			<f-element id="fcs-otv-ext-1e1">
 				<title>
 					The TSF shall perform cryptographic one-time value generation for   
@@ -7463,14 +7547,27 @@
 					</selectables>
 				</title>
 				<note role="application">
-					See the algorithm- or mode-specific Notes above for guidance on completing the second selection.
+					See the algorithm- or mode-specific Notes above for guidance on completing the second selection.<h:p/>
+					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality.
 				</note>
 				<aactivity>
-					<no-tests>TBD</no-tests>
+					<TSS>
+						The evaluator shall ensure the TSS describes how one-time values are generated using the RBG.
+					</TSS>	
+					<Guidance/>
+					<Tests>
+						The evaluator shall confirm by testing that the one-time values obtained in the cryptographic
+						operations that use the one-time values are of the length specified in FCS_OTV_EXT.1, are
+						obtained from the RBG, and are fresh on each invocation.<h:p/>
+						This testing may be carried out as part of the testing for the relevant
+						cryptographic operations.
+					</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event/>
 		</f-component>
+
 	
 		<!-- FCS_RBG.1 Random Bit Generation -->
 		<!-- CC:2022 replacement for FCS_RBG_EXT.1 -->
@@ -7480,7 +7577,7 @@
 			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM.5.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
-			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
+			<depends on-incl="sfr-fcs-otv-ext-1"/>  <!-- FCS_OTV_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
@@ -7563,7 +7660,7 @@
 					This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR is also needed if the following SFRs are included in the ST: FCS_IPSEC_EXT.1, 
-					FCS_SLT_EXT.1, FCS_CKM.1/AKG, FCS_CKM.1/SKG, and FCS_COP.1/SigGen.<h:p/>
+					FCS_OTV_EXT.1, FCS_CKM.1/AKG, FCS_CKM.1/SKG, and FCS_COP.1/SigGen.<h:p/>
 					Also, this SFR must be claimed if "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or
 					"<h:i>KDF-DPI</h:i>" is selected in FCS_CKM.5.<h:p/>
 					If "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
@@ -7886,7 +7983,7 @@
 		
 
 		<!-- FCS_RBG.6 Random Bit Generation Service -->
-		<f-component cc-id="fcs_rbg.6" name="Random Bit Generation (Combining Entropy Sources)">
+		<f-component cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="optional">
 			<f-element id="fcs-rbg-6e1">
 				<title>
 					The TSF shall provide a <selectables>
@@ -7895,31 +7992,7 @@
 						<selectable><assignable>other interface type</assignable></selectable> </selectables>
 					interface to make the DRBG output, as specified in FCS_RBG.1 Random Bit Generation (RBG), 
 					available as a service to entities outside of the TOE.
-				</title>        
-				<aactivity>
-					<no-tests>TBD
-					</no-tests>
-				</aactivity>
-			</f-element>
-			<audit-event/>
-		</f-component>  
-		
-		
-		<!-- FCS_ENT_EXT.1 Entropy for Tenant Software -->
-		<!-- This might be replaced by FCS_RBG.6 above -->
-<!--
-		<f-component id="sfr-fcs-rbg-6" cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="optional">
-			<consistency-rationale/>
-			
-			<f-element id="fcs-rbg-6e1">
-				<title>The TSF shall provide a 
-					<selectables>
-						<selectable>hardware</selectable>
-						<selectable>software</selectable>
-						<selectable><assignable>other interface type</assignable></selectable></selectables>
-					interface to make the RBG output, as specified in FCS_RBG.1 Random bit generation (RBG),
-					available as a service to entities outside of the TOE.
-				</title>
+				</title> 
 				<note role="application">
 					This SFR must be included in the ST if the TOE provides an entropy source accessible to tenant software.<h:p/>
 					This requirement ensures that the TOE makes available sufficient entropy to any tenant
@@ -7945,42 +8018,8 @@
 				</aactivity>
 			</f-element>
 			<audit-event/>
-		</f-component>
--->
-		
-		<!-- FCS_SLT_EXT.1 Cryptographic Salt Generation -->
-		<!-- May be replaced by FCS_OTV_EXT -->
-		<f-component id="sfr-fcs-slt-ext-1" cc-id="fcs_slt_ext.1" name="Cryptographic Salt Generation" status="optional">
-			<consistency-rationale/>
-			<comp-lev>requires the TSF to generate salt values in a specified manner.</comp-lev>
-			<management/>
-			<audit/>
-			<dependencies><h:br/>FCS_RBG.1 Random Bit Generation</dependencies>
-			<f-element id="fcs-slt-ext-1e1">
-				<title>The TSF shall use salts and nonces generated by an RBG as specified in
-					FCS_RBG.1.
-				</title>
-				<note role="application">
-					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
-					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
-				</note>			
-				<aactivity>
-					<TSS>
-						The evaluator shall ensure the TSS describes how salts are generated using the
-						RBG.
-					</TSS>	
-					<Guidance/>
-					<Tests>
-						The evaluator shall confirm by testing that the salts obtained in the cryptographic
-						operations that use the salts are of the length specified in FCS_SLT_EXT.1, are
-						obtained from the RBG, and are fresh on each invocation.<h:p/>
-						This testing may be carried out as part of the testing for the relevant
-						cryptographic operations.
-					</Tests>
-				</aactivity>
-			</f-element>
-			<audit-event/>
-		</f-component>		
+		</f-component>  
+	
 
 		<!-- FCS_STG_EXT.1 Protected Storage -->
 		<f-component id="sfr-fcs-stg-ext-1" cc-id="fcs_stg_ext.1" name="Protected Storage" status="optional">
@@ -9664,7 +9703,7 @@
 			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM.5.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
-			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
+			<depends on-incl="sfr-fcs-otv-ext-1"/>  <!-- FCS_OTV_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
@@ -10405,7 +10444,7 @@
 			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM.5.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
-			<depends on-incl="sfr-fcs-slt-ext-1"/>  <!-- FCS_SLT_EXT.1 -->
+			<depends on-incl="sfr-fcs-otv-ext-1"/>  <!-- FCS_OTV_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
