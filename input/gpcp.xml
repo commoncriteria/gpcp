@@ -36,7 +36,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-04-23</PPPubDate>
+			<PPPubDate>2025-04-24</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -421,16 +421,12 @@
 			<usecase title="Server-Class Platform, Enhanced Security Requirements" id="uc-server-enhanced">
 				<description>
 					This use case adds physical protections to the base requirements for server-class hardware.
-					Additional physical protections are required because the platform is assumed to be minimally 
-					protected by the operational environment or because of the data center imposes enhanced
-					security requirements on the TOE.<h:p/>
-					<comment>operational constraints? impose enhanced security requirements on the TOE?
-					OE protections are assumed to be inadequate for the environment or operations. 
-					Removes the assumption that environmental protections are sufficient 
-					Given the threat environment or the sensitivity of information processed ?</comment>
+					Additional physical protections are required because the platform is <h:mark>assumed to 
+					not be protected by the operational environment, or because of enhanced security requirements 
+					imposed by data center or operational policies.</h:mark><h:p/>
 					This use case adds requirements for audit, physical protections, and Administrator 
 					authentication to the base mandatory SFRs. 
-					It removes the assumption that the TOE is physically protected by the OE.
+					<h:s>It removes the assumption that the TOE is physically protected by the OE.</h:s>
 				</description>
 				<config>
 					<ref-id>sfr-fau-gen-1</ref-id>
@@ -448,8 +444,7 @@
 			<usecase title="Portable Clients (laptops, tablets), Enhanced Security Requirements" id="uc-client-portable-enhanced">
 				<description>
 					This use case adds physical protections to the base requirements for portable clients or end-user 
-					devices. It is intended for devices that are used in high-assurance scenarios.<comment>This should change to 
-					correspond to the servers </comment>
+					devices. It is intended for devices are used in high-assurance scenarios.
 				</description>
 				<config>
 					<ref-id>sfr-fpt-php-1</ref-id> 
@@ -476,10 +471,15 @@
 					<ref-id>sfr-fau-gen-1</ref-id>
 					<ref-id>sfr-fau-sar-1</ref-id>
 					<ref-id>sfr-fau-stg-1</ref-id>
-					<ref-id>sfr-fau-stg-2</ref-id>
-					<ref-id>sfr-fau-stg-5</ref-id>
-<!--				<ref-id>t-physical</ref-id>				-->
-<!--				<not><ref-id>a-physical-protection</ref-id></not>				-->
+<!--					<ref-id>sfr-fau-stg-2</ref-id>   -->
+<!--					<ref-id>sfr-fau-stg-5</ref-id>    -->
+					<ref-id>sfr-fcs-stg-ext-1</ref-id>
+					<ref-id>sfr-fpt-tud-ext-1</ref-id>
+					<ref-id>sfr-fcs-rbg-6</ref-id>
+<!--					<not><ref-id>sel-tud1-no-update</ref-id></not>  -->
+<!--					<or><ref-id>sel-tud1-auth-update</ref-id>
+						<ref-id>sel-tud1-unauth-update</ref-id>
+						<ref-id>sel-tud1-local-update</ref-id></or>	-->			
 				</config>
 			</usecase>
 			<usecase title="Tactical EUD" id="uc-tactical-eud">
@@ -1060,8 +1060,9 @@
 				<!--	<depends on-use="uc-ent-clients-desktop"/>  -->
 				<consistency-rationale/>
 				<f-element id="fau-stg-1e1">
-					<title>The TSF shall be able to transfer generated audit data on the <selectables>
-						<selectable>transmit the generated audit data to an external IT entity using a trusted channel according to FTP_ITC<h:b>_EXT.1</h:b></selectable>
+					<title>The TSF shall be able to <h:mark>store</h:mark> generated audit data on the <selectables>
+						<selectable><h:mark>TOE itself</h:mark></selectable>
+						<selectable>transmit the generated audit data to an external IT entity using a trusted channel according to FTP_ITC_EXT.1</selectable>
 						<selectable>[removable media]</selectable></selectables>  
 					</title>
 					<note role="application">
