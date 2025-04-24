@@ -101,6 +101,8 @@
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[16]""/O[2]""/depends[2]""
 * Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[3]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/depends[1]""
+* Error: Detected dangling ref-id to 'sfr-fcs-rbg-6'.
+	  /PP[1]""/sec:Introduction[1]""/section[3]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[7]"sfr-fcs-r"
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/section[1]"The scope"/h:p[3]""
@@ -916,3 +918,4 @@ output/pkg-x509.xml:1: parser error : Document is empty
                        
 * Warning: Since FCS_OTV_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
                        
+ Failed to find sfr-fcs-rbg-6 in /PP[1]""/sec:Introduction[1]""/section[3]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[7]"sfr-fcs-r" (use case or rule)
