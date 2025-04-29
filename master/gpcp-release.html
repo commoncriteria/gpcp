@@ -629,8 +629,8 @@ function showTarget(id){
 	            img[src="images/collapsed.png"] { display:none;}
 
           }
-    </style></head><body onLoad="init()"><div id="commmentbox-"><a href="#Comment-1-">Comment: Comment-1-</a><br/><a href="#Comment-2-">Comment: Comment-2-</a><br/><a href="#Comment-3-">Comment: Comment-3-</a><br/><a href="#Comment-4-">Comment: Comment-4-</a><br/><a href="#Comment-5-">Comment: Comment-5-</a><br/><a href="#Comment-6-">Comment: Comment-6-</a><br/><a href="#Comment-7-">Comment: Comment-7-</a><br/><a href="#Comment-8-">Comment: Comment-8-</a><br/><a href="#Comment-9-">Comment: Comment-9-</a><br/><a href="#Comment-10-">Comment: Comment-10-</a><br/><a href="#Comment-11-">Comment: Comment-11-</a><br/><a href="#Comment-12-">Comment: Comment-12-</a><br/><a href="#Comment-13-">Comment: Comment-13-</a><br/><a href="#Comment-14-">Comment: Comment-14-</a><br/><a href="#Comment-15-">Comment: Comment-15-</a><br/><a href="#Comment-16-">Comment: Comment-16-</a><br/><a href="#Comment-17-">Comment: Comment-17-</a><br/><a href="#Comment-18-">Comment: Comment-18-</a><br/><a href="#Comment-19-">Comment: Comment-19-</a><br/><a href="#Comment-20-">Comment: Comment-20-</a><br/></div><h1 class="title" style="page-break-before:auto;">DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
-      Version: 2.0<br/>2025-04-28<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>0.1</td><td>2020-11-16</td><td>Started</td></tr>
+    </style></head><body onLoad="init()"><div id="commmentbox-"><a href="#Comment-1-">Comment: Comment-1-</a><br/><a href="#Comment-2-">Comment: Comment-2-</a><br/><a href="#Comment-3-">Comment: Comment-3-</a><br/><a href="#Comment-4-">Comment: Comment-4-</a><br/><a href="#Comment-5-">Comment: Comment-5-</a><br/><a href="#Comment-6-">Comment: Comment-6-</a><br/><a href="#Comment-7-">Comment: Comment-7-</a><br/><a href="#Comment-8-">Comment: Comment-8-</a><br/><a href="#Comment-9-">Comment: Comment-9-</a><br/><a href="#Comment-10-">Comment: Comment-10-</a><br/><a href="#Comment-11-">Comment: Comment-11-</a><br/><a href="#Comment-12-">Comment: Comment-12-</a><br/><a href="#Comment-13-">Comment: Comment-13-</a><br/><a href="#Comment-14-">Comment: Comment-14-</a><br/><a href="#Comment-15-">Comment: Comment-15-</a><br/><a href="#Comment-16-">Comment: Comment-16-</a><br/></div><h1 class="title" style="page-break-before:auto;">DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
+      Version: 2.0<br/>2025-04-29<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>0.1</td><td>2020-11-16</td><td>Started</td></tr>
 <tr><td>1.0</td><td>2022-02-10</td><td>Initial publication.</td></tr>
 <tr><td>1.1</td><td>2024-12-13</td><td>Updates for <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022</td></tr>
 <tr><td>2.0</td><td>2025-01-13</td><td>Draft: Incorporate TRRTs</td></tr>
@@ -3238,6 +3238,10 @@ The following sections list Common Criteria and technology terms used in this do
 					
 					
 				<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
+						The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> documents that the security strength of the
+						auxiliary functions in the below key derivation methods are sufficient for the security
+						strength of the keys derived through those methods.<p></p>
+					
 						The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies the purposes for which each of the 
 						claimed key derivation functions are used.<p></p>
 						TBD
@@ -3461,12 +3465,11 @@ The following sections list Common Criteria and technology terms used in this do
 						</table><p></p>						
 						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys by hashing a shared 
 						secret (a.k.a. One-Step HASH-based Key Derivation), the evaluator shall perform 
-						the Algorithm Functional Test and Validation Test using the following input
+						the Algorithm Functional Test using the following input
 						parameters:<ul>
 						<li>Auxiliary Function [<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-224, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512/224,
 							<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512/256, SHA3-224, SHA3-256, SHA3-384, SHA3-512]</li>
-						<li>Derived key length [128, 192, 256, 512] bits</li>
-						<li>Fixed information pattern </li></ul><p></p>
+						<li>Derived key length [128, 192, 256, 512] bits</li></ul><p></p>
 						<br/><i><b>Algorithm Functional Test</b></i><br/>
 						For each supported fixed information pattern and combination of the above input
 						parameters the evaluator shall require the implementation under test to derive
@@ -3474,14 +3477,6 @@ The following sections list Common Criteria and technology terms used in this do
 						derived key. The evaluator shall compare the resulting keys with keys derived
 						using a known-good implementation using the same fixed information patterns and
 						input parameters.<p></p>
-						<br/><i><b>Validation Test</b></i><br/>
-						<span style="" class="comment " id="Comment-5-">Catalog EA not finalized</span>For each supported fixed information pattern and combination of the above input
-						parameters the evaluator shall require the implementation under test to derive
-						fifteen keys using random data for a shared secret that is the same size as the
-						derived key. The evaluator will modify one of every five derived keys so that
-						the derived key material is invalid. To determine correctness, the evaluator
-						shall confirm that the results correspond as expected for the modified and 
-						unmodified values.<p></p>
 
 						
 						<br/><b>One-Step <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>-based <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr></b><p></p>
@@ -3502,10 +3497,10 @@ The following sections list Common Criteria and technology terms used in this do
 									[One-Step Key Derivation]</td>
 							</tr>
 						</table><p></p>			
-						<span style="" class="comment " id="Comment-6-">Catalog EA not finalized</span>
+						<span style="" class="comment " id="Comment-4-">Catalog EA not finalized</span>
 						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using One-Step
 						<abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>-based Key Derivation, the evaluator shall perform the Algorithm Functional
-						Test and Validation Test using the following input parameters:<ul>
+						Test using the following input parameters:<ul>
 						<li>Auxiliary Function [<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-224, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-384,
 							<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512, KMAC128, KMAC256, KMACXOF128, KMACXOF256]</li>
 						<li>Salt [0s, random]</li>
@@ -3517,15 +3512,6 @@ The following sections list Common Criteria and technology terms used in this do
 						five keys using random data for a shared secret. The evaluator shall compare 
 						the resulting keys with keys derived using a known-good implementation using the 
 						same fixed information patterns and input parameters.<p></p>
-						<br/><i><b>Validation Test</b></i><br/>
-						<span style="" class="comment " id="Comment-7-">Catalog EA not finalized</span>For each supported fixed information
-						pattern and combination of the above input parameters the evaluator shall
-						require the implementation under test to derive five keys using random data for
-						a shared secret. The evaluator will modify one of every five keys so that the 
-						derived key material is invalid [What specific ways is the key to be modified?].
-						To determine correctness, the evaluator shall submit the derived key material to
-						the key validation function of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and shall confirm that the results
-						correspond as expected for the modified and unmodified values.<p></p>
 
 						
 						<br/><b>Two-Step <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>-based <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr></b><p></p>
@@ -3553,10 +3539,9 @@ The following sections list Common Criteria and technology terms used in this do
 								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-56C Revision 2 (Section 5) [Two-Step Key Derivation]</td>
 							</tr>
 						</table><p></p>			
-						<span style="" class="comment " id="Comment-8-">Catalog EA not finalized</span>
+						<span style="" class="comment " id="Comment-5-">Catalog EA not finalized</span>
 						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using Two-Step <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>-based
-						Key Derivation, the evaluator shall perform the Algorithm Functional Test and 
-						Validation Test using the following input parameters:<ul>
+						Key Derivation, the evaluator shall perform the Algorithm Functional Test using the following input parameters:<ul>
 						<li><abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> mode [<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-192-CMAC; <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC; Camellia-128-CMAC;
 							Camellia-192-CMAC; Camellia-256-CMAC; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-1; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256; <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
 						<li><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Mode [Counter, feedback, Double Pipeline iteration]</li>
@@ -3573,15 +3558,6 @@ The following sections list Common Criteria and technology terms used in this do
 						five keys using random data for a shared secret. The evaluator shall compare the
 						resulting keys with keys derived using a known-good implementation using the 
 						same fixed information patterns and input parameters.<p></p>
-						<br/><i><b>Validation Test</b></i><br/>
-						<span style="" class="comment " id="Comment-9-">Catalog EA not finalized</span>For each supported fixed information
-						pattern and combination of the above input parameters the evaluator shall 
-						require the implementation under test to derive five keys using random data for
-						a shared secret. The evaluator will modify one of every five keys so that the
-						derived key material is invalid [What specific ways is the key to be modified?].
-						To determine correctness, the evaluator shall submit the derived key material 
-						to the key validation function of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and shall confirm that the results 
-						correspond as expected for the modified and unmodified values.<p></p>
 
 						
 						<br/><b><abbr class="dyn-abbr"><a href="#abbr_KMAC">KMAC</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr></b><p></p>
@@ -3648,7 +3624,7 @@ The following sections list Common Criteria and technology terms used in this do
 					
 					
 					
-				<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+				<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">TBD<span style="" class="comment " id="Comment-8-">Extract words from catalog appendix about mitigations.</span></div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 						The following tests are conditional based upon the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.
 						The evaluator shall perform the following test or witness respective tests
 						executed by the developer. The tests must be executed on a platform that is as 
@@ -3717,7 +3693,7 @@ The following sections list Common Criteria and technology terms used in this do
 			
 			
 			<div class="element"><div class="reqid" id="FCS_STG_EXT.1.1"><a href="#FCS_STG_EXT.1.1" class="abbr">FCS_STG_EXT.1.1</a></div><div class="reqdesc">
-					<span style="" class="comment " id="Comment-20-">Look at replacing this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> with <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>. At least look at moving it out of FCS 
+					<span style="" class="comment " id="Comment-16-">Look at replacing this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> with <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>. At least look at moving it out of FCS 
 					since it really isnt cryptography.</span>
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide 
 					[<b>selection</b>: <span class="selectable-content" id="_s_1050">mutable hardware-based</span>, <span class="selectable-content" id="_s_1051">immutable hardware-based</span>, <span class="selectable-content" id="sel-stg1-sw-based">software-based</span>] protected storage for asymmetric private keys and 
@@ -4460,7 +4436,6 @@ The following sections list Common Criteria and technology terms used in this do
 					
 									
 				<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
-						<span style="" class="comment " id="Comment-4-">All below from CWG Draft 20250415</span>
 						The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it describes how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> generates a key
 						based on output from a random bit generator as specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>. The evaluator shall
 						review the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it describes how the functionality described by <a href="#FCS_RBG.1">FCS_RBG.1</a> is
@@ -4500,13 +4475,13 @@ The following sections list Common Criteria and technology terms used in this do
 						</table><p></p>						
 						<abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-5 Key Pair generation specifies five methods for generating the 
 						primes <i>p</i> and <i>q</i>.<p></p>
-						These are:<nl> 
+						These are:<ol> 
 						<li>Random Provable primes</li>
 						<li>Random Probable primes</li>
 						<li>Provable primes with conditions based on auxiliary provable primes</li>
 						<li>Probable primes with conditions based on auxiliary provable primes</li>
 						<li>Probable primes with conditions based on auxiliary probable primes</li>
-						</nl><p></p>
+						</ol><p></p>
 						In addition to the key generation method, the input parameters are:<ul>
 						<li>Modulus [2048, 3072, 4096]</li>
 						<li>Hash algorithm [<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-224, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512/224, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512/256, SHA3-224, SHA3-256, SHA3-384, SHA3-512] (methods 1, 3, 4 only)</li>
@@ -4843,14 +4818,17 @@ The following sections list Common Criteria and technology terms used in this do
 						good implementation using the same input parameters.<p></p>
 						
 						<br/><i><b>HSS Key Generation Test</b></i><br/>
-						For each level and LMS parameter set, generate one public key for each test 
-						case, the number of which depends on the height of the underlying LMS parameter 
-						specified in <a onclick="showTarget('lms-test-cases')" href="#lms-test-cases" class="lms-test-cases-ref">Table  <span class="counter">13</span></a>. <p></p>
-						The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>’s implementation by 
-						comparing the public key generated by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> with that generated by a known 
-						good implementation using the same input parameters.<p></p>
-						Note: The number of test cases is limited due to the extreme amount of time it can
-						take to generate LMS and HSS trees.<p></p>
+						For each supported hash algorithm generate an HSS hierarchy of LMS trees and public
+						certificates. You may use eight of the LMS trees generated in LMS Key Generation, or generate
+						eight new LMS trees using the supported parameters.<p></p>
+						For level one, choose an LMS tree at random. For each supported level 2 through 8 in each
+						hierarchy choose another LMS tree from the set. The Winternitz parameters and LMS tree
+						heights do not have to match.<p></p>
+						Create a certificate by randomly selecting a private key from the LMS tree at level <i>n</i>-1 and
+						generate a certificate for the LMS public key at level <i>n</i>.<p></p>
+						The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>’s implementation by comparing the
+						certificates generated by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> with those generated by a known good implementation using
+						the same input parameters.<p></p>
 
 						<br/><b>XMSS Key Generation</b><p></p>
 						<table border="1">
@@ -5133,7 +5111,7 @@ The following sections list Common Criteria and technology terms used in this do
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					<span style="" class="comment " id="Comment-10-">From catalog</span>The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will have mechanisms to destroy keys, including intermediate keys and key material, by using
+					<span style="" class="comment " id="Comment-6-">From catalog</span>The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will have mechanisms to destroy keys, including intermediate keys and key material, by using
 					an approved method as specified in <a href="#FCS_CKM.6.2">FCS_CKM.6.2</a>.  Examples of keys include intermediate keys, leaf keys, 
 					encryption keys, and signing keys.  Key material includes seeds, authentication secrets, passwords, 
 					PINs, and other secret values used to derive keys.  The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author shall list all such keys and keying
@@ -5195,7 +5173,7 @@ The following sections list Common Criteria and technology terms used in this do
 					carefully selected, and not taken from a general pool that might contain current or residual data
 					that itself requires confidentiality protection.<p></p>
 					<p></p>
-					<span style="" class="comment " id="Comment-11-">From crypto catalog</span>In the case of volatile memory, the selection “removal of all references to the key directly followed 
+					<span style="" class="comment " id="Comment-7-">From crypto catalog</span>In the case of volatile memory, the selection “removal of all references to the key directly followed 
 					by a request for garbage collection” is used in a situation where the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> cannot address the specific 
 					physical memory locations holding the data to be erased and therefore relies on addressing logical 
 					addresses (which frees the relevant physical addresses holding the old data) and then requesting the 
@@ -5466,9 +5444,10 @@ The following sections list Common Criteria and technology terms used in this do
 					
 					
 				<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
-						TBD
-					</div></div><div class="eacategory">Guidance</div><div class="ea">
-			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+						The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> documents that the security strength of the
+						material contributed by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is sufficient for the security strength of the key and the
+						agreement method.
+					</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 						The following tests are conditional based upon the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.
 						The evaluator shall perform the following test or witness respective tests
 						executed by the developer. The tests must be executed on a platform that is as 
@@ -5522,8 +5501,8 @@ The following sections list Common Criteria and technology terms used in this do
 						test cases:<ul>
 						<li>Two test cases must have a shared secret with a leading nibble of 0s,</li>
 						<li>Two test cases have modified derived key material,</li>
-						<li>Two test cases have modified tags, if key conformation is supported,</li>
-						<li>Two test cases have modified MACs, if key confirmation is used, and</li>
+						<li>Two test cases have modified tags, if key confirmation is supported,</li>
+						<li>Two test cases have modified MACs, if key confirmation is supported, and</li>
 						<li>The remaining test cases are not modified.</li></ul><p></p>
 						To determine correctness, the evaluator shall confirm that the resulting 25 shared 
 						secrets correspond as expected for both the modified and unmodified values.<p></p>
@@ -6263,8 +6242,8 @@ The following sections list Common Criteria and technology terms used in this do
 							<li>The smallest supported <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> size,</li>
 							<li>The largest supported <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> size, and</li>
 							<li>Some other supported <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> size</li></ul></li></ul><p></p>
-						The evaluator shall modify the data such that 25% of the test cases in each group of 20 test
-						cases should fail. <span style="" class="comment " id="Comment-12-">How? What is modified?</span><p></p>
+						The evaluator shall modify the tag such that 25% of the test cases in each group of 20 test
+						cases should fail.<p></p>
 						The evaluator shall determine that the verification fails for the test cases with modified inputs,
 						and succeeds for those with unmodified inputs.
 
@@ -6731,7 +6710,7 @@ The following sections list Common Criteria and technology terms used in this do
 					Specifically, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included if "<i>A digital signature of the stored key in accordance with <a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a>
 					using an asymmetric key that is protected in accordance with <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a></i>" is selected in <a href="#FCS_STG_EXT.3">FCS_STG_EXT.3</a>.<p></p>
 					If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> and <a href="#FCS_RBG.1">FCS_RBG.1</a> must also be claimed.<p></p>
-					<span style="" class="comment " id="Comment-13-">From catalog</span>The dependency on <a href="#FCS_OTV_EXT.1">FCS_OTV_EXT.1</a> is needed only for signature schemes that require random
+					<span style="" class="comment " id="Comment-9-">From catalog</span>The dependency on <a href="#FCS_OTV_EXT.1">FCS_OTV_EXT.1</a> is needed only for signature schemes that require random
 					bits, such as <abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr>, LMS, HSS, XMSS, XMSS<sup>MT</sup>, and ML-DSA. 
 				</span></div></div></div>
 			
@@ -7142,7 +7121,7 @@ The following sections list Common Criteria and technology terms used in this do
 					For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the
 					base point. As the preferred approach for digital signatures, elliptic curves will be required after all the
 					necessary standards and other supporting information are fully established.<p></p>
-					<span style="" class="comment " id="Comment-14-">From catalog</span>
+					<span style="" class="comment " id="Comment-10-">From catalog</span>
 					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may contain a public key which is integrity protected (e.g., in hardware), in which 
 					case the FDP_ITC.1 and FDP_ITC.2 dependencies do not apply.  In this case, no dependencies 
 					may be chosen.  For signature verifications, private keys are not necessary, so there are no
@@ -7550,7 +7529,7 @@ The following sections list Common Criteria and technology terms used in this do
 					</ul>
 					
 					<p></p>
-					<span style="" class="comment " id="Comment-15-">From catalog</span>
+					<span style="" class="comment " id="Comment-11-">From catalog</span>
 					If the selected “cryptographic algorithm" requires an IV, counter, or tweak value,
 					then <a href="#FCS_OTV_EXT.1">FCS_OTV_EXT.1</a> must be claimed.
 				</span></div></div></div>
@@ -9084,7 +9063,7 @@ The following sections list Common Criteria and technology terms used in this do
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					<span style="" class="comment " id="Comment-16-">From catalog</span>
+					<span style="" class="comment " id="Comment-12-">From catalog</span>
 					No rationale is acceptable for not satisfying one of these dependencies.<p></p>
 					If a reseeding is selected in the first selection and something other than “never” is 
 					selected in the third selection of <a href="#FCS_RBG.1.3">FCS_RBG.1.3</a>, but reseeding is not feasible, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> will
@@ -9186,7 +9165,7 @@ The following sections list Common Criteria and technology terms used in this do
 					full entropy and is therefore  usable as the seed. However, if this is not the case, it should be noted what the minimum
 					entropy rate of the noise source is so that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can collect a sufficiently large sample of noise data to be
 					conditioned into a seed value.
-					<span style="" class="comment " id="Comment-17-">From catalog</span>
+					<span style="" class="comment " id="Comment-13-">From catalog</span>
 					In order to maintain compliance with <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-90A Revision 1, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> accepts enough 
 					bits of input from an external noise source to satisfy the entropy requirements of the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>.
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> should also protect the integrity and confidentiality of the entropy it receives from
@@ -9222,7 +9201,7 @@ The following sections list Common Criteria and technology terms used in this do
 					is within the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> boundary. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the 
 					total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data 
 					is reduced in size to the seed.
-					<span style="" class="comment " id="Comment-18-">From catalog</span>
+					<span style="" class="comment " id="Comment-14-">From catalog</span>
 					If an <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author wishes to use multiple internal noise sources, they iterate this requirement
 					for each noise source used by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.<p></p>
 					Hardware-based noise sources are entropy sources whose primary function is noise generation, 
@@ -9282,7 +9261,7 @@ The following sections list Common Criteria and technology terms used in this do
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					<span style="" class="comment " id="Comment-19-">From catalog</span>
+					<span style="" class="comment " id="Comment-15-">From catalog</span>
 					One can apply <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-90B (or AIS-31) statistical tests against internal noise sources 
 					(a.k.a. raw entropy) to confirm the min-entropy of the noise sources either in aggregate or 
 					individually.  One should not apply <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-90B (or AIS-31) statistical tests against 
