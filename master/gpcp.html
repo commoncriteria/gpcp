@@ -630,7 +630,7 @@ function showTarget(id){
 
           }
     </style></head><body onLoad="init()"><div id="commmentbox-"><a href="#Comment-1-">Comment: Comment-1-</a><br/><a href="#Comment-2-">Comment: Comment-2-</a><br/><a href="#Comment-3-">Comment: Comment-3-</a><br/><a href="#Comment-4-">Comment: Comment-4-</a><br/><a href="#Comment-5-">Comment: Comment-5-</a><br/><a href="#Comment-6-">Comment: Comment-6-</a><br/><a href="#Comment-7-">Comment: Comment-7-</a><br/><a href="#Comment-8-">Comment: Comment-8-</a><br/><a href="#Comment-9-">Comment: Comment-9-</a><br/><a href="#Comment-10-">Comment: Comment-10-</a><br/><a href="#Comment-11-">Comment: Comment-11-</a><br/><a href="#Comment-12-">Comment: Comment-12-</a><br/><a href="#Comment-13-">Comment: Comment-13-</a><br/><a href="#Comment-14-">Comment: Comment-14-</a><br/><a href="#Comment-15-">Comment: Comment-15-</a><br/><a href="#Comment-16-">Comment: Comment-16-</a><br/></div><h1 class="title" style="page-break-before:auto;">DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
-      Version: 2.0<br/>2025-04-29<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>0.1</td><td>2020-11-16</td><td>Started</td></tr>
+      Version: 2.0<br/>2025-04-30<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>0.1</td><td>2020-11-16</td><td>Started</td></tr>
 <tr><td>1.0</td><td>2022-02-10</td><td>Initial publication.</td></tr>
 <tr><td>1.1</td><td>2024-12-13</td><td>Updates for <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022</td></tr>
 <tr><td>2.0</td><td>2025-01-13</td><td>Draft: Incorporate TRRTs</td></tr>
@@ -4216,10 +4216,103 @@ The following sections list Common Criteria and technology terms used in this do
 						itself, the test platform shall be identified and the differences between test
 						environment and <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> execution environment shall be described.<p></p>
 
-						<br/><b><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1, SHA2-224, SHA2-256, SHA2-384, SHA2-512, SHA2-512/224, SHA2-512/256</b> 
-						Insert tests here
+						<br/><b><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1, SHA2-224, SHA2-256, SHA2-384, SHA2-512, SHA2-512/224, SHA2-512/256</b><p></p> 
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to generate hash digests using <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1 and SHA2 the evaluator shall
+						perform the Algorithm Functional Test, Monte Carlo Test, and Large Data Test for each claimed
+						<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1 and SHA2 algorithm.<p></p>
+						<br/><b>Algorithm Functional Test</b><p></p>
+						The evaluator shall generate a number of test cases equal to the block size of the hash (512 for <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1, SHA2-224,
+						and SHA2-256; 1024 for the other SHA2 algorithms).<p></p>
+						Each test case is to consist of random data of a random length between 0 and 65536 bits, or the
+						largest size supported.<p></p>
+						Each test case is to consist of random data of a random length between 0 and 65536 bits, or the
+						largest size supported.<p></p>
+						<br/><b>Monte Carlo Test</b><p></p>
+						Monte Carlo tests begin with a single seed and run 100 iterations of the chained computation.<p></p>
+						There are two versions of the Monte Carlo test for <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1 and <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-2. Either one is acceptable.
+						For the Standard Monte Carlo test the message hashed is always three times the length of the
+						initial seed.<p></p>
+						<pre>
+						For j = 0 to 99
+							A = B = C = SEED
+							For i = 0 to 999
+								MSG = A || B || C
+								MD = <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>(MSG)
+								A = B
+								B = C
+								C = MD
+							Output MD
+							SEED = MD
+						</pre><p></p>
+						For the alternate version of the Monte Carlo Test, the hashed message is always the same length as
+						the seed.<p></p>
+						<pre>
+						INITIAL_SEED_LENGTH = LEN(SEED)
+						For j = 0 to 99
+							A = B = C = SEED
+							For i = 0 to 999
+								MSG = A || B || C
+								if LEN(MSG) &gt;= INITIAL_SEED_LENGTH:
+									MSG = leftmost INITIAL_SEED_LENGTH bits of MSG
+								else:
+									MSG = MSG || INITIAL_SEED_LENGTH - LEN(MSG) 0 bits
+								MD = <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>(MSG)
+
+								A = B
+								B = C
+								C = MD
+							Output MD
+							SEED = MD	
+						</pre><p></p>
+						The evaluator shall compare the output against results generated by a known-good
+						implementation with the same input.<p></p>
+						<br/><b>Large Data Test</b><p></p>
+						The implementation must be tested against one test case each on large data messages of 1GB,
+						2GB, 4GB, and 8GB of data as supported. The data need not be random. It may, for example,
+						consist of a repeated pattern of 64 bits.<p></p>
+						The evaluator shall compare the output against results generated by a known-good
+						implementation with the same input.<p></p>
+						
 						<br/><b>SHA3-224, SHA3-256, SHA3-384, SHA3-512</b> 
-						Insert tests here
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to generate hash digests using SHA3 the evaluator shall perform the
+						Algorithm Functional Test, Monte Carlo Test, and Large Data Tests for each claimed SHA3
+						algorithm.
+						<br/><b>Algorithm Functional Test</b><p></p>
+						Generate a test case consisting of random data for every message length from 0 bits (or the
+						smallest supported message size) to rate bits, where rate equals<ul>
+						<li>1152 for SHA3-224,</li>
+						<li>1088 for SHA3-256,</li>
+						<li>832 for SHA3-384, and</li>
+						<li>576 for SHA3-512.</li></ul><p></p>
+						Additionally, generate tests cases of random data for messages of every multiple of (rate+1) bits
+						starting at length rate, and continuing until 65535 is exceeded.<p></p>
+						The evaluator shall compare the output against results generated by a known-good
+						implementation with the same input.<p></p>
+						<br/><b>Monte Carlo Test</b><p></p>
+						Monte Carlo tests begin with a single seed and run 100 iterations of the chained computation.<p></p>
+						For this Monte Carlo Test, the hashed message is always the same length as the seed.<p></p>
+						<pre>
+						MD[0] = SEED
+						INITIAL_SEED_LENGTH = LEN(SEED)
+						For 100 iterations
+							For i = 1 to 1000
+								MSG = MD[i-1];
+								if LEN(MSG) &gt;= INITIAL_SEED_LENGTH:
+									MSG = leftmost INITIAL_SEED_LENGTH bits of MSG
+								else:
+									MSG = MSG || INITIAL_SEED_LENGTH - LEN(MSG) 0 bits
+								MD[i] = SHA3(MSG)
+							MD[0] = MD[1000]
+							Output MD[0]
+						</pre><p></p>
+						The evaluator shall compare the output against results generated by a known-good
+						implementation with the same input.<p></p>
+						<br/><b>Large Data Test</b><p></p>
+						The implementation must be tested against one test case each on large data messages of 1GB,
+						2GB, 4GB, and 8GB of data as supported. The data need not be random. It may, for example,
+						consist of a repeated pattern of 64 bits.<p></p>
+						The evaluator shall compare the output against results generated by a known-good
+						implementation with the same input.<p></p>
                     </div></div></div></div></div>
 		
 		
@@ -4359,15 +4452,12 @@ The following sections list Common Criteria and technology terms used in this do
 				<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">TBD
 					</div></div><div class="eacategory">Guidance</div><div class="ea">
 			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
-						The following tests require the developer to provide access to a test platform that
-						provides the evaluator with tools that are typically not found on factory products.<p></p>
-						The following tests are conditional based upon the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>. The
-						evaluator shall perform the following test or witness respective tests executed by
-						the developer. The tests must be executed on a platform that is as close as practically
-						possible to the operational platform (but which may be instrumented in terms of,
-						for example, use of a debug mode). Where the test is not carried out on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
-						itself, the test platform shall be identified and the differences between test
-						environment and <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> execution environment shall be described.<p></p>
+						The following tests are conditional based upon the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>. The evaluator
+						shall perform the following test or witness respective tests executed by the developer. The tests
+						must be executed on a platform that is as close as practically possible to the operational platform
+						(but which may be instrumented in terms of, for example, use of a debug mode). Where the test
+						is not carried out on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself, the test platform shall be identified and the differences
+						between test environment and <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> execution environment shall be described.<p></p>
 
 						
 						<br/><b><abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr></b><p></p>
@@ -4408,6 +4498,7 @@ The following sections list Common Criteria and technology terms used in this do
 									[<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_ISO">ISO</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_IEC">IEC</a></abbr> 9797-2:2021 (Section 7 “<abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> Algorithm 2”), <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 198-1] </td>
 							</tr>
 						</table><p></p>	
+						
 
 						
 						<br/><b><abbr class="dyn-abbr"><a href="#abbr_KMAC">KMAC</a></abbr></b><p></p>
