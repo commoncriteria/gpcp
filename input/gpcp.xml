@@ -36,7 +36,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-05-01</PPPubDate>
+			<PPPubDate>2025-05-05</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -141,14 +141,13 @@
 		
 		This Protection Profile for General-Purpose Computing Platforms derives requirements from the following documents:
 		<h:ul>
-			<h:li>NIAP, <h:i>BIOS Update for PC Client Devices protection Profile</h:i>, Version 1.0, 12 Feb 2013</h:li>
 			<h:li>NIST SP 800-147 <h:i>BIOS Protection Guidelines</h:i>, April 2011</h:li>
 			<h:li>NIST SP 800-147B <h:i>BIOS Protection Guidelines for Servers</h:i>, August 2014</h:li>
-			<h:li>NIST SP 800-193 <h:i>Platform Firmware Resiliency Guidelines</h:i></h:li></h:ul><h:p/>
+			<h:li>NIST SP 800-193 <h:i>Platform Firmware Resiliency Guidelines</h:i>, May 2018</h:li></h:ul><h:p/>
 		Additionally, the following specifications and standards may be relevant to requirements in this PP:
 		<h:ul>
 			<h:li>NIST SP 800-155 (Draft) <h:i>BIOS Integrity Measurement Guidelines (Draft)</h:i>, December 2011</h:li>
-			<h:li>NIST SP 1800-34 (Draft) <h:i>Validating the Integrity of Computing Devices (Preliminary Draft)</h:i>, 2021</h:li>
+			<h:li>NIST SP 1800-34 (Draft) <h:i>Validating the Integrity of Computing Devices</h:i>, December 2022</h:li>
 			<h:li>Trusted Computing Group, <h:i>TCG PC Client Platform Firmware Integrity Measurement</h:i> Version 1.0 
 				Revision Specification 43 Family 2.0, May 7, 2021</h:li>
 			<h:li>IEEE Std 802.1AR-2018, <h:i>Secure Device Identity</h:i></h:li>		
@@ -338,6 +337,10 @@
 		Network Device platforms as defined in the collaborative Protection Profile for Network Devices 
 		are out of scope of this PP.  Mobile Device and Network Device platforms must be evaluated 
 		against the more specific requirements in their respective specialized PPs.<h:p/>
+		Likewise, hardcopy devices such as printers, scanners, copiers, and fax machines are out of scope of this 
+		Protection Profile and should be evaluated instead against the Protection Profile for Hardcopy Devices.<h:p/>
+		Finally, platforms for sharing and isolation of peripheral devices across domains, such as KVM Switches and Isolators, should 
+		be evaluated against the Protection Profile for Peripheral Sharing Devices.<h:p/>
 		The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware
 		must be protected such that it is not permitted to execute if it has been modified outside of authorized and
 		authenticated update processes. Other use-case-specific features include audit capabilities, Administrator
@@ -4871,6 +4874,7 @@
 							</col>
 						</selectable>
 
+
 						<!-- ML-DSA Signature Generation -->
 						<selectable id="sel-fcs-cop-siggen-mldsa">
 							<col>ML-DSA</col>
@@ -4880,6 +4884,28 @@
 								<selectable>ML-DSA-65</selectable>
 								<selectable>ML-DSA-87</selectable>
 								</selectables>
+							</col>
+							<col>NIST FIPS 204 (Section 5.2)</col>
+						</selectable>
+
+						<!-- HashML-DSA Signature Generation -->
+						<selectable id="sel-fcs-cop-siggen-hmldsa">
+							<col>HashML-DSA</col>
+							<col>HashML-DSA Signature Generation</col>
+							<col>Perameter set = <selectables>
+								<selectable>ML-DSA-44</selectable>
+								<selectable>ML-DSA-65</selectable>
+								<selectable>ML-DSA-87</selectable>
+								</selectables> and hash function <selectables>
+								<selectable>SHA-256</selectable>
+								<selectable>SHA-512/256</selectable>
+								<selectable>SHA3-256</selectable>
+								<selectable>SHAKE128</selectable>
+								<selectable>SHA-384</selectable>
+								<selectable>SHA3-384</selectable>
+								<selectable>SHA-512</selectable>
+								<selectable>SHA3-512</selectable>
+								<selectable>SHAKE256</selectable></selectables>
 							</col>
 							<col>NIST FIPS 204 (Section 5.2)</col>
 						</selectable>
@@ -4902,8 +4928,8 @@
 					<Tests>
 						Boilerplate text goes here <h:p/>
 					
-						<!-- RSA-PKCS Signature Gneration   -->
-						<h:br/><h:b>RSA-PKCS Signature Gneration </h:b><h:p/>
+						<!-- RSA-PKCS Signature Generation   -->
+						<h:br/><h:b>RSA-PKCS Signature Generation </h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
@@ -4931,8 +4957,8 @@
 						generate three test cases using random data. The evaluator shall compare the results against those
 						from a known-good implementation.<h:p/>
 
-						<!-- RSA-PSS Signature Gneration    -->
-						<h:br/><h:b>RSA-PSS Signature Gneration </h:b><h:p/>
+						<!-- RSA-PSS Signature Generation    -->
+						<h:br/><h:b>RSA-PSS Signature Generation </h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
@@ -4962,8 +4988,8 @@
 						generate three test cases using random data. The evaluator shall compare the reulsts against those
 						from a known-good implementation.<h:p/>
 
-						<!-- ECDSA Signature Gneration  -->
-						<h:br/><h:b>ECDSA Signature Gneration </h:b><h:p/>
+						<!-- ECDSA Signature Generation  -->
+						<h:br/><h:b>ECDSA Signature Generation </h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
@@ -5003,8 +5029,8 @@
 						generate 10 test cases using random data. The evaluator shall compare the results against those
 						from a known-good implementation.<h:p/>
 
-						<!-- EdDSA Signature Gneration  -->
-						<h:br/><h:b>EdDSA Signature Gneration </h:b><h:p/>
+						<!-- EdDSA Signature Generation  -->
+						<h:br/><h:b>EdDSA Signature Generation </h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
@@ -5039,8 +5065,8 @@
 						distinct signatures for each message. How many of these? Do we compare signed bit flip
 						message with signed original message to make sure different?<h:p/>
 
-						<!-- LMS and HSS Signature Gneration  -->
-						<h:br/><h:b>LMS and HSS Signature Gneration </h:b><h:p/>
+						<!-- LMS and HSS Signature Generation  -->
+						<h:br/><h:b>LMS and HSS Signature Generation </h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
@@ -5090,8 +5116,8 @@
 						good implementation using the same input parameters.<h:p/>
 
 
-						<!-- XMSS and XMSSMT Signature Gneration  -->
-						<h:br/><h:b>XMSS and XMSS<h:sup>MT</h:sup> Signature Gneration</h:b><h:p/>
+						<!-- XMSS and XMSSMT Signature Generation  -->
+						<h:br/><h:b>XMSS and XMSS<h:sup>MT</h:sup> Signature Generation</h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
@@ -5164,7 +5190,6 @@
 						The evaluator shall verify the correctness of the TSF’s implementation by comparing values
 						generated by the TSF with those generated by a known good implementation using the same
 						input parameters.<h:p/>
-						
 						<!-- ML-DSA Signature Gneration  -->
 						<h:br/><h:b>ML-DSA Signature Gneration</h:b><h:p/>
 						<h:table border="1">
@@ -5181,10 +5206,563 @@
 									ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:td>
 								<h:td valign="top">NIST FIPS PUB 204 (Section 5.2)</h:td>
 							</h:tr>
+							<h:tr>
+								<h:td valign="top">HashML-DSA</h:td>
+								<h:td valign="top">HashML-DSA SigGen</h:td>
+								<h:td valign="top">Parameter set = [<h:b>selection:</h:b>
+									ML-DSA-44, ML-DSA-65, ML-DSA-87], and hash Function
+									[<h:b>selection:</h:b> SHA-256, SHA-512/256, SHA3-256, 
+										SHAKE128, SHA-384, SHA3-384, SHA-512, SHA3-512,
+										SHAKE256]  </h:td>
+								<h:td valign="top">NIST FIPS PUB 204 (Section 5.4)</h:td>
+							</h:tr>
 						</h:table><h:p/>	
+						To test the TOE’s ability to generate digital signatures using ML-DSA and HashML-DSA, the
+						evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>
+						<h:li>Parameter set [ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:li>
+						<h:li>Seed [32 random bytes] (for non-deterministic signature testing), or</h:li>
+						<h:li>Seed [32 zero bytes] (for deterministic signature testing)</h:li>
+						<h:li>Message to sign [8-65535] bytes</h:li>
+						<h:li><h:i>Mu</h:i> value (if generated externally)</h:li>
+						<h:li>Previously generated private key (<h:i>sk</h:i>)</h:li>
+						<h:li>Context (for external interface testing)</h:li>
+						<h:li>Hash algorithm (HashML-DSA only)</h:li></h:ul><h:p/>
+						The permitted hash algorithms for HashML-DSA testing are as follows:<h:ul>
+						<h:li>HashML-DSA-87 [SHA-512, SHA3-512, SHAKE256]</h:li>
+						<h:li>HashML-DSA-65, above plus [SHA-384, SHA3-384]</h:li>
+						<h:li>HashML-DSA-44, above plus [SHA-256, SHA-512/256, SHA3-256, SHAKE128]</h:li></h:ul><h:p/>
+						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
+						For each combination of supported parameter set and capabilities, the evaluator shall require the
+						implementation under test to generate 15 signatures pairs using 15 different randomly generated
+						32-byte seed values. For HashML-DSA testing, each supported and permitted hash or XOF need
+						appear in only one of each group of 15 test cases. To determine correctness, the evaluator shall
+						compare the resulting key pairs with those generated using a known-good implementation using
+						the same inputs.<h:p/>
+						<h:br/><h:b>Known Answer Test for Rejection Cases</h:b><h:p/>
+						For each supported parameter set, the evaluator shall cause the TOE to generate signatures using
+						the data in the below table and a deterministic seed of all 0’s. Correctness is determined by
+						comparing the hash of the resulting signature with the hash in the 5 th column.<h:p/>
+						<h:b><h:div style="text-align: center;">
+						<ctr ctr-type="Table" pre="Table " id="mldsa-siggen-kat-rej">: ML-DSA sigGen Known Answer Tests for Rejection Cases</ctr>
+						</h:div></h:b>
+						<h:table border="1" style="width:50%">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Security Level</h:td>
+								<h:td valign="top">Seed to generate Key pair</h:td>
+								<h:td valign="top">Hash of keys SHA-256(pk||sk)</h:td>
+								<h:td valign="top">Message</h:td>
+								<h:td valign="top">Hash of Resulting Signature SHA-256(sig)</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-44</h:td>
+								<h:td valign="top">
+									5C624FCC 18624524<h:br/>
+									52D0C665 840D8237<h:br/>
+									F43108E5 499EDCDC<h:br/>
+									108FBC49 D596E4B7</h:td>
+								<h:td valign="top">
+									AC825C59 D8A4C453<h:br/>
+									A2C4EFEA 8395741C<h:br/>
+									A404F300 0E28D56B<h:br/>
+									25D03BB4 02E5CB2F</h:td>
+								<h:td valign="top">
+									951FDF54 73A4CBA6<h:br/>
+									D9E5B5DB 7E79FB81<h:br/>
+									73921BA5 B13E9271<h:br/>
+									401B8F90 7B8B7D5B<h:br/>
+								</h:td>
+								<h:td valign="top">
+									DCC71A42 1BC6FFAF<h:br/>
+									B7DF0C7F 6D018A19<h:br/>
+									ADA154D1 E2EE360E<h:br/>
+									D533CECD 5DC980AD</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-44</h:td>
+								<h:td valign="top">
+									836EABED B4D2CD9B<h:br/>
+									E6A4D957 CF5EE6BF<h:br/>
+									48930413 6864C55C<h:br/>
+									48930413 6864C55C<h:br/>
+									2C5F01DA 5047D18B</h:td>
+								<h:td valign="top">
+									E1FF40D9 6E3552FA<h:br/>	
+									B531D171 5084B7E3<h:br/>
+									8CCDBACC 0A8AF94C<h:br/>
+									30959FB4 C7F5A445</h:td>
+								<h:td valign="top">
+									199A0AB7 35E90041<h:br/>
+									63DD02D3 19A61CFE<h:br/>
+									81638E3B F47BB1E9<h:br/>
+									0E90D6E3 EA545247</h:td>
+								<h:td valign="top">
+									A2608BC2 7E60541D<h:br/>
+									27B6A14F 460D54A4<h:br/>
+									8C0298DC C3F45999<h:br/>
+									F29047A3 135C4941</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-44</h:td>
+								<h:td valign="top">
+									CA5A01E1 EA6552CB<h:br/>
+									5C980346 2B94C2F1<h:br/>
+									DC9D13BB 17A6ACE5<h:br/>
+									10D15705 6A2C6114</h:td>
+								<h:td valign="top">
+									A4652DC4 A2710952<h:br/>
+									68DD84A5 B0744DFD<h:br/>
+									BE2E642E 4D41FBC4<h:br/>
+									329C2FBA 534C0E13</h:td>
+								<h:td valign="top">
+									8C8CACA8 8FFF52B9<h:br/>
+									33051053 7B3701B3<h:br/>
+									993F3726 136A650F<h:br/>
+									48F86045 51550832</h:td>
+								<h:td valign="top">
+									B4B14220 9137397D<h:br/>
+									AD504CAE D01D390A<h:br/>
+									DAF49973 D8D2414F<h:br/>
+									C3457FB7 AF775189</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-44</h:td>
+								<h:td valign="top">
+									9C005F15 50B4F318<h:br/>
+									55C6B92F 97873673<h:br/>
+									3F37791C B39DD182<h:br/>
+									D7BA5732 BDC2483E</h:td>
+								<h:td valign="top">
+									2485AA99 345F1B33<h:br/>
+									4D4D94B6 10FBFFCC<h:br/>
+									B626CBFD 4E9FF0E1<h:br/>
+									F6FC3509 3C423544</h:td>
+								<h:td valign="top">
+									B744343F 30F7FEE0<h:br/>
+									88998BA5 74E799F1<h:br/>
+									BF3939C0 6C29BF9A<h:br/>
+									C10F3588 A57E21E2</h:td>
+								<h:td valign="top">
+									5B80A60B AA480B9D<h:br/>
+									0C7D2C05 B50928C4<h:br/>
+									BF6808DD A6936420<h:br/>
+									58A3EB77 EAA768FC</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-44</h:td>
+								<h:td valign="top">
+									4FAB5485 B009399E<h:br/>
+									8AE6FC3D 3EEFBFE8<h:br/>
+									E09796E4 477AABD5<h:br/>
+									EB1CC908 FA734DE3</h:td>
+								<h:td valign="top">
+									CB56909A 7CF3008A<h:br/>
+									662DC635 EDCB79DC<h:br/>
+									151CA7AC BAE17B54<h:br/>
+									4384ABD9 1BBBC1E9</h:td>
+								<h:td valign="top">
+									7CAB0FDC F4BEA5F0<h:br/>
+									39137478 AA45C9C4<h:br/>
+									8EF96D90 6FC49F6E<h:br/>
+									2F138111 BF1B4A4E</h:td>
+								<h:td valign="top">
+									6CC38D73 D639682A<h:br/>
+									BC556DC6 DCF436DE<h:br/>
+									24033091 F34004F4<h:br/>
+									10FABC68 87F77AB0</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-65</h:td>
+								<h:td valign="top">
+									CCD61917 2D0978FD<h:br/>
+									B584D433 CB5A044C<h:br/>
+									8D24592D AD4D1E57<h:br/>
+									ECF1FD62 C40A309B</h:td>
+								<h:td valign="top">
+									756C734D B013F83E<h:br/>
+									295F2878 B32F1633<h:br/>
+									5D576249 B16D83AF<h:br/>
+									EDE1F5D4 CC36D24F</h:td>
+								<h:td valign="top">
+									8A32D4B5 D3C8537A<h:br/>
+									A9C7C952 F63959C6<h:br/>
+									6162A68D 5F3D02E6<h:br/>
+									C5F96E2C EA41D2EF</h:td>
+								<h:td valign="top">
+									958287F1 646D855B<h:br/>
+									B065895A 6C6DA3DF<h:br/>
+									6A3F7AB2 A430C9DC<h:br/>
+									559D313E 7DD0A527</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-65</h:td>
+								<h:td valign="top">
+									C6315FC7 19895D16<h:br/>
+									454B7D62 084F0C8A<h:br/>
+									2903D8D0 0DC1D82E<h:br/>
+									B3F45F06 463C6FBD</h:td>
+								<h:td valign="top">
+									CEE1A1C7 F966A411<h:br/>
+									BB94C38A 0E33E1F7<h:br/>
+									102D3130 FA9C5D27<h:br/>
+									96F3F7F8 6ECF4B1D</h:td>
+								<h:td valign="top">
+									D8CB8B23 931495FD<h:br/>
+									F71477DB 7C335A15<h:br/>
+									1C6A9096 97F1C39A<h:br/>
+									3175133B 68881F28</h:td>
+								<h:td valign="top">
+									BD57A932 31EFEF6B<h:br/>
+									4E7FE374 E2194DB7<h:br/>
+									E00202EA F5EFC60D<h:br/>
+									F5F9FE1C 5F579D06</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-65</h:td>
+								<h:td valign="top">
+									F005E473 8B528F95<h:br/>
+									3669A2BC A3925266<h:br/>
+									DBD23909 CD2C4DCE<h:br/>
+									50B980D7 89EBD0D4</h:td>
+								<h:td valign="top">
+									D3E33502 CCC035C9<h:br/>
+									B9195A27 14FE7ECE<h:br/>
+									DD13DFF4 B854F237<h:br/>
+									6D993D38 A8E8AFF2</h:td>
+								<h:td valign="top">
+									EF1FE025 F8DF1FDC<h:br/>
+									FDAFD188 F68B9D10<h:br/>
+									85AE8D09 234EBDAD<h:br/>
+									67DE985B A7347DE4</h:td>
+								<h:td valign="top">
+									9E7B668C 51B250B1<h:br/>
+									2ED76665 BB4315CE<h:br/>
+									4BDBAF00 BF927F6D<h:br/>
+									895F0601 0D3BBC0E</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-65</h:td>
+								<h:td valign="top">
+									F215BA22 80D86F14<h:br/>
+									2012FC05 FFC04F2C<h:br/>
+									7D22FF5D D7D69AA0<h:br/>
+									EFB081E3 A53E9318</h:td>
+								<h:td valign="top">
+									17FBD1D1 7DAACEA7<h:br/>
+									A2F6DA1F 22835E86<h:br/>
+									30E8AE8E F1A66E8B<h:br/>
+									7935CC6C C762532D</h:td>
+								<h:td valign="top">
+									A4FADC3C 232F2ABC<h:br/>
+									8FCBB9C1 11F261E0<h:br/>
+									3DC2FF2D 57280A42<h:br/>
+									42936A63 E481AFE6</h:td>
+								<h:td valign="top">
+									C027D21B 21FA75AB<h:br/>
+									E7F35CD8 4A54E2E8<h:br/>
+									3BD35214 0BC8C49E<h:br/>
+									AB2C4500 4E7268A7</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-65</h:td>
+								<h:td valign="top">
+									A8E6C084 B3AAE469<h:br/>
+									0724631C AA57C10D<h:br/>
+									F5973F95 38D25493<h:br/>
+									E264A4E2 B2C5A4E9</h:td>
+								<h:td valign="top">
+									D8B7DE2D A326EBAE<h:br/>
+									241D657E C090F4CA<h:br/>
+									3438DFFE ECE1BD05<h:br/>
+									D9CE7DFC 5204C6DC</h:td>
+								<h:td valign="top">
+									A45A91B6 B2B392B7<h:br/>
+									087152D2 3E57E39A<h:br/>
+									A78A42AB 91AAD034<h:br/>
+									4FB80393 F22FB0AE</h:td>
+								<h:td valign="top">
+									C9DB2B64 2F739B32<h:br/>
+									ED5B14B8 FEEE6C77<h:br/>
+									9BAE7297 17D4FF11<h:br/>
+									CA281954 D8FF1B1D</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-87</h:td>
+								<h:td valign="top">
+									5AC68A41 71730B1E<h:br/>
+									920CC3E7 CC4ACA79<h:br/>
+									C25A3621 0057373B<h:br/>
+									6BCEBCDF A144CE18</h:td>
+								<h:td valign="top">
+									2446AB05 EEC3977C<h:br/>
+									40650338 983EEBF7<h:br/>
+									8942AC31 F5E94454<h:br/>
+									3E87DBAC 0A4889C1</h:td>
+								<h:td valign="top">
+									172F6D49 AF757918<h:br/>
+									823A75E9 81D605DD<h:br/>
+									AF74BF21 009AC836<h:br/>
+									D8B4C0AA BB49C14C</h:td>
+								<h:td valign="top">
+									3784755A C5A2D572<h:br/>
+									0623E504 707C3088<h:br/>
+									61EF4177 A6460FBE<h:br/>
+									B4DB257A AA245B55</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-87</h:td>
+								<h:td valign="top">
+									E45F9CC0 43C2C0F4<h:br/>
+									BEBCAD28 60CADF77<h:br/>
+									C8211237 D7AAA108<h:br/>
+									A56E3ACA 92D207F7</h:td>
+								<h:td valign="top">
+									F5B727CA 02B6F302<h:br/>
+									5135926A 5FCA2A64<h:br/>
+									A800579C BFD44863<h:br/>
+									A08ABA5F E6C33B46</h:td>
+								<h:td valign="top">
+									86B5A936 1F73427E<h:br/>
+									BA3EEF5D 46112B74<h:br/>
+									67CEDFBC C77EF36C<h:br/>
+									94EF0666 C1AD37B6</h:td>
+								<h:td valign="top">
+									E8276BF4 D57752D7<h:br/>
+									7C6EAE2B 80050ED2<h:br/>
+									0CF15344 B69E5150<h:br/>
+									F9479290 3EA3790A</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-87</h:td>
+								<h:td valign="top">
+									5E37A143 C0FFAEF6<h:br/>
+									00F33C37 6589069A<h:br/>
+									7A0CE2FA C36DBEFE<h:br/>
+									C42C5A60 167D5A12</h:td>
+								<h:td valign="top">
+									C210312C 242E0642<h:br/>
+									F990328A BFCD1189<h:br/>
+									D24EB8E9 C122BB6D<h:br/>
+									FEFCF02D 4FCF6224</h:td>
+								<h:td valign="top">	
+									9A72DFEB 5CDAD43D<h:br/>
+									3A416F8A D7B6676D<h:br/>
+									5528DDDA 661C3513<h:br/>
+									B6A460DB 74331F51</h:td>
+								<h:td valign="top">
+									B39E8111 5160026D<h:br/>
+									A5528C40 B90EA146<h:br/>
+									64BFC22E 261023A7<h:br/>
+									DC419451 288ED93F</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-87</h:td>
+								<h:td valign="top">
+									51DF520B 9084E48B<h:br/>
+									72EAEBA7 FE36B540<h:br/>
+									05CD963B 58CC25DE<h:br/>
+									79339948 FD561065</h:td>
+								<h:td valign="top">
+									3ECF7F6A 89387291<h:br/>
+									18CC21A1 5B2B5933<h:br/>
+									7B24FD34 38FB132D<h:br/>
+									0162E53C 28CB374C</h:td>
+								<h:td valign="top">
+									28EFCAD1 C1B528E0<h:br/>
+									E46CB25D 28FA21DB<h:br/>
+									A893010B 3C741D73<h:br/>
+									1460988B 66985D78</h:td>
+								<h:td valign="top">
+									02FA4CF7 BF7F5BD1<h:br/>
+									3874C77B 30DAF708<h:br/>
+									BAA3E2C0 97D4298B<h:br/>
+									F242A07B F68D7AD6</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-87</h:td>
+								<h:td valign="top">
+									6857AF5C 878EFF78<h:br/>
+									92F1722D 8CE11F47<h:br/>
+									84B9D144 B50B23B5<h:br/>
+									3070963B 501054E6</h:td>
+								<h:td valign="top">
+									9A2B47D3 4624BA79<h:br/>
+									7ECE8C7C 67FAADB2<h:br/>
+									B2DA6C5C 802B3CFB<h:br/>
+									22D8167F 4B52D6EB</h:td>
+								<h:td valign="top">
+									3165118C 135D81E4<h:br/>
+									6700B182 80A8D01D<h:br/>
+									F39A4B1A 9C24748A<h:br/>
+									EE3FC320 62DD251E</h:td>
+								<h:td valign="top">
+									697E02D5 0185F96C<h:br/>
+									420015F1 C03A2DD4<h:br/>
+									64593E0A BD0493E0<h:br/>
+									99D8774B 26C30C2F</h:td>
+							</h:tr>
+						</h:table><h:p/>										
 						
-						
-
+						<h:br/><h:b>Known Answer Test for Large Number of Rejection Cases</h:b><h:p/>
+						For each supported parameter set, the evaluator shall cause the TOE to generate signatures using
+						the data in the below table and a deterministic seed of all 0’s. Correctness is determined by
+						comparing the hash of the resulting signature with the hash in the 6 th column.<h:p/>
+						<h:b><h:div style="text-align: center;">
+						<ctr ctr-type="Table" pre="Table " id="mldsa-siggen-kat-lnrej">: ML-DSA sigGen Known Answer Tests for Large Number of Rejection Cases</ctr>
+						</h:div></h:b>
+						<h:table border="1" style="width:50%">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Security Level</h:td>
+								<h:td valign="top">Rejection Count</h:td>
+								<h:td valign="top">Seed to generate Key pair</h:td>
+								<h:td valign="top">Hash of keys SHA-256(pk||sk)</h:td>
+								<h:td valign="top">Message</h:td>
+								<h:td valign="top">Hash of Resulting Signature SHA-256(sig)</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-44</h:td>
+								<h:td valign="top">77</h:td>
+								<h:td valign="top">
+									090D97C1 F4166EB3<h:br/>
+									2CA67C5F B564ACBE<h:br/>
+									0735DB4A F4B8DB3A<h:br/>
+									7C2CE740 2357CA44</h:td>
+								<h:td valign="top">
+									26D79E40 68040E99<h:br/>
+									6BC9EB50 34C20489<h:br/>
+									C0AD38DC 2FEC1918<h:br/>
+									D0760C86 21872408</h:td>
+								<h:td valign="top">
+									E3838364 B37F47ED<h:br/>
+									FCA2B577 B20B80C3<h:br/>
+									CB51B9F5 6E0E4CDB<h:br/>
+									7DF002C8 74039252</h:td>
+								<h:td valign="top">
+									CD91150C 610FF02D<h:br/>
+									E1DD7049 C309EFE8<h:br/>
+									00CE5C1B C2E5A32D<h:br/>
+									752AB62C 5BF5E16F</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-44</h:td>
+								<h:td valign="top">100</h:td>
+								<h:td valign="top">
+									CFC73D07 A883543A<h:br/>
+									804F7700 70861825<h:br/>
+									143A62F2 F97D05FC<h:br/>
+									E00FD8B2 5D29A43F</h:td>
+								<h:td valign="top">
+									89142AB2 6D6EB6C0<h:br/>
+									1FA3F189 A9C87759<h:br/>
+									7740D685 983F29BB<h:br/>
+									DD359664 8266AE0E</h:td>
+								<h:td valign="top">
+									0960C13E 9BA467A9<h:br/>
+									38450120 CC96FF6F<h:br/>
+									04B7E557 C99A8386<h:br/>
+									19A48F9A 38738AB8</h:td>
+								<h:td valign="top">
+									B6296FFF 0C1F23DE<h:br/>
+									4906D581 44B00A2D<h:br/>
+									B13AD25E 49B4B857<h:br/>
+									3A62EFEE CB544DD7</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-65</h:td>
+								<h:td valign="top">111</h:td>
+								<h:td valign="top">
+									111BDFD1 3CF30B4A<h:br/>
+									05F8C56E 91E20025<h:br/>
+									B284EFDC 661C349D<h:br/>
+									430FB988 149219EE</h:td>
+								<h:td valign="top">
+									C06FE457 14696FF2<h:br/>
+									C77BB4CD 96E70BE9<h:br/>
+									539117AC 3D2E3F77<h:br/>
+									C736B060 8D9E78B6</h:td>
+								<h:td valign="top">
+									A30975C7 C58ABC8F<h:br/>
+									E7FAE442 FE20F964<h:br/>
+									410B74E9 B4C1D47E<h:br/>
+									440223C5 A46DA72C</h:td>
+								<h:td valign="top">
+									CADA29AE EC8E59CD<h:br/>
+									70747C2E 4C83F963<h:br/>
+									7E3C2495 3F11ADEE<h:br/>
+									F586F786 35B3E60A</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-65</h:td>
+								<h:td valign="top">96</h:td>
+								<h:td valign="top">
+									F3A3F2C3 263A7042<h:br/>
+									95E9D9F7 3CD97D02<h:br/>
+									F4682BEE 5949C416<h:br/>
+									BC42C85B 7C864446</h:td>
+								<h:td valign="top">
+									997CEE99 5EECE252<h:br/>
+									8155E1AE 0095116C<h:br/>
+									6D97B150 8B76AD25<h:br/>
+									BAE4ADF6 B60AE6A2</h:td>
+								<h:td valign="top">
+									1C00F3E4 CF07BD4F<h:br/>
+									B797D683 76EEC537<h:br/>
+									01730C49 09EC404F<h:br/>
+									C93A6B7F 597F81B5</h:td>
+								<h:td valign="top">
+									006B205B FA8DFF6C<h:br/>
+									2AA4237A 6BB5A33D<h:br/>
+									BD1B3D97 13B99A9D<h:br/>
+									5AF9A882 CD0BA1E0</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-87</h:td>
+								<h:td valign="top">66</h:td>
+								<h:td valign="top">
+									C4B614E8 3CF6E25A<h:br/>
+									159A542B 9E132AA0<h:br/>
+									68FACCD8 755AA8B4<h:br/>
+									E22C6F6C 0438BF16</h:td>
+								<h:td valign="top">
+									5BCAD035 7C6F3911<h:br/>
+									68B00523 CD7B1333<h:br/>
+									5F95996B F5432545<h:br/>
+									5484B830 15925580</h:td>
+								<h:td valign="top">
+									B9CFA245 C90359EF<h:br/>
+									041163A4 7231885E<h:br/>
+									56CB0215 984DE8A8<h:br/>
+									9941FE44 3CACEB61</h:td>
+								<h:td valign="top">
+									5B23E5CE C5B09134<h:br/>
+									2EF7D5BB 8C50285A<h:br/>
+									9666CF93 7BBE1758<h:br/>
+									532B341B 0942994B</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA-87</h:td>
+								<h:td valign="top">77</h:td>
+								<h:td valign="top">
+									771E9543 4E410291<h:br/>
+									93D076B8 06F2C3C2<h:br/>
+									2A7F2060 287791E7<h:br/>
+									0F105ECA EAB7AD69</h:td>
+								<h:td valign="top">
+									C56A924B F6B046DA<h:br/>
+									3CACC10B 72749ECF<h:br/>
+									54266B38 A7E3D5C5<h:br/>
+									81D0A44F 1F3995D8</h:td>
+								<h:td valign="top">
+									C367382D 0E3FEE86<h:br/>
+									D29BAB0E E5FD6AE9<h:br/>
+									1B3A5A70 17A024CF<h:br/>
+									145A25F5 6A62B0B1</h:td>
+								<h:td valign="top">
+									4996F774 3E90DAEB<h:br/>
+									61B5FF86 A868C9E5<h:br/>
+									195F201C 4E5F5A75<h:br/>
+									F4C79031 AAA6C544</h:td>
+							</h:tr>
+						</h:table><h:p/>										
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -5453,6 +6031,28 @@
 							</col>
 							<col>NIST FIPS 204 (Section 5.3)</col>
 						</selectable>
+						
+						<!-- HashML-DSA Signature Verification -->
+						<selectable id="sel-fcs-cop-sigver-hmldsa">
+							<col>HashML-DSA</col>
+							<col>HashML-DSA Signature Generation</col>
+							<col>Perameter set = <selectables>
+								<selectable>ML-DSA-44</selectable>
+								<selectable>ML-DSA-65</selectable>
+								<selectable>ML-DSA-87</selectable>
+								</selectables> and hash function <selectables>
+								<selectable>SHA-256</selectable>
+								<selectable>SHA-512/256</selectable>
+								<selectable>SHA3-256</selectable>
+								<selectable>SHAKE128</selectable>
+								<selectable>SHA-384</selectable>
+								<selectable>SHA3-384</selectable>
+								<selectable>SHA-512</selectable>
+								<selectable>SHA3-512</selectable>
+								<selectable>SHAKE256</selectable></selectables>
+							</col>
+							<col>NIST FIPS 204 (Section 5.3)</col>
+						</selectable>
 				
 					</selectables>
 				</title>
@@ -5479,24 +6079,359 @@
 					dependencies required for generating or destroying cryptographic keys.
 				</note>
 				<aactivity>
-				<TSS>
-					The evaluator shall check the TSS to ensure that it describes the overall flow of the
-					signature verification. This should at least include identification of the format and
-					general location (e.g., "firmware on the hard drive device" rather than “memory
-					location 0x00007A4B") of the data to be used in verifying the digital signature; how
-					the data received from the operational environment are brought onto the device; and
-					any processing that is performed that is not part of the digital signature algorithm
-					(for instance, checking of certificate revocation lists).
-				</TSS>
-				<Guidance/>
-				<Tests>
-					The following tests require the developer to provide access to a test platform that
-					provides the evaluator with tools that are typically not found on factory products.<h:p/>
-					Each section below contains tests the evaluator must perform for each selected
-					digital signature scheme. Based on the assignments and selections in the
-					requirement, the evaluator chooses the specific activities that correspond to those
-					selections.<h:p/>
-				</Tests>
+					<TSS>TBD
+					</TSS>
+					<Guidance/>
+					<Tests>
+						The following tests are conditional based upon the selections made in the SFR. The evaluator
+						shall perform the following test or witness respective tests executed by the developer. The tests
+						must be executed on a platform that is as close as practically possible to the operational platform
+						(but which may be instrumented in terms of, for example, use of a debug mode). Where the test
+						is not carried out on the TOE itself, the test platform shall be identified and the differences
+						between test environment and TOE execution environment shall be described.<h:p/>
+					
+						<!-- RSA-PKCS Signature Verification   -->
+						<h:br/><h:b>RSA-PKCS Signature Verification</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">RSA-PKCS </h:td>
+								<h:td valign="top">RSASSA-PKCS1-v1_5</h:td>
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 2048, 3072, 4096] bits,
+									hash or XOF [<h:b>selection:</h:b> SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384,
+												SHA3-512]</h:td>
+								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
+													NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]</h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to perform RSA Digital Signature Verification using PKCS1-v1,5
+						signature type, the evaluator shall perform Generated Data Test using the following input
+						parameters:<h:ul>
+						<h:li>Modulus size [2048, 3072, 4096] bits</h:li>
+						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:li></h:ul><h:p/>
+						<h:br/><h:b>Generated Data Test</h:b><h:p/>
+						For each supported combination of the above parameters, the evaluator shall cause the TOE to
+						generate three test cases using a random message and its signature. A certain number of these
+						must be modified so that the verification fails. [How many? How modified?] The TOE must
+						correctly verify the unmodified signatures and fail to verify the modified signatures.<h:p/>
+
+						<!-- RSA-PSS Signature Verification    -->
+						<h:br/><h:b>RSA-PSS Signature Verification </h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">RSA-PSS</h:td>
+								<h:td valign="top">RSASSA-PSS</h:td>
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 2048, 3072, 4096] bits,
+									hash or XOF [<h:b>selection:</h:b> SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384,
+												SHA3-512, SHAKE128, SHAKE256]</h:td>
+								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
+													NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PSS]</h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to perform RSA Digital Signature Verification using PSS signature
+						type, the evaluator shall perform the Generated Data Test using the following input parameters:<h:ul>
+						<h:li>Modulus size [2048, 3072, 4096] bits</h:li>
+						<h:li>Hash or XOF algorithm [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-
+							512, SHAKE128, SHAKE256]</h:li>
+						<h:li>Salt length [0-hash length] bits Is this paired with hash alg?</h:li>
+						<h:li>Mask function [MGF1, SHAKE128, SHAKE256]</h:li></h:ul><h:p/>
+						<h:br/><h:b>Generated Data Test</h:b><h:p/>
+						For each supported combination of the above parameters, the evaluator shall cause the TOE to
+						generate three test cases using random data. . A certain number of these must be modified so that
+						the verification fails. [How many? How modified?] The TOE must correctly verify the
+						unmodified signatures and fail to verify the modified signatures.<h:p/>
+
+						<!-- DSA Signature Verification    -->
+						<h:br/><h:b>DSA Signature Verification </h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">DSA</h:td>
+								<h:td valign="top">DSA</h:td>
+								<h:td valign="top">Domain parameters for (L, N) = [<h:b>selection:</h:b> 
+									(2048, 224) (2048, 256), (3072, 256)] bits</h:td>
+								<h:td valign="top">FIPS PUB 186-4 (Section 4.7) [DSA Signature Verification]</h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to perform DSA Digital Signature Verification, the evaluator shall
+						perform the Algorithm Functional Test using the following input parameters:<h:ul>
+						<h:li>(L, N) = (2048, 224), (2048, 256), (3072, 256)</h:li>
+						<h:li>Hash algorithm [SHA-1, SHA-224, SHA-256, SHA-384, SHA-512,
+							SHA-512/224, SHA-512/256]</h:li></h:ul><h:p/>
+						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
+						For each supported combination of the above parameters, the evaluator shall cause the TOE to
+						generate 15 test cases consisting of messages and signatures. A certain number of these must be
+						modified so that the verification fails. [How many? How modified?] The TOE must correctly
+						verify the unmodified signatures and fail to verify the modified signatures.<h:p/>
+
+						<!-- ECDSA Signature Verification  -->
+						<h:br/><h:b>ECDSA Signature Verification </h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ECDSA</h:td>
+								<h:td valign="top">ECDSA</h:td>
+								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, brainpoolP256r1, P-384,
+									brainpoolP384r1, P-521, brainpoolP512r1], per-message secret number generation
+									[<h:b>selection:</h:b> extra random bits, rejection sampling, deterministic] 
+									and hash or XOF function using [<h:b>selection:</h:b> SHA256, SHA-384, SHA-512,
+									SHA3-256, SHA3-384, SHA3-512, SHAKE-128, SHAKE256] </h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 14888-3:2018 (Subclause 6.6),
+									NIST FIPS PUB 186-5 (Sections 6.3.1, 6.4.1] [ECDSA]<h:p/>
+									[<h:b>selection:</h:b> RFC 5639 (Section 3) [Brainpool Curves], 
+										NIST SP-800 186 (Section 4) [NIST Curves]] </h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to perform ECDSA Digital Signature Verification, the evaluator shall
+						perform the Algorithm Functional Test using the following input parameters:<h:ul>
+						<h:li>Elliptic Curve [P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521,
+							brainpoolP512r1]</h:li>
+						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-512,
+							SHAKE-128, SHAKE-256]</h:li></h:ul><h:p/>
+						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
+						For each supported combination of the above parameters, the evaluator shall cause the TOE to
+						generate 10 test cases consisting of messages and signatures. A certain number of these must be
+						modified so that the verification fails. [How many? How modified?] The TOE must correctly
+						verify the unmodified signatures and fail to verify the modified signatures.<h:p/>
+
+						<!-- EdDSA Signature Verification  -->
+						<h:br/><h:b>EdDSA Signature Verification </h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">EdDSA</h:td>
+								<h:td valign="top">Edwards-Curve Digital Signature Algorithm</h:td>
+								<h:td valign="top">Domain parameters approved for elliptic curves [<h:b>selection:</h:b>
+										Edwards25519, Edwards448] </h:td>
+								<h:td valign="top"> NIST FIPS PUB 186-5 (Section 7.6) [EdDSA]<h:p/>
+										RFC 8032 [Edwards Curves]</h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to perform EdDSA Digital Signature Verification, the evaluator shall
+						perform the Algorithm Functional Test using the following input parameters:<h:ul>
+						<h:li>Elliptic Curve [Edwards25519, Edwards448]</h:li></h:ul><h:p/>
+						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
+						For each supported combination of the above parameters, the evaluator shall cause the TOE to
+						generate 10 test cases consisting of a signed message and signing key. A certain number of these
+						must be modified so that the verification fails. [How many? How modified?] ?] The TOE must
+						correctly verify the unmodified signatures and fail to verify the modified signatures.<h:p/>
+
+						<!-- LMS and HSS Signature Verification  -->
+						<h:br/><h:b>LMS and HSS Signature Verification </h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">LMS</h:td>
+								<h:td valign="top">LMS</h:td>
+								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
+									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
+									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
+									Winternitz parameter = [<h:b>selection:</h:b> 1, 2, 4, 8], 
+									and tree height = [<h:b>selection:</h:b> 5, 10, 15, 20, 25] </h:td>
+								<h:td valign="top">RFC 8554 [LMS]<h:p/>
+										NIST SP 800-208 [parameters] </h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">HSS</h:td>
+								<h:td valign="top">Multitree version of LMS</h:td>
+								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
+									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
+									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
+									Winternitz parameter = [<h:b>selection:</h:b> 1, 2, 4, 8], 
+									tree height = [<h:b>selection:</h:b> 5, 10, 15, 20, 25] 
+									and number of levels [<h:b>selection:</h:b> 1, 2, 3, 4, 5, 6, 7, 8]</h:td>
+								<h:td valign="top">RFC 8554 [HSS]<h:p/>
+										NIST SP 800-208 [parameters]</h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to verify cryptographic digital signature using LMS or HSS, the
+						evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>					
+						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
+						<h:li>Winterlitz [1, 2, 4, 8]</h:li>
+						<h:li>Tree height [5, 10, 15, 20, 25]</h:li>
+						<h:li>Number of levels [1, 2, 3, 4, 5, 6, 7, 8] (HSS only)</h:li></h:ul><h:p/>
+						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
+						For each supported combination of the above parameters, the evaluator shall generate 4 test cases
+						consisting of signed messages and keys, such that<h:ul>
+						<h:li>One test case is unmodified (i.e. correct)</h:li>
+						<h:li>For one test case modify the message, i.e. the message is different</h:li>
+						<h:li>For one test case modify the signature, i.e. signature is different</h:li>
+						<h:li>For one test case modify the signature header so that it is a valid header for a different
+								LMS parameter set.</h:li></h:ul><h:p/>
+						The TOE must correctly verify the unmodified test case and fail to verify the modified test cases.<h:p/>
+						For HSS, use the hierarchy and signatures generated previously in the tests for
+						FCS_COP.1/SigGen. For each hash algorithm, for each level, and for each LMS tree at that
+						level, generate up to 11 test cases, such that:<h:ul>
+						<h:li>One test case is unmodified (i.e. correct)</h:li>
+						<h:li>For one test case modify the message, i.e. the message is different</h:li>
+						<h:li>For one test case modify the signature, i.e. signature is different</h:li>
+						<h:li>For each HSS hierarchy level generate one test case by modifying the signature header
+							such that the certificate at that level is valid for a different LMS parameter set.</h:li></h:ul><h:p/>
+						The evaluator shall verify that the signature verification fails for these test cases except for the
+						unmodified case.<h:p/>
+
+						<!-- XMSS and XMSSMT Signature Verification  -->
+						<h:br/><h:b>XMSS and XMSS<h:sup>MT</h:sup> Signature Verification</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">XMSS</h:td>
+								<h:td valign="top">XMSS</h:td>
+								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
+									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
+									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
+									and tree height = [<h:b>selection:</h:b> 10, 16, 20] </h:td>
+								<h:td valign="top">RFC 8391 [XMSS] <h:p/>
+										NIST SP 800-208 [parameters]</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">XMSS<h:sup>MT</h:sup></h:td>
+								<h:td valign="top">Multitree version of XMSS</h:td>
+								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
+									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
+									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
+									(total tree height, number of levels) = [<h:b>selection:</h:b>
+										(20, 2), (20, 4), (40, 2), (40, 4),
+										(40, 8), (60, 3), (60, 6), (60, 12)] </h:td>
+								<h:td valign="top">RFC 8391 [XMSS<h:sup>MT</h:sup>] <h:p/>
+										NIST SP 800-208 [parameters]</h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to verify digital cryptographic digital signatures using XMSS or
+						XMSS MT , the evaluator shall perform the XMSS Key Generation Test using the following input
+						parameters:<h:ul>
+						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
+						<h:li>Tree height [10, 16, 20] (XMSS only)</h:li>
+						<h:li>Tree height/levels [20/2, 20/4, 40/2, 40/4, 40/8, 60/3, 60/6, 60/12] (XMSS<h:sup>MT</h:sup> only)</h:li></h:ul><h:p/>
+						<h:br/><h:b>XMSS Key Generation Test</h:b><h:p/>
+						For each supported combination of the above parameters, the evaluator shall generate the
+						following number of keys depending on the tree height:<h:p/>
+						<h:b><h:div style="text-align: center;">
+						<ctr ctr-type="Table" pre="Table " id="xmss-siggen-test-cases">: Number of Test Cases for XMSS and XMSS<h:sup>MT</h:sup></ctr>
+						</h:div></h:b>
+						<h:table border="1" style="width:50%">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Height</h:td>
+								<h:td valign="top">Number of test cases</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">10</h:td>
+								<h:td valign="top">5</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">16</h:td>
+								<h:td valign="top">4</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">20</h:td>
+								<h:td valign="top">3</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">40</h:td>
+								<h:td valign="top">2</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">60</h:td>
+								<h:td valign="top">1</h:td>
+							</h:tr>
+						</h:table><h:p/>										
+						Note: The number of test cases is limited due to the extreme amount of time it can take to
+						generate XMSS trees.<h:p/>
+						The evaluator shall verify the correctness of the TSF’s implementation by comparing values
+						generated by the TSF with those generated by a known good implementation using the same
+						input parameters.<h:p/>
+						
+						<!-- ML-DSA Signature Verification  -->
+						<h:br/><h:b>ML-DSA Signature Verification</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-DSA</h:td>
+								<h:td valign="top">ML-DSA SigVer</h:td>
+								<h:td valign="top">Parameter set = [<h:b>selection:</h:b>
+									ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:td>
+								<h:td valign="top">NIST FIPS PUB 204 (Section 5.2)</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">HashML-DSA</h:td>
+								<h:td valign="top">HashML-DSA SigVer</h:td>
+								<h:td valign="top">Parameter set = [<h:b>selection:</h:b>
+									ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:td>
+								<h:td valign="top">NIST FIPS PUB 204 (Section 5.2)</h:td>
+							</h:tr>
+						</h:table><h:p/>				
+						To test the TOE’s ability to validate digital signatures using ML-DSA and HashML-DSA, the
+						evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>
+						<h:li>Parameter set [ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:li>
+						<h:li>Previously generated signed Message [8-65535] bytes</h:li>
+						<h:li><h:i>Mu</h:i> value (if generated externally)</h:li>
+						<h:li>Context (for external interface testing)</h:li>
+						<h:li>Hash algorithm (HashML-DSA only)</h:li>
+						<h:li>Previously generated Public key (<h:i>pk</h:i>)</h:li>
+						<h:li>Previously generated Signature</h:li></h:li></h:ul><h:p/>
+						The permitted hash algorithms for HashML-DSA testing are as follows:<h:ul>
+						<h:li>HashML-DSA-87 [SHA-512, SHA3-512, SHAKE256]</h:li>
+						<h:li>HashML-DSA-65, above plus [SHA-384, SHA3-384]</h:li>
+						<h:li>HashML-DSA-44, above plus [SHA-256, SHA-512/256, SHA3-256, SHAKE128]</h:li></h:ul><h:p/>
+						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
+						For each combination of supported parameter set and capabilities, the evaluator shall require the
+						implementation under test to validate 15 signatures. For HashML-DSA testing, each supported
+						and permitted hash or XOF need appear in only one of each group of 15 test cases.<h:p/>
+						For each group of 15 test cases, at least three tests must be modified in each of the following
+						manners:<h:ul>
+						<h:li>No modification. Signature is valid.</h:li>
+						<h:li>Signed message is modified. The signature is not valid.</h:li>
+						<h:li>A component of the signature, the bytes that commit the signer to the message, is
+							modified. The signature is not valid.</h:li>
+						<h:li>A component of the signature, the bytes that allow the verifier to construct the vector z, is
+							modified. The signature is not valid.</h:li>
+						<h:li>A component of the signature, the bytes that allow the verifier to construct the hint array,
+							is modified. The signature is not valid.</h:li></h:ul><h:p/>
+						The TOE must correctly verify the unmodified signatures and fail to verify the modified
+						signatures.	
+					
+					</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event/>
@@ -5648,12 +6583,6 @@
 						for example, use of a debug mode). Where the test is not carried out on the TOE
 						itself, the test platform shall be identified and the differences between test
 						environment and TOE execution environment shall be described.<h:p/>
-						Preconditions for testing:<h:ul>
-						<h:li>Specification of keys as input parameter to the function to be tested</h:li>
-						<h:li>specification of required input parameters such as modes</h:li>
-						<h:li>Specification of user data (plaintext)</h:li>
-						<h:li>Tapping of encrypted user data (ciphertext) directly in the non-volatile memory</h:li></h:ul>
-						<h:p/>
 
 						<!-- AES-CBC -->
 						<h:br/><h:b>AES-CBC</h:b><h:p/>
