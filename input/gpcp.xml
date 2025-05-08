@@ -36,7 +36,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-05-05</PPPubDate>
+			<PPPubDate>2025-05-08</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -128,8 +128,7 @@
 <!--    1.1 Overview   -->
 <sec:Introduction>
 
-    <section title="Overview" id="ppoverview">
-	
+    <sec:Overview>
 		The scope of this Protection Profile (PP) is to describe the security functionality of 
 		General-Purpose Computing Platforms in terms of the Common Criteria and
 		to define functional and assurance requirements for such products.<h:p/>
@@ -151,9 +150,8 @@
 			<h:li>Trusted Computing Group, <h:i>TCG PC Client Platform Firmware Integrity Measurement</h:i> Version 1.0 
 				Revision Specification 43 Family 2.0, May 7, 2021</h:li>
 			<h:li>IEEE Std 802.1AR-2018, <h:i>Secure Device Identity</h:i></h:li>		
-		</h:ul>
-		
-	</section>
+		</h:ul>	
+    </sec:Overview>
 	
 	<!--   1.2 Terms   -->
 	<!--     1.2.1 Common Criteria Terms (auto-generated) -->
@@ -326,7 +324,7 @@
     </tech-terms>   
 	
 	<!-- 1.3 TOE Overview -->
-    <section title="TOE Overview" id="TOEdescription">
+    <sec:TOE_Overview>
 		This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements 
 		for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more 
 		general-purpose operating systems as defined by the Protection Profile for General Purpose 
@@ -347,7 +345,7 @@
 		authentication, and protections against physical tampering.
 
 		<!-- 1.3.1 TOE Boundary -->	    
-		<section title="TOE Boundary" id="TOEboundary">
+		<sec:TOE_Boundary>
 			The TOE comprises the hardware and firmware necessary for the hosting of tenant software. Generally,
 			tenant software is an operating system or virtualization system, but may also be "bare-metal" applications.
 			Tenant software is outside the TOE boundary.<h:p/>
@@ -374,20 +372,20 @@
 			<h:p/>Likewise, if the GPCP includes a Dedicated Security Component (DSC) that has been previously evaluated against 
 			the DSCcPP, or will be evaluated against the DSCcPP concurrently with the GPCP evaluation, then the DSC component may be
 			excluded from the TOE for purposes of the GPCP evaluation.  -->
-      </section>
+		</sec:TOE_Boundary>
 
 		<!-- 1.3.2 TOE Operational Environment -->
-		<section title="TOE Operational Environment" id="TOEopenv">
+		<sec:TOE_Operational_Environment>
 			  The TOE has no platform since it is itself a platform, but the TOE does have an operational
 			  environment. The OE consists of the physical environment in which the TOE operates (e.g., 
 			  data center, enterprise office, vehicle, outdoors) and any networks to which the TOE may
 			  be connected. Different use cases may invoke different requirements depending on the 
 			  operational environment.
-		</section>
-    </section>
+		</sec:TOE_Operational_Environment>
+    </sec:TOE_Overview>
 	
 	<!--   1.4 Use Cases  -->
-    <section title="Use Cases" id="usecases">
+    <sec:Use_Cases>
 		This Protection Profile supports several use cases. The cases
 		enumerated below add requirements to the baseline for GPCP due to additional threats or changes in assumptions
 		about the operational environment. Use cases not listed below (e.g. consumer-grade desktop, laptop, and 
@@ -526,10 +524,10 @@
 				</config>
 			</usecase>
 		</usecases>
-    </section>
+    </sec:Use_Cases>
 	
 	<!--   1.5 Roles -->
-    <section title="Roles" id="roles">
+    <sec:Roles>
 		For purposes of these requirements there are two entities that interact with a general-purpose computing 
 		platform: <h:ol type="1">
 			<h:li>Users (unprivileged users)</h:li>
@@ -547,29 +545,27 @@
 		Tenant Software generally consists of an operating system, virtualization system, or application
 		that uses platform resources to run workloads on behalf of Users. Tenant software generally has the privilege 
 		of the User or Administrator in whose context it runs.<h:p/> 
-	</section>
+    </sec:Roles>
 </sec:Introduction>
 
 <!-- 2.0 Conformance Claims (this is all boilerplate) -->
 <!-- <sec:cclaims title="Conformance Claims"/>  -->
-	<sec:Conformance_Claims boilerplate="no">
-		<!-- The new CClaimsInfo construct -->
-		<CClaimsInfo cc-version="cc-2022r1" cc-errata="v1.1" cc-approach="direct-rationale">
-			<cc-st-conf>exact</cc-st-conf>       
-			<cc-pt2-conf>extended</cc-pt2-conf>
-			<cc-pt3-conf>extended</cc-pt3-conf>
-			<cc-pp-conf/>
-			<cc-pp-config-with/>       
-			<!--	<Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 2.4</Mod-cc-ref> -->  
-			<cc-pkg-claim>
-				<FP-cc-ref conf="conformant">Functional Package for Secure Shell (SSH) Version 2.0</FP-cc-ref>
-				<FP-cc-ref conf="conformant">Functional Package for Transport Layer Security Version 2.1</FP-cc-ref>
-				<FP-cc-ref conf="conformant">Functional Package for X.509 Version 1.0</FP-cc-ref>
-			</cc-pkg-claim>
-		</CClaimsInfo>	
-	
-<!--	</sec:cclaims>  -->
-	</sec:Conformance_Claims>
+<sec:Conformance_Claims boilerplate="no">
+	<!-- The new CClaimsInfo construct -->
+	<CClaimsInfo cc-version="cc-2022r1" cc-errata="v1.1" cc-approach="direct-rationale">
+		<cc-st-conf>exact</cc-st-conf>       
+		<cc-pt2-conf>extended</cc-pt2-conf>
+		<cc-pt3-conf>extended</cc-pt3-conf>
+		<cc-pp-conf/>
+		<cc-pp-config-with/>       
+		<!--	<Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 2.4</Mod-cc-ref> -->  
+		<cc-pkg-claim>
+			<FP-cc-ref conf="conformant">Functional Package for Secure Shell (SSH) Version 2.0</FP-cc-ref>
+			<FP-cc-ref conf="conformant">Functional Package for Transport Layer Security Version 2.1</FP-cc-ref>
+			<FP-cc-ref conf="conformant">Functional Package for X.509 Version 1.0</FP-cc-ref>
+		</cc-pkg-claim>
+	</CClaimsInfo>	
+</sec:Conformance_Claims>
 
 	
 <!-- 3.0 Security Problem Definition -->
@@ -607,39 +603,36 @@
 						<h:li>Tactical EUD</h:li>
 						<h:li>IoT Devices</h:li></h:ul>
 				</description>
-				
 				<addressed-by>FPT_JTA_EXT.1</addressed-by><rationale>Mitigates threat by restricting access to debug ports to authorized Administrators or physical presence.</rationale>
 				<addressed-by>FPT_ROT_EXT.3 (objective)</addressed-by><rationale>Mitigates threat by ensuring integrity of physical components and responding to integrity failures.</rationale>
 				<addressed-by>FPT_JTA_EXT.2 (sel-based)</addressed-by><rationale>Mitigates threat by enforcing access control to debug ports.</rationale>
 				<addressed-by>FPT_PHP.1 (sel-based/objective)</addressed-by><rationale>Mitigates threat by passively detecting physical tampering.</rationale>
 				<addressed-by>FPT_PHP.2 (sel-based/objective)</addressed-by><rationale>Mitigates threat by providing methods to detect and report physical tampering.</rationale>
 				<addressed-by>FPT_PHP.3 (sel-based)</addressed-by><rationale>Mitigates threat by resisting physical tampering.</rationale>
-				
 			</threat>
+
 			<threat name="T.SIDE_CHANNEL_LEAKAGE">
 				<description>An attacker running in a tenant context might be able to leverage physical
 					effects caused by the operation of the TOE to derive sensitive information about
 					other tenants or the TOE.</description>
 				<addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Mitigates threat by providing a means to eliminate side-channel flaws through updates.</rationale>
-				
 			</threat>
+
 			<threat name="T.PERSISTENCE">
 				<description>An attacker might be able to establish a permanent presence on the TOE in
 					firmware. This could result in permanent compromise of tenant information, as
 					well as TOE updates. This threat does not encompass attacker presence in tenant
 					software, as tenant software is not part of the TOE. </description>
-				
 				<addressed-by>FPT_ROT_EXT.1</addressed-by><rationale>Mitigates threat by providing platform integrity to prevent intrusion of a persistent presence on the platform.</rationale>
 				<addressed-by>FPT_RVR_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat with firmware recovery mechanism in case of failure.</rationale>
 				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Mitigates threat by enforcing access control on key data to prevent its unauthorized disclosure.</rationale>
-				
 			</threat>
+
 			<threat name="T.UPDATE_COMPROMISE">
 				<description>An attacker may attempt to provide a compromised update of TOE firmware. 
 					Such updates can undermine the security functionality of the device if they are
 					unauthorized, unauthenticated, or are improperly validated using non-secure or
 					weak cryptography.</description>
-				
 				<addressed-by>FPT_PPF_EXT.1</addressed-by><rationale>Mitigates threat by using the official update process to be the only method to modify platform firmware.</rationale>
 				<addressed-by>FPT_ROT_EXT.2</addressed-by><rationale>Mitigates threat by providing a means to attest the validity of updates.</rationale>
 				<addressed-by>FCS_COP.1/Hash (sel-based)</addressed-by><rationale>Mitigates threat by providing a means to validate the integrity of an update using a hash.</rationale>
@@ -647,13 +640,12 @@
 				<addressed-by>FPT_TUD_EXT.2 (sel-based)</addressed-by><rationale>Mitigates threat by using a digital signature mechanism to verify the integrity of updates and a rollback protection mechanism to prevent application of an unauthorized update.</rationale>
 				<addressed-by>FPT_TUD_EXT.3 (sel-based)</addressed-by><rationale>Mitigates threat by using the TOE's root of trust to validate the authenticity and integrity of an update when it is applied.</rationale>
 				<addressed-by>FPT_TUD_EXT.4 (sel-based)</addressed-by><rationale>Mitigates threat through an update mechanism that requires physical access to the TOE to use.</rationale>
-				
 			</threat>
+
 			<threat name="T.SECURITY_FUNCTIONALITY_FAILURE">
 				<description>An attacker could leverage failed or compromised security functionality to 
 					access, change, or modify tenant data, TOE data, or other security functionality
 					of the device.</description>
-				
 				<addressed-by>FCS_STG_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by generating keys/secrets and storing them in a secure manner, as well as destroying them on request.</rationale>
 				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates threat by using appropriate key destruction methods to protect the confidentiality of credential data.</rationale>
 				<addressed-by>FCS_COP.1/SigGen (sel-based)</addressed-by><rationale>Mitigates threat by generating digital signatures with strong encryption.</rationale>
@@ -666,13 +658,12 @@
 				<addressed-by>FCS_RBG.4 (sel-based)</addressed-by><rationale>Mitigates threat by using multiple internal seed sources to ensure sufficiently strong random-bit generation.</rationale>
 				<addressed-by>FCS_RBG.5 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring that each noise source's random data is combined to ensure strong entropy when multiple sources are used.</rationale>
 				<addressed-by>FPT_TST.1 (sel-based)</addressed-by><rationale>Mitigates threat by using self-tests to ensure correct operation of the DRBG.</rationale>
-				
 			</threat>
+
 			<threat name="T.TENANT_BASED_ATTACK">
 				<description>An attacker running software as a tenant can attempt to access or modify
 					TOE firmware or functionality. Note that direct tenant attacks against other
 					tenants are not encompassed by this threat as they are out of scope.</description>
-				
 				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates threat by ensuring that audit data indicating a potential attack is accurately timestamped.</rationale>
 				<addressed-by>FCS_RBG.6 (optional)</addressed-by><rationale>Mitigates threat by providing a well-defined interface by which tenant software can access the TSF to obtain random data.</rationale>
 				<addressed-by>FCS_OTV_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using one-time value to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
@@ -693,13 +684,12 @@
 				<addressed-by>FAU_STG.5 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring that exhaustion of audit storage does not prevent audit data indicating a potential attack from being generated.</rationale>
 				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Mitigates threat by using cryptography to protect the confidentiality of key data from outside access.</rationale>
 				<addressed-by>FCS_STG_EXT.3 (sel-based)</addressed-by><rationale>Mitigates threat by using cryptography to protect the integrity of key data from outside modification.</rationale>
-				
 			</threat>
+
 			<threat name="T.NETWORK_BASED_ATTACK">
 				<description>An attacker from off the TOE can attempt to compromise the TOE
 					through a network interface connected to an active TOE component, such
 					as a management subsystem.</description>
-				
 				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates threat by ensuring that audit data indicating a potential attack is accurately timestamped.</rationale>
 				<addressed-by>FCS_OTV_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using one-time values to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
 				<addressed-by>FCS_CKM.1/AKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect data in transit.</rationale>
@@ -723,36 +713,29 @@
 				<addressed-by>FAU_STG.2 (sel-based)</addressed-by><rationale>Mitigates threat by preventing audit records indicating a potential attack from being destroyed.</rationale>
 				<addressed-by>FAU_STG.5 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring that exhaustion of audit storage does not prevent audit data indicating a potential attack from being generated.</rationale>
 				<addressed-by>FTP_TRP.1 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring that remote administration only uses trusted channels.</rationale>
-				
-				
-				
 			</threat>
+			
 			<threat name="T.UNAUTHORIZED_RECONFIGURATION">
 				<description>An attacker might be able to modify the configuration of the TOE and alter its 
 					functionality. This might include, activating dormant subsystems, disabling hardware assists,
-					or altering boot-time behaviors.</description>
-				
+					or altering boot-time behaviors.</description>				
 				<addressed-by>FMT_CFG_EXT.1</addressed-by><rationale>Mitigates threat by preventing knowledge of a default credential from being used to access the TSF without authorization.</rationale>
 				<addressed-by>FMT_MOF.1</addressed-by><rationale>Mitigates threat by permitting management functions to be used only by authorized users.</rationale>
 				<addressed-by>FMT_SMF.1</addressed-by><rationale>Mitigates threat by specifying the management functions implemented by the TSF.</rationale>
 				<addressed-by>FMT_SMR.1</addressed-by><rationale>Mitigates threat by defining the management roles which can be used to grant access to management functions.</rationale>
 				<addressed-by>FIA_UIA_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by preventing the TSF from being modified by an unauthenticated subject.</rationale>
-				
-				
+							
 			</threat>
 			<threat name="T.UNAUTHORIZED_PLATFORM_ADMINISTRATOR">
 				<description>An attacker might be able to attain platform administrator status by defeating or bypassing
 					authentication measures.</description>
-				
 				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates threat by ensuring that time-based authentication throttling or lockout is accurately enforced.</rationale>
-				
 				<addressed-by>FIA_TRT_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by throttling authentication to prevent access via brute force.</rationale>
 				<addressed-by>FIA_AFL_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by limiting further authentication attempts once a failure threshold of a critical authentication mechanism has been reached.</rationale>
 				<addressed-by>FIA_PMG_EXT.1 (sel-based)</addressed-by><rationale>Mitigates threat by enforcing password complexity requirements to prevent credentials from being easily guessed.</rationale>
 				<addressed-by>FIA_UAU.5 (sel-based)</addressed-by><rationale>Mitigates threat by implementing multiple authentication mechanisms for accessing the TSF.</rationale>
 				<addressed-by>FIA_UAU.7 (sel-based)</addressed-by><rationale>Mitigates threat by preventing disclosure of authentication data during authentication attempts.</rationale>
 			</threat>
-			
 		</threats>
     </sec:Threats>
 	  
@@ -1514,12 +1497,7 @@
 						<selectable id="sel-fcs-ckm-ak-mlkem">
 							<col>ML-KEM</col>
 							<col>ML-KEM KeyGen</col>
-							<col>Parameter set = <selectables>
-								<selectable>ML-KEM-512</selectable>
-								<selectable>ML-KEM-768</selectable>
-								<selectable>ML-KEM-1024</selectable>
-								</selectables>
-							</col>
+							<col>Parameter set = ML-KEM-1024</col>
 							<col>NIST FIPS 203 (Section 7.1)</col>
 						</selectable>
 
@@ -1527,12 +1505,7 @@
 						<selectable id="sel-fcs-ckm-ak-mldsa">
 							<col>ML-DSA</col>
 							<col>ML-DSA KeyGen</col>
-							<col>Parameter set = <selectables>
-								<selectable>ML-DSA-44</selectable>
-								<selectable>ML-DSA-65</selectable>
-								<selectable>ML-DSA-87</selectable>
-								</selectables>
-							</col>
+							<col>Parameter set = ML-DSA-87</col>
 							<col>NIST FIPS 204 (Section 5.1)</col>
 						</selectable>
 					</selectables>
@@ -2004,14 +1977,14 @@
 							<h:tr>
 								<h:td valign="top">ML-KEM</h:td>
 								<h:td valign="top">ML-KEM Key Generation</h:td>
-								<h:td valign="top">Parameter set = [<h:b>selection:</h:b> ML-KEM-512, ML-KEM-768, ML-KEM-1024]</h:td>
+								<h:td valign="top">Parameter set = ML-KEM-1024</h:td>
 								<h:td valign="top">NIST FIPS PUB 203 (Section 7.1)</h:td>
 							</h:tr>
 						</h:table><h:p/>						
 							To test the TOE’s ability to generate asymmetric cryptographic keys using ML-KEM,
 							the evaluator shall perform the Algorithm Functional Test using the following 
 							input parameters:<h:ul>
-							<h:li>Parameter set [ML-KEM-512, ML-KEM-768, ML-KEM-1024]</h:li>
+							<h:li>Parameter set [ML-KEM-1024]</h:li>
 							<h:li>Random seed d [32 bytes]</h:li>
 							<h:li>Random seed z [32 bytes]</h:li></h:ul><h:p/>
 							<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
@@ -2031,14 +2004,14 @@
 							<h:tr>
 								<h:td valign="top">ML-DSA</h:td>
 								<h:td valign="top">ML-DSA Key Generation</h:td>
-								<h:td valign="top">Parameter set = [<h:b>selection:</h:b> ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:td>
+								<h:td valign="top">Parameter set = ML-DSA-87</h:td>
 								<h:td valign="top">NIST FIPS PUB 204 (Section 5.1)</h:td>
 							</h:tr>
 						</h:table><h:p/>						
 							To test the TOE’s ability to generate asymmetric cryptographic keys using ML-DSA, 
 							the evaluator shall perform the Algorithm Functional Test using the following
 							input parameters:<h:ul>
-							<h:li>Parameter set [ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:li>
+							<h:li>Parameter set [ML-DSA-87]</h:li>
 							<h:li>Random seed [32 bytes]</h:li></h:ul><h:p/>
 							<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
 							For each supported parameter set the evaluator shall require the implementation 
@@ -2205,6 +2178,7 @@
 						<selectable>cryptographic key recovery</selectable>
 						<selectable>cryptographic key import</selectable>
 						<selectable>cryptographic key export</selectable>
+						<selectable>cryptographic key storage</selectable>
 					</selectables>
 				</title>
 				<note role="application">
@@ -4306,11 +4280,7 @@
 						<selectable id="sel-fcs-cop-keyencap-mlkem">
 							<col>ML-KEM</col>
 							<col>ML-KEM Key Encapsulation</col>
-							<col>Parameter set = <selectables>
-								<selectable>ML-KEM-512</selectable>
-								<selectable>ML-KEM-768</selectable>
-								<selectable>ML-KEM-1024</selectable></selectables>
-							</col>
+							<col>Parameter set = ML-KEM-1024</col>
 							<col>NIST FIPS 203 (Section 7.2)</col>
 						</selectable>			
 						
@@ -4448,8 +4418,7 @@
 							<h:tr>
 								<h:td valign="top">ML-KEM</h:td>
 								<h:td valign="top">ML-KEM KeyEncap</h:td>
-								<h:td valign="top">Parameter set = [<h:b>selection:</h:b> ML-KEM-512,
-									ML-KEM-768, ML-KEM-1024]</h:td>
+								<h:td valign="top">Parameter set = ML-KEM-1024</h:td>
 								<h:td valign="top">NIST FIPS PUB 203 (Section 7.2)</h:td>
 							</h:tr>
 						</h:table><h:p/>	
@@ -4457,11 +4426,11 @@
 						shall perform the Encapsulation Test and the Decapsulation Test using the following input
 						parameters:<h:ul>
 						<h:li>Encapsulation Parameters:<h:ul>
-							<h:li>Parameter set [ML-KEM-512, ML-KEM-768, ML-KEM-1024]</h:li>
+							<h:li>Parameter set [ML-KEM-1024]</h:li>
 							<h:li>Previously generated encapsulation key (<h:i>ek</h:i>)</h:li>
 							<h:li>Random value (<h:i>m</h:i>) [32 bytes]</h:li></h:ul></h:li>
 						<h:li>Decapsulation Parameters:<h:ul>
-							<h:li>Parameter set [ML-KEM-512, ML-KEM-768, ML-KEM-1024]</h:li>
+							<h:li>Parameter set [ML-KEM-1024]</h:li>
 							<h:li>Previously generated decapsulation key (<h:i>dk</h:i>)</h:li>
 							<h:li>Previously generated ciphertext (<h:i>c</h:i>) [32 bytes]</h:li></h:ul></h:li>
 						</h:ul><h:p/>
@@ -4879,34 +4848,7 @@
 						<selectable id="sel-fcs-cop-siggen-mldsa">
 							<col>ML-DSA</col>
 							<col>ML-DSA Signature Generation</col>
-							<col>Perameter set = <selectables>
-								<selectable>ML-DSA-44</selectable>
-								<selectable>ML-DSA-65</selectable>
-								<selectable>ML-DSA-87</selectable>
-								</selectables>
-							</col>
-							<col>NIST FIPS 204 (Section 5.2)</col>
-						</selectable>
-
-						<!-- HashML-DSA Signature Generation -->
-						<selectable id="sel-fcs-cop-siggen-hmldsa">
-							<col>HashML-DSA</col>
-							<col>HashML-DSA Signature Generation</col>
-							<col>Perameter set = <selectables>
-								<selectable>ML-DSA-44</selectable>
-								<selectable>ML-DSA-65</selectable>
-								<selectable>ML-DSA-87</selectable>
-								</selectables> and hash function <selectables>
-								<selectable>SHA-256</selectable>
-								<selectable>SHA-512/256</selectable>
-								<selectable>SHA3-256</selectable>
-								<selectable>SHAKE128</selectable>
-								<selectable>SHA-384</selectable>
-								<selectable>SHA3-384</selectable>
-								<selectable>SHA-512</selectable>
-								<selectable>SHA3-512</selectable>
-								<selectable>SHAKE256</selectable></selectables>
-							</col>
+							<col>Perameter set = ML-DSA-87</col>
 							<col>NIST FIPS 204 (Section 5.2)</col>
 						</selectable>
 
@@ -5190,6 +5132,7 @@
 						The evaluator shall verify the correctness of the TSF’s implementation by comparing values
 						generated by the TSF with those generated by a known good implementation using the same
 						input parameters.<h:p/>
+						
 						<!-- ML-DSA Signature Gneration  -->
 						<h:br/><h:b>ML-DSA Signature Gneration</h:b><h:p/>
 						<h:table border="1">
@@ -5202,40 +5145,23 @@
 							<h:tr>
 								<h:td valign="top">ML-DSA</h:td>
 								<h:td valign="top">ML-DSA SigGen</h:td>
-								<h:td valign="top">Parameter set = [<h:b>selection:</h:b>
-									ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:td>
+								<h:td valign="top">Parameter set = ML-DSA-87</h:td>
 								<h:td valign="top">NIST FIPS PUB 204 (Section 5.2)</h:td>
 							</h:tr>
-							<h:tr>
-								<h:td valign="top">HashML-DSA</h:td>
-								<h:td valign="top">HashML-DSA SigGen</h:td>
-								<h:td valign="top">Parameter set = [<h:b>selection:</h:b>
-									ML-DSA-44, ML-DSA-65, ML-DSA-87], and hash Function
-									[<h:b>selection:</h:b> SHA-256, SHA-512/256, SHA3-256, 
-										SHAKE128, SHA-384, SHA3-384, SHA-512, SHA3-512,
-										SHAKE256]  </h:td>
-								<h:td valign="top">NIST FIPS PUB 204 (Section 5.4)</h:td>
-							</h:tr>
 						</h:table><h:p/>	
-						To test the TOE’s ability to generate digital signatures using ML-DSA and HashML-DSA, the
+						To test the TOE’s ability to generate digital signatures using ML-DSA, the
 						evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>Parameter set [ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:li>
+						<h:li>Parameter set [ML-DSA-87]</h:li>
 						<h:li>Seed [32 random bytes] (for non-deterministic signature testing), or</h:li>
 						<h:li>Seed [32 zero bytes] (for deterministic signature testing)</h:li>
 						<h:li>Message to sign [8-65535] bytes</h:li>
 						<h:li><h:i>Mu</h:i> value (if generated externally)</h:li>
 						<h:li>Previously generated private key (<h:i>sk</h:i>)</h:li>
-						<h:li>Context (for external interface testing)</h:li>
-						<h:li>Hash algorithm (HashML-DSA only)</h:li></h:ul><h:p/>
-						The permitted hash algorithms for HashML-DSA testing are as follows:<h:ul>
-						<h:li>HashML-DSA-87 [SHA-512, SHA3-512, SHAKE256]</h:li>
-						<h:li>HashML-DSA-65, above plus [SHA-384, SHA3-384]</h:li>
-						<h:li>HashML-DSA-44, above plus [SHA-256, SHA-512/256, SHA3-256, SHAKE128]</h:li></h:ul><h:p/>
+						<h:li>Context (for external interface testing)</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
 						For each combination of supported parameter set and capabilities, the evaluator shall require the
 						implementation under test to generate 15 signatures pairs using 15 different randomly generated
-						32-byte seed values. For HashML-DSA testing, each supported and permitted hash or XOF need
-						appear in only one of each group of 15 test cases. To determine correctness, the evaluator shall
+						32-byte seed values. To determine correctness, the evaluator shall
 						compare the resulting key pairs with those generated using a known-good implementation using
 						the same inputs.<h:p/>
 						<h:br/><h:b>Known Answer Test for Rejection Cases</h:b><h:p/>
@@ -5252,238 +5178,6 @@
 								<h:td valign="top">Hash of keys SHA-256(pk||sk)</h:td>
 								<h:td valign="top">Message</h:td>
 								<h:td valign="top">Hash of Resulting Signature SHA-256(sig)</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-44</h:td>
-								<h:td valign="top">
-									5C624FCC 18624524<h:br/>
-									52D0C665 840D8237<h:br/>
-									F43108E5 499EDCDC<h:br/>
-									108FBC49 D596E4B7</h:td>
-								<h:td valign="top">
-									AC825C59 D8A4C453<h:br/>
-									A2C4EFEA 8395741C<h:br/>
-									A404F300 0E28D56B<h:br/>
-									25D03BB4 02E5CB2F</h:td>
-								<h:td valign="top">
-									951FDF54 73A4CBA6<h:br/>
-									D9E5B5DB 7E79FB81<h:br/>
-									73921BA5 B13E9271<h:br/>
-									401B8F90 7B8B7D5B<h:br/>
-								</h:td>
-								<h:td valign="top">
-									DCC71A42 1BC6FFAF<h:br/>
-									B7DF0C7F 6D018A19<h:br/>
-									ADA154D1 E2EE360E<h:br/>
-									D533CECD 5DC980AD</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-44</h:td>
-								<h:td valign="top">
-									836EABED B4D2CD9B<h:br/>
-									E6A4D957 CF5EE6BF<h:br/>
-									48930413 6864C55C<h:br/>
-									48930413 6864C55C<h:br/>
-									2C5F01DA 5047D18B</h:td>
-								<h:td valign="top">
-									E1FF40D9 6E3552FA<h:br/>	
-									B531D171 5084B7E3<h:br/>
-									8CCDBACC 0A8AF94C<h:br/>
-									30959FB4 C7F5A445</h:td>
-								<h:td valign="top">
-									199A0AB7 35E90041<h:br/>
-									63DD02D3 19A61CFE<h:br/>
-									81638E3B F47BB1E9<h:br/>
-									0E90D6E3 EA545247</h:td>
-								<h:td valign="top">
-									A2608BC2 7E60541D<h:br/>
-									27B6A14F 460D54A4<h:br/>
-									8C0298DC C3F45999<h:br/>
-									F29047A3 135C4941</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-44</h:td>
-								<h:td valign="top">
-									CA5A01E1 EA6552CB<h:br/>
-									5C980346 2B94C2F1<h:br/>
-									DC9D13BB 17A6ACE5<h:br/>
-									10D15705 6A2C6114</h:td>
-								<h:td valign="top">
-									A4652DC4 A2710952<h:br/>
-									68DD84A5 B0744DFD<h:br/>
-									BE2E642E 4D41FBC4<h:br/>
-									329C2FBA 534C0E13</h:td>
-								<h:td valign="top">
-									8C8CACA8 8FFF52B9<h:br/>
-									33051053 7B3701B3<h:br/>
-									993F3726 136A650F<h:br/>
-									48F86045 51550832</h:td>
-								<h:td valign="top">
-									B4B14220 9137397D<h:br/>
-									AD504CAE D01D390A<h:br/>
-									DAF49973 D8D2414F<h:br/>
-									C3457FB7 AF775189</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-44</h:td>
-								<h:td valign="top">
-									9C005F15 50B4F318<h:br/>
-									55C6B92F 97873673<h:br/>
-									3F37791C B39DD182<h:br/>
-									D7BA5732 BDC2483E</h:td>
-								<h:td valign="top">
-									2485AA99 345F1B33<h:br/>
-									4D4D94B6 10FBFFCC<h:br/>
-									B626CBFD 4E9FF0E1<h:br/>
-									F6FC3509 3C423544</h:td>
-								<h:td valign="top">
-									B744343F 30F7FEE0<h:br/>
-									88998BA5 74E799F1<h:br/>
-									BF3939C0 6C29BF9A<h:br/>
-									C10F3588 A57E21E2</h:td>
-								<h:td valign="top">
-									5B80A60B AA480B9D<h:br/>
-									0C7D2C05 B50928C4<h:br/>
-									BF6808DD A6936420<h:br/>
-									58A3EB77 EAA768FC</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-44</h:td>
-								<h:td valign="top">
-									4FAB5485 B009399E<h:br/>
-									8AE6FC3D 3EEFBFE8<h:br/>
-									E09796E4 477AABD5<h:br/>
-									EB1CC908 FA734DE3</h:td>
-								<h:td valign="top">
-									CB56909A 7CF3008A<h:br/>
-									662DC635 EDCB79DC<h:br/>
-									151CA7AC BAE17B54<h:br/>
-									4384ABD9 1BBBC1E9</h:td>
-								<h:td valign="top">
-									7CAB0FDC F4BEA5F0<h:br/>
-									39137478 AA45C9C4<h:br/>
-									8EF96D90 6FC49F6E<h:br/>
-									2F138111 BF1B4A4E</h:td>
-								<h:td valign="top">
-									6CC38D73 D639682A<h:br/>
-									BC556DC6 DCF436DE<h:br/>
-									24033091 F34004F4<h:br/>
-									10FABC68 87F77AB0</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-65</h:td>
-								<h:td valign="top">
-									CCD61917 2D0978FD<h:br/>
-									B584D433 CB5A044C<h:br/>
-									8D24592D AD4D1E57<h:br/>
-									ECF1FD62 C40A309B</h:td>
-								<h:td valign="top">
-									756C734D B013F83E<h:br/>
-									295F2878 B32F1633<h:br/>
-									5D576249 B16D83AF<h:br/>
-									EDE1F5D4 CC36D24F</h:td>
-								<h:td valign="top">
-									8A32D4B5 D3C8537A<h:br/>
-									A9C7C952 F63959C6<h:br/>
-									6162A68D 5F3D02E6<h:br/>
-									C5F96E2C EA41D2EF</h:td>
-								<h:td valign="top">
-									958287F1 646D855B<h:br/>
-									B065895A 6C6DA3DF<h:br/>
-									6A3F7AB2 A430C9DC<h:br/>
-									559D313E 7DD0A527</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-65</h:td>
-								<h:td valign="top">
-									C6315FC7 19895D16<h:br/>
-									454B7D62 084F0C8A<h:br/>
-									2903D8D0 0DC1D82E<h:br/>
-									B3F45F06 463C6FBD</h:td>
-								<h:td valign="top">
-									CEE1A1C7 F966A411<h:br/>
-									BB94C38A 0E33E1F7<h:br/>
-									102D3130 FA9C5D27<h:br/>
-									96F3F7F8 6ECF4B1D</h:td>
-								<h:td valign="top">
-									D8CB8B23 931495FD<h:br/>
-									F71477DB 7C335A15<h:br/>
-									1C6A9096 97F1C39A<h:br/>
-									3175133B 68881F28</h:td>
-								<h:td valign="top">
-									BD57A932 31EFEF6B<h:br/>
-									4E7FE374 E2194DB7<h:br/>
-									E00202EA F5EFC60D<h:br/>
-									F5F9FE1C 5F579D06</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-65</h:td>
-								<h:td valign="top">
-									F005E473 8B528F95<h:br/>
-									3669A2BC A3925266<h:br/>
-									DBD23909 CD2C4DCE<h:br/>
-									50B980D7 89EBD0D4</h:td>
-								<h:td valign="top">
-									D3E33502 CCC035C9<h:br/>
-									B9195A27 14FE7ECE<h:br/>
-									DD13DFF4 B854F237<h:br/>
-									6D993D38 A8E8AFF2</h:td>
-								<h:td valign="top">
-									EF1FE025 F8DF1FDC<h:br/>
-									FDAFD188 F68B9D10<h:br/>
-									85AE8D09 234EBDAD<h:br/>
-									67DE985B A7347DE4</h:td>
-								<h:td valign="top">
-									9E7B668C 51B250B1<h:br/>
-									2ED76665 BB4315CE<h:br/>
-									4BDBAF00 BF927F6D<h:br/>
-									895F0601 0D3BBC0E</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-65</h:td>
-								<h:td valign="top">
-									F215BA22 80D86F14<h:br/>
-									2012FC05 FFC04F2C<h:br/>
-									7D22FF5D D7D69AA0<h:br/>
-									EFB081E3 A53E9318</h:td>
-								<h:td valign="top">
-									17FBD1D1 7DAACEA7<h:br/>
-									A2F6DA1F 22835E86<h:br/>
-									30E8AE8E F1A66E8B<h:br/>
-									7935CC6C C762532D</h:td>
-								<h:td valign="top">
-									A4FADC3C 232F2ABC<h:br/>
-									8FCBB9C1 11F261E0<h:br/>
-									3DC2FF2D 57280A42<h:br/>
-									42936A63 E481AFE6</h:td>
-								<h:td valign="top">
-									C027D21B 21FA75AB<h:br/>
-									E7F35CD8 4A54E2E8<h:br/>
-									3BD35214 0BC8C49E<h:br/>
-									AB2C4500 4E7268A7</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-65</h:td>
-								<h:td valign="top">
-									A8E6C084 B3AAE469<h:br/>
-									0724631C AA57C10D<h:br/>
-									F5973F95 38D25493<h:br/>
-									E264A4E2 B2C5A4E9</h:td>
-								<h:td valign="top">
-									D8B7DE2D A326EBAE<h:br/>
-									241D657E C090F4CA<h:br/>
-									3438DFFE ECE1BD05<h:br/>
-									D9CE7DFC 5204C6DC</h:td>
-								<h:td valign="top">
-									A45A91B6 B2B392B7<h:br/>
-									087152D2 3E57E39A<h:br/>
-									A78A42AB 91AAD034<h:br/>
-									4FB80393 F22FB0AE</h:td>
-								<h:td valign="top">
-									C9DB2B64 2F739B32<h:br/>
-									ED5B14B8 FEEE6C77<h:br/>
-									9BAE7297 17D4FF11<h:br/>
-									CA281954 D8FF1B1D</h:td>
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">ML-DSA-87</h:td>
@@ -5617,102 +5311,6 @@
 								<h:td valign="top">Hash of keys SHA-256(pk||sk)</h:td>
 								<h:td valign="top">Message</h:td>
 								<h:td valign="top">Hash of Resulting Signature SHA-256(sig)</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-44</h:td>
-								<h:td valign="top">77</h:td>
-								<h:td valign="top">
-									090D97C1 F4166EB3<h:br/>
-									2CA67C5F B564ACBE<h:br/>
-									0735DB4A F4B8DB3A<h:br/>
-									7C2CE740 2357CA44</h:td>
-								<h:td valign="top">
-									26D79E40 68040E99<h:br/>
-									6BC9EB50 34C20489<h:br/>
-									C0AD38DC 2FEC1918<h:br/>
-									D0760C86 21872408</h:td>
-								<h:td valign="top">
-									E3838364 B37F47ED<h:br/>
-									FCA2B577 B20B80C3<h:br/>
-									CB51B9F5 6E0E4CDB<h:br/>
-									7DF002C8 74039252</h:td>
-								<h:td valign="top">
-									CD91150C 610FF02D<h:br/>
-									E1DD7049 C309EFE8<h:br/>
-									00CE5C1B C2E5A32D<h:br/>
-									752AB62C 5BF5E16F</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-44</h:td>
-								<h:td valign="top">100</h:td>
-								<h:td valign="top">
-									CFC73D07 A883543A<h:br/>
-									804F7700 70861825<h:br/>
-									143A62F2 F97D05FC<h:br/>
-									E00FD8B2 5D29A43F</h:td>
-								<h:td valign="top">
-									89142AB2 6D6EB6C0<h:br/>
-									1FA3F189 A9C87759<h:br/>
-									7740D685 983F29BB<h:br/>
-									DD359664 8266AE0E</h:td>
-								<h:td valign="top">
-									0960C13E 9BA467A9<h:br/>
-									38450120 CC96FF6F<h:br/>
-									04B7E557 C99A8386<h:br/>
-									19A48F9A 38738AB8</h:td>
-								<h:td valign="top">
-									B6296FFF 0C1F23DE<h:br/>
-									4906D581 44B00A2D<h:br/>
-									B13AD25E 49B4B857<h:br/>
-									3A62EFEE CB544DD7</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-65</h:td>
-								<h:td valign="top">111</h:td>
-								<h:td valign="top">
-									111BDFD1 3CF30B4A<h:br/>
-									05F8C56E 91E20025<h:br/>
-									B284EFDC 661C349D<h:br/>
-									430FB988 149219EE</h:td>
-								<h:td valign="top">
-									C06FE457 14696FF2<h:br/>
-									C77BB4CD 96E70BE9<h:br/>
-									539117AC 3D2E3F77<h:br/>
-									C736B060 8D9E78B6</h:td>
-								<h:td valign="top">
-									A30975C7 C58ABC8F<h:br/>
-									E7FAE442 FE20F964<h:br/>
-									410B74E9 B4C1D47E<h:br/>
-									440223C5 A46DA72C</h:td>
-								<h:td valign="top">
-									CADA29AE EC8E59CD<h:br/>
-									70747C2E 4C83F963<h:br/>
-									7E3C2495 3F11ADEE<h:br/>
-									F586F786 35B3E60A</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-DSA-65</h:td>
-								<h:td valign="top">96</h:td>
-								<h:td valign="top">
-									F3A3F2C3 263A7042<h:br/>
-									95E9D9F7 3CD97D02<h:br/>
-									F4682BEE 5949C416<h:br/>
-									BC42C85B 7C864446</h:td>
-								<h:td valign="top">
-									997CEE99 5EECE252<h:br/>
-									8155E1AE 0095116C<h:br/>
-									6D97B150 8B76AD25<h:br/>
-									BAE4ADF6 B60AE6A2</h:td>
-								<h:td valign="top">
-									1C00F3E4 CF07BD4F<h:br/>
-									B797D683 76EEC537<h:br/>
-									01730C49 09EC404F<h:br/>
-									C93A6B7F 597F81B5</h:td>
-								<h:td valign="top">
-									006B205B FA8DFF6C<h:br/>
-									2AA4237A 6BB5A33D<h:br/>
-									BD1B3D97 13B99A9D<h:br/>
-									5AF9A882 CD0BA1E0</h:td>
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">ML-DSA-87</h:td>
@@ -6023,36 +5621,10 @@
 						<selectable id="sel-fcs-cop-sigver-mldsa">
 							<col>ML-DSA</col>
 							<col>ML-DSA Signature Verification</col>
-							<col>Perameter set = <selectables>
-								<selectable>ML-DSA-44</selectable>
-								<selectable>ML-DSA-65</selectable>
-								<selectable>ML-DSA-87</selectable>
-								</selectables>
-							</col>
+							<col>Perameter set = ML-DSA-87</col>
 							<col>NIST FIPS 204 (Section 5.3)</col>
 						</selectable>
-						
-						<!-- HashML-DSA Signature Verification -->
-						<selectable id="sel-fcs-cop-sigver-hmldsa">
-							<col>HashML-DSA</col>
-							<col>HashML-DSA Signature Generation</col>
-							<col>Perameter set = <selectables>
-								<selectable>ML-DSA-44</selectable>
-								<selectable>ML-DSA-65</selectable>
-								<selectable>ML-DSA-87</selectable>
-								</selectables> and hash function <selectables>
-								<selectable>SHA-256</selectable>
-								<selectable>SHA-512/256</selectable>
-								<selectable>SHA3-256</selectable>
-								<selectable>SHAKE128</selectable>
-								<selectable>SHA-384</selectable>
-								<selectable>SHA3-384</selectable>
-								<selectable>SHA-512</selectable>
-								<selectable>SHA3-512</selectable>
-								<selectable>SHAKE256</selectable></selectables>
-							</col>
-							<col>NIST FIPS 204 (Section 5.3)</col>
-						</selectable>
+					
 				
 					</selectables>
 				</title>
@@ -6389,35 +5961,21 @@
 							<h:tr>
 								<h:td valign="top">ML-DSA</h:td>
 								<h:td valign="top">ML-DSA SigVer</h:td>
-								<h:td valign="top">Parameter set = [<h:b>selection:</h:b>
-									ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:td>
-								<h:td valign="top">NIST FIPS PUB 204 (Section 5.2)</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">HashML-DSA</h:td>
-								<h:td valign="top">HashML-DSA SigVer</h:td>
-								<h:td valign="top">Parameter set = [<h:b>selection:</h:b>
-									ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:td>
+								<h:td valign="top">Parameter set = ML-DSA-87</h:td>
 								<h:td valign="top">NIST FIPS PUB 204 (Section 5.2)</h:td>
 							</h:tr>
 						</h:table><h:p/>				
-						To test the TOE’s ability to validate digital signatures using ML-DSA and HashML-DSA, the
+						To test the TOE’s ability to validate digital signatures using ML-DSA, the
 						evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>Parameter set [ML-DSA-44, ML-DSA-65, ML-DSA-87]</h:li>
+						<h:li>Parameter set [ML-DSA-87]</h:li>
 						<h:li>Previously generated signed Message [8-65535] bytes</h:li>
 						<h:li><h:i>Mu</h:i> value (if generated externally)</h:li>
 						<h:li>Context (for external interface testing)</h:li>
-						<h:li>Hash algorithm (HashML-DSA only)</h:li>
 						<h:li>Previously generated Public key (<h:i>pk</h:i>)</h:li>
 						<h:li>Previously generated Signature</h:li></h:ul><h:p/>
-						The permitted hash algorithms for HashML-DSA testing are as follows:<h:ul>
-						<h:li>HashML-DSA-87 [SHA-512, SHA3-512, SHAKE256]</h:li>
-						<h:li>HashML-DSA-65, above plus [SHA-384, SHA3-384]</h:li>
-						<h:li>HashML-DSA-44, above plus [SHA-256, SHA-512/256, SHA3-256, SHAKE128]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
 						For each combination of supported parameter set and capabilities, the evaluator shall require the
-						implementation under test to validate 15 signatures. For HashML-DSA testing, each supported
-						and permitted hash or XOF need appear in only one of each group of 15 test cases.<h:p/>
+						implementation under test to validate 15 signatures.<h:p/>
 						For each group of 15 test cases, at least three tests must be modified in each of the following
 						manners:<h:ul>
 						<h:li>No modification. Signature is valid.</h:li>
@@ -7499,7 +7057,11 @@
 					conform to this PP. One or more of the public key schemes is chosen by
 					the ST Author to reflect what is implemented. The ST Author also ensures that
 					appropriate FCS requirements reflecting the algorithms used (and key
-					generation capabilities, if provided) are listed to support those methods. Applicable claims from the <xref to="pkg-x509"/> are made to support X.509 validation functionality,  most notably FIA_XCU_EXT.1 (mandatory requirement defining the TOE's use of certificates), FIA_X509_EXT.1 (X.509 certificate validation) and FIA_X509_EXT.2 (X.509 certificate authentication).<h:p/>
+					generation capabilities, if provided) are listed to support those methods. 
+					Applicable claims from the <xref to="pkg-x509"/> are made to support X.509 
+					validation functionality,  most notably FIA_XCU_EXT.1 (mandatory requirement
+					defining the TOE's use of certificates), FIA_X509_EXT.1 (X.509 certificate validation)
+					and FIA_X509_EXT.2 (X.509 certificate authentication).<h:p/>
                 	<!--
 					If “<h:i>pre-shared keys</h:i>” is selected, the selection-based requirement FIA_PSK_EXT.1
 					must be claimed. 
@@ -7996,7 +7558,8 @@
 				</note>
 				<aactivity level="element">
 					<TSS>The evaluator shall verify that the TSS identifies the DRBGs used by the TOE.</TSS>
-					<Guidance>If the DRBG functionality is configurable, the evaluator shall verify that the operational guidance includes instructions on how to configure this behavior.</Guidance>
+					<Guidance>If the DRBG functionality is configurable, the evaluator shall verify that the operational guidance
+					includes instructions on how to configure this behavior.</Guidance>
 					<Tests>
 						<h:p>
 							The evaluator shall perform the following tests:
@@ -8059,9 +7622,14 @@
 				</title>
 				<note role="application">
 					<h:p>
-						For the 
-						selection in this requirement, the ST author selects "TSF noise source" if
-						a single noise source is used as input to the DRBG. The ST author selects "multiple TSF noise sources" if a seed is formed from a combination of two or more noise sources within the TOE boundary. If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should be iterated for each DRBG. It multiple distinct noise sources exist such that each DRBG only uses one of them, then each iteration would select "TSF noise source"; "multiple TSF noise sources" is only selected if a single DRBG uses multiple noise sources for its seed. The ST author selects "TSF interface for seeding" if noise source data is generated outside the TOE boundary.
+						For the selection in this requirement, the ST author selects "TSF noise source" if
+						a single noise source is used as input to the DRBG. The ST author selects "multiple TSF noise 
+						sources" if a seed is formed from a combination of two or more noise sources within the TOE boundary. 
+						If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should
+						be iterated for each DRBG. It multiple distinct noise sources exist such that each DRBG only uses 
+						one of them, then each iteration would select "TSF noise source"; "multiple TSF noise sources" 
+						is only selected if a single DRBG uses multiple noise sources for its seed. The ST author selects 
+						"TSF interface for seeding" if noise source data is generated outside the TOE boundary.
 					</h:p>
 					<h:p>
 						If "TSF noise source" is selected, FCS_RBG.3 must be claimed.
@@ -8147,8 +7715,10 @@
 				</title>
 				<note role="application">
 					This requirement is claimed when a DRBG is seeded with entropy from one or more noise source that is outside the TOE
-					boundary. In the case of a general purpose computing platform this would likely only occur when the entropy source is a Dedicated Security Component that is integrated with the TOE. Typically the entropy produced by an environmental noise source is conditioned such that the input length has
-					full entropy and is therefore  usable as the seed. However, if this is not the case, it should be noted what the minimum
+					boundary. In the case of a general purpose computing platform this would likely only occur when the entropy source is a
+					Dedicated Security Component that is integrated with the TOE. Typically the entropy produced by an environmental noise
+					source is conditioned such that the input length has full entropy and is therefore  usable as the seed. However, if this
+					is not the case, it should be noted what the minimum
 					entropy rate of the noise source is so that the TSF can collect a sufficiently large sample of noise data to be
 					conditioned into a seed value.
 					<comment>From catalog</comment>
@@ -8359,8 +7929,6 @@
 			<dependencies><h:br/>FCS_CKM.6 Timing and Event of Cryptographic Key Destruction</dependencies>
 			<f-element id="fcs-stg-ext-1e1">
 				<title>
-					<comment>Look at replacing this SFR with FCS_CKM_EXT.3. At least look at moving it out of FCS 
-					since it really isnt cryptography.</comment>
 					The TSF shall provide 
 					<selectables>
 						<selectable>mutable hardware-based</selectable>
@@ -8386,7 +7954,7 @@
 					This SFR must be claimed if the TOE includes a Dedicated Security Component that provides 
 					storage services, such as a TPM.<h:p/>
 					If the protected storage is implemented in software that is protected as required by
-					FCS_STG_EXT.2, the ST Author is expected to select "<h:i>software-based</h:i>." 
+					FCS_STG_EXT.2<comment>FCS_CKM_EXT.3</comment>, the ST Author is expected to select "<h:i>software-based</h:i>." 
 					If "<h:i>software-based</h:i>" is selected,
 					the ST Author is expected to select "<h:i>software-based key storage</h:i>" in FCS_STG_EXT.2
 					and also claim FCS_STG_EXT.3.<h:p/>
@@ -8500,13 +8068,7 @@
 						<selectable>long-term trusted channel key material</selectable>
 						<selectable id="sel-stg2-sw-based">all software-based key storage</selectable>
 						<selectable exclusive="yes">no other keys</selectable>
-					</selectables></h:i>] using 
-					<selectables>
-						<selectable>AES-CCM</selectable>
-						<selectable>AES-GCM</selectable>
-						<selectable>AES-KW</selectable>
-						<selectable>AES-KWP</selectable>
-					</selectables>.
+					</selectables></h:i>] using Key Wrapping as defined in FCS_COP.1/KeyWrap.
 				</title>
 				<ext-comp-def-title><title>
 					The TSF shall encrypt <assignable>types of key material</assignable> using 
@@ -8553,7 +8115,7 @@
 								<selectable id="sel-stg3-aes-gcm">AES_GCM</selectable>
 								<selectable id="sel-stg3-aes-kw">AES_KW</selectable>
 								<selectable id="sel-stg3-aes-kwp">AES_KWP</selectable>
-							</selectables> mode in accordance with FCS_COP.1/SKC</selectable>
+							</selectables> mode in accordance with FCS_COP.1/KeyWrap</selectable>
 	<!--					<selectable id="sel-stg3-hash">A hash of the stored key in accordance with FCS_COP.1/Hash</selectable>  -->
 						<selectable id="sel-stg3-hmac">A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</selectable>
 						<selectable id="sel-stg3-digsig">A digital signature of the stored key in accordance with FCS_COP.1/SigGen
@@ -9310,262 +8872,6 @@
                 <audit-event-info>Provided user identity, origin of the attempt (e.g. console, remote IP address).</audit-event-info>
 			</audit-event> 
         </f-component>
-
-	
-        <!-- FIA_X509_EXT.1 -->
-        <!-- Depends on x509 certificates being used for administrator authentication -->
-		<!--
-        <f-component id="sfr-fia-x509-ext-1" cc-id="fia_x509_ext.1" name="X.509 Certificate Validation" status="sel-based">
-            <depends on-sel="sel-fia-uau-5-x509"/> 
-			<depends on-sel="sel-itc-certauth"/>
-			<depends on-sel="sel-itc-tls"/>
-			<depends on-sel="sel-itc-https"/>
-			<depends on-sel="sel-itc-ipsec"/>
-            <depends on-incl="sfr-fpt-tud-ext-2"/>
-			<consistency-rationale/>
-			<comp-lev>defines how the TSF must validate X.509 certificates that are presented to it.</comp-lev>
-			<management>The following actions could be considered for the management functions in FMT:
-				<h:ol type="a">
-					<h:li>Configuration of certificate revocation checking method.</h:li>
-				</h:ol>
-			</management>
-			<audit>The following actions should be auditable if FAU_GEN Security audit data
-				generation is included in the PP/ST:
-				<h:ol type="a">
-					<h:li>Failure to validate a certificate.</h:li>
-				</h:ol>
-			</audit>
-			<dependencies><h:br/>FCS_COP.1 Cryptographic Operation<h:br/>
-				FCS_RBG.1 Cryptographic Operation (Random Bit Generation)<h:br/>
-				FPT_STM.1 Reliable Time Stamps
-			</dependencies>
-            <f-element id="fia-x509-ext-1e1">
-                <title>The TSF shall validate certificates in accordance with the following rules:
-                    <h:ul>
-                        <h:li>RFC 5280 certificate validation and certificate path validation.</h:li>
-                        <h:li>The certificate path must terminate with a trusted certificate.</h:li>
-                        <h:li>The TOE shall validate a certificate path by ensuring the presence of the basicConstraints
-							extension, that the CA flag is set to TRUE for all CA certificates, and that any path
-							constraints are met.</h:li>
-						<h:li>The TSF shall validate that any CA certificate includes caSigning purpose in the key usage field.</h:li>
-						<h:li>The TSF shall validate revocation status of the certificate using 
-							<selectables>
-								<selectable>OCSP as specified in RFC 6960</selectable>
-								<selectable>a CRL as specified in RFC 8603</selectable>
-								<selectable>an OCSP TLS Status Request Extension (OCSP stapling) as specified in RFC 6066</selectable>
-								<selectable>OCSP TLS Multi-Certificate Status Request Extension (i.e., OCSP 
-									Multi-Stapling) as specified in RFC 6961</selectable>
-							</selectables>. </h:li>
-                        <h:li>The TSF shall validate the extendedKeyUsage field according to the following rules:
-							<h:ul>
-                                <h:li>Certificates used for trusted updates and executable code integrity verification shall 
-									have the Code Signing Purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the 
-									extendedKeyUsage field.</h:li>
-                                <h:li>Server certificates presented for TLS shall have the Server Authentication purpose
-									(id-kp 1 with OID 1.3.6.1.5.5.7.3.1) in the extendedKeyUsage field.</h:li>
-                                <h:li>Client certificates presented for TLS shall have the Client Authentication purpose
-									(id-kp 2 with OID 1.3.6.1.5.5.7.3.2) in the EKU field.</h:li>
-                                <h:li>OCSP certificates presented for OCSP responses shall have the OCSP Signing Purpose 
-									(id-kp 9 with OID 1.3.6.1.5.5.7.3.9) in the EKU field.</h:li>
-                            </h:ul>
-                        </h:li>
-                    </h:ul>
-                </title>
-                <note role="application"> This SFR must be included in the ST if "<h:i>certificate-based authentication of the remote peer</h:i>" is
-					selected in FTP_ITC_EXT.1.1 or if "<h:i>authentication based on X.509 certificates</h:i>"
-					is selected in FIA_UAU.5.1.<h:p/>
-                    FIA_X509_EXT.1.1 lists the rules for validating certificates. The ST Author should select whether revocation
-					status is verified using OCSP or CRLs. FIA_X509_EXT.2 requires that certificates are used for IPsec;
-					this use requires that the extendedKeyUsage rules are verified. Certificates may optionally be used 
-					for SSH, TLS, and HTTPS and, if implemented, must be validated to contain the corresponding 
-					extendedKeyUsage.<h:p/>
-                    OCSP stapling and OCSP multi-stapling support only TLS server certificate validation. If other certificate 
-					types are validated, either OCSP or CRL must be claimed. If OCSP is not supported the EKU provision 
-					for checking the OCSP Signing purpose is met by default.<h:p/>
-					Regardless of the selection of TSF or TOE platform, the validation must result in a trusted root
-					CA certificate in a root store managed by the platform.<h:p/>
-					OCSP responses are signed using either the certificate’s issuer’s CA certificate or an OCSP certificate
-					issued to an OCSP responder delegated by that issuer to sign OCSP responses. A compliant TOE is able to
-					validate OCSP responses in either case, but the OCSP signing extended key usage purpose is only required
-					to be checked in OCSP certificates.
-				</note>
-            </f-element>
-            <f-element id="fia-x509-ext-1e2">
-                <title>The TSF shall only treat a certificate as a CA certificate if the basicConstraints extension is present 
-					and the CA flag is set to TRUE.
-                </title>
-                <note role="application">This requirement applies to certificates that are used and processed by the TSF and
-					restricts the certificates that may be added as trusted CA certificates.</note>
-                <aactivity>
-                    <TSS>
-                        The evaluator shall ensure the TSS describes where the check of validity of the certificates takes place.
-						The evaluator ensures the TSS also provides a description of the certificate path validation algorithm.<h:p/>
-						The evaluator shall examine the TSS to confirm that it describes the behavior of the TOE when a 
-						connection cannot be established during the validity check of a certificate used in establishing 
-						a trusted channel. If the requirement that the administrator is able to specify the default
-						action, then the evaluator shall ensure that the operational guidance contains instructions on how 
-						this configuration action is performed.<h:p/>
-					</TSS>
-					<Guidance/>
-                    <Tests>
-                        The tests described must be performed in conjunction with the other Certificate Services evaluation 
-						activities, including the uses listed in FIA_X509_EXT.2.1. The tests for the extendedKeyUsage rules 
-						are performed in conjunction with the uses that require those rules.<h:p/>
-                        <testlist>
-                            <test>The evaluator shall demonstrate that validating a certificate without a valid certification
-								path results in the function failing, for each of the following reasons, in turn:
-								<h:ul>
-									<h:li>by establishing a certificate path in which one of the issuing certificates is not a CA certificate,</h:li>
-									<h:li>by omitting the basicConstraints field in one of the issuing certificates,</h:li>
-									<h:li>by setting the basicConstraints field in an issuing certificate to have CA=False,</h:li>
-									<h:li>by omitting the CA signing bit of the key usage field in an issuing certificate, and</h:li>
-									<h:li>by setting the path length field of a valid CA field to a value strictly less than the certificate path.</h:li>
-								</h:ul>
-								The evaluator shall then establish a valid certificate path consisting of valid CA certificates, and demonstrate that the function
-								succeeds. The evaluator shall then remove trust in one of the CA certificates, and show that the function fails.
-							</test>
-                            <test>The evaluator shall demonstrate that validating an expired certificate results in the
-									function failing.</test>
-                            <test>The evaluator shall test that the TOE can properly handle revoked certificates – conditional
-								on whether CRL, OCSP, OCSP stapling, or OCSP multi-stapling is selected; if multiple
-								methods are selected, then a test is performed for each method. The evaluator has to 
-								only test one up in the trust chain (future revisions may require to ensure the validation
-								is done up the entire chain). The evaluator shall ensure that a valid certificate is used,
-								and that the validation function succeeds. The evaluator shall then attempt the test with
-								a certificate that will be revoked (for each method chosen in the selection) and verify
-								that the validation function fails.</test>
-							<test>[conditional] If any OCSP option is selected, the evaluator shall present a delegated OCSP certificate 
-								that does not have the OCSP signing purpose
-								and verify that validation of the OCSP response fails. If CRL is selected, the evaluator
-								shall configure the CA to sign a CRL with a certificate that does not have the cRLsign key 
-								usage bit set and verify that validation of the CRL fails.</test>
-                            <test>[conditional] If the TOE supports EC certificates as indicated in FCS_COP.1/SigVer, then the evaluator
-								shall establish a valid, trusted certificate chain consisting of an EC leaf certificate, 
-								an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate
-								designated as a trusted anchor, where the elliptic curve parameters are specified as a
-								named curve. The evaluator shall confirm that the TOE validates the certificate chain.</test>
-							<test>[conditional] If the TOE supports EC certificates as indicated in FCS_COP.1/SigVer, then the 
-								evaluator shall replace the intermediate certificate in the certificate chain for Test 5 with a modified 
-								certificate, where the modified intermediate CA has a public key information field where
-								the EC parameters uses an explicit format version of the Elliptic Curve parameters in the
-								public key information field of the intermediate CA certificate from Test 5, and the
-								modified Intermediate CA certificate is signed by the trusted EC root CA, but having no
-								other changes. The evaluator shall confirm the TOE treats the certificate as invalid.
-							</test>	
-                        </testlist>
-                    </Tests>
-                </aactivity>
-            </f-element>
-			<audit-event>
-				<audit-event-descr>Failure to validate a certificate.</audit-event-descr>
-                <audit-event-info>Reason for failure.</audit-event-info>
-			</audit-event>
-        </f-component>
--->
-        <!-- FIA_X509_EXT.2 -->
-        <!-- Depends on digital signatures being used for trusted updates or administrator authentication -->
-		<!--
-        <f-component id="sfr-fia-x509-ext-2" cc-id="fia_x509_ext.2" name="X.509 Certificate Authentication"  status="sel-based">
-			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  
-
-            <depends on-sel="sel-fia-uau-5-x509" /> 
-			<depends on-sel="sel-itc-certauth"/>
-			<consistency-rationale/>
-			<comp-lev>requires the TSF to identify the functions for which it uses X.509 
-				certificates for authentication</comp-lev>
-			<management>The following actions could be considered for the management functions in FMT:
-				<h:ol type="a">
-					<h:li>Configuration of TSF behavior when certificate revocation status
-						cannot be determined.</h:li>
-				</h:ol>
-			</management>
-			<audit/>
-			<dependencies><h:br/>FIA_X509_EXT.1 X.509 Certificate Validation</dependencies>
-            <f-element id="fia-x509-ext-2e1">
-                <title>The TSF shall use X.509v3 certificates as defined by RFC 5280 to support authentication for
-                    <selectables>
-                        <selectable id="sel-x509-2-ipsec">IPsec</selectable>
-                        <selectable id="sel-x509-2-tls">TLS</selectable>
-                        <selectable id="sel-x509-2-https">HTTPS</selectable>
-                        <selectable id="sel-x509-2-ssh">SSH</selectable>
-                        <selectable id="sel-x5092-signed-updates">code signing for system software updates</selectable>
-                        <selectable><assignable>other uses</assignable></selectable>
-                    </selectables>
-                </title>
-				<ext-comp-def-title>
-					<title>The TSF shall use X.509v3 certificates as defined by RFC 5280 to support authentication for 
-						<assignable>secure transport protocols</assignable>, and <assignable>other uses</assignable>.
-					</title>
-				</ext-comp-def-title>
-                <note role="application">This SFR must be included in the ST if "<h:i>certificate-based authentication of the remote peer</h:i>" is
-			selected in FTP_ITC_EXT.1, or if "<h:i>authentication based on X.509 certificates</h:i>"
-					is selected in FIA_UAU.5.1.<h:p/>
-					This SFR must also be included if FIA_X509_EXT.1 is claimed.<h:p/>
-					If "<h:i>HTTPS</h:i>" is selected, then FCS_HTTPS_EXT.1 must be claimed.<h:p/>
-					If "<h:i>IPsec</h:i>" is selected, then FCS_IPSEC_EXT.1 must be claimed.<h:p/>
-					If "<h:i>TLS</h:i>" is selected, then the Functional Package for Transport Layer Security must also be claimed.<h:p/>
-					If "<h:i>SSH</h:i>" is selected, then the Functional Package for Secure Shell (SSH) must also be claimed.
-			    </note>
-			</f-element>
-            <f-element id="fia-x509-ext-2e2">
-                <title>When the TSF cannot establish a connection to determine the validity of a certificate, the TSF shall
-                    <selectables onlyone="yes">
-                        <selectable id="sel-x509-adminset">allow the administrator to choose whether to accept the certificate in these cases</selectable>
-                        <selectable>accept the certificate</selectable>
-                        <selectable>not accept the certificate</selectable>
-                    </selectables>.
-                </title>
-				<ext-comp-def-title>
-					<title>When the TSF cannot establish a connection to determine the validity of a certificate, the TSF shall <assignable>action to take</assignable>.
-					</title>
-				</ext-comp-def-title>
-                <note role="application">
-					Often a connection must be established to check the revocation status of a 
-					certificate - either to download a CRL or to perform a lookup using OCSP. The selection is used to 
-					describe the behavior in the event that such a connection cannot be established (for example, due to 
-					a network error). If the TOE has determined the certificate valid according to all other rules in 
-					FIA_X509_EXT.1, the behavior indicated in the selection determines validity. The TOE must
-					not accept the certificate if it fails any of the other validation rules in FIA_X509_EXT.1. If the 
-					administrator-configured option is selected by the ST Author, the ST Author must ensure that this is
-					also defined as a management function that is provided by the TOE.
-				</note>
-                <aactivity>
-                    <TSS>
-                        The evaluator shall check the TSS to ensure that it describes how the 
-                        TOE chooses which certificates to use, and any necessary instructions in the
-                        administrative guidance for configuring the operating environment so that the TOE 
-                        can use the certificates.<h:p/>
-                        The evaluator shall examine the TSS to confirm that it describes the behavior of the
-                        TOE when a connection cannot be established during the validity check of a
-                        certificate used in establishing a trusted channel. If the requirement that the administrator is able
-                        to specify the default action, then the evaluator shall ensure that the operational guidance contains
-                        instructions on how this configuration action is performed.<h:p/>
-                    </TSS>
-					<Guidance/>
-                    <Tests>
-                        The evaluator shall perform Test 1 for each function listed in FIA_X509_EXT.2.1 that requires the
-						use of certificates:<h:p/>
-                        <testlist>
-                            <test>The evaluator shall demonstrate that using a certificate without a valid certification path
-								results in the function failing. Using the administrative guidance, the evaluator shall 
-								then load a certificate or certificates needed to validate the certificate to be used in
-								the function, and demonstrate that the function succeeds. The evaluator then shall delete
-								one of the certificates, and show that the function fails.</test>
-                            <test>The evaluator shall demonstrate that using a valid certificate that requires certificate 
-								validation checking to be performed in at least some part by communicating with a non-TOE
-								IT entity. The evaluator shall then manipulate the environment so that the TOE is unable
-								to verify the validity of the certificate, and observe that the action selected in
-								FIA_X509_EXT.2.2 is performed. If the selected action is administrator-configurable, then
-								the evaluator shall follow the operational guidance to determine that all supported
-								administrator-configurable options behave in their documented manner.<h:p/></test>
-                        </testlist>
-                    </Tests>
-                </aactivity>
-            </f-element>
-			<audit-event />
-        </f-component>
-		-->
-		
 		
 	</section>   <!-- FIA -->
 	    
@@ -9626,8 +8932,78 @@
 			<audit-event/>
         </f-component>
 	      
+		  
+		<!-- FMT_LIM.1: Limited Capabilities -->
+		<f-component id="sfr-fmt-lim-1" cc-id="fmt_lim.1" name="Limited Capabilities">
+			<f-element id="fmt-lim-1e1">
+				<title>The TSF shall limit its capabilities so that in conjunction with “Limited availability
+					(FMT_LIM.2)” the following policy is enforced [<h:i>Deploying test and debug features
+					after TOE delivery does not allow user data of the TOE to be disclosed or
+					manipulated, TSF data to be disclosed or manipulated, firmware to be
+					reconstructed such that information about construction of TSF may enable other
+					attacks.</h:i>] 
+				</title>
+				<note role="application">
+					The GPCP may implement debug and test functions to
+					support debug and testing after production. The TOE shall prevent abuse
+					of such functionality after the production test phase. The protection can be
+					achieved either by limiting the capability of the implemented functions or
+					by limiting their availability. Limited capability prevents misuse or
+					compromise of TSF data or user data, or the characterization of security
+					functions and security services, even if the function can be activated, while
+					limited availability prevents access to the functionality after testing. In most
+					cases, both types of limitations are implemented to ensure the required
+					protection.
+				</note>
+				<aactivity>
+					<TSS>
+						The evaluator shall examine the TSS to determine that it identifies all the accessible test
+						and debug ports and interfaces of the TOE and affirms that they do not allow user data
+						of the TOE to be disclosed or manipulated, TSF data to be disclosed or manipulated,
+						firmware to be reconstructed such that information about construction of TSF may
+						enable other attacks. The evaluator shall search publicly documented materials to verify
+						the completeness of the information.
+					</TSS>
+					<Guidance>
+						There are no additional Guidance evaluation activities for this component.
+					</Guidance>
+					<Tests>
+						The evaluator shall attempt to utilize test and debug access and verify that it does not
+						allow user data of the TOE to be disclosed or manipulated, TSF data to be disclosed or
+						manipulated, or firmware to be reconstructed such that information about the
+						construction of TSF may enable other attacks.<h:p/>
+						<testlist>
+							For JTAG interfaces, the evaluator shall perform the following tests:
+							<test>The evaluator shall attempt to access the debug port without authenticating as 
+								an Administrator. The attempt should fail.</test>
+							<test>The evaluator shall authenticate as an Administrator and then attempt to access the
+								debug port. The attempt should succeed.</test>
+						</testlist>
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+
+		<!-- FMT_LIM.2: Limited Availability -->
+		<f-component id="sfr-fmt-lim-2" cc-id="fmt_lim.1" name="Limited Availability">
+			<f-element id="fmt-lim-2e1">
+				<title>The TSF shall be designed in a manner that limits its availability so that in
+				conjunction with “Limited capabilities (FMT_LIM.1)” the following policy is
+				enforced [Deploying test and debug features after TOE Delivery does not allow
+				user data of the TOE to be disclosed or manipulated, TSF data to be disclosed or
+				manipulated, firmware to be reconstructed and no substantial information about
+				construction of TSF to be gathered which may enable other attacks.</h:i>] 
+				</title>
+				<aactivity>
+					<no-tests>Evaluation activities for FMT_LIM.2 are encompassed within those for FMT_LIM.2.</no-tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+		  
 	
-	<!-- FMT_MOF.1: Management of Security Function Behavior -->
+		<!-- FMT_MOF.1: Management of Security Function Behavior -->
        <f-component id="sfr-fmt-mof-1" cc-id="fmt_mof.1" name="Management of Security Functions Behavior">
 			<f-element id="fmt-mof-1e1">
 				<title>The TSF shall restrict the ability to [<h:i>determine the behaviour of</h:i>]
@@ -9829,7 +9205,9 @@
 							<O ref="A"/>
 							<X ref="U"/>
                             <app-note>
-                            	This function must be claimed if FIA_X509_EXT.2 is claimed in the ST (i.e., the TOE claims conformance to <xref to="pkg-x509"/>. and the claims made in the SFR indicate that the administrator is allowed to configure how the TSF treats a certificate with undetermined revocation status.
+                            	This function must be claimed if FIA_X509_EXT.2 is claimed in the ST (i.e., the TOE claims conformance
+								to <xref to="pkg-x509"/>. and the claims made in the SFR indicate that the administrator is allowed to
+								configure how the TSF treats a certificate with undetermined revocation status.
 							</app-note>
 						</management-function>
 
@@ -10037,7 +9415,8 @@
 				<title>
 					The TSF shall preserve a secure state when the following types of failures occur: [<h:i>DRBG self-test failure</h:i>].              
 				</title>
-				<note role="application">The intent of this requirement is to ensure that cryptographic services requiring random bit generation cannot be performed if a failure of a self-test defined in FPT_TST.1 occurs.</note>
+				<note role="application">The intent of this requirement is to ensure that cryptographic services requiring random bit
+				generation cannot be performed if a failure of a self-test defined in FPT_TST.1 occurs.</note>
 				<aactivity>              
 					<TSS>
 						The evaluator shall verify that the TSF describes how the TOE enters an error state in the event of a DRBG 
@@ -10101,8 +9480,6 @@
 			</f-element>
 			<audit-event/>
 		</f-component>
-
-
 
 
 		<!-- FPT_JTA_EXT.2 JTAG/Debug Port Disablement -->
@@ -10224,7 +9601,8 @@
 					This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
 					<h:li>Server-Class Platform, Enhanced</h:li>
 					<h:li>CSfC EUD</h:li></h:ol>
-					FPT_PHP.2 is hierarchical to FPT_PHP.1 which means that all requirements of FPT_PHP.1 are also included as part of FPT_PHP.2. A TOE that conforms to FPT_PHP.2 therefore does not claim FPT_PHP.1. 
+					FPT_PHP.2 is hierarchical to FPT_PHP.1 which means that all requirements of FPT_PHP.1 are
+					also included as part of FPT_PHP.2. A TOE that conforms to FPT_PHP.2 therefore does not claim FPT_PHP.1. 
 				</note>
 			<aactivity>
 				<TSS>
@@ -10788,30 +10166,40 @@
 			
 			<f-element id="fel-tsf-ver-int-data">
 				<title>
-					The TSF shall provide authorized users with the capability to verify the integrity of [<h:i>[DRBG seed/output data]</h:i>].
+					The TSF shall provide authorized users with the capability to verify the integrity 
+					of [<h:i>[DRBG seed/output data]</h:i>].
 				</title>
 			</f-element>
 			
 			<f-element id="fel-tsf-ver-int">
 				<title>
-					The TSF shall provide authorized users with the capability to verify the integrity of [<h:i>[TSF DRBG specified in FCS_RBG.1]</h:i>].
+					The TSF shall provide authorized users with the capability to verify the integrity 
+					of [<h:i>[TSF DRBG specified in FCS_RBG.1]</h:i>].
 				</title>
-				<note role="application">This SFR is a required dependency of FCS_RBG.1. It is intended to require that any DRBG implemented by the TOE undergo health testing to ensure that the random bit generation functionality has not been degraded. If the TSF supports multiple DRBGs, this SFR should be iterated to describe the self-test behavior for each.</note>
+				<note role="application">This SFR is a required dependency of FCS_RBG.1. It is intended to require that
+					any DRBG implemented by the TOE undergo health testing to ensure that the random bit generation
+					functionality has not been degraded. If the TSF supports multiple DRBGs, this SFR should be iterated
+					to describe the self-test behavior for each.</note>
 				<aactivity>
 					<TSS>
-						The	evaluator shall examine the TSS to ensure that it details the self-tests that are run by the TSF along with how they are run. This description should include an outline of what the tests are actually doing. The evaluator shall ensure that the TSS makes an argument that the tests are sufficient to demonstrate that the DRBG is operating correctly.
+						The	evaluator shall examine the TSS to ensure that it details the self-tests that are run by the 
+						TSF along with how they are run. This description should include an outline of what the tests are
+						actually doing. The evaluator shall ensure that the TSS makes an argument that the tests are
+						sufficient to demonstrate that the DRBG is operating correctly.
 						<h:p/>
 						Note that this information may also be placed in the entropy documentation specified
 						by <xref to="entropyappendix"/>. 
 					</TSS>
 					<Guidance>
-						If a self-test can be executed at the request of an authorized user, the evaluator shall verify that the 
-						operational guidance provides instructions on how to execute that self-test.
+						If a self-test can be executed at the request of an authorized user, the evaluator shall verify 
+						that the operational guidance provides instructions on how to execute that self-test.
 					</Guidance>
 					<Tests>
-						For each self-test, the evaluator shall verify that evidence is produced that the self-test is executed when specified by FPT_TST.1.1.
-						<h:p/>
-						If a self-test can be executed at the request of an authorized user, the evaluator shall verify that following the steps documented in the operational guidance to perform the self-test will result in execution of the self-test.
+						For each self-test, the evaluator shall verify that evidence is produced that the self-test is 
+						executed when specified by FPT_TST.1.1.<h:p/>
+						If a self-test can be executed at the request of an authorized user, the evaluator shall verify 
+						that following the steps documented in the operational guidance to perform the self-test will
+						result in execution of the self-test.
 					</Tests>
 				</aactivity>
 			</f-element>   
@@ -10839,8 +10227,8 @@
 				<title>The TSF shall implement
 					<selectables linebreak="yes">
 						<selectable id="sel-tud1-no-update" exclusive="yes">no mechanism for platform firmware update</selectable> 
-						<selectable id="sel-tud1-auth-update">an authenticated platform firmware update mechanism as described in
-							FPT_TUD_EXT.2</selectable>
+						<selectable id="sel-tud1-auth-update">an authenticated platform firmware update mechanism as 
+							described in FPT_TUD_EXT.2</selectable>
 						<selectable id="sel-tud1-unauth-update">a delayed-authentication platform firmware update mechanism as described in
 							FPT_TUD_EXT.3</selectable>					
 						<selectable id="sel-tud1-local-update">a secure local platform firmware update mechanism
@@ -11458,7 +10846,12 @@
 					If the ST Author selects "<h:i>certificate-based authentication of the remote peer</h:i>," then the TOE must conform to <xref to="pkg-x509"/>.<h:p/>
 					Claims from this package are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
 					<h:p/>	
-					If the TSF implements a protocol that requires the validation of a certificate presented by an external entity, FIA_X509_EXT.1 and FIA_X509_EXT.2 will be claimed. FIA_TSM_EXT.1 may also be claimed if the TSF implements its own trust store. If the TSF implements a protocol that requires the presentation of any certificates to an external entity, FIA_XCU_EXT.2 will be claimed. FIA_X509_EXT.3 will also be claimed, along with any applicable dependencies, depending on how the certificates presented by the TOE are obtained.
+					If the TSF implements a protocol that requires the validation of a certificate presented by an
+					external entity, FIA_X509_EXT.1 and FIA_X509_EXT.2 will be claimed. FIA_TSM_EXT.1 may also be 
+					claimed if the TSF implements its own trust store. If the TSF implements a protocol that requires
+					the presentation of any certificates to an external entity, FIA_XCU_EXT.2 will be claimed. FIA_X509_EXT.3 
+					will also be claimed, along with any applicable dependencies, depending on how the certificates presented 
+					by the TOE are obtained.
 					<h:p/>	
 					"<h:i>No authentication of the remote peer</h:i>" should be selected only if the TOE is acting 
 					as a server in a non-mutual authentication configuration.<h:p/>.
