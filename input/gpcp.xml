@@ -24,9 +24,9 @@
 	            long to reboot.
 				
 	Call of 8 May 2025:
-		- remove IoT use case
+		- DONE: remove IoT use case
 		- DONE: remove FCS_CKM_EXT.3 
-		- minimum password length 14
+		- DONE: minimum password length 14
 		- JTAG requirement, access via s/w vs. physical access / protections
 		- password as critical authentication mechanism, check ND and MDF
 		- More CNSA
@@ -45,7 +45,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-05-08</PPPubDate>
+			<PPPubDate>2025-05-13</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -518,20 +518,6 @@
 					<ref-id>sfr-fau-stg-5</ref-id>
 				</config>
 			</usecase>
-			<usecase title="IoT Devices" id="uc-iot-device">
-				<description>
-					IoT devices are field-located devices without human interfaces when in normal 
-					operation. In order to qualify for evaluation under this PP, the device must meet 
-					the basic criteria for a general-purpose platform, and not meet the requirements
-					for a mobile device or network device.
-				</description>
-				<config>
-					<ref-id>sfr-fpt-php-1</ref-id> 
-					<ref-id>sfr-fpt-jta-ext-2</ref-id>				
-<!--					<ref-id>t-physical</ref-id>				-->
-<!--					<not><ref-id>a-physical-protection</ref-id></not>				-->
-				</config>
-			</usecase>
 		</usecases>
     </sec:Use_Cases>
 	
@@ -609,8 +595,7 @@
 						<h:li>Server-Class Platform, Enhanced</h:li>
 						<h:li>Portable Clients (laptops, tablets), Enhanced</h:li>
 						<h:li>CSfC EUD</h:li>
-						<h:li>Tactical EUD</h:li>
-						<h:li>IoT Devices</h:li></h:ul>
+						<h:li>Tactical EUD</h:li></h:ul>
 				</description>
 				<addressed-by>FPT_JTA_EXT.1</addressed-by><rationale>Mitigates threat by restricting access to debug ports to authorized Administrators or physical presence.</rationale>
 				<addressed-by>FPT_ROT_EXT.3 (objective)</addressed-by><rationale>Mitigates threat by ensuring integrity of physical components and responding to integrity failures.</rationale>
@@ -762,8 +747,7 @@
 						<h:li>Server-Class Platform, Enhanced</h:li>
 						<h:li>Portable Clients (laptops, tablets), Enhanced</h:li>
 						<h:li>CSfC EUD</h:li>
-						<h:li>Tactical EUD</h:li>
-						<h:li>IoT Devices</h:li></h:ul>
+						<h:li>Tactical EUD</h:li></h:ul>
 					</description>
 				<objective-refer ref="OE.PHYSICAL_PROTECTION">
 					<rationale> The operational environment objective OE.PHYSICAL_PROTECTION is realized through
@@ -1237,6 +1221,8 @@
 			name="Cryptographic Key Generation - Asymmetric Key" status="sel-based">
 			<depends on-sel="sel-fcs-stg-ext-1e2-ak"/>  <!-- from FCS_STG_EXT.1 -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  	<!-- FCS_IPSEC_EXT.1 -->
+			<depends on-sel="sel-itc-tls"/>    <!-- TLS -->
+			<depends on-sel="sel-itc-https"/>  <!-- TLS/HTTPS -->
 			<depends><optional/></depends>		<!-- May also be optionally added -->
 			<f-element id="fcs-ckm-1e1-akg">
 				<title>
@@ -1406,101 +1392,6 @@
 								 NIST SP 800-208 [parameters]
 							</col>
 						</selectable>
-						
-						<!-- HSS -->
-						<selectable id="sel-fcs-ckm-ak-hss">
-							<col>HSS</col>
-							<col>HSS</col>
-							<col>Private key size = <selectables>
-								<selectable>192 bits with <selectables>
-									<selectable>SHA-256/192</selectable>
-									<selectable>SHAKE256/192</selectable>
-								</selectables></selectable>
-								<selectable>256 bits with <selectables>
-									<selectable>SHA-256</selectable>
-									<selectable>SHAKE256</selectable>
-								</selectables></selectable>
-								</selectables><h:p/>
-								Winternitz parameter = <selectables>
-									<selectable>1</selectable>
-									<selectable>2</selectable>
-									<selectable>4</selectable>
-									<selectable>8</selectable></selectables><h:p/>
-								Tree height = <selectables>
-									<selectable>5</selectable>
-									<selectable>10</selectable>
-									<selectable>15</selectable>
-									<selectable>20</selectable>
-									<selectable>25</selectable></selectables><h:p/>
-								Number of levels = <selectables>
-									<selectable>1</selectable>
-									<selectable>2</selectable>
-									<selectable>3</selectable>
-									<selectable>4</selectable>
-									<selectable>5</selectable>
-									<selectable>6</selectable>
-									<selectable>7</selectable>
-									<selectable>8</selectable></selectables>
-							</col>
-							<col>RFC 8554 [HSS]<h:p/>
-								 NIST SP 800-208 [parameters]
-							</col>
-						</selectable>
-						
-						<!-- XMSS -->
-						<selectable id="sel-fcs-ckm-ak-xmss">
-							<col>XMSS</col>
-							<col>XMSS</col>
-							<col>Private key size = <selectables>
-								<selectable>192 bits with <selectables>
-									<selectable>SHA-256/192</selectable>
-									<selectable>SHAKE256/192</selectable>
-								</selectables></selectable>
-								<selectable>256 bits with <selectables>
-									<selectable>SHA-256</selectable>
-									<selectable>SHAKE256</selectable>
-								</selectables></selectable>
-								</selectables><h:p/>
-								Tree height = <selectables>
-									<selectable>10</selectable>
-									<selectable>16</selectable>
-									<selectable>20</selectable>
-								</selectables>
-							</col>
-							<col>RFC 8391 [XMSS]<h:p/>
-								 NIST SP 800-208 [parameters]
-							</col>
-						</selectable>
-
-						<!-- XMSS(TM) -->
-						<selectable id="sel-fcs-ckm-ak-xmssmt">
-							<col>XMSS(MT)</col>
-							<col>XMSS(MT)</col>
-							<col>Private key size = <selectables>
-								<selectable>192 bits with <selectables>
-									<selectable>SHA-256/192</selectable>
-									<selectable>SHAKE256/192</selectable>
-								</selectables></selectable>
-								<selectable>256 bits with <selectables>
-									<selectable>SHA-256</selectable>
-									<selectable>SHAKE256</selectable>
-								</selectables></selectable>
-								</selectables><h:p/>
-								(Total Tree height, Number of Levels) = <selectables>
-									<selectable>(20, 2)</selectable>
-									<selectable>(20, 4)</selectable>
-									<selectable>(40, 2)</selectable>
-									<selectable>(40, 4)</selectable>
-									<selectable>(40, 8)</selectable>
-									<selectable>(60, 3)</selectable>
-									<selectable>(60, 6)</selectable>
-									<selectable>(60, 12)</selectable>
-								</selectables>
-							</col>
-							<col>RFC 8391 [XMSS(MT)]<h:p/>
-								 NIST SP 800-208 [parameters]
-							</col>
-						</selectable>
 
 						<!-- ML-KEM Key Generation -->
 						<selectable id="sel-fcs-ckm-ak-mlkem">
@@ -1551,14 +1442,10 @@
 					in FCS_COP.1/SigGen, then “EdDSA” must be claimed here.  The chosen domain
 					parameters determine the size of the private keys and the public keys.<h:p/>
 
-					For LMS, HSS, XMSS, and XMSS<h:sup>MT</h:sup>, the key sizes do not represent the expected 
+					For LMS, the key sizes do not represent the expected 
 					security strength.  All key sizes given here correspond to an expected security 
-					strength of 128 bits, per NIST SP 800-208.<h:p/>
-
-					For HSS and XMSS<h:sup>MT</h:sup> the same hash or XOF function must be used at each level.  
-					Within each level, the same Winternitz parameter must be used but can be 
-					different for each level.  For HSS, within each level, the same tree height 
-					must be used but can be different for each level.
+					strength of 128 bits, per NIST SP 800-208. Also, SHA-256/192 is the 
+					preferred hash algorithm when feasible in accordance with CNSA 2.0.<h:p/>
 				</note>
 				<aactivity>
 					<TSS>
@@ -1796,7 +1683,7 @@
 						key validation (PKV) function of the TOE and shall confirm that the results 
 						correspond as expected for the modified and unmodified values.<h:p/>
 
-						<h:br/><h:b>Key Generation using LMS and HSS</h:b><h:p/>
+						<h:br/><h:b>LMS Key Generation</h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
@@ -1815,24 +1702,12 @@
 								<h:td valign="top">RFC 8554 [LMS]<h:p/>
 									NIST SP 800-208 [parameters]</h:td>
 							</h:tr>
-							<h:tr>
-								<h:td valign="top">HSS</h:td>
-								<h:td valign="top">HSS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b> 192 bits
-									with [<h:b>selection:</h:b> SHA-256/192, SHAKE256/192], 256 bits with
-									[<h:b>selection:</h:b> SHA-256, SHAKE256]], Winternitz parameter = 
-									[<h:b>selection:</h:b> 1, 2, 4, 8], and tree height = [<h:b>selection:</h:b>
-									5, 10, 15, 20, 25], ], and number of levels = [selection: 1, 2, 3, 4, 5, 6, 7, 8]</h:td>
-								<h:td valign="top">RFC 8554 [HSS]<h:p/>
-									NIST SP 800-208 [parameters]</h:td>
-							</h:tr>
 						</h:table><h:p/>						
-						To test the TOE’s ability to generate asymmetric cryptographic keys using LMS or HSS, the evaluator
+						To test the TOE’s ability to generate asymmetric cryptographic keys using LMS, the evaluator
 						shall perform the LMS Key Generation Test using the following input parameters:<h:ul>
 						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
 						<h:li>Winternitz [1, 2, 4, 8]</h:li>
-						<h:li>Tree height [5, 10, 15, 20, 25]</h:li>
-						<h:li>Number of levels [1, 2, 3, 4, 5, 6, 7, 8] (HSS only)</h:li></h:ul><h:p/>
+						<h:li>Tree height [5, 10, 15, 20, 25]</h:li></h:ul><h:p/>
 
 						<h:br/><h:i><h:b>LMS Key Generation Test</h:b></h:i><h:br/>
 						For each supported combination of the hash algorithm, Winternitz parameter, 
@@ -1873,134 +1748,6 @@
 						The evaluator shall verify the correctness of the TSF’s implementation by
 						comparing the public key generated by the TSF with that generated by a known
 						good implementation using the same input parameters.<h:p/>
-						
-						<h:br/><h:i><h:b>HSS Key Generation Test</h:b></h:i><h:br/>
-						For each supported hash algorithm generate an HSS hierarchy of LMS trees and public
-						certificates. You may use eight of the LMS trees generated in LMS Key Generation, or generate
-						eight new LMS trees using the supported parameters.<h:p/>
-						For level one, choose an LMS tree at random. For each supported level 2 through 8 in each
-						hierarchy choose another LMS tree from the set. The Winternitz parameters and LMS tree
-						heights do not have to match.<h:p/>
-						Create a certificate by randomly selecting a private key from the LMS tree at level <h:i>n</h:i>-1 and
-						generate a certificate for the LMS public key at level <h:i>n</h:i>.<h:p/>
-						The evaluator shall verify the correctness of the TSF’s implementation by comparing the
-						certificates generated by the TSF with those generated by a known good implementation using
-						the same input parameters.<h:p/>
-
-						<h:br/><h:b>XMSS Key Generation</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptographic Key Generation Algorithm</h:td>
-								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">XMSS</h:td>
-								<h:td valign="top">XMSS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b> 192 bits
-									with [<h:b>selection:</h:b> SHA-256/192, SHAKE256/192], 256 bits 
-									with [<h:b>selection:</h:b> SHA-256, SHAKE256]], tree height = 
-									[<h:b>selection:</h:b> 10, 16, 20]</h:td>
-								<h:td valign="top">RFC 8391 [XMSS]<h:p/>
-									NIST SP 800-208 [parameters]</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">XMSS<h:sup>MT</h:sup></h:td>
-								<h:td valign="top">XMSS<h:sup>MT</h:sup></h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b> 192 bits
-									with [<h:b>selection:</h:b> SHA-256/192, SHAKE256/192], 256 bits 
-									with [<h:b>selection:</h:b> SHA-256, SHAKE256]], (total tree height, 
-									number of levels) = [<h:b>selection:</h:b> (20, 2), (20, 4), (40, 2),
-									(40, 4), (40, 8), (60, 3), (60, 6), (60, 12)]</h:td>
-								<h:td valign="top">RFC 8391 [XMSS<h:sup>MT</h:sup>]<h:p/>
-									NIST SP 800-208 [parameters]</h:td>
-							</h:tr>
-						</h:table><h:p/>
-						To test the TOE’s ability to generate asymmetric cryptographic keys using 
-						XMSS or XMSS<h:sup>MT</h:sup>, the evaluator shall perform the XMSS Key 
-						Generation Test using the following input parameters:<h:ul>
-						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
-						<h:li>Tree height [10, 16, 20] (XMSS only)</h:li>
-						<h:li>Tree height/levels [20/2, 20/4, 40/2, 40/4, 40/8, 60/3, 60/6, 60/12] (XMSS<h:sup>MT</h:sup> only)</h:li></h:ul><h:p/>
-
-						<h:b><h:div style="text-align: center;">
-							<ctr ctr-type="Table" pre="Table " id="xmss-akg-test-cases">: Number of Test Cases for XMSS and XMSS<h:sup>MT</h:sup></ctr>
-						</h:div></h:b>
-						<h:table border="1" style="width:50%">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Height</h:td>
-								<h:td valign="top">Number of test cases</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">10</h:td>
-								<h:td valign="top">5</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">16</h:td>
-								<h:td valign="top">4</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">20</h:td>
-								<h:td valign="top">3</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">40</h:td>
-								<h:td valign="top">2</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">60</h:td>
-								<h:td valign="top">1</h:td>
-							</h:tr>
-						</h:table><h:p/>						
-
-						<h:br/><h:i><h:b>XMSS Key Generation Test</h:b></h:i><h:br/>
-						For each supported combination of hash algorithm and tree height, the evaluator 
-						shall generate one public key for each test case. The number of test cases
-						depends on the tree height as specified in <xref to="xmss-test-cases"/>.<h:p/>
-
-						The evaluator shall verify the correctness of the TSF’s implementation by comparing 
-						values generated by the TSF with those generated by a known good implementation using 
-						the same input parameters.<h:p/>
-						
-						<h:br/><h:i><h:b>XMSS<h:sup>MT</h:sup> Key Generation Test</h:b></h:i><h:br/>
-						For each supported combination of hash algorithm and tree height, the evaluator 
-						shall generate one public key for each test case. The number of test cases
-						depends on the tree height as specified in <xref to="xmss-test-cases"/>.<h:p/>
-
-						The evaluator shall verify the correctness of the TSF’s implementation by 
-						comparing values generated by the TSF with those generated by a known good 
-						implementation using the same input parameters.<h:p/>
-						
-						Note: The number of test cases is limited due to the extreme amount of time it can
-						take to generate XMSS trees.<h:p/>
-						
-						<h:br/><h:b>ML-KEM Key Generation</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptographic Key Generation Algorithm</h:td>
-								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ML-KEM</h:td>
-								<h:td valign="top">ML-KEM Key Generation</h:td>
-								<h:td valign="top">Parameter set = ML-KEM-1024</h:td>
-								<h:td valign="top">NIST FIPS PUB 203 (Section 7.1)</h:td>
-							</h:tr>
-						</h:table><h:p/>						
-							To test the TOE’s ability to generate asymmetric cryptographic keys using ML-KEM,
-							the evaluator shall perform the Algorithm Functional Test using the following 
-							input parameters:<h:ul>
-							<h:li>Parameter set [ML-KEM-1024]</h:li>
-							<h:li>Random seed d [32 bytes]</h:li>
-							<h:li>Random seed z [32 bytes]</h:li></h:ul><h:p/>
-							<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
-							For each supported parameter set the evaluator shall require the implementation under test to
-							generate 25 key pairs using 25 different randomly generated pairs of 32-byte seed values (<h:i>d, z</h:i>).
-							To determine correctness, the evaluator shall compare the resulting key pairs (<h:i>ek, dk</h:i>) with those
-							generated using a known-good implementation using the same inputs.<h:p/>
 
 						<h:br/><h:b>ML-DSA Key Generation</h:b><h:p/>
 						<h:table border="1">
@@ -2117,8 +1864,8 @@
 			<f-element id="fcs-ckm-2e1">
 				<title>The TSF shall distribute cryptographic keys in accordance with a specified cryptographic 
 					key distribution method <selectables>
-						<selectable>key encapsulation</selectable>
-						<selectable>key wrapping</selectable>
+						<selectable id="sel-ckm-2-encap">key encapsulation</selectable>
+						<selectable id="sel-ckm-2-wrap">key wrapping</selectable>
 						<selectable>encrypted channels</selectable>
 					</selectables> that meets the following: [none].
 				</title>
@@ -2995,10 +2742,6 @@
 
 		<!-- FCS_CKM_EXT.7 Cryptographic Key Agreement -->
 		<f-component id="sfr-fcs-ckm-ext-7" cc-id="fcs_ckm_ext.7" name="Cryptographic Key Agreement" status="sel-based">
-			<depends on-sel="sel-fcs-ckm-2-rsa"/>  		<!-- FCS_CKM.2 -->
-			<depends on-sel="sel-fcs-ckm-2-rsaaes"/> 	<!-- FCS_CKM.2 -->
-			<depends on-sel="sel-fcs-ckm-2-ecc"/>  		<!-- FCS_CKM.2 -->
-			<depends on-sel="sel-fcs-ckm-2-ecies"/>  	<!-- FCS_CKM.2 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 
 			<consistency-rationale/>
@@ -3361,7 +3104,8 @@
 					NIST recommends a minimum “number of iterations” of 1000 but prefers the largest number feasible
 					given performance constraints.<h:p/>
 					NIST recommends that the randomly generated portion of the salt have length of at least 128 bits 
-					and must be derived from a Random Bit Generation.  Therefore FCS_OTV_EXT.1 must be claimed.
+					and must be derived from a Random Bit Generation.  Therefore FCS_OTV_EXT.1 must be claimed.<h:p/>
+					For CNSA 2.0 compliance, only SHA-384 or SHA-512 may be used.
 				</note>
 				<aactivity>
 					<TSS>TBD<comment>Extract words from catalog appendix about mitigations.</comment></TSS>
@@ -4181,7 +3925,9 @@
 
 
 		<!-- FCS_COP.1/KeyEncap Cryptographic Operation - Key Encapsulation -->
-		<f-component id="sfr-fcs-cop-1-keyencap" cc-id="fcs_cop.1" iteration="KeyEncap" name="Cryptographic Operation - Key Encapsulation">
+		<f-component id="sfr-fcs-cop-1-keyencap" cc-id="fcs_cop.1" iteration="KeyEncap" 
+				name="Cryptographic Operation - Key Encapsulation" status="sel-based">
+			<depends on-sel="sel-ckm-2-encap"/>
 			<f-element id="fcs-cop-1e1-keyencap">
 				<title> The TSF shall perform [key encapsulation] in accordance with a specified cryptographic algorithm 
 					<selectables>
@@ -4400,7 +4146,9 @@
 
 
 		<!-- FCS_COP.1/KeyWrap Cryptographic Operation - Key Wrapping -->
-		<f-component id="sfr-fcs-cop-1-kw" cc-id="fcs_cop.1" iteration="KeyWrap" name="Cryptographic Operation - Key Wrapping">
+		<f-component id="sfr-fcs-cop-1-kw" cc-id="fcs_cop.1" iteration="KeyWrap" 
+			name="Cryptographic Operation - Key Wrapping" status="sel-based">
+			<depends on-sel="sel-ckm-2-wrap"/>
 			<f-element id="fcs-cop-1e1-kw">
 				<title>
 					The TSF shall perform [key wrapping] in accordance with a specified cryptographic algorithm 
@@ -4722,72 +4470,6 @@
 								 NIST SP 800-208 [parameters]
 							</col>
 						</selectable>
-						
-						<!-- HSS -->
-						<selectable id="sel-fcs-cop-siggen-hss">
-							<col>HSS</col>
-							<col>Multitree version of LMS</col>
-							<col>Private key size = <selectables>
-								<selectable>192 bits with <selectables>
-									<selectable>SHA-256/192</selectable>
-									<selectable>SHAKE256/192</selectable>
-								</selectables></selectable>
-								<selectable>256 bits with <selectables>
-									<selectable>SHA-256</selectable>
-									<selectable>SHAKE256</selectable>
-								</selectables></selectable>
-								</selectables><h:p/>
-								Winternitz parameter = <selectables>
-									<selectable>1</selectable>
-									<selectable>2</selectable>
-									<selectable>4</selectable>
-									<selectable>8</selectable></selectables><h:p/>
-								Tree height = <selectables>
-									<selectable>5</selectable>
-									<selectable>10</selectable>
-									<selectable>15</selectable>
-									<selectable>20</selectable>
-									<selectable>25</selectable></selectables><h:p/>
-								Number of levels = <selectables>
-									<selectable>1</selectable>
-									<selectable>2</selectable>
-									<selectable>3</selectable>
-									<selectable>4</selectable>
-									<selectable>5</selectable>
-									<selectable>6</selectable>
-									<selectable>7</selectable>
-									<selectable>8</selectable></selectables>
-							</col>
-							<col>RFC 8554 [HSS]<h:p/>
-								 NIST SP 800-208 [parameters]
-							</col>
-						</selectable>
-						
-						<!-- XMSS -->
-						<selectable id="sel-fcs-cop-siggen-xmss">
-							<col>XMSS</col>
-							<col>XMSS</col>
-							<col>Private key size = <selectables>
-								<selectable>192 bits with <selectables>
-									<selectable>SHA-256/192</selectable>
-									<selectable>SHAKE256/192</selectable>
-								</selectables></selectable>
-								<selectable>256 bits with <selectables>
-									<selectable>SHA-256</selectable>
-									<selectable>SHAKE256</selectable>
-								</selectables></selectable>
-								</selectables><h:p/>
-								Tree height = <selectables>
-									<selectable>10</selectable>
-									<selectable>16</selectable>
-									<selectable>20</selectable>
-								</selectables>
-							</col>
-							<col>RFC 8391 [XMSS]<h:p/>
-								 NIST SP 800-208 [parameters]
-							</col>
-						</selectable>
-
 
 						<!-- ML-DSA Signature Generation -->
 						<selectable id="sel-fcs-cop-siggen-mldsa">
@@ -4806,8 +4488,12 @@
 					Specifically, this SFR must be included if "<h:i>A digital signature of the stored key in accordance with FCS_COP.1/SigGen
 					using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</h:i>" is selected in FCS_STG_EXT.3.<h:p/>
 					If this SFR is included in the ST, then FCS_COP.1/Hash and FCS_RBG.1 must also be claimed.<h:p/>
-					<comment>From catalog</comment>The dependency on FCS_OTV_EXT.1 is needed only for signature schemes that require random
-					bits, such as ECDSA, LMS, HSS, XMSS, XMSS<h:sup>MT</h:sup>, and ML-DSA. 
+					For LMS, the key sizes do not represent the expected 
+					security strength.  All key sizes given here correspond to an expected security 
+					strength of 128 bits, per NIST SP 800-208. Also, SHA-256/192 is the 
+					preferred hash algorithm when feasible in accordance with CNSA 2.0.<h:p/>
+					The dependency on FCS_OTV_EXT.1 is needed only for signature schemes that require random
+					bits, such as ECDSA, LMS, and ML-DSA. 
 				</note>
 				<aactivity>
 					<TSS>TBD</TSS>
@@ -4952,8 +4638,8 @@
 						distinct signatures for each message. How many of these? Do we compare signed bit flip
 						message with signed original message to make sure different?<h:p/>
 
-						<!-- LMS and HSS Signature Generation  -->
-						<h:br/><h:b>LMS and HSS Signature Generation </h:b><h:p/>
+						<!-- LMS Signature Generation  -->
+						<h:br/><h:b>LMS Signature Generation </h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
@@ -4972,111 +4658,18 @@
 								<h:td valign="top">RFC 8554 [LMS]<h:p/>
 										NIST SP 800-208 [parameters] </h:td>
 							</h:tr>
-							<h:tr>
-								<h:td valign="top">HSS</h:td>
-								<h:td valign="top">Multitree version of LMS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
-									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
-									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
-									Winternitz parameter = [<h:b>selection:</h:b> 1, 2, 4, 8], 
-									tree height = [<h:b>selection:</h:b> 5, 10, 15, 20, 25] 
-									and number of levels [<h:b>selection:</h:b> 1, 2, 3, 4, 5, 6, 7, 8]</h:td>
-								<h:td valign="top">RFC 8554 [HSS]<h:p/>
-										NIST SP 800-208 [parameters]</h:td>
-							</h:tr>
 						</h:table><h:p/>	
-						To test the TOE’s ability to generate cryptographic digital signature using LMS or HSS, the
+						To test the TOE’s ability to generate cryptographic digital signature using LMS, the
 						evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>
 						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
 						<h:li>Winterlitz [1, 2, 4, 8]</h:li>
-						<h:li>Tree height [5, 10, 15, 20, 25]</h:li>
-						<h:li>Number of levels [1, 2, 3, 4, 5, 6, 7, 8] (HSS only)</h:li></h:ul><h:p/>
+						<h:li>Tree height [5, 10, 15, 20, 25]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall generate 10
 						signatures. The evaluator shall verify the correctness of the implementation by comparing values
 						generated by the TOE with those generated by a known good implementation using the same
 						input parameters.<h:p/>
-						For HSS, use the hierarchy created during the key generation using LMS trees. Level 1 testing is
-						equivalent to an LMS test. At each supported level 2 through 8, generate 4 HSS signatures for
-						each LMS tree found at that level. The evaluator shall verify the correctness of the
-						implementation by comparing values generated by the TOE with those generated by a known
-						good implementation using the same input parameters.<h:p/>
 
-
-						<!-- XMSS and XMSSMT Signature Generation  -->
-						<h:br/><h:b>XMSS and XMSS<h:sup>MT</h:sup> Signature Generation</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
-								<h:td valign="top">Cryptographic Key Sizes</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">XMSS</h:td>
-								<h:td valign="top">XMSS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
-									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
-									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
-									and tree height = [<h:b>selection:</h:b> 10, 16, 20] </h:td>
-								<h:td valign="top">RFC 8391 [XMSS] <h:p/>
-										NIST SP 800-208 [parameters]</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">XMSS<h:sup>MT</h:sup></h:td>
-								<h:td valign="top">Multitree version of XMSS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
-									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
-									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
-									(total tree height, number of levels) = [<h:b>selection:</h:b>
-										(20, 2), (20, 4), (40, 2), (40, 4),
-										(40, 8), (60, 3), (60, 6), (60, 12)] </h:td>
-								<h:td valign="top">RFC 8391 [XMSS<h:sup>MT</h:sup>] <h:p/>
-										NIST SP 800-208 [parameters]</h:td>
-							</h:tr>
-						</h:table><h:p/>	
-						To test the TOE’s ability to generate digital signatures using XMSS or XMSS<h:sup>MT</h:sup> , the evaluator
-						shall perform the XMSS Key Generation Test using the following input parameters:<h:ul>
-						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
-						<h:li>Tree height [10, 16, 20] (XMSS only)</h:li>
-						<h:li>Tree height/levels [20/2, 20/4, 40/2, 40/4, 40/8, 60/3, 60/6, 60/12] (XMSS<h:sup>MT</h:sup> only)</h:li></h:ul><h:p/>
-						<h:br/><h:b>XMSS Key Generation Test</h:b><h:p/>
-						For each supported combination of the above parameters, the evaluator shall generate the
-						following number of keys depending on the tree height:<h:p/>
-						<h:b><h:div style="text-align: center;">
-						<ctr ctr-type="Table" pre="Table " id="xmss-siggen-test-cases">: Number of Test Cases for XMSS and XMSS<h:sup>MT</h:sup></ctr>
-						</h:div></h:b>
-						<h:table border="1" style="width:50%">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Height</h:td>
-								<h:td valign="top">Number of test cases</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">10</h:td>
-								<h:td valign="top">5</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">16</h:td>
-								<h:td valign="top">4</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">20</h:td>
-								<h:td valign="top">3</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">40</h:td>
-								<h:td valign="top">2</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">60</h:td>
-								<h:td valign="top">1</h:td>
-							</h:tr>
-						</h:table><h:p/>										
-						Note: The number of test cases is limited due to the extreme amount of time it can take to
-						generate XMSS trees.<h:p/>
-						The evaluator shall verify the correctness of the TSF’s implementation by comparing values
-						generated by the TSF with those generated by a known good implementation using the same
-						input parameters.<h:p/>
 						
 						<!-- ML-DSA Signature Gneration  -->
 						<h:br/><h:b>ML-DSA Signature Gneration</h:b><h:p/>
@@ -5467,101 +5060,6 @@
 							</col>
 						</selectable>
 						
-						<!-- HSS -->
-						<selectable id="sel-fcs-cop-sigver-hss">
-							<col>HSS</col>
-							<col>Multitree version of LMS</col>
-							<col>Private key size = <selectables>
-								<selectable>192 bits with <selectables>
-									<selectable>SHA-256/192</selectable>
-									<selectable>SHAKE256/192</selectable>
-								</selectables></selectable>
-								<selectable>256 bits with <selectables>
-									<selectable>SHA-256</selectable>
-									<selectable>SHAKE256</selectable>
-								</selectables></selectable>
-								</selectables><h:p/>
-								Winternitz parameter = <selectables>
-									<selectable>1</selectable>
-									<selectable>2</selectable>
-									<selectable>4</selectable>
-									<selectable>8</selectable></selectables><h:p/>
-								Tree height = <selectables>
-									<selectable>5</selectable>
-									<selectable>10</selectable>
-									<selectable>15</selectable>
-									<selectable>20</selectable>
-									<selectable>25</selectable></selectables><h:p/>
-								Number of levels = <selectables>
-									<selectable>1</selectable>
-									<selectable>2</selectable>
-									<selectable>3</selectable>
-									<selectable>4</selectable>
-									<selectable>5</selectable>
-									<selectable>6</selectable>
-									<selectable>7</selectable>
-									<selectable>8</selectable></selectables>
-							</col>
-							<col>RFC 8554 [HSS]<h:p/>
-								 NIST SP 800-208 [parameters]
-							</col>
-						</selectable>
-						
-						<!-- XMSS -->
-						<selectable id="sel-fcs-cop-sigver-xmss">
-							<col>XMSS</col>
-							<col>XMSS</col>
-							<col>Private key size = <selectables>
-								<selectable>192 bits with <selectables>
-									<selectable>SHA-256/192</selectable>
-									<selectable>SHAKE256/192</selectable>
-								</selectables></selectable>
-								<selectable>256 bits with <selectables>
-									<selectable>SHA-256</selectable>
-									<selectable>SHAKE256</selectable>
-								</selectables></selectable>
-								</selectables><h:p/>
-								Tree height = <selectables>
-									<selectable>10</selectable>
-									<selectable>16</selectable>
-									<selectable>20</selectable>
-								</selectables>
-							</col>
-							<col>RFC 8391 [XMSS]<h:p/>
-								 NIST SP 800-208 [parameters]
-							</col>
-						</selectable>
-
-						<!-- XMSS(TM) -->
-						<selectable id="sel-fcs-cop-sigver-xmssmt">
-							<col>XMSS(MT)</col>
-							<col>Multitree version of XMSS</col>
-							<col>Private key size = <selectables>
-								<selectable>192 bits with <selectables>
-									<selectable>SHA-256/192</selectable>
-									<selectable>SHAKE256/192</selectable>
-								</selectables></selectable>
-								<selectable>256 bits with <selectables>
-									<selectable>SHA-256</selectable>
-									<selectable>SHAKE256</selectable>
-								</selectables></selectable>
-								</selectables><h:p/>
-								(Total Tree height, Number of Levels) = <selectables>
-									<selectable>(20, 2)</selectable>
-									<selectable>(20, 4)</selectable>
-									<selectable>(40, 2)</selectable>
-									<selectable>(40, 4)</selectable>
-									<selectable>(40, 8)</selectable>
-									<selectable>(60, 3)</selectable>
-									<selectable>(60, 6)</selectable>
-									<selectable>(60, 12)</selectable>
-								</selectables>
-							</col>
-							<col>RFC 8391 [XMSS(MT)]<h:p/>
-								 NIST SP 800-208 [parameters]
-							</col>
-						</selectable>
-						
 						<!-- ML-DSA Signature Verification -->
 						<selectable id="sel-fcs-cop-sigver-mldsa">
 							<col>ML-DSA</col>
@@ -5759,8 +5257,8 @@
 						must be modified so that the verification fails. [How many? How modified?] ?] The TOE must
 						correctly verify the unmodified signatures and fail to verify the modified signatures.<h:p/>
 
-						<!-- LMS and HSS Signature Verification  -->
-						<h:br/><h:b>LMS and HSS Signature Verification </h:b><h:p/>
+						<!-- LMS signature Verification  -->
+						<h:br/><h:b>LMS Signature Verification </h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
@@ -5779,25 +5277,12 @@
 								<h:td valign="top">RFC 8554 [LMS]<h:p/>
 										NIST SP 800-208 [parameters] </h:td>
 							</h:tr>
-							<h:tr>
-								<h:td valign="top">HSS</h:td>
-								<h:td valign="top">Multitree version of LMS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
-									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
-									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
-									Winternitz parameter = [<h:b>selection:</h:b> 1, 2, 4, 8], 
-									tree height = [<h:b>selection:</h:b> 5, 10, 15, 20, 25] 
-									and number of levels [<h:b>selection:</h:b> 1, 2, 3, 4, 5, 6, 7, 8]</h:td>
-								<h:td valign="top">RFC 8554 [HSS]<h:p/>
-										NIST SP 800-208 [parameters]</h:td>
-							</h:tr>
 						</h:table><h:p/>	
-						To test the TOE’s ability to verify cryptographic digital signature using LMS or HSS, the
+						To test the TOE’s ability to verify cryptographic digital signature using LMS, the
 						evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>					
 						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
 						<h:li>Winterlitz [1, 2, 4, 8]</h:li>
-						<h:li>Tree height [5, 10, 15, 20, 25]</h:li>
-						<h:li>Number of levels [1, 2, 3, 4, 5, 6, 7, 8] (HSS only)</h:li></h:ul><h:p/>
+						<h:li>Tree height [5, 10, 15, 20, 25]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall generate 4 test cases
 						consisting of signed messages and keys, such that<h:ul>
@@ -5807,92 +5292,6 @@
 						<h:li>For one test case modify the signature header so that it is a valid header for a different
 								LMS parameter set.</h:li></h:ul><h:p/>
 						The TOE must correctly verify the unmodified test case and fail to verify the modified test cases.<h:p/>
-						For HSS, use the hierarchy and signatures generated previously in the tests for
-						FCS_COP.1/SigGen. For each hash algorithm, for each level, and for each LMS tree at that
-						level, generate up to 11 test cases, such that:<h:ul>
-						<h:li>One test case is unmodified (i.e. correct)</h:li>
-						<h:li>For one test case modify the message, i.e. the message is different</h:li>
-						<h:li>For one test case modify the signature, i.e. signature is different</h:li>
-						<h:li>For each HSS hierarchy level generate one test case by modifying the signature header
-							such that the certificate at that level is valid for a different LMS parameter set.</h:li></h:ul><h:p/>
-						The evaluator shall verify that the signature verification fails for these test cases except for the
-						unmodified case.<h:p/>
-
-						<!-- XMSS and XMSSMT Signature Verification  -->
-						<h:br/><h:b>XMSS and XMSS<h:sup>MT</h:sup> Signature Verification</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
-								<h:td valign="top">Cryptographic Key Sizes</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">XMSS</h:td>
-								<h:td valign="top">XMSS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
-									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
-									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
-									and tree height = [<h:b>selection:</h:b> 10, 16, 20] </h:td>
-								<h:td valign="top">RFC 8391 [XMSS] <h:p/>
-										NIST SP 800-208 [parameters]</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">XMSS<h:sup>MT</h:sup></h:td>
-								<h:td valign="top">Multitree version of XMSS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
-									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
-									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
-									(total tree height, number of levels) = [<h:b>selection:</h:b>
-										(20, 2), (20, 4), (40, 2), (40, 4),
-										(40, 8), (60, 3), (60, 6), (60, 12)] </h:td>
-								<h:td valign="top">RFC 8391 [XMSS<h:sup>MT</h:sup>] <h:p/>
-										NIST SP 800-208 [parameters]</h:td>
-							</h:tr>
-						</h:table><h:p/>	
-						To test the TOE’s ability to verify digital cryptographic digital signatures using XMSS or
-						XMSS MT , the evaluator shall perform the XMSS Key Generation Test using the following input
-						parameters:<h:ul>
-						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
-						<h:li>Tree height [10, 16, 20] (XMSS only)</h:li>
-						<h:li>Tree height/levels [20/2, 20/4, 40/2, 40/4, 40/8, 60/3, 60/6, 60/12] (XMSS<h:sup>MT</h:sup> only)</h:li></h:ul><h:p/>
-						<h:br/><h:b>XMSS Key Generation Test</h:b><h:p/>
-						For each supported combination of the above parameters, the evaluator shall generate the
-						following number of keys depending on the tree height:<h:p/>
-						<h:b><h:div style="text-align: center;">
-						<ctr ctr-type="Table" pre="Table " id="xmss-siggen-test-cases">: Number of Test Cases for XMSS and XMSS<h:sup>MT</h:sup></ctr>
-						</h:div></h:b>
-						<h:table border="1" style="width:50%">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Height</h:td>
-								<h:td valign="top">Number of test cases</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">10</h:td>
-								<h:td valign="top">5</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">16</h:td>
-								<h:td valign="top">4</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">20</h:td>
-								<h:td valign="top">3</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">40</h:td>
-								<h:td valign="top">2</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">60</h:td>
-								<h:td valign="top">1</h:td>
-							</h:tr>
-						</h:table><h:p/>										
-						Note: The number of test cases is limited due to the extreme amount of time it can take to
-						generate XMSS trees.<h:p/>
-						The evaluator shall verify the correctness of the TSF’s implementation by comparing values
-						generated by the TSF with those generated by a known good implementation using the same
-						input parameters.<h:p/>
 						
 						<!-- ML-DSA Signature Verification  -->
 						<h:br/><h:b>ML-DSA Signature Verification</h:b><h:p/>
@@ -9434,7 +8833,6 @@
 			<depends on-use="uc-client-portable-enhanced"/>
 			<depends on-use="uc-csfc-eud"/>
 			<depends on-use="uc-tactical-eud"/>
-			<depends on-use="uc-iot-device"/>
 			<consistency-rationale/>
 				<comp-lev>requires that debug ports be disabled.</comp-lev>
 				<management/>
@@ -9477,7 +8875,6 @@
 		<!-- FPT_PHP.1: Passive Detection of Physical Attack.  -->
 		<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="sel-based">
 			<depends on-use="uc-client-portable-enhanced"/>
-			<depends on-use="uc-iot-device"/>
 <!-- TRRT 1560			<depends on-use="uc-csfc-eud"/>    -->
 			<depends><objective/></depends>    <!-- TRRT 1560 -->
 			<f-element id="fpt-php-1e1">
@@ -9492,8 +8889,7 @@
 				</title>
 				<note role="application">
 					This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
-					<h:li>Portable Clients (laptops, tablets), Enhanced</h:li>
-					<h:li>IoT Devices</h:li></h:ol>
+					<h:li>Portable Clients (laptops, tablets), Enhanced</h:li></h:ol>
 					CSfC EUDs also require detection of physical attack, but in this case FPT_PHP.2 is required instead.
 				</note>
 				<aactivity>
@@ -11879,7 +11275,7 @@
 			<h:tr>
 				<h:td valign="top">Product Type</h:td>
 				<h:td valign="top">Different</h:td>
-				<h:td valign="top">Products in different product classes are not equivalent. Servers, EUDs, and IoT devices are not equivalent.</h:td>
+				<h:td valign="top">Products in different product classes are not equivalent. Servers and EUDs are not equivalent.</h:td>
 			</h:tr>
 			<h:tr>
 				<h:td valign="top">Product Vendors</h:td>
