@@ -29,6 +29,9 @@
 		- DONE: minimum password length 14
 		- JTAG requirement, access via s/w vs. physical access / protections
 		- password as critical authentication mechanism, check ND and MDF
+		-    MDF requires password and allows biometrics
+		-    NDcPP does not have a concept of critical authentication mechanisms as such,
+			but they seem to treat password as one.
 		- More CNSA
 				
 -->
@@ -45,7 +48,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-05-13</PPPubDate>
+			<PPPubDate>2025-05-15</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -472,7 +475,9 @@
 					<!--Although -->CSfC requires that users maintain physical control of EUDs at all times.
 					This use case <!--removes the assumption that the TOE is protected by the OE and 
 					-->adds requirements for audit and for protection of debug ports
-					<!-- and basic tamper detection and reporting-->.
+					<!-- and basic tamper detection and reporting-->.<h:p/>
+					The CSfC Use Case requires that End User Devices prohibit the use of removable
+					media either through configuration, policy, or physical modification.
 				</description>
 				<config>
 <!--	TRRT 1560				<ref-id>sfr-fpt-php-1</ref-id> -->
@@ -486,6 +491,7 @@
 					<ref-id>sfr-fcs-stg-ext-1</ref-id>
 					<ref-id>sfr-fpt-tud-ext-1</ref-id>
 					<ref-id>sfr-fcs-rbg-6</ref-id>
+<!--					<not><ref-id>sel-fau-stg-1e1-removable</ref-id></not>  -->
 <!--					<not><ref-id>sel-tud1-no-update</ref-id></not>  -->
 <!--					<or><ref-id>sel-tud1-auth-update</ref-id>
 						<ref-id>sel-tud1-unauth-update</ref-id>
@@ -664,8 +670,8 @@
 				<addressed-by>FDP_TEE_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by establishing a trusted execution environment for tenant software to use.</rationale>
 				<addressed-by>FCS_CKM.1/AKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect stored data.</rationale>
 				<addressed-by>FCS_CKM.1/SKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect stored data.</rationale>
-				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key destruction to prevent the disclosure of keys used to protect stored data.</rationale>
 				<addressed-by>FCS_CKM.5 (sel-based)</addressed-by><rationale>Mitigates threat by utilizing strong algorithms to derive keys that protect stored data.</rationale>
+				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key destruction to prevent the disclosure of keys used to protect stored data.</rationale>
 				<addressed-by>FCS_COP.1/Hash (sel-based)</addressed-by><rationale>Mitigates threat by implementing hash functions used for trusted communications.</rationale>
 				<addressed-by>FCS_COP.1/KeyedHash (sel-based)</addressed-by><rationale>Mitigates threat by implementing MAC functions used for trusted communications.</rationale>
 				<addressed-by>FCS_COP.1/SigGen (sel-based)</addressed-by><rationale>Mitigates threat by implementing signature generation functions used for protected storage.</rationale>
@@ -690,9 +696,9 @@
 				<addressed-by>FCS_CKM.1/SKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect data in transit.</rationale>
 				<addressed-by>FCS_CKM.2 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key establishment to negotiate trusted channels to protect data in transit.</rationale>
 				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key destruction to prevent the compromise of trusted channels.</rationale>
+				<addressed-by>FCS_CKM_EXT.7 (sel-based)</addressed-by><rationale>Mitigates threat by implementing MAC functions used for trusted communications.</rationale>
 				<addressed-by>FCS_COP.1/Hash (sel-based)</addressed-by><rationale>Mitigates threat by implementing hash functions used for trusted communications.</rationale>
 				<addressed-by>FCS_COP.1/KAT (sel-based)</addressed-by><rationale>Mitigates threat by implementing key agreement and transport functions used for trusted communications.</rationale>
-				<addressed-by>FCS_COP.1/KeyedHash (sel-based)</addressed-by><rationale>Mitigates threat by implementing MAC functions used for trusted communications.</rationale>
 				<addressed-by>FCS_COP.1/SigGen (sel-based)</addressed-by><rationale>Mitigates threat by implementing signature generation functions used for trusted communications.</rationale>
 				<addressed-by>FCS_COP.1/SigVer (sel-based)</addressed-by><rationale>Mitigates threat by implementing signature verification functions used for trusted communications.</rationale>
 				<addressed-by>FCS_COP.1/SKC (sel-based)</addressed-by><rationale>Mitigates threat by implementing symmetric encryption functions used for trusted communications.</rationale>
@@ -1042,14 +1048,15 @@
 					<title>The TSF shall be able to <h:mark>store</h:mark> generated audit data on the <selectables>
 						<selectable><h:mark>TOE itself</h:mark></selectable>
 						<selectable>transmit the generated audit data to an external IT entity using a trusted channel according to FTP_ITC_EXT.1</selectable>
-						<selectable>[removable media]</selectable></selectables>  
+						<selectable id="sel-fau-stg-1e1-removable">[removable media]</selectable></selectables>  
 					</title>
 					<note role="application">
 						The ST Author must select "<h:i>trusted channel</h:i>" and include FTP_ITC_EXT.1 in the ST if the TOE offloads
 						audit data to external IT entity over a network connection. Protocols used for implementing the trusted
 						channel must be selected in FTP_ITC_EXT.1. <h:p/>
 						The ST Author must select "<h:i>removable media</h:i>" if the TOE supports offload of audit data using 
-						removable media such as thumb drives or disks.
+						removable media such as thumb drives or disks. Note that the CSfC Use Case prohibits the
+						use of removable media.
 					</note>
 					<aactivity level="element">
 						<TSS>
@@ -3153,11 +3160,6 @@
 			<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
 			<depends on-incl="sfr-fcs-stg-ext-2"/>	
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
-			<depends on-sel="sel-fcs-cop-kat-ecies"/>
-			<depends on-sel="sel-stg3-aes-ccm"/>  <!-- implies sel-fcs-cop-skc-aes-ccm -->
-			<depends on-sel="sel-stg3-aes-gcm"/>  <!-- implies sel-fcs-cop-skc-aes-gcm -->
-			<depends on-sel="sel-stg3-aes-kw"/>  <!-- implies sel-fcs-cop-skc-aes-kw -->
-			<depends on-sel="sel-stg3-aes-kwp"/>  <!-- implies sel-fcs-cop-skc-aes-kwp -->
 			<depends on-sel="sel-fdp-itc-ext-1e2-sk"/>  <!-- from FDP_ITC_EXT.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-aead">
@@ -3471,7 +3473,6 @@
 			<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG.1.1 -->
 			<depends on-sel="sel-tud2-hash"/>  <!-- FPT_TUD_EXT.2.1 -->
 <!--			<depends on-sel="sel-fcs-cop-kat-ecies"/>  --> <!-- FCS_COP.1.1/KAT -->
-			<depends on-sel="sel-fcs-ckm-5-kdf-hash"/> <!-- FCS_CKM.5.1 -->
 			<depends on-sel="sel-fdp-itc-ext-1e2-hash"/>  <!-- from FDP_ITC_EXT.1 -->
 			<depends on-incl="sfr-fcs-cop-1-keyedhash"/>   <!-- FCS_COP.1/KeyedHash -->
 			<depends on-incl="sfr-fcs-cop-1-sigver"/>    <!-- FCS_COP.1/SigVer -->
@@ -3635,11 +3636,8 @@
 		<!-- FCS_COP.1/KeyedHash Cryptographic Operation - Keyed Hash -->
 		<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation - Keyed Hash" status="sel-based">
 			<depends on-sel="sel-rbg-hmac"/>  		<!-- FCS_RBG.1.1 -->
-			<depends on-sel="sel-fcs-cop-kat-ecies"/>	<!-- FCS_COP.1.1/KAT -->	
 			<depends on-sel="sel-fdp-itc-ext-1e2-mac"/>  <!-- from FDP_ITC_EXT.1 -->		
 			<depends on-sel="sel-stg3-hmac"/>		<!-- FCS_STG_EXT.3.1 -->
-			<depends on-sel="sel-fcs-ckm-5-kdf-mac"/>   <!-- FCS_CKM.5.1 -->
-			<depends on-sel="sel-fcs-ckm-5-kdf-pb"/>    <!-- FCS_CKM.5.1 -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-keyedhash">
@@ -4149,6 +4147,7 @@
 		<f-component id="sfr-fcs-cop-1-kw" cc-id="fcs_cop.1" iteration="KeyWrap" 
 			name="Cryptographic Operation - Key Wrapping" status="sel-based">
 			<depends on-sel="sel-ckm-2-wrap"/>
+			<depends on-sel="sel-stg3-kw"/>
 			<f-element id="fcs-cop-1e1-kw">
 				<title>
 					The TSF shall perform [key wrapping] in accordance with a specified cryptographic algorithm 
@@ -5345,11 +5344,6 @@
 			<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
 			<depends on-incl="sfr-fcs-stg-ext-2"/>	
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
-			<depends on-sel="sel-fcs-cop-kat-ecies"/>
-			<depends on-sel="sel-stg3-aes-ccm"/>  <!-- implies sel-fcs-cop-skc-aes-ccm -->
-			<depends on-sel="sel-stg3-aes-gcm"/>  <!-- implies sel-fcs-cop-skc-aes-gcm -->
-			<depends on-sel="sel-stg3-aes-kw"/>  <!-- implies sel-fcs-cop-skc-aes-kw -->
-			<depends on-sel="sel-stg3-aes-kwp"/>  <!-- implies sel-fcs-cop-skc-aes-kwp -->
 			<depends on-sel="sel-fdp-itc-ext-1e2-sk"/>  <!-- from FDP_ITC_EXT.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-skc">
@@ -6812,9 +6806,6 @@
 		<!-- FCS_RBG.1 Random Bit Generation -->
 		<!-- CC:2022 replacement for FCS_RBG_EXT.1 -->
 		<f-component cc-id="fcs_rbg.1" name="Random Bit Generation (RBG)" status="sel-based">
-			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>  <!-- FCS_CKM.5.1 -->
-			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>  <!-- FCS_CKM.5.1 -->
-			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM.5.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
 			<depends on-incl="sfr-fcs-otv-ext-1"/>  <!-- FCS_OTV_EXT.1 -->
@@ -7453,13 +7444,7 @@
 						<selectable exclusive="yes">no other keys</selectable>
 					</selectables></h:i>] by using 
 					<selectables linebreak="yes">
-						<selectable>Symmetric encryption in 
-							<selectables>
-								<selectable id="sel-stg3-aes-ccm">AES_CCM</selectable>
-								<selectable id="sel-stg3-aes-gcm">AES_GCM</selectable>
-								<selectable id="sel-stg3-aes-kw">AES_KW</selectable>
-								<selectable id="sel-stg3-aes-kwp">AES_KWP</selectable>
-							</selectables> mode in accordance with FCS_COP.1/KeyWrap</selectable>
+						<selectable id="sel-stg3-kw">Key wrapping accordance with FCS_COP.1/KeyWrap</selectable>
 	<!--					<selectable id="sel-stg3-hash">A hash of the stored key in accordance with FCS_COP.1/Hash</selectable>  -->
 						<selectable id="sel-stg3-hmac">A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</selectable>
 						<selectable id="sel-stg3-digsig">A digital signature of the stored key in accordance with FCS_COP.1/SigGen
@@ -10747,8 +10732,7 @@
 					 </Guidance>--> 
 					</aactivity> 
 				</a-element>  
-			</a-component>
-			
+			</a-component>	
 			
 			
 			<a-component cc-id="alc_flr.2" name="Flaw Reporting Procedures (ALC_FLR.2)" status="optional">
@@ -10828,8 +10812,7 @@
 					</aactivity> 
 				</a-element>  
 			</a-component>		
-			
-			
+					
 			<a-component cc-id="alc_flr.3" name="Systematic Flaw Remediation (ALC_FLR.3)" status="optional">
 				<a-element type="D">
 					<title>
