@@ -841,17 +841,6 @@
 	<!-- 3.3 Organizational Security Policies -->
     <section title="Organizational Security Policies" id="OSPs">
 		<OSPs/>
-<!--			<OSP name="P.ENTERPRISE">
-				<description>If the GPCP is bound to a directory or management server, the configuration of
-					the OS software must be capable of adhering to the enterprise security policies
-					distributed by them.</description>
-				<objective-refer ref="O.MANAGEMENT">
-					<rationale>The organizational security policy P.ENTERPRISE is enforced through the
-						objective O.MANAGEMENT as this objective represents how the enterprise and user assert
-						management over the OS.</rationale>
-				</objective-refer>
-			</OSP>
-		</OSPs>   -->
     </section>
 </sec:spd>
 	    
@@ -998,13 +987,6 @@
 		<!-- Requires that there be an Administrator. -->
         <f-component id="sfr-fau-sar-1" cc-id="fau_sar.1" name="Audit Review" status="sel-based">
 			<depends on-incl="sfr-fau-gen-1"/>  
-		<!--	<depends on-sel="sel-rot2-audit"/>   -->
-		<!--	<depends on-sel="sel-rot3-audit"/>   -->
-		<!--	<depends on-sel="sel-tud2-audit"/>   -->
-		<!--	<depends on-sel="sel-tud3-audit"/>    -->
-		<!--	<depends on-use="uc-server-enhanced"/> -->
-		<!--	<depends on-use="uc-csfc-eud"/> -->
-		<!--	<depends on-use="uc-ent-clients-desktop"/>   -->
 			<f-element id="fau-sar-1e1">
 				<title>The TSF shall provide <refinement>the Administrator</refinement> with the
 					capability to read <refinement>all audited events and record contents</refinement>
@@ -1032,74 +1014,67 @@
 
 
 
-			<!-- FAU_STG.1 Audit Data Storage Location -->
-			<!-- Must be included if FAU_GEN.1 is included. -->
-			<f-component id="sfr-fau-stg-1" cc-id="fau_stg.1" name="Audit Data Storage Location" status="sel-based">
-				<depends on-incl="sfr-fau-gen-1"/>  
-				<!--	<depends on-sel="sel-rot2-audit"/>  -->
-				<!--	<depends on-sel="sel-rot3-audit"/>  -->
-				<!--	<depends on-sel="sel-tud2-audit"/>  -->
-				<!--	<depends on-sel="sel-tud3-audit"/>  -->
-				<!--	<depends on-use="uc-server-enhanced"/>  -->
-				<!--	<depends on-use="uc-csfc-eud"/>  -->
-				<!--	<depends on-use="uc-ent-clients-desktop"/>  -->
-				<consistency-rationale/>
-				<f-element id="fau-stg-1e1">
-					<title>The TSF shall be able to <h:mark>store</h:mark> generated audit data on the <selectables>
-						<selectable><h:mark>TOE itself</h:mark></selectable>
-						<selectable>transmit the generated audit data to an external IT entity using a trusted channel according to FTP_ITC_EXT.1</selectable>
-						<selectable id="sel-fau-stg-1e1-removable">[removable media]</selectable></selectables>  
-					</title>
-					<note role="application">
-						The ST Author must select "<h:i>trusted channel</h:i>" and include FTP_ITC_EXT.1 in the ST if the TOE offloads
-						audit data to external IT entity over a network connection. Protocols used for implementing the trusted
-						channel must be selected in FTP_ITC_EXT.1. <h:p/>
-						The ST Author must select "<h:i>removable media</h:i>" if the TOE supports offload of audit data using 
-						removable media such as thumb drives or disks. Note that the CSfC Use Case prohibits the
-						use of removable media.
-					</note>
-					<aactivity level="element">
-						<TSS>
-							The evaluator shall examine the TSS to ensure it describes the means by which 
-							the audit data are transferred to the external audit server.
-						</TSS>
-						<Guidance>
-							If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
-							trusted channel to the audit server, as well as describe any requirements 
-							on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
-							as configuration of the TOE needed to communicate with the audit server. Furthermore, it must describe whether the 
-							transfer mechanism is periodic or continuous, and what happens in the event of a loss of connectivity. <h:p/>
-							If "removable media" is selected, the evaluator shall ensure that the AGD describes the process for
-							accessing audit data and copying it to media. The AGD must also include high-level guidance on 
-							how frequently this operation may need to be done to minimize risk of data loss.
-						</Guidance>
-						<Tests>
-							If "trusted channel" is selected above, testing of the trusted channel mechanism itself is to be performed 
-							as specified in the evaluation activities for FTP_ITC_EXT.1. In addition, the evaluator must 
-							perform the following test:<h:p/>
-							The evaluator shall establish a session between the TOE and the audit server according
-							to the configuration guidance provided. The evaluator shall then examine the traffic
-							that passes between the audit server and the TOE during several activities of the 
-							evaluator’s choice designed to generate audit data to be transferred to the audit server. 
-							The evaluator shall observe that these data are not able to be viewed in the clear during
-							this transfer, and that they are successfully received by the audit server. The evaluator
-							shall record the particular software (name, version) used on the audit server during 
-							testing.
-							<h:p/>
-							If "removable media" is selected above, the evaluator must run the system for a time long enough to generate
-							some audit data and then collect audit data onto removable media for transfer to another machine. On another 
-							machine, the evaluator shall examine the audit data to ensure that it appears to be complete and correct. This test
-							may be performed in conjunction with any other requirement that generates audit events.
-						</Tests>
-					</aactivity>
-				</f-element>
-				<audit-event>
-					<audit-event-descr>
-						On failure of logging function, capture record of failure and record upon restart of logging function.
-					</audit-event-descr>
-					<audit-event-info>None.</audit-event-info>
-				</audit-event>
-			</f-component>        
+		<!-- FAU_STG.1 Audit Data Storage Location -->
+		<!-- Must be included if FAU_GEN.1 is included. -->
+		<f-component id="sfr-fau-stg-1" cc-id="fau_stg.1" name="Audit Data Storage Location" status="sel-based">
+			<depends on-incl="sfr-fau-gen-1"/>  
+			<consistency-rationale/>
+			<f-element id="fau-stg-1e1">
+				<title>The TSF shall be able to <h:mark>store</h:mark> generated audit data on the <selectables>
+					<selectable><h:mark>TOE itself</h:mark></selectable>
+					<selectable>transmit the generated audit data to an external IT entity using a trusted channel according to FTP_ITC_EXT.1</selectable>
+					<selectable id="sel-fau-stg-1e1-removable">[removable media]</selectable></selectables>  
+				</title>
+				<note role="application">
+					The ST Author must select "<h:i>trusted channel</h:i>" and include FTP_ITC_EXT.1 in the ST if the TOE offloads
+					audit data to external IT entity over a network connection. Protocols used for implementing the trusted
+					channel must be selected in FTP_ITC_EXT.1. <h:p/>
+					The ST Author must select "<h:i>removable media</h:i>" if the TOE supports offload of audit data using 
+					removable media such as thumb drives or disks. Note that the CSfC Use Case prohibits the
+					use of removable media.
+				</note>
+				<aactivity level="element">
+					<TSS>
+						The evaluator shall examine the TSS to ensure it describes the means by which 
+						the audit data are transferred to the external audit server.
+					</TSS>
+					<Guidance>
+						If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
+						trusted channel to the audit server, as well as describe any requirements 
+						on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
+						as configuration of the TOE needed to communicate with the audit server. Furthermore, it must describe whether the 
+						transfer mechanism is periodic or continuous, and what happens in the event of a loss of connectivity. <h:p/>
+						If "removable media" is selected, the evaluator shall ensure that the AGD describes the process for
+						accessing audit data and copying it to media. The AGD must also include high-level guidance on 
+						how frequently this operation may need to be done to minimize risk of data loss.
+					</Guidance>
+					<Tests>
+						If "trusted channel" is selected above, testing of the trusted channel mechanism itself is to be performed 
+						as specified in the evaluation activities for FTP_ITC_EXT.1. In addition, the evaluator must 
+						perform the following test:<h:p/>
+						The evaluator shall establish a session between the TOE and the audit server according
+						to the configuration guidance provided. The evaluator shall then examine the traffic
+						that passes between the audit server and the TOE during several activities of the 
+						evaluator’s choice designed to generate audit data to be transferred to the audit server. 
+						The evaluator shall observe that these data are not able to be viewed in the clear during
+						this transfer, and that they are successfully received by the audit server. The evaluator
+						shall record the particular software (name, version) used on the audit server during 
+						testing.
+						<h:p/>
+						If "removable media" is selected above, the evaluator must run the system for a time long enough to generate
+						some audit data and then collect audit data onto removable media for transfer to another machine. On another 
+						machine, the evaluator shall examine the audit data to ensure that it appears to be complete and correct. This test
+						may be performed in conjunction with any other requirement that generates audit events.
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event>
+				<audit-event-descr>
+					On failure of logging function, capture record of failure and record upon restart of logging function.
+				</audit-event-descr>
+				<audit-event-info>None.</audit-event-info>
+			</audit-event>
+		</f-component>        
 
 		<!-- FAU_STG.2 Protected Audit Trail Storage -->
 		<!-- Must be included if FAU_GEN.1 is included -->
@@ -1107,13 +1082,6 @@
 		<!-- Management function: deletion of audit records? -->
 		<f-component id="sfr-fau-stg-2" cc-id="fau_stg.2" name="Protected Audit Trail Storage" status="sel-based">
 			<depends on-incl="sfr-fau-gen-1"/>  
-		<!--	<depends on-sel="sel-rot2-audit"/>  -->
-		<!--	<depends on-sel="sel-rot3-audit"/>  -->
-		<!--	<depends on-sel="sel-tud2-audit"/>  -->
-		<!--	<depends on-sel="sel-tud3-audit"/>  -->
-		<!--	<depends on-use="uc-server-enhanced"/>  -->
-		<!--	<depends on-use="uc-csfc-eud"/> -->
-		<!--	<depends on-use="uc-ent-clients-desktop"/>  -->
 			<f-element id="fau-stg-2e1">
 				<title>
 					The TSF shall protect the stored audit data in the audit trail from unauthorized deletion.
@@ -1161,13 +1129,6 @@
 		<!-- Must be included if FAU_GEN.1 is included. -->
 		<f-component id="sfr-fau-stg-5" cc-id="fau_stg.5" name="Prevention of Audit Data Loss" status="sel-based">
 			<depends on-incl="sfr-fau-gen-1"/>  
-		<!--	<depends on-sel="sel-rot2-audit"/>  -->
-		<!--	<depends on-sel="sel-rot3-audit"/>  -->
-		<!--	<depends on-sel="sel-tud2-audit"/>  -->
-		<!--	<depends on-sel="sel-tud3-audit"/>  -->
-		<!--	<depends on-use="uc-server-enhanced"/>  -->
-		<!--	<depends on-use="uc-csfc-eud"/>  -->
-		<!--	<depends on-use="uc-ent-clients-desktop"/>  -->
 			<f-element id="fau-stg-5e1">
 				<title>
 					The TSF shall [<h:i>overwrite the oldest stored audit records</h:i>] if the audit data storage is full.
@@ -1195,7 +1156,6 @@
 			</f-element>
 			<audit-event/>
 		</f-component>
- 
 				
 	</section>   <!-- FAU -->
 
@@ -2468,14 +2428,12 @@
 
 		<!-- FCS_CKM.6 Timing and Event of Cryptographic Key Destruction -->
 		<f-component id="sfr-fcs-ckm-6" cc-id="fcs_ckm.6" name="Timing and Event of Cryptographic Key Destruction" status="sel-based">
-			<depends on-incl="sfr-fcs-ckm-1-sk"/>
+			<depends on-incl="sfr-fcs-ckm-1-skg"/>
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>
 			<depends on-incl="sfr-fcs-ckm-2"/>
-			<depends on-incl="sfr-fcs-ckm-ext-3"/>
 			<depends on-incl="sfr-fcs-ckm-5"/>
 			<depends on-incl="sfr-fcs-ckm-ext-7"/>
 			<depends on-incl="sfr-fcs-ckm-ext-8"/>
-			<depends on-incl="sfr-fcs-cop-1-kat"/>
 			<depends on-incl="sfr-fcs-stg-ext-1"/> 
 			<depends on-incl="sfr-fia-afl-ext-1"/>   <!-- Required for wipe on multiple auth failures -->
 			<f-element id="fcs-ckm-6e1">
@@ -3472,7 +3430,6 @@
 			<depends on-sel="sel-rot2-hash"/>  <!-- FPT_ROT_EXT.2.1 -->
 			<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG.1.1 -->
 			<depends on-sel="sel-tud2-hash"/>  <!-- FPT_TUD_EXT.2.1 -->
-<!--			<depends on-sel="sel-fcs-cop-kat-ecies"/>  --> <!-- FCS_COP.1.1/KAT -->
 			<depends on-sel="sel-fdp-itc-ext-1e2-hash"/>  <!-- from FDP_ITC_EXT.1 -->
 			<depends on-incl="sfr-fcs-cop-1-keyedhash"/>   <!-- FCS_COP.1/KeyedHash -->
 			<depends on-incl="sfr-fcs-cop-1-sigver"/>    <!-- FCS_COP.1/SigVer -->
@@ -7666,11 +7623,17 @@
 				</dependencies>
 			<f-element id="fia-afl-ext-1e1">
 				<title>
-					The TSF shall consider password and [<h:i>no other</h:i>] as critical authentication mechanisms.
+					<h:mark>The TSF shall consider password and 
+						<selectables>
+							<selectable><assignable>other authentication mechanisms</assignable></selectable>
+							<selectable exclusive="yes">no other authentication mechanisms</selectable>
+						</selectables>
+						as critical authentication mechanisms.</h:mark>
 				</title>
 				<ext-comp-def-title>
 					<title>
-						The TSF shall consider password and <assignable>other authentication mechanisms</assignable>
+						The TSF shall consider password and 
+						<assignable>other authentication mechanisms</assignable>
 						as critical authentication mechanisms.
 					</title>
 				</ext-comp-def-title>
@@ -7680,14 +7643,9 @@
 					use cases are selected.<h:p/>
 					If this SFR is included in the ST, then FCS_CKM.6 must also be claimed.<h:p/>
 					This SFR specifies the actions to be taken in the event of multiple authentication failures.<h:p/>
-<!--					If no additional authentication mechanisms are selected in FIA_UAU.5.1, then "<h:i>no other</h:i>" must 
-					be selected. If an additional authentication mechanism is selected in FIA_UAU.5.1, then it 
-					must only be selected in FIA_AFL_EXT.1.1 if surpassing the authentication failure threshold 
-					for biometric data causes a countermeasure to be triggered regardless of the failure status of
-					the other authentication mechanisms.<h:p/>  -->
 					This requirement applies to both critical and non-critical authentication mechanisms. The difference 
 					between the two is that excessive authentication failures of critical authentication mechanisms 
-					result in the wiping of all protected data (see FIA_AFL_EXT.1.5.).
+					<h:mark>result in the actions defined in FIA_AFL_EXT.1.5.</h:mark><h:p/>
 					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption
 					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
 					to all available interfaces. For example, a password is a critical authentication mechanism 
@@ -7726,12 +7684,21 @@
 					to be configurable with a different number of unsuccessful authentication attempts.<h:p/>
 				</note>
 			</f-element>
+
 			<f-element id="fia-afl-ext-1e3">
 				<title>
-					The TSF shall maintain the number of unsuccessful authentication attempts that have occurred 
-					upon power off.
+					<h:mark>The TSF shall maintain the number of unsuccessful authentication attempts that have occurred 
+					upon power off if the minimum boot time of the system is shorter than the lockout time
+					specified in FIA_AFL_EXT.1.5.</h:mark>
 				</title>
 				<note role="application">
+					<h:mark>The purpose of this requirement is to prevent hammering attacks from avoiding triggering the
+					actions in FIA_AFL_EXT.1.5 by rebooting the system in order to zero the authentication 
+					failure count. This purpise is achieved by default if the minimum reboot time of the system 
+					is greater than the timeout penalty specified in FIA_AFL_EXT.1.5.<h:p/>
+					If the actions specified in FIA_AFL_EXT.1.5 are device wipe or a non-time-limited lockout, or if
+					the minimum reboot time is shorter than the specified lockout time, then  
+					the authentication failure count must be maintained across power cycles.<h:p/></h:mark>	
 					The TOE may implement an Authentication Factor interface that precedes another Authentication
 					Factor interface in the boot sequence (for example, a volume DAR decryption interface which
 					precedes the lockscreen interface) before the user can access the GPCP. In this situation,
@@ -7740,6 +7707,7 @@
 					interface.
 				</note>
 			</f-element>
+			
 			<f-element id="fia-afl-ext-1e4">
 				<title>
 					When the defined number of unsuccessful authentication attempts has exceeded the maximum
@@ -7762,7 +7730,7 @@
 							<selectable>perform a wipe of all protected data</selectable>
 							<selectable>exclude the current User/Administrator from further authentication attempts</selectable>
 							<selectable>exclude the current User/Administrator from further authentication
-								attempts for a period of <assignable>greater than zero seconds</assignable> time</selectable>
+								attempts for a period of <assignable>greater than <h:mark>60</h:mark> seconds</assignable> time</selectable>
 						</selectables>.
 				</title>
 				<note role="application">
@@ -8002,7 +7970,6 @@
 						<selectable id="sel-fia-uau-5-x509">X.509 certificate-based authentication</selectable>
 						<selectable id="sel-fia-uau-5-ssh">SSH-based authentication</selectable>
 						<selectable>biometric authentication</selectable>
-						<selectable>hybrid authentication</selectable>
 						<selectable exclusive="yes">no other authentication mechanism</selectable>
 					</selectables></h:i>] to support user authentication.
 				</title>
@@ -8012,18 +7979,13 @@
 					use cases are selected.<h:p/>
 					A "user" in the context of this SFR is an Administrator.<h:p/>
 					The TSF must support a Password Authentication Factor and may optionally implement a biometric
-					authentication factor. A hybrid authentication 
-					factor is where a user has to submit a combination of PIN/password and biometric sample where 
-					both have to pass and if either fails the user is not made aware of which factor failed.<h:p/>
-					The Password Authentication Factor is configured according to FIA_PMG_EXT.1.
-					If "hybrid" is selected, a biometric modality does not need to be selected, but should be 
-					selected if the biometric authentication can be used independent of the hybrid authentication, 
-					i.e. without having to enter a PIN/password.<h:p/>
+					authentication factor.<h:p/>
+					The Password Authentication Factor is configured according to FIA_PMG_EXT.1.<h:p/>
 					If "<h:i>X.509 certificate-based authentication</h:i>" is selected, then the ST must include 
 					FIA_X509_EXT.1 and FIA_X509_EXT.2 from <xref to="pkg-x509"/>.<h:p/>
 					The ST Author should select "<h:i>SSH-based authentication</h:i>" if the TOE supports 
 					SSH-based authentication, whether public key-, password-, or certificate-based. In this case,
-					the ST claims the <xref to="pkg-ssh"/>.					
+					the ST claims the <xref to="pkg-ssh"/>.	
 				</note>
 			</f-element>
 			<f-element id="fia-uau-5e2">
@@ -8155,17 +8117,17 @@
 			<depends on-sel="sel-fmt-smr-1-admin"/>  <!-- FMT_SMR.1 Admin Role -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
-				are identified and authenticated prior to authorizing these actions to be performed.</comp-lev>
+				are <h:mark><h:s>identified and </h:s></h:mark>authenticated prior to authorizing these actions to be performed.</comp-lev>
 			<management/>
 			<audit>The following actions should be auditable if FAU_GEN Security audit data 
 				generation is included in the PP/ST:
 				<h:ol type="a">
-					<h:li>All use of the identification and authentication mechanism.</h:li>
+					<h:li>All use of the authentication mechanism.</h:li>
 				</h:ol>
 			</audit>
 			<dependencies><h:br/>FIA_UAU.5 Multiple Authentication Mechanisms</dependencies>
             <f-element id="fia-uia-ext-1e1">
-                <title>The TSF shall require Administrators to be successfully identified and authenticated
+                <title>The TSF shall require Administrators to be successfully <h:mark>identified and</h:mark> authenticated
                     using one of the methods in FIA_UAU.5 before allowing any TSF-mediated management
                     function to be performed by that Administrator.
                 </title>
