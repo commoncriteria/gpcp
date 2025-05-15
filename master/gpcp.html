@@ -1078,7 +1078,6 @@ The following sections list Common Criteria and technology terms used in this do
 		
       This document does not define any additional OSPs.
     
-
     
 <h1 class="indexable" data-level="1" id="Security_Objectives">4 Security Objectives</h1>
 	 
@@ -1236,13 +1235,6 @@ The following sections list Common Criteria and technology terms used in this do
 	  .
       </i></b></div>
 			  
-		
-		
-		
-		
-		
-		
-		
 			<div class="element"><div class="reqid" id="FAU_SAR.1.1"><a href="#FAU_SAR.1.1" class="abbr">FAU_SAR.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide <span class="refinement">the Administrator</span> with the
 					capability to read <span class="refinement">all audited events and record contents</span>
 					from the audit data.</div></div>
@@ -1267,66 +1259,59 @@ The following sections list Common Criteria and technology terms used in this do
 
 
 
-			
-			
-			<div class="comp" id="FAU_STG.1"><h4>FAU_STG.1 Audit Data Storage Location</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
+		
+		
+		<div class="comp" id="FAU_STG.1"><h4>FAU_STG.1 Audit Data Storage Location</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
 	  .
       </i></b></div>
-				  
-				
-				
-				
-				
-				
-				
-				
-				
-				<div class="element"><div class="reqid" id="FAU_STG.1.1"><a href="#FAU_STG.1.1" class="abbr">FAU_STG.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to <mark>store</mark> generated audit data on the [<b>selection</b>: <span class="selectable-content" id="_s_13"><mark><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself</mark></span>, <span class="selectable-content" id="_s_14">transmit the generated audit data to an external <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entity using a trusted channel according to <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></span>, <span class="selectable-content" id="sel-fau-stg-1e1-removable">[removable media]</span>]  
-					<div class="appnote"><span class="note-header">Application
+			  
+			
+			<div class="element"><div class="reqid" id="FAU_STG.1.1"><a href="#FAU_STG.1.1" class="abbr">FAU_STG.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to <mark>store</mark> generated audit data on the [<b>selection</b>: <span class="selectable-content" id="_s_13"><mark><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself</mark></span>, <span class="selectable-content" id="_s_14">transmit the generated audit data to an external <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entity using a trusted channel according to <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></span>, <span class="selectable-content" id="sel-fau-stg-1e1-removable">[removable media]</span>]  
+				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-						The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author must select "<i>trusted channel</i>" and include <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> offloads
-						audit data to external <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entity over a network connection. Protocols used for implementing the trusted
-						channel must be selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>. <p></p>
-						The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author must select "<i>removable media</i>" if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports offload of audit data using 
-						removable media such as thumb drives or disks. Note that the <abbr class="dyn-abbr"><a href="#abbr_CSfC">CSfC</a></abbr> Use Case prohibits the
-						use of removable media.
-					</span></div></div></div>
-				
-			<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="element-activity-header"><a href="#FAU_STG.1.1">FAU_STG.1.1</a></div>
-						<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
-							The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure it describes the means by which 
-							the audit data are transferred to the external audit server.
-						</div>
-						<div class="eacategory">Guidance</div><div class="ea">
-							If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
-							trusted channel to the audit server, as well as describe any requirements 
-							on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
-							as configuration of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> needed to communicate with the audit server. Furthermore, it must describe whether the 
-							transfer mechanism is periodic or continuous, and what happens in the event of a loss of connectivity. <p></p>
-							If "removable media" is selected, the evaluator shall ensure that the AGD describes the process for
-							accessing audit data and copying it to media. The AGD must also include high-level guidance on 
-							how frequently this operation may need to be done to minimize risk of data loss.
-						</div>
-						<div class="eacategory">Tests</div><div class="ea">
-							If "trusted channel" is selected above, testing of the trusted channel mechanism itself is to be performed 
-							as specified in the evaluation activities for <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>. In addition, the evaluator must 
-							perform the following test:<p></p>
-							The evaluator shall establish a session between the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and the audit server according
-							to the configuration guidance provided. The evaluator shall then examine the traffic
-							that passes between the audit server and the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> during several activities of the 
-							evaluator’s choice designed to generate audit data to be transferred to the audit server. 
-							The evaluator shall observe that these data are not able to be viewed in the clear during
-							this transfer, and that they are successfully received by the audit server. The evaluator
-							shall record the particular software (name, version) used on the audit server during 
-							testing.
-							<p></p>
-							If "removable media" is selected above, the evaluator must run the system for a time long enough to generate
-							some audit data and then collect audit data onto removable media for transfer to another machine. On another 
-							machine, the evaluator shall examine the audit data to ensure that it appears to be complete and correct. This test
-							may be performed in conjunction with any other requirement that generates audit events.
-						</div>
-					</div></div></div>        
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author must select "<i>trusted channel</i>" and include <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> offloads
+					audit data to external <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entity over a network connection. Protocols used for implementing the trusted
+					channel must be selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>. <p></p>
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author must select "<i>removable media</i>" if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports offload of audit data using 
+					removable media such as thumb drives or disks. Note that the <abbr class="dyn-abbr"><a href="#abbr_CSfC">CSfC</a></abbr> Use Case prohibits the
+					use of removable media.
+				</span></div></div></div>
+			
+		<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="element-activity-header"><a href="#FAU_STG.1.1">FAU_STG.1.1</a></div>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+						The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure it describes the means by which 
+						the audit data are transferred to the external audit server.
+					</div>
+					<div class="eacategory">Guidance</div><div class="ea">
+						If "trusted channel" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
+						trusted channel to the audit server, as well as describe any requirements 
+						on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
+						as configuration of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> needed to communicate with the audit server. Furthermore, it must describe whether the 
+						transfer mechanism is periodic or continuous, and what happens in the event of a loss of connectivity. <p></p>
+						If "removable media" is selected, the evaluator shall ensure that the AGD describes the process for
+						accessing audit data and copying it to media. The AGD must also include high-level guidance on 
+						how frequently this operation may need to be done to minimize risk of data loss.
+					</div>
+					<div class="eacategory">Tests</div><div class="ea">
+						If "trusted channel" is selected above, testing of the trusted channel mechanism itself is to be performed 
+						as specified in the evaluation activities for <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>. In addition, the evaluator must 
+						perform the following test:<p></p>
+						The evaluator shall establish a session between the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and the audit server according
+						to the configuration guidance provided. The evaluator shall then examine the traffic
+						that passes between the audit server and the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> during several activities of the 
+						evaluator’s choice designed to generate audit data to be transferred to the audit server. 
+						The evaluator shall observe that these data are not able to be viewed in the clear during
+						this transfer, and that they are successfully received by the audit server. The evaluator
+						shall record the particular software (name, version) used on the audit server during 
+						testing.
+						<p></p>
+						If "removable media" is selected above, the evaluator must run the system for a time long enough to generate
+						some audit data and then collect audit data onto removable media for transfer to another machine. On another 
+						machine, the evaluator shall examine the audit data to ensure that it appears to be complete and correct. This test
+						may be performed in conjunction with any other requirement that generates audit events.
+					</div>
+				</div></div></div>        
 
 		
 		
@@ -1336,13 +1321,6 @@ The following sections list Common Criteria and technology terms used in this do
 	  .
       </i></b></div>
 			  
-		
-		
-		
-		
-		
-		
-		
 			<div class="element"><div class="reqid" id="FAU_STG.2.1"><a href="#FAU_STG.2.1" class="abbr">FAU_STG.2.1</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect the stored audit data in the audit trail from unauthorized deletion.
 				</div></div>
@@ -1390,13 +1368,6 @@ The following sections list Common Criteria and technology terms used in this do
 	  .
       </i></b></div>
 			  
-		
-		
-		
-		
-		
-		
-		
 			<div class="element"><div class="reqid" id="FAU_STG.5.1"><a href="#FAU_STG.5.1" class="abbr">FAU_STG.5.1</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<i>overwrite the oldest stored audit records</i>] if the audit data storage is full.
 				<div class="appnote"><span class="note-header">Application
@@ -1422,7 +1393,6 @@ The following sections list Common Criteria and technology terms used in this do
 						The evaluator shall verify that the overwrite function works as described in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and that the 
 						indication of full audit trail is evident as described in the AGD.
 					</div></div></div></div></div>
- 
 				
 	   
 
@@ -2576,8 +2546,6 @@ The following sections list Common Criteria and technology terms used in this do
 			
 			
 			
-			
-			
 			 
 			   
 			<div class="element"><div class="reqid" id="FCS_CKM.6.1"><a href="#FCS_CKM.6.1" class="abbr">FCS_CKM.6.1</a></div><div class="reqdesc">
@@ -3491,7 +3459,6 @@ The following sections list Common Criteria and technology terms used in this do
 			  
 			  
 			  
- 
 			  
 			   
 			    
@@ -7235,7 +7202,10 @@ The following sections list Common Criteria and technology terms used in this do
 			
 			
 			<div class="element"><div class="reqid" id="FIA_AFL_EXT.1.1"><a href="#FIA_AFL_EXT.1.1" class="abbr">FIA_AFL_EXT.1.1</a></div><div class="reqdesc">
-					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall consider password and [<i>no other</i>] as critical authentication mechanisms.
+					<mark>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall consider password and 
+						[<b>selection</b>: <span class="selectable-content" id="_s_717">[<b>assignment</b>: 
+     <span class="assignable-content">other authentication mechanisms</span>]</span>, <span class="selectable-content" id="_s_718">no other authentication mechanisms</span>]
+						as critical authentication mechanisms.</mark>
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -7244,10 +7214,9 @@ The following sections list Common Criteria and technology terms used in this do
 					use cases are selected.<p></p>
 					If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_CKM.6">FCS_CKM.6</a> must also be claimed.<p></p>
 					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> specifies the actions to be taken in the event of multiple authentication failures.<p></p>
-
 					This requirement applies to both critical and non-critical authentication mechanisms. The difference 
 					between the two is that excessive authentication failures of critical authentication mechanisms 
-					result in the wiping of all protected data (see <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>.).
+					<mark>result in the actions defined in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>.</mark><p></p>
 					If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements multiple Authentication Factor interfaces (for example, a <abbr class="dyn-abbr"><a href="#abbr_DAR">DAR</a></abbr> decryption
 					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
 					to all available interfaces. For example, a password is a critical authentication mechanism 
@@ -7258,7 +7227,7 @@ The following sections list Common Criteria and technology terms used in this do
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall detect when a configurable positive integer within 
 					[<b>assignment</b>: 
      <span class="assignable-content">range of acceptable values for each authentication mechanism</span>]
-					of [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_717">unique</span>, <span class="selectable-content" id="_s_718">non-unique</span>] unsuccessful authentication attempts occur related to last successful authentication for
+					of [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_719">unique</span>, <span class="selectable-content" id="_s_720">non-unique</span>] unsuccessful authentication attempts occur related to last successful authentication for
 					each authentication mechanism.
 				<div class="appnote"><span class="note-header">Application
       Note:
@@ -7282,12 +7251,21 @@ The following sections list Common Criteria and technology terms used in this do
 					to all available interfaces. However, it is acceptable for each Authentication Factor interface
 					to be configurable with a different number of unsuccessful authentication attempts.<p></p>
 				</span></div></div></div>
+
 			<div class="element"><div class="reqid" id="FIA_AFL_EXT.1.3"><a href="#FIA_AFL_EXT.1.3" class="abbr">FIA_AFL_EXT.1.3</a></div><div class="reqdesc">
-					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall maintain the number of unsuccessful authentication attempts that have occurred 
-					upon power off.
+					<mark>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall maintain the number of unsuccessful authentication attempts that have occurred 
+					upon power off if the minimum boot time of the system is shorter than the lockout time
+					specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>.</mark>
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
+					<mark>The purpose of this requirement is to prevent hammering attacks from avoiding triggering the
+					actions in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a> by rebooting the system in order to zero the authentication 
+					failure count. This purpise is achieved by default if the minimum reboot time of the system 
+					is greater than the timeout penalty specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>.<p></p>
+					If the actions specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a> are device wipe or a non-time-limited lockout, or if
+					the minimum reboot time is shorter than the specified lockout time, then  
+					the authentication failure count must be maintained across power cycles.<p></p></mark>	
 					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may implement an Authentication Factor interface that precedes another Authentication
 					Factor interface in the boot sequence (for example, a volume <abbr class="dyn-abbr"><a href="#abbr_DAR">DAR</a></abbr> decryption interface which
 					precedes the lockscreen interface) before the user can access the <abbr class="dyn-abbr"><a href="#abbr_GPCP">GPCP</a></abbr>. In this situation,
@@ -7295,6 +7273,7 @@ The following sections list Common Criteria and technology terms used in this do
 					the number of unsuccessful authentication attempts need not be maintained for the second 
 					interface.
 				</span></div></div></div>
+			
 			<div class="element"><div class="reqid" id="FIA_AFL_EXT.1.4"><a href="#FIA_AFL_EXT.1.4" class="abbr">FIA_AFL_EXT.1.4</a></div><div class="reqdesc">
 					When the defined number of unsuccessful authentication attempts has exceeded the maximum
 					allowed for a given authentication mechanism, all future authentication attempts shall be
@@ -7311,9 +7290,9 @@ The following sections list Common Criteria and technology terms used in this do
 					When the defined number of unsuccessful authentication attempts for the last available
 					authentication mechanism or a critical authentication mechanism has been surpassed, the 
 					<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall 
-						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_719">perform a wipe of all protected data</span></li><li style=""><span class="selectable-content" id="_s_720">exclude the current User/Administrator from further authentication attempts</span></li><li style=""><span class="selectable-content" id="_s_721">exclude the current User/Administrator from further authentication
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_721">perform a wipe of all protected data</span></li><li style=""><span class="selectable-content" id="_s_722">exclude the current User/Administrator from further authentication attempts</span></li><li style=""><span class="selectable-content" id="_s_723">exclude the current User/Administrator from further authentication
 								attempts for a period of [<b>assignment</b>: 
-     <span class="assignable-content">greater than zero seconds</span>] time</span></li></ul>].
+     <span class="assignable-content">greater than <mark>60</mark> seconds</span>] time</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -7413,9 +7392,9 @@ The following sections list Common Criteria and technology terms used in this do
 			<div class="element"><div class="reqid" id="FIA_PMG_EXT.1.1"><a href="#FIA_PMG_EXT.1.1" class="abbr">FIA_PMG_EXT.1.1</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall support the following for the Password Authentication Factor:<ol type="1">
 					<li>Passwords shall be able to be composed of any combination of 
-						[<b>selection</b>: <span class="selectable-content" id="_s_722">upper and lower case letters</span>, <span class="selectable-content" id="_s_723">[<b>assignment</b>: 
+						[<b>selection</b>: <span class="selectable-content" id="_s_724">upper and lower case letters</span>, <span class="selectable-content" id="_s_725">[<b>assignment</b>: 
      <span class="assignable-content">a character set of at least 52 characters</span>]</span>], numbers, and special characters: 
-						[<b>selection</b>: <span class="selectable-content" id="_s_724">"!"</span>, <span class="selectable-content" id="_s_725">"@"</span>, <span class="selectable-content" id="_s_726">"#"</span>, <span class="selectable-content" id="_s_727">"$"</span>, <span class="selectable-content" id="_s_728">"%"</span>, <span class="selectable-content" id="_s_729">"^"</span>, <span class="selectable-content" id="_s_730">"&amp;"</span>, <span class="selectable-content" id="_s_731">"*"</span>, <span class="selectable-content" id="_s_732">"("</span>, <span class="selectable-content" id="_s_733">")"</span>, <span class="selectable-content" id="_s_734">[<b>assignment</b>: 
+						[<b>selection</b>: <span class="selectable-content" id="_s_726">"!"</span>, <span class="selectable-content" id="_s_727">"@"</span>, <span class="selectable-content" id="_s_728">"#"</span>, <span class="selectable-content" id="_s_729">"$"</span>, <span class="selectable-content" id="_s_730">"%"</span>, <span class="selectable-content" id="_s_731">"^"</span>, <span class="selectable-content" id="_s_732">"&amp;"</span>, <span class="selectable-content" id="_s_733">"*"</span>, <span class="selectable-content" id="_s_734">"("</span>, <span class="selectable-content" id="_s_735">")"</span>, <span class="selectable-content" id="_s_736">[<b>assignment</b>: 
      <span class="assignable-content">other characters</span>]</span>]</li>
 					<li>Password length of at least 
 						[<b>assignment</b>: 
@@ -7470,7 +7449,7 @@ The following sections list Common Criteria and technology terms used in this do
 			
 			<div class="element"><div class="reqid" id="FIA_TRT_EXT.1.1"><a href="#FIA_TRT_EXT.1.1" class="abbr">FIA_TRT_EXT.1.1</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall limit user authentication attempts by 
-					[<b>selection</b>: <span class="selectable-content" id="_s_735">preventing authentication via an external port</span>, <span class="selectable-content" id="_s_736">enforcing a delay between incorrect authentication attempts</span>] for all authentication mechanisms selected in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
+					[<b>selection</b>: <span class="selectable-content" id="_s_737">preventing authentication via an external port</span>, <span class="selectable-content" id="_s_738">enforcing a delay between incorrect authentication attempts</span>] for all authentication mechanisms selected in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
 				</div></div>
 			<div class="element"><div class="reqid" id="FIA_TRT_EXT.1.2"><a href="#FIA_TRT_EXT.1.2" class="abbr">FIA_TRT_EXT.1.2</a></div><div class="reqdesc">The minimum delay between incorrect authentication attempts  
 					shall be such that no more than 10 attempts can be attempted per 500 milliseconds.
@@ -7510,7 +7489,7 @@ The following sections list Common Criteria and technology terms used in this do
 			  
 			<div class="element"><div class="reqid" id="FIA_UAU.5.1"><a href="#FIA_UAU.5.1" class="abbr">FIA_UAU.5.1</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide [<i>password and 
-					[<b>selection</b>: <span class="selectable-content" id="sel-fia-uau-5-x509">X.509 certificate-based authentication</span>, <span class="selectable-content" id="sel-fia-uau-5-ssh"><abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>-based authentication</span>, <span class="selectable-content" id="_s_739">biometric authentication</span>, <span class="selectable-content" id="_s_740">hybrid authentication</span>, <span class="selectable-content" id="_s_741">no other authentication mechanism</span>]</i>] to support user authentication.
+					[<b>selection</b>: <span class="selectable-content" id="sel-fia-uau-5-x509">X.509 certificate-based authentication</span>, <span class="selectable-content" id="sel-fia-uau-5-ssh"><abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>-based authentication</span>, <span class="selectable-content" id="_s_741">biometric authentication</span>, <span class="selectable-content" id="_s_742">no other authentication mechanism</span>]</i>] to support user authentication.
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -7519,13 +7498,8 @@ The following sections list Common Criteria and technology terms used in this do
 					use cases are selected.<p></p>
 					A "user" in the context of this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is an Administrator.<p></p>
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must support a Password Authentication Factor and may optionally implement a biometric
-					authentication factor. A hybrid authentication 
-					factor is where a user has to submit a combination of PIN/password and biometric sample where 
-					both have to pass and if either fails the user is not made aware of which factor failed.<p></p>
-					The Password Authentication Factor is configured according to <a href="#FIA_PMG_EXT.1">FIA_PMG_EXT.1</a>.
-					If "hybrid" is selected, a biometric modality does not need to be selected, but should be 
-					selected if the biometric authentication can be used independent of the hybrid authentication, 
-					i.e. without having to enter a PIN/password.<p></p>
+					authentication factor.<p></p>
+					The Password Authentication Factor is configured according to <a href="#FIA_PMG_EXT.1">FIA_PMG_EXT.1</a>.<p></p>
 					If "<i>X.509 certificate-based authentication</i>" is selected, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include 
 					FIA_X509_EXT.1 and FIA_X509_EXT.2 from <a href="https://commoncriteria.github.io/X509/master/X509-release.html">,
         version 
@@ -7534,7 +7508,7 @@ The following sections list Common Criteria and technology terms used in this do
 					<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>-based authentication, whether public key-, password-, or certificate-based. In this case,
 					the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> claims the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
-        2.0</a>.					
+        2.0</a>.	
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FIA_UAU.5.2"><a href="#FIA_UAU.5.2" class="abbr">FIA_UAU.5.2</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate any user's claimed identity according to the 
@@ -7673,7 +7647,7 @@ The following sections list Common Criteria and technology terms used in this do
 			
 			
 			
-            <div class="element"><div class="reqid" id="FIA_UIA_EXT.1.1"><a href="#FIA_UIA_EXT.1.1" class="abbr">FIA_UIA_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall require Administrators to be successfully identified and authenticated
+            <div class="element"><div class="reqid" id="FIA_UIA_EXT.1.1"><a href="#FIA_UIA_EXT.1.1" class="abbr">FIA_UIA_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall require Administrators to be successfully <mark>identified and</mark> authenticated
                     using one of the methods in <a href="#FIA_UAU.5">FIA_UAU.5</a> before allowing any <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-mediated management
                     function to be performed by that Administrator.
                 <div class="appnote"><span class="note-header">Application
@@ -7872,7 +7846,7 @@ The following sections list Common Criteria and technology terms used in this do
 					<table class="mfs" style="width: 100%;"><tr class="header"><td>#</td><td>Management Function</td><td>Admin</td><td>User</td><td>Application Notes</td></tr>
 <tr id="mf-admin-platform"><td>1</td><td style="text-align:left">
 								Ability to administer the platform
-								[<b>selection</b>: <span class="selectable-content" id="_s_742">locally</span>, <span class="selectable-content" id="sel-smf-remote-admin">remotely</span>, <span class="selectable-content" id="_s_744">not at all</span>]
+								[<b>selection</b>: <span class="selectable-content" id="_s_743">locally</span>, <span class="selectable-content" id="sel-smf-remote-admin">remotely</span>, <span class="selectable-content" id="_s_745">not at all</span>]
 							</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">X<span class="tooltiptext">Not permitted</span></div></td><td style="text-align:left"><p>
 								Administration is considered “local” if the Administrator is physically present at the <abbr class="dyn-abbr"><a href="#abbr_GPCP">GPCP</a></abbr>.<p></p>
 								Administration is considered “remote” if communications between the Administrator and <abbr class="dyn-abbr"><a href="#abbr_GPCP">GPCP</a></abbr> is over a network.<p></p>
@@ -8021,7 +7995,7 @@ The following sections list Common Criteria and technology terms used in this do
 	
 	<div class="comp" id="FMT_SMR.1"><h4>FMT_SMR.1 Security Roles</h4>
 		<div class="element"><div class="reqid" id="FMT_SMR.1.1"><a href="#FMT_SMR.1.1" class="abbr">FMT_SMR.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall maintain the roles [<i>User</i> and 
-				[<b>selection</b>: <span class="selectable-content" id="sel-fmt-smr-1-admin">Administrator</span>, <span class="selectable-content" id="_s_746">no other roles</span>]].</div></div>
+				[<b>selection</b>: <span class="selectable-content" id="sel-fmt-smr-1-admin">Administrator</span>, <span class="selectable-content" id="_s_747">no other roles</span>]].</div></div>
 		<div class="element"><div class="reqid" id="FMT_SMR.1.2"><a href="#FMT_SMR.1.2" class="abbr">FMT_SMR.1.2</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to associate users with roles.<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8145,7 +8119,7 @@ The following sections list Common Criteria and technology terms used in this do
 				
 				
 			<div class="element"><div class="reqid" id="FPT_JTA_EXT.2.1"><a href="#FPT_JTA_EXT.2.1" class="abbr">FPT_JTA_EXT.2.1</a></div><div class="reqdesc">
-					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_747">disable access through hardware</span>, <span class="selectable-content" id="_s_748">control access by a signing key</span>] to <abbr class="dyn-abbr"><a href="#abbr_JTAG">JTAG</a></abbr> or other debug interfaces.
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_748">disable access through hardware</span>, <span class="selectable-content" id="_s_749">control access by a signing key</span>] to <abbr class="dyn-abbr"><a href="#abbr_JTAG">JTAG</a></abbr> or other debug interfaces.
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8398,7 +8372,7 @@ The following sections list Common Criteria and technology terms used in this do
 				
 			<div class="element"><div class="reqid" id="FPT_ROT_EXT.2.1"><a href="#FPT_ROT_EXT.2.1" class="abbr">FPT_ROT_EXT.2.1</a></div><div class="reqdesc">The integrity of all mutable platform firmware outside of the platform integrity root specified in <a href="#FPT_ROT_EXT.1">FPT_ROT_EXT.1</a> shall be verified 
 					prior to execution or use through:
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="sel-rot2-hash">computation and verification of a hash by trusted code/data</span></li><li style=""><span class="selectable-content" id="sel-rot2-digsig">verification of a digital signature by trusted code/data</span></li><li style=""><span class="selectable-content" id="_s_756">measurement and verification by trusted code/data</span></li><li style=""><span class="selectable-content" id="_s_757">measurement and verification by an on-platform dedicated security component</span></li><li style=""><span class="selectable-content" id="_s_758">measurement and verification by an off-platform entity</span></li></ul>].
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="sel-rot2-hash">computation and verification of a hash by trusted code/data</span></li><li style=""><span class="selectable-content" id="sel-rot2-digsig">verification of a digital signature by trusted code/data</span></li><li style=""><span class="selectable-content" id="_s_757">measurement and verification by trusted code/data</span></li><li style=""><span class="selectable-content" id="_s_758">measurement and verification by an on-platform dedicated security component</span></li><li style=""><span class="selectable-content" id="_s_759">measurement and verification by an off-platform entity</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8417,12 +8391,12 @@ The following sections list Common Criteria and technology terms used in this do
 					<ol type="1">
 						<li>Halt,</li>
 						<li>Notify an 
-							[<b>selection</b>: <span class="selectable-content" id="sel-rot2-admin-notify">Administrator</span>, <span class="selectable-content" id="_s_760">User</span>] by
-							[<b>selection</b>: <span class="selectable-content" id="sel-rot2-audit">generating an audit event</span>, <span class="selectable-content" id="_s_762">[<b>assignment</b>: 
+							[<b>selection</b>: <span class="selectable-content" id="sel-rot2-admin-notify">Administrator</span>, <span class="selectable-content" id="_s_761">User</span>] by
+							[<b>selection</b>: <span class="selectable-content" id="sel-rot2-audit">generating an audit event</span>, <span class="selectable-content" id="_s_763">[<b>assignment</b>: 
      <span class="assignable-content">other notification method(s)</span>]</span>], and</li>
-						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_763">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-rot2-recovery">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]</li>
+						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_764">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-rot2-recovery">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]</li>
 					</ol> 
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_765">automatically</span></li><li style=""><span class="selectable-content" id="sel-rot2-admin-config">in accordance with Administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_767">by express determination of an 
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_766">automatically</span></li><li style=""><span class="selectable-content" id="sel-rot2-admin-config">in accordance with Administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_768">by express determination of an 
 							[<b>selection</b>: <span class="selectable-content" id="sel-rot2-admin-det">Administrator</span>, <span class="selectable-content" id="sel-rot2-user-det">User</span>]
 						</span></li></ul>].	
 				<div class="appnote"><span class="note-header">Application
@@ -8508,12 +8482,12 @@ The following sections list Common Criteria and technology terms used in this do
 					<ol type="1">
 						<li>Halt,</li>
 						<li>Notify an 
-							[<b>selection</b>: <span class="selectable-content" id="sel-rot3-admin-notify">Administrator</span>, <span class="selectable-content" id="_s_780">User</span>] by
-							[<b>selection</b>: <span class="selectable-content" id="sel-rot3-audit">generating an audit event</span>, <span class="selectable-content" id="_s_782">[<b>assignment</b>: 
+							[<b>selection</b>: <span class="selectable-content" id="sel-rot3-admin-notify">Administrator</span>, <span class="selectable-content" id="_s_781">User</span>] by
+							[<b>selection</b>: <span class="selectable-content" id="sel-rot3-audit">generating an audit event</span>, <span class="selectable-content" id="_s_783">[<b>assignment</b>: 
      <span class="assignable-content">other notification method(s)</span>]</span>], and</li>
-						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_783">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_784">Continue execution without the integrity-compromised component</span></li><li style=""><span class="selectable-content" id="_s_785">Continue execution</span></li></ul>]</li>
+						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_784">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_785">Continue execution without the integrity-compromised component</span></li><li style=""><span class="selectable-content" id="_s_786">Continue execution</span></li></ul>]</li>
 					</ol> 
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="sel-rot3-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_787">by express determination of an 
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="sel-rot3-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_788">by express determination of an 
 							[<b>selection</b>: <span class="selectable-content" id="sel-rot3-admin-det">Administrator</span>, <span class="selectable-content" id="sel-rot3-user-det">User</span>]</span></li></ul>].	
 				<div class="appnote"><span class="note-header">Application
       Note:
@@ -8560,7 +8534,7 @@ The following sections list Common Criteria and technology terms used in this do
 			
 			<div class="element"><div class="reqid" id="FPT_RVR_EXT.1.1"><a href="#FPT_RVR_EXT.1.1" class="abbr">FPT_RVR_EXT.1.1</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall implement a mechanism for recovering from boot firmware failure consisting of 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="sel-rvr-local-update">the secure local update mechanism described in <a href="#FPT_TUD_EXT.4">FPT_TUD_EXT.4</a></span></li><li style=""><span class="selectable-content" id="_s_800">installation of a known-good or recovery firmware image</span></li><li style=""><span class="selectable-content" id="_s_801">reversion to the prior firmware image</span></li><li style=""><span class="selectable-content" id="_s_802">installation of a recovery image that puts the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> into a maintenance mode</span></li></ul>].
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="sel-rvr-local-update">the secure local update mechanism described in <a href="#FPT_TUD_EXT.4">FPT_TUD_EXT.4</a></span></li><li style=""><span class="selectable-content" id="_s_801">installation of a known-good or recovery firmware image</span></li><li style=""><span class="selectable-content" id="_s_802">reversion to the prior firmware image</span></li><li style=""><span class="selectable-content" id="_s_803">installation of a recovery image that puts the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> into a maintenance mode</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8655,7 +8629,7 @@ The following sections list Common Criteria and technology terms used in this do
 			   
 			    		
 			<div class="element"><div class="reqid" id="FPT_TST.1.1"><a href="#FPT_TST.1.1" class="abbr">FPT_TST.1.1</a></div><div class="reqdesc">
-					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall run a suite of the following self-tests [<b>selection</b>: <span class="selectable-content" id="_s_803">during initial start-up</span>, <span class="selectable-content" id="_s_804">periodically during normal operation</span>, <span class="selectable-content" id="_s_805">at the request of the authorized user</span>, <span class="selectable-content" id="_s_806">at the conditions [<b>assignment</b>: 
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall run a suite of the following self-tests [<b>selection</b>: <span class="selectable-content" id="_s_804">during initial start-up</span>, <span class="selectable-content" id="_s_805">periodically during normal operation</span>, <span class="selectable-content" id="_s_806">at the request of the authorized user</span>, <span class="selectable-content" id="_s_807">at the conditions [<b>assignment</b>: 
      <span class="assignable-content">conditions under which self-test should occur</span>]</span>]
 					to demonstrate the correct operation of [<i><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> specified in <a href="#FCS_RBG.1">FCS_RBG.1</a></i>].              
 				</div></div>
@@ -8768,7 +8742,7 @@ The following sections list Common Criteria and technology terms used in this do
 			<div class="element"><div class="reqid" id="FPT_TUD_EXT.2.1"><a href="#FPT_TUD_EXT.2.1" class="abbr">FPT_TUD_EXT.2.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate the source of all platform firmware updates using a 
 					digital signature algorithm specified in <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a> and using a key store 
 					that contains 
-					[<b>selection</b>: <span class="selectable-content" id="_s_811">the public key</span>, <span class="selectable-content" id="sel-tud2-hash">hash value of the public key</span>].
+					[<b>selection</b>: <span class="selectable-content" id="_s_812">the public key</span>, <span class="selectable-content" id="sel-tud2-hash">hash value of the public key</span>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8779,8 +8753,8 @@ The following sections list Common Criteria and technology terms used in this do
 			<div class="element"><div class="reqid" id="FPT_TUD_EXT.2.2"><a href="#FPT_TUD_EXT.2.2" class="abbr">FPT_TUD_EXT.2.2</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall allow installation of updates only if the digital signature has been
 					successfully verified as specified in <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a> and 
-					[<b>selection</b>: <span class="selectable-content" id="_s_815">the version number of the platform firmware update is more recent than 
-							the version number of the current installed platform firmware</span>, <span class="selectable-content" id="_s_816">no other conditions</span>].
+					[<b>selection</b>: <span class="selectable-content" id="_s_816">the version number of the platform firmware update is more recent than 
+							the version number of the current installed platform firmware</span>, <span class="selectable-content" id="_s_817">no other conditions</span>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8807,13 +8781,13 @@ The following sections list Common Criteria and technology terms used in this do
 					<ul>
 						<li>Do not install the update,</li>
 						<li>Notify an 
-						[<b>selection</b>: <span class="selectable-content" id="sel-tud2-admin-notify">Administrator</span>, <span class="selectable-content" id="_s_818">User</span>] by 
-							[<b>selection</b>: <span class="selectable-content" id="sel-tud2-audit">generating an audit event</span>, <span class="selectable-content" id="_s_820">[<b>assignment</b>: 
+						[<b>selection</b>: <span class="selectable-content" id="sel-tud2-admin-notify">Administrator</span>, <span class="selectable-content" id="_s_819">User</span>] by 
+							[<b>selection</b>: <span class="selectable-content" id="sel-tud2-audit">generating an audit event</span>, <span class="selectable-content" id="_s_821">[<b>assignment</b>: 
      <span class="assignable-content">notification method</span>]</span>],
 						</li>
 					</ul>and
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_821">Continue execution</span></li><li style=""><span class="selectable-content" id="_s_822">Halt</span></li><li style=""><span class="selectable-content" id="_s_823">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-tud2-recovery">Initiate recovery as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]			
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_825">automatically</span></li><li style=""><span class="selectable-content" id="sel-tud2-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_827">by express determination of an [<b>selection</b>: <span class="selectable-content" id="sel-tud2-admin-det">Administrator</span>, <span class="selectable-content" id="sel-tud2-user-det">User</span>]</span></li></ul>].
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_822">Continue execution</span></li><li style=""><span class="selectable-content" id="_s_823">Halt</span></li><li style=""><span class="selectable-content" id="_s_824">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-tud2-recovery">Initiate recovery as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]			
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_826">automatically</span></li><li style=""><span class="selectable-content" id="sel-tud2-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_828">by express determination of an [<b>selection</b>: <span class="selectable-content" id="sel-tud2-admin-det">Administrator</span>, <span class="selectable-content" id="sel-tud2-user-det">User</span>]</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8893,8 +8867,8 @@ The following sections list Common Criteria and technology terms used in this do
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall allow execution or use of platform firmware updates only if new platform firmware
 					is integrity- and authenticity-checked using the mechanism described in <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a> prior to its
 					execution or use, and
-					[<b>selection</b>: <span class="selectable-content" id="_s_841">the version number of the platform firmware update is more recent than 
-							the version number of the previously installed platform firmware</span>, <span class="selectable-content" id="_s_842">no other conditions</span>].
+					[<b>selection</b>: <span class="selectable-content" id="_s_842">the version number of the platform firmware update is more recent than 
+							the version number of the previously installed platform firmware</span>, <span class="selectable-content" id="_s_843">no other conditions</span>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8927,12 +8901,12 @@ The following sections list Common Criteria and technology terms used in this do
 					rollback-prevention check fails, or a platform firmware update fails for any other reason:
 					<ul>
 						<li>Notify an 
-							[<b>selection</b>: <span class="selectable-content" id="sel-tud3-admin-notify">Administrator</span>, <span class="selectable-content" id="_s_844">User</span>] by 
-							[<b>selection</b>: <span class="selectable-content" id="sel-tud3-audit">generating an audit event</span>, <span class="selectable-content" id="_s_846">[<b>assignment</b>: 
+							[<b>selection</b>: <span class="selectable-content" id="sel-tud3-admin-notify">Administrator</span>, <span class="selectable-content" id="_s_845">User</span>] by 
+							[<b>selection</b>: <span class="selectable-content" id="sel-tud3-audit">generating an audit event</span>, <span class="selectable-content" id="_s_847">[<b>assignment</b>: 
      <span class="assignable-content">notification method</span>]</span>]</li>
 					</ul> and
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_847">Halt</span></li><li style=""><span class="selectable-content" id="_s_848">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-tud3-recovery">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_850">automatically</span></li><li style=""><span class="selectable-content" id="sel-tud3-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_852">by express determination of an 
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_848">Halt</span></li><li style=""><span class="selectable-content" id="_s_849">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-tud3-recovery">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_851">automatically</span></li><li style=""><span class="selectable-content" id="sel-tud3-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_853">by express determination of an 
 							[<b>selection</b>: <span class="selectable-content" id="sel-tud3-admin-det">Administrator</span>, <span class="selectable-content" id="sel-tud3-user-det">User</span>]</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
@@ -9007,7 +8981,7 @@ The following sections list Common Criteria and technology terms used in this do
 				</div></div>
 			<div class="element"><div class="reqid" id="FPT_TUD_EXT.4.2"><a href="#FPT_TUD_EXT.4.2" class="abbr">FPT_TUD_EXT.4.2</a></div><div class="reqdesc">
 					A user shall assert physical presence to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> through: 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_865">login to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> from a physically connected console or terminal</span></li><li style=""><span class="selectable-content" id="_s_866">physical connection of a jumper or cable</span></li><li style=""><span class="selectable-content" id="_s_867">connection to a debug port</span></li><li style=""><span class="selectable-content" id="_s_868">[<b>assignment</b>: 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_866">login to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> from a physically connected console or terminal</span></li><li style=""><span class="selectable-content" id="_s_867">physical connection of a jumper or cable</span></li><li style=""><span class="selectable-content" id="_s_868">connection to a debug port</span></li><li style=""><span class="selectable-content" id="_s_869">[<b>assignment</b>: 
      <span class="assignable-content">description of other mechanism for asserting physical presence</span>]</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
@@ -9097,10 +9071,10 @@ The following sections list Common Criteria and technology terms used in this do
         version 
         2.0</a></span></li></ul>] 
 					protocols with 
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="sel-itc-certauth">X.509 certificate-based authentication of the remote peer</span></li><li style=""><span class="selectable-content" id="_s_874">non-certificate-based authentication of the remote peer</span></li><li style=""><span class="selectable-content" id="_s_875">no authentication of the remote peer</span></li></ul>]				
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="sel-itc-certauth">X.509 certificate-based authentication of the remote peer</span></li><li style=""><span class="selectable-content" id="_s_875">non-certificate-based authentication of the remote peer</span></li><li style=""><span class="selectable-content" id="_s_876">no authentication of the remote peer</span></li></ul>]				
 					to provide a communication channel between itself and 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_876">audit servers (as required by <a href="#FAU_STG.1.1">FAU_STG.1.1</a> if selected)</span></li><li style=""><span class="selectable-content" id="_s_877">remote administrators (as required by <a href="#FTP_TRP.1.1">FTP_TRP.1.1</a> if selected in <a href="#FMT_MOF.1">FMT_MOF.1</a>)</span></li><li style=""><span class="selectable-content" id="_s_878">[<b>assignment</b>: 
-     <span class="assignable-content">other capabilities</span>]</span></li><li style=""><span class="selectable-content" id="_s_879">no other capabilities</span></li></ul>]
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_877">audit servers (as required by <a href="#FAU_STG.1.1">FAU_STG.1.1</a> if selected)</span></li><li style=""><span class="selectable-content" id="_s_878">remote administrators (as required by <a href="#FTP_TRP.1.1">FTP_TRP.1.1</a> if selected in <a href="#FMT_MOF.1">FMT_MOF.1</a>)</span></li><li style=""><span class="selectable-content" id="_s_879">[<b>assignment</b>: 
+     <span class="assignable-content">other capabilities</span>]</span></li><li style=""><span class="selectable-content" id="_s_880">no other capabilities</span></li></ul>]
 					that is logically distinct from other communication channels, provides assured 
 					identification of its end points, protects channel data from disclosure, and detects modification
 					of the channel data. 
@@ -9171,7 +9145,7 @@ The following sections list Common Criteria and technology terms used in this do
      <span class="assignable-content">list of entities external to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr></span>]
 					using a cryptographic algorithm and key size as specified in
 					<a href="#FCS_COP.1/SKC">FCS_COP.1/SKC</a>, and using 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_880">Pre-shared keys</span></li><li style=""><span class="selectable-content" id="sel-ftp-ite-ext-1-est">Keys established according to <a href="#FCS_CKM.2">FCS_CKM.2</a></span></li><li style=""><span class="selectable-content" id="sel-ftp-ite-ext-1-itp">Keys exchanged using a physically protected communication 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_881">Pre-shared keys</span></li><li style=""><span class="selectable-content" id="sel-ftp-ite-ext-1-est">Keys established according to <a href="#FCS_CKM.2">FCS_CKM.2</a></span></li><li style=""><span class="selectable-content" id="sel-ftp-ite-ext-1-itp">Keys exchanged using a physically protected communication 
 							mechanism conformant with <a href="#FTP_ITP_EXT.1">FTP_ITP_EXT.1</a></span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
@@ -10248,18 +10222,20 @@ The following sections list Common Criteria and technology terms used in this do
 				<ul><li>Administrator authentication failures.</li></ul></p><h4>FIA_AFL_EXT.1 Authentication Failure Handling</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><br/><a href="#FCS_CKM.6">FCS_CKM.6</a> Timing and Event of Cryptographic Key Destruction<br/>
 				FIA_SMF.1 Specification of Management Functions
 				</td></tr></table><h4 id="ext-comp-FIA_AFL_EXT.1.1">FIA_AFL_EXT.1.1</h4>
-						The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall consider password and [<b>assignment</b>: 
+						The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall consider password and 
+						[<b>assignment</b>: 
      <span class="assignable-content">other authentication mechanisms</span>]
 						as critical authentication mechanisms.
 					<h4 id="ext-comp-FIA_AFL_EXT.1.2">FIA_AFL_EXT.1.2</h4>
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall detect when a configurable positive integer within 
 					[<b>assignment</b>: 
      <span class="assignable-content">range of acceptable values for each authentication mechanism</span>]
-					of [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_717">unique</span>, <span class="selectable-content" id="_s_718">non-unique</span>] unsuccessful authentication attempts occur related to last successful authentication for
+					of [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_719">unique</span>, <span class="selectable-content" id="_s_720">non-unique</span>] unsuccessful authentication attempts occur related to last successful authentication for
 					each authentication mechanism.
 				<h4 id="ext-comp-FIA_AFL_EXT.1.3">FIA_AFL_EXT.1.3</h4>
-					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall maintain the number of unsuccessful authentication attempts that have occurred 
-					upon power off.
+					<mark>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall maintain the number of unsuccessful authentication attempts that have occurred 
+					upon power off if the minimum boot time of the system is shorter than the lockout time
+					specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>.</mark>
 				<h4 id="ext-comp-FIA_AFL_EXT.1.4">FIA_AFL_EXT.1.4</h4>
 					When the defined number of unsuccessful authentication attempts has exceeded the maximum
 					allowed for a given authentication mechanism, all future authentication attempts shall be
@@ -10269,9 +10245,9 @@ The following sections list Common Criteria and technology terms used in this do
 					When the defined number of unsuccessful authentication attempts for the last available
 					authentication mechanism or a critical authentication mechanism has been surpassed, the 
 					<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall 
-						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_719">perform a wipe of all protected data</span></li><li style=""><span class="selectable-content" id="_s_720">exclude the current User/Administrator from further authentication attempts</span></li><li style=""><span class="selectable-content" id="_s_721">exclude the current User/Administrator from further authentication
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_721">perform a wipe of all protected data</span></li><li style=""><span class="selectable-content" id="_s_722">exclude the current User/Administrator from further authentication attempts</span></li><li style=""><span class="selectable-content" id="_s_723">exclude the current User/Administrator from further authentication
 								attempts for a period of [<b>assignment</b>: 
-     <span class="assignable-content">greater than zero seconds</span>] time</span></li></ul>].
+     <span class="assignable-content">greater than <mark>60</mark> seconds</span>] time</span></li></ul>].
 				<h4 id="ext-comp-FIA_AFL_EXT.1.6">FIA_AFL_EXT.1.6</h4>
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall increment the number of unsuccessful authentication attempts prior to notifying the 
 					user that the authentication was unsuccessful.
@@ -10302,19 +10278,19 @@ The following sections list Common Criteria and technology terms used in this do
 				<ul><li>Ability to configure an authentication throttling policy for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.</li></ul></p><h4>Audit: FIA_TRT_EXT.1</h4><p>The following should be considered for auditable events if <a href="#FAU_GEN.1">FAU_GEN.1</a> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:<ul>
 				<li>Authentication throttling is triggered.</li></ul></p><h4>FIA_TRT_EXT.1 Authentication Throttling</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><br/><a href="#FIA_UAU.5">FIA_UAU.5</a> Multiple Authentication Mechanisms</td></tr></table><h4 id="ext-comp-FIA_TRT_EXT.1.1">FIA_TRT_EXT.1.1</h4>
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall limit user authentication attempts by 
-					[<b>selection</b>: <span class="selectable-content" id="_s_735">preventing authentication via an external port</span>, <span class="selectable-content" id="_s_736">enforcing a delay between incorrect authentication attempts</span>] for all authentication mechanisms selected in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
+					[<b>selection</b>: <span class="selectable-content" id="_s_737">preventing authentication via an external port</span>, <span class="selectable-content" id="_s_738">enforcing a delay between incorrect authentication attempts</span>] for all authentication mechanisms selected in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
 				<h4 id="ext-comp-FIA_TRT_EXT.1.2">FIA_TRT_EXT.1.2</h4>The minimum delay between incorrect authentication attempts  
 					shall be such that no more than 10 attempts can be attempted per 500 milliseconds.
 				</div></div><h3 id="ext-comp-FIA_UIA_EXT" class="indexable" data-level="4">B.2.2.4 FIA_UIA_EXT Administrator Identification and Authentication</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for ensuring that access to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>
 				is not granted to unauthenticated subjects.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FIA_UIA_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FIA_UIA_EXT.1">FIA_UIA_EXT.1</a>,
              Administrator Identification and Authentication,
              requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to ensure that all subjects attempting to perform <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-mediated actions
-				are identified and authenticated prior to authorizing these actions to be performed.</p><h4>Management: FIA_UIA_EXT.1</h4><p>There are no management functions foreseen.</p><h4>Audit: FIA_UIA_EXT.1</h4><p>The following actions should be auditable if FAU_GEN Security audit data 
+				are <mark><s>identified and </s></mark>authenticated prior to authorizing these actions to be performed.</p><h4>Management: FIA_UIA_EXT.1</h4><p>There are no management functions foreseen.</p><h4>Audit: FIA_UIA_EXT.1</h4><p>The following actions should be auditable if FAU_GEN Security audit data 
 				generation is included in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
 				<ol type="a">
-					<li>All use of the identification and authentication mechanism.</li>
+					<li>All use of the authentication mechanism.</li>
 				</ol>
-			</p><h4>FIA_UIA_EXT.1 Administrator Identification and Authentication</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><br/><a href="#FIA_UAU.5">FIA_UAU.5</a> Multiple Authentication Mechanisms</td></tr></table><h4 id="ext-comp-FIA_UIA_EXT.1.1">FIA_UIA_EXT.1.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall require Administrators to be successfully identified and authenticated
+			</p><h4>FIA_UIA_EXT.1 Administrator Identification and Authentication</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><br/><a href="#FIA_UAU.5">FIA_UAU.5</a> Multiple Authentication Mechanisms</td></tr></table><h4 id="ext-comp-FIA_UIA_EXT.1.1">FIA_UIA_EXT.1.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall require Administrators to be successfully <mark>identified and</mark> authenticated
                     using one of the methods in <a href="#FIA_UAU.5">FIA_UAU.5</a> before allowing any <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-mediated management
                     function to be performed by that Administrator.
                 </div></div></span><span data-sortkey="Class: Protection of the TSF (FPT)"><h3 id="ext-comp-FPT" class="indexable" data-level="3">B.2.3 Class: Protection of the TSF (FPT)</h3>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> defines the following extended components as part of the
@@ -10327,7 +10303,7 @@ The following sections list Common Criteria and technology terms used in this do
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall allow access to <abbr class="dyn-abbr"><a href="#abbr_JTAG">JTAG</a></abbr> or other debug ports only to an authorized Administrator
 					through platform firmware or through assertion of physical presence.
 				</div><h4>Management: FPT_JTA_EXT.2</h4><p>There are no management functions foreseen.</p><h4>Audit: FPT_JTA_EXT.2</h4><p>There are no audit events foreseen.</p><h4>FPT_JTA_EXT.2 JTAG/Debug Port Disablement</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>No dependencies.</td></tr></table><h4 id="ext-comp-FPT_JTA_EXT.2.1">FPT_JTA_EXT.2.1</h4>
-					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_747">disable access through hardware</span>, <span class="selectable-content" id="_s_748">control access by a signing key</span>] to <abbr class="dyn-abbr"><a href="#abbr_JTAG">JTAG</a></abbr> or other debug interfaces.
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_748">disable access through hardware</span>, <span class="selectable-content" id="_s_749">control access by a signing key</span>] to <abbr class="dyn-abbr"><a href="#abbr_JTAG">JTAG</a></abbr> or other debug interfaces.
 				</div></div><h3 id="ext-comp-FPT_ROT_EXT" class="indexable" data-level="4">B.2.3.2 FPT_ROT_EXT Platform Integrity</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for platform firmware and hardware integrity.</div><h4>Component Leveling</h4><svg style="max-height: 70px;"><text x="4" fill="black" font-size="15" y="44">FPT_ROT_EXT</text><rect x="2" y="31" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="17" stroke="black"></line><text x="234" fill="black" font-size="15" y="44">2</text><rect x="232" y="31" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="37" stroke="black"></line><text x="234" fill="black" font-size="15" y="64">3</text><rect x="232" y="51" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="57" stroke="black"></line></svg><p><a href="#FPT_ROT_EXT.1">FPT_ROT_EXT.1</a>,
              Platform Integrity Root,
              requires that the platform integrity be anchored in a root of trust.</p><p><a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a>,
@@ -10348,13 +10324,13 @@ The following sections list Common Criteria and technology terms used in this do
 					<ol type="1">
 						<li>Halt,</li>
 						<li>Notify an 
-							[<b>selection</b>: <span class="selectable-content" id="_s_770">Administrator</span>, <span class="selectable-content" id="_s_771">User</span>] by
+							[<b>selection</b>: <span class="selectable-content" id="_s_771">Administrator</span>, <span class="selectable-content" id="_s_772">User</span>] by
 							[<b>assignment</b>: 
      <span class="assignable-content">notification method</span>], and</li>
-						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_772">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_773">Initiate a recovery process</span></li></ul>]</li>
+						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_773">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_774">Initiate a recovery process</span></li></ul>]</li>
 					</ol> 
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_774">automatically</span></li><li style=""><span class="selectable-content" id="_s_775">in accordance with Administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_776">by express determination of an 
-							[<b>selection</b>: <span class="selectable-content" id="_s_777">Administrator</span>, <span class="selectable-content" id="_s_778">User</span>]
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_775">automatically</span></li><li style=""><span class="selectable-content" id="_s_776">in accordance with Administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_777">by express determination of an 
+							[<b>selection</b>: <span class="selectable-content" id="_s_778">Administrator</span>, <span class="selectable-content" id="_s_779">User</span>]
 						</span></li></ul>].	
 				</div><h4>Management: FPT_ROT_EXT.3</h4><p>The following actions could be considered for the management functions in FMT:<ul>
 					<li>Configuration of action to take on integrity failure.</li></ul></p><h4>Audit: FPT_ROT_EXT.3</h4><p>The following actions should be auditable if FAU_GEN Security audit data generation is
@@ -10370,12 +10346,12 @@ The following sections list Common Criteria and technology terms used in this do
 					<ol type="1">
 						<li>Halt,</li>
 						<li>Notify an 
-							[<b>selection</b>: <span class="selectable-content" id="_s_790">Administrator</span>, <span class="selectable-content" id="_s_791">User</span>] by [<b>assignment</b>: 
+							[<b>selection</b>: <span class="selectable-content" id="_s_791">Administrator</span>, <span class="selectable-content" id="_s_792">User</span>] by [<b>assignment</b>: 
      <span class="assignable-content">notification method</span>], and</li>
-						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_792">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_793">Continue execution without the integrity-compromised component</span></li><li style=""><span class="selectable-content" id="_s_794">Continue execution</span></li></ul>]</li>
+						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_793">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_794">Continue execution without the integrity-compromised component</span></li><li style=""><span class="selectable-content" id="_s_795">Continue execution</span></li></ul>]</li>
 					</ol> 
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_795">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_796">by express determination of an 
-							[<b>selection</b>: <span class="selectable-content" id="_s_797">Administrator</span>, <span class="selectable-content" id="_s_798">User</span>]</span></li></ul>].	
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_796">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_797">by express determination of an 
+							[<b>selection</b>: <span class="selectable-content" id="_s_798">Administrator</span>, <span class="selectable-content" id="_s_799">User</span>]</span></li></ul>].	
 				</div></div><h3 id="ext-comp-FPT_PPF_EXT" class="indexable" data-level="4">B.2.3.3 FPT_PPF_EXT Protection of Platform Firmware</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for protecting platform firmware from unauthorized update.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FPT_PPF_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FPT_PPF_EXT.1">FPT_PPF_EXT.1</a>,
              Protection of Platform Firmware and Critical Data,
              requires that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> prevent platform firmware from being modified outside 
@@ -10408,7 +10384,7 @@ The following sections list Common Criteria and technology terms used in this do
 				<li>Success of update operation</li></ul></p><h4>FPT_TUD_EXT.2 Platform Firmware Authenticated Update Mechanism</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><br/>FCS_COP.1 Cryptographic Operations</td></tr></table><h4 id="ext-comp-FPT_TUD_EXT.2.1">FPT_TUD_EXT.2.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate the source of all platform firmware updates using a 
 					digital signature algorithm specified in FCS_COP.1 and using a key store 
 					that contains 
-					[<b>selection</b>: <span class="selectable-content" id="_s_813">the public key</span>, <span class="selectable-content" id="_s_814">hash value of the public key</span>].
+					[<b>selection</b>: <span class="selectable-content" id="_s_814">the public key</span>, <span class="selectable-content" id="_s_815">hash value of the public key</span>].
 				<h4 id="ext-comp-FPT_TUD_EXT.2.2">FPT_TUD_EXT.2.2</h4>
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall allow installation of updates only if the digital signature has been
 					successfully verified as specified in FCS_COP.1 and 
@@ -10425,12 +10401,12 @@ The following sections list Common Criteria and technology terms used in this do
 					<ul>
 						<li>Do not install the update,</li>
 						<li>Notify an 
-						[<b>selection</b>: <span class="selectable-content" id="_s_830">Administrator</span>, <span class="selectable-content" id="_s_831">User</span>] by [<b>assignment</b>: 
+						[<b>selection</b>: <span class="selectable-content" id="_s_831">Administrator</span>, <span class="selectable-content" id="_s_832">User</span>] by [<b>assignment</b>: 
      <span class="assignable-content">notification method</span>],
 						</li>
 					</ul>and
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_832">Continue execution</span></li><li style=""><span class="selectable-content" id="_s_833">Halt</span></li><li style=""><span class="selectable-content" id="_s_834">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_835">Initiate recovery as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]			
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_836">automatically</span></li><li style=""><span class="selectable-content" id="_s_837">in accordance with Administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_838">by express determination of an [<b>selection</b>: <span class="selectable-content" id="_s_839">Administrator</span>, <span class="selectable-content" id="_s_840">User</span>]</span></li></ul>].
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_833">Continue execution</span></li><li style=""><span class="selectable-content" id="_s_834">Halt</span></li><li style=""><span class="selectable-content" id="_s_835">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_836">Initiate recovery as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]			
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_837">automatically</span></li><li style=""><span class="selectable-content" id="_s_838">in accordance with Administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_839">by express determination of an [<b>selection</b>: <span class="selectable-content" id="_s_840">Administrator</span>, <span class="selectable-content" id="_s_841">User</span>]</span></li></ul>].
 				</div><h4>Management: FPT_TUD_EXT.3</h4><p>The following actions could be considered for the management functions in FMT:<ul>
 				<li>Configuration of action to take on an update failure.</li></ul></p><h4>Audit: FPT_TUD_EXT.3</h4><p>The following actions should be auditable if FAU_GEN Security audit data generation is
 				included in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:<ul><li>Failure of update authentication/integrity check/rollback</li>
@@ -10451,13 +10427,13 @@ The following sections list Common Criteria and technology terms used in this do
 					rollback-prevention check fails, or a platform firmware update fails for any other reason:
 					<ul>
 						<li>Notify an 
-							[<b>selection</b>: <span class="selectable-content" id="_s_855">Administrator</span>, <span class="selectable-content" id="_s_856">User</span>] by [<b>assignment</b>: 
+							[<b>selection</b>: <span class="selectable-content" id="_s_856">Administrator</span>, <span class="selectable-content" id="_s_857">User</span>] by [<b>assignment</b>: 
      <span class="assignable-content">notification method</span>]
 						</li>
 					</ul> and
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_857">Halt</span></li><li style=""><span class="selectable-content" id="_s_858">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_859">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_860">automatically</span></li><li style=""><span class="selectable-content" id="_s_861">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_862">by express determination of an 
-							[<b>selection</b>: <span class="selectable-content" id="_s_863">Administrator</span>, <span class="selectable-content" id="_s_864">User</span>]</span></li></ul>].
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_858">Halt</span></li><li style=""><span class="selectable-content" id="_s_859">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_860">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_861">automatically</span></li><li style=""><span class="selectable-content" id="_s_862">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_863">by express determination of an 
+							[<b>selection</b>: <span class="selectable-content" id="_s_864">Administrator</span>, <span class="selectable-content" id="_s_865">User</span>]</span></li></ul>].
 				</div><h4>Management: FPT_TUD_EXT.4</h4><p>There are no management functions foreseen.</p><h4>Audit: FPT_TUD_EXT.4</h4><p>There are no audit events foreseen.</p><h4>FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>No dependencies.</td></tr></table><h4 id="ext-comp-FPT_TUD_EXT.4.1">FPT_TUD_EXT.4.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide a secure local update mechanism that requires an assertion of physical access to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
 					before installation of an update.
 				<h4 id="ext-comp-FPT_TUD_EXT.4.2">FPT_TUD_EXT.4.2</h4>
