@@ -7,22 +7,12 @@
         on-incl/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[5]""/depends[8]""/on-incl[1]""
 * Error: Detected dangling id-reference to sel-rbg-ctr from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[8]""/depends[1]""/on-sel[1]""
-* Error: Detected dangling id-reference to sel-fcs-cop-kat-ecies from attribute
-        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[8]""/depends[4]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-rbg-hmac from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[10]""/depends[2]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-rbg-hmac from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[11]""/depends[1]""/on-sel[1]""
-* Error: Detected dangling id-reference to sel-fcs-cop-kat-ecies from attribute
-        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[11]""/depends[2]""/on-sel[1]""
-* Error: Detected dangling id-reference to sel-fcs-ckm-5-kdf-mac from attribute
-        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[11]""/depends[5]""/on-sel[1]""
-* Error: Detected dangling id-reference to sel-fcs-ckm-5-kdf-pb from attribute
-        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[11]""/depends[6]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-rbg-ctr from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[1]""/on-sel[1]""
-* Error: Detected dangling id-reference to sel-fcs-cop-kat-ecies from attribute
-        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[4]""/on-sel[1]""
 * Error: Detected dangling id-reference to internal-seeds from attribute
         on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[24]""/depends[1]""/on[1]""
 * Error: Detected dangling id-reference to internal-seeds from attribute
@@ -114,6 +104,7 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[1]""/description[1]"This use "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/description[1]"This use "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/description[1]""/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/description[1]""/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[6]""/description[1]"This use "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Roles[1]"For purpo"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Roles[1]"For purpo"/h:p[2]""
