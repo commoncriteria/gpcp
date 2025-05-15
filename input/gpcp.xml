@@ -2030,7 +2030,11 @@
 						<!-- KDF-MAC-2S -->
 						<selectable id="sel-fcs-ckm-5-kdf-mac-2S">
 							<col>KDF-MAC-2S</col>  
-							<col>Shared secret, salt, IV, output length, fixed information</col>
+							<col>Shared secret, salt, IV, output length, fixed information, and
+								<selectables>
+									<selectable>auxiliary shared secret</selectable>
+									<selectable exclusive="yes">no other parameters</selectable>
+								</selectables></col>
 							<col>MAC Step <selectables>
 								<selectable>AES-128-CMAC</selectable>
 								<selectable>AES-192-CMAC</selectable>
@@ -2041,13 +2045,7 @@
 								as randomness extraction and; KDF Step <selectables>
 								<selectable>KDF-CTR</selectable>
 								<selectable>KDF-FB</selectable>
-								<selectable>KDF-DPI</selectable></selectables>
-								using <selectables>	
-								<selectable>AES-128-CMAC</selectable>
-								<selectable>HMAC-SHA-1</selectable>
-								<selectable>HMAC-SHA-256</selectable>
-								<selectable>HMAC-SHA-512</selectable></selectables>
-								as PRF.</col>
+								<selectable>KDF-DPI</selectable></selectables>.</col>
 							<col><selectables>
 								<selectable>128</selectable>
 								<selectable>192</selectable>
@@ -2084,33 +2082,36 @@
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator shall ensure that the TSS documents that the security strength of the
-						auxiliary functions in the below key derivation methods are sufficient for the security
-						strength of the keys derived through those methods.<h:p/>
-					
-						The evaluator shall ensure that the TSS identifies the purposes for which each of the 
-						claimed key derivation functions are used.<h:p/>
-						TBD
-
-						The evaluator shall examine the TSS to ensure that:<h:ul>
-						<h:li>The TSS describes the complete key derivation chain and the description
-							must be consistent with the description in the TSS. For all key derivations the
-							TOE must use a method as described in the PP table. There should be no
-							uncertainty about how a key is derived from another in the chain.</h:li>
-						<h:li>The length of the key derivation key is defined by the PRF. The evaluator
-							should check whether the key derivation key length is consistent with the
-							length provided by the selected PRF.</h:li>
-						<h:li>If a key is used as an input to several KDFs, each invocation must use a
-							distinct context string. If the output of a KDF execution is used for multiple
-							cryptographic keys, those keys must be disjoint segments of the output.</h:li>
-						<h:li>If keys are combined, the ST Author shall describe which method of combination is used in order
-							to justify that the effective entropy of each factor is preserved.</h:li>
+						The evaluator shall verify that the TSS describes and documents:<h:ul>
+						<h:li>that the security strengths of the Pseudo-Random functions for the key 
+							derivation methods are sufficient for the security strength of the keys derived through those
+							methods.</h:li>
+						<h:li>that the security strengths of the input parameters are sufficient for the security
+							strength of the keys derived through these methods.</h:li>
+						<h:li>that, if concatenated keys or intermediary keys are input parameters, the TSS describes
+							the sources of the keys, and the order in which they are concatenated, along with any
+							other values that are concatenated with them. This may occur in instances when input
+							keying material for the KDF comes from two independent sources, for example, a client
+							and a server.</h:li>
+						<h:li>that, if KDF-XOR is selected the TSS describes this method as there is no standard that
+							specifies how to derive a key from two keys using only XOR.</h:li>
+						<h:li>that, if KDF-ENC is selected, the TSS documents the encryption algorithm used from
+							FCS_COP.1/SKC or FCS_COP.1/AEAD, and describes which of the inputs is the
+							plaintext and which is the key. There are no standards that specify how to derive a key
+							from two keys using encryption (KDF-ENC).</h:li>
+						<h:li>that, for KDF-MAC-1S, KDF-MAC-2S, and KDF-KMAC, the TSS documents that for
+							each invocation of a KDF that reuses the same input shared secret or key, each invocation
+							must use a distinct context string, IV, or salt. The TSS must also describe the composition
+							and sizes of these input parameters.</h:li>
+						<h:li>that, if the TOE uses the derived key in a key chain/hierarchy, that TSS describes how the
+							key is used as part of the key chain/hierarchy.</h:li>
 						</h:ul>
-
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that the AGD instructs the administrator how
-						to configure the TOE to use the selected key derivation functions for all uses identified in the ST.
+						The evaluator shall verify that the AGD instructs the administrator how to set any configurable
+						parameters, such as context strings, salts, and IVs.<h:p/>
+						The evaluator shall verify that the AGD instructs the administrator how to configure the TOE to
+						choose specific PRFs, modes, and parameters.
 					</Guidance>
 					
 					<Tests>
@@ -2304,7 +2305,7 @@
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
 						For each supported fixed information pattern and combination of the above input
 						parameters the evaluator shall require the implementation under test to derive
-						five keys using random data for a shared secret that is the same size as the 
+						15 keys using random data for a shared secret that is the same size as the 
 						derived key. The evaluator shall compare the resulting keys with keys derived
 						using a known-good implementation using the same fixed information patterns and
 						input parameters.<h:p/>
@@ -2340,7 +2341,7 @@
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
 						For each supported fixed information pattern and combination of the above input
 						parameters the evaluator shall require the implementation under test to derive
-						five keys using random data for a shared secret. The evaluator shall compare 
+						15 keys using random data for a shared secret. The evaluator shall compare 
 						the resulting keys with keys derived using a known-good implementation using the 
 						same fixed information patterns and input parameters.<h:p/>
 
@@ -2356,35 +2357,42 @@
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">KDF-MAC-2S</h:td>
-								<h:td valign="top">Shared secret, salt, IV, output length, fixed information</h:td>
+								<h:td valign="top">Shared secret, salt, IV, output length, 
+									fixed information, and [<h:b>selection:</h:b> auxiliary shared secret, 
+									no other parameters]</h:td>
 								<h:td valign="top">MAC Step [<h:b>selection:</h:b> 
 									AES-128-CMAC; AES-192-CMAC; AES-256-CMAC; 
+									Camellia-128-CMAC; Camellia-192-CMAC; Camellia-256-CMAC;
 									HMAC-SHA-1; HMAC-SHA-256; HMAC-SHA-512] as randomness extraction and; 
 									KDF Step [<h:b>selection:</h:b> 
-									KDF-CTR, KDF-FB, KDF-DPI] using [<h:b>selection:</h:b> 
-									AES-128-CMAC; HMAC-SHA-1; HMAC-SHA-256; HMAC-SHA-512] as PRF</h:td>
+									KDF-CTR, KDF-FB, KDF-DPI]</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256, 512] bits</h:td>
 								<h:td valign="top">NIST SP 800-56C Revision 2 (Section 5) [Two-Step Key Derivation]</h:td>
 							</h:tr>
 						</h:table><h:p/>			
-						<comment>Catalog EA not finalized</comment>
-						To test the TOE’s ability to derive cryptographic keys using Two-Step MAC-based
-						Key Derivation, the evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>MAC mode [AES-128-CMAC; AES-192-CMAC; AES-256-CMAC; HMAC-SHA-1; HMAC-SHA-256; HMAC-SHA-512]</h:li>
-						<h:li>KDF Mode [Counter, feedback, Double Pipeline iteration]</h:li>
+						To test the TOE’s ability to derive cryptographic keys using Two-Step MAC-based Key Derivation,
+						the evaluator shall perform the Algorithm Functional Test using the following input
+						parameters:<h:ul>
+						<h:li>MAC mode [AES-128-CMAC; AES-192-CMAC; AES-256-CMAC; Camellia-128-CMAC;
+							Camellia-192-CMAC; Camellia-256-CMAC; HMAC-SHA-1; HMAC-SHA-256; HMAC-SHA-512]</h:li>
+						<h:li>KDF Mode [Counter, feedback, Double Pipeline Iteration]</h:li>
 						<h:li>Salt [0s, random]</h:li>
 						<h:li>Length of shared secret [224-65535]</h:li>
-						<h:li>Hybrid shared secret ???, aux Shared Secret length??</h:li>
+						<h:li>Length of Auxiliary Shared Secret [0, 112-65535]</h:li>
 						<h:li>Derived key length [128, 192, 256, 512] bits</h:li>
 						<h:li>Fixed information pattern </h:li>
 						<h:li>Counter location [none, before fixed data, after fixed data, before iterator]</h:li>
 						<h:li>Counter length [0, 8, 16, 24, 32]</h:li></h:ul><h:p/>		
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
-						For each supported fixed information pattern and combination of the above input 
-						parameters the evaluator shall require the implementation under test to derive 
-						five keys using random data for a shared secret. The evaluator shall compare the
-						resulting keys with keys derived using a known-good implementation using the 
-						same fixed information patterns and input parameters.<h:p/>
+						The evaluator shall define a test group for each supported combination of KDF mode, MAC
+						mode, fixed information pattern, derived key length, counter location, counter length, salt
+						method, and five random pairs of shared secrets &amp; auxiliary secrets (if supported) such that
+						collectively the minimum length, maximum length and three random lengths of each are
+						included in each test group. For each test group, the evaluator shall require the implementation
+						under test to derive 25 keys using random data for a shared secret, either a random salt or a salt
+						of all 0s, and, if supported, an auxiliary shared secret consisting of random data. The evaluator
+						shall compare the resulting keys with keys derived using a known-good implementation using
+						the same input parameters.<h:p/>
 
 						<!-- KMAC KDF -->
 						<h:br/><h:b>KMAC KDF</h:b><h:p/>
@@ -2841,7 +2849,7 @@
 						material contributed by the TOE is sufficient for the security strength of the key and the
 						agreement method.
 					</TSS>
-					<Guidance>TBD</Guidance>
+					<Guidance>There are no additional Guidance evaluation activities for this component.</Guidance>
 					<Tests>
 						The following tests are conditional based upon the selections made in the SFR.
 						The evaluator shall perform the following test or witness respective tests
@@ -3186,11 +3194,10 @@
 				</note>
 				<aactivity>
 					<TSS>
-						TBD
+						The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
+						nonces, and tags.
 					</TSS>
-					<Guidance>
-						TBD
-					</Guidance>
+					<Guidance/>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
@@ -3348,8 +3355,8 @@
 					</selectables>
 				</title>
 				<aactivity>
-					<TSS> TBD </TSS>
-					<Guidance>TBD</Guidance>
+					<TSS/>
+					<Guidance/>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
@@ -3470,10 +3477,8 @@
 					which collision resistance is needed.
                 </note>
                 <aactivity> 
-                    <TSS>TBD
-					</TSS>
-                    <Guidance>TBD
-                    </Guidance>
+                    <TSS/>
+                    <Guidance/>
                     <Tests>
 						The following tests require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
@@ -3678,36 +3683,18 @@
 							</col>
 						</selectable>
 
-						<selectable id="sel-fcs-cop-keyedhash-kmac-128">
-							<col>KMAC128</col>
-							<col>128 bits</col>
+						<selectable id="sel-fcs-cop-keyedhash-kmac">
+							<col>KMAC</col>
+							<col>TBD</col>
 							<col><selectables>
 								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
 								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
 							</col>
 						</selectable>
 
-						<selectable id="sel-fcs-cop-keyedhash-kmac-256">
-							<col>KMAC256</col>
-							<col>256 bits</col>
-							<col><selectables>
-								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
-								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
-							</col>
-						</selectable>
-
-						<selectable id="sel-fcs-cop-keyedhash-kmacxof-128">
-							<col>KMACXOF128</col>
-							<col><assignable>integer 256 le Lk lt 2^2040</assignable></col>
-							<col><selectables>
-								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
-								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
-							</col>
-						</selectable>
-
-						<selectable id="sel-fcs-cop-keyedhash-kmacxof-256">
-							<col>KMACXOF256</col>
-							<col><assignable>integer 256 le Lk lt 2^2040</assignable></col>
+						<selectable id="sel-fcs-cop-keyedhash-kmacxof">
+							<col>KMACXOF</col>
+							<col><assignable>integer 256 &#8804; <h:i>Lk</h:i> &lt; 2<h:sup>2040</h:sup></assignable></col>
 							<col><selectables>
 								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
 								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
@@ -3723,7 +3710,9 @@
 					If “KMACXOF128” or “KMACXOF256” is selected as Keyed Hash Algorithm, then FCS_COP.1/XOF must be claimed.
 				</note>
 				<aactivity>
-					<TSS>TBD
+					<TSS>
+						The evaluator shall examine the TSS to ensure that the size of the key is sufficient for the desired
+						security strength of the output.
 					</TSS>
 					<Guidance/>
 					<Tests>
@@ -3774,15 +3763,20 @@
 							</h:tr>
 						</h:table><h:p/>	
 						To test the TOE’s ability to generate keyed hashes using HMAC the evaluator shall perform the
-						Algorithm Functional Test for each combination of claimed HMAC algorithm and key size.<h:p/>
+						Algorithm Functional Test for each combination of claimed HMAC algorithm the following
+						parameters:<h:ul>
+						<h:li>Hash function [SHA-1, SHA-224, SHA-256, SHA-384, SHA-512]</h:li>
+						<h:li>Key length [8-65536] bits by 8s</h:li>
+						<h:li>MAC length [32-[digest size of hash function (160, 224, 256, 384, 512)]] bits</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-						The evaluator shall generate 75 test cases using random data such that the message sizes are
-						equally divided between:<h:ul>
-						<h:li>Messages that are less than the maximum supported MAC length</h:li>
-						<h:li>Messages that are equal to the maximum supported MAC length</h:li>
-						<h:li>Messages that are equal to the maximum supported MAC length</h:li></h:ul><h:p/>
+						For each supported Hash function the evaluator shall generate 75 test cases using random input
+						messages of 128 bits, random supported key lengths, random keys, and random supported MAC
+						lengths such that across the 75 test cases:<h:ul>
+						<h:li>The key length includes the minimum, the maximum, a key length equal to the block
+							size, and key lengths that are both larger and smaller than the block size.</h:li>
+						<h:li>The MAC size includes the minimum, the maximum, and two other random values.</h:li></h:ul><h:p/>
 						The evaluator shall compare the output against results generated by a known-good
-						implementation with the same input.	<h:p/>
+						implementation with the same input.	<h:p/>			
 						
 						<!-- KMAC -->
 						<h:br/><h:b>KMAC</h:b><h:p/>
@@ -3793,15 +3787,15 @@
 								<h:td valign="top">List of Standards</h:td>
 							</h:tr>
 							<h:tr>
-								<h:td valign="top">KMAC128</h:td>
-								<h:td valign="top">128 bits</h:td>
+								<h:td valign="top">KMAC</h:td>
+								<h:td valign="top">TBD</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”),
 										NIST SP 800-185 (Section 4 “KMAC”)]  </h:td>
 							</h:tr>
 							<h:tr>
-								<h:td valign="top">KMAC256</h:td>
-								<h:td valign="top">256 bits</h:td>
+								<h:td valign="top">KMACXOF</h:td>
+								<h:td valign="top">[<h:b>assignment:</h:b> <h:i>integer 256 &#8804; <h:i>Lk</h:i> &lt; 2<h:sup>2040</h:sup></h:i>]</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”),
 										NIST SP 800-185 (Section 4 “KMAC”)]  </h:td>
@@ -3810,68 +3804,30 @@
 						To test the TOE’s ability to generate keyed hashes using KMAC the evaluator shall perform the
 						Algorithm Functional Test and MAC Verification Test for each claimed KMAC algorithm using
 						the following input parameters:<h:ul>
+						<h:li>KMAC function [KMAC128, KMAC256, KMACXOF128, KMACXOF256]</h:li>
 						<h:li>Input message length [0-65536] bits</h:li>
-						<h:li>Key length [128, 256] bits</h:li>						
-						<h:li>Customization bit string length [no range?]</h:li></h:ul><h:p/>
+						<h:li>Key size (<h:i>K</h:i>) [128-524288] bits by 8s</h:li>						
+						<h:li>Output MAC Length (<h:i>L</h:i>) [32-65536] bits by 8s</h:li>						
+						<h:li>Customization bit string length [0-1024]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-						The evaluator shall generate 75 test cases using random data such that the message sizes are
-						For each key size, the evaluator shall generate 100 test cases using random data and random
-						values for input message length, customization string length, and customization string.<h:p/>
-						At least one test case should include minimum supported values for input message length and
-						customization string length. Test cases should also include the maximum supported values for
-						input message length.<h:p/>
+						For each supported KMAC function, the evaluator shall generate 100 test cases using random
+						data and random values for input message length, customization string length, and MAC length.
+						Such that across the 100 test cases:<h:p/><h:ul>
+						<h:li>the Message length includes the supported minimum, supported maximum, 49 unique
+							supported values that are less than (2*digest length), and 49 unique supported values that
+							are that are greater than or equal to (2*digest length),</h:li>
+						<h:li>the Key length includes the supported minimum, the supported maximum, and 98 other
+							unique random values,</h:li>
+						<h:li>the MAC length includes the supported minimum, the supported maximum, and 98 other
+							unique random values, and</h:li>
+						<h:li>the Customization string length includes the supported minimum, the supported
+							maximum, and 98 other random values.</h:li>
 						The evaluator shall compare the output against results generated by a known-good
 						implementation with the same input.<h:p/>
 						<h:br/><h:b>MAC Verification Tests</h:b><h:p/>
 						For each key size, the evaluator shall generate 100 test cases as above. In half of the test cases,
 						the evaluator shall modify the MAC so that verification fails.<h:p/>
-						The evaluator shall determine that the results are as expected.<h:p/>
-						
-						<!-- KMACXOF -->
-						<h:br/><h:b>KMACXOF</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Keyed Hash Algorithm</h:td>
-								<h:td valign="top">Cryptographic Key Sizes</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">KMACXOF128</h:td>
-								<h:td valign="top">[<h:b>assignment:</h:b> integer 256 &#8804; Lk &lt; s<h:sup>2040</h:sup> bits]</h:td>
-								<h:td valign="top">
-									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”),
-										NIST SP 800-185 (Section 4 “KMAC”)]  </h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">KMACXOF256</h:td>
-								<h:td valign="top">[<h:b>assignment:</h:b> integer 256 &#8804; Lk &lt; s<h:sup>2040</h:sup> bits]</h:td>
-								<h:td valign="top">
-									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”),
-										NIST SP 800-185 (Section 4 “KMAC”)]  </h:td>
-							</h:tr>
-						</h:table><h:p/>	
-						To test the TOE’s ability to generate keyed hashes using KMACXOF the evaluator shall perform
-						the Algorithm Functional Test and MAC Verification Test for each claimed KMACXOF
-						algorithm using the following input parameters:<h:ul>
-						<h:li>Input message length [0-65536] bits</h:li>
-						<h:li>Key length [256-524288] bits in increments of 8</h:li>
-						<h:li>Customization bit string length [range?]</h:li>
-						<h:li>MAC output length [16-65536] bits</h:li></h:ul><h:p/>
-						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-						For each key size, the evaluator shall generate 100 test cases using random data and random
-						values for input message length, key length, customization string length, customization string,
-						and MAC output length.<h:p/>
-						At least one test case should include minimum suipported values for input message length, key
-						length, customization string length, and output MAC length. Test cases should also include the
-						maximum supported values for input message length and output MAC length.<h:p/>
-						<comment>Should there be one test with all the minimum lengths? Or just make sure they show up
-						somewhere among all the tests?</comment>
-						The evaluator shall compare the output against results generated by a known-good
-						implementation with the same input.<h:p/>
-						<h:br/><h:b>MAC Verification Tests</h:b><h:p/>
-						For each key size, the evaluator shall generate 100 test cases as above. In half of the test cases,
-						the evaluator shall modify the MAC so that verification fails.<h:p/>
-						The evaluator shall determine that the results are as expected.<h:p/>
+						The evaluator shall determine that the results are as expected.
 					</Tests>
 				</aactivity>
 			</f-element>
