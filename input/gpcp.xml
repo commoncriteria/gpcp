@@ -5329,7 +5329,6 @@
 					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STG_EXT.2, or includes
 					any of the following selections: <h:ul>
 						<h:li>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG.1</h:li>
-						<h:li>"<h:i>ECIES</h:i>" in FCS_COP.1/KAT</h:li>
 						<h:li>"<h:i>AES-*</h:i>" in FCS_STG_EXT.3</h:li>
 					</h:ul>
 					
@@ -5340,41 +5339,13 @@
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator shall check that the TSS includes a description of encryption
-						functions used for symmetric key encryption. The evaluator should check that this
-						description of the selected encryption function includes the key sizes and modes of
-						operations as specified in <xref to="fcs-cop-skc-sels"/>.<h:p/>
-						The evaluator shall check that the TSS describes the means by which the TOE
-						satisfies constraints on algorithm parameters included in the selections made for
-						"cryptographic algorithm" and "list of standards."
+					<TSS>
+						The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
+						tweak values, and counters.<h:p/>
+						If XTS-AES is claimed then the evaluator shall examine the TSS to verify that the TOE creates
+						full-length keys by methods that ensure that the two key halves are different and independent.
 					</TSS>
-					<Guidance>
-						If the product supports multiple modes, the evaluator shall examine the AGD
-						to determine that the method of choosing a specific mode/key size
-						is described.
-					</Guidance>
-					<CustomEA name="KMD">
-						The evaluator shall examine the KMD to ensure that the points at which symmetric
-						key encryption and decryption occurs are described, and that the complete data path
-						for symmetric key encryption is described. The evaluator checks that this
-						description is consistent with the relevant parts of the TSS.<h:p/>
-						Assessment of the complete data path for symmetric key encryption includes
-						confirming that the KMD describes the data flow from the device’s host interface
-						to the device’s non-volatile memory storing the data, and gives information
-						enabling the user data path to be distinguished from those situations in which
-						data bypasses the data encryption engine (e.g. read-write operations to an
-						unencrypted Master Boot Record area). The evaluator shall ensure that the
-						documentation of the data path is detailed enough that it thoroughly describes the
-						parts of the TOE that the data passes through (e.g. different memory types,
-						processors and co-processors), its encryption state (i.e. encrypted or unencrypted)
-						in each part, and any places where the data is stored. For example, any caching or
-						buffering of the data should be identified and distinguished from the final
-						destination in non-volatile memory (the latter represents the location from which
-						the host will expect to retrieve the data in future).<h:p/>
-						If support for AES-CTR is claimed and the counter value source is internal to the
-						TOE, the evaluator shall verify that the KMD describes the internal counter
-						mechanism used to ensure that it provides unique counter block values.
-					</CustomEA>
+					<Guidance/>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
@@ -5459,11 +5430,8 @@
 		If ( keylen = 256 )
 			Key[i+1] = Key[i] xor (MSB(CT[j-1], 128) || MSB(CT[j], 128))
 		</h:pre><h:p/>
+						The above pseudocode is for encryption. For decryption, swap all instances of CT and PT.<h:p/>
 						The initial IV, key, and plaintext/ciphertext should be random.<h:p/>
-						The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of
-						the 100 3-tuples for each selected key size. This result shall be compared to the
-						result of running 1000 iterations with the same values using a known good
-						implementation.<h:p/>
 						The evaluator shall test the decrypt functionality using the same test as above,
 						exchanging CT and PT, and replacing AES-CBC-Encrypt with AES-CBC-Decrypt.<h:p/>
 
