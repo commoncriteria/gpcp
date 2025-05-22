@@ -48,7 +48,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-05-21</PPPubDate>
+			<PPPubDate>2025-05-22</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -1211,7 +1211,6 @@
 							<col>RSA</col>
 							<col>RSA</col>
 							<col>Modulus of size <selectables>
-								<selectable id="sel-exp-ak-rsa-2048">2048</selectable>
 								<selectable id="sel-exp-ak-rsa-3072">3072</selectable>
 								<selectable id="sel-exp-ak-rsa-4096">4096</selectable></selectables> bits
 							</col>
@@ -1416,6 +1415,7 @@
 				</note>
 				<aactivity>
 					<TSS>
+						The use of non-CNSA or CNSAA 2.0 algorithms or parameters must be explained.<h:p/>
 						The evaluator shall examine the TSS to verify that it describes how the TOE generates a key
 						based on output from a random bit generator as specified in FCS_RBG.1. The evaluator shall
 						review the TSS to verify that it describes how the functionality described by FCS_RBG.1 is
@@ -1451,7 +1451,7 @@
 							<h:tr>
 								<h:td valign="top">RSA</h:td>
 								<h:td valign="top">RSA</h:td>
-								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 2048, 3072, 4096] bits</h:td>
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits</h:td>
 								<h:td valign="top">NIST FIPS PUB 186-5 (Section A.1.1)</h:td>
 							</h:tr>
 						</h:table><h:p/>						
@@ -1465,8 +1465,8 @@
 						<h:li>Probable primes with conditions based on auxiliary probable primes</h:li>
 						</h:ol><h:p/>
 						In addition to the key generation method, the input parameters are:<h:ul>
-						<h:li>Modulus [2048, 3072, 4096]</h:li>
-						<h:li>Hash algorithm [SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256, SHA3-224, SHA3-256, SHA3-384, SHA3-512] (methods 1, 3, 4 only)</h:li>
+						<h:li>Modulus [3072, 4096]</h:li>
+						<h:li>Hash algorithm [SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] (methods 1, 3, 4 only)</h:li>
 						<h:li>Rabin-Miller prime test [2<h:sup>100</h:sup>, 2<h:sup>Security String</h:sup>] (methods 2, 4, 5 only)</h:li> 
 						<h:li><h:i>p</h:i> mod 8 value [0,1,3,5,7]</h:li>
 						<h:li><h:i>q</h:i> mod 8 value [0,1,3,5,7]</h:li>
@@ -2300,7 +2300,7 @@
 						the Algorithm Functional Test using the following input
 						parameters:<h:ul>
 						<h:li>Auxiliary Function [SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224,
-							SHA-512/256, SHA3-224, SHA3-256, SHA3-384, SHA3-512]</h:li>
+							SHA-512/256]</h:li>
 						<h:li>Derived key length [128, 192, 256, 512] bits</h:li></h:ul><h:p/>
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
 						For each supported fixed information pattern and combination of the above input
@@ -3059,9 +3059,6 @@
 						<selectable>SHA-256</selectable>
 						<selectable>SHA-384</selectable>
 						<selectable>SHA-512</selectable>
-						<selectable>SHA3-256</selectable>
-						<selectable>SHA3-384</selectable>
-						<selectable>SHA3-512</selectable>
 						</selectables>, with iteration count of 
 						<assignable>number of iterations</assignable>
 						using a randomly generated salt of length
@@ -3096,7 +3093,7 @@
 						To test the TOE’s ability to derive cryptographic keys from a password using PBKDF2 the
 						evaluator shall perform the Algorithm Functional Test using the following input 
 						parameters:<h:ul>
-						<h:li>HMAC algorithms [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:li>
+						<h:li>HMAC algorithms [SHA-256, SHA-384, SHA-512]</h:li>
 						<h:li>Iteration count [1-10000000]</h:li>
 						<h:li>Derived Key size [128, 192, 256, 512] bits</h:li>
 						<h:li>Password length [8-128] bytes</h:li>
@@ -3466,6 +3463,8 @@
 					</selectables>.   
                 </title>
                 <note role="application">
+					SHA-3 hashes are approved only for use with LMS (or signature verification).<h:p/>
+					SHA-1 hash is allowed only for Signature Verification.<h:p/>
 					The hash selection should be consistent with the overall strength of the 
 					algorithm used for signature generation. For example, the TOE should choose SHA-256 for 2048-bit RSA or
 					ECC with P-256; SHA-384 for 3072-bit RSA, 4096-bit RSA, or ECC with P-384; and SHA-512 for ECC with
@@ -4271,16 +4270,12 @@
 							<col>RSA-PKCS</col>
 							<col>RSASSA-PKCS1-v1_5</col>
 							<col>Modulus of size <selectables>
-								<selectable>2048</selectable>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
 							</selectables> bits, hash or XOF <selectables>
 								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
-								<selectable>SHA3-256</selectable>
-								<selectable>SHA3-384</selectable>
-								<selectable>SHA3-512</selectable>
 							</selectables></col>
 							<col>
 								RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
@@ -4292,25 +4287,15 @@
 							<col>RSA-PSS</col>
 							<col>RSASSA-PSS</col>
 							<col>Modulus of size <selectables>
-								<selectable>2048</selectable>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
 							</selectables> bits, hash or XOF <selectables>
 								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
-								<selectable>SHA3-256</selectable>
-								<selectable>SHA3-384</selectable>
-								<selectable>SHA3-512</selectable>
-								<selectable>SHAKE128</selectable>
-								<selectable>SHAKE256</selectable>
 							</selectables>, Salt Length (<h:i>sLen</h:i>)
 								such that <assignable>0 &#8804; <h:i>sLen</h:i> &#8804; <h:i>hLen</h:i> (Hash/XOF Output Length)</assignable>
-								and Mask Generation Function = <selectables>
-								<selectable>MGF1</selectable>
-								<selectable>SHAKE128</selectable>
-								<selectable>SHAKE256</selectable>
-								</selectables></col>
+								and Mask Generation Function = MGF1</col>
 							<col>
 								RFC 8017 (Section 8.1) [PKCS#1 v2.2]<h:p/>
 								FIPS PUB 186-5 (Section 5.4) [RSASSA-PSS]
@@ -4335,11 +4320,6 @@
 								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
-								<selectable>SHA3-256</selectable>
-								<selectable>SHA3-384</selectable>
-								<selectable>SHA3-512</selectable>
-								<selectable>SHAKE128</selectable>
-								<selectable>SHAKE256</selectable>
 							</selectables></col>
 							<col><selectables>
 									<selectable>ISO/IEC 14888-3:2018 (Subclause 6.6)</selectable>
@@ -4440,9 +4420,8 @@
 							<h:tr>
 								<h:td valign="top">RSA-PKCS </h:td>
 								<h:td valign="top">RSASSA-PKCS1-v1_5</h:td>
-								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 2048, 3072, 4096] bits,
-									hash or XOF [<h:b>selection:</h:b> SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384,
-												SHA3-512]</h:td>
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits,
+									hash or XOF [<h:b>selection:</h:b> SHA-256, SHA-384, SHA-512]</h:td>
 								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
 													NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]</h:td>
 							</h:tr>
@@ -4450,8 +4429,8 @@
 						To test the TOE’s ability to perform RSA Digital Signature Generation using PKCS1-v1,5
 						signature type, the evaluator shall perform the Generated Data Test using the following input
 						parameters:<h:ul>
-						<h:li>Modulus size [2048, 3072, 4096] bits</h:li>
-						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:li></h:ul><h:p/>
+						<h:li>Modulus size [3072, 4096] bits</h:li>
+						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Generated Data Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate three test cases using random data. The evaluator shall compare the results against those
@@ -4469,11 +4448,10 @@
 							<h:tr>
 								<h:td valign="top">RSA-PSS</h:td>
 								<h:td valign="top">RSASSA-PSS</h:td>
-								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 2048, 3072, 4096] bits,
-									hash or XOF [<h:b>selection:</h:b> SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384,
-												SHA3-512, SHAKE128, SHAKE256], Salt Length (<h:i>sLen</h:i>)
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits,
+									hash or XOF [<h:b>selection:</h:b> SHA-256, SHA-384, SHA-512], Salt Length (<h:i>sLen</h:i>)
 												such that [<h:b>assignmant:</h:b>0 &#8804; <h:i>sLen</h:i> &#8804; <h:i>hLen</h:i> (Hash/XOF Output Length)]
-												and Mask Generation Function = [<h:b>selection:</h:b> MGF1, SHAKE128, SHAKE256]
+												and Mask Generation Function = MGF1
 												</h:td>
 								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
 													NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PSS]</h:td>
@@ -4481,11 +4459,10 @@
 						</h:table><h:p/>	
 						To test the TOE’s ability to perform RSA Digital Signature Generation using PSS signature type,
 						the evaluator shall perform the Generated Data Test using the following input parameters:<h:ul>
-						<h:li>Modulus size [2048, 3072, 4096] bits</h:li>
-						<h:li>Hash or XOF algorithm [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-
-							512, SHAKE128, SHAKE25]</h:li>
+						<h:li>Modulus size [3072, 4096] bits</h:li>
+						<h:li>Hash or XOF algorithm [SHA-256, SHA-384, SHA-512]</h:li>
 						<h:li>Salt length [Fixed based on implementation]</h:li>
-						<h:li>Mask function [MGF1, SHAKE128, SHAKE256]</h:li></h:ul><h:p/>
+						<h:li>Mask function [MGF1]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Generated Data Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate three test cases using random data. The evaluator shall compare the reulsts against those
@@ -4506,8 +4483,7 @@
 								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, brainpoolP256r1, P-384,
 									brainpoolP384r1, P-521, brainpoolP512r1], per-message secret number generation
 									[<h:b>selection:</h:b> extra random bits, rejection sampling, deterministic] 
-									and hash or XOF function using [<h:b>selection:</h:b> SHA256, SHA-384, SHA-512,
-									SHA3-256, SHA3-384, SHA3-512, SHAKE-128, SHAKE256] </h:td>
+									and hash or XOF function using [<h:b>selection:</h:b> SHA256, SHA-384, SHA-512] </h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 14888-3:2018 (Subclause 6.6),
 									NIST FIPS PUB 186-5 (Sections 6.3.1, 6.4.1] [ECDSA]<h:p/>
 									[<h:b>selection:</h:b> RFC 5639 (Section 3) [Brainpool Curves], 
@@ -4519,14 +4495,13 @@
 						Algorithm Functional Test using the following input parameters:<h:ul>
 						<h:li>Ellliptic Curve [P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521,
 							brainpoolP512r1]</h:li>
-						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-512,
-							SHAKE-128, SHAKE-256]</h:li></h:ul><h:p/>
+						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512]</h:li></h:ul><h:p/>
 						To test the TOE’s ability to perform ECDSA Digital Signature Generation using deterministic
 						secret number generation, the evaluator shall perform the Algorithm Functional Test using the
 						following input parameters:	<h:ul>
 						<h:li>Ellliptic Curve [P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521,
 							brainpoolP512r1]</h:li>
-						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:li></h:ul><h:p/>
+						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate 10 test cases using random data. The evaluator shall compare the results against those
@@ -6790,9 +6765,6 @@
 								<selectable><h:mark>SHA-256</h:mark></selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
-								<selectable><h:mark>SHA3-256</h:mark></selectable>
-								<selectable><h:mark>SHA3-384</h:mark></selectable>
-								<selectable><h:mark>SHA3-512</h:mark></selectable>
 							</selectables></col>
 							<col><selectables>
 								<selectable>ISO/IEC 18031: 2011 (Section C.2.2)</selectable>
@@ -6806,9 +6778,6 @@
 								<selectable><h:mark>SHA-256</h:mark></selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
-								<selectable><h:mark>SHA3-256</h:mark></selectable>
-								<selectable><h:mark>SHA3-384</h:mark></selectable>
-								<selectable><h:mark>SHA3-512</h:mark></selectable>
 							</selectables></col>
 							<col><selectables>
 								<selectable>ISO/IEC 18031: 2011 (Section C.2.3)</selectable>
