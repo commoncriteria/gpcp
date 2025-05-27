@@ -48,7 +48,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-05-22</PPPubDate>
+			<PPPubDate>2025-05-27</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -6705,51 +6705,115 @@
 					If "<h:i>CTR_DRBG (any)</h:i>" is selected, then FCS_COP.1/SKC must be claimed.
 				</note>
 				<aactivity level="element">
-					<TSS>The evaluator shall verify that the TSS identifies the DRBGs used by the TOE.</TSS>
-					<Guidance>If the DRBG functionality is configurable, the evaluator shall verify that the operational guidance
-					includes instructions on how to configure this behavior.</Guidance>
+					<TSS>
+						If the ST specifies more than one DRBG, the evaluator shall examine the TSS
+						to verify that it identifies the usage of each DRBG mechanism.<h:p/>
+						The evaluator shall examine the TSS to verify that it specifies the DRBG type,
+						identifies entropy source(s) initializing and reseeding the DRBG.
+					</TSS>
+					<Guidance>
+						The evaluator shall verify that the Guidance instructs the administrator how to configure
+						the TOE to use the selected DRBG mechanism(s), if necessary, and provides information
+						regarding how to instantiate/call the DRBG for RBG services.
+					</Guidance>
 					<Tests>
-						The evaluator shall perform the following tests:<h:p/>
-							The evaluator shall perform 15 trials for the RNG implementation. If the RNG
-							is configurable, the evaluator shall perform 15 trials for each configuration. The
-							evaluator shall also confirm that the operational guidance contains appropriate
-							instructions for configuring the RNG functionality.<h:p/>
-							If the RNG has  prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
-							generate the first block of random bits (3) generate a second block of random bits
-							(4) uninstantiate. The evaluator verifies that the second block of random bits is
-							the expected value. The evaluator shall generate eight input values for each
-							trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
-							personalization string for the instantiate operation. The next two are additional
-							input and entropy input for the first call to generate. The final two are
-							additional input and entropy input for the second call to generate. These values
-							are randomly generated. "generate one block of random bits" means to generate
-							random bits with number of returned bits equal to the Output Block Length (as
-							defined in NIST SP 800-90A).<h:p/>
-							If the RNG does not have prediction resistance,
-							each trial consists of (1) instantiate DRBG, (2) generate the first block of
-							random bits (3) reseed, (4) generate a second block of random bits (5)
-							uninstantiate. The evaluator verifies that the second block of random bits is the
-							expected value. The evaluator shall generate eight input values for each trial.
-							The first is a count (0 – 14). The next three are entropy input, nonce, and
-							personalization string for the instantiate operation. The fifth value is
-							additional input to the first call to generate. The sixth and seventh are
-							additional input and entropy input to the call to reseed. The final value is
-							additional input to the second generate call.<h:p/>
-							The following list contains more information on some of the input values to be generated/selected by the evaluator.
-							<h:ul>
-								<h:li> <h:b>Entropy input:</h:b> The length of the entropy input value must equal the seed
-									length.</h:li>
-								<h:li><h:b>Nonce:</h:b> If a nonce is supported (CTR_DRBG with no Derivation Function does
-									not use a nonce), the nonce bit length is one-half the seed length. </h:li>
-								<h:li><h:b>Personalization string:</h:b> The length of the personalization string must be
-									less than or equal to seed length. If the implementation only supports one
-									personalization string length, then the same length can be used for both values.
-									If more than one string length is support, the evaluator shall use personalization
-									strings of two different lengths. If the implementation does not use a
-									personalization string, no value needs to be supplied. </h:li>
-								<h:li><h:b>Additional input:</h:b> The additional input bit lengths have the same defaults
-									and restrictions as the personalization string lengths.</h:li>
-							</h:ul>
+						The following tests are conditional based upon the selections made in the SFR. The evaluator
+						shall perform the following test or witness respective tests executed by the developer. The tests
+						must be executed on a platform that is as close as practically possible to the operational platform
+						(but which may be instrumented in terms of, for example, use of a debug mode). Where the test
+						is not carried out on the TOE itself, the test platform shall be identified and the differences
+						between test environment and TOE execution environment shall be described. <h:p/>
+
+						<!-- HASH_DRBG -->
+						<h:br/><h:b>HASH_DRBG</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">RBG Algorithm</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">HASH_DRBG</h:td>
+								<h:td valign="top">Hash_DRBG with [<h:b>selection:</h:b> SHA-256, SHA-384,
+									SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.2.2),
+									NIST SP 800-90A Revision 1 (Section 10.1.1)]</h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to generate random bits using Hash_DRBG, the evaluator shall perform
+						the Algorithm Functional Test using the following input parameters:<h:ul>
+						<h:li>Function [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:li>
+						<h:li>Max security strength [256] bits</h:li>
+						<h:li>Entropy length [256-65536] bits</h:li>
+						<h:li>Max Personalization String size [65536] bits</h:li>
+						<h:li>Max additional string [65536] bits</h:li>
+						<h:li>Nonce length [128-65536] bits</h:li>
+						<h:li>Min returned bits length [256, 384, 512]</h:li>
+						<h:li>Prediction resistance [on, off]</h:li>
+						<h:li>Reseed [on, off]</h:li></h:ul><h:p/>
+						<h:br/><h:b><h:i>Algorithm Functional Test</h:i></h:b><h:p/>
+						The evaluator shall generate 16 test groups for each claimed function. Eight with prediction
+						resistance enabled, and eight with prediction resistance turned off. For each of the eight test
+						groups, four must have reseed enabled and four must have reseed turned off.<h:p/>
+						Each test group within the core sets of four test groups shall consist of 15 test cases each, such
+						that minimum lengths and maximum lengths for the above parameters are used at least once
+						across the four groups, and the rest are random lengths.<h:p/>
+						Correctness is determined by comparing the results from a known-good implementation using
+						the same input parameters.<h:p/>
+
+						<!-- HMAC_DRBG -->
+						<h:br/><h:b>HMAC_DRBG</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">RBG Algorithm</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">HMAC_DRBG</h:td>
+								<h:td valign="top">HMAC_DRBG with [<h:b>selection:</h:b> SHA-256, SHA-384,
+									SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.2.3),
+									NIST SP 800-90A Revision 1 (Section 10.1.2)]</h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to generate random bits using HMAC_DRBG, the evaluator shall perform
+						the Algorithm Functional Test using the following input parameters:<h:ul>
+						<h:li>HMAC Mode [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:li>
+						<h:li>Max security strength [256] bits</h:li>
+						<h:li>Entropy length [256-65536] bits</h:li>
+						<h:li>Max Personalization String size [65536] bits</h:li>
+						<h:li>Max additional string [65536] bits</h:li>
+						<h:li>Nonce length [128-65536] bits</h:li>
+						<h:li>Min returned bits length [256, 384, 512] bits</h:li>
+						<h:li>Prediction resistance [on, off]</h:li>
+						<h:li>Reseed [on, off]</h:li></h:ul><h:p/>
+						<h:br/><h:b><h:i>Algorithm Functional Test</h:i></h:b><h:p/>
+						The evaluator shall generate 16 test groups for each claimed function. Eight with prediction
+						resistance enabled, and eight with prediction resistance turned off. For each of the eight test
+						groups, four must have reseed enabled and four must have reseed turned off.<h:p/>
+						Each test group within the core sets of four test groups shall consist of 15 test cases each, such
+						that minimum lengths and maximum lengths for the above parameters are used at least once
+						across the four groups, and the rest are random lengths.<h:p/>
+						Correctness is determined by comparing the results from a known-good implementation using
+						the same input parameters.<h:p/>
+
+						<!-- CTR_DRBG -->
+						<h:br/><h:b>CTR_DRBG</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">RBG Algorithm</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">CTR_DRBG</h:td>
+								<h:td valign="top">CTR_DRBG with [<h:b>selection:</h:b> AES-128, AES-192, AES-256]</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.3.2),
+									NIST SP 800-90A Revision 1 (Section 10.2.1)]</h:td>
+							</h:tr>
+						</h:table><h:p/>	
+
 					</Tests>
 				</aactivity>
 			</f-element>
