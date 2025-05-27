@@ -630,7 +630,7 @@ function showTarget(id){
 
           }
     </style></head><body onLoad="init()"><div id="commmentbox-"><a href="#Comment-1-">Comment: Comment-1-</a><br/><a href="#Comment-2-">Comment: Comment-2-</a><br/><a href="#Comment-3-">Comment: Comment-3-</a><br/><a href="#Comment-4-">Comment: Comment-4-</a><br/><a href="#Comment-5-">Comment: Comment-5-</a><br/><a href="#Comment-6-">Comment: Comment-6-</a><br/><a href="#Comment-7-">Comment: Comment-7-</a><br/><a href="#Comment-8-">Comment: Comment-8-</a><br/><a href="#Comment-9-">Comment: Comment-9-</a><br/><a href="#Comment-10-">Comment: Comment-10-</a><br/><a href="#Comment-11-">Comment: Comment-11-</a><br/><a href="#Comment-12-">Comment: Comment-12-</a><br/><a href="#Comment-13-">Comment: Comment-13-</a><br/></div><h1 class="title" style="page-break-before:auto;">DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
-      Version: 2.0<br/>2025-05-22<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>0.1</td><td>2020-11-16</td><td>Started</td></tr>
+      Version: 2.0<br/>2025-05-27<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>0.1</td><td>2020-11-16</td><td>Started</td></tr>
 <tr><td>1.0</td><td>2022-02-10</td><td>Initial publication.</td></tr>
 <tr><td>1.1</td><td>2024-12-13</td><td>Updates for <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022</td></tr>
 <tr><td>2.0</td><td>2025-01-13</td><td>Draft: Incorporate TRRTs</td></tr>
@@ -6549,51 +6549,115 @@ The following sections list Common Criteria and technology terms used in this do
 				</span></div></div></div>
 			
 		<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="element-activity-header"><a href="#FCS_RBG.1.1">FCS_RBG.1.1</a></div>
-					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies the DRBGs used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.</div>
-					<div class="eacategory">Guidance</div><div class="ea">If the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> functionality is configurable, the evaluator shall verify that the operational guidance
-					includes instructions on how to configure this behavior.</div>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+						If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> specifies more than one <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>, the evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+						to verify that it identifies the usage of each <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> mechanism.<p></p>
+						The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it specifies the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> type,
+						identifies entropy source(s) initializing and reseeding the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>.
+					</div>
+					<div class="eacategory">Guidance</div><div class="ea">
+						The evaluator shall verify that the Guidance instructs the administrator how to configure
+						the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use the selected <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> mechanism(s), if necessary, and provides information
+						regarding how to instantiate/call the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> for <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> services.
+					</div>
 					<div class="eacategory">Tests</div><div class="ea">
-						The evaluator shall perform the following tests:<p></p>
-							The evaluator shall perform 15 trials for the <abbr class="dyn-abbr"><a href="#abbr_RNG">RNG</a></abbr> implementation. If the <abbr class="dyn-abbr"><a href="#abbr_RNG">RNG</a></abbr>
-							is configurable, the evaluator shall perform 15 trials for each configuration. The
-							evaluator shall also confirm that the operational guidance contains appropriate
-							instructions for configuring the <abbr class="dyn-abbr"><a href="#abbr_RNG">RNG</a></abbr> functionality.<p></p>
-							If the <abbr class="dyn-abbr"><a href="#abbr_RNG">RNG</a></abbr> has  prediction resistance enabled, each trial consists of (1) instantiate <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>, (2)
-							generate the first block of random bits (3) generate a second block of random bits
-							(4) uninstantiate. The evaluator verifies that the second block of random bits is
-							the expected value. The evaluator shall generate eight input values for each
-							trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
-							personalization string for the instantiate operation. The next two are additional
-							input and entropy input for the first call to generate. The final two are
-							additional input and entropy input for the second call to generate. These values
-							are randomly generated. "generate one block of random bits" means to generate
-							random bits with number of returned bits equal to the Output Block Length (as
-							defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-90A).<p></p>
-							If the <abbr class="dyn-abbr"><a href="#abbr_RNG">RNG</a></abbr> does not have prediction resistance,
-							each trial consists of (1) instantiate <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>, (2) generate the first block of
-							random bits (3) reseed, (4) generate a second block of random bits (5)
-							uninstantiate. The evaluator verifies that the second block of random bits is the
-							expected value. The evaluator shall generate eight input values for each trial.
-							The first is a count (0 – 14). The next three are entropy input, nonce, and
-							personalization string for the instantiate operation. The fifth value is
-							additional input to the first call to generate. The sixth and seventh are
-							additional input and entropy input to the call to reseed. The final value is
-							additional input to the second generate call.<p></p>
-							The following list contains more information on some of the input values to be generated/selected by the evaluator.
-							<ul>
-								<li> <b>Entropy input:</b> The length of the entropy input value must equal the seed
-									length.</li>
-								<li><b>Nonce:</b> If a nonce is supported (CTR_DRBG with no Derivation Function does
-									not use a nonce), the nonce bit length is one-half the seed length. </li>
-								<li><b>Personalization string:</b> The length of the personalization string must be
-									less than or equal to seed length. If the implementation only supports one
-									personalization string length, then the same length can be used for both values.
-									If more than one string length is support, the evaluator shall use personalization
-									strings of two different lengths. If the implementation does not use a
-									personalization string, no value needs to be supplied. </li>
-								<li><b>Additional input:</b> The additional input bit lengths have the same defaults
-									and restrictions as the personalization string lengths.</li>
-							</ul>
+						The following tests are conditional based upon the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>. The evaluator
+						shall perform the following test or witness respective tests executed by the developer. The tests
+						must be executed on a platform that is as close as practically possible to the operational platform
+						(but which may be instrumented in terms of, for example, use of a debug mode). Where the test
+						is not carried out on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself, the test platform shall be identified and the differences
+						between test environment and <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> execution environment shall be described. <p></p>
+
+						
+						<br/><b>HASH_DRBG</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Identifier</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> Algorithm</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top">HASH_DRBG</td>
+								<td valign="top">Hash_DRBG with [<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384,
+									<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512, SHA3-256, SHA3-384, SHA3-512]</td>
+								<td valign="top">[<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_ISO">ISO</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_IEC">IEC</a></abbr> 18031:2011 (Section C.2.2),
+									<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-90A Revision 1 (Section 10.1.1)]</td>
+							</tr>
+						</table><p></p>	
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to generate random bits using Hash_DRBG, the evaluator shall perform
+						the Algorithm Functional Test using the following input parameters:<ul>
+						<li>Function [<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512, SHA3-256, SHA3-384, SHA3-512]</li>
+						<li>Max security strength [256] bits</li>
+						<li>Entropy length [256-65536] bits</li>
+						<li>Max Personalization String size [65536] bits</li>
+						<li>Max additional string [65536] bits</li>
+						<li>Nonce length [128-65536] bits</li>
+						<li>Min returned bits length [256, 384, 512]</li>
+						<li>Prediction resistance [on, off]</li>
+						<li>Reseed [on, off]</li></ul><p></p>
+						<br/><b><i>Algorithm Functional Test</i></b><p></p>
+						The evaluator shall generate 16 test groups for each claimed function. Eight with prediction
+						resistance enabled, and eight with prediction resistance turned off. For each of the eight test
+						groups, four must have reseed enabled and four must have reseed turned off.<p></p>
+						Each test group within the core sets of four test groups shall consist of 15 test cases each, such
+						that minimum lengths and maximum lengths for the above parameters are used at least once
+						across the four groups, and the rest are random lengths.<p></p>
+						Correctness is determined by comparing the results from a known-good implementation using
+						the same input parameters.<p></p>
+
+						
+						<br/><b>HMAC_DRBG</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Identifier</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> Algorithm</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top">HMAC_DRBG</td>
+								<td valign="top">HMAC_DRBG with [<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384,
+									<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512, SHA3-256, SHA3-384, SHA3-512]</td>
+								<td valign="top">[<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_ISO">ISO</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_IEC">IEC</a></abbr> 18031:2011 (Section C.2.3),
+									<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-90A Revision 1 (Section 10.1.2)]</td>
+							</tr>
+						</table><p></p>	
+						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to generate random bits using HMAC_DRBG, the evaluator shall perform
+						the Algorithm Functional Test using the following input parameters:<ul>
+						<li><abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> Mode [<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512, SHA3-256, SHA3-384, SHA3-512]</li>
+						<li>Max security strength [256] bits</li>
+						<li>Entropy length [256-65536] bits</li>
+						<li>Max Personalization String size [65536] bits</li>
+						<li>Max additional string [65536] bits</li>
+						<li>Nonce length [128-65536] bits</li>
+						<li>Min returned bits length [256, 384, 512] bits</li>
+						<li>Prediction resistance [on, off]</li>
+						<li>Reseed [on, off]</li></ul><p></p>
+						<br/><b><i>Algorithm Functional Test</i></b><p></p>
+						The evaluator shall generate 16 test groups for each claimed function. Eight with prediction
+						resistance enabled, and eight with prediction resistance turned off. For each of the eight test
+						groups, four must have reseed enabled and four must have reseed turned off.<p></p>
+						Each test group within the core sets of four test groups shall consist of 15 test cases each, such
+						that minimum lengths and maximum lengths for the above parameters are used at least once
+						across the four groups, and the rest are random lengths.<p></p>
+						Correctness is determined by comparing the results from a known-good implementation using
+						the same input parameters.<p></p>
+
+						
+						<br/><b>CTR_DRBG</b><p></p>
+						<table border="1">
+							<tr class="header" bgcolor="#cccccc">
+								<td valign="top">Identifier</td>
+								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> Algorithm</td>
+								<td valign="top">List of Standards</td>
+							</tr>
+							<tr>
+								<td valign="top">CTR_DRBG</td>
+								<td valign="top">CTR_DRBG with [<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128, <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-192, <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256]</td>
+								<td valign="top">[<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_ISO">ISO</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_IEC">IEC</a></abbr> 18031:2011 (Section C.3.2),
+									<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-90A Revision 1 (Section 10.2.1)]</td>
+							</tr>
+						</table><p></p>	
+
 					</div>
 				<div class="element-activity-header"><a href="#FCS_RBG.1.2">FCS_RBG.1.2</a></div>
 					
