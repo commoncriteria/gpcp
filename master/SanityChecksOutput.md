@@ -1,12 +1,16 @@
 * Warning: This document still has at least one comment.
 * Error: Detected dangling id-reference to sel-rbg-ctr from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[8]""/depends[1]""/on-sel[1]""
+* Error: Detected dangling id-reference to sel-fdp-itc-ext-1e2-sk from attribute
+        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[8]""/depends[4]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-rbg-hmac from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[10]""/depends[2]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-rbg-hmac from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[11]""/depends[1]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-rbg-ctr from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[1]""/on-sel[1]""
+* Error: Detected dangling id-reference to sel-fdp-itc-ext-1e2-sk from attribute
+        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[4]""/on-sel[1]""
 * Error: Detected dangling id-reference to internal-seeds from attribute
         on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[24]""/depends[1]""/on[1]""
 * Error: Detected dangling id-reference to internal-seeds from attribute
