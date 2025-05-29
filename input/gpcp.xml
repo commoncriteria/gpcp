@@ -1383,7 +1383,7 @@
 					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
 					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.<h:p/>
 					
-					RSA key generation with modulus size 2048 bits is no longer permitted by CNSA.<h:p/>
+					<h:mark>RSA key generation with modulus size 2048 bits is no longer permitted by CNSA.</h:mark><h:p/>
 					
 					<comment>From catalog</comment>For RSA the choice of the modulus implies the resulting key sizes of the public and 
 					private keys generated using the specified standard methods.<h:p/>
@@ -1416,7 +1416,7 @@
 				</note>
 				<aactivity>
 					<TSS>
-						The use of non-CNSA or CNSAA 2.0 algorithms or parameters must be explained.<h:p/>
+						<h:mark>The use of non-CNSA or CNSAA 2.0 algorithms or parameters must be explained.</h:mark><h:p/>
 						The evaluator shall examine the TSS to verify that it describes how the TOE generates a key
 						based on output from a random bit generator as specified in FCS_RBG.1. The evaluator shall
 						review the TSS to verify that it describes how the functionality described by FCS_RBG.1 is
@@ -1786,7 +1786,8 @@
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR must be included in the ST if "<h:i>causing the TOE to generate [symmetric] keys/secrets</h:i>"
 					is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.
+					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.<h:p/>
+					<h:mark>When are 128-bit keys accepetable?</h:mark>
 				</note>
 				<aactivity>
 					<TSS>
@@ -1834,7 +1835,7 @@
 					key distribution method <selectables>
 						<selectable id="sel-ckm-2-encap">key encapsulation</selectable>
 						<selectable id="sel-ckm-2-wrap">key wrapping</selectable>
-						<selectable>encrypted channels</selectable>
+						<selectable id="sel-ckm-2-echan">encrypted channels</selectable>
 					</selectables> that meets the following: [none].
 				</title>
 				<note role="application">
@@ -1842,8 +1843,7 @@
 					the relevant list of standards.  <h:p/>
 					If “key wrapping” is selected, FCS_COP.1/KeyWrap must be claimed, which specifies the 
 					relevant list of standards.<h:p/>
-					If “encrypted channels” is selected, FTP_PRO.1 must be claimed, which specifies the relevant 
-					list of standards.
+					If “encrypted channels” is selected, FTP_ITC_EXT.1 must be claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -1860,7 +1860,7 @@
 					</Guidance>
 					<Tests>
 						Specific testing for this component is covered by testing for the claimed components in
-						FCS_COP.1/KeyEncap, FCS_COP.1/KeyWrap, or FTP_PRO.1.
+						FCS_COP.1/KeyEncap, FCS_COP.1/KeyWrap, or FTP_ITC_EXT.1.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -2079,7 +2079,8 @@
 					in the KDF step and select 128 as the output key size. If HMAC is selected
 					in the MAC step, then select the same HMAC in the KDF.<h:p/>
 					The respective FCS_COP.1 component must be claimed for each primitive selected in key
-					derivation algorithm.
+					derivation algorithm.<h:p/>
+					<h:mark>Something about all the algorithms and parameters that you shouldn't use.</h:mark>
 				</note>
 				<aactivity>
 					<TSS>
@@ -2447,195 +2448,84 @@
 			<depends on-incl="sfr-fia-afl-ext-1"/>   <!-- Required for wipe on multiple auth failures -->
 			<f-element id="fcs-ckm-6e1">
 				<title>
-					The TSF shall destroy <assignable>list of cryptographic keys (including keying 
-					material)</assignable> when <selectables>
-						<selectable>no longer needed</selectable>
-						<selectable><assignable>other circumstances for key or keying material destruction</assignable>
-						</selectable></selectables>
+					The TSF shall destroy <assignable>list of cryptographic keys (including keying material)
+						<h:mark>and memory or storage media where they may be found</h:mark></assignable> 
+					when <selectables>
+						<selectable>no longer needed <h:mark>Shall we pull this out of the selection?</h:mark></selectable>
+						<selectable><h:mark>as specified in NIST SP 800-57 Part 1 Rev. 5</h:mark></selectable>
+						<selectable><assignable>other circumstances for key or key material destruction</assignable></selectable>
+					</selectables>.
 				</title>
 				<note role="application">
-					<comment>From catalog</comment>The TOE will have mechanisms to destroy keys, including intermediate keys and key material, by using
-					an approved method as specified in FCS_CKM.6.2.  Examples of keys include intermediate keys, leaf keys, 
-					encryption keys, and signing keys.  Key material includes seeds, authentication secrets, passwords, 
-					PINs, and other secret values used to derive keys.  The ST Author shall list all such keys and keying
-					material that are subject to destruction in the first assignment.<h:p/>
- 
-					This SFR does not apply to the public component of asymmetric key pairs or to keys that are permitted
-					to remain stored, such as device identification keys. 
+					<h:mark>The purpose of key destruction is "To remove all traces of a cryptographic key so that it cannot be
+					recovered by either physical or electronic means." (NIST SP 800-57 Part 1 Rev. 5).<h:p/></h:mark>
+					The TOE implements methods for destroying keys and key material as specified in FCS_CKM.6.2.<h:p/>
+					The ST Author shall list all such keys and keying material that are subject 
+					to destruction in the first assignment. <h:mark>The description of each key 
+					must also include the types of memory or storage where the key may be found
+					while in use and between uses.</h:mark>
 				</note>
-				
 			</f-element>
 			<f-element id="fcs-ckm-6e2">
 				<title>The TSF shall destroy cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance
-					with a specified cryptographic key destruction method [<h:i>
-					<h:ul><h:li>For volatile memory, the destruction shall be executed by a 
-						<selectables linebreak="yes">
-							<selectable>single overwrite consisting of 
-								<selectables onlyone="yes">
-									<selectable>a pseudo-random pattern using the TSF’s RBG</selectable>
-									<selectable>zeroes</selectable>
-									<selectable>ones</selectable>
-									<selectable>a new value of a key</selectable>
-									<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
-								</selectables></selectable>
-							<selectable>removal of power to the memory</selectable>
-							<selectable>removal of all references to the key directly followed by a request for garbage
-								collection</selectable>
-						</selectables></h:li>
-						<h:li>For non-volatile memory 
-						<selectables linebreak="yes">
-							<selectable>that employs a wear-leveling algorithm, the destruction shall be executed by a
-								<selectables>
-									<selectable>single overwrite consisting of 
-										<selectables onlyone="yes">
-											<selectable>zeroes</selectable>
-											<selectable>ones</selectable>
-											<selectable>pseudo-random pattern</selectable>
-											<selectable>a new value of a key of the same size</selectable>
-											<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
-										</selectables></selectable>
-									<selectable>block erase</selectable>
-								</selectables></selectable>
-							<selectable>that does not employ a wear-leveling algorithm, the destruction shall be executed by a
-								<selectables linebreak="yes">
-									<selectable>
-										<selectables onlyone="yes">
-											<selectable>single</selectable>
-											<selectable><assignable>ST Author-defined multi-pass</assignable></selectable>
-										</selectables> overwrite consisting of 
-										<selectables>
-											<selectable>zeros</selectable>
-											<selectable>ones</selectable>
-											<selectable>pseudo-random pattern</selectable>
-											<selectable>a new value of a key of the same size</selectable>
-											<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
-										</selectables> followed by a read-verify. If the read-verification of the overwritten data fails,
-										the process shall be repeated again up to <assignable>number of times to attempt overwrite</assignable> times, 
-										whereupon an error is returned</selectable>
-									<selectable>block erase</selectable>
-								</selectables></selectable>
-						</selectables></h:li></h:ul></h:i>]
-					that meets the following: [<h:i>no standard</h:i>].
+					with a specified cryptographic key destruction method <assignable>description of the key destruction methods
+					used for all keys and memory or storage media specified in FCS_CKM.6.1</assignable> 
+					that meets the following: [<h:i>No standard</h:i>].
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
 					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SFR
 					must be included in the ST if any of the following SFRs are claimed: FCS_CKM.1/AKG, FCS_CKM.1/SKG,
-					FCS_CKM.2, FCS_CKM.5, FCS_COP.1/KAT, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
-					The term “cryptographic keys” in this SFR includes
-					the authorization data that is the entry point to a key chain and all other cryptographic keys and
-					keying material (whether in plaintext or encrypted form). Examples of keys and key material include intermediate keys, 
-					encryption keys, signing keys, verification keys, authentication tokens, and submasks.
-					This SFR does not apply to the public
-					component of asymmetric key pairs, or to keys that are permitted to remain stored such as device
-					identification keys. The TOE will have mechanisms to destroy keys and key material when the keys and key material is 
-					no longer needed. Based on their implementations, vendors will explain when certain keys are no longer needed.<h:p/>
-					In the case of volatile memory, the selection “<h:i>removal of all references to the key directly followed
-					by a request for garbage collection</h:i>” is used in a situation where the TSF cannot address the
-					specific physical memory locations holding the data to be erased and therefore relies on
-					addressing logical addresses (which frees the relevant physical addresses holding the old data)
-					and then requesting the platform to ensure that the data in the physical addresses is no longer
-					available for reading (i.e. the “garbage collection” referred to in the SFR text).<h:p/>
-					The selection for destruction of data in non-volatile memory includes block erase as an option,
-					and this option applies only to flash memory. A block erase does not require a read verify, since 
-					the mappings of logical addresses to the erased memory locations are erased as well as the data
-					itself.<h:p/>
-					Some selections allow assignment of “some value that does not contain any CSP.” This means
-					that the TOE uses some specified data not drawn from an RBG meeting FCS_RBG
-					requirements, and not being any of the particular values listed as other selection options. The point
-					of the phrase “does not contain any sensitive data” is to ensure that the overwritten data is
-					carefully selected, and not taken from a general pool that might contain current or residual data
-					that itself requires confidentiality protection.<h:p/>
-					<h:p/>
-					<comment>From crypto catalog</comment>In the case of volatile memory, the selection “removal of all references to the key directly followed 
-					by a request for garbage collection” is used in a situation where the TSF cannot address the specific 
-					physical memory locations holding the data to be erased and therefore relies on addressing logical 
-					addresses (which frees the relevant physical addresses holding the old data) and then requesting the 
-					platform to ensure that the data in the physical addresses is no longer available for reading (i.e. 
-					the “garbage collection” referred to in the SFR text). <h:p/>
-
-					The selection for destruction of data in non-volatile memory includes block erase as an option, and 
-					this option applies only to flash memory.  A block erase does not require a read verify, since the
-					mappings of logical addresses to the erased memory locations are erased, as well as the data itself.<h:p/>
-
-					Some selections allow the assignment of “some value that does not contain any CSP.” This means that 
-					the TOE uses some specified data not drawn from an RBG meeting FCS_RBG requirements, and not being 
-					any of the values listed as other selection options.  The point of the phrase “does not contain any 
-					CSP” is to ensure that the overwritten data is carefully selected, and not taken from a general pool 
-					that might contain data that itself requires confidentiality protection. 
+					FCS_CKM.2, FCS_CKM.5, FCS_CKM_EXT.7, FCS_CKM_EXT.8, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
+					The term “cryptographic keys” in this SFR includes the authorization data that is the entry point
+					to a key chain and all other cryptographic keys and keying material (whether in plaintext or
+					encrypted form). Examples of keys and key material include intermediate keys, encryption keys, 
+					signing keys, verification keys, authentication tokens, and submasks.<h:p/>
+					This SFR does not apply to the public component of asymmetric key pairs, or to keys that are permitted to remain stored such as device
+					identification keys. <h:p/>
+					The ST Author must complete the assignment in FCS_CKM.6.2 with descriptions of the methods 
+					implemented by the TOE to destroy the keys and keying material in FCS_CKM.6.1 with respect to 
+					each type of media in which the keys may be found.
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator shall examine the TSS to ensure it lists all relevant keys and keying
-						material (describing the source of the data, all memory types in which the data is
-						stored (covering storage both during and outside of a session, and both plaintext and
-						non-plaintext forms of the data)), all relevant destruction situations (including the
-						point in time at which the destruction occurs; e.g. factory reset or device wipe
-						function, change of authorization data, change of DEK, completion of use of an
-						intermediate key) and the destruction method used in each case. The evaluator shall
-						confirm that the description of the data and storage locations is consistent with the
-						functions carried out by the TOE (e.g. that all keys in the key chain are accounted
-						for). (Where keys are stored encrypted or wrapped under another key then this may need to
-						be explained in order to allow the evaluator to confirm the consistency of the description 
-						of keys with the TOE functions). <h:p/>
-						The evaluator shall check that the TSS identifies any configurations or
-						circumstances that may not conform to the key destruction requirement (see further
-						discussion in the AGD section below). Note that reference may be made to the AGD
-						for description of the detail of such cases where destruction may be prevented or
-						delayed.<h:p/>
-						Where the ST specifies the use of “a value that does not contain any sensitive data”
-						to overwrite keys, the evaluator shall examine the TSS to ensure that it describes
-						how that pattern is obtained and used, and that this justifies the claim that the pattern
-						does not contain any sensitive data.
+						The evaluator shall examine the TSS to verify that it<h:ul>
+						<h:li>lists all relevant keys and keying material,</h:li>
+						<h:li>describes the source of any key material,</h:li>
+						<h:li>documents all memory or storage media types in which the keys or keying material
+							may be found both during use and between uses,</h:li>
+						<h:li>documents all relevant destruction situations (including the
+							point in time at which the destruction occurs; e.g. factory reset or device wipe
+							function, change of authorization data, change of DEK, completion of use of an
+							intermediate key), and</h:li>
+						<h:li>describes the destruction method used in each case.</h:li></h:ul><h:p/>
+						The evaluator shall confirm that the description of the data and storage locations is
+						consistent with the functions carried out by the TOE. Where keys are stored encrypted or 
+						wrapped under another key then this should be explained in order to allow the evaluator to
+						confirm the consistency of the description of keys with the TOE functions.<h:p/>
+						The evaluator shall verify that the TSS identifies any configurations or
+						circumstances that may not conform to the key destruction requirement, such as delays in the
+						destruction of keys in some configurations or circumstances.
 					</TSS>
 					<Guidance>
-						A TOE may be subject to situations that could prevent or delay data destruction in
-						some cases. The evaluator shall check that the AGD identifies
-						configurations or circumstances that may not strictly conform to the key destruction
-						requirement, and that this description is consistent with the relevant parts of the TSS
-						(and KMD). The evaluator shall check that the AGD provides
-						guidance on situations where key destruction may be delayed at the physical layer,
-						identifying any additional mitigation actions for the user (e.g. there might be some
-						operation the user can invoke, or the user might be advised to retain control of the
-						device for some particular time to maximize the probability that garbage collection
-						has occurred).<h:p/>
-						For example, when the TOE does not have full access to the physical memory, it is
-						possible that the storage may implement wear-leveling and garbage collection. This
-						may result in additional copies of the data that are logically inaccessible but persist
-						physically. Where available, the TOE might then describe use of the TRIM
-						command	and garbage collection to destroy these persistent copies upon their
-						deletion (this would be explained in TSS and AGD). <h:p/>
-						Where TRIM is used then the TSS or AGD is also expected to describe how
-						the keys are stored such that they are not inaccessible to TRIM, (e.g. they would need not
-						to be contained in a file less than 982 bytes which would be completely contained in the
-						master file table.
+						<h:mark>The evaluator shall verify that the Guidance describes any configurable parameters
+						related to the lifecycle of cryptographic keys, including lifetimes or storage 
+						parameters...??</h:mark>
 					</Guidance>
-					<CustomEA name="KMD">
-						The evaluator shall examine the KMD to verify that it identifies and describes the
-						interfaces that are used to service commands to read/write memory. The evaluator
-						shall examine the interface description for each different media type to ensure that
-						the interface supports the selections made by the ST Author.<h:p/>
-						The evaluator shall examine the KMD to ensure that all keys and keying material
-						identified in the TSS and KMD have been accounted for.<h:p/>
-						Note that where selections include "<h:i>destruction of reference to the key directly
-						followed by a request for garbage collection</h:i>" (for volatile memory) then the
-						evaluator shall examine the KMD to ensure that it explains the nature of the
-						destruction of the reference, the request for garbage collection, and of the garbage
-						collection process itself.
-					</CustomEA>
 					<Tests>
-						The following tests require the developer to provide access to a test platform that
+						The following tests may require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
-						The evaluator shall perform the following tests:
+						<h:mark>What if the methods do not fall into any of the below catagories?</h:mark><h:p/>
+						The evaluator shall perform the following for each of the key destruction methods 
+						described in FCS_CKM.6.2:
 						<testlist>
 							<test>
-								Applied to each key or keying material held as plaintext in volatile
-								memory and subject to destruction by overwrite by the TOE (whether or not the
-								plaintext value is subsequently encrypted for storage in volatile or non-volatile
-								memory).<h:p/>
+								<h:mark>If the key destruction method acts upon keys and keying material held in volatile memory
+								that is subject to overwrite by the TOE (whether or not the plaintext key is 
+								subsequently encrypted for storage in volatile or non-volatile memory).</h:mark><h:p/>
 								The evaluator shall:<h:ol type="1">
 								<h:li>Record the value of the key or keying material.</h:li>
-								<h:li>Cause the TOE to dump the SDO/SDE memory of the TOE into a binary file.</h:li>
+								<h:li>Cause the TOE to dump the approriate memory into a binary file.</h:li>
 								<h:li>Search the content of the binary file created in Step #2 to locate all
 									instances of the known key value from Step #1.<h:p/>
 									Note that the primary purpose of Step #3 is to demonstrate that appropriate
@@ -2644,9 +2534,8 @@
 									from Step #1.</h:li>
 								<h:li>Cause the TOE to destroy the key.</h:li>
 								<h:li>Cause the TOE to stop execution but not exit.</h:li>
-								<h:li>Cause the TOE to dump the SDO/SDE memory of the TOE into a binary
-									file.</h:li>
-								<h:li>Search the content of the binary file created in Step #7 for instances of the
+								<h:li>Cause the TOE to dump the appropriate memory into a binary file.</h:li>
+								<h:li>Search the contents of the binary file created in Step #7 for instances of the
 									known key value from Step #1.</h:li>
 								<h:li>Break the key value from Step #1 into an evaluator-chosen set of
 									fragments and perform a search using each fragment. (Note that the
@@ -2666,8 +2555,8 @@
 								collision, then the evaluator may give a pass on this test.<h:p/>
 							</test>
 							<test>
-								Applied to each key and keying material held in non-volatile memory and
-								subject to destruction by overwrite by the TOE.<h:ol type="1">
+								<h:mark>If the key destruction method acts upon keys and keying material held in non-volatile 
+								memory that is subject to overwrite or erasure by the TOE.</h:mark><h:ol type="1">
 								<h:li>Record the value of the key or keying material.</h:li>
 								<h:li>Cause the TOE to perform normal cryptographic processing with the key
 									from Step #1.</h:li>
@@ -2694,8 +2583,8 @@
 								explanation for the collision, then the evaluator may give a pass on this test.<h:p/>
 							</test>
 							<test>
-								Applied to each key and keying material held in non-volatile memory and
-								subject to destruction by overwrite by the TOE.<h:ol type="1">
+								<h:mark>If the key destruction method acts upon keys and keying material held in non-volatile 
+								memory that is subject to overwrite or erasure by the TOE.</h:mark><h:ol type="1">
 								<h:li>Record memory of the key or keying material.</h:li>
 								<h:li>Cause the TOE to perform normal cryptographic processing with the key
 									from Step #1.</h:li>
@@ -9983,6 +9872,7 @@
 			<depends on-sel="sel-fau-itc"/>
 			<depends on-sel="sel-smf-remote-admin"/>
 			<depends on-sel="sel-fdp-itc-ext-1e1-chan"/>   <!-- from FDP_ITC_EXT.1 -->
+			<depends on-sel="sel-ckm-2-echan"/>   <!-- FCS_CKM.2 -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to implement one or more cryptographic protocols
 					to secure connectivity between the TSF and various external entities.</comp-lev>
