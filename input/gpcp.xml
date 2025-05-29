@@ -1773,7 +1773,7 @@
 							<col>RSK</col>
 							<col>Direct Generation from a Random Bit Generator as specified in FCS_RBG.1</col>
 							<col><selectables>
-								<selectable id="sel-exp-skg-128">123</selectable>
+								<selectable id="sel-exp-skg-128">128</selectable>
 								<selectable id="sel-exp-skg-256">256</selectable>
 								<selectable id="sel-exp-skg-512">512</selectable></selectables> bits
 							</col>
@@ -3684,7 +3684,7 @@
 
 						<selectable id="sel-fcs-cop-keyedhash-kmac">
 							<col>KMAC</col>
-							<col>TBD</col>
+							<col><assignable>integer &lt; 2<h:sup>2040</h:sup></assignable></col>
 							<col><selectables>
 								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
 								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
@@ -3693,7 +3693,7 @@
 
 						<selectable id="sel-fcs-cop-keyedhash-kmacxof">
 							<col>KMACXOF</col>
-							<col><assignable>integer 256 &#8804; <h:i>Lk</h:i> &lt; 2<h:sup>2040</h:sup></assignable></col>
+							<col><assignable>integer &lt; 2<h:sup>2040</h:sup></h:sup></assignable></col>
 							<col><selectables>
 								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
 								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
@@ -3787,14 +3787,14 @@
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">KMAC</h:td>
-								<h:td valign="top">TBD</h:td>
+								<h:td valign="top">[<h:b>assignment:</h:b> <h:i>integer &lt; 2<h:sup>2040</h:sup></h:i>]</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”),
 										NIST SP 800-185 (Section 4 “KMAC”)]  </h:td>
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">KMACXOF</h:td>
-								<h:td valign="top">[<h:b>assignment:</h:b> <h:i>integer 256 &#8804; <h:i>Lk</h:i> &lt; 2<h:sup>2040</h:sup></h:i>]</h:td>
+								<h:td valign="top">[<h:b>assignment:</h:b> <h:i>integer &lt; 2<h:sup>2040</h:sup></h:i>]</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”),
 										NIST SP 800-185 (Section 4 “KMAC”)]  </h:td>
@@ -3858,11 +3858,11 @@
 							<col>KAS1</col>
 							<col>KAS1 [RSA-single party]</col>
 						<col><selectables>
-							<selectable>2048 bit</selectable>
-							<selectable>3072 bit</selectable>
-							<selectable>4096 bit</selectable>
-							<selectable>8192 bit</selectable>
-						</selectables></col>
+							<selectable>2048</selectable>
+							<selectable>3072</selectable>
+							<selectable>4096</selectable>
+							<selectable>8192</selectable>
+						</selectables> bits</col>
 						<col>NIST SP 800-56B Revision  2 (Sections 6.3 and 8.2)</col>
 						</selectable>
 						
@@ -3870,11 +3870,11 @@
 							<col>KTS-OAEP</col>
 							<col>KTS-OAEP [RSA-OAEP]</col>
 						<col><selectables>
-							<selectable>2048 bit</selectable>
-							<selectable>3072 bit</selectable>
-							<selectable>4096 bit</selectable>
-							<selectable>8192 bit</selectable>
-						</selectables></col>
+							<selectable>2048</selectable>
+							<selectable>3072</selectable>
+							<selectable>4096</selectable>
+							<selectable>8192</selectable>
+						</selectables> bits</col>
 						<col>NIST SP 800-56B Revision 2 (Sections 6.3 and 9)</col>
 						</selectable>
 						
@@ -4062,6 +4062,7 @@
 			name="Cryptographic Operation - Key Wrapping" status="sel-based">
 			<depends on-sel="sel-ckm-2-wrap"/>
 			<depends on-sel="sel-stg3-kw"/>
+			<depends on-sel="sel-fdp-itc-ext-1e2-kw"/>
 			<f-element id="fcs-cop-1e1-kw">
 				<title>
 					The TSF shall perform [key wrapping] in accordance with a specified cryptographic algorithm 
@@ -7418,13 +7419,7 @@
 						<selectables>
 							<selectable id="sel-fdp-itc-ext-1e2-hash">cryptographic hash as specified in FCS_COP.1/Hash</selectable>
 							<selectable id="sel-fdp-itc-ext-1e2-mac">keyed hash as specified in FCS_COP.1/KeyedHash</selectable>
-							<selectable id="sel-fdp-itc-ext-1e2-sk">integrity-providing encryption algorithm as specified in FCS_COP.1/SKC
-								<selectables>
-									<selectable>AES-CCM</selectable>
-									<selectable>AES-GCM</selectable>
-									<selectable>AES-KW</selectable>
-									<selectable>AES-KWP</selectable>
-								</selectables></selectable>
+							<selectable id="sel-fdp-itc-ext-1e2-kw">integrity-providing encryption algorithm as specified in FCS_COP.1/KeyWrap</selectable>
 							<selectable id="sel-fdp-itc-ext-1e2-sig">digital signature as specified in FCS_COP.1/SigVer</selectable>
 							<selectable>integrity verification supported by FTP_ITC_EXT.1</selectable>
 						</selectables>.
