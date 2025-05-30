@@ -1897,16 +1897,11 @@
 								<selectable>Concatenated keys</selectable>
 							</selectables></col>
 							<col>KPF2 - KDF in Counter Mode using <selectables>
-								<selectable>AES-128-CMAC</selectable>
-								<selectable>AES-192-CMAC</selectable>
 								<selectable>AES-256-CMAC</selectable>
-								<selectable>HMAC-SHA-1</selectable>
 								<selectable>HMAC-SHA-256</selectable>
 								<selectable>HMAC-SHA-512</selectable>
 							</selectables> as the PRF</col>
 							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
 								<selectable>256</selectable>
 								<selectable>512</selectable>
 							</selectables> bits</col>
@@ -1924,16 +1919,11 @@
 								<selectable>Concatenated keys</selectable>
 							</selectables></col>
 							<col>KPF3 - KDF in Feedback Mode using <selectables>
-								<selectable>AES-128-CMAC</selectable>
-								<selectable>AES-192-CMAC</selectable>
 								<selectable>AES-256-CMAC</selectable>
-								<selectable>HMAC-SHA-1</selectable>
 								<selectable>HMAC-SHA-256</selectable>
 								<selectable>HMAC-SHA-512</selectable>
 							</selectables> as the PRF</col>
 							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
 								<selectable>256</selectable>
 								<selectable>512</selectable>
 							</selectables> bits</col>
@@ -1950,16 +1940,11 @@
 								<selectable>Concatenated keys</selectable>
 								</selectables></col>
 							<col>KDF in Double Pipeline Iteration Mode using <selectables>
-									<selectable>AES-128-CMAC</selectable>
-									<selectable>AES-192-CMAC</selectable>
 									<selectable>AES-256-CMAC</selectable>
-									<selectable>HMAC-SHA-1</selectable>
 									<selectable>HMAC-SHA-256</selectable>
 									<selectable>HMAC-SHA-512</selectable>
 								</selectables> as the PRF</col>
 							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
 								<selectable>256</selectable>
 								<selectable>512</selectable>
 								</selectables>bits</col>
@@ -1975,8 +1960,6 @@
 							<col>More than one intermediary key</col>
 							<col>exclusive OR (XOR)</col>
 							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
 								<selectable>256</selectable>
 								<selectable>512</selectable>
 								</selectables> bits</col>
@@ -1990,10 +1973,9 @@
 							<col>Encrypting using an algorithm specified in <selectables>
 								<selectable>FCS_COP.1/SKC</selectable>
 								<selectable>FCS_COP.1/AEAD</selectable></selectables>
+								with a 256-bit key.
 							</col>
 							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
 								<selectable>256</selectable>
 								<selectable>512</selectable>
 								</selectables> bits</col>
@@ -2004,10 +1986,10 @@
 						<selectable id="sel-fcs-ckm-5-kdf-hash">
 							<col>KDF-HASH</col>  <!-- formerly KeyDrv7 -->
 							<col>Shared secret</col>
-							<col>Hash function from FCS_COP.1/Hash</col> 
+							<col>Hash function <selectables> 
+								<selectable>SHA-384</selectable>
+								<selectable>SHA-512</selectable></selectables></col>
 							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
 								<selectable>256</selectable>
 								<selectable>512</selectable>
 								</selectables> bits</col>
@@ -2018,10 +2000,10 @@
 						<selectable id="sel-fcs-ckm-5-kdf-mac-1S">
 							<col>KDF-MAC-1S</col>  <!-- formerly KeyDrv8 -->
 							<col>Shared secret, salt, IV, output length, fixed information</col>
-							<col>Keyed hash from FCS_COP.1/KeyedHash</col>
+							<col>Keyed hash <selectables>
+								<selectable>HMAC-SHA-256</selectable>
+								<selectable>HMAC-SHA-512</selectable></selectables></col>
 							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
 								<selectable>256</selectable>
 								<selectable>512</selectable>
 								</selectables> bits</col>
@@ -2037,10 +2019,6 @@
 									<selectable exclusive="yes">no other parameters</selectable>
 								</selectables></col>
 							<col>MAC Step <selectables>
-								<selectable>AES-128-CMAC</selectable>
-								<selectable>AES-192-CMAC</selectable>
-								<selectable>AES-256-CMAC</selectable>
-								<selectable>HMAC-SHA-1</selectable>
 								<selectable>HMAC-SHA-256</selectable>
 								<selectable>HMAC-SHA-512</selectable></selectables>
 								as randomness extraction and; KDF Step <selectables>
@@ -2048,39 +2026,21 @@
 								<selectable>KDF-FB</selectable>
 								<selectable>KDF-DPI</selectable></selectables>.</col>
 							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
 								<selectable>256</selectable>
 								<selectable>512</selectable>
 								</selectables> bits</col>
 							<col>NIST SP 800-56C Revision 2 (Section 5) [Two-Step Key Derivation]</col>
 						</selectable>
 
-						<!-- KDF-KMAC -->
-						<selectable id="sel-fcs-ckm-5-kdf-kmac">
-							<col>KDF-KMAC</col>
-							<col>Key, context string, output length, label</col>
-							<col><selectables>
-								<selectable>KMAC128</selectable>
-								<selectable>KMAC256</selectable>
-							</selectables></col>
-							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
-								<selectable>256</selectable>
-								<selectable>512</selectable>
-								</selectables> bits</col>
-							<col>NIST SP 800-108 Revision 1 Update 1 (Section 4.4 “KDF Using KMAC”)</col>
-						</selectable>
 					</selectables>
 				</title>
 				<note role="application">
-					In KDF-MAC-2S, if a CMAC is selected in the MAC step, then select AES-128-CMAC
-					in the KDF step and select 128 as the output key size. If HMAC is selected
-					in the MAC step, then select the same HMAC in the KDF.<h:p/>
-					The respective FCS_COP.1 component must be claimed for each primitive selected in key
-					derivation algorithm.<h:p/>
-					<h:mark>Something about all the algorithms and parameters that you shouldn't use.</h:mark>
+					In KDF-MAC-2S, CMAC has been removed as a selection for the MAC step because it requires
+					selection of 128 bits for the output key size, which is not supported in CNSA 1.0. If HMAC is
+					selected in the MAC step, then the same HMAC is used as the KDF.<h:p/>
+					The security strengths of the Pseudo-Random functions for the key derivation methods must be 
+					sufficient for the security strength of the keys derived through those methods. Since CNSA 1.0
+					permits keys no smaller than 256 bits, no 128- or 192-bit PRFs are permitted. 
 				</note>
 				<aactivity>
 					<TSS>
@@ -2098,10 +2058,10 @@
 						<h:li>that, if KDF-XOR is selected the TSS describes this method as there is no standard that
 							specifies how to derive a key from two keys using only XOR.</h:li>
 						<h:li>that, if KDF-ENC is selected, the TSS documents the encryption algorithm used from
-							FCS_COP.1/SKC or FCS_COP.1/AEAD, and describes which of the inputs is the
+							FCS_COP.1/SKC or FCS_COP.1/AEAD with 256-bit keys, and describes which of the inputs is the
 							plaintext and which is the key. There are no standards that specify how to derive a key
 							from two keys using encryption (KDF-ENC).</h:li>
-						<h:li>that, for KDF-MAC-1S, KDF-MAC-2S, and KDF-KMAC, the TSS documents that for
+						<h:li>that, for KDF-MAC-1S and KDF-MAC-2, the TSS documents that for
 							each invocation of a KDF that reuses the same input shared secret or key, each invocation
 							must use a distinct context string, IV, or salt. The TSS must also describe the composition
 							and sizes of these input parameters.</h:li>
@@ -2110,12 +2070,11 @@
 						</h:ul>
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that the AGD instructs the administrator how to set any configurable
+						The evaluator shall verify that the Guidance instructs the administrator how to set any configurable
 						parameters, such as context strings, salts, and IVs.<h:p/>
-						The evaluator shall verify that the AGD instructs the administrator how to configure the TOE to
+						The evaluator shall verify that the Guidance instructs the administrator how to configure the TOE to
 						choose specific PRFs, modes, and parameters.
-					</Guidance>
-					
+					</Guidance>		
 					<Tests>
 						The evaluator shall perform the following test or witness respective tests 
 						executed by the developer. The tests must be executed on a platform that is as 
@@ -2140,9 +2099,8 @@
 								<h:td valign="top">[<h:b>selection:</h:b> Direct Generation from a Random Bit Generator as 
 									specified in FCS_RBG.1, Concatenated keys]</h:td>
 								<h:td valign="top">KPF2 - KDF in Counter Mode using [<h:b>selection:</h:b> 
-									AES-128-CMAC; AES-192-CMAC; AES-256-CMAC; 
-									HMAC-SHA-1; HMAC-SHA-256; HMAC-SHA-512] as the PRF</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256, 512] bits</h:td>
+									AES-256-CMAC; HMAC-SHA-256; HMAC-SHA-512] as the PRF</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 11770-6:2016
 									(Subclause 7.3.2) [KPF2], NIST SP 800-108 Revision 1 Update 1 (Section 4.1) 
 									[KDF in Counter Mode]]</h:td>
@@ -2151,9 +2109,8 @@
 						To test the TOE’s ability to derive cryptographic keys using KDF in Counter 
 						Mode/KDF2, the evaluator shall perform the Counter KDF Algorithm Functional
 						Test using the following input parameters:<h:ul>
-						<h:li>Pseudo Random Function (PRF) [AES-128-CMAC, AES-192-CMAC, AES-256-CMAC,
-							HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512]</h:li>
-						<h:li>Derived key length [128, 192, 256, 512] bits</h:li>
+						<h:li>Pseudo Random Function (PRF) [AES-256-CMAC, HMAC-SHA-256, HMAC-SHA-512]</h:li>
+						<h:li>Derived key length [256, 512] bits</h:li>
 						<h:li>Location of the counter [after fixed data, before fixed data, middle fixed data]</h:li>
 						<h:li>Counter length [8, 16, 24, 32] bits</h:li></h:ul><h:p/>
 						<h:br/><h:i><h:b>Counter KDF Algorithm Functional Test</h:b></h:i><h:br/>
@@ -2177,9 +2134,8 @@
 								<h:td valign="top">[<h:b>selection:</h:b> Direct Generation from a Random Bit Generator as 
 									specified in FCS_RBG.1, Concatenated keys]</h:td>
 								<h:td valign="top">KPF3 - KDF in Feedback Mode using [<h:b>selection:</h:b> 
-									AES-128-CMAC; AES-192-CMAC; AES-256-CMAC; 
-									HMAC-SHA-1; HMAC-SHA-256; HMAC-SHA-512] as the PRF</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256, 512] bits</h:td>
+									AES-256-CMAC; HMAC-SHA-256; HMAC-SHA-512] as the PRF</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 11770-6:2016
 									(Subclause 7.3.3) [KPF3], NIST SP 800-108 Revision 1 Update 1 (Section 4.2) 
 									[KDF in Feedback Mode]]</h:td>
@@ -2188,9 +2144,8 @@
 						To test the TOE’s ability to derive cryptographic keys using KDF in Feedback 
 						Mode/KDF3, the evaluator shall perform the Feedback KDF Algorithm Functional
 						Test using the following input parameters:<h:ul>
-						<h:li>Pseudo Random Function (PRF) [AES-128-CMAC, AES-192-CMAC, AES-256-CMAC,
-							HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512]</h:li>
-						<h:li>Derived key length [128, 192, 256, 512] bits</h:li>
+						<h:li>Pseudo Random Function (PRF) [AES-256-CMAC, HMAC-SHA-256, HMAC-SHA-512]</h:li>
+						<h:li>Derived key length [256, 512] bits</h:li>
 						<h:li>Location of the counter [none, after fixed data, before fixed data, before iterator]</h:li>
 						<h:li>Counter length [0, 8, 16, 24, 32] bits</h:li></h:ul><h:p/>		
 						<h:br/><h:i><h:b>Feedback KDF Algorithm Functional Test</h:b></h:i><h:br/>
@@ -2214,9 +2169,8 @@
 								<h:td valign="top">[<h:b>selection:</h:b> Direct Generation from a Random Bit Generator as 
 									specified in FCS_RBG.1, Concatenated keys]</h:td>
 								<h:td valign="top">KPF4 - KDF in Double-Pipeline Iteration Mode using [<h:b>selection:</h:b> 
-									AES-128-CMAC; AES-192-CMAC; AES-256-CMAC; 
-									HMAC-SHA-1; HMAC-SHA-256; HMAC-SHA-512] as the PRF</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256, 512] bits</h:td>
+									HMAC-SHA-256; HMAC-SHA-512] as the PRF</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 11770-6:2016
 									(Subclause 7.3.4) [KPF4], NIST SP 800-108 Revision 1 Update 1 (Section 4.3) 
 									[KDF in Double-Pipeline Iteration Mode]]</h:td>
@@ -2225,9 +2179,8 @@
 						To test the TOE’s ability to derive cryptographic keys using KDF in Double Pipeline Iteration  
 						Mode/KDF4, the evaluator shall perform the Double Pipeline Iteration KDF Algorithm Functional
 						Test using the following input parameters:<h:ul>
-						<h:li>Pseudo Random Function (PRF) [AES-128-CMAC, AES-192-CMAC, AES-256-CMAC,
-							HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-512]</h:li>
-						<h:li>Derived key length [128, 192, 256, 512] bits</h:li>
+						<h:li>Pseudo Random Function (PRF) [HMAC-SHA-256, HMAC-SHA-512]</h:li>
+						<h:li>Derived key length [256, 512] bits</h:li>
 						<h:li>Location of the counter [none, after fixed data, before fixed data, before iterator]</h:li>
 						<h:li>Counter length [0, 8, 16, 24, 32] bits</h:li></h:ul><h:p/>
 						<h:br/><h:i><h:b>Double Pipeline Iteration KDF Algorithm Functional Test</h:b></h:i><h:br/>
@@ -2250,7 +2203,7 @@
 								<h:td valign="top">KDF-XOR</h:td>
 								<h:td valign="top">More than one intermediary keys</h:td>
 								<h:td valign="top">exclusive OR (XOR)</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256, 512] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
 								<h:td valign="top">N/A</h:td>
 							</h:tr>
 						</h:table><h:p/>						
@@ -2270,8 +2223,8 @@
 								<h:td valign="top">KDF-ENC</h:td>
 								<h:td valign="top">Two keys</h:td>
 								<h:td valign="top">Encrypting using an algorithm specified in 
-									[<h:b>selection:</h:b> FCS_COP.1/SKC,  FCS_COP.1/AEAD]</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256, 512] bits</h:td>
+									[<h:b>selection:</h:b> FCS_COP.1/SKC, FCS_COP.1/AEAD] with a 256-bit key</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
 								<h:td valign="top">N/A</h:td>
 							</h:tr>
 						</h:table><h:p/>						
@@ -2291,8 +2244,8 @@
 							<h:tr>
 								<h:td valign="top">KDF-HASH</h:td>
 								<h:td valign="top">Shared secret</h:td>
-								<h:td valign="top">Hash function from FCS_COP.1/Hash</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256, 512] bits</h:td>
+								<h:td valign="top">Hash function [<h:b>selection:</h:b> SHA-384, SHA-512]</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
 								<h:td valign="top">NIST SP 800-56C Revision 2 (Section 4.1, Option 1) 
 									[One-Step Key Derivation]</h:td>
 							</h:tr>
@@ -2301,9 +2254,8 @@
 						secret (a.k.a. One-Step HASH-based Key Derivation), the evaluator shall perform 
 						the Algorithm Functional Test using the following input
 						parameters:<h:ul>
-						<h:li>Auxiliary Function [SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224,
-							SHA-512/256]</h:li>
-						<h:li>Derived key length [128, 192, 256, 512] bits</h:li></h:ul><h:p/>
+						<h:li>Auxiliary Function [SHA-384, SHA-512]</h:li>
+						<h:li>Derived key length [256, 512] bits</h:li></h:ul><h:p/>
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
 						For each supported fixed information pattern and combination of the above input
 						parameters the evaluator shall require the implementation under test to derive
@@ -2325,20 +2277,18 @@
 							<h:tr>
 								<h:td valign="top">KDF-MAC-1S</h:td>
 								<h:td valign="top">Shared secret, salt, output length, fixed information</h:td>
-								<h:td valign="top">Keyed Hash function from FCS_COP.1/KeyedHash</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256, 512] bits</h:td>
+								<h:td valign="top">Keyed Hash function [<h:b>selection:</h:b> HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512]</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
 								<h:td valign="top">NIST SP 800-56C Revision 2 (Section 4.1, Options 2, 3) 
 									[One-Step Key Derivation]</h:td>
 							</h:tr>
 						</h:table><h:p/>			
-						<comment>Catalog EA not finalized</comment>
 						To test the TOE’s ability to derive cryptographic keys using One-Step
 						MAC-based Key Derivation, the evaluator shall perform the Algorithm Functional
 						Test using the following input parameters:<h:ul>
-						<h:li>Auxiliary Function [HMAC-SHA-1, HMAC-SHA-224, HMAC-SHA-256, HMAC-SHA-384,
-							HMAC-SHA-512, KMAC128, KMAC256, KMACXOF128, KMACXOF256]</h:li>
+						<h:li>Auxiliary Function [HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512]</h:li>
 						<h:li>Salt [0s, random]</h:li>
-						<h:li>Derived key length [128, 192, 256, 512] bits</h:li>
+						<h:li>Derived key length [256, 512] bits</h:li>
 						<h:li>Fixed information pattern </h:li></h:ul><h:p/>		
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
 						For each supported fixed information pattern and combination of the above input
@@ -2363,25 +2313,22 @@
 									fixed information, and [<h:b>selection:</h:b> auxiliary shared secret, 
 									no other parameters]</h:td>
 								<h:td valign="top">MAC Step [<h:b>selection:</h:b> 
-									AES-128-CMAC; AES-192-CMAC; AES-256-CMAC; 
-									Camellia-128-CMAC; Camellia-192-CMAC; Camellia-256-CMAC;
-									HMAC-SHA-1; HMAC-SHA-256; HMAC-SHA-512] as randomness extraction and; 
+									HMAC-SHA-256; HMAC-SHA-512] as randomness extraction and; 
 									KDF Step [<h:b>selection:</h:b> 
 									KDF-CTR, KDF-FB, KDF-DPI]</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256, 512] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
 								<h:td valign="top">NIST SP 800-56C Revision 2 (Section 5) [Two-Step Key Derivation]</h:td>
 							</h:tr>
 						</h:table><h:p/>			
 						To test the TOE’s ability to derive cryptographic keys using Two-Step MAC-based Key Derivation,
 						the evaluator shall perform the Algorithm Functional Test using the following input
 						parameters:<h:ul>
-						<h:li>MAC mode [AES-128-CMAC; AES-192-CMAC; AES-256-CMAC; Camellia-128-CMAC;
-							Camellia-192-CMAC; Camellia-256-CMAC; HMAC-SHA-1; HMAC-SHA-256; HMAC-SHA-512]</h:li>
+						<h:li>MAC mode [HMAC-SHA-256; HMAC-SHA-512]</h:li>
 						<h:li>KDF Mode [Counter, feedback, Double Pipeline Iteration]</h:li>
 						<h:li>Salt [0s, random]</h:li>
 						<h:li>Length of shared secret [224-65535]</h:li>
 						<h:li>Length of Auxiliary Shared Secret [0, 112-65535]</h:li>
-						<h:li>Derived key length [128, 192, 256, 512] bits</h:li>
+						<h:li>Derived key length [256, 512] bits</h:li>
 						<h:li>Fixed information pattern </h:li>
 						<h:li>Counter location [none, before fixed data, after fixed data, before iterator]</h:li>
 						<h:li>Counter length [0, 8, 16, 24, 32]</h:li></h:ul><h:p/>		
@@ -2394,42 +2341,7 @@
 						under test to derive 25 keys using random data for a shared secret, either a random salt or a salt
 						of all 0s, and, if supported, an auxiliary shared secret consisting of random data. The evaluator
 						shall compare the resulting keys with keys derived using a known-good implementation using
-						the same input parameters.<h:p/>
-
-						<!-- KMAC KDF -->
-						<h:br/><h:b>KMAC KDF</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Key Type</h:td>
-								<h:td valign="top">Input Parameters</h:td>
-								<h:td valign="top">Key Derivation Algorithm</h:td>
-								<h:td valign="top">Key Sizes</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">KDF-KMAC</h:td>
-								<h:td valign="top">Key, context string, output length, label</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> KMAC128, KMAC256]</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256, 512] bits</h:td>
-								<h:td valign="top">NIST SP 800-108 Revision 1 Update 1 (Section 4.4 “KDF Using KMAC”)</h:td>
-							</h:tr>
-						</h:table><h:p/>			
-						To test the TOE’s ability to derive cryptographic keys using KMAC Key Derivation, the evaluator shall
-						perform the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>MAC Function [KMAC128, KMAC256]</h:li>
-						<h:li>Key Derivation Key Length [112-4096 by 8] bits</h:li>
-						<h:li>Context length [8-4096 by 8] bits</h:li>
-						<h:li>Label length [8-4096 by 8] bits</h:li>
-						<h:li>Derived key length [128, 192, 256, 512] bits</h:li></h:ul><h:p/>
-					
-						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
-						For each supported MAC function [KMAC128, KMAC256], for each supported minimum and maximum key
-						length:<h:p/>
-						Generate 50 test cases using random data for Key Derivation Key, Context, and 
-						Label. The length of each derived key shall be randomly selected from all 
-						supported values such that the minimum and maximum lengths are chosen once each.
-						The evaluator shall compare the resulting derived keys with keys derived using 
-						a known-good implementation using the same input parameters.<h:p/>
+						the same input parameters.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -2451,7 +2363,7 @@
 					The TSF shall destroy <assignable>list of cryptographic keys (including keying material)
 						<h:mark>and memory or storage media where they may be found</h:mark></assignable> 
 					when <selectables>
-						<selectable>no longer needed <h:mark>Shall we pull this out of the selection?</h:mark></selectable>
+						<selectable>no longer needed</selectable>
 						<selectable><h:mark>as specified in NIST SP 800-57 Part 1 Rev. 5</h:mark></selectable>
 						<selectable><assignable>other circumstances for key or key material destruction</assignable></selectable>
 					</selectables>.
@@ -2655,7 +2567,6 @@
 							<col>KAS2</col>
 							<col>RSA</col>
 							<col>Modulus size <selectables>
-								<selectable>2048</selectable>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
 								<selectable>6144</selectable>
@@ -2669,14 +2580,12 @@
 							<col>Finite Field Cryptography Diffie-Hellman</col>
 							<col>Static domain parameters approved for <selectables>
 								<selectable>IKE Groups <selectables>
-									<selectable id="sel-kat-ffc-modp2048">MODP-2048</selectable>
 									<selectable id="sel-kat-ffc-modp3072">MODP-3072</selectable>
 									<selectable id="sel-kat-ffc-modp4096">MODP-4096</selectable>
 									<selectable id="sel-kat-ffc-modp6144">MODP-6144</selectable>
 									<selectable id="sel-kat-ffc-modp8192">MODP-8192</selectable>
 								</selectables></selectable>
 								<selectable>TLS Groups <selectables>
-									<selectable id="sel-kat-ffc-ffdhe2048">ffdhe2048</selectable>
 									<selectable id="sel-kat-ffc-ffdhe3072">ffdhe3072</selectable>
 									<selectable id="sel-kat-ffc-ffdhe4096">ffdhe4096</selectable>
 									<selectable id="sel-kat-ffc-ffdhe6144">ffdhe6144</selectable>
@@ -2695,38 +2604,18 @@
 							<col>ECDH</col>
 							<col>Elliptic Curve Diffie-Hellman</col>
 							<col>Elliptic Curve <selectables>
-								<selectable id="sel-exp-kat-ecdh-P256">P-256</selectable>
-								<selectable id="sel-exp-kat-ecdh-brainpoolP256r1">brainpoolP256r1</selectable>
 								<selectable id="sel-exp-kat-ecdh-P384">P-384</selectable>
-								<selectable id="sel-exp-kat-ecdh-brainpoolP384r1">brainpoolP384r1</selectable>
 								<selectable id="sel-exp-kat-ecdh-P521">P-521</selectable>
-								<selectable id="sel-exp-kat-ecdh-brainpoolP512r1">brainpoolP512r1</selectable></selectables>
 							</col>
 							<col>
 								NIST SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<h:p/>
-								<selectables>
-								<selectable>: NIST SP 800-186 (Section 3.2.1) [NIST Curves]</selectable>
-								<selectable>RFC 5639 (Section 3) [Brainpool curves]</selectable></selectables>
+								NIST SP 800-186 (Section 3.2.1) [NIST Curves]
 							</col>
 						</selectable>
-
-						<selectable id="sel-fcs-ckm-kat-eddsa">
-							<col>ECDH-Ed</col>
-							<col>ECDH with Montgomery Curves</col>
-							<col>Domain parameters approved for elliptic curves 
-								<selectables>
-								<selectable>curve25519</selectable>
-								<selectable>curve448</selectable></selectables>
-							</col>
-							<col>
-								RFC 7748 (Section 5) [ECDH-Ed]<h:p/>
-								NIST SP 800-186 (Section 3.2.2) [Montgomery Curves]
-							</col>
-						</selectable>
-
 					</selectables>
 				</title>
 				<note role="application">
+					All of the above algorithms with the selectable parameters are CNSA 1.0 compliant.<h:p/>
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
 					functionality.<h:p/> 
@@ -2762,7 +2651,7 @@
 							<h:tr>
 								<h:td valign="top">KAS2</h:td>
 								<h:td valign="top">RSA</h:td>
-								<h:td valign="top">Modulus Size [<h:b>selection:</h:b> 2048, 3072, 4096,
+								<h:td valign="top">Modulus Size [<h:b>selection:</h:b> 3072, 4096,
 									6144, 8192] bits</h:td>
 								<h:td valign="top">NIST SP 800-56B Revision 2 (Section 8.3) [KAS2]</h:td>
 							</h:tr>
@@ -2771,7 +2660,7 @@
 						shall perform the Algorithm Functional Test and Validation Test using the 
 						following input parameters:<h:ul>
 						<h:li>RSA Private key format [Basic, Prime Factor, Chinese Remainder Theorem]</h:li>
-						<h:li>Modulo value [2048, 3072, 4096, 6144, 8192]</h:li>
+						<h:li>Modulo value [3072, 4096, 6144, 8192]</h:li>
 						<h:li>Role [initiator, responder]</h:li></h:ul><h:p/>
 						The evaluator shall generate a test group (i.e. set of tests) for each parameter
 						value of the above parameter type with the largest number of supported values.
@@ -2813,8 +2702,8 @@
 								<h:td valign="top">DH</h:td>
 								<h:td valign="top">Finite Field Cryptography Diffie-Hellman</h:td>
 								<h:td valign="top">Static domain parameters approved for [<h:b>selection:</h:b>
-									IKE groups [<h:b>selection:</h:b> MODP-2048, MODP-3072, MODP-4096,
-									MODP-6144, MODP-8192], TLS groups [<h:b>selection:</h:b> ffdhe2048, 
+									IKE groups [<h:b>selection:</h:b> MODP-3072, MODP-4096,
+									MODP-6144, MODP-8192], TLS groups [<h:b>selection:</h:b> 
 									ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]]]</h:td>
 								<h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.7.1.1) [DH]<h:p/>
 									[<h:b>selection:</h:b> RFC 3526 [IKE Groups], RFC 7919 [TLS Groups]]</h:td>
@@ -2823,8 +2712,8 @@
 						To test the TOE’s implementation of FFC Diffie-Hellman Key Agreement, the evaluator shall
 						perform the Algorithm Functional Test and Validation Test using the following 
 						input parameters:<h:ul>
-						<h:li>Domain Parameter Group [MODP-2048, MODP-3072, MODP-4096, MODP-6144, MODP-8192, ffdhe2048,
-							ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]</h:li></h:ul><h:p/>
+						<h:li>Domain Parameter Group [MODP-3072, MODP-4096, MODP-6144, MODP-8192, 
+						ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]</h:li></h:ul><h:p/>
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
 						For each supported domain parameter group, the evaluator shall generate 10 test
 						cases by generating the initiator and responder secret keys using random data,
@@ -2852,17 +2741,15 @@
 							<h:tr>
 								<h:td valign="top">ECDH</h:td>
 								<h:td valign="top">Elliptic Curve Diffie-Hellman</h:td>
-								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, brainpoolP256r1,
-									P-384, brainpoolP384r1, P-521, brainpoolP512r1]</h:td>
+								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-384, P-521</h:td>
 								<h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<h:p/>
-									[<h:b>selection:</h:b> NIST SP 800-186 (Section 3.2.1) [NIST Curves],
-										RFC 5639 (Section 3) [Brainpool Curves]]</h:td>
+									NIST SP 800-186 (Section 3.2.1) [NIST Curves]</h:td>
 							</h:tr>
 						</h:table><h:p/>						
 						To test the TOE’s implementation of Elliptic Curve Diffie-Hellman Key Agreement,
 						the evaluator shall perform the Algorithm Functional Test and Validation Test 
 						using the following input parameters:<h:ul>
-						<h:li>Elliptic Curve [P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521, brainpoolP512r1]</h:li></h:ul><h:p/>
+						<h:li>Elliptic Curve [P-384, P-521]</h:li></h:ul><h:p/>
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
 						For each supported Elliptic Curve the evaluator shall generate 10 test cases by
 						generating the initiator and responder secret keys using random data, calculating 
@@ -2876,44 +2763,6 @@
 						initiator private key values. The remaining key values are left unchanged (i.e.,
 						correct). To determine correctness, the evaluator shall confirm that the 15 
 						shared secrets correspond as expected for the modified and unmodified values.<h:p/>
-					
-						<!-- Elliptic Curve Diffie-Hellman Key Agreement with Montgomery Curves -->
-						<h:br/><h:b>Elliptic Curve Diffie-Hellman Key Agreement with Montgomery Curves</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptographic Algorithm</h:td>
-								<h:td valign="top">Cryptographic Parameters</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">ECDH-Ed</h:td>
-								<h:td valign="top">ECDH with Montgomery Curves</h:td>
-								<h:td valign="top">Domain parameters approved for elliptic curves
-									[<h:b>selection:</h:b> curve25519, curve448]</h:td>
-								<h:td valign="top">RFC 7748 (Section 5) [ECDH-Ed]<h:p/>
-									NIST SP 800-186 (Section 3.2.2) [Montgomery Curves]</h:td>
-							</h:tr>
-						</h:table><h:p/>						
-						To test the TOE’s implementation of Elliptic Curve Diffie-Hellman Key Agreement
-						with Montgomery Curves, the evaluator shall perform the Algorithm Functional
-						Test and Validation Test using the following input parameters:<h:ul>
-						<h:li>-	Domain Parameters for elliptic curves [curve25519, curve448]</h:li></h:ul><h:p/>
-						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
-						For each supported set of domain parameters, the evaluator shall generate 10 
-						test cases by generating the initiator and responder secret keys using random 
-						data, calculating the responder public key, and creating the shared secret. The 
-						resulting shared secrets shall be compared with those generated by a known-good
-						implementation using the same inputs<h:p/>
-						<h:br/><h:i><h:b>Validation Test</h:b></h:i><h:br/>
-						For each supported combination of the above parameters the evaluator shall
-						generate 15 Diffie Hellman initiator/responder key pairs using the key 
-						generation function of a known-good implementation. For each set of key pairs,
-						modify five initiator private keys values. The remaining key values are left
-						unchanged (i.e., correct). To determine correctness, the evaluator shall confirm
-						that the 15 shared secrets correspond as expected for the modified and unmodified
-						values.<h:p/>
-
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -2946,7 +2795,6 @@
 				<title>
 					The TSF shall perform password-based key derivation functions in accordance with a specified 
 					cryptographic algorithm [HMAC-<selectables>
-						<selectable>SHA-256</selectable>
 						<selectable>SHA-384</selectable>
 						<selectable>SHA-512</selectable>
 						</selectables>, with iteration count of 
@@ -2954,8 +2802,6 @@
 						using a randomly generated salt of length
 						<assignable>equal to or greater than 128</assignable>
 						and output cryptographic key sizes <selectables>
-						<selectable>128</selectable>
-						<selectable>192</selectable>
 						<selectable>256</selectable>
 						<selectable>512</selectable></selectables>
 						bits that meet the following standard: [NIST SP 800-132 (Section 5.3) [PBKDF2]].
@@ -2964,12 +2810,19 @@
 					NIST recommends a minimum “number of iterations” of 1000 but prefers the largest number feasible
 					given performance constraints.<h:p/>
 					NIST recommends that the randomly generated portion of the salt have length of at least 128 bits 
-					and must be derived from a Random Bit Generation.  Therefore FCS_OTV_EXT.1 must be claimed.<h:p/>
-					For CNSA 2.0 compliance, only SHA-384 or SHA-512 may be used.
+					and must be derived from Random Bit Generation.<h:p/>
+					For CNSA 1.0 and 2.0 compliance, only SHA-384 or SHA-512 may be used.
 				</note>
 				<aactivity>
-					<TSS>TBD<comment>Extract words from catalog appendix about mitigations.</comment></TSS>
-					<Guidance>TBD</Guidance>
+					<TSS>
+						The evaluator must verify that the TSS documents that the selection of the keyed hash
+						algorithm, iteration count, length of salt, and other mitigations are sufficient for the
+						security strength of the key derived.<h:p/>
+						The evaluator shall examine the TSS to determine whether the TOE implements other 
+						mitigations against password-exhaustion attacks. Examples include the use of 
+						interface-based mitigations and secret salts.
+					</TSS>
+					<Guidance/>
 					<Tests>
 						The following tests are conditional based upon the selections made in the SFR.
 						The evaluator shall perform the following test or witness respective tests
@@ -2983,9 +2836,9 @@
 						To test the TOE’s ability to derive cryptographic keys from a password using PBKDF2 the
 						evaluator shall perform the Algorithm Functional Test using the following input 
 						parameters:<h:ul>
-						<h:li>HMAC algorithms [SHA-256, SHA-384, SHA-512]</h:li>
+						<h:li>HMAC algorithms [SHA-384, SHA-512]</h:li>
 						<h:li>Iteration count [1-10000000]</h:li>
-						<h:li>Derived Key size [128, 192, 256, 512] bits</h:li>
+						<h:li>Derived Key size [256, 512] bits</h:li>
 						<h:li>Password length [8-128] bytes</h:li>
 						<h:li>Salt length [128-4096] bits in multiples of 8.</h:li></h:ul><h:p/>
 
@@ -3035,11 +2888,7 @@
 						<selectable id="sel-fcs-cop-aead-aes-ccm">
 						<col>AES-CCM</col>
 						<col>AES in CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits</col>
-						<col><selectables>
-							<selectable>128 bits</selectable>
-							<selectable>192 bits</selectable>
-							<selectable>256 bits</selectable>
-						</selectables></col>
+						<col>256 bits</col>
 						<col><selectables>
 							<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
 							<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
@@ -3062,11 +2911,7 @@
 								<selectable>128</selectable>
 							</selectables> bits.
 						</col>
-						<col><selectables>
-								<selectable>128 bits</selectable>
-								<selectable>192 bits</selectable>
-								<selectable>256 bits</selectable>
-							</selectables></col>
+						<col>256 bits</col>
 						<col><selectables>
 							<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
 							<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
@@ -3077,7 +2922,7 @@
 					</selectables>
 				</title>
 				<note role="application">
-					If the selected cryptographic algorithm requires an IV or nonce, then FCS_OTV_EXT.1 must be claimed.
+					The use of 256-bit keys for AES encryption is required by CNSA 1.0 and 2.0.
 				</note>
 				<aactivity>
 					<TSS>
@@ -3109,7 +2954,7 @@
 								<h:td valign="top">AES-CCM </h:td>
 								<h:td valign="top">AES in CCM mode with nonrepeating nonce, minimum size
 									of 64 bits</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256] bits</h:td>
+								<h:td valign="top">256 bits</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
 									FIPS PUB 197] [AES]<h:p/>
@@ -3119,7 +2964,7 @@
 						To test the TOE’s implementation of AES-CCM authenticated encryption functionality the
 						evaluator shall perform the Algorithm Functional Tests described below using the following
 						input parameters:<h:ul>
-						<h:li>Key Size [128, 192, 256] bits</h:li>
+						<h:li>Key Size [256] bits</h:li>
 						<h:li>Associated data size [0-65536] bits in increments of 8</h:li>
 						<h:li>Payload size [0-256] bits in increments of 8</h:li>
 						<h:li>IV/Nonce size [64-104] bits in increments of 8</h:li>
@@ -3165,7 +3010,7 @@
 								<h:td valign="top">AES in GCM mode with nonrepeating IVs using 
 									[<h:b>selection:</h:b> deterministic, RBG-based] IV construction; 
 									the tag must be of length [<h:b>selection:</h:b> 96, 104, 112, 120, or 128] bits.</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256] bits</h:td>
+								<h:td valign="top">256 bits</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
 									FIPS PUB 197] [AES]<h:p/>
@@ -3175,7 +3020,7 @@
 						To test the TOE’s implementation of AES-GCM authenticated encryption functionality the
 						evaluator shall perform the Encryption Algorithm Functional Tests and Decryption Algorithm
 						Functional Tests as described below using the following input parameters:<h:ul>
-						<h:li>Key Size [128, 192, 256] bits</h:li>
+						<h:li>Key Size [256] bits</h:li>
 						<h:li>Associated data size [0-65536] bits</h:li>
 						<h:li>Payload size [0-65536] bits</h:li>
 						<h:li>IV size [96] bits</h:li>
@@ -3227,11 +3072,7 @@
 						<selectable id="sel-fcs-cop-cmac-aes">
 							<col>AES-CMAC</col>
 							<col>AES using CMAC mode</col>
-						<col><selectables>
-								<selectable>128 bits</selectable>
-								<selectable>192 bits</selectable>
-								<selectable>256 bits</selectable>
-							</selectables></col>
+						<col>256 bits</col>
 						<col><selectables>
 							<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
 							<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
@@ -3241,6 +3082,9 @@
 						</col></selectable>
 					</selectables>
 				</title>
+				<note role="application">
+					The use of 256-bit keys for AES algorithms is required by CNSA 1.0 and 2.0.
+				</note>
 				<aactivity>
 					<TSS/>
 					<Guidance/>
@@ -3267,7 +3111,7 @@
 							<h:tr>
 								<h:td valign="top">AES-CMAC </h:td>
 								<h:td valign="top">AES using CMAC mode</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256] bits</h:td>
+								<h:td valign="top">256 bits</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
 									FIPS PUB 197] [AES]<h:p/>
@@ -3277,7 +3121,7 @@
 						To test the TOE’s ability to generate MAC values using AES in CMAC mode the evaluator shall
 						perform the CMAC Generation Test and CMAC Verification Test using the following input
 						parameters:<h:ul>
-						<h:li>Key Size [128, 192, 256] bits</h:li>
+						<h:li>Key Size [256] bits</h:li>
 						<h:li>Message size [0-524288] bits in increments of 8</h:li>
 						<h:li>MAC sizes [1-128] bits</h:li></h:ul><h:p/>
 						<h:br/><h:b>CMAC Generation Test</h:b><h:p/>
@@ -3334,39 +3178,32 @@
 				The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified 
 				cryptographic algorithm 
                     <selectables>
-                        <selectable id="sel-cop1-sha1">SHA-1</selectable>
-                        <selectable id="sel-cop1-sha224">SHA-224</selectable>
                         <selectable id="sel-cop1-sha256">SHA-256</selectable>
                         <selectable id="sel-cop1-sha384">SHA-384</selectable>
                         <selectable id="sel-cop1-sha512">SHA-512</selectable>
-                        <selectable id="sel-cop1-sha512224">SHA-512/224</selectable>
-                        <selectable id="sel-cop1-sha512256">SHA-512/256</selectable>
-						<selectable id="sel-cop1-sha3-224">SHA-3-224</selectable>
-						<selectable id="sel-cop1-sha3-256">SHA-3-256</selectable>
-						<selectable id="sel-cop1-sha3-384">SHA-3-384</selectable>
-						<selectable id="sel-cop1-sha3-512">SHA-3-512</selectable>		    
                     </selectables> that meet the following:
 					<selectables>
-						<selectable>ISO/IEC 10118-3:2018 [SHA, SHA3]</selectable>
+						<selectable>ISO/IEC 10118-3:2018 [SHA]</selectable>
 						<selectable>FIPS PUB 180-4 [SHA]</selectable>
-						<selectable>FIPS PUB 202 [SHA3]</selectable>
 					</selectables>.   
                 </title>
                 <note role="application">
-					SHA-3 hashes are approved only for use with LMS (or signature verification).<h:p/>
-					SHA-1 hash is allowed only for Signature Verification.<h:p/>
+					<h:mark>What about the weird SHAs used with LMS?</h:mark>
+					In accordance with CNSA 1.0 and 2.0:<h:ul>
+					<h:li>SHA-1 hash is no longer permitted to be used as a hash function, </h:li>
+					<h:li>SHA-3 hashes are not permitted to be used as hash functions, and</h:li>
+					<h:li>SHA-256 is permitted only for use as a PRF or MAC as part of a key derivation function,
+						or as part of LMS.</h:li>
+					</h:ul><h:p/>
 					The hash selection should be consistent with the overall strength of the 
-					algorithm used for signature generation. For example, the TOE should choose SHA-256 for 2048-bit RSA or
-					ECC with P-256; SHA-384 for 3072-bit RSA, 4096-bit RSA, or ECC with P-384; and SHA-512 for ECC with
-					P-521. The ST author selects the standard based on the algorithms selected.  <h:p/>
-					SHA-1 may be used as a general hash function and for the following applications: generating and 
-					verifying hash-based message authentication codes (HMACs), key derivation functions (KDFs), and random
-					bit/number generation.  SHA-1 may also be used for verifying old digital signatures and time stamps,
-					if this is explicitly allowed by the application domain.  SHA-1 should not be used in applications in 
-					which collision resistance is needed.
+					algorithm used for signature generation. For example, the TOE should choose SHA-384 for 3072-bit RSA, 
+					4096-bit RSA, or ECC with P-384; and SHA-512 for ECC with P-521.
                 </note>
                 <aactivity> 
-                    <TSS/>
+                    <TSS>
+						The evaluator shall examine the TSS to verify that if SHA-256 is selected, that it is being 
+						used only as a PRF or MAC step in a key derivation function or as part of LMS, and not as a hash algorithm.
+					</TSS>
                     <Guidance/>
                     <Tests>
 						The following tests require the developer to provide access to a test platform that
@@ -3379,13 +3216,13 @@
 						itself, the test platform shall be identified and the differences between test
 						environment and TOE execution environment shall be described.<h:p/>
 
-						<h:br/><h:b>SHA-1, SHA2-224, SHA2-256, SHA2-384, SHA2-512, SHA2-512/224, SHA2-512/256</h:b><h:p/> 
-						To test the TOE’s ability to generate hash digests using SHA-1 and SHA2 the evaluator shall
+						<h:br/><h:b>SHA-256, SHA-384, SHA-512</h:b><h:p/> 
+						To test the TOE’s ability to generate hash digests using SHA2 the evaluator shall
 						perform the Algorithm Functional Test, Monte Carlo Test, and Large Data Test for each claimed
-						SHA-1 and SHA2 algorithm.<h:p/>
+						SHA2 algorithm.<h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-						The evaluator shall generate a number of test cases equal to the block size of the hash (512 for SHA-1, SHA2-224,
-						and SHA2-256; 1024 for the other SHA2 algorithms).<h:p/>
+						The evaluator shall generate a number of test cases equal to the block size of the hash (512 for
+						SHA2-256; 1024 for the other SHA2 algorithms).<h:p/>
 						Each test case is to consist of random data of a random length between 0 and 65536 bits, or the
 						largest size supported.<h:p/>
 						Each test case is to consist of random data of a random length between 0 and 65536 bits, or the
@@ -3434,47 +3271,6 @@
 						consist of a repeated pattern of 64 bits.<h:p/>
 						The evaluator shall compare the output against results generated by a known-good
 						implementation with the same input.<h:p/>
-						
-						<h:br/><h:b>SHA3-224, SHA3-256, SHA3-384, SHA3-512</h:b> 
-						To test the TOE’s ability to generate hash digests using SHA3 the evaluator shall perform the
-						Algorithm Functional Test, Monte Carlo Test, and Large Data Tests for each claimed SHA3
-						algorithm.
-						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-						Generate a test case consisting of random data for every message length from 0 bits (or the
-						smallest supported message size) to rate bits, where rate equals<h:ul>
-						<h:li>1152 for SHA3-224,</h:li>
-						<h:li>1088 for SHA3-256,</h:li>
-						<h:li>832 for SHA3-384, and</h:li>
-						<h:li>576 for SHA3-512.</h:li></h:ul><h:p/>
-						Additionally, generate tests cases of random data for messages of every multiple of (rate+1) bits
-						starting at length rate, and continuing until 65535 is exceeded.<h:p/>
-						The evaluator shall compare the output against results generated by a known-good
-						implementation with the same input.<h:p/>
-						<h:br/><h:b>Monte Carlo Test</h:b><h:p/>
-						Monte Carlo tests begin with a single seed and run 100 iterations of the chained computation.<h:p/>
-						For this Monte Carlo Test, the hashed message is always the same length as the seed.<h:p/>
-						<h:pre>
-		MD[0] = SEED
-		INITIAL_SEED_LENGTH = LEN(SEED)
-		For 100 iterations
-			For i = 1 to 1000
-				MSG = MD[i-1];
-				if LEN(MSG) &gt;= INITIAL_SEED_LENGTH:
-					MSG = leftmost INITIAL_SEED_LENGTH bits of MSG
-				else:
-					MSG = MSG || INITIAL_SEED_LENGTH - LEN(MSG) 0 bits
-				MD[i] = SHA3(MSG)
-			MD[0] = MD[1000]
-			Output MD[0]
-						</h:pre><h:p/>
-						The evaluator shall compare the output against results generated by a known-good
-						implementation with the same input.<h:p/>
-						<h:br/><h:b>Large Data Test</h:b><h:p/>
-						The implementation must be tested against one test case each on large data messages of 1GB,
-						2GB, 4GB, and 8GB of data as supported. The data need not be random. It may, for example,
-						consist of a repeated pattern of 64 bits.<h:p/>
-						The evaluator shall compare the output against results generated by a known-good
-						implementation with the same input.<h:p/>
                     </Tests>
                 </aactivity>
             </f-element>
@@ -3482,7 +3278,6 @@
         </f-component>
 		
 		
-	
 		<!-- FCS_COP.1/KeyedHash Cryptographic Operation - Keyed Hash -->
 		<f-component id="sfr-fcs-cop-1-keyedhash" cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation - Keyed Hash" status="sel-based">
 			<depends on-sel="sel-rbg-hmac"/>  		<!-- FCS_RBG.1.1 -->
@@ -3504,31 +3299,6 @@
 										completion of the selection operations of FCS_COP.1/KeyedHash.</reqtext>
 						</tabularize>
 						
-						<selectable id="sel-fcs-cop-keyedhash-hmac-sha-1">
-							<col>HMAC-SHA-1</col>
-							<col><selectables>
-								<selectable>(ISO, FIPS) 160</selectable>
-								<selectable>(FIPS) 128</selectable></selectables> bits
-							</col>
-							<col><selectables>
-								<selectable>ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”)</selectable>
-								<selectable>FIPS PUB 198-1</selectable></selectables>
-							</col>
-						</selectable>
-					
-						<selectable id="sel-fcs-cop-keyedhash-hmac-sha-224">
-							<col>HMAC-SHA-224</col>
-							<col><selectables>
-								<selectable>224 (ISO, FIPS)</selectable>
-								<selectable>192 (FIPS)</selectable>
-								<selectable>128 (FIPS)</selectable></selectables> bits
-							</col>
-							<col><selectables>
-								<selectable>ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”)</selectable>
-								<selectable>FIPS PUB 198-1</selectable></selectables>
-							</col>
-						</selectable>
-					
 						<selectable id="sel-fcs-cop-keyedhash-hmac-sha-256">
 							<col>HMAC-SHA-256</col>
 							<col><selectables>
@@ -3570,37 +3340,22 @@
 								<selectable>FIPS PUB 198-1</selectable></selectables>
 							</col>
 						</selectable>
-
-						<selectable id="sel-fcs-cop-keyedhash-kmac">
-							<col>KMAC</col>
-							<col><assignable>integer &lt; 2<h:sup>2040</h:sup></assignable></col>
-							<col><selectables>
-								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
-								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
-							</col>
-						</selectable>
-
-						<selectable id="sel-fcs-cop-keyedhash-kmacxof">
-							<col>KMACXOF</col>
-							<col><assignable>integer &lt; 2<h:sup>2040</h:sup></assignable></col>
-							<col><selectables>
-								<selectable>ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”)</selectable>
-								<selectable>NIST SP 800-185 (Section 4 “KMAC”)</selectable></selectables>
-							</col>
-						</selectable>
 					</selectables>
 				</title>	
 				<note role="application">
 					The HMAC minimum key sizes in the table are specified in ISO/IEC 9797-2:2021, which requires that the
 					minimum key size be equal to the digest size. The FIPS standard specifies no minimum or maximum 
 					key sizes, so if FIPS PUB 198-1 is selected, larger or smaller key sizes may be used. This is 
-					indicated by the parenthesized annotations in the Cryptographic Key Sizes column.  <h:p/>
-					If “KMACXOF128” or “KMACXOF256” is selected as Keyed Hash Algorithm, then FCS_COP.1/XOF must be claimed.
+					indicated by the parenthesized annotations in the Cryptographic Key Sizes column.<h:p/>
+					In accordance with CNSA 1.0 and 2.0, HMAC-SHA-256 may be used only as a PRF or MAC step in a 
+					key derivation function.
 				</note>
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to ensure that the size of the key is sufficient for the desired
-						security strength of the output.
+						security strength of the output.<h:p/>
+						The evaluator shall examine the TSS to verify that if HMAC-SHA-256 is selected, that it is being 
+						used only as a PRF or MAC step in a key derivation function.
 					</TSS>
 					<Guidance/>
 					<Tests>
@@ -3618,18 +3373,6 @@
 								<h:td valign="top">Keyed Hash Algorithm</h:td>
 								<h:td valign="top">Cryptographic Key Sizes</h:td>
 								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">HMAC-SHA-1</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> (ISO, FIPS) 160, (FIPS) 128] bits</h:td>
-								<h:td valign="top">
-									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”), FIPS PUB 198-1] </h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">HMAC-SHA-224</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> (ISO, FIPS) 224, (FIPS) 192, 128] bits</h:td>
-								<h:td valign="top">
-									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”), FIPS PUB 198-1] </h:td>
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">HMAC-SHA-256</h:td>
@@ -3653,9 +3396,9 @@
 						To test the TOE’s ability to generate keyed hashes using HMAC the evaluator shall perform the
 						Algorithm Functional Test for each combination of claimed HMAC algorithm the following
 						parameters:<h:ul>
-						<h:li>Hash function [SHA-1, SHA-224, SHA-256, SHA-384, SHA-512]</h:li>
+						<h:li>Hash function [SHA-256, SHA-384, SHA-512]</h:li>
 						<h:li>Key length [8-65536] bits by 8s</h:li>
-						<h:li>MAC length [32-[digest size of hash function (160, 224, 256, 384, 512)]] bits</h:li></h:ul><h:p/>
+						<h:li>MAC length [32-[digest size of hash function (256, 384, 512)]] bits</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
 						For each supported Hash function the evaluator shall generate 75 test cases using random input
 						messages of 128 bits, random supported key lengths, random keys, and random supported MAC
@@ -3664,58 +3407,7 @@
 							size, and key lengths that are both larger and smaller than the block size.</h:li>
 						<h:li>The MAC size includes the minimum, the maximum, and two other random values.</h:li></h:ul><h:p/>
 						The evaluator shall compare the output against results generated by a known-good
-						implementation with the same input.	<h:p/>			
-						
-						<!-- KMAC -->
-						<h:br/><h:b>KMAC</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Keyed Hash Algorithm</h:td>
-								<h:td valign="top">Cryptographic Key Sizes</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">KMAC</h:td>
-								<h:td valign="top">[<h:b>assignment:</h:b> <h:i>integer &lt; 2<h:sup>2040</h:sup></h:i>]</h:td>
-								<h:td valign="top">
-									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”),
-										NIST SP 800-185 (Section 4 “KMAC”)]  </h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">KMACXOF</h:td>
-								<h:td valign="top">[<h:b>assignment:</h:b> <h:i>integer &lt; 2<h:sup>2040</h:sup></h:i>]</h:td>
-								<h:td valign="top">
-									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 9 “MAC Algorithm 4”),
-										NIST SP 800-185 (Section 4 “KMAC”)]  </h:td>
-							</h:tr>
-						</h:table><h:p/>
-						To test the TOE’s ability to generate keyed hashes using KMAC the evaluator shall perform the
-						Algorithm Functional Test and MAC Verification Test for each claimed KMAC algorithm using
-						the following input parameters:<h:ul>
-						<h:li>KMAC function [KMAC128, KMAC256, KMACXOF128, KMACXOF256]</h:li>
-						<h:li>Input message length [0-65536] bits</h:li>
-						<h:li>Key size (<h:i>K</h:i>) [128-524288] bits by 8s</h:li>						
-						<h:li>Output MAC Length (<h:i>L</h:i>) [32-65536] bits by 8s</h:li>						
-						<h:li>Customization bit string length [0-1024]</h:li></h:ul><h:p/>
-						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-						For each supported KMAC function, the evaluator shall generate 100 test cases using random
-						data and random values for input message length, customization string length, and MAC length.
-						Such that across the 100 test cases:<h:p/><h:ul>
-						<h:li>the Message length includes the supported minimum, supported maximum, 49 unique
-							supported values that are less than (2*digest length), and 49 unique supported values that
-							are that are greater than or equal to (2*digest length),</h:li>
-						<h:li>the Key length includes the supported minimum, the supported maximum, and 98 other
-							unique random values,</h:li>
-						<h:li>the MAC length includes the supported minimum, the supported maximum, and 98 other
-							unique random values, and</h:li>
-						<h:li>the Customization string length includes the supported minimum, the supported
-							maximum, and 98 other random values.</h:li></h:ul><h:p/>
-						The evaluator shall compare the output against results generated by a known-good
-						implementation with the same input.<h:p/>
-						<h:br/><h:b>MAC Verification Tests</h:b><h:p/>
-						For each key size, the evaluator shall generate 100 test cases as above. In half of the test cases,
-						the evaluator shall modify the MAC so that verification fails.<h:p/>
-						The evaluator shall determine that the results are as expected.
+						implementation with the same input.	
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -3747,7 +3439,6 @@
 							<col>KAS1</col>
 							<col>KAS1 [RSA-single party]</col>
 						<col><selectables>
-							<selectable>2048</selectable>
 							<selectable>3072</selectable>
 							<selectable>4096</selectable>
 							<selectable>8192</selectable>
@@ -3759,7 +3450,6 @@
 							<col>KTS-OAEP</col>
 							<col>KTS-OAEP [RSA-OAEP]</col>
 						<col><selectables>
-							<selectable>2048</selectable>
 							<selectable>3072</selectable>
 							<selectable>4096</selectable>
 							<selectable>8192</selectable>
@@ -3769,16 +3459,17 @@
 						
 						<selectable id="sel-fcs-cop-keyencap-mlkem">
 							<col>ML-KEM</col>
-							<col>ML-KEM Key Encapsulation</col>
+							<col>ML-KEM</col>
 							<col>Parameter set = ML-KEM-1024</col>
-							<col>NIST FIPS 203 (Section 7.2)</col>
+							<col>NIST FIPS 203</col>
 						</selectable>			
 						
 					</selectables>
 				</title>
 				<note role="application">
 					NIST SP 800-57 Part 1 Revision 5 Section 5.6.2 specifies that the size of key used to protect the
-					key being transported should be at least the security strength of the key it is protecting.
+					key being transported should be at least the security strength of the key it is protecting.<h:p/>
+					KAS1 and KTS-OAEP with the selectable parameters are CNSA 1.0 compliant. ML-KEM-1024 is CNSA 2.0 compliant.
 				</note>
 				<aactivity>
 					<TSS>The evaluator shall ensure that the TSS documents that the selection of the key size is
@@ -3807,7 +3498,7 @@
 							<h:tr>
 								<h:td valign="top">KAS1</h:td>
 								<h:td valign="top">KAS1 [RSA-single party]</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 2048, 3072, 4096, 8192] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 3072, 4096, 8192] bits</h:td>
 								<h:td valign="top">NIST SP 800-56B Revision 2 (Sections 6.3 &amp; 8.2)</h:td>
 							</h:tr>
 						</h:table><h:p/>	
@@ -3818,7 +3509,7 @@
 							public exponent, Chinese Remainder Theorem with fixed public exponent, Basic with
 							random public exponent, Prime Factor with random public exponent, Chinese
 							Remainder Theorem with random public exponent]</h:li>
-						<h:li>Modulo value [2048, 3072, 4096, 8192]</h:li>
+						<h:li>Modulus value [3072, 4096, 8192]</h:li>
 						<h:li>Role [initiator, responder]</h:li>
 						<h:li>Key confirmation supported [yes, no] [not included in KAS2]</h:li></h:ul><h:p/>
 						The evaluator shall generate a test group (i.e. set of tests) for each parameter value of the above
@@ -3858,7 +3549,7 @@
 							<h:tr>
 								<h:td valign="top">KTS-OAEP</h:td>
 								<h:td valign="top">KTS-OAEP [RSA-OAEP]</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 2048, 3072, 4096, 8192] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 3072, 4096, 8192] bits</h:td>
 								<h:td valign="top">NIST SP 800-56B Revision 2 (Sections 6.3 &amp; 9)</h:td>
 							</h:tr>
 						</h:table><h:p/>	
@@ -3869,7 +3560,7 @@
 							exponent, Chinese Remainder Theorem with fixed public exponent, Basic with
 							random public exponent, Prime Factor with random public exponent, Chinese
 							Remainder Theorem with random public exponent]</h:li>
-						<h:li>Supported modulo values [2048, 3072, 4096, 8192]</h:li>
+						<h:li>Supported modulus values [3072, 4096, 8192]</h:li>
 						<h:li>Key confirmation supported [yes, no]</h:li></h:ul><h:p/>
 						The evaluator shall generate a test group (i.e. set of tests) for each parameter value of the above
 						parameter type with the largest number of supported values. For example, if the TOE supports all
@@ -3907,9 +3598,9 @@
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">ML-KEM</h:td>
-								<h:td valign="top">ML-KEM KeyEncap</h:td>
+								<h:td valign="top">ML-KEM</h:td>
 								<h:td valign="top">Parameter set = ML-KEM-1024</h:td>
-								<h:td valign="top">NIST FIPS PUB 203 (Section 7.2)</h:td>
+								<h:td valign="top">NIST FIPS PUB 203</h:td>
 							</h:tr>
 						</h:table><h:p/>	
 						To test the TOE’s implementation of ML-KEM key encapsulation/decapsulation, the evaluator
@@ -3972,11 +3663,7 @@
 						<selectable id="sel-fcs-cop-kw-aes-kw">
 							<col>AES-KW</col>
 							<col>AES in KW mode</col>
-							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
-								<selectable>256</selectable>
-							</selectables> bits</col>
+							<col>256 bits</col>
 							<col><selectables>
 								<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
 								<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
@@ -3990,11 +3677,7 @@
 						<selectable id="sel-fcs-cop-kw-aes-kwp">
 							<col>AES-KWP</col>
 							<col>AES in KWP mode</col>
-							<col><selectables>
-								<selectable>128</selectable>
-								<selectable>192</selectable>
-								<selectable>256</selectable>
-							</selectables> bits</col>
+							<col>256 bits</col>
 							<col><selectables>
 								<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
 								<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
@@ -4004,11 +3687,7 @@
 						<selectable id="sel-fcs-cop-kw-aes-ccm">
 						<col>AES-CCM</col>
 						<col>AES in CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits</col>
-						<col><selectables>
-							<selectable>128 bits</selectable>
-							<selectable>192 bits</selectable>
-							<selectable>256 bits</selectable>
-						</selectables></col>
+						<col>256 bits</col>
 						<col><selectables>
 							<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
 							<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
@@ -4031,11 +3710,7 @@
 								<selectable>128</selectable>
 							</selectables> bits.
 						</col>
-						<col><selectables>
-								<selectable>128 bits</selectable>
-								<selectable>192 bits</selectable>
-								<selectable>256 bits</selectable>
-							</selectables></col>
+						<col>256 bits</col>
 						<col><selectables>
 							<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
 							<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
@@ -4050,8 +3725,6 @@
 					transported should be at least the security strength of the key it is protecting.
 				</note>
 				<aactivity>
-					<TSS>The evaluator shall ensure that the TSS documents that the selection of the key size is
-						sufficient for the security strength of the key wrapped.<h:p/>
 						The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
 						nonces, and MACs.</TSS>
 					<Guidance/>
@@ -4070,7 +3743,7 @@
 							<h:tr>
 								<h:td valign="top">AES-KW</h:td>
 								<h:td valign="top">AES in KW mode</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256] bits</h:td>
+								<h:td valign="top">256 bits</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
 														FIPS PUB 197] [AES]<h:p/>
 													[<h:b>selection:</h:b> ISO/IEC 19772:2020 (clause 6), 
@@ -4079,7 +3752,7 @@
 						</h:table><h:p/>	
 						To test the TOE’s ability to wrap keys using AES in Key Wrap mode the evaluator shall perform
 						the Algorithm Functional Tests using the following input parameters:<h:ul>
-						<h:li>Key size [128, 192, 256] bits</h:li>
+						<h:li>Key size [256] bits</h:li>
 						<h:li>Keyword cipher type [cipher, inverse]</h:li>
 						<h:li>Payload sizes [128-4096] bits by 64s</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
@@ -4106,7 +3779,7 @@
 							<h:tr>
 								<h:td valign="top">AES-KWP</h:td>
 								<h:td valign="top">AES in KWP mode</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256] bits</h:td>
+								<h:td valign="top">256 bits</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
 														FIPS PUB 197] [AES]<h:p/>
 													NIST SP 800-38F (Section 6.3) [KWP mode] </h:td>
@@ -4114,7 +3787,7 @@
 						</h:table><h:p/>	
 						To test the TOE’s ability to wrap keys using AES in Key Wrap with Padding mode with padding
 						the evaluator shall perform the Algorithm Functional Tests using the following input parameters:<h:ul>
-						<h:li>Key size [128, 192, 256] bits</h:li>
+						<h:li>Key size [256] bits</h:li>
 						<h:li>Keyword cipher type [cipher, inverse]</h:li>
 						<h:li>Payload sizes [8-4096] bits by 8s</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
@@ -4162,8 +3835,7 @@
 							<col>Modulus of size <selectables>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
-							</selectables> bits, hash or XOF <selectables>
-								<selectable>SHA-256</selectable>
+							</selectables> bits, hash <selectables>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
 							</selectables></col>
@@ -4179,12 +3851,11 @@
 							<col>Modulus of size <selectables>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
-							</selectables> bits, hash or XOF <selectables>
-								<selectable>SHA-256</selectable>
+							</selectables> bits, hash <selectables>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
 							</selectables>, Salt Length (<h:i>sLen</h:i>)
-								such that <assignable>0 &#8804; <h:i>sLen</h:i> &#8804; <h:i>hLen</h:i> (Hash/XOF Output Length)</assignable>
+								such that <assignable>0 &#8804; <h:i>sLen</h:i> &#8804; <h:i>hLen</h:i> (Hash Output Length)</assignable>
 								and Mask Generation Function = MGF1</col>
 							<col>
 								RFC 8017 (Section 8.1) [PKCS#1 v2.2]<h:p/>
@@ -4196,43 +3867,23 @@
 							<col>ECDSA</col>
 							<col>ECDSA</col> 
 							<col>Elliptic Curve <selectables>
-								<selectable>NIST P-256</selectable>
-								<selectable>brainpoolP256r1</selectable>
 								<selectable>NIST P-384</selectable>
-								<selectable>brainpoolP384r1</selectable>
 								<selectable>NIST P-521</selectable>
-								<selectable>brainpoolP512r1</selectable>
 							</selectables>, per-message secret number generation <selectables>
 								<selectable>extra random bits</selectable>
 								<selectable>rejection sampling</selectable>
 								<selectable>deterministic</selectable>
-							</selectables> and hash or XOF function using<selectables>
-								<selectable>SHA-256</selectable>
+							</selectables> and hash function using<selectables>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
 							</selectables></col>
 							<col><selectables>
 									<selectable>ISO/IEC 14888-3:2018 (Subclause 6.6)</selectable>
 									<selectable>FIPS PUB 186-5 (Sections 6.3.1, 6.4.1]</selectable>
-								</selectables>[ECDSA]<h:p/><selectables>
-									<selectable>RFC 5639 (Section 3) [Brainpool Curves]</selectable>
-									<selectable>NIST SP-800 186 (Section 4) [NIST Curves]]</selectable>
-								</selectables>
+								</selectables>[ECDSA]<h:p/>
+									NIST SP-800 186 (Section 4) [NIST Curves]
 							</col>
 						</selectable>
-
-						<selectable id="sel-fcs-cop-siggen-eddsa">
-							<col>EdDSA</col>
-							<col>Edwards-Curve Digital Signature Algorithm </col> 
-							<col>Domain parameters approved for elliptic curves <selectables>
-								<selectable>Edwards25519</selectable>
-								<selectable>Edwards448</selectable>
-							</selectables></col>
-							<col>NIST FIPS PUB 186-5 (Section 7.6) [EdDSA]<h:p/>
-									RFC 8032 [Edwards Curves]
-							</col>
-						</selectable>
-
 						
 						<!-- LMS -->
 						<selectable id="sel-fcs-cop-siggen-lms">
@@ -4286,8 +3937,6 @@
 					security strength.  All key sizes given here correspond to an expected security 
 					strength of 128 bits, per NIST SP 800-208. Also, SHA-256/192 is the 
 					preferred hash algorithm when feasible in accordance with CNSA 2.0.<h:p/>
-					The dependency on FCS_OTV_EXT.1 is needed only for signature schemes that require random
-					bits, such as ECDSA, LMS, and ML-DSA. 
 				</note>
 				<aactivity>
 					<TSS>The evaluator shall examine the TSS and verify that any hash function is the appropriate security
@@ -4303,7 +3952,7 @@
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
 								<h:td valign="top">Cryptographic Key Sizes</h:td>
 								<h:td valign="top">List of Standards</h:td>
 							</h:tr>
@@ -4311,7 +3960,7 @@
 								<h:td valign="top">RSA-PKCS </h:td>
 								<h:td valign="top">RSASSA-PKCS1-v1_5</h:td>
 								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits,
-									hash or XOF [<h:b>selection:</h:b> SHA-256, SHA-384, SHA-512]</h:td>
+									hash [<h:b>selection:</h:b> SHA-384, SHA-512]</h:td>
 								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
 													NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]</h:td>
 							</h:tr>
@@ -4320,7 +3969,7 @@
 						signature type, the evaluator shall perform the Generated Data Test using the following input
 						parameters:<h:ul>
 						<h:li>Modulus size [3072, 4096] bits</h:li>
-						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512]</h:li></h:ul><h:p/>
+						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Generated Data Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate three test cases using random data. The evaluator shall compare the results against those
@@ -4331,7 +3980,7 @@
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
 								<h:td valign="top">Cryptographic Key Sizes</h:td>
 								<h:td valign="top">List of Standards</h:td>
 							</h:tr>
@@ -4339,7 +3988,7 @@
 								<h:td valign="top">RSA-PSS</h:td>
 								<h:td valign="top">RSASSA-PSS</h:td>
 								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits,
-									hash or XOF [<h:b>selection:</h:b> SHA-256, SHA-384, SHA-512], Salt Length (<h:i>sLen</h:i>)
+									hash [<h:b>selection:</h:b> SHA-384, SHA-512], Salt Length (<h:i>sLen</h:i>)
 												such that [<h:b>assignmant:</h:b>0 &#8804; <h:i>sLen</h:i> &#8804; <h:i>hLen</h:i> (Hash/XOF Output Length)]
 												and Mask Generation Function = MGF1
 												</h:td>
@@ -4350,7 +3999,7 @@
 						To test the TOE’s ability to perform RSA Digital Signature Generation using PSS signature type,
 						the evaluator shall perform the Generated Data Test using the following input parameters:<h:ul>
 						<h:li>Modulus size [3072, 4096] bits</h:li>
-						<h:li>Hash or XOF algorithm [SHA-256, SHA-384, SHA-512]</h:li>
+						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li>
 						<h:li>Salt length [Fixed based on implementation]</h:li>
 						<h:li>Mask function [MGF1]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Generated Data Test</h:b><h:p/>
@@ -4363,80 +4012,43 @@
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
 								<h:td valign="top">Cryptographic Key Sizes</h:td>
 								<h:td valign="top">List of Standards</h:td>
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">ECDSA</h:td>
 								<h:td valign="top">ECDSA</h:td>
-								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, brainpoolP256r1, P-384,
-									brainpoolP384r1, P-521, brainpoolP512r1], per-message secret number generation
+								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-384, P-521], 
+									per-message secret number generation
 									[<h:b>selection:</h:b> extra random bits, rejection sampling, deterministic] 
-									and hash or XOF function using [<h:b>selection:</h:b> SHA256, SHA-384, SHA-512] </h:td>
+									and hash function using [<h:b>selection:</h:b> SHA-384, SHA-512] </h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 14888-3:2018 (Subclause 6.6),
 									NIST FIPS PUB 186-5 (Sections 6.3.1, 6.4.1] [ECDSA]<h:p/>
-									[<h:b>selection:</h:b> RFC 5639 (Section 3) [Brainpool Curves], 
-										NIST SP-800 186 (Section 4) [NIST Curves]] </h:td>
+									NIST SP-800 186 (Section 4) [NIST Curves] </h:td>
 							</h:tr>
 						</h:table><h:p/>	
 						To test the TOE’s ability to perform ECDSA Digital Signature Generation using extra random
 						bits or rejection sampling for secret number generation, the evaluator shall perform the
 						Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>Ellliptic Curve [P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521,
-							brainpoolP512r1]</h:li>
-						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512]</h:li></h:ul><h:p/>
+						<h:li>Ellliptic Curve [P-384, P-521]</h:li>
+						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
 						To test the TOE’s ability to perform ECDSA Digital Signature Generation using deterministic
 						secret number generation, the evaluator shall perform the Algorithm Functional Test using the
 						following input parameters:	<h:ul>
-						<h:li>Ellliptic Curve [P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521,
-							brainpoolP512r1]</h:li>
-						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512]</h:li></h:ul><h:p/>
+						<h:li>Ellliptic Curve [P-384, P-521]</h:li>
+						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate 10 test cases using random data. The evaluator shall compare the results against those
 						from a known-good implementation.<h:p/>
-
-						<!-- EdDSA Signature Generation  -->
-						<h:br/><h:b>EdDSA Signature Generation </h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
-								<h:td valign="top">Cryptographic Key Sizes</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">EdDSA</h:td>
-								<h:td valign="top">Edwards-Curve Digital Signature Algorithm</h:td>
-								<h:td valign="top">Domain parameters approved for elliptic curves [<h:b>selection:</h:b>
-										Edwards25519, Edwards448] </h:td>
-								<h:td valign="top"> NIST FIPS PUB 186-5 (Section 7.6) [EdDSA]<h:p/>
-										RFC 8032 [Edwards Curves]</h:td>
-							</h:tr>
-						</h:table><h:p/>	
-						To test the TOE’s ability to perform EdDSA Digital Signature Generation, the evaluator shall
-						perform the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>Ellliptic Curve [Edwards25519, Edwards448]</h:li>
-						<h:li>Supports [Pure EdDSA, PreHash EdDSA]</h:li>
-						<h:li>Context string length [0-255] bytes<h:ul>
-							<h:li>Context string is required for curve Edwards448 or PreHash EdDSA</h:li>
-							<h:li>Context string is not allowed for curve Edwards25519 when Pure EdDSA</h:li></h:ul></h:li>
-						</h:ul><h:p/>
-						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-						For each supported combination of the above parameters, the evaluator shall cause the TOE to
-						generate 10 test cases using random data. If context string is required, then each set of 10 test
-						cases shall include one context string of the minimum supported length, one of the maximum
-						supported length, and eight of random lengths, The evaluator shall compare the results against
-						those from a known-good implementation.<h:p/>
-						
 
 						<!-- LMS Signature Generation  -->
 						<h:br/><h:b>LMS Signature Generation </h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
 								<h:td valign="top">Cryptographic Key Sizes</h:td>
 								<h:td valign="top">List of Standards</h:td>
 							</h:tr>
@@ -4667,16 +4279,11 @@
 						<col>RSA-PKCS</col>
 						<col>RSASSA-PKCS1-v1_5</col>
 						<col>Modulus of size <selectables>
-								<selectable>2048</selectable>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
 						</selectables> bits, hash or XOF <selectables>
-								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
-								<selectable>SHA3-256</selectable>
-								<selectable>SHA3-384</selectable>
-								<selectable>SHA3-512</selectable>
 						</selectables></col>
 						<col>
 								RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
@@ -4688,18 +4295,11 @@
 							<col>RSA-PSS</col>
 							<col>RSASSA-PSS</col>
 							<col>Modulus of size <selectables>
-								<selectable>2048</selectable>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
 							</selectables> bits, hash or XOF <selectables>
-								<selectable>SHA-256</selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
-								<selectable>SHA3-256</selectable>
-								<selectable>SHA3-384</selectable>
-								<selectable>SHA3-512</selectable>
-								<selectable>SHAKE128</selectable>
-								<selectable>SHAKE256</selectable>
 							</selectables></col>
 							<col>
 								RFC 8017 (Section 8.1) [PKCS#1 v2.2]<h:p/>
@@ -4710,11 +4310,7 @@
 						<selectable id="sel-fcs-cop-sigver-dsa">
 							<col>DSA</col>
 							<col>DSA</col>
-							<col>Domain parameters for (L, N) = <selectables>
-								<selectable>(2048, 224)</selectable>
-								<selectable>(2048, 256)</selectable>
-								<selectable>(3072, 256) </selectable>
-							</selectables> bits</col>
+							<col>Domain parameters for (L, N) = (3072, 256) bits</col>
 							<col>
 								FIPS PUB 186-4 (Section 4.7) [DSA Signature Verification]
 							</col>
@@ -4724,47 +4320,17 @@
 							<col>ECDSA</col>
 							<col>ECDSA</col> 
 							<col>Elliptic Curve <selectables>
-								<selectable>NIST P-256</selectable>
-								<selectable>brainpoolP256r1</selectable>
 								<selectable>NIST P-384</selectable>
-								<selectable>brainpoolP384r1</selectable>
 								<selectable>NIST P-521</selectable>
-								<selectable>brainpoolP512r1</selectable>
-							</selectables> using hash or XOF <selectables>
-								<selectable>SHA-1</selectable>
-								<selectable>SHA-224</selectable>
-								<selectable>SHA-512/224</selectable>
-								<selectable>SHA-256</selectable>
-								<selectable>SHA-512/256</selectable>
+							</selectables> using hash <selectables>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
-								<selectable>SHA3-224</selectable>
-								<selectable>SHA3-256</selectable>
-								<selectable>SHA3-384</selectable>
-								<selectable>SHA3-512</selectable>
-								<selectable>SHAKE128</selectable>
-								<selectable>SHAKE256</selectable>
 							</selectables></col>
 							<col><selectables>
 									<selectable>ISO/IEC 14888-3:2018 (Subclause 6.6)</selectable>
 									<selectable>FIPS PUB 186-5 (Section 6.4.2)</selectable>
-								</selectables>[ECDSA]<h:p/><selectables>
-									<selectable>RFC 5639 (Section 3) [Brainpool Curves]</selectable>
-									<selectable>NIST SP-800 186 (Section 4) [NIST Curves]</selectable>
-								</selectables>
-							</col>
-						</selectable>
-					
-
-						<selectable id="sel-fcs-cop-sigver-eddsa">
-							<col>EdDSA</col>
-							<col>Edwards-Curve Digital Signature Algorithm </col> 
-							<col>Domain parameters approved for elliptic curves <selectables>
-								<selectable>Edwards25519</selectable>
-								<selectable>Edwards448</selectable>
-							</selectables></col>
-							<col>NIST FIPS PUB 186-5 (Section 7.6) [EdDSA]<h:p/>
-									RFC 8032 [Edwards Curves]
+								</selectables>[ECDSA]<h:p/>
+									NIST SP-800 186 (Section 4) [NIST Curves]
 							</col>
 						</selectable>
 		
@@ -4855,9 +4421,8 @@
 							<h:tr>
 								<h:td valign="top">RSA-PKCS </h:td>
 								<h:td valign="top">RSASSA-PKCS1-v1_5</h:td>
-								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 2048, 3072, 4096] bits,
-									hash or XOF [<h:b>selection:</h:b> SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384,
-												SHA3-512]</h:td>
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits,
+									hash or XOF [<h:b>selection:</h:b> SHA-384, SHA-512]</h:td>
 								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
 													NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]</h:td>
 							</h:tr>
@@ -4865,8 +4430,8 @@
 						To test the TOE’s ability to perform RSA Digital Signature Verification using PKCS1-v1,5
 						signature type, the evaluator shall perform Generated Data Test using the following input
 						parameters:<h:ul>
-						<h:li>Modulus size [2048, 3072, 4096] bits</h:li>
-						<h:li>Hash algorithm [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:li></h:ul><h:p/>
+						<h:li>Modulus size [3072, 4096] bits</h:li>
+						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Generated Data Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate six test cases using a random message and its signature such that the test cases are
@@ -4892,20 +4457,18 @@
 							<h:tr>
 								<h:td valign="top">RSA-PSS</h:td>
 								<h:td valign="top">RSASSA-PSS</h:td>
-								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 2048, 3072, 4096] bits,
-									hash or XOF [<h:b>selection:</h:b> SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384,
-												SHA3-512, SHAKE128, SHAKE256]</h:td>
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits,
+									hash [<h:b>selection:</h:b> SHA-384, SHA-512]</h:td>
 								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
 													NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PSS]</h:td>
 							</h:tr>
 						</h:table><h:p/>	
 						To test the TOE’s ability to perform RSA Digital Signature Verification using PSS signature
 						type, the evaluator shall perform the Generated Data Test using the following input parameters:<h:ul>
-						<h:li>Modulus size [2048, 3072, 4096] bits</h:li>
-						<h:li>Hash or XOF algorithm [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-
-							512, SHAKE128, SHAKE256]</h:li>
+						<h:li>Modulus size [3072, 4096] bits</h:li>
+						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li>
 						<h:li>Salt length [0-hash length]</h:li>
-						<h:li>Mask function [MGF1, SHAKE128, SHAKE256]</h:li></h:ul><h:p/>
+						<h:li>Mask function [MGF1]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Generated Data Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate six test cases using random data such that the test cases are modified as follows:<h:p/><h:ul>
@@ -4930,16 +4493,14 @@
 							<h:tr>
 								<h:td valign="top">DSA</h:td>
 								<h:td valign="top">DSA</h:td>
-								<h:td valign="top">Domain parameters for (L, N) = [<h:b>selection:</h:b> 
-									(2048, 224) (2048, 256), (3072, 256)] bits</h:td>
+								<h:td valign="top">Domain parameters for (L, N) = [(3072, 256)] bits</h:td>
 								<h:td valign="top">FIPS PUB 186-4 (Section 4.7) [DSA Signature Verification]</h:td>
 							</h:tr>
 						</h:table><h:p/>	
 						To test the TOE’s ability to perform DSA Digital Signature Verification, the evaluator shall
 						perform the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>(L, N) = (2048, 224), (2048, 256), (3072, 256)</h:li>
-						<h:li>Hash algorithm [SHA-1, SHA-224, SHA-256, SHA-384, SHA-512,
-							SHA-512/224, SHA-512/256]</h:li></h:ul><h:p/>
+						<h:li>(L, N) = (3072, 256)</h:li>
+						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate 15 test cases consisting of messages and signatures such that the 15 test cases are
@@ -4964,22 +4525,17 @@
 							<h:tr>
 								<h:td valign="top">ECDSA</h:td>
 								<h:td valign="top">ECDSA</h:td>
-								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, brainpoolP256r1, P-384,
-									brainpoolP384r1, P-521, brainpoolP512r1] and hash or XOF function using [<h:b>selection:</h:b> 
-									SHA-1, SHA-224, SHA-512/224, SHA-256, SHA-512/256, SHA-384, SHA-512, SHA3-224,
-									SHA3-256, SHA3-384, SHA3-512, SHAKE-128, SHAKE256] </h:td>
+								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-384, P-521] and hash function using 
+									[<h:b>selection:</h:b> SHA-384, SHA-512] </h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 14888-3:2018 (Subclause 6.6),
 									NIST FIPS PUB 186-5 (Sections 6.3.1, 6.4.1] [ECDSA]<h:p/>
-									[<h:b>selection:</h:b> RFC 5639 (Section 3) [Brainpool Curves], 
-										NIST SP-800 186 (Section 4) [NIST Curves]] </h:td>
+									NIST SP-800 186 (Section 4) [NIST Curves] </h:td>
 							</h:tr>
 						</h:table><h:p/>	
 						To test the TOE’s ability to perform ECDSA Digital Signature Verification, the evaluator shall
 						perform the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>Elliptic Curve [P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521,
-							brainpoolP512r1]</h:li>
-						<h:li>Hash algorithm [SHA-1, SHA-224, SHA-512/224, SHA-256, SHA-512/256, SHA-384, SHA-512, 
-							SHA3-224, SHA3-256, SHA3-384, SHA3-512, SHAKE-128, SHAKE-256]</h:li></h:ul><h:p/>
+						<h:li>Elliptic Curve [P-384, P-521]</h:li>
+						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate 21test cases consisting of messages and signatures such that the 21 test cases are
@@ -4991,40 +4547,6 @@
 						<h:li>For three test cases the <h:i>s</h:i> value is modified</h:li>
 						<h:li>For three test cases the value <h:i>r</h:i> is zeroed</h:li>
 						<h:li>For three test cases the value <h:i>s</h:i> is zeroed</h:li></h:ul><h:p/>
-						The TOE must correctly verify the unmodified signatures and fail to verify the modified
-						signatures.<h:p/>
-
-						<!-- EdDSA Signature Verification  -->
-						<h:br/><h:b>EdDSA Signature Verification </h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
-								<h:td valign="top">Cryptographic Key Sizes</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">EdDSA</h:td>
-								<h:td valign="top">Edwards-Curve Digital Signature Algorithm</h:td>
-								<h:td valign="top">Domain parameters approved for elliptic curves [<h:b>selection:</h:b>
-										Edwards25519, Edwards448] </h:td>
-								<h:td valign="top"> NIST FIPS PUB 186-5 (Section 7.6) [EdDSA]<h:p/>
-										RFC 8032 [Edwards Curves]</h:td>
-							</h:tr>
-						</h:table><h:p/>	
-						To test the TOE’s ability to perform EdDSA Digital Signature Verification, the evaluator shall
-						perform the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>Elliptic Curve [Edwards25519, Edwards448]</h:li>
-						<h:li>Supports [Pure EdDSA, PreHash EdDSA]</h:li></h:ul><h:p/>
-						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-						For each supported combination of the above parameters, the evaluator shall cause the TOE to
-						generate 15 test cases consisting of a signed message and signing key such that the 15 test cases
-						are modified as follows:<h:p/><h:ul>
-						<h:li>Three test cases are left unmodified</h:li>
-						<h:li>For three test cases the Message is modified</h:li>
-						<h:li>For three test cases the key is modified</h:li>
-						<h:li>For three test cases the <h:i>r</h:i> value is modified</h:li>
-						<h:li>For three test cases the <h:i>s</h:i> value is modified</h:li></h:ul><h:p/>
 						The TOE must correctly verify the unmodified signatures and fail to verify the modified
 						signatures.<h:p/>
 
@@ -5138,11 +4660,7 @@
 						<selectable id="sel-fcs-cop-skc-aes-cbc">
 							<col>AES-CBC</col>
 							<col>AES in CBC mode with non-repeating and unpredictable IVs</col>
-							<col><selectables>
-									<selectable>128</selectable>
-									<selectable>192</selectable>
-									<selectable>256</selectable>
-								</selectables> bits</col>
+							<col>256 bits</col>
 							<col><selectables>
 								<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable> 
 								<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/><selectables>
@@ -5156,10 +4674,7 @@
 							<col>XTS-AES</col>
 							<col>AES in XTS mode with unique tweak values that are consecutive non-negative 
 								integers starting at an arbitrary non-negative integer</col>
-							<col><selectables>
-									<selectable>256</selectable>
-									<selectable>512</selectable>
-								</selectables> bits</col>
+							<col>512 bits</col>
 							<col><selectables>
 								<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable> 
 								<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/><selectables>
@@ -5173,11 +4688,7 @@
 							<col>AES-CTR</col>
 							<col>AES in Counter Mode with a non-repeating initial counter and with no repeated
 								use of counter values across multiple messages with the same secret key</col>
-							<col><selectables>
-									<selectable>128</selectable>
-									<selectable>192</selectable>
-									<selectable>256</selectable>
-								</selectables> bits</col>
+							<col>256 bits</col>
 							<col><selectables>
 								<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable> 
 								<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/><selectables>
@@ -5195,12 +4706,7 @@
 					any of the following selections: <h:ul>
 						<h:li>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG.1</h:li>
 						<h:li>"<h:i>AES-*</h:i>" in FCS_STG_EXT.3</h:li>
-					</h:ul>
-					
-					<h:p/>
-					<comment>From catalog</comment>
-					If the selected “cryptographic algorithm" requires an IV, counter, or tweak value,
-					then FCS_OTV_EXT.1 must be claimed.
+					</h:ul>	<h:p/>
 				</note>
 				<aactivity>
 					<TSS>
@@ -5233,7 +4739,7 @@
 							<h:tr>
 								<h:td valign="top">AES-CBC</h:td>
 								<h:td valign="top">AES in CBC mode with non-repeating and unpredictable IVs</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256] bits</h:td>
+								<h:td valign="top">256 bits</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
 										FIPS PUB 197] [AES]<h:p/>
@@ -5245,7 +4751,7 @@
 						To test the TOE’s ability to encrypt/decrypt data using AES in CBC mode, the evaluator 
 						shall perform Algorithm Functional Tests and Monte Carlo Tests using the following
 						input parameters:<h:ul>
-						<h:li>Key size [128, 192, 256] bits</h:li>
+						<h:li>Key size [256] bits</h:li>
 						<h:li>Direction [encryption, decryption]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Tests</h:b><h:p/>
 						Algorithm Functional Tests are designed to verify the correct operation of the logical
@@ -5313,7 +4819,7 @@
 								<h:td valign="top">XTS-AES</h:td>
 								<h:td valign="top">AES in XTS mode with unique tweak values that are consecutive
 									non-negative integers starting at an arbitrary non-negative integer</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
+								<h:td valign="top">512 bits</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
 										FIPS PUB 197] [AES]<h:p/>
@@ -5325,7 +4831,7 @@
 						perform the Single Data Unit Test and the Multiple Data Unit Test using the following input
 						parameters:<h:ul>
 						<h:li>Direction [encryption, decryption]</h:li>
-						<h:li>Key size [128, 256] bits</h:li>
+						<h:li>Key size [512] bits</h:li>
 						<h:li>Tweak value format [128-bit hex string, data unit sequence number]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Single Data Unit Test</h:b><h:p/>
 						For each combination of claimed key size, direction, and supported tweak value format, the
@@ -5356,7 +4862,7 @@
 								<h:td valign="top">AES in Counter Mode with a non-repeating initial counter and
 									with no repeated use of counter values across multiple messages with the 
 									same secret key.</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 128, 192, 256] bits</h:td>
+								<h:td valign="top">256 bits</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
 										FIPS PUB 197] [AES]<h:p/>
@@ -5368,7 +4874,7 @@
 						perform the Algorithm Functional Test and the Counter Test using the following input
 						parameters:<h:ul>
 						<h:li>Direction [encryption, decryption]</h:li>
-						<h:li>Key size [128, 192, 256] bits</h:li></h:ul><h:p/>
+						<h:li>Key size [256] bits</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Tests</h:b><h:p/>
 						Algorithm Functional Tests are designed to verify the correct operation of the logical
 						components of the algorithm implementation under normal operation using different block sizes.
@@ -5430,7 +4936,7 @@
 					</selectables>
 				</title>
 				<note role="application">
-					CNSA 2.0 permits the use of SHAKE only as a component of LMS. 
+					In accordance with CNSA 2.0, SHAKE is permitted to be used only as a component of LMS.
 				</note>
 				<aactivity>
 					<TSS/>
@@ -5775,9 +5281,8 @@
             </f-element>
             <f-element id="fcs-ipsec-ext-1e4">
                 <title>The TSF shall implement the IPsec protocol ESP as defined by RFC 4303 using the cryptographic 
-					algorithms [AES-GCM-128, AES-GCM-256 (as specified in RFC 4106),
+					algorithms [AES-GCM-256 (as specified in RFC 4106),
                     <selectables>
-                        <selectable>AES-CBC-128 (specified in RFC 3602)</selectable>
                         <selectable>AES-CBC-256 (specified in RFC 3602)</selectable>
                         <selectable exclusive="yes">no other algorithms</selectable>
                     </selectables>] together with a Secure Hash Algorithm (SHA)-based HMAC.
@@ -5789,72 +5294,47 @@
                 </title></ext-comp-def-title>
                 <aactivity level="element">
                     <TSS>
-                        The evaluator shall examine the TSS to verify that the algorithms AES-GCM-128 and 
-						AES-GCM-256 are implemented. If the ST Author has selected either 
-                        AES-CBC-128 or AES-CBC-256 in the requirement, then the evaluator verifies the
-                        TSS describes these as well. In addition, the evaluator ensures that the 
-                        SHA-based HMAC algorithm conforms to the algorithms specified in FCS_COP.1/KeyedHash Cryptographic 
-                        Operations (Keyed Hash Algorithms).
+						The evaluator shall examine the TSS to verify that that the 
+                        SHA-based HMAC algorithm conforms to the algorithms specified in FCS_COP.1/KeyedHash 
+						Cryptographic Operations (Keyed Hash Algorithms).
                     </TSS>
                     <Guidance>
-                        The evaluator checks the AGD to ensure it provides instructions on how the TOE is
+                        The evaluator checks the Guidance to ensure it provides instructions on how the TOE is
 						configured to use the algorithms selected in this component and whether this is performed through direct
 						configuration, defined during initial installation, or defined by acquiring configuration settings from an
 						environmental component.
                     </Guidance>
                     <Tests>
-			The evaluator shall perform the following test:<h:p/>
+							The evaluator shall perform the following test:<h:p/>
 							The evaluator shall configure the TOE/platform as indicated in the 
-                                operational guidance configuring the TOE/platform to use each of the supported
-                                algorithms, attempt to establish a connection using ESP, and verify that the attempt succeeds.
+                            operational guidance configuring the TOE/platform to use each of the supported
+                            algorithms, attempt to establish a connection using ESP, and verify that the attempt succeeds.
                     </Tests>
                 </aactivity>
             </f-element>
             <f-element id="fcs-ipsec-ext-1e5">
                 <title>The TSF shall implement the protocol: <h:p/>
-                    <selectables linebreak="yes">
-                        <selectable>IKEv1, using Main Mode for Phase 1 exchanges, as defined in RFC 2407, RFC 2408, RFC 2409, RFC 4109, 
-							<selectables onlyone="yes">
-                            	<selectable>no other RFCs for extended sequence numbers</selectable>
-                            	<selectable>RFC 4304 for extended sequence numbers</selectable>
-                            </selectables>,
-                            <selectables onlyone="yes">
-                                <selectable>no other RFCs for hash functions</selectable>
-                                <selectable>RFC 4868 for hash functions</selectable>
-							</selectables>, and 
-							<selectables onlyone="yes">
-								<selectable>support for XAUTH</selectable>
-								<selectable>no support for XAUTH</selectable>
-							</selectables>
-						</selectable>
-                        <selectable>IKEv2 as defined in RFC 7296 (with mandatory support for NAT traversal 
+                        IKEv2 as defined in RFC 7296 (with mandatory support for NAT traversal 
 							as specified in section 2.23), RFC 8784, RFC 8247, and 
                             <selectables onlyone="yes">
                                 <selectable>no other RFCs for hash functions</selectable>
                                 <selectable>RFC 4868 for hash functions</selectable>
-                            </selectables>
-						</selectable>
-                    </selectables>.
+                            </selectables>.
                 </title>
 		    <ext-comp-def-title>
 			    <title>The TSF shall implement the protocol: <assignable>key exchange protocol</assignable>.
 	                </title></ext-comp-def-title>
-                <note role="application">If the TOE implements SHA-2 hash algorithms for IKEv1 or IKEv2, the ST Author should
+                <note role="application">If the TOE implements SHA-2 hash algorithms for IKEv2, the ST Author should
 					select RFC 4868. </note>
                 <aactivity level="element">
                     <TSS>
-                        The evaluator shall examine the TSS to verify that IKEv1 and/or IKEv2 are implemented. If IKEv1 is
-						implemented, the evaluator shall verify that the TSS indicates whether or not XAUTH is supported, and
-						that aggressive mode is not used for IKEv1 Phase 1 exchanges (i.e. only main mode is used). It may be that
-						these are configurable options.
+                        The evaluator shall examine the TSS to verify that IKEv2 is implemented. 
                     </TSS>
                     <Guidance>
-                        The evaluator shall check the AGD to ensure it instructs the administrator how to
-						configure the TOE to use IKEv1 and/or IKEv2 (as selected), and uses the guidance to configure the TOE to
+                        The evaluator shall check the Guidance to ensure it instructs the administrator how to
+						configure the TOE to use IKEv2, and uses the guidance to configure the TOE to
 						perform NAT traversal for the test below. If XAUTH is implemented, the evaluator shall verify that the
-						AGD provides instructions on how it is enabled or disabled.<h:br/>
-						If the TOE supports IKEv1, the evaluator shall verify that the AGD either asserts that only
-						main mode is used for Phase 1 exchanges, or provides instructions for disabling aggressive mode.
+						Guidance provides instructions on how it is enabled or disabled.
                     </Guidance>
                     <Tests>
                         Tests are performed in conjunction with the other IPsec evaluation activities with the exception
@@ -5862,45 +5342,31 @@
                         <testlist>
                             <test>The evaluator shall configure the TOE so that it will perform NAT traversal processing as described
 								in the TSS and RFC 7296, section 2.23. The evaluator shall initiate an IPsec connection and determine that
-								the NAT is successfully traversed. If the TOE supports IKEv1 with or without XAUTH, the evaluator shall
-								verify that this test can be successfully repeated with XAUTH enabled and disabled in the manner specified
-								by the operational guidance. If the TOE only supports IKEv1 with XAUTH, the evaluator shall verify that
-								connections not using XAUTH are unsuccessful. If the TOE only supports IKEv1 without XAUTH, the
-								evaluator shall verify that connections using XAUTH are unsuccessful.</test>
-                            <test>[conditional] If the TOE supports IKEv1, the evaluator shall perform any applicable operational
-								guidance steps to disable the use of aggressive mode and then attempt to establish a connection using an
-								IKEv1 Phase 1 connection in aggressive mode. This attempt should fail. The evaluator shall show that the
-								TOE will reject a VPN gateway from initiating an IKEv1 Phase 1 connection in aggressive mode. The
-								evaluator should then show that main mode exchanges are supported.</test>
+								the NAT is successfully traversed. </test>
                         </testlist>
                     </Tests>
                 </aactivity>
             </f-element>
             <f-element id="fcs-ipsec-ext-1e6">
-                <title>The TSF shall ensure the encrypted payload in the
+                <title>The TSF shall ensure the encrypted payload in the IKEv2 protocol uses the cryptographic 
+					algorithm AES-CBC-256 as specified in RFC 6379 and
                     <selectables>
-                        <selectable>IKEv1</selectable>
-                        <selectable>IKEv2</selectable>
-                    </selectables> protocol uses the cryptographic algorithms AES-CBC-128, AES-CBC-256 as specified in 
-					RFC 6379 and
-                    <selectables>
-                        <selectable>AES-GCM-128 as specified in RFC 5282</selectable>
                         <selectable>AES-GCM-256 as specified in RFC 5282</selectable>
                         <selectable exclusive="yes">no other algorithm</selectable>
                     </selectables>.
                 </title>
 		<ext-comp-def-title><title>
-		   The TSF shall ensure the encrypted payload in the <assignable>key exchange protocol</assignable>
+			The TSF shall ensure the encrypted payload in the <assignable>key exchange protocol</assignable>
                    protocol uses the cryptographic algorithms <assignable>cryptographic algorithms</assignable>.
                 </title></ext-comp-def-title>
                 <aactivity level="element">
                     <TSS>
-                        The evaluator shall ensure the TSS identifies the algorithms used for encrypting the IKEv1 and/or IKEv2
-						payload, and that the algorithms AES-CBC-128, AES-CBC-256 are specified, and if others are chosen in the
+                        The evaluator shall ensure the TSS identifies the algorithms used for encrypting the IKEv2
+						payload, and that the algorithm AES-CBC-256 is specified, and if others are chosen in the
 						selection of the requirement, those are included in the TSS discussion.
                     </TSS>
                     <Guidance>
-                        The evaluator checks the AGD to ensure it provides instructions on how the TOE is
+                        The evaluator checks the Guidance to ensure it provides instructions on how the TOE is
 						configured to use the algorithms selected in this component and whether this is performed through direct
 						configuration, defined during initial installation, or defined by acquiring configuration settings from an
 						environmental component.
@@ -5909,7 +5375,7 @@
 						The evaluator shall use the operational guidance to configure the TOE (or to configure the Operational
 						Environment to have the TOE receive configuration) to perform the following test for each ciphersuite
 						selected:<h:p/>
-							The evaluator shall configure the TOE to use the ciphersuite under test to encrypt the IKEv1 and/or
+							The evaluator shall configure the TOE to use the ciphersuite under test to encrypt the 
 								IKEv2 payload and establish a connection with a peer device, which is configured to only accept the
 								payload encrypted using the indicated ciphersuite. The evaluator will confirm the algorithm was that used
 								in the negotiation. The evaluator will confirm that the connection is successful by confirming that data
@@ -5919,9 +5385,7 @@
                 </aactivity>
             </f-element>
             <f-element id="fcs-ipsec-ext-1e7">
-                <title>The TSF shall ensure that 
-					<selectables>
-						<selectable>IKEv2 SA lifetimes can be configured by
+                <title>The TSF shall ensure that IKEv2 SA lifetimes can be configured by
 							<selectables>
 								<selectable>an Administrator</selectable>
 								<selectable>a VPN Gateway</selectable>
@@ -5929,32 +5393,13 @@
 							<selectables>
 								<selectable>number of packets/number of bytes</selectable>
 								<selectable>length of time</selectable>
-							</selectables></selectable>
-						<selectable>IKEv1 SA lifetimes can be configured by 
-							<selectables>
-								<selectable>an Administrator</selectable>
-								<selectable>a VPN Gateway</selectable>
-							</selectables> based on 
-							<selectables>
-								<selectable>number of packets/number of bytes</selectable>
-								<selectable>length of time</selectable>
-							</selectables></selectable>
-						<selectable>IKEv1 SA lifetimes are fixed based on 
-							<selectables>
-								<selectable>number of packets/number of bytes</selectable>
-								<selectable>length of time</selectable>
-							</selectables>. If length of time is used, it must include at least 
-							one option that is 24 hours or less for Phase 1 SAs and 8 hours or
-							less for Phase 2 SAs.
-						</selectable>
-					</selectables>.
+							</selectables>.
                 </title>
 		<ext-comp-def-title>
                 <title>The TSF shall ensure that <assignable>key exchange protocol lifetime configuration rules</assignable>.
                 </title></ext-comp-def-title>
 		    <note role="application">
-					The ST Author is afforded a selection based on the version of IKE in their
-					implementation. There is a further selection within this selection that allows the
+					The ST Author is afforded a selection that allows the
 					ST Author to specify which entity is responsible for “configuring” the life of the
 					SA. An implementation that allows an administrator to configure the client or a
 					VPN gateway that pushes the SA lifetime down to the client are both acceptable.<h:p/>
@@ -5962,11 +5407,7 @@
 					number of bytes transmitted, or the number of packets transmitted. Either
 					packet-based or volume-based SA lifetimes are acceptable; the ST Author makes
 					the appropriate selection to indicate which type of lifetime limits are supported.<h:p/>
-					The ST Author chooses either the IKEv1 requirements or IKEv2 requirements (or
-					both, depending on the selection in FCS_IPSEC_EXT.1.5. The IKEv1 requirement
-					can be accomplished either by providing Authorized Administrator-configurable
-					lifetimes (with appropriate instructions in documents mandated by AGD_OPE),
-					or by “hard coding” the limits in the implementation. For IKEv2, there are no
+					For IKEv2, there are no
 					hard-coded limits, but in this case it is required that an administrator be able to
 					configure the values. In general, instructions for setting the parameters of the
 					implementation, including lifetime of the SAs, should be included in the 
@@ -5978,8 +5419,8 @@
                 <aactivity level="element">
 					<TSS/>
                     <Guidance>
-                        The evaluator shall check the AGD to ensure it provides instructions on how the TOE
-						configures the values for SA lifetimes. In addition, the evaluator shall check that the AGD has the
+                        The evaluator shall check the Guidance to ensure it provides instructions on how the TOE
+						configures the values for SA lifetimes. In addition, the evaluator shall check that the Guidance has the
 						option for either the Administrator or VPN Gateway to configure Phase 1 SAs if time-based limits are
 						supported. Currently there are no values mandated for the number of packets or number of bytes, the
 						evaluator shall simply check the AGD to ensure that this can be configured if selected in
@@ -5987,14 +5428,12 @@
                     </Guidance>
                     <Tests>
                         When testing this functionality, the evaluator needs to ensure that both sides are configured
-						appropriately. From the RFC “A difference between IKEv1 and IKEv2 is that in IKEv1 SA lifetimes were
-						negotiated. In IKEv2, each end of the SA is responsible for enforcing its own lifetime policy on the SA and
+						appropriately. In IKEv2, each end of the SA is responsible for enforcing its own lifetime policy on the SA and
 						rekeying the SA when necessary. If the two ends have different lifetime policies, the end with the shorter
 						lifetime will end up always being the one to request the rekeying. If the two ends have the same lifetime
 						policies, it is possible that both will initiate a rekeying at the same time (which will result in redundant
 						SAs). To reduce the probability of this happening, the timing of rekeying requests SHOULD be jittered.”<h:p/>
-                        Each of the following tests shall be performed for each version of IKE selected in the
-						FCS_IPSEC_EXT.1.5 protocol selection:
+                        Each of the following tests shall be performed:
                         <testlist>
                             <test>[conditional] The evaluator shall configure a maximum lifetime in terms of the # of packets (or
 								bytes) allowed following the operational guidance. The evaluator shall establish an SA and determine that
@@ -6006,20 +5445,14 @@
 								TOE works as documented in the operational guidance.</test>
 							<test> [conditional] The evaluator shall perform a test similar to Test 2 
 								for Phase 2 SAs, except that the lifetime will be 8 hours or less instead of 24 hours or less.</test>
-							<test> [conditional] If a fixed limit for IKEv1 SAs is supported, the evaluator	
-								shall establish an SA and observe that the connection is closed after
-								the fixed traffic and/or time value is reached.</test>
 						</testlist>				    
                     </Tests>
                 </aactivity>
             </f-element>
             <f-element id="fcs-ipsec-ext-1e8">
-                <title>The TSF shall ensure that all IKE protocols implement DH groups [<h:i>19 (256-bit
-			Random ECP), 20 (384-bit Random ECP), and </h:i>
+                <title>The TSF shall ensure that all IKE protocols implement DH groups [20 (384-bit Random ECP), and </h:i>
 					<selectables>
-						<selectable>24 (2048-bit MODP with 256-bit POS)</selectable>
 						<selectable>15 (3072-bit MODP)</selectable>
-						<selectable>14 (2048-bit MODP)</selectable>
 						<selectable exclusive="yes">no other DH groups</selectable>
 					</selectables>].
 				</title>
@@ -6028,7 +5461,7 @@
 			    </title></ext-comp-def-title>
                 <note role="application">
 					The selection is used to specify additional DH groups supported. This applies to
-					IKEv1 and IKEv2 exchanges. It should be noted that if any additional DH groups
+					IKEv2 exchanges. It should be noted that if any additional DH groups
 					are specified, they must comply with the requirements (in terms of the
 					ephemeral keys that are established) listed in FCS_CKM.1.<h:p/>
 					Since the implementation may allow different Diffie-Hellman groups to be
@@ -6276,16 +5709,9 @@
 						<selectable>VPN Gateway</selectable>
 					</selectables> shall be able to ensure by default that the
 					strength of the symmetric algorithm (in terms of the number of bits in the key)
-					negotiated to protect the 
-					<selectables>
-						<selectable>IKEv1 Phase 1</selectable>
-						<selectable>IKEv2 IKE_SA</selectable>
-					</selectables> connection is greater than or equal to the strength of the symmetric algorithm (in terms of
-					the number of bits in the key) negotiated to protect the 
-					<selectables>
-						<selectable>IKEv1 Phase 2</selectable>
-						<selectable>IKEv2 CHILD_SA</selectable>
-					</selectables> connection.
+					negotiated to protect the IKEv2 IKE_SA connection is greater than or equal to the
+					strength of the symmetric algorithm (in terms of
+					the number of bits in the key) negotiated to protect the IKEv2 CHILD_SA connection.
 				</title>
 		    <ext-comp-def-title>
 			    <title>The <assignable>configuring entity</assignable> shall be able to ensure by default
@@ -6298,20 +5724,16 @@
 		    </ext-comp-def-title>    
                 <note role="application">
 					If this functionality is configurable, the TSF may be configured by a VPN Gateway
-					or by an Administrator of the TOE itself.<h:p/>
-					The ST Author chooses either or both of the IKE selections based on what is
-					implemented by the TOE. Obviously, the IKE version(s) chosen should be
-					consistent not only in this element, but with other choices for other elements in
-					this component. While it is acceptable for this capability to be configurable, the
+					or by an Administrator of the TOE itself. While it is acceptable for this capability to be configurable, the
 					default configuration in the evaluated configuration (either "out of the box" or
-					by configuration guidance in the AGD documentation) must enable this
+					by configuration guidance in the Guidance documentation) must enable this
 					functionality.
 				</note>
                 <aactivity level="element">
                     <TSS>
                         The evaluator shall check that the TSS describes the potential strengths (in terms of the number of bits in
 						the symmetric key) of the algorithms that are allowed for the IKE and ESP exchanges. The TSS shall also
-						describe the checks that are done when negotiating IKEv1 Phase 2 and/or IKEv2 CHILD_SA suites to ensure
+						describe the checks that are done when negotiating IKEv2 CHILD_SA suites to ensure
 						that the strength (in terms of the number of bits of key in the symmetric algorithm) of the negotiated
 						algorithm is less than or equal to that of the IKE SA this is protecting the negotiation.
                     </TSS>
@@ -6346,178 +5768,6 @@
 				<audit-event-info>Non-TOE endpoint of connection (IP address).</audit-event-info>	
 			</audit-event>
 		</f-component>
-	
-	
-		<!-- FCS_OTV_EXT.1 One-Time Value  -->
-		<f-component id="sfr-fcs-otv-ext-1" cc-id="fcs_otv_ext.1" name="One-Time Value" status="sel-based">
-			<depends on-sfr="sfr-fcs-cop-1-skc"/>
-			<!-- There are more dependencies -->
-			<consistency-rationale/>
-			<comp-lev>requires that values such as salts, nonces, IVs, and initial counters be generated using random bit generation.</comp-lev>
-			<management/>
-			<audit>
-				The following audit events should be considered if FAU_GEN Security audit data generation is included in 
-				the PP, PP-Module, functional package or ST: <h:ul>
-					<h:li>minimal: Success and failure of the activity; </h:li>
-					<h:li>basic: The object attribute(s), and object value(s) excluding any sensitive information.</h:li>
-				</h:ul>
-			</audit>
-			<dependencies><h:br/>
-				FCS_RBG.1 Random Bit Generation<h:br/>
-				[FCS_COP.1/HMAC Key Hash, or<h:br/>
-				FCS_COP.1/SKC Symmetric key cryptography, or<h:br/>
-				FCS_CKM.5 Key Derivation, or<h:br/>
-				FCS_CKM_EXT.8 Password-Based Key Derivation, or<h:br/>
-				FCS_COP.1/CMAC CMAC, or<h:br/>
-				FCS_COP.1/KeyWrap Key Wrapping<h:br/>
-				FCS_COP.1/AEAD Authenticated Encryption with Associated Data, or<h:br/>
-				FCS_COP.1/KeyEncap Key Encapsulation]<h:br/>			
-			</dependencies>
-			<f-element id="fcs-otv-ext-1e1">
-				<title>
-					The TSF shall perform cryptographic one-time value generation for   
-					<selectables>
-						<tabularize id="fcs-otv-ext-sels" title="Recommended choices and guidance for FCS_OTV_EXT.1">
-							<selectcol>Algorithm or mode</selectcol>
-							<reqtext>using the output of a 
-								<selectables>
-									<selectable>random bit generator as defined in FCS_RBG.1</selectable>
-									<selectable>deterministic OTV construction</selectable>
-									<selectable><assignable>OTV construction method</assignable></selectable>
-								</selectables> and sizes of length that meet the following:
-							</reqtext>
-							<selectcol>List of standards</selectcol>
-							<textcol>Notes</textcol>
-							<reqtext><h:p/><h:p/>The following table provides the recommended choices for
-								completion of the selection operations of FCS_COP.1/XOF.</reqtext>
-						</tabularize>
-						
-						<selectable id="sel-fcs-otv-hmac">
-							<col>HMAC</col>
-							<col>FIPS PUB 198-1, NIST SP 800-56C Revision  2</col>
-							<col>Depending on the use case, salts can be secret or known, randomly generated or all 
-								zero. Secret IVs may be required, e.g., for key derivation.  Refer to the relevant
-								standards for your use case.</col>
-						</selectable>
-							
-						<selectable id="sel-fcs-otv-kmac">
-							<col>KMAC</col>
-							<col>NIST SP 800-185,<h:br/>
-								 NIST SP 800-56C Revision  2
-							</col>
-							<col>Depending on the use case, salts can be secret or known, randomly generated or all zero.
-								Secret IVs may be required, e.g., for key derivation.  Refer to the relevant
-								standards for your use case.</col>
-						</selectable>
-	
-						<selectable id="sel-fcs-otv-kdf">
-							<col>KDF</col>
-							<col>NIST SP 800-108 Revision 1,<h:br/>
-								 NIST SP 800-135 Revision 1,<h:br/>
-								 ISO/IEC 11770-6:2016 (Subclause 7.3.2)							 
-							</col>
-							<col>Salts and IVs are generated as directed for HMAC and AES cryptographic
-								algorithms.  Refer to the relevant standards.</col>
-						</selectable>
-	
-						<selectable id="sel-fcs-otv-pbkdf">
-							<col>PBKDF</col>
-							<col>NIST SP 800-132</col>
-							<col>Salts are generated and used as directed in PBKDFs.</col>
-						</selectable>
-
-						<selectable id="sel-fcs-otv-ctr">
-							<col>CTR</col>
-							<col>NIST SP 800-38A</col>
-							<col>"Initial Counter" (nonce) shall be non-repeating. No counter value shall be 
-								repeated across multiple messages with the same secret key.</col>
-						</selectable>
-
-						<selectable id="sel-fcs-otv-cbc">
-							<col>CBC</col>
-							<col>NIST SP 800-38A Appendix C</col>
-							<col>Depending on the use case, IVs shall be unpredictable. Repeating IVs leak 
-								information about whether the first one or more blocks are shared between two
-								messages, so IVs should be non-repeating in such situations. Refer to the relevant 
-								standards for your use case.</col>
-						</selectable>
-
-						<selectable id="sel-fcs-otv-ofb">
-							<col>OFB</col>
-							<col>NIST SP 800-38A</col>
-							<col>IVs shall be non-repeating and shall not be generated by invoking the cipher 
-								on another IV.  OFB may require the IV to be a nonce.</col>
-						</selectable>
-
-						<selectable id="sel-fcs-otv-cfb">
-							<col>CFB</col>
-							<col>NIST SP 800-38A</col>
-							<col>IVs should be non-repeating as repeating IVs leak information about the first
-								plaintext block and about common shared prefixes in messages</col>
-						</selectable>
-
-						<selectable id="sel-fcs-otv-xts">
-							<col>XTS</col>
-							<col>NIST SP 800-38E,<h:br/>
-								IEEE Std 1619-2018</col>
-							<col>Tweak values shall be non-negative integers, assigned consecutively, and starting
-								at an arbitrary non-negative integer (i.e., sequential nonces).</col>
-						</selectable>
-
-						<selectable id="sel-fcs-otv-cmac">
-							<col>CMAC</col>
-							<col>NIST SP 800-38B</col>
-							<col>IV is all zeroes</col>
-						</selectable>
-
-						<selectable id="sel-fcs-otv-kw">
-							<col>KW, KWP</col>
-							<col>NIST SP 800-38F</col>
-							<col>Depending on the use case, nonces may be required.  Please reference the relevant 
-								standards for your use case.</col>
-						</selectable>
-
-						<selectable id="sel-fcs-otv-ccm">
-							<col>CCM</col>
-							<col>NIST SP 800-38C</col>
-							<col>Nonces shall be non-repeating.</col>
-						</selectable>
-	
-						<selectable id="sel-fcs-otv-gcm">
-							<col>GCM</col>
-							<col>NIST SP 800-38D</col>
-							<col>For RBG-based IV construction (section 8.2.2) the number of invocations of GCM 
-								shall not exceed 2^32 for a given secret key. </col>
-						</selectable>
-						
-						<selectable id="sel-fcs-otv-oaep">
-							<col>RSA-OAEP</col>
-							<col>NIST SP 800-56B Revision 2</col>
-							<col>Mask for padding shall be randomly generated</col>
-						</selectable>
-					</selectables>
-				</title>
-				<note role="application">
-					See the algorithm- or mode-specific Notes above for guidance on completing the second selection.<h:p/>
-					This SFR must be included in the ST if it is a service provided by the TOE to tenant software,
-					or if it is used by the TOE itself to support or implement PP-specified security functionality.
-				</note>
-				<aactivity>
-					<TSS>
-						The evaluator shall ensure the TSS describes how one-time values are generated using the RBG.
-					</TSS>	
-					<Guidance/>
-					<Tests>
-						The evaluator shall confirm by testing that the one-time values obtained in the cryptographic
-						operations that use the one-time values are of the length specified in FCS_OTV_EXT.1, are
-						obtained from the RBG, and are fresh on each invocation.<h:p/>
-						This testing may be carried out as part of the testing for the relevant
-						cryptographic operations.
-					</Tests>
-				</aactivity>
-			</f-element>
-			<audit-event/>
-		</f-component>
 
 	
 		<!-- FCS_RBG.1 Random Bit Generation -->
@@ -6546,7 +5796,6 @@
 						<selectable id="sel-fcs-rbg-hash-drbg">
 							<col>HASH_DRBG</col>
 							<col>Hash_DRBG with <selectables>
-								<selectable><h:mark>SHA-256</h:mark></selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
 							</selectables></col>
@@ -6559,7 +5808,6 @@
 						<selectable id="sel-fcs-rbg-hmac-drbg">
 							<col>HMAC_DRBG</col>
 							<col>HMAC_DRBG with  <selectables>
-								<selectable><h:mark>SHA-256</h:mark></selectable>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
 							</selectables></col>
@@ -6580,17 +5828,17 @@
 					</selectables>
 				</title>
 				<note role="application">
-					CNSA 2.0 requires the use of 256-bit AES and SHA-384 or SHA-512. SHA-256 and all SHA3
+					CNSA 1.0 and 2.0 requires the use of 256-bit AES and SHA-384 or SHA-512. SHA-256 and all SHA3
 					hashes are not allowed. <h:p/>
 					NIST SP 800-90A contains three different methods of generating random numbers;
 					each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers).
 					The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement or in the TSS.
-					While any of the identified hash functions (SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
+					While any of the identified hash functions (SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
 					only AES-based implementations for CTR_DRBG are allowed.<h:p/>
 					This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR is also needed if the following SFRs are included in the ST: FCS_IPSEC_EXT.1, 
-					FCS_OTV_EXT.1, FCS_CKM.1/AKG, FCS_CKM.1/SKG, and FCS_COP.1/SigGen.<h:p/>
+					FCS_CKM.1/AKG, FCS_CKM.1/SKG, and FCS_COP.1/SigGen.<h:p/>
 					Also, this SFR must be claimed if "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or
 					"<h:i>KDF-DPI</h:i>" is selected in FCS_CKM.5.<h:p/>
 					If "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
@@ -6627,8 +5875,8 @@
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">HASH_DRBG</h:td>
-								<h:td valign="top">Hash_DRBG with [<h:b>selection:</h:b> SHA-256, SHA-384,
-									SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:td>
+								<h:td valign="top">Hash_DRBG with [<h:b>selection:</h:b> SHA-384,
+									SHA-512]</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.2.2),
 									NIST SP 800-90A Revision 1 (Section 10.1.1)]</h:td>
 							</h:tr>
@@ -6672,7 +5920,7 @@
 						</h:table><h:p/>	
 						To test the TOE’s ability to generate random bits using HMAC_DRBG, the evaluator shall perform
 						the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>HMAC Mode [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:li>
+						<h:li>HMAC Mode [SHA-384, SHA-512]</h:li>
 						<h:li>Max security strength [256] bits</h:li>
 						<h:li>Entropy length [256-65536] bits</h:li>
 						<h:li>Max Personalization String size [65536] bits</h:li>
@@ -6701,7 +5949,7 @@
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">CTR_DRBG</h:td>
-								<h:td valign="top">CTR_DRBG with [<h:b>selection:</h:b> AES-128, AES-192, AES-256]</h:td>
+								<h:td valign="top">CTR_DRBG with [<h:b>selection:</h:b> AES-CTR-256]</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.3.2),
 									NIST SP 800-90A Revision 1 (Section 10.2.1)]</h:td>
 							</h:tr>
