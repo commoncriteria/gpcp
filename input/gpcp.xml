@@ -1211,7 +1211,10 @@
 							<col>RSA</col>
 							<col>Modulus of size <selectables>
 								<selectable id="sel-exp-ak-rsa-3072">3072</selectable>
-								<selectable id="sel-exp-ak-rsa-4096">4096</selectable></selectables> bits
+								<selectable id="sel-exp-ak-rsa-4096">4096</selectable>
+								<selectable id="sel-exp-ak-rsa-4096">6144</selectable>
+								<selectable id="sel-exp-ak-rsa-4096">8192</selectable>
+								</selectables> bits
 							</col>
 							<col>NIST FIPS PUB 186-5 (Section A.1.1)</col>
 						</selectable>
@@ -1226,9 +1229,7 @@
 							</col>
 							<col>
 								FIPS PUB 186-5 (Section A.2.1)<h:p/>
-								<selectables>
-								<selectable>NIST SP 800-186 (Section 3) [NIST Curves]</selectable>
-								<selectable>RFC 5639 (Section 3) [Brainpool curves]</selectable></selectables>
+								NIST SP 800-186 (Section 3) [NIST Curves]
 							</col>
 						</selectable>
 
@@ -1242,9 +1243,7 @@
 							</col>
 							<col>
 								FIPS PUB 186-5 (Section A.2.2)<h:p/>
-								<selectables>
-								<selectable>NIST SP 800-186 (Section 3) [NIST Curves]</selectable>
-								<selectable>RFC 5639 (Section 3) [Brainpool curves]</selectable></selectables>
+								NIST SP 800-186 (Section 3) [NIST Curves]
 							</col>
 						</selectable>
 
@@ -1299,37 +1298,6 @@
 								<selectable>RFC 7919 [TLS groups]</selectable></selectables>
 							</col>
 						</selectable>
-									
-						<!-- LMS -->
-						<selectable id="sel-fcs-ckm-ak-lms">
-							<col>LMS</col>
-							<col>LMS</col>
-							<col>Private key size = <selectables>
-								<selectable>192 bits with <selectables>
-									<selectable>SHA-256/192</selectable>
-									<selectable>SHAKE256/192</selectable>
-								</selectables></selectable>
-								<selectable>256 bits with <selectables>
-									<selectable>SHA-256</selectable>
-									<selectable>SHAKE256</selectable>
-								</selectables></selectable>
-								</selectables><h:p/>
-								Winternitz parameter = <selectables>
-									<selectable>1</selectable>
-									<selectable>2</selectable>
-									<selectable>4</selectable>
-									<selectable>8</selectable></selectables><h:p/>
-								Tree height = <selectables>
-									<selectable>5</selectable>
-									<selectable>10</selectable>
-									<selectable>15</selectable>
-									<selectable>20</selectable>
-									<selectable>25</selectable></selectables>
-							</col>
-							<col>RFC 8554 [LMS]<h:p/>
-								 NIST SP 800-208 [parameters]
-							</col>
-						</selectable>
 
 						<!-- ML-KEM Key Generation -->
 						<selectable id="sel-fcs-ckm-ak-mlkem">
@@ -1356,10 +1324,9 @@
 					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
 					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.<h:p/>
 					
-					<h:mark>RSA key generation with modulus size 2048 bits is no longer permitted by CNSA.</h:mark><h:p/>
-					
-					<comment>From catalog</comment>For RSA the choice of the modulus implies the resulting key sizes of the public and 
-					private keys generated using the specified standard methods.<h:p/>
+					For RSA the choice of the modulus implies the resulting key sizes of the public and 
+					private keys generated using the specified standard methods.  
+					RSA key generation with modulus size 2048 bits is no longer permitted by CNSA.<h:p/>
 
 					For Finite Field Cryptography (FFC) DSA, ST authors should consult schemes for 
 					guidelines on use.  FIPS PUB 186-5 does not approve DSA for digital signature 
@@ -1376,20 +1343,10 @@
 					is claimed in FCS_COP.1/SigGen, then “ECC–ERB” or “ECC–RS” must be 
 					claimed.  The sizes of the private key, which is a scalar, and the public key, 
 					which is a point on the elliptic curve, are determined by the choice of the 
-					curve.<h:p/>
-
-					When generating EdDSA key pairs for digital signatures and if “EdDSA” is claimed
-					in FCS_COP.1/SigGen, then “EdDSA” must be claimed here.  The chosen domain
-					parameters determine the size of the private keys and the public keys.<h:p/>
-
-					For LMS, the key sizes do not represent the expected 
-					security strength.  All key sizes given here correspond to an expected security 
-					strength of 128 bits, per NIST SP 800-208. Also, SHA-256/192 is the 
-					preferred hash algorithm when feasible in accordance with CNSA 2.0.<h:p/>
+					curve.
 				</note>
 				<aactivity>
 					<TSS>
-						<h:mark>The use of non-CNSA or CNSAA 2.0 algorithms or parameters must be explained.</h:mark><h:p/>
 						The evaluator shall examine the TSS to verify that it describes how the TOE generates a key
 						based on output from a random bit generator as specified in FCS_RBG.1. The evaluator shall
 						review the TSS to verify that it describes how the functionality described by FCS_RBG.1 is
@@ -1400,7 +1357,7 @@
 						TSS describes how the key is used as part of the key chain/hierarchy.
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that the AGD instructs the administrator how to configure the TOE to
+						The evaluator shall verify that the Guidance instructs the administrator how to configure the TOE to
 						generate keys for the selected key generation algorithms for all key types and uses identified in
 						the TSS.
 					</Guidance>
@@ -1425,7 +1382,7 @@
 							<h:tr>
 								<h:td valign="top">RSA</h:td>
 								<h:td valign="top">RSA</h:td>
-								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits</h:td>
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits</h:td>
 								<h:td valign="top">NIST FIPS PUB 186-5 (Section A.1.1)</h:td>
 							</h:tr>
 						</h:table><h:p/>						
@@ -1440,7 +1397,7 @@
 						</h:ol><h:p/>
 						In addition to the key generation method, the input parameters are:<h:ul>
 						<h:li>Modulus [3072, 4096]</h:li>
-						<h:li>Hash algorithm [SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256] (methods 1, 3, 4 only)</h:li>
+						<h:li>Hash algorithm [SHA-384, SHA-512] (methods 1, 3, 4 only)</h:li>
 						<h:li>Rabin-Miller prime test [2<h:sup>100</h:sup>, 2<h:sup>Security String</h:sup>] (methods 2, 4, 5 only)</h:li> 
 						<h:li><h:i>p</h:i> mod 8 value [0,1,3,5,7]</h:li>
 						<h:li><h:i>q</h:i> mod 8 value [0,1,3,5,7]</h:li>
@@ -1491,24 +1448,22 @@
 							<h:tr>
 								<h:td valign="top">ECC-ERB</h:td>
 								<h:td valign="top">ECC - Extra Random Bits</h:td>
-								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521, brainpoolP512r1]</h:td>
+								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-384, P-521]</h:td>
 								<h:td valign="top">NIST FIPS PUB 186-5 (Section A.2.1)<h:p/>
-													[<h:b>selection:</h:b> NIST SP 800-186 (Section 3) [NIST Curves], 
-													RFC 5639 (Section 3) [Brainpool curves]]</h:td>
+													NIST SP 800-186 (Section 3) [NIST Curves]</h:td>
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">ECC-RS</h:td>
 								<h:td valign="top">ECC - Rejection Sampling</h:td>
-								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521, brainpoolP512r1]</h:td>
+								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-384, P-521]</h:td>
 								<h:td valign="top">NIST FIPS PUB 186-5 (Section A.2.2)<h:p/>
-													[<h:b>selection:</h:b> NIST SP 800-186 (Section 3) [NIST Curves], 
-													RFC 5639 (Section 3) [Brainpool curves]]</h:td>
+													NIST SP 800-186 (Section 3) [NIST Curves]</h:td>
 							</h:tr>
 						</h:table><h:p/>						
 						To test the TOE’s ability to generate asymmetric cryptographic keys using
 						elliptic curves, the evaluator shall perform the ECC Key Generation Test 
 						and the ECC Key Validation Test using the following input parameters:<h:ul>
-						<h:li>Elliptic curve [P-256, brainpoolP256r1, P-384, brainpoolP384r1, P-521, brainpoolP512r1]</h:li>
+						<h:li>Elliptic curve [P-384, P-521]</h:li>
 						<h:li>Key pair generation method [extra random bits, rejection sampling]</h:li></h:ul><h:p/>
 						
 						<h:br/><h:i><h:b>ECC Key Generation Test</h:b></h:i><h:br/>
@@ -1546,8 +1501,8 @@
 								<h:td valign="top">FFC-ERB</h:td>
 								<h:td valign="top">FFC – Extra Random Bits</h:td>
 								<h:td valign="top">Static domain parameters approved for [<h:b>selection:</h:b>
-									IKE groups [<h:b>selection:</h:b> MODP-2048, MODP-3072, MODP-4096, 
-									MODP-6144, MODP-8192], TLS groups [<h:b>selection:</h:b> ffdhe2048, 
+									IKE groups [<h:b>selection:</h:b> MODP-3072, MODP-4096, 
+									MODP-6144, MODP-8192], TLS groups [<h:b>selection:</h:b>  
 									ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]]]</h:td>
 								<h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.6.1.1.3) [key pair generation]<h:p/>
 												[<h:b>selection:</h:b> RFC 3526 [IKE groups], RFC 7919 [TLS groups]]</h:td>
@@ -1556,8 +1511,8 @@
 								<h:td valign="top">FFC-RS</h:td>
 								<h:td valign="top">FFC – Rejection Sampling</h:td>
 								<h:td valign="top">Static domain parameters approved for [<h:b>selection:</h:b>
-									IKE groups [<h:b>selection:</h:b> MODP-2048, MODP-3072, MODP-4096, 
-									MODP-6144, MODP-8192], TLS groups [<h:b>selection:</h:b> ffdhe2048, 
+									IKE groups [<h:b>selection:</h:b> MODP-3072, MODP-4096, 
+									MODP-6144, MODP-8192], TLS groups [<h:b>selection:</h:b>  
 									ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]]]</h:td>
 								<h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.6.1.1.4) [key pair generation]<h:p/>
 												[<h:b>selection:</h:b> RFC 3526 [IKE groups], RFC 7919 [TLS groups]]</h:td>
@@ -1566,7 +1521,7 @@
 						To test the TOE’s ability to generate asymmetric cryptographic keys using finite
 						fields, the evaluator shall perform the Safe Primes Generation Test and the Safe
 						Primes Validation Test using the following input parameter:<h:ul>
-						<h:li>Fields/Groups [MODP-2048, MODP-3072, MODP-4096, MODP-6144, MODP-8192,  ffdhe2048,
+						<h:li>Fields/Groups [MODP-3072, MODP-4096, MODP-6144, MODP-8192,  
 							ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]</h:li></h:ul><h:p/>
 					
 						<h:br/><h:i><h:b>Safe Primes Generation Test</h:b></h:i><h:br/>
@@ -1582,113 +1537,6 @@
 						determine correctness, the evaluator shall submit the key pairs to the public 
 						key validation (PKV) function of the TOE and shall confirm that the results
 						correspond as expected for the modified and unmodified values.<h:p/>
-		
-						<h:br/><h:b>Edwards Elliptic Curve Key Generation</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptographic Key Generation Algorithm</h:td>
-								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">EdDSA</h:td>
-								<h:td valign="top">EdDSA</h:td>
-								<h:td valign="top">Domain parameters approved for elliptic curves [<h:b>selection:</h:b> Edwards25519, Edwards448]</h:td>
-								<h:td valign="top">NIST FIPS PUB 186-5 (Section 6.2.1) [key-pair generation]<h:p/>
-												NIST SP 800-186 (Section 3.2.3) [Edwards Curves]</h:td>
-							</h:tr>
-						</h:table><h:p/>						
-						To test the TOE’s ability to generate asymmetric cryptographic keys using 
-						Edwards key generation, the evaluator shall perform the EdDSA Key Generation 
-						Test and the EdDSA Key Validation Test using the following input parameter:<h:ul>
-						<h:li>Elliptic curve [Edwards25519, Edwards448]</h:li></h:ul><h:p/>
-
-						<h:br/><h:i><h:b>EdDSA Key Generation Test</h:b></h:i><h:br/>
-						For each supported curve the evaluator shall require the implementation under 
-						test to generate 10 private/public key pairs (<h:i>d, Q</h:i>). The private key, 
-						<h:i>d</h:i>, shall be generated using a random bit generator as specified in 
-						FCS_RBG.1. The private key, <h:i>d</h:i>, is used to compute the public key,
-						<h:i>Q’</h:i>. The evaluator shall confirm that 0&lt;<h:i>d</h:i>&lt;<h:i>n</h:i> 
-						(where <h:i>n</h:i> is the order of the group), and the computed value <h:i>Q’</h:i> is 
-						then compared to the generated public/private key pairs’ public key, <h:i>Q</h:i>, to 
-						confirm that <h:i>Q</h:i> is equal to <h:i>Q’</h:i>. <h:p/>
-
-						<h:br/><h:i><h:b>EdDSA Key Validation  Test</h:b></h:i><h:br/>
-						For each supported curve, the evaluator shall generate 10 private/public key 
-						pairs using the key generation function of a known good implementation, For
-						each set of 10 public keys the evaluator shall modify five public key values by 
-						shifting <h:i>x</h:i> or <h:i>y</h:i> so that they are still in bounds, but not 
-						on the curve. The remaining values are left unmodified (i.e. correct). To 
-						determine correctness, the evaluator shall submit the public keys to the public
-						key validation (PKV) function of the TOE and shall confirm that the results 
-						correspond as expected for the modified and unmodified values.<h:p/>
-
-						<h:br/><h:b>LMS Key Generation</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptographic Key Generation Algorithm</h:td>
-								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">LMS</h:td>
-								<h:td valign="top">LMS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b> 192 bits
-									with [<h:b>selection:</h:b> SHA-256/192, SHAKE256/192], 256 bits with
-									[<h:b>selection:</h:b> SHA-256, SHAKE256]], Winternitz parameter = 
-									[<h:b>selection:</h:b> 1, 2, 4, 8], and tree height = [<h:b>selection:</h:b>
-									5, 10, 15, 20, 25]</h:td>
-								<h:td valign="top">RFC 8554 [LMS]<h:p/>
-									NIST SP 800-208 [parameters]</h:td>
-							</h:tr>
-						</h:table><h:p/>						
-						To test the TOE’s ability to generate asymmetric cryptographic keys using LMS, the evaluator
-						shall perform the LMS Key Generation Test using the following input parameters:<h:ul>
-						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
-						<h:li>Winternitz [1, 2, 4, 8]</h:li>
-						<h:li>Tree height [5, 10, 15, 20, 25]</h:li></h:ul><h:p/>
-
-						<h:br/><h:i><h:b>LMS Key Generation Test</h:b></h:i><h:br/>
-						For each supported combination of the hash algorithm, Winternitz parameter, 
-						and tree height the evaluator shall generate one public key for each of the test 
-						cases.  The number of test cases depends on the tree height:<h:p/>
-
-						<h:b><h:div style="text-align: center;">
-							<ctr ctr-type="Table" pre="Table " id="lms-test-cases">: Number of LMS Test Cases</ctr>
-							</h:div>
-						</h:b>
-							
-						<h:table border="1" style="width:50%">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Height</h:td>
-								<h:td valign="top">Number of test cases</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">5</h:td>
-								<h:td valign="top">5</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">10</h:td>
-								<h:td valign="top">4</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">15</h:td>
-								<h:td valign="top">3</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">20</h:td>
-								<h:td valign="top">2</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">25</h:td>
-								<h:td valign="top">1</h:td>
-							</h:tr>
-						</h:table><h:p/>						
-						The evaluator shall verify the correctness of the TSF’s implementation by
-						comparing the public key generated by the TSF with that generated by a known
-						good implementation using the same input parameters.<h:p/>
 
 						<h:br/><h:b>ML-DSA Key Generation</h:b><h:p/>
 						<h:table border="1">
@@ -1746,8 +1594,8 @@
 							<col>RSK</col>
 							<col>Direct Generation from a Random Bit Generator as specified in FCS_RBG.1</col>
 							<col><selectables>
-								<selectable id="sel-exp-skg-128">128</selectable>
 								<selectable id="sel-exp-skg-256">256</selectable>
+								<selectable id="sel-exp-skg-256">384</selectable>
 								<selectable id="sel-exp-skg-512">512</selectable></selectables> bits
 							</col>
 							<col>NIST SP 800-133 Revision 2 (Section 6.1)[Direct generation of symmetric keys]</col>
@@ -1934,6 +1782,7 @@
 							<col>exclusive OR (XOR)</col>
 							<col><selectables>
 								<selectable>256</selectable>
+								<selectable>384</selectable>
 								<selectable>512</selectable>
 								</selectables> bits</col>
 							<col>N/A</col>
@@ -1950,6 +1799,7 @@
 							</col>
 							<col><selectables>
 								<selectable>256</selectable>
+								<selectable>384</selectable>
 								<selectable>512</selectable>
 								</selectables> bits</col>
 							<col>N/A</col>
@@ -1964,6 +1814,7 @@
 								<selectable>SHA-512</selectable></selectables></col>
 							<col><selectables>
 								<selectable>256</selectable>
+								<selectable>384</selectable>
 								<selectable>512</selectable>
 								</selectables> bits</col>
 							<col>NIST SP 800-56C Revision 2 (Section 4.1, Option 1) [One-Step Key Derivation]</col>
@@ -1975,9 +1826,11 @@
 							<col>Shared secret, salt, IV, output length, fixed information</col>
 							<col>Keyed hash <selectables>
 								<selectable>HMAC-SHA-256</selectable>
+								<selectable>HMAC-SHA-384</selectable>
 								<selectable>HMAC-SHA-512</selectable></selectables></col>
 							<col><selectables>
 								<selectable>256</selectable>
+								<selectable>384</selectable>
 								<selectable>512</selectable>
 								</selectables> bits</col>
 							<col>NIST SP 800-56C Revision 2 (Section 4.1, Options 2, 3) [One-Step Key Derivation]</col>
@@ -2176,7 +2029,7 @@
 								<h:td valign="top">KDF-XOR</h:td>
 								<h:td valign="top">More than one intermediary keys</h:td>
 								<h:td valign="top">exclusive OR (XOR)</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">N/A</h:td>
 							</h:tr>
 						</h:table><h:p/>						
@@ -2197,7 +2050,7 @@
 								<h:td valign="top">Two keys</h:td>
 								<h:td valign="top">Encrypting using an algorithm specified in 
 									[<h:b>selection:</h:b> FCS_COP.1/SKC, FCS_COP.1/AEAD] with a 256-bit key</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">N/A</h:td>
 							</h:tr>
 						</h:table><h:p/>						
@@ -2218,7 +2071,7 @@
 								<h:td valign="top">KDF-HASH</h:td>
 								<h:td valign="top">Shared secret</h:td>
 								<h:td valign="top">Hash function [<h:b>selection:</h:b> SHA-384, SHA-512]</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">NIST SP 800-56C Revision 2 (Section 4.1, Option 1) 
 									[One-Step Key Derivation]</h:td>
 							</h:tr>
@@ -2251,7 +2104,7 @@
 								<h:td valign="top">KDF-MAC-1S</h:td>
 								<h:td valign="top">Shared secret, salt, output length, fixed information</h:td>
 								<h:td valign="top">Keyed Hash function [<h:b>selection:</h:b> HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512]</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">NIST SP 800-56C Revision 2 (Section 4.1, Options 2, 3) 
 									[One-Step Key Derivation]</h:td>
 							</h:tr>
@@ -3154,17 +3007,20 @@
                         <selectable id="sel-cop1-sha256">SHA-256</selectable>
                         <selectable id="sel-cop1-sha384">SHA-384</selectable>
                         <selectable id="sel-cop1-sha512">SHA-512</selectable>
+                        <selectable id="sel-cop1-sha3-384">SHA3-384</selectable>
+                        <selectable id="sel-cop1-sha3-512">SHA3-512</selectable>
                     </selectables> that meet the following:
 					<selectables>
-						<selectable>ISO/IEC 10118-3:2018 [SHA]</selectable>
+						<selectable>ISO/IEC 10118-3:2018 [SHA, SHA3]</selectable>
 						<selectable>FIPS PUB 180-4 [SHA]</selectable>
+						<selectable>FIPS PUB 202 [SHA3]</selectable>
 					</selectables>.   
                 </title>
                 <note role="application">
-					<h:mark>What about the weird SHAs used with LMS?</h:mark>
 					In accordance with CNSA 1.0 and 2.0:<h:ul>
 					<h:li>SHA-1 hash is no longer permitted to be used as a hash function, </h:li>
-					<h:li>SHA-3 hashes are not permitted to be used as hash functions, and</h:li>
+					<h:li>SHA3 hashes may be used only for internal hardware functionality such as
+						boot integrity checks, and</h:li>
 					<h:li>SHA-256 is permitted only for use as a PRF or MAC as part of a key derivation function,
 						or as part of LMS.</h:li>
 					</h:ul><h:p/>
@@ -3244,6 +3100,45 @@
 						consist of a repeated pattern of 64 bits.<h:p/>
 						The evaluator shall compare the output against results generated by a known-good
 						implementation with the same input.<h:p/>
+						
+						<h:br/><h:b>SHA3-384, SHA3-512</h:b> 
+						To test the TOE’s ability to generate hash digests using SHA3 the evaluator shall perform the
+						Algorithm Functional Test, Monte Carlo Test, and Large Data Tests for each claimed SHA3
+						algorithm.
+						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
+						Generate a test case consisting of random data for every message length from 0 bits (or the
+						smallest supported message size) to rate bits, where rate equals<h:ul>
+						<h:li>832 for SHA3-384 and</h:li>
+						<h:li>576 for SHA3-512.</h:li></h:ul><h:p/>
+						Additionally, generate tests cases of random data for messages of every multiple of (rate+1) bits
+						starting at length rate, and continuing until 65535 is exceeded.<h:p/>
+						The evaluator shall compare the output against results generated by a known-good
+						implementation with the same input.<h:p/>
+						<h:br/><h:b>Monte Carlo Test</h:b><h:p/>
+						Monte Carlo tests begin with a single seed and run 100 iterations of the chained computation.<h:p/>
+						For this Monte Carlo Test, the hashed message is always the same length as the seed.<h:p/>
+						<h:pre>
+		MD[0] = SEED
+		INITIAL_SEED_LENGTH = LEN(SEED)
+		For 100 iterations
+			For i = 1 to 1000
+				MSG = MD[i-1];
+				if LEN(MSG) &gt;= INITIAL_SEED_LENGTH:
+					MSG = leftmost INITIAL_SEED_LENGTH bits of MSG
+				else:
+					MSG = MSG || INITIAL_SEED_LENGTH - LEN(MSG) 0 bits
+				MD[i] = SHA3(MSG)
+			MD[0] = MD[1000]
+			Output MD[0]
+						</h:pre><h:p/>
+						The evaluator shall compare the output against results generated by a known-good
+						implementation with the same input.<h:p/>
+						<h:br/><h:b>Large Data Test</h:b><h:p/>
+						The implementation must be tested against one test case each on large data messages of 1GB,
+						2GB, 4GB, and 8GB of data as supported. The data need not be random. It may, for example,
+						consist of a repeated pattern of 64 bits.<h:p/>
+						The evaluator shall compare the output against results generated by a known-good
+						implementation with the same input.
                     </Tests>
                 </aactivity>
             </f-element>
@@ -3274,11 +3169,7 @@
 						
 						<selectable id="sel-fcs-cop-keyedhash-hmac-sha-256">
 							<col>HMAC-SHA-256</col>
-							<col><selectables>
-								<selectable>256 (ISO, FIPS)</selectable>
-								<selectable>192 (FIPS)</selectable>
-								<selectable>128 (FIPS)</selectable></selectables> bits
-							</col>
+							<col>256 bits</col>
 							<col><selectables>
 								<selectable>ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”)</selectable>
 								<selectable>FIPS PUB 198-1</selectable></selectables>
@@ -3289,9 +3180,7 @@
 							<col>HMAC-SHA-384</col>
 							<col><selectables>
 								<selectable>384 (ISO, FIPS)</selectable>
-								<selectable>256 (FIPS)</selectable>
-								<selectable>192 (FIPS)</selectable>
-								<selectable>128 (FIPS)</selectable></selectables> bits
+								<selectable>256 (FIPS)</selectable></selectables> bits
 							</col>
 							<col><selectables>
 								<selectable>ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”)</selectable>
@@ -3304,9 +3193,7 @@
 							<col><selectables>
 								<selectable>512 (ISO, FIPS)</selectable>
 								<selectable>384 (FIPS)</selectable>
-								<selectable>256 (FIPS)</selectable>
-								<selectable>192 (FIPS)</selectable>
-								<selectable>128 (FIPS)</selectable></selectables> bits
+								<selectable>256 (FIPS)</selectable></selectables> bits
 							</col>
 							<col><selectables>
 								<selectable>ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”)</selectable>
@@ -3349,19 +3236,19 @@
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">HMAC-SHA-256</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> (ISO, FIPS) 256, (FIPS) 192, 128] bits</h:td>
+								<h:td valign="top">256 bits</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”), FIPS PUB 198-1] </h:td>
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">HMAC-SHA-384</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> (ISO, FIPS) 384, (FIPS) 256, 192, 128] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> (ISO, FIPS) 384, (FIPS) 256] bits</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”), FIPS PUB 198-1] </h:td>
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">HMAC-SHA-512</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> (ISO, FIPS) 512, (FIPS) 384, 256, 192, 128] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> (ISO, FIPS) 512, (FIPS) 384, 256] bits</h:td>
 								<h:td valign="top">
 									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”), FIPS PUB 198-1] </h:td>
 							</h:tr>
@@ -3405,7 +3292,6 @@
 							<selectcol>List of standards</selectcol>
 							<reqtext><h:p/><h:p/>The following table provides the recommended choices for
 										completion of the selection operations of FCS_COP.1/KeyEncap.</reqtext>
-
 						</tabularize>
 						
 						<selectable id="sel-fcs-cop-keyencap-kas1">
@@ -3594,8 +3480,22 @@
 						implementation under test to generate the corresponding shared secret k and ciphertext c. To
 						determine correctness, the evaluator shall compare the resulting values with those generated
 						using a known-good implementation using the same inputs.<h:p/>
-						<h:br/><h:b>Encapsulation Key Validity Test</h:b><h:p/>
-						TBD<h:p/>						
+						<h:br/><h:b>Encapsulation Key Check (if supported)</h:b><h:p/>
+						The evaluator shall generate 10 encapsulation keys such that:<h:ul>
+						<h:li>Five of the encapsulation keys are valid, and</h:li>
+						<h:li>Five of the encapsulation keys are modified such that a value in the noisy linear 
+						system is encoded into the key as a value greater than Q.</h:li></h:ul><h:p/>
+						The evaluator shall invoke the TOE’s Encapsulation Key Check functionality to determine the
+						validity of the 10 keys. The unmodified keys should be determined valid, and the modified keys
+						should be determined invalid. <h:p/>
+						<h:br/><h:b>Decapsulation Key Check (if supported)</h:b><h:p/>
+						The evaluator shall generate 10 decapsulation keys such that:<h:ul>
+						<h:li>Five of the decapsulation keys are valid, and</h:li>
+						<h:li>Five of the decapsulation keys are modified such that the concatenated
+						values ek||H(ek) will no longer match by modifying H(ek) to be a different value.</h:li></h:ul><h:p/>
+						The evaluator shall invoke the TOE’s Decapsulation Key Check functionality to determine the
+						validity of the 10 keys. The unmodified keys should be determined valid, and the modified keys
+						should be determined invalid.<h:p/>				
 						<h:br/><h:b>Decapsulation Test</h:b><h:p/>
 						For each supported parameter set the evaluator shall use a single previously generated
 						decapsulation key <h:i>dk</h:i> and generate 10 test cases consisting of valid and invalid ciphertexts c. For
@@ -3842,8 +3742,8 @@
 							<col>ECDSA</col>
 							<col>ECDSA</col> 
 							<col>Elliptic Curve <selectables>
-								<selectable>NIST P-384</selectable>
-								<selectable>NIST P-521</selectable>
+								<selectable>P-384</selectable>
+								<selectable>P-521</selectable>
 							</selectables>, per-message secret number generation <selectables>
 								<selectable>extra random bits</selectable>
 								<selectable>rejection sampling</selectable>
@@ -3857,37 +3757,6 @@
 									<selectable>FIPS PUB 186-5 (Sections 6.3.1, 6.4.1]</selectable>
 								</selectables>[ECDSA]<h:p/>
 									NIST SP-800 186 (Section 4) [NIST Curves]
-							</col>
-						</selectable>
-						
-						<!-- LMS -->
-						<selectable id="sel-fcs-cop-siggen-lms">
-							<col>LMS</col>
-							<col>LMS</col>
-							<col>Private key size = <selectables>
-								<selectable>192 bits with <selectables>
-									<selectable>SHA-256/192</selectable>
-									<selectable>SHAKE256/192</selectable>
-								</selectables></selectable>
-								<selectable>256 bits with <selectables>
-									<selectable>SHA-256</selectable>
-									<selectable>SHAKE256</selectable>
-								</selectables></selectable>
-								</selectables><h:p/>
-								Winternitz parameter = <selectables>
-									<selectable>1</selectable>
-									<selectable>2</selectable>
-									<selectable>4</selectable>
-									<selectable>8</selectable></selectables><h:p/>
-								Tree height = <selectables>
-									<selectable>5</selectable>
-									<selectable>10</selectable>
-									<selectable>15</selectable>
-									<selectable>20</selectable>
-									<selectable>25</selectable></selectables>
-							</col>
-							<col>RFC 8554 [LMS]<h:p/>
-								 NIST SP 800-208 [parameters]
 							</col>
 						</selectable>
 
@@ -3907,11 +3776,7 @@
 					PP-specified security functionality.<h:p/> 
 					Specifically, this SFR must be included if "<h:i>A digital signature of the stored key in accordance with FCS_COP.1/SigGen
 					using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</h:i>" is selected in FCS_STG_EXT.3.<h:p/>
-					If this SFR is included in the ST, then FCS_COP.1/Hash and FCS_RBG.1 must also be claimed.<h:p/>
-					For LMS, the key sizes do not represent the expected 
-					security strength.  All key sizes given here correspond to an expected security 
-					strength of 128 bits, per NIST SP 800-208. Also, SHA-256/192 is the 
-					preferred hash algorithm when feasible in accordance with CNSA 2.0.<h:p/>
+					If this SFR is included in the ST, then FCS_COP.1/Hash and FCS_RBG.1 must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>The evaluator shall examine the TSS and verify that any hash function is the appropriate security
@@ -4017,38 +3882,6 @@
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate 10 test cases using random data. The evaluator shall compare the results against those
 						from a known-good implementation.<h:p/>
-
-						<!-- LMS Signature Generation  -->
-						<h:br/><h:b>LMS Signature Generation </h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
-								<h:td valign="top">Cryptographic Key Sizes</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">LMS</h:td>
-								<h:td valign="top">LMS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
-									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
-									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
-									Winternitz parameter = [<h:b>selection:</h:b> 1, 2, 4, 8], 
-									and tree height = [<h:b>selection:</h:b> 5, 10, 15, 20, 25] </h:td>
-								<h:td valign="top">RFC 8554 [LMS]<h:p/>
-										NIST SP 800-208 [parameters] </h:td>
-							</h:tr>
-						</h:table><h:p/>	
-						To test the TOE’s ability to generate cryptographic digital signature using LMS, the
-						evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
-						<h:li>Winterlitz [1, 2, 4, 8]</h:li>
-						<h:li>Tree height [5, 10, 15, 20, 25]</h:li></h:ul><h:p/>
-						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-						For each supported combination of the above parameters, the evaluator shall generate 10
-						signatures. The evaluator shall verify the correctness of the implementation by comparing values
-						generated by the TOE with those generated by a known good implementation using the same
-						input parameters.<h:p/>
 
 						
 						<!-- ML-DSA Signature Gneration  -->
@@ -4256,7 +4089,7 @@
 						<col>Modulus of size <selectables>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
-						</selectables> bits, hash or XOF <selectables>
+						</selectables> bits and hash<selectables>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
 						</selectables></col>
@@ -4272,7 +4105,7 @@
 							<col>Modulus of size <selectables>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
-							</selectables> bits, hash or XOF <selectables>
+							</selectables> bits and hash<selectables>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
 							</selectables></col>
@@ -4295,8 +4128,8 @@
 							<col>ECDSA</col>
 							<col>ECDSA</col> 
 							<col>Elliptic Curve <selectables>
-								<selectable>NIST P-384</selectable>
-								<selectable>NIST P-521</selectable>
+								<selectable>P-384</selectable>
+								<selectable>P-521</selectable>
 							</selectables> using hash <selectables>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
@@ -4336,6 +4169,31 @@
 									<selectable>25</selectable></selectables>
 							</col>
 							<col>RFC 8554 [LMS]<h:p/>
+								 NIST SP 800-208 [parameters]
+							</col>
+						</selectable>
+						
+						<!-- XMSS -->
+						<selectable id="sel-fcs-cop-sigver-xmss">
+							<col>XMSS</col>
+							<col>XMSS</col>
+							<col>Private key size = <selectables>
+								<selectable>192 bits with <selectables>
+									<selectable>SHA-256/192</selectable>
+									<selectable>SHAKE256/192</selectable>
+								</selectables></selectable>
+								<selectable>256 bits with <selectables>
+									<selectable>SHA-256</selectable>
+									<selectable>SHAKE256</selectable>
+								</selectables></selectable>
+								</selectables><h:p/>
+								Tree height = <selectables>
+									<selectable>10</selectable>
+									<selectable>16</selectable>
+									<selectable>20</selectable>
+								</selectables>
+							</col>
+							<col>RFC 8391 [XMSS]<h:p/>
 								 NIST SP 800-208 [parameters]
 							</col>
 						</selectable>
@@ -4560,6 +4418,41 @@
 						<h:li>For one test case modify the signature header so that it is a valid header for a different
 								LMS parameter set.</h:li></h:ul><h:p/>
 						The TOE must correctly verify the unmodified test case and fail to verify the modified test cases.<h:p/>
+						
+						<!-- XMSS and XMSSMT Signature Verification  -->
+						<h:br/><h:b>XMSS Signature Verification</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">XMSS</h:td>
+								<h:td valign="top">XMSS</h:td>
+								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
+									192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
+									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]] , 
+									and tree height = [<h:b>selection:</h:b> 10, 16, 20] </h:td>
+								<h:td valign="top">RFC 8391 [XMSS] <h:p/>
+										NIST SP 800-208 [parameters]</h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to verify digital signatures using XMSS or XMSS MT , the evaluator shall
+						perform the XMSS digital signature verification test using the following input parameters:<h:ul>
+						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
+						<h:li>Tree height [10, 16, 20]</h:li></h:ul><h:p/>
+						<h:br/><h:b>XMSS Digital Signature Verification Test</h:b><h:p/>
+						For each supported combination of the above parameters, the evaluator shall generate four test
+						cases consisting of signed messages and keys, such that<h:ul>
+						<h:li>One test case is unmodified (i.e. correct)</h:li>
+						<h:li>For one test case modify the message, i.e. the message is different</h:li>
+						<h:li>For one test case modify the signature, i.e. signature is different</h:li>
+						<h:li>For one test case modify the signature header so that it is a valid header 
+								for a different XMSS parameter set</h:li></h:ul><h:p/>
+						The evaluator shall verify the correctness of the implementation by verifying that the TOE
+						correctly verifies the unmodified test case and fails to verify the modified test cases.<h:p/>	
 						
 						<!-- ML-DSA Signature Verification  -->
 						<h:br/><h:b>ML-DSA Signature Verification</h:b><h:p/>
@@ -5370,9 +5263,9 @@
 								<selectable>length of time</selectable>
 							</selectables>.
                 </title>
-		<ext-comp-def-title>
-                <title>The TSF shall ensure that <assignable>key exchange protocol lifetime configuration rules</assignable>.
-                </title></ext-comp-def-title>
+				<ext-comp-def-title>
+					<title>The TSF shall ensure that <assignable>key exchange protocol lifetime configuration rules</assignable>.
+					</title></ext-comp-def-title>
 		    <note role="application">
 					The ST Author is afforded a selection that allows the
 					ST Author to specify which entity is responsible for “configuring” the life of the
@@ -5427,7 +5320,11 @@
             <f-element id="fcs-ipsec-ext-1e8">
                 <title>The TSF shall ensure that all IKE protocols implement DH groups [20 (384-bit Random ECP), and
 					<selectables>
+						<selectable>21 (521-bit Random ECP)</selectable>
 						<selectable>15 (3072-bit MODP)</selectable>
+						<selectable>16 (4196-bit MODP)</selectable>
+						<selectable>17 (6144-bit MODP)</selectable>
+						<selectable>18 (8192-bit MODP)</selectable>
 						<selectable exclusive="yes">no other DH groups</selectable>
 					</selectables>].
 				</title>
