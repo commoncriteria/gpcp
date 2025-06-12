@@ -48,7 +48,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-05-30</PPPubDate>
+			<PPPubDate>2025-06-12</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -7163,13 +7163,13 @@
 	
         <!-- FIA_UIA_EXT.1 Administrator Identification and Authentication -->
 		<!-- ManFunc: Adding additional Administrators to the system?? -->
-        <f-component id="sfr-fia-uia-ext-1" cc-id="fia_uia_ext.1" name="Administrator Identification and Authentication" status="sel-based"> 
+        <f-component id="sfr-fia-uia-ext-1" cc-id="fia_uia_ext.1" name="Administrator Authentication" status="sel-based"> 
 			<depends on-uc="uc-server-secureenv"/>		<!-- Server, basic use case-->
 			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
 			<depends on-sel="sel-fmt-smr-1-admin"/>  <!-- FMT_SMR.1 Admin Role -->
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
-				are <h:mark><h:s>identified and </h:s></h:mark>authenticated prior to authorizing these actions to be performed.</comp-lev>
+				are authenticated prior to authorizing these actions to be performed.</comp-lev>
 			<management/>
 			<audit>The following actions should be auditable if FAU_GEN Security audit data 
 				generation is included in the PP/ST:
@@ -7179,7 +7179,7 @@
 			</audit>
 			<dependencies><h:br/>FIA_UAU.5 Multiple Authentication Mechanisms</dependencies>
             <f-element id="fia-uia-ext-1e1">
-                <title>The TSF shall require Administrators to be successfully <h:mark>identified and</h:mark> authenticated
+                <title>The TSF shall require Administrators to be successfully authenticated
                     using one of the methods in FIA_UAU.5 before allowing any TSF-mediated management
                     function to be performed by that Administrator.
                 </title>
@@ -7211,7 +7211,7 @@
                 </aactivity>
             </f-element>
 			<audit-event> 
-				<audit-event-descr>All use of the identification and authentication mechanism.</audit-event-descr>
+				<audit-event-descr>All use of the authentication mechanism.</audit-event-descr>
                 <audit-event-info>Provided user identity, origin of the attempt (e.g. console, remote IP address).</audit-event-info>
 			</audit-event> 
         </f-component>
