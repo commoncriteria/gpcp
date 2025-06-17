@@ -3806,7 +3806,7 @@
 								<h:td valign="top">RSASSA-PSS</h:td>
 								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits,
 									hash [<h:b>selection:</h:b> SHA-384, SHA-512], Salt Length (<h:i>sLen</h:i>)
-												such that [<h:b>assignmant:</h:b>0 &#8804; <h:i>sLen</h:i> &#8804; <h:i>hLen</h:i> (Hash/XOF Output Length)]
+												such that [<h:b>assignmant:</h:b>0 &#8804; <h:i>sLen</h:i> &#8804; <h:i>hLen</h:i> (Hash Output Length)]
 												and Mask Generation Function = MGF1
 												</h:td>
 								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
@@ -4211,7 +4211,7 @@
 					case the FDP_ITC.1 and FDP_ITC.2 dependencies do not apply.  In this case, no dependencies 
 					may be chosen.  For signature verifications, private keys are not necessary, so there are no
 					dependencies required for generating or destroying cryptographic keys.<h:p/>
-					If LMS is claimed, then FCS_COP.1/XOF must also be claimed. <h:mark>What about XMSS</h:mark>
+					If LMS or XMSS is claimed, then FCS_COP.1/XOF must also be claimed.
 				</note>
 				<aactivity>
 					<TSS/>
@@ -4237,7 +4237,7 @@
 								<h:td valign="top">RSA-PKCS </h:td>
 								<h:td valign="top">RSASSA-PKCS1-v1_5</h:td>
 								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits,
-									hash or XOF [<h:b>selection:</h:b> SHA-384, SHA-512]</h:td>
+									hash [<h:b>selection:</h:b> SHA-384, SHA-512]</h:td>
 								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
 													NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]</h:td>
 							</h:tr>
@@ -4760,6 +4760,7 @@
 		<f-component id="sfr-fcs-cop-1-xof" cc-id="fcs_cop.1" iteration="XOF" 
 			name="Cryptographic Operation - Extendable-Output Function" status="sel-based">
 			<depends on-sel="sel-fcs-cop-sigver-lms"/>
+			<depends on-sel="sel-fcs-cop-sigver-xmss"/>
 			<f-element id="fcs-cop-1e1-xof">
 				<title>
 					The TSF shall perform [extendable-output function] in accordance with a specified cryptographic algorithm  
@@ -4786,8 +4787,8 @@
 				</title>
 				<note role="application">
 					In accordance with CNSA 2.0, SHAKE is permitted to be used only as a component of LMS. Therefore this
-					component is claimed only if LMS is claimed in FCS_COP.1/SigVer. <h:p/>
-					Since LMS uses both SHAKE128 and SHAKE256 internally as an XOF, claiming and testing of both
+					component is claimed only if LMS or XMSS is claimed in FCS_COP.1/SigVer. <h:p/>
+					Since LMS and XMSS use both SHAKE128 and SHAKE256 internally, claiming and testing of both
 					Functions is mandatory.
 				</note>
 				<aactivity>
