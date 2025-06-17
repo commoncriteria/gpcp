@@ -48,7 +48,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-06-12</PPPubDate>
+			<PPPubDate>2025-06-17</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -343,6 +343,7 @@
 		Operating Systems, one or more virtualization systems as defined by the Protection Profile for 
 		Virtualization, or more than one application. Typical platform 
 		implementations include servers, PC clients, laptops, and tablets.<h:p/>
+		<h:mark>This Protection Profile does not apply to devices that do not support firmware update.</h:mark><h:p/>
 		Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and 
 		Network Device platforms as defined in the collaborative Protection Profile for Network Devices 
 		are out of scope of this PP.  Mobile Device and Network Device platforms must be evaluated 
@@ -355,6 +356,7 @@
 		must be protected such that it is not permitted to execute if it has been modified outside of authorized and
 		authenticated update processes. Other use-case-specific features include audit capabilities, Administrator
 		authentication, and protections against physical tampering.
+		
 
 		<!-- 1.3.1 TOE Boundary -->	    
 		<sec:TOE_Boundary>
@@ -376,7 +378,6 @@
 			by the blue boxes, along with their associated firmware. Any particular platform may have 
 			additional hardware components, or fewer than those illustrated.<h:p/>
 			<!-- TRRT 1567 -->
-			<comment>Addresses TRRT 1567</comment>
 			If the GPCP includes Full Drive Encryption (FDE), and the FDE component has been previously evaluated against 
 			the FDEcPPs, or will be evaluated against the FDEcPPs concurrently with the GPCP evaluation, then the FDE component may be
 			excluded from the TOE for purposes of the GPCP evaluation.
@@ -399,8 +400,8 @@
 	<!--   1.4 Use Cases  -->
     <sec:Use_Cases>
 		This Protection Profile supports several use cases. The cases
-		enumerated below add requirements to the baseline for GPCP due to additional threats or changes in assumptions
-		about the operational environment. Use cases not listed below (e.g. consumer-grade desktop, laptop, and 
+		enumerated below add requirements to the baseline for GPCP in response <h:mark>to changes 
+		in the operational environment.</h:mark> Use cases not listed below (e.g. consumer-grade desktop, laptop, and 
 		tablet computers) need be evaluated only against the baseline requirements subject to the appropriate selections.
 		<h:p/>
 		<!-- TRRT 1564 -->
@@ -408,8 +409,6 @@
 		a TOE that meets the larger set of requirements meets both use cases. Specifically
 		<h:ul>
 			<h:li>a TOE that meets <xref to="uc-server-enhanced"/> also meets <xref to="uc-server-secureenv"/></h:li>
-			<h:li>a TOE that meets <xref to="uc-csfc-eud"/> also meets <xref to="uc-client-portable-enhanced"/></h:li>
-			<h:li>a TOE that meets <xref to="uc-tactical-eud"/> also meets <xref to="uc-client-portable-enhanced"/>.</h:li>
 		</h:ul>	
 		
 		<usecases>
@@ -449,8 +448,6 @@
 					<ref-id>sfr-fpt-php-2</ref-id> 
 					<ref-id>sfr-fpt-php-3</ref-id> 
 					<ref-id>sfr-fpt-jta-ext-2</ref-id>
-<!--					<ref-id>t-physical</ref-id>		-->		
-<!--					<not><ref-id>a-physical-protection</ref-id></not>  -->
 				</config>
 			</usecase>
 			<usecase title="Portable Clients (laptops, tablets), Enhanced Security Requirements" id="uc-client-portable-enhanced">
@@ -461,8 +458,6 @@
 				<config>
 					<ref-id>sfr-fpt-php-1</ref-id> 
 					<ref-id>sfr-fpt-jta-ext-2</ref-id>
-<!--					<ref-id>t-physical</ref-id>				 -->
-<!--					<not><ref-id>a-physical-protection</ref-id></not>			-->	
 				</config>
 			</usecase>
 			<usecase title="CSfC EUD" id="uc-csfc-eud">
@@ -479,22 +474,12 @@
 					media either through configuration, policy, or physical modification.
 				</description>
 				<config>
-<!--	TRRT 1560				<ref-id>sfr-fpt-php-1</ref-id> -->
-<!--	TRRT 1560					<ref-id>sfr-fpt-php-2</ref-id>  -->
 					<ref-id>sfr-fpt-jta-ext-2</ref-id>
 					<ref-id>sfr-fau-gen-1</ref-id>
 					<ref-id>sfr-fau-sar-1</ref-id>
 					<ref-id>sfr-fau-stg-1</ref-id>
-<!--					<ref-id>sfr-fau-stg-2</ref-id>   -->
-<!--					<ref-id>sfr-fau-stg-5</ref-id>    -->
 					<ref-id>sfr-fcs-stg-ext-1</ref-id>
-					<ref-id>sfr-fpt-tud-ext-1</ref-id>
 					<ref-id>sfr-fcs-rbg-6</ref-id>
-<!--					<not><ref-id>sel-fau-stg-1e1-removable</ref-id></not>  -->
-<!--					<not><ref-id>sel-tud1-no-update</ref-id></not>  -->
-<!--					<or><ref-id>sel-tud1-auth-update</ref-id>
-						<ref-id>sel-tud1-unauth-update</ref-id>
-						<ref-id>sel-tud1-local-update</ref-id></or>	-->			
 				</config>
 			</usecase>
 			<usecase title="Tactical EUD" id="uc-tactical-eud">
@@ -506,7 +491,6 @@
 					<ref-id>sfr-fpt-php-3</ref-id> 
 					<ref-id>sfr-fpt-jta-ext-2</ref-id>
 					<ref-id>sfr-fia-afl-ext-1</ref-id>
-<!--					<not><ref-id>a-physical-protection</ref-id></not>			-->	
 				</config>
 			</usecase>
 			<usecase title="Enterprise Desktop clients" id="uc-ent-clients-desktop">
@@ -593,14 +577,7 @@
 				<description>An attacker with physical access might be able to compromise TOE integrity, subvert
 					TOE protections, or access tenant data through hardware attacks such as probing, physical
 					manipulation, fault-injection, side-channel analysis, environmental stress, or activating
-					disabled features or pre-delivery services. This threat is mitigated by TOE functionality for 
-					the use cases listed below; for other use cases, the expectation is that the environmental 
-					security objectives are sufficient mitigation for this threat.   
-					<h:ul>
-						<h:li>Server-Class Platform, Enhanced</h:li>
-						<h:li>Portable Clients (laptops, tablets), Enhanced</h:li>
-						<h:li>CSfC EUD</h:li>
-						<h:li>Tactical EUD</h:li></h:ul>
+					disabled features or pre-delivery services.   
 				</description>
 				<addressed-by>FPT_JTA_EXT.1</addressed-by><rationale>Mitigates threat by restricting access to debug ports to authorized Administrators or physical presence.</rationale>
 				<addressed-by>FPT_ROT_EXT.3 (objective)</addressed-by><rationale>Mitigates threat by ensuring integrity of physical components and responding to integrity failures.</rationale>
@@ -683,6 +660,8 @@
 				<addressed-by>FAU_STG.5 (sel-based)</addressed-by><rationale>Mitigates threat by ensuring that exhaustion of audit storage does not prevent audit data indicating a potential attack from being generated.</rationale>
 				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Mitigates threat by using cryptography to protect the confidentiality of key data from outside access.</rationale>
 				<addressed-by>FCS_STG_EXT.3 (sel-based)</addressed-by><rationale>Mitigates threat by using cryptography to protect the integrity of key data from outside modification.</rationale>
+				<addressed-by>FPT_JTA_EXT.1</addressed-by><rationale>Mitigates threat by restricting access to debug ports to authorized Administrators or physical presence.</rationale>
+				<addressed-by>FPT_JTA_EXT.2 (sel-based)</addressed-by><rationale>Mitigates threat by enforcing access control to debug ports.</rationale>
 			</threat>
 
 			<threat name="T.NETWORK_BASED_ATTACK">
@@ -742,17 +721,8 @@
     <section title="Assumptions" id="assumptions">
 		<assumptions>
 			<assumption id="a-physical-protection" name="A.PHYSICAL_PROTECTION">
-				<description>The TOE is assumed to be physically protected in its operational environment and
-					thus is not subject to physical attacks that could compromise its security or its ability
-					to support the security of tenant workloads. This assumption does not apply if the TOE
-					implements any of the below, in which case physical protection from the 
-					Operational Environment is not assumed and the threat T.PHYSICAL and its
-					associated TOE Objectives apply:
-					<h:ul>
-						<h:li>Server-Class Platform, Enhanced</h:li>
-						<h:li>Portable Clients (laptops, tablets), Enhanced</h:li>
-						<h:li>CSfC EUD</h:li>
-						<h:li>Tactical EUD</h:li></h:ul>
+				<description><h:mark>The TOE is assumed to benefit from varying levels of protections depending  
+					on use case and operational environment.</h:mark>
 					</description>
 				<objective-refer ref="OE.PHYSICAL_PROTECTION">
 					<rationale> The operational environment objective OE.PHYSICAL_PROTECTION is realized through
@@ -854,10 +824,12 @@
 		security functionality. These track with the assumptions about the environment. 
 		<SOEs>
 			<SOE name="OE.PHYSICAL_PROTECTION">
-				<description>Platforms that operate within data centers or in other access-controlled environments are 
+				<description>A TOE may benefit from different levels of protection provided by its operational environment. 
+				Platforms that operate within data centers or in other access-controlled environments are 
 				expected to receive a considerable degree of protection from these environments. In addition to physical 
 				protection, these environments often provide malware-detection and behavior-monitoring services
-				for networked computing assets.</description>
+				for networked computing assets. On the other hand, a TOE would receibe very little protection 
+				from a tactical environment.</description>
 			</SOE>
 			<SOE name="OE.SUPPLY_CHAIN">
 				<description>The manufacturer is expected to implement processes to ensure that TOE hardware and
@@ -1212,8 +1184,8 @@
 							<col>Modulus of size <selectables>
 								<selectable id="sel-exp-ak-rsa-3072">3072</selectable>
 								<selectable id="sel-exp-ak-rsa-4096">4096</selectable>
-								<selectable id="sel-exp-ak-rsa-4096">6144</selectable>
-								<selectable id="sel-exp-ak-rsa-4096">8192</selectable>
+								<selectable id="sel-exp-ak-rsa-6144">6144</selectable>
+								<selectable id="sel-exp-ak-rsa-8192">8192</selectable>
 								</selectables> bits
 							</col>
 							<col>NIST FIPS PUB 186-5 (Section A.1.1)</col>
@@ -1396,7 +1368,7 @@
 						<h:li>Probable primes with conditions based on auxiliary probable primes</h:li>
 						</h:ol><h:p/>
 						In addition to the key generation method, the input parameters are:<h:ul>
-						<h:li>Modulus [3072, 4096]</h:li>
+						<h:li>Modulus [3072, 4096, 6144, 8192]</h:li>
 						<h:li>Hash algorithm [SHA-384, SHA-512] (methods 1, 3, 4 only)</h:li>
 						<h:li>Rabin-Miller prime test [2<h:sup>100</h:sup>, 2<h:sup>Security String</h:sup>] (methods 2, 4, 5 only)</h:li> 
 						<h:li><h:i>p</h:i> mod 8 value [0,1,3,5,7]</h:li>
@@ -1607,8 +1579,7 @@
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR must be included in the ST if "<h:i>causing the TOE to generate [symmetric] keys/secrets</h:i>"
 					is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.<h:p/>
-					<h:mark>When are 128-bit keys accepetable?</h:mark>
+					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -3300,6 +3271,7 @@
 						<col><selectables>
 							<selectable>3072</selectable>
 							<selectable>4096</selectable>
+							<selectable>6144</selectable>
 							<selectable>8192</selectable>
 						</selectables> bits</col>
 						<col>NIST SP 800-56B Revision  2 (Sections 6.3 and 8.2)</col>
@@ -3311,6 +3283,7 @@
 						<col><selectables>
 							<selectable>3072</selectable>
 							<selectable>4096</selectable>
+							<selectable>6144</selectable>
 							<selectable>8192</selectable>
 						</selectables> bits</col>
 						<col>NIST SP 800-56B Revision 2 (Sections 6.3 and 9)</col>
@@ -3357,7 +3330,7 @@
 							<h:tr>
 								<h:td valign="top">KAS1</h:td>
 								<h:td valign="top">KAS1 [RSA-single party]</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 3072, 4096, 8192] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits</h:td>
 								<h:td valign="top">NIST SP 800-56B Revision 2 (Sections 6.3 &amp; 8.2)</h:td>
 							</h:tr>
 						</h:table><h:p/>	
@@ -3368,7 +3341,7 @@
 							public exponent, Chinese Remainder Theorem with fixed public exponent, Basic with
 							random public exponent, Prime Factor with random public exponent, Chinese
 							Remainder Theorem with random public exponent]</h:li>
-						<h:li>Modulus value [3072, 4096, 8192]</h:li>
+						<h:li>Modulus value [3072, 4096, 6144, 8192]</h:li>
 						<h:li>Role [initiator, responder]</h:li>
 						<h:li>Key confirmation supported [yes, no] [not included in KAS2]</h:li></h:ul><h:p/>
 						The evaluator shall generate a test group (i.e. set of tests) for each parameter value of the above
@@ -3408,7 +3381,7 @@
 							<h:tr>
 								<h:td valign="top">KTS-OAEP</h:td>
 								<h:td valign="top">KTS-OAEP [RSA-OAEP]</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 3072, 4096, 8192] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits</h:td>
 								<h:td valign="top">NIST SP 800-56B Revision 2 (Sections 6.3 &amp; 9)</h:td>
 							</h:tr>
 						</h:table><h:p/>	
@@ -3419,7 +3392,7 @@
 							exponent, Chinese Remainder Theorem with fixed public exponent, Basic with
 							random public exponent, Prime Factor with random public exponent, Chinese
 							Remainder Theorem with random public exponent]</h:li>
-						<h:li>Supported modulus values [3072, 4096, 8192]</h:li>
+						<h:li>Supported modulus values [3072, 4096, 6144, 8192]</h:li>
 						<h:li>Key confirmation supported [yes, no]</h:li></h:ul><h:p/>
 						The evaluator shall generate a test group (i.e. set of tests) for each parameter value of the above
 						parameter type with the largest number of supported values. For example, if the TOE supports all
@@ -3710,6 +3683,8 @@
 							<col>Modulus of size <selectables>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
+								<selectable>6144</selectable>
+								<selectable>8192</selectable>
 							</selectables> bits, hash <selectables>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
@@ -3726,6 +3701,8 @@
 							<col>Modulus of size <selectables>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
+								<selectable>6144</selectable>
+								<selectable>8192</selectable>
 							</selectables> bits, hash <selectables>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
@@ -3799,7 +3776,7 @@
 							<h:tr>
 								<h:td valign="top">RSA-PKCS </h:td>
 								<h:td valign="top">RSASSA-PKCS1-v1_5</h:td>
-								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits,
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits,
 									hash [<h:b>selection:</h:b> SHA-384, SHA-512]</h:td>
 								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
 													NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]</h:td>
@@ -3808,7 +3785,7 @@
 						To test the TOE’s ability to perform RSA Digital Signature Generation using PKCS1-v1,5
 						signature type, the evaluator shall perform the Generated Data Test using the following input
 						parameters:<h:ul>
-						<h:li>Modulus size [3072, 4096] bits</h:li>
+						<h:li>Modulus size [3072, 4096, 6144, 8192] bits</h:li>
 						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Generated Data Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
@@ -3827,7 +3804,7 @@
 							<h:tr>
 								<h:td valign="top">RSA-PSS</h:td>
 								<h:td valign="top">RSASSA-PSS</h:td>
-								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits,
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits,
 									hash [<h:b>selection:</h:b> SHA-384, SHA-512], Salt Length (<h:i>sLen</h:i>)
 												such that [<h:b>assignmant:</h:b>0 &#8804; <h:i>sLen</h:i> &#8804; <h:i>hLen</h:i> (Hash/XOF Output Length)]
 												and Mask Generation Function = MGF1
@@ -3838,7 +3815,7 @@
 						</h:table><h:p/>	
 						To test the TOE’s ability to perform RSA Digital Signature Generation using PSS signature type,
 						the evaluator shall perform the Generated Data Test using the following input parameters:<h:ul>
-						<h:li>Modulus size [3072, 4096] bits</h:li>
+						<h:li>Modulus size [3072, 4096, 6144, 8192] bits</h:li>
 						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li>
 						<h:li>Salt length [Fixed based on implementation]</h:li>
 						<h:li>Mask function [MGF1]</h:li></h:ul><h:p/>
@@ -4089,6 +4066,8 @@
 						<col>Modulus of size <selectables>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
+								<selectable>6144</selectable>
+								<selectable>8192</selectable>
 						</selectables> bits and hash<selectables>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
@@ -4105,6 +4084,8 @@
 							<col>Modulus of size <selectables>
 								<selectable>3072</selectable>
 								<selectable>4096</selectable>
+								<selectable>6144</selectable>
+								<selectable>8192</selectable>
 							</selectables> bits and hash<selectables>
 								<selectable>SHA-384</selectable>
 								<selectable>SHA-512</selectable>
@@ -4229,7 +4210,8 @@
 					The TOE may contain a public key which is integrity protected (e.g., in hardware), in which 
 					case the FDP_ITC.1 and FDP_ITC.2 dependencies do not apply.  In this case, no dependencies 
 					may be chosen.  For signature verifications, private keys are not necessary, so there are no
-					dependencies required for generating or destroying cryptographic keys.
+					dependencies required for generating or destroying cryptographic keys.<h:p/>
+					If LMS is claimed, then FCS_COP.1/XOF must also be claimed. <h:mark>What about XMSS</h:mark>
 				</note>
 				<aactivity>
 					<TSS/>
@@ -4254,7 +4236,7 @@
 							<h:tr>
 								<h:td valign="top">RSA-PKCS </h:td>
 								<h:td valign="top">RSASSA-PKCS1-v1_5</h:td>
-								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits,
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits,
 									hash or XOF [<h:b>selection:</h:b> SHA-384, SHA-512]</h:td>
 								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
 													NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]</h:td>
@@ -4263,7 +4245,7 @@
 						To test the TOE’s ability to perform RSA Digital Signature Verification using PKCS1-v1,5
 						signature type, the evaluator shall perform Generated Data Test using the following input
 						parameters:<h:ul>
-						<h:li>Modulus size [3072, 4096] bits</h:li>
+						<h:li>Modulus size [3072, 4096, 6144, 8192] bits</h:li>
 						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
 						<h:br/><h:b>Generated Data Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
@@ -4290,7 +4272,7 @@
 							<h:tr>
 								<h:td valign="top">RSA-PSS</h:td>
 								<h:td valign="top">RSASSA-PSS</h:td>
-								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096] bits,
+								<h:td valign="top">Modulus of size [<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits,
 									hash [<h:b>selection:</h:b> SHA-384, SHA-512]</h:td>
 								<h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
 													NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PSS]</h:td>
@@ -4298,7 +4280,7 @@
 						</h:table><h:p/>	
 						To test the TOE’s ability to perform RSA Digital Signature Verification using PSS signature
 						type, the evaluator shall perform the Generated Data Test using the following input parameters:<h:ul>
-						<h:li>Modulus size [3072, 4096] bits</h:li>
+						<h:li>Modulus size [3072, 4096, 6144, 8192] bits</h:li>
 						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li>
 						<h:li>Salt length [0-hash length]</h:li>
 						<h:li>Mask function [MGF1]</h:li></h:ul><h:p/>
@@ -4775,7 +4757,9 @@
 		</f-component>
 		
 		<!-- FCS_COP.1/XOF Cryptographic Operation - Extendable-Output Function  -->
-		<f-component id="sfr-fcs-cop-1-xof" cc-id="fcs_cop.1" iteration="XOF" name="Cryptographic Operation - Extendable-Output Function">
+		<f-component id="sfr-fcs-cop-1-xof" cc-id="fcs_cop.1" iteration="XOF" 
+			name="Cryptographic Operation - Extendable-Output Function" status="sel-based">
+			<depends on-sel="sel-fcs-cop-sigver-lms"/>
 			<f-element id="fcs-cop-1e1-xof">
 				<title>
 					The TSF shall perform [extendable-output function] in accordance with a specified cryptographic algorithm  
@@ -4793,10 +4777,7 @@
 						<!-- SHAKE -->
 						<selectable id="sel-fcs-cop-xof-shake">
 							<col>SHAKE</col>
-							<col>Function = <selectables>
-								<selectable>SHAKE128</selectable>
-								<selectable>SHAKE256</selectable>
-								</selectables>
+							<col>Functions = [SHAKE128, SHAKE256]
 							</col>
 							<col>NIST FIPS PUB 202 Section 6.2 [SHAKE]</col>
 						</selectable>
@@ -4804,7 +4785,10 @@
 					</selectables>
 				</title>
 				<note role="application">
-					In accordance with CNSA 2.0, SHAKE is permitted to be used only as a component of LMS.
+					In accordance with CNSA 2.0, SHAKE is permitted to be used only as a component of LMS. Therefore this
+					component is claimed only if LMS is claimed in FCS_COP.1/SigVer. <h:p/>
+					Since LMS uses both SHAKE128 and SHAKE256 internally as an XOF, claiming and testing of both
+					Functions is mandatory.
 				</note>
 				<aactivity>
 					<TSS/>
@@ -4827,7 +4811,7 @@
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">SHAKE</h:td>
-								<h:td valign="top">Function = [<h:b>selection:</h:b> SHAKE128, SHAKE256]</h:td>
+								<h:td valign="top">Function = [SHAKE128, SHAKE256]</h:td>
 								<h:td valign="top">NIST FIPS PUB 202 Section 6.2 [SHAKE]</h:td>
 							</h:tr>
 						</h:table><h:p/>	
@@ -6097,7 +6081,8 @@
 		
 
 		<!-- FCS_RBG.6 Random Bit Generation Service -->
-		<f-component cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="optional">
+		<f-component id="sfr-fcs-rbg-6" cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="sel-based">
+			<depends on-uc="uc-csfc-eud"/>
 			<f-element id="fcs-rbg-6e1">
 				<title>
 					The TSF shall provide a <selectables>
@@ -7966,6 +7951,8 @@
 					of subsequently executed platform firmware must be traceable back to this root or to some other root as specified in FPT_ROT_EXT.2.
 					This SFR should be iterated for additional TOE roots (for example, a management controller or firmware executed from 
 					an add-in card).<h:p/>
+					<h:mark>An "on-platform dedicated security component" could be, for example, a TPM or other secure element
+					that provides (measurement or secure storage??) security services to the platform.</h:mark><h:p/>
 					Selection of "<h:i>a separate management controller...</h:i>" implies the existence of an Administrator role.
 				</note>
 				<aactivity>
@@ -7996,8 +7983,8 @@
 						<selectable id="sel-rot2-hash">computation and verification of a hash by trusted code/data</selectable>
 						<selectable id="sel-rot2-digsig">verification of a digital signature by trusted code/data</selectable>
 						<selectable>measurement and verification by trusted code/data</selectable>
-						<selectable>measurement and verification by an on-platform dedicated security component</selectable>
-						<selectable>measurement and verification by an off-platform entity</selectable>
+						<selectable><h:mark>measurement and verification by an on-platform dedicated security component</h:mark></selectable>
+						<selectable><h:mark>measurement and verification by an off-platform entity</h:mark></selectable>
 					</selectables>.
 				</title>
 				<ext-comp-def-title>
@@ -8052,7 +8039,8 @@
 				<title>The TOE shall take the following actions if an integrity check specified in
 					FPT_ROT_EXT.2.1 fails: 
 					<h:ol type="1">
-						<h:li>Halt,</h:li>
+						<h:li><h:mark>Halt,</h:mark></h:li>
+						<h:li><h:mark>Sometimes stop, sometimes notify, sometimes keep going but skip the bad code</h:mark></h:li>
 						<h:li>Notify an 
 							<selectables>
 								<selectable>Administrator</selectable>
@@ -8437,7 +8425,6 @@
 			<f-element id="fpt-tud-ext-1e1">
 				<title>The TSF shall implement
 					<selectables linebreak="yes">
-						<selectable id="sel-tud1-no-update" exclusive="yes">no mechanism for platform firmware update</selectable> 
 						<selectable id="sel-tud1-auth-update">an authenticated platform firmware update mechanism as 
 							described in FPT_TUD_EXT.2</selectable>
 						<selectable id="sel-tud1-unauth-update">a delayed-authentication platform firmware update mechanism as described in
