@@ -5173,7 +5173,7 @@ The following sections list Common Criteria and technology terms used in this do
 								<td valign="top">RSASSA-PSS</td>
 								<td valign="top">Modulus of size [<b>selection:</b> 3072, 4096, 6144, 8192] bits,
 									hash [<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512], Salt Length (<i>sLen</i>)
-												such that [<b>assignmant:</b>0 &#8804; <i>sLen</i> &#8804; <i>hLen</i> (Hash/XOF Output Length)]
+												such that [<b>assignmant:</b>0 &#8804; <i>sLen</i> &#8804; <i>hLen</i> (Hash Output Length)]
 												and Mask Generation Function = MGF1
 												</td>
 								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8017 (Section 8.2) [<abbr class="dyn-abbr"><a href="#abbr_PKCS">PKCS</a></abbr> #1 v2.2]<p></p>
@@ -5538,8 +5538,7 @@ The following sections list Common Criteria and technology terms used in this do
 					case the FDP_ITC.1 and FDP_ITC.2 dependencies do not apply<a id="period_1274" href="#period_1274">. </a> In this case, no dependencies 
 					may be chosen<a id="period_1275" href="#period_1275">. </a> For signature verifications, private keys are not necessary, so there are no
 					dependencies required for generating or destroying cryptographic keys<a id="period_1276" href="#period_1276">. </a><p></p>
-					If LMS is claimed, then <a href="#FCS_COP.1/XOF">FCS_COP.1/XOF</a> must also be claimed<a id="period_1277" href="#period_1277">. </a><mark>What about XMSS</mark>
-				</span></div></div></div>
+					If LMS or XMSS is claimed, then <a href="#FCS_COP.1/XOF">FCS_COP.1/XOF</a> must also be claimed<a id="period_1277" href="#period_1277">. </a>				</span></div></div></div>
 			
 		<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a></div>
 					
@@ -5568,7 +5567,7 @@ The following sections list Common Criteria and technology terms used in this do
 								<td valign="top">RSA-PKCS </td>
 								<td valign="top">RSASSA-PKCS1-v1_5</td>
 								<td valign="top">Modulus of size [<b>selection:</b> 3072, 4096, 6144, 8192] bits,
-									hash or XOF [<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512]</td>
+									hash [<b>selection:</b> <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512]</td>
 								<td valign="top"><abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8017 (Section 8.2) [<abbr class="dyn-abbr"><a href="#abbr_PKCS">PKCS</a></abbr> #1 v2.2]<p></p>
 													<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]</td>
 							</tr>
@@ -6080,6 +6079,7 @@ The following sections list Common Criteria and technology terms used in this do
 					</div></div></div></div></div><div class="comp" id="FCS_COP.1/XOF"><h4>FCS_COP.1/XOF Cryptographic Operation - Extendable-Output Function</h4><div class="statustag"><b><i>The inclusion of this selection-based component depends upon selection in
            <a href="#FCS_COP.1.1/SigVer">FCS_COP.1.1/SigVer</a><a id="period_1339" href="#period_1339">. </a>           </i></b></div>
 			
+			
 			<div class="element"><div class="reqid" id="FCS_COP.1.1/XOF"><a href="#FCS_COP.1.1/XOF" class="abbr">FCS_COP.1.1/XOF</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform [extendable-output function] in accordance with a specified cryptographic algorithm  
 					
@@ -6120,8 +6120,8 @@ The following sections list Common Criteria and technology terms used in this do
       Note:
     </span><span class="note">
 					In accordance with CNSA 2.0, SHAKE is permitted to be used only as a component of LMS<a id="period_1341" href="#period_1341">. </a>Therefore this
-					component is claimed only if LMS is claimed in <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a><a id="period_1342" href="#period_1342">. </a><p></p>
-					Since LMS uses both SHAKE128 and SHAKE256 internally as an XOF, claiming and testing of both
+					component is claimed only if LMS or XMSS is claimed in <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a><a id="period_1342" href="#period_1342">. </a><p></p>
+					Since LMS and XMSS use both SHAKE128 and SHAKE256 internally, claiming and testing of both
 					Functions is mandatory<a id="period_1343" href="#period_1343">. </a>				</span></div></div></div>
 			
 		<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/XOF">FCS_COP.1/XOF</a></div>
