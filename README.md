@@ -1,7 +1,6 @@
 Protection Profile for General-Purpose Computing Platform
 ===============
 ![Master Badges](https://img.shields.io/badge/Build-master-black.svg)
-![Build](https://github.com/commoncriteria/gpcp/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/gpcp/workflows/Validate/badge.svg)
 
 ![Last QuickBuilt Branch](https://raw.githubusercontent.com/commoncriteria/gpcp/gh-pages/build-branch-badge.svg)
