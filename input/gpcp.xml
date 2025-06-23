@@ -48,7 +48,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-06-17</PPPubDate>
+			<PPPubDate>2025-06-23</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -343,7 +343,10 @@
 		Operating Systems, one or more virtualization systems as defined by the Protection Profile for 
 		Virtualization, or more than one application. Typical platform 
 		implementations include servers, PC clients, laptops, and tablets.<h:p/>
-		<h:mark>This Protection Profile does not apply to devices that do not support firmware update.</h:mark><h:p/>
+		<h:mark>This Protection Profile does not apply to platforms that do not support firmware update. 
+		As a result, all platforms subject to this PP must support administration at least sufficient
+		to implement firmware update. Furthermore, the requirement for administration implies 
+		a requirement for an Administrator role to perform administration functions.</h:mark><h:p/>
 		Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and 
 		Network Device platforms as defined in the collaborative Protection Profile for Network Devices 
 		are out of scope of this PP.  Mobile Device and Network Device platforms must be evaluated 
@@ -462,7 +465,6 @@
 			</usecase>
 			<usecase title="CSfC EUD" id="uc-csfc-eud">
 				<description>
-				    <comment>Modified to address TRRT 1560</comment>
 					EUDs used in accordance with the CSfC Mobile Access Capability Package can include 
 					smart phones, tablets, desktops, and laptops. This use case covers the basic CSfC requirements 
 					for EUDs other than modile devices (mobile devices are out of scope for this PP).<h:p/>
@@ -1161,6 +1163,9 @@
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  	<!-- FCS_IPSEC_EXT.1 -->
 			<depends on-sel="sel-itc-tls"/>    <!-- TLS -->
 			<depends on-sel="sel-itc-https"/>  <!-- TLS/HTTPS -->
+			<depends on-sfr="sfr-fcs-cop-1-keyencap"/>   <!-- FCS_COP.1/KeyEncap -->
+			<depends on-sfr="sfr-fcs-cop-1-siggen"/>     <!-- FCS_COP.1/SigGen -->
+			<depends on-sfr="sfr-fcs-ckm-ext-7"/>        <!-- FCS_CKM_EXT.7 -->
 			<depends><optional/></depends>		<!-- May also be optionally added -->
 			<f-element id="fcs-ckm-1e1-akg">
 				<title>
@@ -1292,8 +1297,11 @@
 					This SFR must be included in the ST if asymmetric key generation is a service provided by 
 					the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
 					security functionality.<h:p/> 
-					Also, this SFR must be included in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
-					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2.<h:p/>
+					This SFR must also be claimed in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
+					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected
+					in FCS_STG_EXT.1.2.<h:p/>
+					Furthermore, this SFR must be claimed if TLS ot HTTPS is claimed in FTP_ITC_EXT.1.<h:p/>
+					
 					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.<h:p/>
 					
 					For RSA the choice of the modulus implies the resulting key sizes of the public and 
@@ -1545,6 +1553,11 @@
 		<!-- FCS_CKM.1/SKG Cryptographic Key Generation - Symmetric Key -->
 		<f-component id="sfr-fcs-ckm-1-skg" cc-id="fcs_ckm.1" iteration="SKG" name="Cryptographic Key Generation - Symmetric Key" status="sel-based">
 			<depends on-sel="sel-fcs-stg-ext-1e2-sk"/>  <!-- from FCS_STG_EXT.1 -->
+			<depends on-sfr="sfr-fcs-cop-1-aead"/>
+			<depends on-sfr="sfr-fcs-cop-1-cmac"/>
+			<depends on-sfr="sfr-fcs-cop-1-keyedhash"/>
+			<depends on-sfr="sfr-fcs-cop-1-keywrap"/>
+			<depends on-sfr="sfr-fcs-cop-1-skc"/>
 			<depends><optional/></depends>		<!-- May be manually added -->
 			<f-element id="fcs-ckm-1e1-skg">
 				<title>
@@ -1579,7 +1592,9 @@
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.<h:p/> 
 					This SFR must be included in the ST if "<h:i>causing the TOE to generate [symmetric] keys/secrets</h:i>"
 					is selected in FCS_STG_EXT.1.2.<h:p/>
-					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.
+					This SFR must be claimed if any SFRs are claimed that require generation of a symmetric key, such as 
+					FCS_COP.1/AEAD, FCS_COP.1/KeyedHash, FCS_COP.1/KeyWrap, FCS_COP.1/CMAC, or FCS_COP.1/SKC.<h:p/>
+					If this SFR is claimed in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.
 				</note>
 				<aactivity>
 					<TSS>
@@ -1588,7 +1603,7 @@
 						FCS_RBG.1. The evaluator shall review the TSS to verify that it describes how the functionality
 						described by FCS_RBG.1 is invoked.<h:p/>
 						The evaluator shall examine the TSS to verify that it identifies the usage, and key lifecycle for
-						keys generated using each selected algorithm.<h:p/>
+						keys generated using each selected algorithm.<h:p/>		
 						If the TOE uses the generated key in a key chain/hierarchy then the evaluator shall verify that the
 						TSS describes how the key is used as part of the key chain/hierarchy.
 					</TSS>
@@ -1689,9 +1704,9 @@
 								<selectable>Concatenated keys</selectable>
 							</selectables></col>
 							<col>KPF2 - KDF in Counter Mode using <selectables>
-								<selectable>AES-256-CMAC</selectable>
-								<selectable>HMAC-SHA-256</selectable>
-								<selectable>HMAC-SHA-512</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-cmac">AES-256-CMAC</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">>HMAC-SHA-256</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac512">>HMAC-SHA-512</selectable>
 							</selectables> as the PRF</col>
 							<col><selectables>
 								<selectable>256</selectable>
@@ -1711,9 +1726,9 @@
 								<selectable>Concatenated keys</selectable>
 							</selectables></col>
 							<col>KPF3 - KDF in Feedback Mode using <selectables>
-								<selectable>AES-256-CMAC</selectable>
-								<selectable>HMAC-SHA-256</selectable>
-								<selectable>HMAC-SHA-512</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-fb-cmac">AES-256-CMAC</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-fb-hmac256">>HMAC-SHA-256</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-fb-hmac512">>HMAC-SHA-512</selectable>
 							</selectables> as the PRF</col>
 							<col><selectables>
 								<selectable>256</selectable>
@@ -1732,9 +1747,9 @@
 								<selectable>Concatenated keys</selectable>
 								</selectables></col>
 							<col>KDF in Double Pipeline Iteration Mode using <selectables>
-									<selectable>AES-256-CMAC</selectable>
-									<selectable>HMAC-SHA-256</selectable>
-									<selectable>HMAC-SHA-512</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-dpi-cmac">AES-256-CMAC</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-dpi-hmac256">>HMAC-SHA-256</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-dpi-hmac512">>HMAC-SHA-512</selectable>
 								</selectables> as the PRF</col>
 							<col><selectables>
 								<selectable>256</selectable>
@@ -1764,8 +1779,8 @@
 							<col>KDF-ENC</col>  <!-- formerly KeyDrv6 -->
 							<col>Two keys</col>
 							<col>Encrypting using an algorithm specified in <selectables>
-								<selectable>FCS_COP.1/SKC</selectable>
-								<selectable>FCS_COP.1/AEAD</selectable></selectables>
+								<selectable id="sel-fcs-ckm-5-kdf-enc-skc">FCS_COP.1/SKC</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-enc-aead">FCS_COP.1/AEAD</selectable></selectables>
 								with a 256-bit key.
 							</col>
 							<col><selectables>
@@ -1832,6 +1847,13 @@
 					</selectables>
 				</title>
 				<note role="application">
+					If KDF-CTR, KDF-FB, or KDF-DPI is claimed, then either FCS_COP.1/CMAC or FCS_COP.1/KeyedHash
+					must also be claimed, depending on the selection made for PRF.<h:p/>
+					If KDF-ENC is claimed, then either FCS_COP.1/SKC or FCS_COP.1/AEAD must be claimed, depending on the 
+					encryption algorithm claimed.<h:p/>
+					If KDF-Hash is claimed, then FCS_COP.1/Hash must also be claimed.<h:p/>
+					If KDF-MAC-1S is claimed, then FCS_COP.1/KeyedHash must also be claimed.<h:p/>
+					If KDF-MAC-2S is claimed, then both FCS_COP.1/KeyedHash and FCS_COP.1/CMAC must also be claimed.<h:p/>
 					In KDF-MAC-2S, CMAC has been removed as a selection for the MAC step because it requires
 					selection of 128 bits for the output key size, which is not supported in CNSA 1.0. If HMAC is
 					selected in the MAC step, then the same HMAC is used as the KDF.<h:p/>
@@ -2158,7 +2180,7 @@
 			<f-element id="fcs-ckm-6e1">
 				<title>
 					The TSF shall destroy <assignable>list of cryptographic keys (including keying material)
-						<h:mark>and memory or storage media where they may be found</h:mark></assignable> 
+						</assignable> 
 					when <selectables>
 						<selectable>no longer needed</selectable>
 						<selectable><h:mark>as specified in NIST SP 800-57 Part 1 Rev. 5</h:mark></selectable>
@@ -2416,7 +2438,7 @@
 					This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
 					functionality.<h:p/> 
-					If this SFR is claimed, then FCS_CKM.6 must also be claimed.<h:p/>
+					If this SFR is claimed, then FCS_CKM.6 an FCS_CKM.1/AKG must also be claimed.<h:p/>
 					This SFR has dependencies FCS_COP.1/Hash and FCS_COP.1/XOF only if ML-KEM is selected.
 				</note>
 				<aactivity>
@@ -2608,6 +2630,7 @@
 					given performance constraints.<h:p/>
 					NIST recommends that the randomly generated portion of the salt have length of at least 128 bits 
 					and must be derived from Random Bit Generation.<h:p/>
+					If this SFR is claimed, then FCS_COP.1/KeyedHash and FCS_RBG.1 must also be claimed.<h:p/>
 					For CNSA 1.0 and 2.0 compliance, only SHA-384 or SHA-512 may be used.
 				</note>
 				<aactivity>
@@ -2664,6 +2687,7 @@
 			<depends on-incl="sfr-fcs-stg-ext-2"/>	
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
 			<depends on-sel="sel-fdp-itc-ext-1e2-sk"/>  <!-- from FDP_ITC_EXT.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-enc-aead"/>   <!-- KDF-ENC -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-aead">
 				<title>
@@ -2850,6 +2874,10 @@
 		<!-- FCS_COP.1/CMAC Cryptographic Operation - CMAC -->
 		<f-component id="sfr-fcs-cop-1-cmac" cc-id="fcs_cop.1" iteration="CMAC" name="Cryptographic Operation - CMAC" status="sel-based">
 			<depends on-sel="sel-stg3-digsig"/>	<!-- FCS_STG_EXT.3.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-cmac"/>    <!-- KDFs -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-fb-cmac"/>   
+			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-cmac"/>   
+			<depends on-sel="sel-fcs-ckm-5-kdf-mac-2S"/>
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-cmac">
 				<title> The TSF shall perform [CMAC] in accordance with a specified cryptographic algorithm 
@@ -2969,6 +2997,7 @@
 			<depends on-incl="sfr-fcs-cop-1-keyedhash"/>   <!-- FCS_COP.1/KeyedHash -->
 			<depends on-incl="sfr-fcs-cop-1-sigver"/>    <!-- FCS_COP.1/SigVer -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>    <!-- FCS_COP.1/SigGen -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-hash"/>   <!-- KDF-Hash -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
             <f-element id="fcs-cop-1e1-hash">
                 <title>
@@ -3123,6 +3152,15 @@
 			<depends on-sel="sel-fdp-itc-ext-1e2-mac"/>  <!-- from FDP_ITC_EXT.1 -->		
 			<depends on-sel="sel-stg3-hmac"/>		<!-- FCS_STG_EXT.3.1 -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>	<!-- FCS_IPSEC_EXT.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-hmac256"/>   <!-- KDFs -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-hmac512"/>
+			<depends on-sel="sel-fcs-ckm-5-kdf-fb-hmac256"/>
+			<depends on-sel="sel-fcs-ckm-5-kdf-fb-hmac512"/>
+			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-hmac256"/>
+			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-hmac512"/>
+			<depends on-sel="sel-fcs-ckm-5-kdf-mac-1S"/>
+			<depends on-sel="sel-fcs-ckm-5-kdf-mac-2S"/>
+			<depends on-incl="sfr-fcs-ckm-ext-8"/>       <!-- FCS_CKM_EXT.8 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-keyedhash">
 				<title>The TSF shall perform [keyed hash message authentication] in accordance
@@ -3301,6 +3339,7 @@
 				<note role="application">
 					NIST SP 800-57 Part 1 Revision 5 Section 5.6.2 specifies that the size of key used to protect the
 					key being transported should be at least the security strength of the key it is protecting.<h:p/>
+					If this SFR is claimed, then FCS_CKM.1/AKG and FCS_CKM.6 must also be claimed.<h:p/>
 					KAS1 and KTS-OAEP with the selectable parameters are CNSA 1.0 compliant. ML-KEM-1024 is CNSA 2.0 compliant.
 				</note>
 				<aactivity>
@@ -4206,7 +4245,6 @@
 					For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the
 					base point. As the preferred approach for digital signatures, elliptic curves will be required after all the
 					necessary standards and other supporting information are fully established.<h:p/>
-					<comment>From catalog</comment>
 					The TOE may contain a public key which is integrity protected (e.g., in hardware), in which 
 					case the FDP_ITC.1 and FDP_ITC.2 dependencies do not apply.  In this case, no dependencies 
 					may be chosen.  For signature verifications, private keys are not necessary, so there are no
@@ -4488,6 +4526,7 @@
 			<depends on-incl="sfr-fcs-stg-ext-2"/>	
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
 			<depends on-sel="sel-fdp-itc-ext-1e2-sk"/>  <!-- from FDP_ITC_EXT.1 -->
+			<depends on-sel="sel-fcs-ckm-5-kdf-enc-skc"/>   <!-- KDF-ENC -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-skc">
 				<title>
@@ -5635,6 +5674,7 @@
 			<depends on-incl="sfr-fcs-otv-ext-1"/>  <!-- FCS_OTV_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
+			<depends on-incl="sfr-fcs-ckm-ext-8"/>		<!-- FCS_CKM_EXT.8 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-rbg-1e1">
 				<title>
@@ -5698,21 +5738,90 @@
 					FCS_CKM.1/AKG, FCS_CKM.1/SKG, and FCS_COP.1/SigGen.<h:p/>
 					Also, this SFR must be claimed if "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or
 					"<h:i>KDF-DPI</h:i>" is selected in FCS_CKM.5.<h:p/>
-					If "<h:i>HMAC_DRBG (any)</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
-					If "<h:i>Hash_DRBG (any)</h:i>" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
-					If "<h:i>CTR_DRBG (any)</h:i>" is selected, then FCS_COP.1/SKC must be claimed.
+					If "HMAC_DRBG" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
+					If "Hash_DRBG" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
+					If "CTR_DRBG" is selected, then FCS_COP.1/SKC must be claimed.
 				</note>
-				<aactivity level="element">
+			</f-element>
+			<f-element id="fcs-rbg-1e2">
+				<title>
+					The TSF shall use a <selectables>
+						<selectable id="internal-seed">TSF entropy source <assignable>name of entropy source</assignable></selectable>
+						<selectable id="external-seed">TSF interface for seeding</selectable>
+					</selectables>
+					for initialization and reseeding.
+				</title>
+				<note role="application">
+					<h:p>
+						For the selection in this requirement, the ST author selects "TSF entropy source" if
+						a single entropy source is used as input to the DRBG. The ST author selects "multiple TSF noise 
+						sources" if a seed is formed from a combination of two or more entropy sources within the TOE boundary. 
+						If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should
+						be iterated for each DRBG. It multiple distinct entropy sources exist such that each DRBG only uses 
+						one of them, then each iteration would select "TSF entropy source"; "multiple TSF entropy sources" 
+						is only selected if a single DRBG uses multiple entropy sources for its seed. The ST author selects 
+						"TSF interface for seeding" if entropy source data is generated outside the TOE boundary.
+					</h:p>
+					<h:p>
+						If "TSF entropy source" is selected, FCS_RBG.3 must be claimed.
+					</h:p>
+					<h:p>
+						If "multiple TSF entropy sources" is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed. 
+					</h:p>
+					<h:p>
+						If "TSF interface for seeding" is selected, FCS_RBG.2 must be claimed. 
+					</h:p>
+					<h:p>
+						The security strength of the entropy used for seeding depends on the functions for which the TSF uses entropy. 
+						The security strength for the various functions is defined in Tables 2 and 3 of NIST SP 800-57A. 
+					</h:p>
+				</note>
+			</f-element>
+			
+			<f-element id="fcs-rbg-1e3">
+				<title>
+					The TSF shall update the DRBG state by <selectables>
+						<selectable>reseeding</selectable>
+						<selectable>uninstantiating and re-instantiating</selectable>
+					</selectables> using a <selectables>
+						<selectable>TSF entropy source <assignable>name of entropy source</assignable></selectable>
+						<selectable>TSF interface for obtaining entropy <assignable>name of the interface</assignable></selectable></selectables>
+					in the following situations: <selectables linebreak="yes">
+						<selectable>never</selectable>
+						<selectable>on demand</selectable>
+						<selectable>on the condition: <assignable>condition</assignable></selectable>
+						<selectable>after <assignable>time</assignable></selectable>
+					</selectables>
+					in accordance with <assignable>list of standards</assignable>.
+				</title>
+				<note role="application">
+					<comment>From catalog</comment>
+					If a reseeding is selected in the first selection and something other than “never” is 
+					selected in the third selection of FCS_RBG.1.3, but reseeding is not feasible, the TSF will
+					uninstantiate RBGs, rather than produce output that is of insufficient quality.  The listed 
+					standards should specify the reseed interval and procedure for uninstantiating and reseeding. 
+					The remaining selection allows the PP Author to require application-specific conditions for 
+					reseeding.<h:p/>
+					"Uninstantiate” means that the internal state of the DRBG is no longer available for use. 
+					In the second selection of FCS_RBG.1.3, “on demand” means that a TOE presents an interface to 
+					reseed as a TSFI (e.g., an API call).  The interface causes the DRBG to reseed at the request 
+					of an authorized user, either with an internal source, an external source, or from input 
+					provided through the TSFI (e.g., the API call).
+				</note>
+				<aactivity>
 					<TSS>
 						If the ST specifies more than one DRBG, the evaluator shall examine the TSS
 						to verify that it identifies the usage of each DRBG mechanism.<h:p/>
 						The evaluator shall examine the TSS to verify that it specifies the DRBG type,
-						identifies entropy source(s) initializing and reseeding the DRBG.
+						identifies entropy source(s) initializing and reseeding the DRBG, and 
+						the situations under which this may occur.
 					</TSS>
 					<Guidance>
 						The evaluator shall verify that the Guidance instructs the administrator how to configure
 						the TOE to use the selected DRBG mechanism(s), if necessary, and provides information
-						regarding how to instantiate/call the DRBG for RBG services.
+						regarding how to instantiate/call the DRBG for RBG services.<h:p/>
+						If the ST claims that the DRBG state can be updated on demand, the evaluator shall
+						verify that the guidance includes instructions for how to perform this operation.
 					</Guidance>
 					<Tests>
 						The following tests are conditional based upon the selections made in the SFR. The evaluator
@@ -5722,8 +5831,8 @@
 						is not carried out on the TOE itself, the test platform shall be identified and the differences
 						between test environment and TOE execution environment shall be described. <h:p/>
 
-						<!-- HASH_DRBG -->
-						<h:br/><h:b>HASH_DRBG</h:b><h:p/>
+						<!-- HASH_DRBG, HMAC-DRBG -->
+						<h:br/><h:b>HASH_DRBG, HMAC_DRBG</h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
@@ -5737,36 +5846,6 @@
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.2.2),
 									NIST SP 800-90A Revision 1 (Section 10.1.1)]</h:td>
 							</h:tr>
-						</h:table><h:p/>	
-						To test the TOE’s ability to generate random bits using Hash_DRBG, the evaluator shall perform
-						the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>Function [SHA-256, SHA-384, SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:li>
-						<h:li>Max security strength [256] bits</h:li>
-						<h:li>Entropy length [256-65536] bits</h:li>
-						<h:li>Max Personalization String size [65536] bits</h:li>
-						<h:li>Max additional string [65536] bits</h:li>
-						<h:li>Nonce length [128-65536] bits</h:li>
-						<h:li>Min returned bits length [256, 384, 512]</h:li>
-						<h:li>Prediction resistance [on, off]</h:li>
-						<h:li>Reseed [on, off]</h:li></h:ul><h:p/>
-						<h:br/><h:b><h:i>Algorithm Functional Test</h:i></h:b><h:p/>
-						The evaluator shall generate 16 test groups for each claimed function. Eight with prediction
-						resistance enabled, and eight with prediction resistance turned off. For each of the eight test
-						groups, four must have reseed enabled and four must have reseed turned off.<h:p/>
-						Each test group within the core sets of four test groups shall consist of 15 test cases each, such
-						that minimum lengths and maximum lengths for the above parameters are used at least once
-						across the four groups, and the rest are random lengths.<h:p/>
-						Correctness is determined by comparing the results from a known-good implementation using
-						the same input parameters.<h:p/>
-
-						<!-- HMAC_DRBG -->
-						<h:br/><h:b>HMAC_DRBG</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">RBG Algorithm</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
 							<h:tr>
 								<h:td valign="top">HMAC_DRBG</h:td>
 								<h:td valign="top">HMAC_DRBG with [<h:b>selection:</h:b> SHA-256, SHA-384,
@@ -5775,15 +5854,18 @@
 									NIST SP 800-90A Revision 1 (Section 10.1.2)]</h:td>
 							</h:tr>
 						</h:table><h:p/>	
-						To test the TOE’s ability to generate random bits using HMAC_DRBG, the evaluator shall perform
+
+						</h:table><h:p/>	
+						To test the TOE’s ability to generate random bits using Hash_DRBG or HMAC_DRBG, the
+						evaluator shall perform
 						the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>HMAC Mode [SHA-384, SHA-512]</h:li>
+						<h:li>Function [SHA-256, SHA-384, SHA-512]</h:li>
 						<h:li>Max security strength [256] bits</h:li>
 						<h:li>Entropy length [256-65536] bits</h:li>
 						<h:li>Max Personalization String size [65536] bits</h:li>
 						<h:li>Max additional string [65536] bits</h:li>
 						<h:li>Nonce length [128-65536] bits</h:li>
-						<h:li>Min returned bits length [256, 384, 512] bits</h:li>
+						<h:li>Min returned bits length [256, 384, 512]</h:li>
 						<h:li>Prediction resistance [on, off]</h:li>
 						<h:li>Reseed [on, off]</h:li></h:ul><h:p/>
 						<h:br/><h:b><h:i>Algorithm Functional Test</h:i></h:b><h:p/>
@@ -5806,99 +5888,34 @@
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">CTR_DRBG</h:td>
-								<h:td valign="top">CTR_DRBG with [<h:b>selection:</h:b> AES-CTR-256]</h:td>
+								<h:td valign="top">CTR_DRBG with AES-CTR-256</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.3.2),
 									NIST SP 800-90A Revision 1 (Section 10.2.1)]</h:td>
 							</h:tr>
 						</h:table><h:p/>	
-
+						To test the TOE’s ability to generate random bits using CTR_DRBG, the
+						evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>
+						<h:li>Mode [AES-CTR-256]</h:li>
+						<h:li>Max security strength [256] bits</h:li>
+						<h:li>Entropy length [256-65536] bits</h:li>
+						<h:li>Max Personalization String size [65536] bits</h:li>
+						<h:li>Max additional string [65536] bits</h:li>
+						<h:li>Nonce length [0-65536] bits</h:li>
+						<h:li>Min returned bits length [128]</h:li>
+						<h:li>Prediction resistance [on, off]</h:li>
+						<h:li>Reseed [on, off]</h:li>
+						<h:li>Derivation Function [true, false]</h:li></h:ul><h:p/>
+						<h:br/><h:b><h:i>Algorithm Functional Test</h:i></h:b><h:p/>
+						The evaluator shall generate 16 test groups for each claimed function and supported derivation
+						function state (on or off). Eight with prediction resistance enabled, and eight with prediction
+						resistance turned off. For each of the eight test groups, four must have reseed enabled and four
+						must have reseed turned off.<h:p/>
+						Each test group within the core sets of four test groups shall consist of 15 test cases each, such
+						that minimum supported lengths and maximum supported lengths for the above parameters are
+						used at least once across the four groups, and the rest are random lengths.<h:p/>
+						Correctness is determined by comparing the results from a known-good implementation using
+						the same input parameters.
 					</Tests>
-				</aactivity>
-			</f-element>
-			<f-element id="fcs-rbg-1e2">
-				<title>
-					The TSF shall use a <selectables>
-						<selectable id="internal-seed">TSF noise source <assignable>name of noise source</assignable></selectable>
-						<selectable id="external-seed">TSF interface for seeding</selectable>
-					</selectables>
-					for initialization and reseeding.
-				</title>
-				<note role="application">
-					<h:p>
-						For the selection in this requirement, the ST author selects "TSF noise source" if
-						a single noise source is used as input to the DRBG. The ST author selects "multiple TSF noise 
-						sources" if a seed is formed from a combination of two or more noise sources within the TOE boundary. 
-						If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should
-						be iterated for each DRBG. It multiple distinct noise sources exist such that each DRBG only uses 
-						one of them, then each iteration would select "TSF noise source"; "multiple TSF noise sources" 
-						is only selected if a single DRBG uses multiple noise sources for its seed. The ST author selects 
-						"TSF interface for seeding" if noise source data is generated outside the TOE boundary.
-					</h:p>
-					<h:p>
-						If "TSF noise source" is selected, FCS_RBG.3 must be claimed.
-					</h:p>
-					<h:p>
-						If "multiple TSF noise sources" is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed. 
-					</h:p>
-					<h:p>
-						If "TSF interface for seeding" is selected, FCS_RBG.2 must be claimed. 
-					</h:p>
-					<h:p>
-						The security strength of the entropy used for seeding depends on the functions for which the TSF uses entropy. 
-						The security strength for the various functions is defined in Tables 2 and 3 of NIST SP 800-57A. 
-					</h:p>
-				</note>
-				<aactivity level="element">
-					<no-tests>
-						Documentation will be produced - and the evaluator shall perform the
-						activities - in accordance with <xref to="entropyappendix"/> and
-						the
-						<h:a href="https://old.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">Clarification to the Entropy Documentation and Assessment Annex</h:a>.
-					</no-tests>
-				</aactivity>
-			</f-element>
-			
-			<f-element id="fcs-rbg-1e3">
-				<title>
-					The TSF shall update the DRBG state by <selectables>
-						<selectable>reseeding</selectable>
-						<selectable>uninstantiating and re-instantiating</selectable>
-					</selectables> using a <selectables>
-						<selectable>TSF entropy source <assignable>name of entropy source</assignable></selectable>
-						<selectable>TSF interface for obtaining entropy <assignable>name of the interface</assignable></selectable></selectables>
-					in the following situations: <selectables linebreak="yes">
-						<selectable>never</selectable>
-						<selectable>on demand</selectable>
-						<selectable>on the condition: <assignable>condition</assignable></selectable>
-						<selectable>after <assignable>time</assignable></selectable>
-					</selectables>
-					in accordance with <assignable>list of standards</assignable>.
-				</title>
-				<note role="application">
-					<comment>From catalog</comment>
-					No rationale is acceptable for not satisfying one of these dependencies.<h:p/>
-					If a reseeding is selected in the first selection and something other than “never” is 
-					selected in the third selection of FCS_RBG.1.3, but reseeding is not feasible, the TSF will
-					uninstantiate RBGs, rather than produce output that is of insufficient quality.  The listed 
-					standards should specify the reseed interval and procedure for uninstantiating and reseeding. 
-					The remaining selection allows the PP Author to require application-specific conditions for 
-					reseeding.<h:p/>
-					"Uninstantiate” means that the internal state of the DRBG is no longer available for use. 
-					In the second selection of FCS_RBG.1.3, “on demand” means that a TOE presents an interface to 
-					reseed as a TSFI (e.g., an API call).  The interface causes the DRBG to reseed at the request 
-					of an authorized user, either with an internal source, an external source, or from input 
-					provided through the TSFI (e.g., the API call).
-				</note>
-				<aactivity level="element">              
-					<TSS>
-						The evaluator shall verify that the TSS identifies how the DRBG state is updated, and the situations under 
-						which this may occur.
-					</TSS>
-					<Guidance>
-						If the ST claims that the DRBG state can be updated on demand, the evaluator shall verify that the 
-						operational guidance has instructions for how to perform this operation.
-					</Guidance>
-					<Tests/>
 				</aactivity>
 			</f-element>
 			<audit-event>
@@ -5917,33 +5934,31 @@
 					from a TSF interface for the purpose of obtaining entropy.
 				</title>
 				<note role="application">
-					This requirement is claimed when a DRBG is seeded with entropy from one or more noise source that is outside the TOE
-					boundary. In the case of a general purpose computing platform this would likely only occur when the entropy source is a
-					Dedicated Security Component that is integrated with the TOE. Typically the entropy produced by an environmental noise
-					source is conditioned such that the input length has full entropy and is therefore  usable as the seed. However, if this
-					is not the case, it should be noted what the minimum
-					entropy rate of the noise source is so that the TSF can collect a sufficiently large sample of noise data to be
-					conditioned into a seed value.
-					<comment>From catalog</comment>
-					In order to maintain compliance with NIST SP 800-90A Revision 1, the TSF accepts enough 
-					bits of input from an external noise source to satisfy the entropy requirements of the DRBG.
-					The TSF should also protect the integrity and confidentiality of the entropy it receives from
-					the external noise source.<h:p/>
-					The TSF interface for the purpose of seeding here is the interface used to gather entropy 
-					for initializing the seed.
+					This requirement is claimed when a DRBG is seeded with entropy from one or more entropy sources 
+					that is outside the TOE boundary. In the case of a general purpose computing platform 
+					this would likely only occur when the entropy source is a Dedicated Security Component 
+					that is integrated with the TOE. Typically the entropy produced by an environmental noise
+					source is conditioned such that the input length has full entropy and is therefore 
+					usable as the seed. However, if this is not the case, it should be noted what the minimum
+					entropy rate of the noise source is so that the TSF can collect a sufficiently large 
+					sample of noise data to be conditioned into a seed value.<h:p/>
+					The ST Author should complete the assignment using the minimum length of of input sufficient to 
+					initialize or reseed the DRBG.					
 				</note>
 				<aactivity>
-					<no-tests>
-						The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, 
-						for each DRBG function implemented by the TOE, the TSF external interface used to seed the TOE's DRBG. The 
-						evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled 
-						data such that it can be determined that sufficient entropy can be made available for the highest strength keys 
-						that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., 
-						the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation 
-						describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that 
-						sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of 
-						sufficient size with full entropy.
-					</no-tests>
+					<TSS>
+						The evaluator shall verify that the TSS documents the minimum amount of input expected from
+						external entropy sources. If this SFR is iterated, the evaluator shall check that the TSS indicates
+						the minimum input size for each external entropy source.
+					</TSS>
+					<Guidance>
+						The evaluator shall verify that the Guidance describes any settings, operational requirements, or
+						user input necessary for the proper function of the entropy sources.
+					</Guidance>
+					<Tests>
+						The evaluator shall exercise the interface to determine whether the interface can handle at 
+						least the number of bits claimed int he assignment.
+					</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event/>
@@ -5960,13 +5975,14 @@
 						<selectable>TSF hardware-based entropy source <assignable>name of entropy source</assignable></selectable></selectables>
 					with <assignable>number of bits</assignable> bits of min-entropy.
 				</title>        
-				<note role="application">This requirement is claimed when a DRBG is seeded with entropy from a single noise source that 
-					is within the TOE boundary. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the 
-					total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data 
-					is reduced in size to the seed.
+				<note role="application">
+					This requirement is claimed when a DRBG is initialized or reseeded with entropy from a single Entropy
+					source that is within the TOE boundary.<h:p/>
+					In the assignment, Min-entropy should be expressed as a ratio of entropy bits to sampled 
+					bits so that the total amount of data needed to ensure full entropy is known, as well as the
+					conditioning function by which that data is reduced in size to the seed.<h:p/>
+
 					<comment>From catalog</comment>
-					If an ST Author wishes to use multiple internal noise sources, they iterate this requirement
-					for each noise source used by the TSF.<h:p/>
 					Hardware-based noise sources are entropy sources whose primary function is noise generation, 
 					such as ring oscillators, diodes, and thermal noise.  While a TOE may use software to collect
 					the noise from these hardware sources, these are not software-based.  Software-based noise 
@@ -6106,7 +6122,7 @@
 						contribute to entropy, rather only those features expressly provided as entropy sources.
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the AGD to ensure that it describes how to configure 
+						The evaluator shall examine the Guidance to ensure that it describes how to configure 
 						entropy sources (if applicable) and how tenant software can access the sources.
 					</Guidance>
 					<Tests>
@@ -7090,7 +7106,7 @@
 			<h:br/>FMT_SMR.1 Security Roles</dependencies>
 			<f-element id="fmt-cfg-ext-1e1">
 				<title>
-					The TSF shall enforce that <h:mark>Administrator</h:mark> credentials be changed immediately
+					The TSF shall enforce that Administrator credentials be changed immediately
 					after first use when configured with default Administrator credentials or with no 
 					Administrator credentials.
 				</title>
@@ -7254,7 +7270,6 @@
 								<selectables>
 									<selectable>locally</selectable>
 									<selectable id="sel-smf-remote-admin">remotely</selectable>
-									<selectable exclusive="yes">not at all</selectable>
 								</selectables>
 							</text>
 							<M ref="A"/>
@@ -7262,10 +7277,8 @@
 							<app-note>
 								Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
 								Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
-								"<h:i>Not at all</h:i>" is the proper selection for Function <xref to="mf-admin-platform"/> only in the case
-								where the GPCP is incapable of being Administered at all.<h:p/>
 								If "<h:i>remotely</h:i>" is selected, then FTP_TRP.1 must be claimed in the 
-								ST and Function <xref to="mf-init-channel"/> must be selected.
+								ST and Function <xref to="mf-support-channel"/> must be selected.
 							</app-note>
 						</management-function>
 
@@ -7309,10 +7322,11 @@
 						</management-function>
 
 						<!-- 5 -->
-						<management-function id="mf-init-channel">	
+						<management-function id="mf-support-channel">	
 							<depends on-sfr="sfr-ftp-trp-1"/>
 							<text>
-								Ability to initiate a trusted channel for remote administration.
+								Ability to initiate a trusted channel or accept an incoming channel 
+								for remote administration.
 							</text>
 							<O ref="A"/>
 							<X ref="U"/>
@@ -7412,17 +7426,16 @@
 						</management-function>
 
 						<!-- 12 -->
-						<management-function id="mf-config-integrity-failure-actions">
+						<management-function id="mf-config-boot-integrity-failure-actions">
 							<depends on-sel="sel-rot2-admin-config"/>
 							<depends on-sel="sel-rot3-admin-config"/>
 							<text>
-								Ability to configure default action to take on integrity failure.
+								Ability to configure default action to take on boot integrity failure.
 							</text>
 							<O ref="A"/>
 							<X ref="U"/>
                             <app-note>
-								This Function must be claimed if FPT_ROT_EXT.2 or FPT_ROT_EXT.3 are claimed 
-								in the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>" 
+								This Function must be claimed if "<h:i>in accordance with Administrator-configurable policy</h:i>" 
 								is selected in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2.
 							</app-note>
 						</management-function>
@@ -7485,7 +7498,7 @@
 						</management-function>
 
 						<!-- 16 -->
-						<management-function id="mf-determine-integrity-failure-action">	
+						<management-function id="mf-determine-update-integrity-failure-action">	
 							<depends on-sfr="sfr-fpt-rot-ext-2"/>
 							<depends on-sfr="sfr-fpt-rot-ext-3"/>
 							<text>
@@ -7552,7 +7565,7 @@
 	<!-- FMT_SMR.1 Security Roles -->
 	<f-component cc-id="fmt_smr.1" id="sfr-fmt-smr-1" name="Security Roles">
 		<f-element id="fmt-smr-1e1">
-			<title>The TSF shall maintain the roles [<h:i>User</h:i> and 
+			<title>The TSF shall maintain the roles [<h:mark><h:i>User</h:i></h:mark> and 
 				<selectables>
 					<selectable id="sel-fmt-smr-1-admin">Administrator</selectable>
 					<selectable exclusive="yes">no other roles</selectable>
@@ -7953,8 +7966,8 @@
 					This SFR should be iterated for additional TOE roots (for example, a management controller or firmware executed from 
 					an add-in card).<h:p/>
 					<h:mark>An "on-platform dedicated security component" could be, for example, a TPM or other secure element
-					that provides (measurement or secure storage??) security services to the platform.</h:mark><h:p/>
-					Selection of "<h:i>a separate management controller...</h:i>" implies the existence of an Administrator role.
+					that provides security services to the platform such as measurement or secure storage.</h:mark><h:p/>
+					<h:mark>Selection of "<h:i>a separate management controller...</h:i>" implies the existence of an Administrator role.</h:mark>
 				</note>
 				<aactivity>
 					<TSS>The evaluator shall verify that the TSS describes the Root of Trust on which initial integrity 
@@ -8069,15 +8082,13 @@
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
 					example, by blinking lights, beep codes, screen indications, or local logging.<h:p/>
-					If "Administrator" is selected anywhere in FPT_ROT_EXT.2.2, or if "in accordance with Administrator-configurable
+					<h:mark>If "Administrator" is selected anywhere in FPT_ROT_EXT.2.2, or if "in accordance with Administrator-configurable
 					policy" is selected, then all Administrator authentication requirements must be included in the ST
-					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).				
+					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).</h:mark><h:p/>
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.2, and FAU_STG.5 must be included in the ST.<h:p/>
-					If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected, then FCS_COP.1/Hash must be included in the ST.<h:p/>
-					If "<h:i>verification of a digital signature by trusted code/data</h:i>" is selected, then FCS_COP.1/SigVer must be included in the ST.<h:p/>
 					If "<h:i>Initiate a recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
-					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF.1 and FMT_SMF.1
-					must be included in the ST.<h:p/>
+					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then management function 
+					<xref ref="mf-config-boot-integrity-failure-actions"/> must be claimed in FMT_SMF.1.
 				</note>
 				<aactivity>
 					<TSS>
