@@ -48,7 +48,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-06-23</PPPubDate>
+			<PPPubDate>2025-06-24</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -644,7 +644,6 @@
 					tenants are not encompassed by this threat as they are out of scope.</description>
 				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates threat by ensuring that audit data indicating a potential attack is accurately timestamped.</rationale>
 				<addressed-by>FCS_RBG.6 (optional)</addressed-by><rationale>Mitigates threat by providing a well-defined interface by which tenant software can access the TSF to obtain random data.</rationale>
-				<addressed-by>FCS_OTV_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using one-time value to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
 				<addressed-by>FDP_TEE_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by establishing a trusted execution environment for tenant software to use.</rationale>
 				<addressed-by>FCS_CKM.1/AKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect stored data.</rationale>
 				<addressed-by>FCS_CKM.1/SKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect stored data.</rationale>
@@ -671,7 +670,6 @@
 					through a network interface connected to an active TOE component, such
 					as a management subsystem.</description>
 				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates threat by ensuring that audit data indicating a potential attack is accurately timestamped.</rationale>
-				<addressed-by>FCS_OTV_EXT.1 (optional)</addressed-by><rationale>Mitigates threat by using one-time values to increase the effectiveness of cryptographic functions used to protect against attack.</rationale>
 				<addressed-by>FCS_CKM.1/AKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic asymmetric keys to protect data in transit.</rationale>
 				<addressed-by>FCS_CKM.1/SKG (sel-based)</addressed-by><rationale>Mitigates threat by generating strong cryptographic symmetric keys to protect data in transit.</rationale>
 				<addressed-by>FCS_CKM.2 (sel-based)</addressed-by><rationale>Mitigates threat by implementing key establishment to negotiate trusted channels to protect data in transit.</rationale>
@@ -1147,11 +1145,6 @@
 		<ext-comp-def title="IPsec Protocol" fam-id="FCS_IPSEC_EXT">
 			<fam-behavior>This family defines requirements for protecting communications using IPsec.</fam-behavior>
 		</ext-comp-def>
-	   	<ext-comp-def title="Cryptographic One-Time Value Generation" fam-id="FCS_OTV_EXT">
-			<fam-behavior>
-				This family defines requirements for generation of one-time values such as nonces, IVs, salts, and initialization counters. 
-			</fam-behavior>
-		</ext-comp-def>
 	   	<ext-comp-def title="Cryptographic Key Storage" fam-id="FCS_STG_EXT">
 			<fam-behavior>This family defines requirements for ensuring the protection of keys and secrets.</fam-behavior>
 		</ext-comp-def>
@@ -1314,7 +1307,7 @@
 					“FFC-ERB” or  “FFC–RS” may be claimed only for generating private and public keys
 					when “DH” is claimed in FCS_CKM_EXT.7.<h:p/>
 
-					When generating ECC keys pairs for key agreement and if “ECDH” or “ECDH-Ed” is 
+					When generating ECC keys pairs for key agreement and if “ECDH” is 
 					claimed in FCS_CKM_EXT.7, then “ECC–ERB” or “ECC–RS” must be claimed.  The sizes 
 					of the private key, which is a scalar, and the public key, which is a point on 
 					the elliptic curve, are determined by the choice of the curve.<h:p/>
@@ -1333,6 +1326,8 @@
 						invoked.<h:p/>
 						The evaluator shall examine the TSS to verify that it identifies the usage, and key lifecycle
 						for keys generated using each selected algorithm.<h:p/>
+						The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
+						are constructed in accordance with the relevant standards.<h:p/>
 						If the TOE uses the generated key in a key chain/hierarchy then the evaluator shall verify that the
 						TSS describes how the key is used as part of the key chain/hierarchy.
 					</TSS>
@@ -1517,6 +1512,33 @@
 						determine correctness, the evaluator shall submit the key pairs to the public 
 						key validation (PKV) function of the TOE and shall confirm that the results
 						correspond as expected for the modified and unmodified values.<h:p/>
+						
+						<h:br/><h:b>ML-KEM Key Generation</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptographic Key Generation Algorithm</h:td>
+								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-KEM</h:td>
+								<h:td valign="top">ML-KEM Key Generation</h:td>
+								<h:td valign="top">Parameter set = [ML-KEM-1024]</h:td>
+								<h:td valign="top">NIST FIPS PUB 203 (Section 7.1)</h:td>
+							</h:tr>
+						</h:table><h:p/>						
+						To test the TOE’s ability to generate asymmetric cryptographic keys using ML-KEM,
+						the evaluator shall perform the Algorithm Functional Test using the following 
+						input parameters:<h:ul>
+						<h:li>Parameter set [ML-KEM-1024]</h:li>
+						<h:li>Random seed d [32 bytes]</h:li>
+						<h:li>Random seed z [32 bytes]</h:li></h:ul><h:p/>
+						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
+						For each supported parameter set the evaluator shall require the implementation under test to
+						generate 25 key pairs using 25 different randomly generated pairs of 32-byte seed values (<h:i>d, z</h:i>).
+						To determine correctness, the evaluator shall compare the resulting key pairs (<h:i>ek, dk</h:i>) with those
+						generated using a known-good implementation using the same inputs.<h:p/>
 
 						<h:br/><h:b>ML-DSA Key Generation</h:b><h:p/>
 						<h:table border="1">
@@ -1706,10 +1728,12 @@
 							<col>KPF2 - KDF in Counter Mode using <selectables>
 								<selectable id="sel-fcs-ckm-5-kdf-ctr-cmac">AES-256-CMAC</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">>HMAC-SHA-256</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">>HMAC-SHA-384</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac512">>HMAC-SHA-512</selectable>
 							</selectables> as the PRF</col>
 							<col><selectables>
 								<selectable>256</selectable>
+								<selectable>384</selectable>
 								<selectable>512</selectable>
 							</selectables> bits</col>
 							<col><selectables>
@@ -1728,10 +1752,12 @@
 							<col>KPF3 - KDF in Feedback Mode using <selectables>
 								<selectable id="sel-fcs-ckm-5-kdf-fb-cmac">AES-256-CMAC</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-fb-hmac256">>HMAC-SHA-256</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">>HMAC-SHA-384</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-fb-hmac512">>HMAC-SHA-512</selectable>
 							</selectables> as the PRF</col>
 							<col><selectables>
 								<selectable>256</selectable>
+								<selectable>384</selectable>
 								<selectable>512</selectable>
 							</selectables> bits</col>
 							<col><selectables>
@@ -1749,10 +1775,12 @@
 							<col>KDF in Double Pipeline Iteration Mode using <selectables>
 								<selectable id="sel-fcs-ckm-5-kdf-dpi-cmac">AES-256-CMAC</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-dpi-hmac256">>HMAC-SHA-256</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">>HMAC-SHA-384</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-dpi-hmac512">>HMAC-SHA-512</selectable>
 								</selectables> as the PRF</col>
 							<col><selectables>
 								<selectable>256</selectable>
+								<selectable>384</selectable>
 								<selectable>512</selectable>
 								</selectables>bits</col>
 							<col><selectables>
@@ -1832,6 +1860,7 @@
 								</selectables></col>
 							<col>MAC Step <selectables>
 								<selectable>HMAC-SHA-256</selectable>
+								<selectable>HMAC-SHA-384</selectable>
 								<selectable>HMAC-SHA-512</selectable></selectables>
 								as randomness extraction and; KDF Step <selectables>
 								<selectable>KDF-CTR</selectable>
@@ -1839,6 +1868,7 @@
 								<selectable>KDF-DPI</selectable></selectables>.</col>
 							<col><selectables>
 								<selectable>256</selectable>
+								<selectable>384</selectable>
 								<selectable>512</selectable>
 								</selectables> bits</col>
 							<col>NIST SP 800-56C Revision 2 (Section 5) [Two-Step Key Derivation]</col>
@@ -1880,10 +1910,11 @@
 							FCS_COP.1/SKC or FCS_COP.1/AEAD with 256-bit keys, and describes which of the inputs is the
 							plaintext and which is the key. There are no standards that specify how to derive a key
 							from two keys using encryption (KDF-ENC).</h:li>
-						<h:li>that, for KDF-MAC-1S and KDF-MAC-2, the TSS documents that for
+						<h:li>that, for KDF-MAC-1S, KDF-MAC-2S, and KDF-KMAC, the TSS documents that for
 							each invocation of a KDF that reuses the same input shared secret or key, each invocation
 							must use a distinct context string, IV, or salt. The TSS must also describe the composition
-							and sizes of these input parameters.</h:li>
+							and sizes of these input parameters. The evaluator must ensure that the context string, IV,
+							and salt are generated in conformance with the relevant standards.</h:li>
 						<h:li>that, if the TOE uses the derived key in a key chain/hierarchy, that TSS describes how the
 							key is used as part of the key chain/hierarchy.</h:li>
 						</h:ul>
@@ -1918,8 +1949,8 @@
 								<h:td valign="top">[<h:b>selection:</h:b> Direct Generation from a Random Bit Generator as 
 									specified in FCS_RBG.1, Concatenated keys]</h:td>
 								<h:td valign="top">KPF2 - KDF in Counter Mode using [<h:b>selection:</h:b> 
-									AES-256-CMAC; HMAC-SHA-256; HMAC-SHA-512] as the PRF</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
+									AES-256-CMAC, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512] as the PRF</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 11770-6:2016
 									(Subclause 7.3.2) [KPF2], NIST SP 800-108 Revision 1 Update 1 (Section 4.1) 
 									[KDF in Counter Mode]]</h:td>
@@ -1953,8 +1984,8 @@
 								<h:td valign="top">[<h:b>selection:</h:b> Direct Generation from a Random Bit Generator as 
 									specified in FCS_RBG.1, Concatenated keys]</h:td>
 								<h:td valign="top">KPF3 - KDF in Feedback Mode using [<h:b>selection:</h:b> 
-									AES-256-CMAC; HMAC-SHA-256; HMAC-SHA-512] as the PRF</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
+									AES-256-CMAC, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512] as the PRF</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 11770-6:2016
 									(Subclause 7.3.3) [KPF3], NIST SP 800-108 Revision 1 Update 1 (Section 4.2) 
 									[KDF in Feedback Mode]]</h:td>
@@ -1988,8 +2019,8 @@
 								<h:td valign="top">[<h:b>selection:</h:b> Direct Generation from a Random Bit Generator as 
 									specified in FCS_RBG.1, Concatenated keys]</h:td>
 								<h:td valign="top">KPF4 - KDF in Double-Pipeline Iteration Mode using [<h:b>selection:</h:b> 
-									HMAC-SHA-256; HMAC-SHA-512] as the PRF</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
+									HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512] as the PRF</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 11770-6:2016
 									(Subclause 7.3.4) [KPF4], NIST SP 800-108 Revision 1 Update 1 (Section 4.3) 
 									[KDF in Double-Pipeline Iteration Mode]]</h:td>
@@ -2074,7 +2105,7 @@
 						the Algorithm Functional Test using the following input
 						parameters:<h:ul>
 						<h:li>Auxiliary Function [SHA-384, SHA-512]</h:li>
-						<h:li>Derived key length [256, 512] bits</h:li></h:ul><h:p/>
+						<h:li>Derived key length [256, 384, 512] bits</h:li></h:ul><h:p/>
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
 						For each supported fixed information pattern and combination of the above input
 						parameters the evaluator shall require the implementation under test to derive
@@ -2107,7 +2138,7 @@
 						Test using the following input parameters:<h:ul>
 						<h:li>Auxiliary Function [HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512]</h:li>
 						<h:li>Salt [0s, random]</h:li>
-						<h:li>Derived key length [256, 512] bits</h:li>
+						<h:li>Derived key length [256, 384, 512] bits</h:li>
 						<h:li>Fixed information pattern </h:li></h:ul><h:p/>		
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
 						For each supported fixed information pattern and combination of the above input
@@ -2132,22 +2163,22 @@
 									fixed information, and [<h:b>selection:</h:b> auxiliary shared secret, 
 									no other parameters]</h:td>
 								<h:td valign="top">MAC Step [<h:b>selection:</h:b> 
-									HMAC-SHA-256; HMAC-SHA-512] as randomness extraction and; 
+									HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512] as randomness extraction and; 
 									KDF Step [<h:b>selection:</h:b> 
 									KDF-CTR, KDF-FB, KDF-DPI]</h:td>
-								<h:td valign="top">[<h:b>selection:</h:b> 256, 512] bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">NIST SP 800-56C Revision 2 (Section 5) [Two-Step Key Derivation]</h:td>
 							</h:tr>
 						</h:table><h:p/>			
 						To test the TOE’s ability to derive cryptographic keys using Two-Step MAC-based Key Derivation,
 						the evaluator shall perform the Algorithm Functional Test using the following input
 						parameters:<h:ul>
-						<h:li>MAC mode [HMAC-SHA-256; HMAC-SHA-512]</h:li>
+						<h:li>MAC mode [HMAC-SHA-256; HMAC-SHA-384, HMAC-SHA-512]</h:li>
 						<h:li>KDF Mode [Counter, feedback, Double Pipeline Iteration]</h:li>
 						<h:li>Salt [0s, random]</h:li>
 						<h:li>Length of shared secret [224-65535]</h:li>
 						<h:li>Length of Auxiliary Shared Secret [0, 112-65535]</h:li>
-						<h:li>Derived key length [256, 512] bits</h:li>
+						<h:li>Derived key length [256, 384, 512] bits</h:li>
 						<h:li>Fixed information pattern </h:li>
 						<h:li>Counter location [none, before fixed data, after fixed data, before iterator]</h:li>
 						<h:li>Counter length [0, 8, 16, 24, 32]</h:li></h:ul><h:p/>		
@@ -2607,7 +2638,6 @@
 				<h:br/>FCS_COP.1 Cryptographic operation]
 				<h:br/>FCS_CKM_EXT.7 Cryptographic Key Agreement],
 				<h:br/>FCS_CKM.6 Timing and event of cryptographic key destruction
-				<h:br/>FCS_OTV_EXT.1 One-Time Value Generation
 			</dependencies>
 
 			<f-element id="fcs-ckm-ext-8-1">
@@ -2622,6 +2652,7 @@
 						<assignable>equal to or greater than 128</assignable>
 						and output cryptographic key sizes <selectables>
 						<selectable>256</selectable>
+						<selectable>384</selectable>
 						<selectable>512</selectable></selectables>
 						bits that meet the following standard: [NIST SP 800-132 (Section 5.3) [PBKDF2]].
 				</title>
@@ -2638,6 +2669,8 @@
 						The evaluator must verify that the TSS documents that the selection of the keyed hash
 						algorithm, iteration count, length of salt, and other mitigations are sufficient for the
 						security strength of the key derived.<h:p/>
+						The evaluator shall examine the TSS to verify that the salt is generated in accordance with the
+						relevant specification.<h:p/>
 						The evaluator shall examine the TSS to determine whether the TOE implements other 
 						mitigations against password-exhaustion attacks. Examples include the use of 
 						interface-based mitigations and secret salts.
@@ -2658,7 +2691,7 @@
 						parameters:<h:ul>
 						<h:li>HMAC algorithms [SHA-384, SHA-512]</h:li>
 						<h:li>Iteration count [1-10000000]</h:li>
-						<h:li>Derived Key size [256, 512] bits</h:li>
+						<h:li>Derived Key size [256, 384, 512] bits</h:li>
 						<h:li>Password length [8-128] bytes</h:li>
 						<h:li>Salt length [128-4096] bits in multiples of 8.</h:li></h:ul><h:p/>
 
@@ -2748,7 +2781,7 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
-						nonces, and tags.
+						nonces, and tags in conformance with the relevant specifications.
 					</TSS>
 					<Guidance/>
 					<Tests>
@@ -2911,7 +2944,10 @@
 					The use of 256-bit keys for AES algorithms is required by CNSA 1.0 and 2.0.
 				</note>
 				<aactivity>
-					<TSS/>
+					<TSS>
+						The evaluator shall examine the TSS to verify that the IV consists of all zeros in accordance with
+						the relevant standards.
+					</TSS>
 					<Guidance/>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
@@ -3344,7 +3380,10 @@
 				</note>
 				<aactivity>
 					<TSS>The evaluator shall ensure that the TSS documents that the selection of the key size is
-						sufficient for the security strength of the key encapsulated.</TSS>
+						sufficient for the security strength of the key encapsulated.<h:p/>
+						The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
+						are constructed and used in accordance with the relevant standards.
+					</TSS>
 					<Guidance/>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
@@ -3611,12 +3650,20 @@
 				</note>
 				<aactivity>
 					<TSS>
+						The evaluator shall ensure that the TSS documents that the selection of the key size is
+						sufficient for the security strength of the key wrapped.<h:p/>
 						The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
-						nonces, and MACs.
+						nonces, and MACs in conformance with the relevant specifications.
 					</TSS>
 					<Guidance/>
 					<Tests>
 						For tests of AES-GCM and AES-CCM, see testing for FCS_COP.1/AEAD.<h:p/>
+						The following tests are conditional based upon the selections made in the SFR. The evaluator
+						shall perform the following test or witness respective tests executed by the developer. The tests
+						must be executed on a platform that is as close as practically possible to the operational platform
+						(but which may be instrumented in terms of, for example, use of a debug mode). Where the test
+						is not carried out on the TOE itself, the test platform shall be identified and the differences
+						between test environment and TOE execution environment shall be described.<h:p/>
 						
 						<!-- AES-KW -->
 						<h:br/><h:b>AES-KW</h:b><h:p/>
@@ -3797,6 +3844,8 @@
 				<aactivity>
 					<TSS>The evaluator shall examine the TSS and verify that any hash function is the appropriate security
 						strength for the signing algorithm.<h:p/>
+						The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
+						are constructed and used in accordance with the relevant standards.<h:p/>
 						The evaluator shall examine the TSS to verfiy that the TOE has appropriate measures in place to
 						ensure that hash-based signature algorithms do not reuse private keys</TSS>
 					<Guidance/>
@@ -4252,7 +4301,10 @@
 					If LMS or XMSS is claimed, then FCS_COP.1/XOF must also be claimed.
 				</note>
 				<aactivity>
-					<TSS/>
+					<TSS>
+						The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
+						are constructed and used in accordance with the relevant standards.
+					</TSS>
 					<Guidance/>
 					<Tests>
 						The following tests are conditional based upon the selections made in the SFR. The evaluator
@@ -4600,7 +4652,7 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
-						tweak values, and counters.<h:p/>
+						tweak values, and counters in conformance with the relevant specifications.<h:p/>
 						If XTS-AES is claimed then the evaluator shall examine the TSS to verify that the TOE creates
 						full-length keys by methods that ensure that the two key halves are different and independent.
 					</TSS>
@@ -4806,7 +4858,7 @@
 					<selectables>
 						<tabularize id="fcs-cop-xof-sels" title="Recommended choices for FCS_COP.1/XOF">
 							<selectcol>Cryptographic algorithm</selectcol>
-							<reqtext>and and parameters</reqtext>
+							<reqtext>and parameters</reqtext>
 							<selectcol>Parameters</selectcol>
 							<reqtext>that meet the following:</reqtext>
 							<selectcol>List of standards</selectcol>
@@ -5186,7 +5238,7 @@
                 </title></ext-comp-def-title>
                 <aactivity level="element">
                     <TSS>
-						The evaluator shall examine the TSS to verify that that the 
+						The evaluator shall examine the TSS to verify that the 
                         SHA-based HMAC algorithm conforms to the algorithms specified in FCS_COP.1/KeyedHash 
 						Cryptographic Operations (Keyed Hash Algorithms).
                     </TSS>
@@ -5671,7 +5723,6 @@
 		<f-component cc-id="fcs_rbg.1" name="Random Bit Generation (RBG)" status="sel-based">
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
-			<depends on-incl="sfr-fcs-otv-ext-1"/>  <!-- FCS_OTV_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends on-incl="sfr-fcs-ckm-ext-8"/>		<!-- FCS_CKM_EXT.8 -->
@@ -5795,7 +5846,6 @@
 					in accordance with <assignable>list of standards</assignable>.
 				</title>
 				<note role="application">
-					<comment>From catalog</comment>
 					If a reseeding is selected in the first selection and something other than “never” is 
 					selected in the third selection of FCS_RBG.1.3, but reseeding is not feasible, the TSF will
 					uninstantiate RBGs, rather than produce output that is of insufficient quality.  The listed 
@@ -5848,8 +5898,8 @@
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">HMAC_DRBG</h:td>
-								<h:td valign="top">HMAC_DRBG with [<h:b>selection:</h:b> SHA-256, SHA-384,
-									SHA-512, SHA3-256, SHA3-384, SHA3-512]</h:td>
+								<h:td valign="top">HMAC_DRBG with [<h:b>selection:</h:b> SHA-384,
+									SHA-512]</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.2.3),
 									NIST SP 800-90A Revision 1 (Section 10.1.2)]</h:td>
 							</h:tr>
@@ -5857,7 +5907,7 @@
 						To test the TOE’s ability to generate random bits using Hash_DRBG or HMAC_DRBG, the
 						evaluator shall perform
 						the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>Function [SHA-256, SHA-384, SHA-512]</h:li>
+						<h:li>Function [SHA-384, SHA-512]</h:li>
 						<h:li>Max security strength [256] bits</h:li>
 						<h:li>Entropy length [256-65536] bits</h:li>
 						<h:li>Max Personalization String size [65536] bits</h:li>
@@ -5932,16 +5982,11 @@
 					from a TSF interface for the purpose of obtaining entropy.
 				</title>
 				<note role="application">
-					This requirement is claimed when a DRBG is seeded with entropy from one or more entropy sources 
-					that is outside the TOE boundary. In the case of a general purpose computing platform 
-					this would likely only occur when the entropy source is a Dedicated Security Component 
-					that is integrated with the TOE. Typically the entropy produced by an environmental noise
-					source is conditioned such that the input length has full entropy and is therefore 
-					usable as the seed. However, if this is not the case, it should be noted what the minimum
-					entropy rate of the noise source is so that the TSF can collect a sufficiently large 
-					sample of noise data to be conditioned into a seed value.<h:p/>
-					The ST Author should complete the assignment using the minimum length of of input sufficient to 
-					initialize or reseed the DRBG.					
+					The ST author claims this requirement when a TOE uses an external source of entropy to
+					initialize or reseed a DRBG. The TOE collects enough input from the external entropy source
+					such that the total measured entropy of the input is sufficient to initialize or reseed a DRBG.
+					The ST author ensures that the assignment is completed with the minimum length of the input
+					sufficient to initialize or reseed a DRBG.
 				</note>
 				<aactivity>
 					<TSS>
@@ -5954,8 +5999,8 @@
 						user input necessary for the proper function of the entropy sources.
 					</Guidance>
 					<Tests>
-						The evaluator shall exercise the interface to determine whether the interface can handle at 
-						least the number of bits claimed int he assignment.
+						The evaluator shall exercise the interface to determine whether the interface can handle at least
+						the number of bits claimed in the assignment.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -5974,36 +6019,32 @@
 					with <assignable>number of bits</assignable> bits of min-entropy.
 				</title>        
 				<note role="application">
-					This requirement is claimed when a DRBG is initialized or reseeded with entropy from a single Entropy
-					source that is within the TOE boundary.<h:p/>
-					In the assignment, Min-entropy should be expressed as a ratio of entropy bits to sampled 
-					bits so that the total amount of data needed to ensure full entropy is known, as well as the
-					conditioning function by which that data is reduced in size to the seed.<h:p/>
-
-					<comment>From catalog</comment>
-					Hardware-based noise sources are entropy sources whose primary function is noise generation, 
-					such as ring oscillators, diodes, and thermal noise.  While a TOE may use software to collect
-					the noise from these hardware sources, these are not software-based.  Software-based noise 
-					sources are those sources that have some other primary function, and the noise is a byproduct 
-					of their normal operation.  Examples of software-based noise sources are user or system-based 
-					events, reading the least significant bits from an event timer, etc. <h:p/>
-					Hardware-based noise sources may be stochastically modelled, in which case the amount of 
-					entropy is well understood.  Software-based noise sources are usually less well understood 
-					and therefore will typically take a more conservative approach, gathering larger numbers of 
-					bits than required, then performing a compression function to derive the final output. 
-					Software-based noise sources often rely on an entropy estimator. 
+					The ST author claims this requirement when a TOE uses a single internal source of entropy to
+					initialize or reseed a DRBG. Seeding a DRBG is the same as initializing a DRBG.<h:p/>
+					Hardware-based noise sources are entropy sources whose primary function is noise generation,
+					such as ring oscillators, diodes, and thermal noise. While a TOE may use software to collect the
+					noise from these hardware sources, these are not software-based.<h:p/>
+					Software-based noise sources generate noise as a byproduct of their normal operation. Examples
+					of software-based noise sources can be user or system-based events such as reading the least
+					significant bits from an event timer, etc.<h:p/>
+					The TOE collects enough input from the internal noise source such that the total measured
+					entropy of the input is sufficient to initialize or reseed a DRBG. The ST author ensures that the
+					assignment is completed with the number of bits of the input sufficient to initialize or reseed a
+					DRBG.
 				</note>
 				<aactivity>
-					<no-tests>
-						The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for 
-						each DRBG function implemented by the TOE, the TSF noise source used to seed the TOE's DRBG. The evaluator shall 
-						verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it 
-						can be determined that sufficient entropy can be made available for the highest strength keys that the TSF can 
-						generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the 
-						sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by 
-						which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected 
-						and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
-					</no-tests>
+					<TSS>
+						The evaluator shall verify that the TSS documents the types of entropy sources selected in
+						FCS_RBG.3.1 and indicates the amount of entropy provided by these sources.
+					</TSS>
+					<Guidance>
+						The evaluator shall verify that the Guidance describes any settings, operational requirements, or
+						user input necessary for the proper function of the entropy sources.
+					</Guidance>
+					<Tests>
+						The evaluator shall exercise the interface to determine whether the interface can handle at least
+						the number of bits claimed in the assignment.
+					</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event/>
@@ -6021,16 +6062,21 @@
 					</selectables>.
 				</title>
 				<note role="application">
-					This requirement is claimed when a DRBG is seeded with entropy from multiple noise sources that are within the TOE boundary. 
-					FCS_RBG.5 defines the mechanism by which these sources are combined to ensure sufficient minimum entropy.
+					The ST author claims this requirement when a TOE uses two or more internal sources of entropy
+					to initialize or reseed a DRBG. Seeding a DRBG is the same as initializing a DRBG.
+					FCS_RBG.5 defines the mechanism by which these sources are combined to ensure sufficient
+					minimum entropy.
 				</note>
 				<aactivity>
-					<no-tests>
-						The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, 
-						for each DRBG function implemented by the TOE, each TSF noise source used to seed the TOE's DRBG. The evaluator 
-						shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data from each 
-						data source.
-					</no-tests>
+					<TSS>
+						The evaluator shall verify that the TSS documents number and the types of entropy sources
+						selected in FCS_RBG.4.1.
+					</TSS>
+					<Guidance>
+						The evaluator shall verify that the Guidance describes any settings, operational requirements, or
+						user input necessary for the proper function of the noise sources.
+					</Guidance>
+					<Tests/>
 				</aactivity>
 			</f-element>
 			<audit-event/>
@@ -6059,36 +6105,32 @@
 					</selectables>						
 				</title>        
 				<note role="application">
-					<comment>From catalog</comment>
-					One can apply NIST SP 800-90B (or AIS-31) statistical tests against internal noise sources 
-					(a.k.a. raw entropy) to confirm the min-entropy of the noise sources either in aggregate or 
-					individually.  One should not apply NIST SP 800-90B (or AIS-31) statistical tests against 
-					external noise sources since the TOE is unable to enforce entropy requirements or conditioning 
-					requirements against external sources of entropy.  However, the TSS may include estimates 
-					for min-entropy from external sources that contribute to the overall entropy requirements 
-					for either the DRBG or for FCS_OTV_EXT.1.<h:p/>
-					FCS_RBG.5 specifies the combining operation such that the combined min-entropy of all the 
-					internal sources and the estimated entropy of the external sources is greater than or equal 
-					to the desired entropy of the output of the combining operation.  The output could be used as 
-					a nonce or a seed for a DRBG.  The combining operation should avoid crushing the entropy of
-					the sources such that the desired entropy of the output cannot be met.<h:p/>
-					The TSF interface(s) for seeding here is the interface used to gather entropy for
-					initializing the seed.
+					The ST author claims this requirement when a TOE combines two or more sources of entropy to
+					initialize or reseed a DRBG. Seeding a DRBG is the same as initializing a DRBG. The ST
+					author ensures that the assignment is completed with the number of bits of the combined entropy
+					sufficient to initialize or reseed a DRBG.<h:p/>
+					One can apply NIST SP 800-90B (or AIS-31) statistical tests against internal noise sources
+					(a.k.a. raw entropy) to confirm the min-entropy of the noise sources either in aggregate or
+					individually. One should not apply NIST SP 800-90B (or AIS-31) statistical tests against
+					external noise sources since the TOE is unable to enforce entropy requirements or conditioning
+					requirements against external sources of entropy. However, the TSS may include estimates for
+					min-entropy from external sources that contribute to the overall entropy requirements for 
+					the DRBG.
 				</note>
 				<aactivity>
-					<no-tests>
-						Using the entropy sources specified in FCS_RBG.4, the evaluator shall examine the entropy documentation required 
-						by FCS_RBG.1.2 to verify that it describes the method by which the various entropy sources are combined into a 
-						single seed. This should include an estimation of the rate at which each noise source outputs data and whether
-						this is dependent on any system-specific factors so that each source's relative contribution to the overall 
-						entropy is understood. The evaluator shall verify that the resulting combination of sampled data and the 
-						min-entropy rate of the sampled data is described in sufficient detail to determine that sufficient entropy can 
-						be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data 
-						cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator 
-						shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy 
-						that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies 
-						to the output data to create a seed of sufficient size with full entropy.
-					</no-tests>
+					<TSS>
+						The evaluator shall examine the TSS and verify that it documents the types of noise sources
+						selected in FCS_RBG.5.1 and indicates the amount of entropy provided by these sources in
+						combination.
+					</TSS>
+					<Guidance>
+						The evaluator shall verify that the Guidance describes any settings, operational requirements, or
+						user input necessary for the proper function of the noise sources.
+					</Guidance>
+					<Tests>
+						The evaluator shall ensure that the combination of claimed entropy sources can provide the at
+						least the number of bits of entropy claimed in the assignment.
+					</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event/>
@@ -6109,25 +6151,22 @@
 				</title> 
 				<note role="application">
 					This SFR must be included in the ST if the TOE provides an entropy source accessible to tenant software.<h:p/>
-					This requirement ensures that the TOE makes available sufficient entropy to any tenant
-					that requires it. Every entropy source need not provide high-quality entropy, but tenant
-					software must have a means of acquiring sufficient entropy.
+					This requirement ensures that the TOE makes available entropy to any tenant
+					that requires it.
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator shall verify that the TSS documents the entropy sources implemented by the TOE.
-						It is not necessary to document all the platform features that can be used by tenant software to 
-						contribute to entropy, rather only those features expressly provided as entropy sources.
+						The evaluator shall examine the TSS to verify that it describes how the DRBG output is made
+						available to entities outside the TOE.
 					</TSS>
 					<Guidance>
-						The evaluator shall examine the Guidance to ensure that it describes how to configure 
-						entropy sources (if applicable) and how tenant software can access the sources.
+						The evaluator shall examine the Guidance to verify that it describes how to configure and use the
+						claimed interface(s) so that DRBG output is available to entities outside of the TOE.
 					</Guidance>
 					<Tests>
 						The evaluator shall perform the following test:<h:p/>
 						The evaluator shall invoke the entropy source(s) from tenant software.
-						The evaluator shall verify that the tenant acquires values from the 
-						interface.
+						The evaluator shall verify that the tenant acquires values from the interface.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -7618,7 +7657,6 @@
 			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM.5.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
-			<depends on-incl="sfr-fcs-otv-ext-1"/>  <!-- FCS_OTV_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
@@ -8357,7 +8395,6 @@
 			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>  <!-- FCS_CKM.5.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
-			<depends on-incl="sfr-fcs-otv-ext-1"/>  <!-- FCS_OTV_EXT.1 -->
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
@@ -9112,7 +9149,7 @@
 					The TSF shall encrypt data for transfer between the TOE and 
 					<assignable>list of entities external to the TOE</assignable>
 					using a cryptographic algorithm and key size as specified in
-					FCS_COP.1/SKC, and using 
+					FCS_COP.1/SKC or FCS_COP.1/AEAD, and using 
 					<selectables linebreak="yes">
 						<selectable>Pre-shared keys</selectable>
 						<selectable id="sel-ftp-ite-ext-1-est">Keys established according to FCS_CKM.2</selectable>
