@@ -17,11 +17,11 @@
 * Error: Detected dangling id-reference to internal-seeds from attribute
         on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[24]""/depends[1]""/on[1]""
 * Error: Detected dangling id-reference to sfr-fia-x509-ext-1 from attribute
-        on-sfr/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[10]""/depends[1]""/on-sfr[1]""
+        on-sfr/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[11]""/depends[1]""/on-sfr[1]""
 * Error: Detected dangling id-reference to sel-x509-adminset from attribute
-        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[11]""/depends[1]""/on-sel[1]""
+        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[12]""/depends[1]""/on-sel[1]""
 * Error: Detected dangling id-reference to sfr-fcs-stg-ext.1 from attribute
-        on-sfr/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/depends[1]""/on-sfr[1]""
+        on-sfr/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[19]""/depends[1]""/on-sfr[1]""
 * Error: Detected dangling id-reference to sel-fau-itc from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[8]""/f-component[1]""/depends[1]""/on-sel[1]""
 * Warning: Potentially illegal 'depends' element.
@@ -47,43 +47,47 @@
 * Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[12]""/depends[1]""
 * Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[12]""/depends[2]""
-* Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[13]""/depends[1]""
-* Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[13]""/depends[2]""
 * Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[14]""/depends[1]""
 * Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[14]""/depends[2]""
 * Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[14]""/depends[3]""
-* Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/depends[1]""
 * Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/depends[2]""
-* Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/O[1]""/depends[1]""
-* Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/O[1]""/depends[2]""
-* Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/O[2]""/depends[1]""
-* Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/O[2]""/depends[2]""
 * Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[16]""/depends[1]""
 * Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[16]""/depends[2]""
 * Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[16]""/O[1]""/depends[1]""
-* Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[16]""/O[1]""/depends[2]""
-* Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[16]""/O[2]""/depends[1]""
-* Warning: Potentially illegal 'depends' element.
-          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[16]""/O[2]""/depends[2]""
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[16]""/depends[3]""
 * Warning: Potentially illegal 'depends' element.
           /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/depends[1]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/depends[2]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/O[1]""/depends[1]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/O[1]""/depends[2]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/O[2]""/depends[1]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/O[2]""/depends[2]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/depends[1]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/depends[2]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/O[1]""/depends[1]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/O[1]""/depends[2]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/O[2]""/depends[1]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/O[2]""/depends[2]""
+* Warning: Potentially illegal 'depends' element.
+          /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[19]""/depends[1]""
 * Error: Detected multiple elements with an id of 'sel-exp-skg-256'.
 * Error: Detected multiple elements with an id of 'sel-exp-skg-256'.
 * Error: Detected multiple elements with an id of 'sel-fcs-ckm-5-kdf-ctr-hmac256'.
@@ -729,14 +733,14 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/h:p[3]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[1]""/app-note[1]"Administr"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[1]""/app-note[1]"Administr"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[7]""/app-note[1]"This Func"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[8]""/app-note[1]"This Func"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[9]""/app-note[1]"This Func"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[10]""/app-note[1]"This func"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/app-note[1]"This Func"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[15]""/app-note[1]"This Func"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[16]""/app-note[1]"This Func"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[16]""/app-note[1]"This Func"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[10]""/app-note[1]"This Func"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[11]""/app-note[1]"This func"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/app-note[1]"This Func"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/app-note[1]"This Func"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/app-note[1]"This Func"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/app-note[1]"This Func"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/note[1]"These fun"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[6]""/f-element[2]""/note[1]"If ""/h:p[1]""
