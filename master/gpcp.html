@@ -1258,14 +1258,15 @@ The following sections list Common Criteria and technology terms used in this do
       </i></b></div>
 			  
 			
-			<div class="element"><div class="reqid" id="FAU_STG.1.1"><a href="#FAU_STG.1.1" class="abbr">FAU_STG.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to <mark>store</mark> generated audit data on the [<b>selection</b>: <span class="selectable-content" id="_s_13"><mark><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself</mark></span>, <span class="selectable-content" id="_s_14">transmit the generated audit data to an external <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entity using a trusted channel according to <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></span>, <span class="selectable-content" id="sel-fau-stg-1e1-removable">[removable media]</span>]  
+			<div class="element"><div class="reqid" id="FAU_STG.1.1"><a href="#FAU_STG.1.1" class="abbr">FAU_STG.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to[<b>selection</b>: <span class="selectable-content" id="_s_13"><mark>store audit data on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself</mark></span>, <span class="selectable-content" id="_s_14"><mark>transmit audit data to an external <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entity using a trusted 
+						channel in accordance with <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></mark></span>, <span class="selectable-content" id="sel-fau-stg-1e1-removable"><mark>write audit data to removable media</mark></span>]  
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author must select "<i>trusted channel</i>" and include <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> offloads
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i>trusted channel</i>" and includes <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> offloads
 					audit data to external <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entity over a network connection. Protocols used for implementing the trusted
 					channel must be selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>. <p></p>
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author must select "<i>removable media</i>" if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports offload of audit data using 
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i>removable media</i>" if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports offload of audit data using 
 					removable media such as thumb drives or disks. Note that the <abbr class="dyn-abbr"><a href="#abbr_CSfC">CSfC</a></abbr> Use Case prohibits the
 					use of removable media.
 				</span></div></div></div>
@@ -1322,6 +1323,10 @@ The following sections list Common Criteria and technology terms used in this do
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
+					<mark>Deletion of audit data is "authorized" if the deletion is initiated or performed by 
+					an Administrator. </mark><p></p>
+					<mark>Notwithstanding this requirement, audit records may be overwritten if local audit record storage is full
+					in accordance with <a href="#FAU_STG.5">FAU_STG.5</a>.</mark><p></p>
 					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if <a href="#FAU_GEN.1">FAU_GEN.1</a> is claimed.
 				</span></div></div></div>
 			
@@ -1333,7 +1338,7 @@ The following sections list Common Criteria and technology terms used in this do
 						The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> lists the locations of all logs and the access 
 						controls of those files such that unauthorized modification and deletion are prevented.
 					</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">
-						The evaluator shall ensure that the AGD describes the steps necessary for an authorized 
+						The evaluator shall ensure that the Guidance describes the steps necessary for an authorized 
 						administrator to delete audit records, if such a capability is implemented.
 					</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 						The evaluator shall perform the following tests:
@@ -1804,7 +1809,7 @@ The following sections list Common Criteria and technology terms used in this do
 	  
 		
 		<div class="comp" id="FCS_CKM.1/SKG"><h4>FCS_CKM.1/SKG Cryptographic Key Generation - Symmetric Key</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</a>.
+	  <a href="#FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</a>, <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>
 			  
 			
@@ -1812,6 +1817,7 @@ The following sections list Common Criteria and technology terms used in this do
 			
 			
 			
+			    
 					
 			<div class="element"><div class="reqid" id="FCS_CKM.1.1/SKG"><a href="#FCS_CKM.1.1/SKG" class="abbr">FCS_CKM.1.1/SKG</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall generate <b>symmetric</b> cryptographic keys in accordance with
@@ -1899,10 +1905,11 @@ The following sections list Common Criteria and technology terms used in this do
 
 		
 		<div class="comp" id="FCS_CKM.2"><h4>FCS_CKM.2 Cryptographic Key Distribution</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FTP_ITE_EXT.1.1">FTP_ITE_EXT.1.1</a>.
+	  <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>, <a href="#FTP_ITE_EXT.1.1">FTP_ITE_EXT.1.1</a>.
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>
 			 	
 			   
+			    
 			    		
 			<div class="element"><div class="reqid" id="FCS_CKM.2.1"><a href="#FCS_CKM.2.1" class="abbr">FCS_CKM.2.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall distribute cryptographic keys in accordance with a specified cryptographic 
 					key distribution method [<b>selection</b>: <span class="selectable-content" id="sel-ckm-2-encap">key encapsulation</span>, <span class="selectable-content" id="sel-ckm-2-wrap">key wrapping</span>, <span class="selectable-content" id="sel-ckm-2-echan">encrypted channels</span>] that meets the following: [none].
@@ -2864,13 +2871,15 @@ The following sections list Common Criteria and technology terms used in this do
 
 			
 		<div class="comp" id="FCS_COP.1/AEAD"><h4>FCS_COP.1/AEAD Cryptographic Operation – Authenticated Encryption with Associated Data</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>.
+	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>
 			    
 				
 			   
 			  
 			   
+			    
+			
 			    		
 			<div class="element"><div class="reqid" id="FCS_COP.1.1/AEAD"><a href="#FCS_COP.1.1/AEAD" class="abbr">FCS_COP.1.1/AEAD</a></div><div class="reqdesc">
 				The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform [authenticated encryption with associated data] in accordance with a specified 
@@ -3191,8 +3200,10 @@ The following sections list Common Criteria and technology terms used in this do
 
 		
 		<div class="comp" id="FCS_COP.1/Hash"><h4>FCS_COP.1/Hash Cryptographic Operation - Hashing)</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>, <a href="#FPT_ROT_EXT.2.1">FPT_ROT_EXT.2.1</a>, <a href="#FPT_TUD_EXT.2.1">FPT_TUD_EXT.2.1</a>.
+	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>, <a href="#FPT_ROT_EXT.2.1">FPT_ROT_EXT.2.1</a>, <a href="#FPT_TUD_EXT.2.1">FPT_TUD_EXT.2.1</a>, <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>
+			
+			
 			  
 			  
 			  
@@ -4704,11 +4715,12 @@ The following sections list Common Criteria and technology terms used in this do
 		
 			
 		<div class="comp" id="FCS_COP.1/SKC"><h4>FCS_COP.1/SKC Cryptographic Operation - Symmetric Key Cryptography</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>.
+	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>
 			    
 				
 			   
+			  
 			  
 			   
 			    		
@@ -5114,6 +5126,8 @@ The following sections list Common Criteria and technology terms used in this do
 	  <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
       </i></b></div>
             
+			
+						
 			
 			
 			
@@ -5753,13 +5767,14 @@ The following sections list Common Criteria and technology terms used in this do
 		
 		
 		<div class="comp" id="FCS_RBG.1"><h4>FCS_RBG.1 Random Bit Generation (RBG)</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  .
+	  <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>
+			   
 			   
 			  
 			   
-			   
 					
+			    
 			    		
 			<div class="element"><div class="reqid" id="FCS_RBG.1.1"><a href="#FCS_RBG.1.1" class="abbr">FCS_RBG.1.1</a></div><div class="reqdesc">
 					<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform deterministic random bit generation services using   
@@ -7122,6 +7137,7 @@ The following sections list Common Criteria and technology terms used in this do
 <tr id="mf-audit-admin"><td>2</td><td style="text-align:left">
 								Ability to configure and manage the audit functionality and audit data.
 							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">X<span class="tooltiptext">Not permitted</span></div></td><td style="text-align:left"><p>
+								<mark>Management of audit data includes the ability to delete it.</mark><p></p>
 								This Function must be claimed if <a href="#FAU_GEN.1">FAU_GEN.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 							</p></td></tr>
 <tr id="mf-audit-server"><td>3</td><td style="text-align:left">
@@ -7438,8 +7454,8 @@ The following sections list Common Criteria and technology terms used in this do
     </span><span class="note">
 					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> should be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements the following use cases:<ol>
 					<li>Portable Clients (laptops, tablets), Enhanced</li></ol>
-					The audit event "Detection of intrusion" should be claimed if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is capable of generating
-					an audit event in circumstances where an intrusion is detected passively.
+					<mark>The audit event "Detection of intrusion" should be claimed if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is capable of generating
+					an audit event in circumstances where an intrusion is detected passively.</mark>
 				</span></div></div></div>
 			
 		<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FPT_PHP.1">FPT_PHP.1</a></div>
