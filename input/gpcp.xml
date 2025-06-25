@@ -991,16 +991,17 @@
 			<depends on-incl="sfr-fau-gen-1"/>  
 			<consistency-rationale/>
 			<f-element id="fau-stg-1e1">
-				<title>The TSF shall be able to <h:mark>store</h:mark> generated audit data on the <selectables>
-					<selectable><h:mark>TOE itself</h:mark></selectable>
-					<selectable>transmit the generated audit data to an external IT entity using a trusted channel according to FTP_ITC_EXT.1</selectable>
-					<selectable id="sel-fau-stg-1e1-removable">[removable media]</selectable></selectables>  
+				<title>The TSF shall be able to<selectables>
+					<selectable><h:mark>store audit data on the TOE itself</h:mark></selectable>
+					<selectable><h:mark>transmit audit data to an external IT entity using a trusted 
+						channel in accordance with FTP_ITC_EXT.1</h:mark></selectable>
+					<selectable id="sel-fau-stg-1e1-removable"><h:mark>write audit data to removable media</h:mark></selectable></selectables>  
 				</title>
 				<note role="application">
-					The ST Author must select "<h:i>trusted channel</h:i>" and include FTP_ITC_EXT.1 in the ST if the TOE offloads
+					The ST Author selects "<h:i>trusted channel</h:i>" and includes FTP_ITC_EXT.1 in the ST if the TOE offloads
 					audit data to external IT entity over a network connection. Protocols used for implementing the trusted
 					channel must be selected in FTP_ITC_EXT.1. <h:p/>
-					The ST Author must select "<h:i>removable media</h:i>" if the TOE supports offload of audit data using 
+					The ST Author selects "<h:i>removable media</h:i>" if the TOE supports offload of audit data using 
 					removable media such as thumb drives or disks. Note that the CSfC Use Case prohibits the
 					use of removable media.
 				</note>
@@ -1064,6 +1065,10 @@
 					in the audit trail.
 				</title>
 				<note role="application">
+					<h:mark>Deletion of audit data is "authorized" if the deletion is initiated or performed by 
+					an Administrator. </h:mark><h:p/>
+					<h:mark>Notwithstanding this requirement, audit records may be overwritten if local audit record storage is full
+					in accordance with FAU_STG.5.</h:mark><h:p/>
 					This SFR must be included in the ST if FAU_GEN.1 is claimed.
 				</note>
 				<aactivity>
@@ -1072,7 +1077,7 @@
 						controls of those files such that unauthorized modification and deletion are prevented.
 					</TSS>
 					<Guidance>
-						The evaluator shall ensure that the AGD describes the steps necessary for an authorized 
+						The evaluator shall ensure that the Guidance describes the steps necessary for an authorized 
 						administrator to delete audit records, if such a capability is implemented.
 					</Guidance>
 					<Tests>
@@ -1125,7 +1130,12 @@
 					</Tests>
 				</aactivity>
 			</f-element>
-			<audit-event/>
+			<audit-event>
+				<audit-event-descr>
+					<h:mark>Audit trail full. Overwrite of audit records is commencing.</h:mark>
+				</audit-event-descr>
+				<audit-event-info>None.</audit-event-info>
+			</audit-event>
 		</f-component>
 				
 	</section>   <!-- FAU -->
@@ -1578,8 +1588,9 @@
 			<depends on-sfr="sfr-fcs-cop-1-aead"/>
 			<depends on-sfr="sfr-fcs-cop-1-cmac"/>
 			<depends on-sfr="sfr-fcs-cop-1-keyedhash"/>
-			<depends on-sfr="sfr-fcs-cop-1-keywrap"/>
+			<depends on-sfr="sfr-fcs-cop-1-kw"/>
 			<depends on-sfr="sfr-fcs-cop-1-skc"/>
+			<depends on-sel="sel-itc-tls"/>    <!-- TLS -->
 			<depends><optional/></depends>		<!-- May be manually added -->
 			<f-element id="fcs-ckm-1e1-skg">
 				<title>
@@ -1658,6 +1669,7 @@
 		<f-component id="sfr-fcs-ckm-2" cc-id="fcs_ckm.2" name="Cryptographic Key Distribution" status="sel-based">
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/> 	<!-- FCS_IPSEC_EXT.1 -->
 			<depends on-sel="sel-ftp-ite-ext-1-est"/>   <!-- FTP_ITE_EXT.1 -->
+			<depends on-sel="sel-itc-tls"/>    <!-- TLS -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-ckm-2e1">
 				<title>The TSF shall distribute cryptographic keys in accordance with a specified cryptographic 
@@ -2721,6 +2733,8 @@
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
 			<depends on-sel="sel-fdp-itc-ext-1e2-sk"/>  <!-- from FDP_ITC_EXT.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-enc-aead"/>   <!-- KDF-ENC -->
+			<depends on-sel="sel-itc-tls"/>    <!-- TLS -->
+			<depends on-sel="sel-itc-ssh"/>
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-aead">
 				<title>
@@ -3026,6 +3040,8 @@
 
 		<!-- FCS_COP.1/Hash Cryptographic Operation - Hashing -->
 		<f-component id="sfr-fcs-cop-1-hash" cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation - Hashing)" status="sel-based">
+			<depends on-sel="sel-itc-tls"/>
+			<depends on-sel="sel-itc-ssh"/>
 			<depends on-sel="sel-rot2-hash"/>  <!-- FPT_ROT_EXT.2.1 -->
 			<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG.1.1 -->
 			<depends on-sel="sel-tud2-hash"/>  <!-- FPT_TUD_EXT.2.1 -->
@@ -4578,6 +4594,7 @@
 			<depends on-incl="sfr-fcs-stg-ext-2"/>	
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
 			<depends on-sel="sel-fdp-itc-ext-1e2-sk"/>  <!-- from FDP_ITC_EXT.1 -->
+			<depends on-sel="sel-itc-ssh"/>  <!-- for CTR mode -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-enc-skc"/>   <!-- KDF-ENC -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-skc">
@@ -4958,6 +4975,8 @@
         <!-- Depends on HTTPS being selected for trusted channel -->
         <f-component id="sfr-fcs-https-ext-1" cc-id="fcs_https_ext.1" name="HTTPS Protocol"  status="sel-based">
             <depends on-sel="sel-itc-https"/>
+			<depends on-sel="sel-itc-tls"/>
+			<depends on-sel="sel-itc-ssh"/>			
 			<consistency-rationale/>
 			<comp-lev>defines requirements for the implementation of the HTTPS protocol.</comp-lev>
 			<management/>
@@ -5721,11 +5740,12 @@
 		<!-- FCS_RBG.1 Random Bit Generation -->
 		<!-- CC:2022 replacement for FCS_RBG_EXT.1 -->
 		<f-component cc-id="fcs_rbg.1" name="Random Bit Generation (RBG)" status="sel-based">
+			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
-			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
 			<depends on-incl="sfr-fcs-ckm-ext-8"/>		<!-- FCS_CKM_EXT.8 -->
+			<depends on-sel="sel-itc-tls"/>    <!-- TLS -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-rbg-1e1">
 				<title>
@@ -7328,6 +7348,7 @@
 							<O ref="A"/>
 							<X ref="U"/>
                             <app-note>
+								<h:mark>Management of audit data includes the ability to delete it.</h:mark><h:p/>
 								This Function must be claimed if FAU_GEN.1 is claimed in the ST.
 							</app-note>  
 						</management-function>
@@ -7820,8 +7841,8 @@
 				<note role="application">
 					This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
 					<h:li>Portable Clients (laptops, tablets), Enhanced</h:li></h:ol>
-					The audit event "Detection of intrusion" should be claimed if the TOE is capable of generating
-					an audit event in circumstances where an intrusion is detected passively.
+					<h:mark>The audit event "Detection of intrusion" should be claimed if the TOE is capable of generating
+					an audit event in circumstances where an intrusion is detected passively.</h:mark>
 				</note>
 				<aactivity>
 					<TSS>
@@ -7841,7 +7862,7 @@
 				</aactivity>
 			</f-element>
 			<audit-event type="optional">
-				<audit-event-descr>Detection of intrusion.</audit-event-descr>
+				<audit-event-descr>Detection of intrusion.<h:mark>Made this optional</h:mark></audit-event-descr>
 				<audit-event-info>None.</audit-event-info>
 			</audit-event>
 		</f-component>
