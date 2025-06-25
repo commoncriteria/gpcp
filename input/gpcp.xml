@@ -48,7 +48,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-06-24</PPPubDate>
+			<PPPubDate>2025-06-25</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -7373,6 +7373,19 @@
 						</management-function>
 
 						<!-- 6 -->
+						<management-function id="mf-auth-creds">	
+							<depends on-sfr="sfr-fia-uia-ext-1"/>
+							<text>
+								<h:mark>Ability to manage authentication credentials for Administrators.</h:mark>
+							</text>
+							<M ref="A"/>
+							<X ref="U"/>
+                            <app-note>
+								This Function must be claimed if FIA_UIA_EXT.1 is claimed in the ST.
+							</app-note>
+						</management-function>
+
+						<!-- 7 -->
 						<management-function id="mf-auth-fail-params">	
 							<depends on-sfr="sfr-fia-afl-ext-1"/>
 							<text>
@@ -7385,7 +7398,7 @@
 							</app-note>
 						</management-function>
 
-						<!-- 7 -->
+						<!-- 8 -->
 						<management-function id="mf-config-pwd">
 							<depends on-sfr="sfr-fia-pmg-ext-1"/>
 							<text>
@@ -7400,7 +7413,7 @@
 							</app-note>
 						</management-function>
 
-						<!-- 8 -->
+						<!-- 9 -->
 						<management-function id="mf-config-throttling">	
 							<depends on-sfr="sfr-fia-trt-ext-1"/>
 							<text>
@@ -7415,7 +7428,7 @@
 							</app-note>
 						</management-function>
 
-						<!-- 9 -->
+						<!-- 10 -->
 						<management-function id="mf-auth-methods">	
 							<depends on-sfr="sfr-fia-uau-5"/>
 							<text>
@@ -7431,7 +7444,7 @@
 							</app-note>
 						</management-function>
 
-						<!-- 10 -->
+						<!-- 11 -->
 						<management-function id="mf-config-revocation-checking">	
 							<depends on-sfr="sfr-fia-x509-ext-1"/>
 							<text>
@@ -7446,7 +7459,7 @@
 							</app-note>
 						</management-function>
 
-						<!-- 11 -->
+						<!-- 12 -->
 						<management-function id="mf-config-revocation-actions">	
 							<depends on-sel="sel-x509-adminset"/>
 							<text>
@@ -7462,7 +7475,20 @@
 							</app-note>
 						</management-function>
 
-						<!-- 12 -->
+						<!-- 13 -->
+						<management-function id="mf-config-ipsec-refid">	
+							<depends on-sel="sfr-fcs-ipsec-ext-1"/>
+							<text>
+								<h:mark>Ability to manage the IPsec reference identifier.</h:mark>
+							</text>
+							<M ref="A"/>
+							<X ref="U"/>
+                            <app-note>
+                            	This function must be claimed if FCS_IPSEC_EXT.1 is claimed in the ST.
+							</app-note>
+						</management-function>
+
+						<!-- 14 -->
 						<management-function id="mf-config-boot-integrity-failure-actions">
 							<depends on-sel="sel-rot2-admin-config"/>
 							<depends on-sel="sel-rot3-admin-config"/>
@@ -7477,7 +7503,7 @@
 							</app-note>
 						</management-function>
 
-						<!-- 13 -->
+						<!-- 15 -->
 						<management-function id="mf-config-default-update-failure-actions">	
 							<depends on-sel="sel-tud2-admin-config"/>
 							<depends on-sel="sel-tud3-admin-config"/>							
@@ -7493,7 +7519,7 @@
 							</app-note>
 						</management-function>
 
-						<!-- 14 -->
+						<!-- 16 -->
 						<management-function id="mf-initiate-update">
 							<depends on-sel="sel-tud1-auth-update"/>
 							<depends on-sel="sel-tud1-unauth-update"/>
@@ -7509,7 +7535,7 @@
 							</app-note>
 						</management-function>
 
-						<!-- 15 -->
+						<!-- 17 -->
 						<management-function id="mf-determine-update-failure-action">	
 							<depends on-sfr="sfr-fpt-tud-ext-2"/>
 							<depends on-sfr="sfr-fpt-tud-ext-3"/>							
@@ -7534,7 +7560,7 @@
 							</app-note>
 						</management-function>
 
-						<!-- 16 -->
+						<!-- 18 -->
 						<management-function id="mf-determine-update-integrity-failure-action">	
 							<depends on-sfr="sfr-fpt-rot-ext-2"/>
 							<depends on-sfr="sfr-fpt-rot-ext-3"/>
@@ -7558,7 +7584,7 @@
 							</app-note>
 						</management-function>
 
-						<!-- 17 -->
+						<!-- 19 -->
 						<management-function id="mf-key-import-export">
 							<depends on-sfr="sfr-fcs-stg-ext.1"/>
 							<text>
@@ -7780,7 +7806,6 @@
 		<!-- FPT_PHP.1: Passive Detection of Physical Attack.  -->
 		<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="sel-based">
 			<depends on-use="uc-client-portable-enhanced"/>
-<!-- TRRT 1560			<depends on-use="uc-csfc-eud"/>    -->
 			<depends><objective/></depends>    <!-- TRRT 1560 -->
 			<f-element id="fpt-php-1e1">
 				<title>The TSF shall provide unambiguous detection of physical tampering
@@ -7795,7 +7820,8 @@
 				<note role="application">
 					This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
 					<h:li>Portable Clients (laptops, tablets), Enhanced</h:li></h:ol>
-					CSfC EUDs also require detection of physical attack, but in this case FPT_PHP.2 is required instead.
+					The audit event "Detection of intrusion" should be claimed if the TOE is capable of generating
+					an audit event in circumstances where an intrusion is detected passively.
 				</note>
 				<aactivity>
 					<TSS>
@@ -7814,9 +7840,9 @@
 					</Tests>
 				</aactivity>
 			</f-element>
-			<audit-event>
+			<audit-event type="optional">
 				<audit-event-descr>Detection of intrusion.</audit-event-descr>
-			<audit-event-info>None.</audit-event-info>
+				<audit-event-info>None.</audit-event-info>
 			</audit-event>
 		</f-component>
 	
@@ -8121,7 +8147,9 @@
 					<h:mark>If "Administrator" is selected anywhere in FPT_ROT_EXT.2.2, or if "in accordance with Administrator-configurable
 					policy" is selected, then all Administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).</h:mark><h:p/>
-					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.2, and FAU_STG.5 must be included in the ST.<h:p/>
+					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.2, and FAU_STG.5 
+					must be claimed in the ST. This selection should be made only if the TOE is capable of generating an audit event, e.g.
+					if the TOE is a server that includes a management controller.<h:p/> 
 					If "<h:i>Initiate a recovery process as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then management function 
 					<xref to="mf-config-boot-integrity-failure-actions"/> must be claimed in FMT_SMF.1.
