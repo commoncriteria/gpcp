@@ -48,7 +48,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-06-25</PPPubDate>
+			<PPPubDate>2025-06-26</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -1003,7 +1003,7 @@
 					channel must be selected in FTP_ITC_EXT.1. <h:p/>
 					The ST Author selects "<h:i>removable media</h:i>" if the TOE supports offload of audit data using 
 					removable media such as thumb drives or disks. Note that the CSfC Use Case prohibits the
-					use of removable media.
+					use of removable media.<h:mark>(Issue 71)</h:mark>
 				</note>
 				<aactivity level="element">
 					<TSS>
@@ -1132,7 +1132,7 @@
 			</f-element>
 			<audit-event>
 				<audit-event-descr>
-					<h:mark>Audit trail full. Overwrite of audit records is commencing.</h:mark>
+					<h:mark>Audit trail full. Overwrite of audit records is commencing.(Issue 55)</h:mark>
 				</audit-event-descr>
 				<audit-event-info>None.</audit-event-info>
 			</audit-event>
@@ -2231,7 +2231,7 @@
 					</selectables>.
 				</title>
 				<note role="application">
-					<h:mark>The purpose of key destruction is "To remove all traces of a cryptographic key so that it cannot be
+					<h:mark>(See also Issue 58.) The purpose of key destruction is "To remove all traces of a cryptographic key so that it cannot be
 					recovered by either physical or electronic means." (NIST SP 800-57 Part 1 Rev. 5).<h:p/></h:mark>
 					The TOE implements methods for destroying keys and key material as specified in FCS_CKM.6.2.<h:p/>
 					The ST Author shall list all such keys and keying material that are subject 
@@ -5673,12 +5673,13 @@
                 <title>The 
 					<selectables>
 						<selectable>TSF</selectable>
-						<selectable>VPN Gateway</selectable>
+						<selectable><h:mark>VPN Gateway</h:mark></selectable>
 					</selectables> shall be able to ensure by default that the
 					strength of the symmetric algorithm (in terms of the number of bits in the key)
 					negotiated to protect the IKEv2 IKE_SA connection is greater than or equal to the
 					strength of the symmetric algorithm (in terms of
 					the number of bits in the key) negotiated to protect the IKEv2 CHILD_SA connection.
+					<h:mark>(see Issue 60)</h:mark>
 				</title>
 		    <ext-comp-def-title>
 			    <title>The <assignable>configuring entity</assignable> shall be able to ensure by default
@@ -6461,7 +6462,7 @@
 			<audit/>
 			<dependencies><h:br/>FCS_COP.1 Cryptographic Operation<h:br/>
 			FCS_STG_EXT.1 Key Storage Encryption<h:br/>
-			FTP_ITC_EXT.1 Trusted Channel Communications<h:br/>
+			FCS_CKM.2 Key Distribution <h:br/>
 			FTP_ITE_EXT.1 Encrypted Data Communications<h:br/>
 			FTP_ITP_EXT.1 Physically Protected Channel
 			</dependencies>
@@ -6471,7 +6472,7 @@
 					<selectables>
 						<selectable id="sel-fdp-itc-ext-1e1-phys">physically protected channels as specified in FTP_ITP_EXT.1</selectable>
 						<selectable id="sel-fdp-itc-ext-1e1-buf">encrypted data buffers as specified in FTP_ITE_EXT.1</selectable>
-						<selectable id="sel-fdp-itc-ext-1e1-chan">cryptographically protected data channels as specified in FTP_ITC_EXT.1</selectable>
+						<selectable id="sel-fdp-itc-ext-1e1-chan"><h:mark>key distribution mechanisms as specified in FCS_CKM.2</h:mark></selectable>
 					</selectables>.
 				</title>
 				<ext-comp-def-title>
@@ -6489,6 +6490,7 @@
 							<selectable id="sel-fdp-itc-ext-1e2-mac">keyed hash as specified in FCS_COP.1/KeyedHash</selectable>
 							<selectable id="sel-fdp-itc-ext-1e2-kw">integrity-providing encryption algorithm as specified in FCS_COP.1/KeyWrap</selectable>
 							<selectable id="sel-fdp-itc-ext-1e2-sig">digital signature as specified in FCS_COP.1/SigVer</selectable>
+							<selectable><h:mark>integrity verification provided through FCS_CKM.2 key distribution mechanisms</h:mark></selectable>
 							<selectable>integrity verification supported by FTP_ITC_EXT.1</selectable>
 						</selectables>.
 				</title>
@@ -6634,13 +6636,13 @@
 			</f-element>
 			<f-element id="fia-afl-ext-1e2">
 				<title>
-					The TSF shall detect when a configurable positive integer within 
+					The TSF shall detect when a configurable positive <h:mark>non-zero</h:mark> integer within 
 					<assignable>range of acceptable values for each authentication mechanism</assignable>
 					of <selectables onlyone="yes">
 						<selectable>unique</selectable>
 						<selectable>non-unique</selectable>
 					</selectables> unsuccessful authentication attempts occur related to last successful authentication for
-					each authentication mechanism.
+					each authentication mechanism. <h:mark>(see Issue 63)</h:mark>
 				</title>
 				<note role="application">
 					The positive integer is configured according to <xref to="t-manfunc"/> in FMT_SMF.1.1.<h:p/>
@@ -6668,7 +6670,7 @@
 				<title>
 					<h:mark>The TSF shall maintain the number of unsuccessful authentication attempts that have occurred 
 					upon power off if the minimum boot time of the system is shorter than the lockout time
-					specified in FIA_AFL_EXT.1.5.</h:mark>
+					specified in FIA_AFL_EXT.1.5. (see Issue 64)</h:mark>
 				</title>
 				<note role="application">
 					<h:mark>The purpose of this requirement is to prevent hammering attacks from avoiding triggering the
@@ -6707,14 +6709,18 @@
 					TSF shall 
 						<selectables linebreak="yes">
 							<selectable>perform a wipe of all protected data</selectable>
-							<selectable>exclude the current User/Administrator from further authentication attempts</selectable>
-							<selectable>exclude the current User/Administrator from further authentication
+							<selectable>exclude the <h:mark>current Administrator</h:mark> from further authentication attempts</selectable>
+							<selectable>exclude the <h:mark>current Administrator</h:mark> from further authentication
 								attempts for <assignable><h:mark>a period of time greater than zero seconds</h:mark></assignable></selectable>
-							<selectable>exclude the current User/Administrator from further authentication
+							<selectable>exclude the <h:mark>current Administrator</h:mark> from further authentication
 								attempts for <assignable><h:mark>a period of time greater than the minimum boot time of the system</h:mark></assignable></selectable>
 						</selectables>.
 				</title>
 				<note role="application">
+					<h:mark>(Issue 65) The "current Administrator" is the entity attempting to authenticate to the TOE that has run afoul of 
+					the limit on authentication attempts. For platforms that support multiple Administrator identities, only the
+					identity that has run afoul is punished. For platforms without such support, these actions
+					are effectively applied to the authentication mechanism rather than a specific user.</h:mark><h:p/>
 					Wipe is performed in accordance with FCS_CKM.6. Protected data is all non-TSF data, 
 					including all user or enterprise data. Some or all of this data may be considered sensitive
 					data as well.<h:p/>
@@ -6952,7 +6958,7 @@
 						<selectable id="sel-fia-uau-5-ssh">SSH-based authentication</selectable>
 						<selectable>biometric authentication</selectable>
 						<selectable exclusive="yes">no other authentication mechanism</selectable>
-					</selectables></h:i>] to support user authentication.
+					</selectables></h:i>] to support user authentication.<h:mark>See Issue 67</h:mark>
 				</title>
 				<note role="application">
 					This SFR is included in the ST if the "<h:i>Administrator</h:i>" role is selected
@@ -7213,7 +7219,7 @@
 					after TOE delivery does not allow user data of the TOE to be disclosed or
 					manipulated, TSF data to be disclosed or manipulated, firmware to be
 					reconstructed such that information about construction of TSF may enable other
-					attacks.</h:i>]</h:mark>
+					attacks.</h:i>] (Issue 72)</h:mark>
 				</title>
 				<note role="application">
 					The GPCP may implement debug and test functions to
@@ -7266,7 +7272,7 @@
 					after TOE delivery does not allow user data of the TOE to be disclosed or
 					manipulated, TSF data to be disclosed or manipulated, firmware to be
 					reconstructed such that information about construction of TSF may enable other
-					attacks.</h:i>] </h:mark>
+					attacks.</h:i>] (Issue 72)</h:mark>
 				</title>
 				<aactivity>
 					<no-tests>Evaluation activities for FMT_LIM.2 are encompassed within those for FMT_LIM.2.</no-tests>
@@ -7382,9 +7388,9 @@
 						<!-- 5 -->
 						<management-function id="mf-support-channel">	
 							<depends on-sfr="sfr-ftp-trp-1"/>
-							<text>
-								Ability to initiate a trusted channel or accept an incoming channel 
-								for remote administration.
+							<text><comment>Issue 47</comment>
+								<h:mark>Ability to initiate a trusted channel or accept an incoming channel 
+								for remote administration.</h:mark>
 							</text>
 							<O ref="A"/>
 							<X ref="U"/>
@@ -7499,7 +7505,7 @@
 						<!-- 13 -->
 						<management-function id="mf-config-ipsec-refid">	
 							<depends on-sel="sfr-fcs-ipsec-ext-1"/>
-							<text>
+							<text><comment>Issue 47</comment>
 								<h:mark>Ability to manage the IPsec reference identifier.</h:mark>
 							</text>
 							<M ref="A"/>
@@ -7744,7 +7750,7 @@
 			<f-element id="fpt-jta-ext-1e1">
 				<title>
 					The TSF shall allow access to JTAG or other debug ports only to an authorized Administrator
-					through platform firmware or through assertion of physical presence.
+					through platform firmware or through assertion of physical presence.<h:mark>(Issue 72)</h:mark>
 				</title>
 				<note role="application">
 					This requirement means that JTAG ports may not be accessible to tenant software.<h:p/>
@@ -7862,7 +7868,7 @@
 				</aactivity>
 			</f-element>
 			<audit-event type="optional">
-				<audit-event-descr>Detection of intrusion.<h:mark>Made this optional</h:mark></audit-event-descr>
+				<audit-event-descr>Detection of intrusion.<h:mark>Made this optional (Issue 51)</h:mark></audit-event-descr>
 				<audit-event-info>None.</audit-event-info>
 			</audit-event>
 		</f-component>
@@ -7892,10 +7898,11 @@
 				</title>
 				<note role="application">
 					This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
-					<h:li>Server-Class Platform, Enhanced</h:li>
-					<h:li>CSfC EUD</h:li></h:ol>
+					<h:li>Server-Class Platform, Enhanced</h:li></h:ol>
 					FPT_PHP.2 is hierarchical to FPT_PHP.1 which means that all requirements of FPT_PHP.1 are
-					also included as part of FPT_PHP.2. A TOE that conforms to FPT_PHP.2 therefore does not claim FPT_PHP.1. 
+					also included as part of FPT_PHP.2. A TOE that conforms to FPT_PHP.2 therefore does not claim FPT_PHP.1.<h:p/>
+					<h:mark>The audit event "Detection of intrusion" should be claimed if the TOE is capable of generating
+					an audit event in circumstances where an intrusion is detected passively.</h:mark>		
 				</note>
 			<aactivity>
 				<TSS>
@@ -7925,9 +7932,9 @@
 				</Tests>
 			</aactivity>
 			</f-element>
-			<audit-event>
-				<audit-event-descr>Detection of intrusion.</audit-event-descr>
-			<audit-event-info>None.</audit-event-info>
+			<audit-event type="optional">
+				<audit-event-descr>Detection of intrusion.<h:mark>Made this optional (Issue 51)</h:mark></audit-event-descr>
+				<audit-event-info>None.</audit-event-info>
 			</audit-event>
 		</f-component>
 	
@@ -7979,7 +7986,8 @@
 				<audit/>
 				<dependencies>No dependencies.</dependencies>
 			<f-element id="fpt-ppf-ext-1e1">
-				<title>The TSF shall allow modification of platform firmware only through the update mechanisms described in FPT_TUD_EXT.1.
+				<title>The TSF shall allow modification of platform firmware only through the update mechanisms
+					described in FPT_TUD_EXT.1.<h:mark>(See Issue 73)</h:mark> 
 				</title>
 				<note role="application">
 					Platform firmware must be modifiable only through one of the secure update mechanisms 
@@ -8034,7 +8042,7 @@
 						<selectable id="sel-rot-mc">a separate management controller that is itself rooted in a mechanism that meets this requirement</selectable>
 						<selectable id="sel-rot-dsc">integrity measurements held securely in an on-platform dedicated security component</selectable>
 						<selectable id="sel-rot-offplat">integrity measurements held securely by an off-platform entity</selectable>
-					</selectables>.
+					</selectables>. <h:mark>(See also Issue 74)</h:mark)
 				</title>
 				<ext-comp-def-title>
 				<title>The integrity of platform firmware shall be rooted in 
@@ -8082,7 +8090,7 @@
 						<selectable>measurement and verification by trusted code/data</selectable>
 						<selectable><h:mark>measurement and verification by an on-platform dedicated security component</h:mark></selectable>
 						<selectable><h:mark>measurement and verification by an off-platform entity</h:mark></selectable>
-					</selectables>.
+					</selectables>.<h:mark>(see Issues 79 and 80)</h:mark> 
 				</title>
 				<ext-comp-def-title>
 				<title>The integrity of all mutable platform firmware outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
@@ -9259,7 +9267,7 @@
 				<title>
 					The TSF shall provide a physically protected communication channel
 					between itself and <assignable>list of other IT entities within the same platform</assignable>.
-				</title>
+				<h:mark>Issue 69</h:mark></title>
 				<note role="application">
 					This SFR must be claimed if "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is
 					selected in either FDP_ITC_EXT.1, or if "<h:i>Keys exchanged using a physically protected communication mechanism
