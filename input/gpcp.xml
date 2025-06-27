@@ -48,7 +48,7 @@
 			<PPTitle>DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</PPTitle>
 			<PPVersion>2.0</PPVersion> 
 			<PPAuthor>National Information Assurance Partnership</PPAuthor>
-			<PPPubDate>2025-06-26</PPPubDate>
+			<PPPubDate>2025-06-27</PPPubDate>
 		</ReferenceTable>
 	</PPReference>
 
@@ -343,10 +343,7 @@
 		Operating Systems, one or more virtualization systems as defined by the Protection Profile for 
 		Virtualization, or more than one application. Typical platform 
 		implementations include servers, PC clients, laptops, and tablets.<h:p/>
-		<h:mark>This Protection Profile does not apply to platforms that do not support firmware update. 
-		As a result, all platforms subject to this PP must support administration at least sufficient
-		to implement firmware update. Furthermore, the requirement for administration implies 
-		a requirement for an Administrator role to perform administration functions.</h:mark><h:p/>
+		This Protection Profile applies only to platforms that support firmware update. <h:p/>
 		Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and 
 		Network Device platforms as defined in the collaborative Protection Profile for Network Devices 
 		are out of scope of this PP.  Mobile Device and Network Device platforms must be evaluated 
@@ -403,12 +400,11 @@
 	<!--   1.4 Use Cases  -->
     <sec:Use_Cases>
 		This Protection Profile supports several use cases. The cases
-		enumerated below add requirements to the baseline for GPCP in response <h:mark>to changes 
-		in the operational environment.</h:mark> Use cases not listed below (e.g. consumer-grade desktop, laptop, and 
+		enumerated below add requirements to the baseline for GPCP in response to the needs of the use cases 
+		and in differences in the expected operational environments. Use cases not listed below (e.g. consumer-grade desktop, laptop, and 
 		tablet computers) need be evaluated only against the baseline requirements subject to the appropriate selections.
 		<h:p/>
-		<!-- TRRT 1564 -->
-		The requirements associated with some use case encompass those of other use cases. In these situations,
+		The requirements associated with one use case encompasses those of another use case. In these situations,
 		a TOE that meets the larger set of requirements meets both use cases. Specifically
 		<h:ul>
 			<h:li>a TOE that meets <xref to="uc-server-enhanced"/> also meets <xref to="uc-server-secureenv"/></h:li>
@@ -721,8 +717,8 @@
     <section title="Assumptions" id="assumptions">
 		<assumptions>
 			<assumption id="a-physical-protection" name="A.PHYSICAL_PROTECTION">
-				<description><h:mark>The TOE is assumed to benefit from varying levels of protections depending  
-					on use case and operational environment.</h:mark>
+				<description>The TOE is assumed to benefit from varying levels of protections depending  
+					on use case and operational environment.
 					</description>
 				<objective-refer ref="OE.PHYSICAL_PROTECTION">
 					<rationale> The operational environment objective OE.PHYSICAL_PROTECTION is realized through
@@ -3074,7 +3070,7 @@
 					<h:li>SHA3 hashes may be used only for internal hardware functionality such as
 						boot integrity checks, and</h:li>
 					<h:li>SHA-256 is permitted only for use as a PRF or MAC as part of a key derivation function,
-						or as part of LMS.</h:li>
+						or as part of LMS or XMSS.</h:li>
 					</h:ul><h:p/>
 					The hash selection should be consistent with the overall strength of the 
 					algorithm used for signature generation. For example, the TOE should choose SHA-384 for 3072-bit RSA, 
@@ -4894,8 +4890,8 @@
 					</selectables>
 				</title>
 				<note role="application">
-					In accordance with CNSA 2.0, SHAKE is permitted to be used only as a component of LMS. Therefore this
-					component is claimed only if LMS or XMSS is claimed in FCS_COP.1/SigVer. <h:p/>
+					In accordance with CNSA 2.0, SHAKE is permitted to be used only as a component of LMS or XMSS. 
+					Therefore this component is claimed only if LMS or XMSS is claimed in FCS_COP.1/SigVer. <h:p/>
 					Since LMS and XMSS use both SHAKE128 and SHAKE256 internally, claiming and testing of both
 					Functions is mandatory.
 				</note>
@@ -5669,63 +5665,6 @@
 					</no-tests>
                 </aactivity>
             </f-element>
-            <f-element id="fcs-ipsec-ext-1e14">
-                <title>The 
-					<selectables>
-						<selectable>TSF</selectable>
-						<selectable><h:mark>VPN Gateway</h:mark></selectable>
-					</selectables> shall be able to ensure by default that the
-					strength of the symmetric algorithm (in terms of the number of bits in the key)
-					negotiated to protect the IKEv2 IKE_SA connection is greater than or equal to the
-					strength of the symmetric algorithm (in terms of
-					the number of bits in the key) negotiated to protect the IKEv2 CHILD_SA connection.
-					<h:mark>(see Issue 60)</h:mark>
-				</title>
-		    <ext-comp-def-title>
-			    <title>The <assignable>configuring entity</assignable> shall be able to ensure by default
-				    that the strength of the symmetric algorithm (in terms of the number of bits in 
-				    the key) negotiated to protect the <assignable>connection type</assignable>
-					connection is greater than or equal to the strength of the symmetric algorithm (in terms of
-					the number of bits in the key) negotiated to protect the 
-				    <assignable>connection type</assignable>connection.
-				</title>
-		    </ext-comp-def-title>    
-                <note role="application">
-					If this functionality is configurable, the TSF may be configured by a VPN Gateway
-					or by an Administrator of the TOE itself. While it is acceptable for this capability to be configurable, the
-					default configuration in the evaluated configuration (either "out of the box" or
-					by configuration guidance in the Guidance documentation) must enable this
-					functionality.
-				</note>
-                <aactivity level="element">
-                    <TSS>
-                        The evaluator shall check that the TSS describes the potential strengths (in terms of the number of bits in
-						the symmetric key) of the algorithms that are allowed for the IKE and ESP exchanges. The TSS shall also
-						describe the checks that are done when negotiating IKEv2 CHILD_SA suites to ensure
-						that the strength (in terms of the number of bits of key in the symmetric algorithm) of the negotiated
-						algorithm is less than or equal to that of the IKE SA this is protecting the negotiation.
-                    </TSS>
-					<Guidance/>
-                    <Tests>
-                        The evaluator follows the guidance to configure the TOE to perform the following tests for each version of IKE supported:<h:p/>
-                        <testlist>
-                            <test>The evaluator shall successfully
-								negotiate an IPsec connection using each of the supported algorithms and hash functions identified in the
-								requirements.</test>         
-							<test>[conditional]The evaluator shall
-								attempt to establish an SA for ESP that selects an encryption algorithm with more strength than that being
-								used for the IKE SA (i.e., symmetric algorithm with a key size larger than that being used for the IKE SA).
-								Such attempts should fail.</test>
-                            <test>The evaluator shall attempt to
-								establish an IKE SA using an algorithm that is not one of the supported algorithms and hash functions
-								identified in the requirements. Such an attempt should fail.</test>
-                            <test>The evaluator shall attempt to
-								establish an SA for ESP (assumes the proper parameters where used to establish the IKE SA) that selects
-								an encryption algorithm that is not identified in FCS_IPSEC_EXT.1.4. Such an attempt should fail.</test>
-                        </testlist>
-                    </Tests>
-                </aactivity>
-            </f-element>
 			<audit-event>
 				<audit-event-descr>Failure to establish an IPsec SA.</audit-event-descr>
 				<audit-event-info>Reason for failure.</audit-event-info>	
@@ -5818,8 +5757,8 @@
 			<f-element id="fcs-rbg-1e2">
 				<title>
 					The TSF shall use a <selectables>
-						<selectable id="internal-seed">TSF entropy source <assignable>name of entropy source</assignable></selectable>
-						<selectable id="external-seed">TSF interface for seeding</selectable>
+						<selectable id="sel-drbg-internal-seed">TSF entropy source <assignable>name of entropy source</assignable></selectable>
+						<selectable id="sel-drbg-external-seed">TSF interface for seeding</selectable>
 					</selectables>
 					for initialization and reseeding.
 				</title>
@@ -6031,7 +5970,7 @@
 		<!-- FCS_RBG.3 Random Bit Generation (Internal Seeding - Single Source) -->
 		<!-- Claimed when FCS_RBG.1.2 selects "TSF noise source..." -->
 		<f-component cc-id="fcs_rbg.3" name="Random Bit Generation (Internal Seeding - Single Source)" status="sel-based">
-			<depends on="internal-seed"/>
+			<depends on="sel-drbg-internal-seed"/>
 			<f-element id="fcs-rbg-3e1">
 				<title>
 					The TSF shall be able to seed the DRBG using a <selectables choose-one-of="yes">
@@ -6074,7 +6013,7 @@
 		<!-- FCS_RBG.4 Random Bit Generation (Internal Seeding - Multiple Sources) -->
 		<!-- Claimed when FCS_RBG.1.2 selects "multiple TSF noise sources..." -->
 		<f-component cc-id="fcs_rbg.4" name="Random Bit Generation (Internal Seeding - Multiple Sources)" status="sel-based">
-			<depends on="internal-seeds"/>
+			<depends on="sel-drbg-internal-seed"/>
 			<f-element id="fcs-rbg-4e1">
 				<title>
 					The TSF shall be able to seed the DRBG using <selectables>
@@ -6106,7 +6045,7 @@
 		<!-- FCS_RBG.5 Random Bit Generation (Combining Noise Sources) -->
 		<!-- Claimed when FCS_RBG.1.2 selects "multiple TSF noise sources..." -->
 		<f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Entropy Sources)" status="sel-based">
-			<depends on="internal-seeds"/>
+			<depends on="sel-drbg-internal-seed"/>
 			<f-element id="fcs-rbg-5e1">
 				<title>
 					The TSF shall <selectables>
@@ -6161,6 +6100,7 @@
 		<!-- FCS_RBG.6 Random Bit Generation Service -->
 		<f-component id="sfr-fcs-rbg-6" cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="sel-based">
 			<depends on-uc="uc-csfc-eud"/>
+			<depends><optional/></depends>
 			<f-element id="fcs-rbg-6e1">
 				<title>
 					The TSF shall provide a <selectables>
@@ -6472,7 +6412,7 @@
 					<selectables>
 						<selectable id="sel-fdp-itc-ext-1e1-phys">physically protected channels as specified in FTP_ITP_EXT.1</selectable>
 						<selectable id="sel-fdp-itc-ext-1e1-buf">encrypted data buffers as specified in FTP_ITE_EXT.1</selectable>
-						<selectable id="sel-fdp-itc-ext-1e1-chan"><h:mark>key distribution mechanisms as specified in FCS_CKM.2</h:mark></selectable>
+						<selectable id="sel-fdp-itc-ext-1e1-chan">key distribution mechanisms as specified in FCS_CKM.2</selectable>
 					</selectables>.
 				</title>
 				<ext-comp-def-title>
@@ -6490,7 +6430,7 @@
 							<selectable id="sel-fdp-itc-ext-1e2-mac">keyed hash as specified in FCS_COP.1/KeyedHash</selectable>
 							<selectable id="sel-fdp-itc-ext-1e2-kw">integrity-providing encryption algorithm as specified in FCS_COP.1/KeyWrap</selectable>
 							<selectable id="sel-fdp-itc-ext-1e2-sig">digital signature as specified in FCS_COP.1/SigVer</selectable>
-							<selectable><h:mark>integrity verification provided through FCS_CKM.2 key distribution mechanisms</h:mark></selectable>
+							<selectable>integrity verification provided through FCS_CKM.2 key distribution mechanisms</selectable>
 							<selectable>integrity verification supported by FTP_ITC_EXT.1</selectable>
 						</selectables>.
 				</title>
@@ -6626,7 +6566,7 @@
 					This SFR specifies the actions to be taken in the event of multiple authentication failures.<h:p/>
 					This requirement applies to both critical and non-critical authentication mechanisms. The difference 
 					between the two is that excessive authentication failures of critical authentication mechanisms 
-					<h:mark>result in the actions defined in FIA_AFL_EXT.1.5.</h:mark><h:p/>
+					result in the actions defined in FIA_AFL_EXT.1.5.<h:p/>
 					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption
 					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
 					to all available interfaces. For example, a password is a critical authentication mechanism 
@@ -6636,13 +6576,13 @@
 			</f-element>
 			<f-element id="fia-afl-ext-1e2">
 				<title>
-					The TSF shall detect when a configurable positive <h:mark>non-zero</h:mark> integer within 
+					The TSF shall detect when a configurable positive non-zero integer within 
 					<assignable>range of acceptable values for each authentication mechanism</assignable>
 					of <selectables onlyone="yes">
 						<selectable>unique</selectable>
 						<selectable>non-unique</selectable>
 					</selectables> unsuccessful authentication attempts occur related to last successful authentication for
-					each authentication mechanism. <h:mark>(see Issue 63)</h:mark>
+					each authentication mechanism.
 				</title>
 				<note role="application">
 					The positive integer is configured according to <xref to="t-manfunc"/> in FMT_SMF.1.1.<h:p/>
@@ -7552,10 +7492,10 @@
 							<depends on-sel="sel-tud1-unauth-update"/>
 							<depends on-sel="sel-tud1-local-update"/>
 							<text>
-								Ability to initiate the update process.
+								<h:mark>Ability to initiate the update process.</h:mark>
 							</text>
 							<O ref="A"/>
-							<X ref="U"/>
+							<O ref="U"/>
 							<app-note>
 								This Function must be claimed if something other than "<h:i>no mechanism for platform firmware update</h:i>"
 								is selected in FPT_TUD_EXT.1.1.
@@ -7569,21 +7509,11 @@
 							<text>
 								Ability to determine the action to take on update failure.
 							</text>
-							<O ref="A">
-								<depends on-sel="sel-tud2-admin-det"/>
-								<depends on-sel="sel-tud3-admin-det"/> 
-							</O>
-							<O ref="U">
-								<depends on-sel="sel-tud2-user-det"/>
-								<depends on-sel="sel-tud3-user-det"/>
-							</O>
+							<O ref="A"/>
+							<O ref="U"/>
                             <app-note>
 								This Function must be claimed if FPT_TUD_EXT.2 or FPT_TUD_EXT.3 are claimed in 
 								the ST.<h:p/>
-								The Administrator Option must be selected if "<h:i>by express determination of an [Administrator]</h:i>" 
-								is selected in FPT_TUD_EXT.2.5 or FPT_TUD_EXT.3.4. <h:p/>
-								The User Option must be selected if "<h:i>by express determination of an [User]</h:i>" 
-								is selected in FPT_TUD_EXT.2.5 or FPT_TUD_EXT.3.4.
 							</app-note>
 						</management-function>
 
@@ -7655,7 +7585,7 @@
 	<!-- FMT_SMR.1 Security Roles -->
 	<f-component cc-id="fmt_smr.1" id="sfr-fmt-smr-1" name="Security Roles">
 		<f-element id="fmt-smr-1e1">
-			<title>The TSF shall maintain the roles [<h:mark><h:i>User</h:i></h:mark> and 
+			<title>The TSF shall maintain the roles [<h:i>User</h:i> and 
 				<selectables>
 					<selectable id="sel-fmt-smr-1-admin">Administrator</selectable>
 					<selectable exclusive="yes">no other roles</selectable>
@@ -7876,7 +7806,6 @@
 		<!-- FPT_PHP.2: Notification of physical attack  -->
 		<f-component id="sfr-fpt-php-2" cc-id="fpt_php.2" name="Notification of Physical Attack" status="sel-based">
 			<depends on-use="uc-server-enhanced"/>
-<!-- TRRT 1560			<depends on-use="uc-csfc-eud"/>    -->
 			<depends><objective/></depends>   <!-- TRRT 1560 -->
 			<f-element id="fpt-php-2e1">
 				<title>The TSF shall provide unambiguous detection of physical tampering that
@@ -8056,9 +7985,9 @@
 					of subsequently executed platform firmware must be traceable back to this root or to some other root as specified in FPT_ROT_EXT.2.
 					This SFR should be iterated for additional TOE roots (for example, a management controller or firmware executed from 
 					an add-in card).<h:p/>
-					<h:mark>An "on-platform dedicated security component" could be, for example, a TPM or other secure element
-					that provides security services to the platform such as measurement or secure storage.</h:mark><h:p/>
-					<h:mark>Selection of "<h:i>a separate management controller...</h:i>" implies the existence of an Administrator role.</h:mark>
+					An "on-platform dedicated security component" could be, for example, a TPM or other secure element
+					that provides security services to the platform such as measurement or secure storage.<h:p/>
+					Selection of "<h:i>a separate management controller...</h:i>" implies the existence of an Administrator role.
 				</note>
 				<aactivity>
 					<TSS>The evaluator shall verify that the TSS describes the Root of Trust on which initial integrity 
@@ -8127,18 +8056,18 @@
 						<h:li><selectables linebreak="yes" onlyone="yes">
 							<selectable>Stop all execution and shut down</selectable>
 							<selectable id="sel-rot2-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
+						</selectables><h:br/>
+						<selectables linebreak="yes" onlyone="yes">
+							<selectable>automatically</selectable>
+							<selectable id="sel-rot2-admin-config">in accordance with Administrator-configurable policy</selectable>
+							<selectable>by express determination of an 
+								<selectables>
+									<selectable id="sel-rot2-admin-det">Administrator</selectable>
+									<selectable id="sel-rot2-user-det">User</selectable>
+								</selectables>
+							</selectable>	
 						</selectables></h:li>
-					</h:ol> 
-					<selectables linebreak="yes" onlyone="yes">
-						<selectable>automatically</selectable>
-						<selectable id="sel-rot2-admin-config">in accordance with Administrator-configurable policy</selectable>
-						<selectable>by express determination of an 
-							<selectables>
-								<selectable id="sel-rot2-admin-det">Administrator</selectable>
-								<selectable id="sel-rot2-user-det">User</selectable>
-							</selectables>
-						</selectable>
-					</selectables>.	
+					</h:ol> .	
 				</title>
 				<ext-comp-def-title>
 				<title>The TOE shall take the following actions if an integrity check specified in
@@ -8155,8 +8084,7 @@
 						<h:li><selectables linebreak="yes" onlyone="yes">
 							<selectable>Stop all execution and shut down</selectable>
 							<selectable>Initiate a recovery process</selectable>
-						</selectables></h:li>
-					</h:ol> 
+						</selectables><h:br/>
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
 						<selectable>in accordance with Administrator-configurable policy</selectable>
@@ -8166,16 +8094,17 @@
 								<selectable>User</selectable>
 							</selectables>
 						</selectable>
-					</selectables>.	
+					</selectables></h:li>
+					</h:ol> .	
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
 					example, by blinking lights, beep codes, screen indications, or local logging.<h:p/>
-					<h:mark>If "Administrator" is selected anywhere in FPT_ROT_EXT.2.2, or if "in accordance with Administrator-configurable
+					If "Administrator" is selected anywhere in FPT_ROT_EXT.2.2, or if "in accordance with Administrator-configurable
 					policy" is selected, then all Administrator authentication requirements must be included in the ST
-					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).</h:mark><h:p/>
+					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).<h:p/>
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.2, and FAU_STG.5 
 					must be claimed in the ST. This selection should be made only if the TOE is capable of generating an audit event, e.g.
 					if the TOE is a server that includes a management controller.<h:p/> 
@@ -8268,8 +8197,7 @@
 							<selectable>Stop all execution and shut down</selectable>
 							<selectable>Continue execution without the integrity-compromised component</selectable>
 							<selectable>Continue execution</selectable>
-						</selectables></h:li>
-					</h:ol> 
+						</selectables><h:br/>
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable id="sel-rot3-admin-config">in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
@@ -8277,7 +8205,8 @@
 								<selectable id="sel-rot3-admin-det">Administrator</selectable>
 								<selectable id="sel-rot3-user-det">User</selectable>
 							</selectables></selectable>
-					</selectables>.	
+					</selectables></h:li>
+					</h:ol> .	
 				</title>
 				<ext-comp-def-title>
 				<title>
@@ -8293,8 +8222,7 @@
 							<selectable>Stop all execution and shut down</selectable>
 							<selectable>Continue execution without the integrity-compromised component</selectable>
 							<selectable>Continue execution</selectable>
-						</selectables></h:li>
-					</h:ol> 
+						</selectables><h:br/>
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
@@ -8302,7 +8230,8 @@
 								<selectable>Administrator</selectable>
 								<selectable>User</selectable>
 							</selectables></selectable>
-					</selectables>.	
+					</selectables></h:li>
+					</h:ol> .	
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
@@ -8665,30 +8594,17 @@
 					or rollback-prevention check fails, or a platform firmware update fails for any other reason: 
 					<h:ul>
 						<h:li>Do not install the update,</h:li>
-						<h:li>Notify an 
-						<selectables>
-							<selectable id="sel-tud2-admin-notify">Administrator</selectable>
-							<selectable>User</selectable>
-						</selectables> by 
-							<selectables>
-								<selectable id="sel-tud2-audit">generating an audit event</selectable>
-								<selectable><assignable>notification method</assignable></selectable>
-							</selectables>,
-						</h:li>
 					</h:ul>and
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>Continue execution</selectable>
 						<selectable>Halt</selectable>
 						<selectable>Stop all execution and shut down</selectable>
 						<selectable id="sel-tud2-recovery">Initiate recovery as specified in FPT_RVR_EXT.1</selectable>
-					</selectables>			
+					</selectables><h:br/>
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
 						<selectable id="sel-tud2-admin-config">in accordance with administrator-configurable policy</selectable>
-						<selectable>by express determination of an <selectables>
-							<selectable id="sel-tud2-admin-det">Administrator</selectable>
-							<selectable id="sel-tud2-user-det">User</selectable>
-							</selectables></selectable>
+						<selectable>by express determination of a User</selectable>
 					</selectables>.
 				</title>
 				<ext-comp-def-title>
@@ -8697,12 +8613,6 @@
 					or rollback-prevention check fails, or a platform firmware update fails for any other reason: 
 					<h:ul>
 						<h:li>Do not install the update,</h:li>
-						<h:li>Notify an 
-						<selectables>
-							<selectable>Administrator</selectable>
-							<selectable>User</selectable>
-							</selectables> by <assignable>notification method</assignable>,
-						</h:li>
 					</h:ul>and
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>Continue execution</selectable>
@@ -8713,10 +8623,7 @@
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
 						<selectable>in accordance with Administrator-configurable policy</selectable>
-						<selectable>by express determination of an <selectables>
-							<selectable>Administrator</selectable>
-							<selectable>User</selectable>
-							</selectables></selectable>
+						<selectable>by express determination of a User</selectable>
 					</selectables>.
 				</title>
 				</ext-comp-def-title>
@@ -8734,7 +8641,10 @@
 					An indication of success or failure can be generation of an audit event by a management subsystem, a beep code,
 					an updated version number on a splash screen, or simple failure to continue functioning.<h:p/>
 					If the update mechanism generates audit events, the ST Author must make the appropriate selections
-					from the audit events table (<xref g="t-audit-sel-based"/>).
+					from the audit events table (<xref g="t-audit-sel-based"/>).<h:p/>
+					In the selection "by express determination of a User," the "User" could be more properly expressed as 
+					the "operator." It can be either a User or an Administrator, but the distinction is not important in the
+					context of this requirement..
 				</note>
 				<aactivity>
 					<h:p/><TSS>
@@ -8854,57 +8764,30 @@
 				<title>
 					The TOE shall take the following actions if a platform firmware update integrity, authentication, or
 					rollback-prevention check fails, or a platform firmware update fails for any other reason:
-					<h:ul>
-						<h:li>Notify an 
-							<selectables>
-								<selectable id="sel-tud3-admin-notify">Administrator</selectable>
-								<selectable>User</selectable>
-							</selectables> by 
-							<selectables>
-								<selectable id="sel-tud3-audit">generating an audit event</selectable>
-								<selectable><assignable>notification method</assignable></selectable>
-							</selectables></h:li>
-					</h:ul> and
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>Halt</selectable>
 						<selectable>Stop all execution and shut down</selectable>
 						<selectable id="sel-tud3-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
-					</selectables>
+					</selectables><h:br/>
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
 						<selectable id="sel-tud3-admin-config">in accordance with administrator-configurable policy</selectable>
-						<selectable>by express determination of an 
-							<selectables>
-								<selectable id="sel-tud3-admin-det">Administrator</selectable>
-								<selectable id="sel-tud3-user-det">User</selectable>
-							</selectables></selectable>
+						<selectable>by express determination of a User</selectable>
 					</selectables>.
 				</title>
 				<ext-comp-def-title>
 				<title>
 					The TOE shall take the following actions if a platform firmware update integrity, authentication, or
 					rollback-prevention check fails, or a platform firmware update fails for any other reason:
-					<h:ul>
-						<h:li>Notify an 
-							<selectables>
-								<selectable>Administrator</selectable>
-								<selectable>User</selectable>
-							</selectables> by <assignable>notification method</assignable>
-						</h:li>
-					</h:ul> and
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>Halt</selectable>
 						<selectable>Stop all execution and shut down</selectable>
 						<selectable>Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
-					</selectables>
+					</selectables><h:br/>
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
 						<selectable>in accordance with administrator-configurable policy</selectable>
-						<selectable>by express determination of an 
-							<selectables>
-								<selectable>Administrator</selectable>
-								<selectable>User</selectable>
-							</selectables></selectable>
+						<selectable>by express determination of a User</selectable>
 					</selectables>.
 				</title>
 				</ext-comp-def-title>
@@ -8918,7 +8801,10 @@
 					image. In either case, the integrity and authenticity of the update must be verified before the 
 					updated firmware is executed or used.<h:p/>
 					Likewise, if the TSF implements rollback prevention, this check must be made before the newly installed
-					firmware is executed.
+					firmware is executed.<h:p/>
+					In the selection "by express determination of a User," the "User" could be more properly expressed as 
+					the "operator." It can be either a User or an Administrator, but the distinction is not important in the
+					context of this requirement.
 				</note>
 				<aactivity>
 					<h:p/><TSS>
