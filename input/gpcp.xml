@@ -1103,7 +1103,8 @@
 			<depends on-incl="sfr-fau-gen-1"/>  
 			<f-element id="fau-stg-5e1">
 				<title>
-					The TSF shall [<h:i>overwrite the oldest stored audit records</h:i>] if the audit data storage is full.
+					The TSF shall optionally notify the administrator or user that storage is full and
+					[<h:i>overwrite the oldest stored audit records</h:i>] if the audit data storage is full.
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if FAU_GEN.1 is claimed.
@@ -7944,8 +7945,7 @@
 					<Tests>
 						The evaluator shall perform the following test:<h:p/>
 						The evaluator shall attempt to overwrite or modify the platform firmware without invoking one of
-						the update mechanisms specified in FPT_TUD_EXT.1 (e.g., using a modified Linux boot loader such 
-						as GRUB that attempts to write to the memory where platform firmware is stored). The test succeeds
+						the update mechanisms specified in FPT_TUD_EXT.1. The test succeeds
 						if the attempts to overwrite platform firmware fail. The evaluator shall attempt at least three 
 						such tests--one that attempts to overwrite the first platform firmware that executes after boot,
 						one that targets the secure update mechanism (if implemented), and one that targets firmware 
@@ -8017,8 +8017,7 @@
 						<selectable id="sel-rot2-hash">computation and verification of a hash by trusted code/data</selectable>
 						<selectable id="sel-rot2-digsig">verification of a digital signature by trusted code/data</selectable>
 						<selectable>measurement and verification by trusted code/data</selectable>
-						<selectable><h:mark>measurement and verification by an on-platform dedicated security component</h:mark></selectable>
-						<selectable><h:mark>measurement and verification by an off-platform entity</h:mark></selectable>
+						<selectable><h:mark>measurement by an on-platform dedicated security component and verification by an off-platform entity</h:mark></selectable>
 					</selectables>.<h:mark>(see Issues 79 and 80)</h:mark> 
 				</title>
 				<ext-comp-def-title>
@@ -8035,7 +8034,7 @@
 					Otherwise, integrity must be extended through cryptographic means: either through hashes
 					or digital signatures computed and verified by firmware that is trusted because it has  
 					previously had its integrity verified or is itself a Root of Trust. Verification can be performed
-					by TOE components such as management controllers or non-TOE trusted entities.<h:p/>
+					by TOE components such as management controllers or non-TOE trusted entities such as remote verifiers.<h:p/>
 					If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
 					If "<h:i>verification of a digital signature by trusted code/data</h:i>" is selected, then FCS_COP.1/SigVer must be claimed.					
 				</note>
@@ -8043,7 +8042,7 @@
 			<f-element id="fpt-rot-ext-2e2">
 				<title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.2.1 fails:
 					<h:ol type="1">
-						<h:li>Halt,</h:li>
+						<h:li>Stop all execution, or</h:li>
 						<h:li>Notify an 
 							<selectables>
 								<selectable id="sel-rot2-admin-notify">Administrator</selectable>
@@ -8054,7 +8053,8 @@
 								<selectable><assignable>other notification method(s)</assignable></selectable>
 							</selectables>, and</h:li>
 						<h:li><selectables linebreak="yes" onlyone="yes">
-							<selectable>Stop all execution and shut down</selectable>
+							<selectable>Stop all execution</selectable>
+							<selectable>Shut down, or</selectable>
 							<selectable id="sel-rot2-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
 						</selectables><h:br/>
 						<selectables linebreak="yes" onlyone="yes">
