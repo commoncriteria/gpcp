@@ -1601,8 +1601,7 @@ The following sections list Common Criteria and technology terms used in this do
 					</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 						The evaluator shall perform the following test:<p></p>
 						The evaluator shall attempt to overwrite or modify the platform firmware without invoking one of
-						the update mechanisms specified in <a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a> (e.g., using a modified Linux boot loader such 
-						as GRUB that attempts to write to the memory where platform firmware is stored). The test succeeds
+						the update mechanisms specified in <a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a>. The test succeeds
 						if the attempts to overwrite platform firmware fail. The evaluator shall attempt at least three 
 						such tests--one that attempts to overwrite the first platform firmware that executes after boot,
 						one that targets the secure update mechanism (if implemented), and one that targets firmware 
@@ -1652,7 +1651,7 @@ The following sections list Common Criteria and technology terms used in this do
 				
 			<div class="element"><div class="reqid" id="FPT_ROT_EXT.2.1"><a href="#FPT_ROT_EXT.2.1" class="abbr">FPT_ROT_EXT.2.1</a></div><div class="reqdesc">The integrity of all mutable platform firmware outside of the platform integrity root specified in <a href="#FPT_ROT_EXT.1">FPT_ROT_EXT.1</a> shall be verified 
 					prior to execution or use through:
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="sel-rot2-hash">computation and verification of a hash by trusted code/data</span></li><li style=""><span class="selectable-content" id="sel-rot2-digsig">verification of a digital signature by trusted code/data</span></li><li style=""><span class="selectable-content" id="_s_474">measurement and verification by trusted code/data</span></li><li style=""><span class="selectable-content" id="_s_475"><mark>measurement and verification by an on-platform dedicated security component</mark></span></li><li style=""><span class="selectable-content" id="_s_476"><mark>measurement and verification by an off-platform entity</mark></span></li></ul>].<mark>(see Issues 79 and 80)</mark> 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="sel-rot2-hash">computation and verification of a hash by trusted code/data</span></li><li style=""><span class="selectable-content" id="sel-rot2-digsig">verification of a digital signature by trusted code/data</span></li><li style=""><span class="selectable-content" id="_s_474">measurement and verification by trusted code/data</span></li><li style=""><span class="selectable-content" id="_s_475"><mark>measurement by an on-platform dedicated security component and verification by an off-platform entity</mark></span></li></ul>].<mark>(see Issues 79 and 80)</mark> 
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -1663,18 +1662,18 @@ The following sections list Common Criteria and technology terms used in this do
 					Otherwise, integrity must be extended through cryptographic means: either through hashes
 					or digital signatures computed and verified by firmware that is trusted because it has  
 					previously had its integrity verified or is itself a Root of Trust. Verification can be performed
-					by <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> components such as management controllers or non-TOE trusted entities.<p></p>
+					by <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> components such as management controllers or non-TOE trusted entities such as remote verifiers.<p></p>
 					If "<i>computation and verification of a hash by trusted code/data</i>" is selected, then <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> must be claimed.<p></p>
 					If "<i>verification of a digital signature by trusted code/data</i>" is selected, then <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a> must be claimed.					
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FPT_ROT_EXT.2.2"><a href="#FPT_ROT_EXT.2.2" class="abbr">FPT_ROT_EXT.2.2</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall take the following actions if an integrity check specified in <a href="#FPT_ROT_EXT.2.1">FPT_ROT_EXT.2.1</a> fails:
 					<ol type="1">
-						<li>Halt,</li>
+						<li>Stop all execution, or</li>
 						<li>Notify an 
-							[<b>selection</b>: <span class="selectable-content" id="sel-rot2-admin-notify">Administrator</span>, <span class="selectable-content" id="_s_478">User</span>] by
-							[<b>selection</b>: <span class="selectable-content" id="sel-rot2-audit">generating an audit event</span>, <span class="selectable-content" id="_s_480">[<b>assignment</b>: 
+							[<b>selection</b>: <span class="selectable-content" id="sel-rot2-admin-notify">Administrator</span>, <span class="selectable-content" id="_s_477">User</span>] by
+							[<b>selection</b>: <span class="selectable-content" id="sel-rot2-audit">generating an audit event</span>, <span class="selectable-content" id="_s_479">[<b>assignment</b>: 
      <span class="assignable-content">other notification method(s)</span>]</span>], and</li>
-						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_481">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-rot2-recovery">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]<br/>
+						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_480">Stop all execution</span></li><li style=""><span class="selectable-content" id="_s_481">Shut down, or</span></li><li style=""><span class="selectable-content" id="sel-rot2-recovery">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]<br/>
 						[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_483">automatically</span></li><li style=""><span class="selectable-content" id="sel-rot2-admin-config">in accordance with Administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_485">by express determination of an 
 								[<b>selection</b>: <span class="selectable-content" id="sel-rot2-admin-det">Administrator</span>, <span class="selectable-content" id="sel-rot2-user-det">User</span>]
 							</span></li></ul>]</li>
@@ -3453,7 +3452,8 @@ The following sections list Common Criteria and technology terms used in this do
 					</div></div></div></div></div><div class="comp" id="FAU_STG.5"><h4>FAU_STG.5 Prevention of Audit Data Loss</h4><div class="statustag"><p></p><b><i>This component must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if any of the following <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> are included:</i></b><br/><ul><li><b><i><a href="#FAU_GEN.1">FAU_GEN.1</a></i></b></li></ul></div>
 			  
 			<div class="element"><div class="reqid" id="FAU_STG.5.1"><a href="#FAU_STG.5.1" class="abbr">FAU_STG.5.1</a></div><div class="reqdesc">
-					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<i>overwrite the oldest stored audit records</i>] if the audit data storage is full.
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall optionally notify the administrator or user that storage is full and
+					[<i>overwrite the oldest stored audit records</i>] if the audit data storage is full.
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
