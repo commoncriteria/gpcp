@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
-<?xml-model href="https://github.com/commoncriteria/transforms/raw/master/schemas/CCProtectionProfile.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../transforms/schemas/CCProtectionProfile.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 
 <!--  Do we need these?
       FMT_SMR.1 Security Roles 
@@ -5241,11 +5241,8 @@
             </f-element>
             <f-element id="fcs-ipsec-ext-1e4">
                 <title>The TSF shall implement the IPsec protocol ESP as defined by RFC 4303 using the cryptographic 
-					algorithms [AES-GCM-256 (as specified in RFC 4106),
-                    <selectables>
-                        <selectable>AES-CBC-256 (specified in RFC 3602)</selectable>
-                        <selectable exclusive="yes">no other algorithms</selectable>
-                    </selectables>] together with a Secure Hash Algorithm (SHA)-based HMAC.
+					algorithms [<h:i>AES-GCM-256 (as specified in RFC 4106)</h:i>] 
+                    together with a Secure Hash Algorithm (SHA)-based HMAC.
                 </title>
 		<ext-comp-def-title><title>
 			The TSF shall implement the IPsec protocol ESP as defined by RFC 4303 using the cryptographic 
@@ -5260,41 +5257,35 @@
                     </TSS>
                     <Guidance>
                         The evaluator checks the Guidance to ensure it provides instructions on how the TOE is
-						configured to use the algorithms selected in this component and whether this is performed through direct
-						configuration, defined during initial installation, or defined by acquiring configuration settings from an
-						environmental component.
+						configured to use the algorithm selected in this component and whether this is performed through the TOE's 
+						default configuration (i.e., no configuration is necessary), direct	configuration, configuration defined 
+						during initial installation, or defined by acquiring configuration settings from an environmental component.
                     </Guidance>
                     <Tests>
 							The evaluator shall perform the following test:<h:p/>
 							The evaluator shall configure the TOE/platform as indicated in the 
-                            operational guidance configuring the TOE/platform to use each of the supported
-                            algorithms, attempt to establish a connection using ESP, and verify that the attempt succeeds.
+                            operational guidance configuring the TOE/platform to use the supported
+                            algorithm, attempt to establish a connection using ESP, and verify that the attempt succeeds.
                     </Tests>
                 </aactivity>
             </f-element>
             <f-element id="fcs-ipsec-ext-1e5">
                 <title>The TSF shall implement the protocol: <h:p/>
-                        IKEv2 as defined in RFC 7296 (with mandatory support for NAT traversal 
+                        [<h:i>IKEv2 as defined in RFC 7296 (with mandatory support for NAT traversal 
 							as specified in section 2.23), RFC 8784, RFC 8247, and 
-                            <selectables onlyone="yes">
-                                <selectable>no other RFCs for hash functions</selectable>
-                                <selectable>RFC 4868 for hash functions</selectable>
-                            </selectables>.
+                           	RFC 4868 for hash functions</h:i>].
                 </title>
 		    <ext-comp-def-title>
 			    <title>The TSF shall implement the protocol: <assignable>key exchange protocol</assignable>.
 	                </title></ext-comp-def-title>
-                <note role="application">If the TOE implements SHA-2 hash algorithms for IKEv2, the ST Author should
-					select RFC 4868. </note>
                 <aactivity level="element">
                     <TSS>
                         The evaluator shall examine the TSS to verify that IKEv2 is implemented. 
                     </TSS>
                     <Guidance>
                         The evaluator shall check the Guidance to ensure it instructs the administrator how to
-						configure the TOE to use IKEv2, and uses the guidance to configure the TOE to
-						perform NAT traversal for the test below. If XAUTH is implemented, the evaluator shall verify that the
-						Guidance provides instructions on how it is enabled or disabled.
+						configure the TOE to support only IKEv2 (if necessary), and uses the guidance to configure the TOE to
+						perform NAT traversal for the test below.
                     </Guidance>
                     <Tests>
                         Tests are performed in conjunction with the other IPsec evaluation activities with the exception
@@ -5303,33 +5294,33 @@
                             <test>The evaluator shall configure the TOE so that it will perform NAT traversal processing as described
 								in the TSS and RFC 7296, section 2.23. The evaluator shall initiate an IPsec connection and determine that
 								the NAT is successfully traversed. </test>
+							<test>The evaluator shall configure a remote peer to support IKEv1 only. If the TOE's supported versions of IKE is 
+									configurable, the evaluator shall follow the instructions specified in the operational guidance to ensure that only 
+									IKEv2 is supported. The evaluator shall then attempt to establish a connection between the TOE and that peer and 
+									verify the TSF rejects the connection attempt based on its lack of support for IKEv1.</test>
+
                         </testlist>
                     </Tests>
                 </aactivity>
             </f-element>
             <f-element id="fcs-ipsec-ext-1e6">
-                <title>The TSF shall ensure the encrypted payload in the IKEv2 protocol uses the cryptographic 
-					algorithm AES-CBC-256 as specified in RFC 6379 and
-                    <selectables>
-                        <selectable>AES-GCM-256 as specified in RFC 5282</selectable>
-                        <selectable exclusive="yes">no other algorithm</selectable>
-                    </selectables>.
+                <title>The TSF shall ensure the encrypted payload in the [<h:i>IKEv2</h:i>] protocol uses the cryptographic 
+					algorithms [<h:i>AES-GCM-256 as specified in RFC 5282</h:i>] and no other algorithm.
                 </title>
 		<ext-comp-def-title><title>
 			The TSF shall ensure the encrypted payload in the <assignable>key exchange protocol</assignable>
-                   protocol uses the cryptographic algorithms <assignable>cryptographic algorithms</assignable>.
+                   protocol uses the cryptographic algorithms <assignable>cryptographic algorithms</assignable> and no other algorithm.
                 </title></ext-comp-def-title>
                 <aactivity level="element">
                     <TSS>
                         The evaluator shall ensure the TSS identifies the algorithms used for encrypting the IKEv2
-						payload, and that the algorithm AES-CBC-256 is specified, and if others are chosen in the
-						selection of the requirement, those are included in the TSS discussion.
+						payload, and that the algorithm AES-GCM-256 is specified.
                     </TSS>
                     <Guidance>
                         The evaluator checks the Guidance to ensure it provides instructions on how the TOE is
-						configured to use the algorithms selected in this component and whether this is performed through direct
-						configuration, defined during initial installation, or defined by acquiring configuration settings from an
-						environmental component.
+						configured to use the algorithm selected in this component and whether this is performed through the TOE's 
+						default configuration (i.e., no configuration is necessary), direct	configuration, configuration defined 
+						during initial installation, or defined by acquiring configuration settings from an environmental component.
                     </Guidance>
                     <Tests>
 						The evaluator shall use the operational guidance to configure the TOE (or to configure the Operational
@@ -5345,7 +5336,7 @@
                 </aactivity>
             </f-element>
             <f-element id="fcs-ipsec-ext-1e7">
-                <title>The TSF shall ensure that IKEv2 SA lifetimes can be configured by
+                <title>The TSF shall ensure that [<h:i>IKEv2 SA lifetimes can be configured by
 							<selectables>
 								<selectable>an Administrator</selectable>
 								<selectable>a VPN Gateway</selectable>
@@ -5353,7 +5344,7 @@
 							<selectables>
 								<selectable>number of packets/number of bytes</selectable>
 								<selectable>length of time</selectable>
-							</selectables>.
+							</selectables></h:i>].
                 </title>
 				<ext-comp-def-title>
 					<title>The TSF shall ensure that <assignable>key exchange protocol lifetime configuration rules</assignable>.
@@ -5368,7 +5359,7 @@
 					packet-based or volume-based SA lifetimes are acceptable; the ST Author makes
 					the appropriate selection to indicate which type of lifetime limits are supported.<h:p/>
 					For IKEv2, there are no
-					hard-coded limits, but in this case it is required that an administrator be able to
+					hard-coded limits, therefore it is required that an administrator be able to
 					configure the values. In general, instructions for setting the parameters of the
 					implementation, including lifetime of the SAs, should be included in the 
 					operational guidance generated for AGD_OPE. It is appropriate to refine the
@@ -5398,19 +5389,19 @@
                             <test>[conditional] The evaluator shall configure a maximum lifetime in terms of the # of packets (or
 								bytes) allowed following the operational guidance. The evaluator shall establish an SA and determine that
 								once the allowed # of packets (or bytes) through this SA is exceeded, the connection is closed.</test>
-                            <test>[conditional] The evaluator shall construct a test where a Phase 1 SA is established and attempted
+                            <test>[conditional] The evaluator shall construct a test where an IKEv2 IKE_SA is established and attempted
 								to be maintained for more than 24 hours before it is renegotiated. The evaluator shall observe that this
 								SA is closed or renegotiated in 24 hours or less. If such an action requires that the TOE be configured in a
 								specific way, the evaluator shall implement tests demonstrating that the configuration capability of the
 								TOE works as documented in the operational guidance.</test>
 							<test> [conditional] The evaluator shall perform a test similar to Test 2 
-								for Phase 2 SAs, except that the lifetime will be 8 hours or less instead of 24 hours or less.</test>
+								for Child SAs, except that the lifetime will be 8 hours or less instead of 24 hours or less.</test>
 						</testlist>				    
                     </Tests>
                 </aactivity>
             </f-element>
             <f-element id="fcs-ipsec-ext-1e8">
-                <title>The TSF shall ensure that all IKE protocols implement DH groups [20 (384-bit Random ECP), and
+                <title>The TSF shall ensure that all IKE protocols implement DH groups [<h:i>20 (384-bit Random ECP), and
 					<selectables>
 						<selectable>21 (521-bit Random ECP)</selectable>
 						<selectable>15 (3072-bit MODP)</selectable>
@@ -5418,7 +5409,7 @@
 						<selectable>17 (6144-bit MODP)</selectable>
 						<selectable>18 (8192-bit MODP)</selectable>
 						<selectable exclusive="yes">no other DH groups</selectable>
-					</selectables>].
+					</selectables></h:i>].
 				</title>
 		    <ext-comp-def-title><title>
 			    The TSF shall ensure that all IKE protocols implement DH groups <assignable>DH Groups</assignable>.
@@ -5450,8 +5441,8 @@
                     <Guidance/>
                     <Tests>
 						The evaluator shall perform the following test: <h:p/>
-							For each supported DH group, the evaluator shall test to ensure that all supported IKE protocols
-								can be successfully completed using that particular DH group.
+							For each supported DH group, the evaluator shall test to ensure that IKEv2 
+							can be successfully completed using that particular DH group.
                     </Tests>
                 </aactivity>
             </f-element>
@@ -5573,31 +5564,31 @@
 								For each supported identifier type (excluding DNs), the evaluator shall repeat the following tests:<h:p/> </test>
 							<test>For each field of the certificate supported for comparison, the evaluator shall configure the peer’s
 								reference identifier on the TOE (per the administrative guidance) to match the field in the peer’s
-								presented certificate and shall verify that the IKE authentication succeeds.</test>
+								presented certificate and shall verify that the IKEv2 authentication succeeds.</test>
 							<test>For each field of the certificate support for comparison, the evaluator shall configure the peer’s
 								reference identifier on the TOE (per the administrative guidance) to not match the field in the peer’s
-								presented certificate and shall verify that the IKE authentication fails.<h:p/>
+								presented certificate and shall verify that the IKEv2 authentication fails.<h:p/>
 							   The following tests are conditional:</test>
 							<test>[conditional] If, according to the TSS, the TOE supports both Common Name and SAN certificate
 								fields and uses the preferred logic outlined in the Application Note, the tests above with the Common
 								Name field shall be performed using peer certificates with no SAN extension. Additionally, the evaluator
 								shall configure the peer’s reference identifier on the TOE to not match the SAN in the peer’s presented
-								certificate but to match the Common Name in the peer’s presented certificate, and verify that the IKE
+								certificate but to match the Common Name in the peer’s presented certificate, and verify that the IKEv2
 								authentication fails.</test>
 							<test>[conditional] If the TOE supports DN identifier types, the evaluator shall configure the peer's
 								reference identifier on the TOE (per the administrative guidance) to match the subject DN in the peer's
-								presented certificate and shall verify that the IKE authentication succeeds. To demonstrate a bit-wise
+								presented certificate and shall verify that the IKEv2 authentication succeeds. To demonstrate a bit-wise
 								comparison of the DN, the evaluator shall change a single bit in the DN (preferably, in an Object Identifier
-								(OID) in the DN) and verify that the IKE authentication fails. To demonstrate a comparison of DN values,
-								the evaluator shall change any one of the four DN values and verify that the IKE authentication fails.</test>
+								(OID) in the DN) and verify that the IKEv2 authentication fails. To demonstrate a comparison of DN values,
+								the evaluator shall change any one of the four DN values and verify that the IKEv2 authentication fails.</test>
 							<test>[conditional] If the TOE supports both IPv4 and IPv6 and supports IP address identifier types, the
 								evaluator must repeat test 1 and 2 with both IPv4 address identifiers and IPv6 identifiers. Additionally,
 								the evaluator shall verify that the TOE verifies that the IP header matches the identifiers by setting the
 								presented identifiers and the reference identifier with the same IP address that differs from the actual IP
-								address of the peer in the IP headers and verifying that the IKE authentication fails.</test>
-							<test>[conditional] If, according to the TSS, the TOE performs comparisons between the peer’s ID
+								address of the peer in the 							<test>[conditional] If, according to the TSS, the TOE performs comparisons between the peer’s ID
 								payload and the peer’s certificate, the evaluator shall repeat the following test for each combination of
-								supported identifier types and supported certificate fields (as above). The evaluator shall configure the
+								supported identifier typeIP headers and verifying that the IKEv2 authentication fails.</test>
+s and supported certificate fields (as above). The evaluator shall configure the
 								peer to present a different ID payload than the field in the peer’s presented certificate and verify that the
 								TOE fails to authenticate the IKE peer.</test>
 						</testlist>
@@ -10229,4 +10220,3 @@
  </bibliography>
 
 </PP>
-
