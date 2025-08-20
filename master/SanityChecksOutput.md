@@ -87,6 +87,14 @@
 * Error: Detected multiple elements with an id of 'sel-fcs-ckm-5-kdf-ctr-hmac256'.
 * Error: Detected multiple elements with an id of 'sel-fcs-ckm-5-kdf-ctr-hmac256'.
 * Error: Detected multiple elements with an id of 'sel-fcs-ckm-5-kdf-ctr-hmac256'.
+* Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j"
+* Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[3]""/config[1]""/ref-id[2]"sfr-fpt-j"
+* Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[1]"sfr-fpt-j"
+* Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[5]""/config[1]""/ref-id[2]"sfr-fpt-j"
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Overview[1]"The scope"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Overview[1]"The scope"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Overview[1]"The scope"/h:p[3]""
@@ -743,9 +751,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[6]""/f-element[2]""/note[1]"If ""/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[6]""/f-element[2]""/note[1]"If ""/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/h:strike[1]""/f-component[1]""/f-element[1]""/note[1]"This requ"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/h:strike[1]""/f-component[2]""/f-element[1]""/aactivity[1]""/TSS[1]"If ""/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/h:strike[1]""/f-component[2]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[3]""/f-element[3]""/note[1]"This SFR "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[4]""/f-element[1]""/aactivity[1]""/Tests[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[5]""/f-element[1]""/aactivity[1]""/Tests[1]"The evalu"/h:p[1]""
@@ -891,3 +896,7 @@ output/pkg-x509.xml:1: parser error : Document is empty
 ^
 * Warning: Since FCS_CKM_EXT.7.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
                        
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j" (use case or rule)
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[3]""/config[1]""/ref-id[2]"sfr-fpt-j" (use case or rule)
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[1]"sfr-fpt-j" (use case or rule)
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[5]""/config[1]""/ref-id[2]"sfr-fpt-j" (use case or rule)
