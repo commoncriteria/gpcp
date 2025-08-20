@@ -7146,17 +7146,17 @@
 		<!-- FMT_LIM.1: Limited Capabilities -->
 		<f-component id="sfr-fmt-lim-1" cc-id="fmt_lim.1" name="Limited Capabilities">
 			<f-element id="fmt-lim-1e1">
-				<title><h:mark>The TSF shall limit its capabilities so that in conjunction with “Limited availability
+				<title>The TSF shall limit its capabilities so that in conjunction with “Limited availability
 					(FMT_LIM.2)” the following policy is enforced [<h:i>Deploying test and debug features
 					after TOE delivery does not allow user data of the TOE to be disclosed or
 					manipulated, TSF data to be disclosed or manipulated, firmware to be
 					reconstructed such that information about construction of TSF may enable other
-					attacks.</h:i>] (Issue 72)</h:mark>
+					attacks.</h:i>]
 				</title>
 				<note role="application">
-					The GPCP may implement debug and test functions to
+					The GPCP may implement debug and test functions/ports to
 					support debug and testing after production. The TOE shall prevent abuse
-					of such functionality after the production test phase. The protection can be
+					of such abilities after the production test phase. The protection can be
 					achieved either by limiting the capability of the implemented functions or
 					by limiting their availability. Limited capability prevents misuse or
 					compromise of TSF data or user data, or the characterization of security
@@ -7183,7 +7183,7 @@
 						manipulated, or firmware to be reconstructed such that information about the
 						construction of TSF may enable other attacks.<h:p/>
 						<testlist>
-							For JTAG interfaces, the evaluator shall perform the following tests:
+							For test and debug ports and interfaces, the evaluator shall perform the following tests:
 							<test>The evaluator shall attempt to access the debug port without authenticating as 
 								an Administrator. The attempt should fail.</test>
 							<test>The evaluator shall authenticate as an Administrator and then attempt to access the
@@ -7198,16 +7198,43 @@
 		<!-- FMT_LIM.2: Limited Availability -->
 		<f-component id="sfr-fmt-lim-2" cc-id="fmt_lim.2" name="Limited Availability">
 			<f-element id="fmt-lim-2e1">
-				<title><h:mark>The TSF shall be designed in a manner that limits its availability so that in
+				<title>The TSF shall be designed in a manner that limits its availability so that in
 					conjunction with “Limited capabilities (FMT_LIM.1)” the following policy is
 					enforced [<h:i>Deploying test and debug features
 					after TOE delivery does not allow user data of the TOE to be disclosed or
 					manipulated, TSF data to be disclosed or manipulated, firmware to be
 					reconstructed such that information about construction of TSF may enable other
-					attacks.</h:i>] (Issue 72)</h:mark>
+					attacks.</h:i>]<h:p/>
+					
+					The TSF shall <selectables onlyone="yes">
+						<selectable>disable access through hardware</selectable>
+						<selectable>control access by a signing key</selectable>
+					</selectables> to testing and debug interfaces.
 				</title>
+				<note role="application">
+					This requirement means that test and debug ports, such as JTAG, may not be
+					accessible to tennant software. This requirement should be included in the
+					ST for use cases that include the threat T.PHYSICAL.
+				</note>
 				<aactivity>
-					<no-tests>Evaluation activities for FMT_LIM.2 are encompassed within those for FMT_LIM.2.</no-tests>
+					<TSS>
+						If "<h:i>disable access through hardware</h:i>" is selected:<h:br/>
+						The evaluator shall examine the TSS to determine the location of the test and ports on the TSF, to
+						include the order of the ports (i.e. Data In, Data Out, Clock, etc.).<h:p/>
+						
+						If "<h:i>control access by a signing key</h:i>" is selected:<h:br/>
+						The evaluator shall examine the TSS to determine how access to the test and debug ports are controlled by a
+						signing key. The evaluator shall examine the TSS to determine when the test and debug ports can be accessed,
+						i.e. what has the access to the signing key.
+					</TSS>
+					<Guidance/>
+					<Tests>
+						The following test requires the developer to provide access to a test platform that provides 
+						the evaluator with chip level access.<h:p/>
+						[conditional] If "<h:i>disable access through hardware</h:i>" is selected:<h:br/>
+						The evaluator shall connect a packet analyzer to the test and debug ports. The evaluator shall query 
+						the test and debug ports for its device ID and confirm that the device ID cannot be retrieved.
+					</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event/>
@@ -7661,7 +7688,8 @@
 				<audit-event-info>None.</audit-event-info>
 			</audit-event>
 		</f-component>	     
-		
+
+	<h:strike>
 		<!-- FPT_JTA_EXT.1 JTAG/Debug Port Access -->
 		<f-component id="sfr-fpt-jta-ext-1" cc-id="fpt_jta_ext.1" name="JTAG/Debug Port Access">
 			<consistency-rationale/>
@@ -7705,7 +7733,7 @@
 			<audit-event/>
 		</f-component>
 
-
+		
 		<!-- FPT_JTA_EXT.2 JTAG/Debug Port Disablement -->
 		<!-- Should be included for use cases where physical protections are required. -->
 		<f-component id="sfr-fpt-jta-ext-2" cc-id="fpt_jta_ext.2" name="JTAG/Debug Port Disablement" status="sel-based">
@@ -7750,7 +7778,7 @@
 			</f-element>
 			<audit-event/>
 		</f-component>
-	
+	</h:strike>
 	
 		<!-- FPT_PHP.1: Passive Detection of Physical Attack.  -->
 		<f-component id="sfr-fpt-php-1" cc-id="fpt_php.1" name="Passive detection of physical attack" status="sel-based">
