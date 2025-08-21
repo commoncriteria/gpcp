@@ -1,7 +1,6 @@
 Protection Profile for General-Purpose Computing Platform
 ===============
 ![Master Badges](https://img.shields.io/badge/Build-master-black.svg)
-![Build](https://github.com/commoncriteria/gpcp/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/gpcp/workflows/Validate/badge.svg)
 
 ![Last QuickBuilt Branch](https://raw.githubusercontent.com/commoncriteria/gpcp/gh-pages/build-branch-badge.svg)
@@ -20,9 +19,8 @@ See the [release](#Release-Version) section if you are looking for the officiall
 A list of products that have passed evaluation against this Protection Profile can be found [here](QQQQ).
 
 ## Draft Version
-
-* [Protection Profile for General-Purpose Computing Platforms](https://commoncriteria.github.io/pp/gpcp/gpcp-release.html) (html)
-* [Protection Profile for General-Purpose Computing Platforms](https://commoncriteria.github.io/pp/gpcp/gpcp-release.pdf) (pdf)
+* [Protection Profile for General-Purpose Computing Platforms (master)](https://commoncriteria.github.io/gpcp/master/gpcp-release.html) (html)
+* [Protection Profile for General-Purpose Computing Platforms (master)](https://commoncriteria.github.io/gpcp/master/gpcp-release.html.pdf) (pdf)
 
 ## Release Version
 * N/A - Not released yet
@@ -30,7 +28,7 @@ A list of products that have passed evaluation against this Protection Profile c
 ## Contributing
 
 If you are interested in contributing directly to future versions the this Protection Profile, please consider joining the NIAP technical community.
-* [How to join the NIAP Technical Community (Mailing list and updates)](https://www.niap-ccevs.org/NIAP_Evolution/tech_communities.cfm)
+* [How to join the NIAP Technical Community (Mailing list and updates)](https://www.niap-ccevs.org/technical-communities)
 
 ## Feedback
 
