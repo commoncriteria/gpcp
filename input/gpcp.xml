@@ -906,11 +906,11 @@
 						destruction of keys in some configurations or circumstances.</TSS>
               <Guidance/>
               <Tests>
-                The following tests may require the developer to provide access to a test platform that provides the evaluator with tools that are typically not found on factory products. <h:p/> <mark>What if the methods do not fall into any of the below categories?</mark> <h:p/>The evaluator shall perform the following for each of the key destruction methods described in FCS_CKM.6.2:
+                The following tests may require the developer to provide access to a test platform that provides the evaluator with tools that are typically not found on factory products. <h:p/> <h:mark>What if the methods do not fall into any of the below categories?</h:mark> <h:p/>The evaluator shall perform the following for each of the key destruction methods described in FCS_CKM.6.2:
                 <testlist>
-                  <test> <mark>If the key destruction method acts upon keys and keying material held in volatile memory
+                  <test> <h:mark>If the key destruction method acts upon keys and keying material held in volatile memory
 								that is subject to overwrite by the TOE (whether or not the plaintext key is 
-								subsequently encrypted for storage in volatile or non-volatile memory).</mark>  <h:p/> The evaluator shall: <h:ol type="1"><h:li>Record the value of the key or keying material.</h:li> <h:li>Cause the TOE to dump the appropriate memory into a binary file.</h:li> <h:li>Search the content of the binary file created in Step #2 to locate all
+								subsequently encrypted for storage in volatile or non-volatile memory).</h:mark>  <h:p/> The evaluator shall: <h:ol type="1"><h:li>Record the value of the key or keying material.</h:li> <h:li>Cause the TOE to dump the appropriate memory into a binary file.</h:li> <h:li>Search the content of the binary file created in Step #2 to locate all
 									instances of the known key value from Step #1.<h:p/>
 									Note that the primary purpose of Step #3 is to demonstrate that appropriate
 									search commands are being used for Steps #8 and #9.</h:li> <h:li>Cause the TOE to perform normal cryptographic processing with the key
@@ -921,8 +921,8 @@
 									stored, in order to choose fragment sizes that are the same or smaller than
 									any fragmentation of the data that may be implemented by the TOE. The
 									endianness or byte-order should also be taken into account in the search.)</h:li></h:ol>  <h:p/> Steps #1-8 ensure that the complete key does not exist anywhere in volatile memory. If a copy is found, then the test fails. <h:p/> Step #9 ensures that partial key fragments do not remain in memory. If the evaluator finds a 32-or-greater-consecutive-bit fragment, then fail immediately. Otherwise, there is a chance that it is not within the context of a key (e.g., some random bits that happen to match). If this is the case the test should be repeated with a different key in Step #1. If a fragment is also found in this repeated run, then the test fails unless the developer provides a reasonable explanation for the collision, then the evaluator may give a pass on this test. <h:p/> </test>
-                  <test> <mark>If the key destruction method acts upon keys and keying material held in non-volatile 
-								memory that is subject to overwrite or erasure by the TOE.</mark>  <h:ol type="1"><h:li>Record the value of the key or keying material.</h:li> <h:li>Cause the TOE to perform normal cryptographic processing with the key
+                  <test> <h:mark>If the key destruction method acts upon keys and keying material held in non-volatile 
+								memory that is subject to overwrite or erasure by the TOE.</h:mark>  <h:ol type="1"><h:li>Record the value of the key or keying material.</h:li> <h:li>Cause the TOE to perform normal cryptographic processing with the key
 									from Step #1.</h:li> <h:li>Search the non-volatile memory the key was stored in for instances of the
 									known key value from Step #1. <h:p/>
 									Note that the primary purpose of Step #3 is to demonstrate that appropriate
@@ -933,8 +933,8 @@
 									stored, in order to choose fragment sizes that are the same or smaller than
 									any fragmentation of the data that may be implemented by the TOE. The
 									endianness or byte-order should also be taken into account in the search).</h:li></h:ol> Step #6 ensures that partial key fragments do not remain in non-volatile memory. If the evaluator finds a 32-or-greater-consecutive-bit fragment, then fail immediately. Otherwise, there is a chance that it is not within the context of a key (e.g., some random bits that happen to match). If this is the case the test should be repeated with a different key in Step #1. If a fragment is also found in this repeated run, then the test fails unless the developer provides a reasonable explanation for the collision, then the evaluator may give a pass on this test. <h:p/> </test>
-                  <test> <mark>If the key destruction method acts upon keys and keying material held in non-volatile 
-								memory that is subject to overwrite or erasure by the TOE.</mark>  <h:ol type="1"><h:li>Record memory of the key or keying material.</h:li> <h:li>Cause the TOE to perform normal cryptographic processing with the key
+                  <test> <h:mark>If the key destruction method acts upon keys and keying material held in non-volatile 
+								memory that is subject to overwrite or erasure by the TOE.</h:mark>  <h:ol type="1"><h:li>Record memory of the key or keying material.</h:li> <h:li>Cause the TOE to perform normal cryptographic processing with the key
 									from Step #1.</h:li> <h:li>Cause the TOE to clear the key. Record the value to be used for the
 									overwrite of the key. </h:li> <h:li>Examine the memory from Step #1 to ensure the appropriate pattern
 									(recorded in Step #3) is used. </h:li></h:ol> The test succeeds if correct pattern is found in the memory location. If the pattern is not found, then the test fails.</test>
@@ -3852,7 +3852,7 @@
 					 <selectables linebreak="yes"><selectable id="fpt_rot_ext.2.2_1" >Stop all execution, or</selectable><selectable id="fpt_rot_ext.2.2_2">Notify an <selectables><selectable id="sel-rot2-admin-notify" >Administrator</selectable><selectable id="fpt_rot_ext.2.2_3" >User</selectable></selectables> by <selectables><selectable id="sel-rot2-audit" >generating an audit event</selectable><selectable id="fpt_rot_ext.2.2_5" ><assignable>other notification method(s)</assignable></selectable></selectables>, and <selectables linebreak="yes"><selectable id="fpt_rot_ext.2.2_6" >Stop all execution</selectable><selectable id="fpt_rot_ext.2.2_7" >Shut down, or</selectable><selectable id="sel-rot2-recovery" >Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable></selectables>  <selectables linebreak="yes"><selectable id="fpt_rot_ext.2.2_8" >automatically</selectable><selectable id="sel-rot2-admin-config" >in accordance with Administrator-configurable policy</selectable><selectable id="fpt_rot_ext.2.2_9">by express determination of an <selectables><selectable id="sel-rot2-admin-det" >Administrator</selectable><selectable id="sel-rot2-user-det" >User</selectable></selectables> </selectable></selectables> </selectable></selectables>.	</title>
             <ext-comp-def-title><title>The TOE shall take the following actions if an integrity check specified in
 					FPT_ROT_EXT.2.1 fails: 
-					<h:ol type="1"><h:li><mark>Halt,</mark></h:li><h:li><mark>Sometimes stop, sometimes notify, sometimes keep going but skip the bad code</mark></h:li><h:li>Notify an 
+					<h:ol type="1"><h:li><h:mark>Halt,</h:mark></h:li><h:li><h:mark>Sometimes stop, sometimes notify, sometimes keep going but skip the bad code</h:mark></h:li><h:li>Notify an 
 							<selectables><selectable>Administrator</selectable><selectable>User</selectable></selectables> by
 							<assignable>notification method</assignable>, and</h:li><h:li><selectables linebreak="yes" onlyone="yes"><selectable>Stop all execution and shut down</selectable><selectable>Initiate a recovery process</selectable></selectables><h:br/><selectables linebreak="yes" onlyone="yes"><selectable>automatically</selectable><selectable>in accordance with Administrator-configurable policy</selectable><selectable>by express determination of an 
 							<selectables><selectable>Administrator</selectable><selectable>User</selectable></selectables></selectable></selectables></h:li></h:ol>.	
