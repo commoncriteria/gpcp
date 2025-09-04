@@ -7826,32 +7826,28 @@ The following sections list Common Criteria and technology terms used in this do
 				</span></div></div></div>
 
 			<div class="element"><div class="reqid" id="FIA_AFL_EXT.1.3"><a href="#FIA_AFL_EXT.1.3" class="abbr">FIA_AFL_EXT.1.3</a></div><div class="reqdesc">
-					<mark>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall maintain the number of unsuccessful authentication attempts that have occurred 
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall maintain the number of unsuccessful authentication attempts that have occurred 
 					upon power off if the minimum boot time of the system is shorter than the lockout time
-					specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>. (see Issue 64)</mark>
+					specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>.
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					<mark>The purpose of this requirement is to prevent hammering attacks focused on
-					a device's pre-OS firmware from bypassing the actions in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a> by power
-					cycling the system in order to zero the authentication failure count. This purpose
-					is achieved by default if the minimum reboot time of the system is greater than the
-					timeout penalty specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>.<p></p>
-					If the actions specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a> are device wipe or a non-time-limited lockout, or if
-					the minimum reboot time is shorter than the specified lockout time, then  
-					the authentication failure count must be maintained across power cycles. The variation of
-					boot duration of individual devices and the configurability of <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>
-					may create scenarios where some devices are compliant by design (specifically server-class
-					devices with lengthy boot times) while other devices (specifically fast-booting
-					workstations) may need to implement this requirement. The intention is to protect
-					the pre-OS firmware without making assumptions as to boot duration per device.
-					<p></p></mark>	
-					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may implement an Authentication Factor interface that precedes another Authentication
-					Factor interface in the boot sequence (for example, a volume <abbr class="dyn-abbr"><a href="#abbr_DAR">DAR</a></abbr> decryption interface which
-					precedes the lockscreen interface) before the user can access the <abbr class="dyn-abbr"><a href="#abbr_GPCP">GPCP</a></abbr>. In this situation,
-					because the user must successfully authenticate to the first interface to access the second,
-					the number of unsuccessful authentication attempts need not be maintained for the second 
-					interface.
+					The purpose of this requirement is to prevent hammering attacks focused on a device's pre-OSfirmware
+					from bypassing the actions in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a> by power cycling the system in order to zero the
+					authentication failure count. The intention is to protect the pre-OS firmware without making
+					assumptions as to boot duration per device. This purpose is achieved by default if the minimum reboot
+					time of the system is greater than the timeout penalty specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>.<p></p>
+					If the actions specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a> are device wipe or a non-time-limited lockout, or if the
+					minimum reboot time is shorter than the specified lockout time, then the authentication failure count
+					must be maintained across power cycles. The variation of boot duration of individual devices and the
+					configurability of <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a> may create scenarios where some devices are compliant by default
+					(specifically slow-booting servers and workstations) while other devices (specifically fast-booting
+					desktops and notebooks) may need to implement this requirement.<p></p>
+					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may implement an Authentication Factor interface that precedes another Authentication Factor
+					interface in the boot sequence (for example, a volume <abbr class="dyn-abbr"><a href="#abbr_DAR">DAR</a></abbr> decryption interface which precedes the
+					lockscreen interface) before the user can access the <abbr class="dyn-abbr"><a href="#abbr_GPCP">GPCP</a></abbr>. In this situation, because the user must
+					successfully authenticate to the first interface to access the second, the number of unsuccessful
+					authentication attempts need not be maintained for the second interface.
 				</span></div></div></div>
 			
 			<div class="element"><div class="reqid" id="FIA_AFL_EXT.1.4"><a href="#FIA_AFL_EXT.1.4" class="abbr">FIA_AFL_EXT.1.4</a></div><div class="reqdesc">
@@ -7870,18 +7866,18 @@ The following sections list Common Criteria and technology terms used in this do
 					When the defined number of unsuccessful authentication attempts for the last available
 					authentication mechanism or a critical authentication mechanism has been surpassed, the 
 					<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall 
-						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_499">perform a wipe of all protected data</span></li><li style=""><span class="selectable-content" id="_s_500">exclude the <mark>current Administrator</mark> from further authentication attempts</span></li><li style=""><span class="selectable-content" id="_s_501">exclude the <mark>current Administrator</mark> from further authentication
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_499">perform a wipe of all protected data</span></li><li style=""><span class="selectable-content" id="_s_500">exclude the current Administrator from further authentication attempts</span></li><li style=""><span class="selectable-content" id="_s_501">exclude the current Administrator from further authentication
 								attempts for [<b>assignment</b>: 
-     <span class="assignable-content"><mark>a period of time greater than zero seconds</mark></span>]</span></li><li style=""><span class="selectable-content" id="_s_502">exclude the <mark>current Administrator</mark> from further authentication
+     <span class="assignable-content">a period of time greater than zero seconds</span>]</span></li><li style=""><span class="selectable-content" id="_s_502">exclude the current Administrator from further authentication
 								attempts for [<b>assignment</b>: 
-     <span class="assignable-content"><mark>a period of time greater than the minimum boot time of the system</mark></span>]</span></li></ul>].
+     <span class="assignable-content">a period of time greater than the minimum boot time of the system</span>]</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					<mark>(Issue 65) The "current Administrator" is the entity attempting to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> that has run afoul of 
+					The "current Administrator" is the entity attempting to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> that has run afoul of 
 					the limit on authentication attempts. For platforms that support multiple Administrator identities, only the
 					identity that has run afoul is punished. For platforms without such support, these actions
-					are effectively applied to the authentication mechanism rather than a specific user.</mark><p></p>
+					are effectively applied to the authentication mechanism rather than a specific user.<p></p>
 					Wipe is performed in accordance with <a href="#FCS_CKM.6">FCS_CKM.6</a>. Protected data is all non-TSF data, 
 					including all user or enterprise data. Some or all of this data may be considered sensitive
 					data as well.<p></p>
@@ -8029,7 +8025,7 @@ The following sections list Common Criteria and technology terms used in this do
 			  
 			<div class="element"><div class="reqid" id="FIA_UAU.5.1"><a href="#FIA_UAU.5.1" class="abbr">FIA_UAU.5.1</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide [<i>password and 
-					[<b>selection</b>: <span class="selectable-content" id="sel-fia-uau-5-x509">X.509 certificate-based authentication</span>, <span class="selectable-content" id="sel-fia-uau-5-ssh"><mark><abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>-based public key, password, or certificate authentication</mark></span>, <span class="selectable-content" id="_s_520">biometric authentication</span>, <span class="selectable-content" id="_s_521">no other authentication mechanism</span>]</i>] to support user authentication.<mark>See Issue 67</mark>
+					[<b>selection</b>: <span class="selectable-content" id="sel-fia-uau-5-x509">certificate-based authentication</span>, <span class="selectable-content" id="sel-fia-uau-5-ssh">public key-based authentication</span>, <span class="selectable-content" id="_s_520">biometric authentication</span>, <span class="selectable-content" id="_s_521">no other authentication mechanism</span>]</i>] to support user authentication.
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8044,9 +8040,8 @@ The following sections list Common Criteria and technology terms used in this do
 					FIA_X509_EXT.1 and FIA_X509_EXT.2 from <a href="https://commoncriteria.github.io/X509/master/X509-release.html">,
         version 
         </a>.<p></p>
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author should select "<i><abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>-based authentication</i>" if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports 
-					<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>-based authentication, whether public key-, password-, or certificate-based. In this case,
-					the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> claims the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
+					If "<i>public key-based authentication authentication</i>" is selected, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must claim
+					the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
         2.0</a>.	
 				</span></div></div></div>
@@ -9251,9 +9246,9 @@ The following sections list Common Criteria and technology terms used in this do
 					of [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_497">unique</span>, <span class="selectable-content" id="_s_498">non-unique</span>] unsuccessful authentication attempts occur related to last successful authentication for
 					each authentication mechanism.
 				<h4 id="ext-comp-FIA_AFL_EXT.1.3">FIA_AFL_EXT.1.3</h4>
-					<mark>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall maintain the number of unsuccessful authentication attempts that have occurred 
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall maintain the number of unsuccessful authentication attempts that have occurred 
 					upon power off if the minimum boot time of the system is shorter than the lockout time
-					specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>. (see Issue 64)</mark>
+					specified in <a href="#FIA_AFL_EXT.1.5">FIA_AFL_EXT.1.5</a>.
 				<h4 id="ext-comp-FIA_AFL_EXT.1.4">FIA_AFL_EXT.1.4</h4>
 					When the defined number of unsuccessful authentication attempts has exceeded the maximum
 					allowed for a given authentication mechanism, all future authentication attempts shall be
@@ -9263,11 +9258,11 @@ The following sections list Common Criteria and technology terms used in this do
 					When the defined number of unsuccessful authentication attempts for the last available
 					authentication mechanism or a critical authentication mechanism has been surpassed, the 
 					<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall 
-						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_499">perform a wipe of all protected data</span></li><li style=""><span class="selectable-content" id="_s_500">exclude the <mark>current Administrator</mark> from further authentication attempts</span></li><li style=""><span class="selectable-content" id="_s_501">exclude the <mark>current Administrator</mark> from further authentication
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_499">perform a wipe of all protected data</span></li><li style=""><span class="selectable-content" id="_s_500">exclude the current Administrator from further authentication attempts</span></li><li style=""><span class="selectable-content" id="_s_501">exclude the current Administrator from further authentication
 								attempts for [<b>assignment</b>: 
-     <span class="assignable-content"><mark>a period of time greater than zero seconds</mark></span>]</span></li><li style=""><span class="selectable-content" id="_s_502">exclude the <mark>current Administrator</mark> from further authentication
+     <span class="assignable-content">a period of time greater than zero seconds</span>]</span></li><li style=""><span class="selectable-content" id="_s_502">exclude the current Administrator from further authentication
 								attempts for [<b>assignment</b>: 
-     <span class="assignable-content"><mark>a period of time greater than the minimum boot time of the system</mark></span>]</span></li></ul>].
+     <span class="assignable-content">a period of time greater than the minimum boot time of the system</span>]</span></li></ul>].
 				<h4 id="ext-comp-FIA_AFL_EXT.1.6">FIA_AFL_EXT.1.6</h4>
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall increment the number of unsuccessful authentication attempts prior to notifying the 
 					user that the authentication was unsuccessful.
