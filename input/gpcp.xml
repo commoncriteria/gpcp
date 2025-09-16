@@ -244,7 +244,59 @@
       <term full="Exclusive Or" abbr="XOR"/>
       <term full="eXtensible Configuration Checklist Description Format" abbr="XCCDF"/>
     </tech-terms>
-    <section title="Compliant Targets of Evaluation" id="TOEdescription"/>
+    <section title="Compliant Targets of Evaluation" id="TOEdescription">
+      
+		This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements 
+		for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more 
+		general-purpose operating systems as defined by the Protection Profile for General Purpose 
+		Operating Systems, one or more virtualization systems as defined by the Protection Profile for 
+		Virtualization, or more than one application. Typical platform 
+		implementations include servers, PC clients, laptops, and tablets.<h:p/>
+		This Protection Profile applies only to platforms that support firmware update. <h:p/>
+		Mobile Device platforms as defined in the Protection Profile for Mobile Device Fundamentals and 
+		Network Device platforms as defined in the collaborative Protection Profile for Network Devices 
+		are out of scope of this PP.  Mobile Device and Network Device platforms must be evaluated 
+		against the more specific requirements in their respective specialized PPs.<h:p/>
+		Likewise, hardcopy devices such as printers, scanners, copiers, and fax machines are out of scope of this 
+		Protection Profile and should be evaluated instead against the Protection Profile for Hardcopy Devices.<h:p/>
+		Finally, platforms for sharing and isolation of peripheral devices across domains, such as KVM Switches and Isolators, should 
+		be evaluated against the Protection Profile for Peripheral Sharing Devices.<h:p/>
+		The core security features of GPCPs include protected firmware and a boot integrity processes. Platform firmware
+		must be protected such that it is not permitted to execute if it has been modified outside of authorized and
+		authenticated update processes. Other use-case-specific features include audit capabilities, Administrator
+		authentication, and protections against physical tampering.
+		
+
+		
+      <sec:TOE_Boundary>
+			The TOE comprises the hardware and firmware necessary for the hosting of tenant software. Generally,
+			tenant software is an operating system or virtualization system, but may also be "bare-metal" applications.
+			Tenant software is outside the TOE boundary.<h:p/>
+			For example, for a PC Client platform, the hardware and firmware responsible for booting the platform and 
+			operation of platform devices (such as BIOS, device controller firmware, and platform management firmware would all 
+			be included in the TOE. Operating systems and application software is outside the TOE.<h:p/>
+			For server-class hardware, any management controller responsible for updating platform firmware (such as a 
+			baseboard management controller) is expressly included within the TOE.<h:p/> <figure entity="images/arch.png" title="High-Level Architecture of a Generic Platform" id="toe"/><h:p/>
+			Figure 1 (taken from <h:a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-193.pdf">
+			NIST SP 800-193</h:a>) shows a high-level system architecture for a typical generic computing platform.
+			Tenant software (operating system/virtualization system and applications) is shown in orange.
+			The tenant-specific software responsible for booting the tenant (Master Boot Record, etc.) is shown
+			in grey. Platform components are in blue.<h:p/>
+			In general, the TOE consists of the platform components represented 
+			by the blue boxes, along with their associated firmware. Any particular platform may have 
+			additional hardware components, or fewer than those illustrated.<h:p/>
+			If the GPCP includes Full Drive Encryption (FDE), and the FDE component has been previously evaluated against 
+			the FDE cPPs, or will be evaluated against the FDE cPPs concurrently with the GPCP evaluation, then the FDE component may be
+			excluded from the TOE for purposes of the GPCP evaluation.
+</sec:TOE_Boundary>
+      <sec:TOE_Operational_Environment>
+			  The TOE has no platform since it is itself a platform, but the TOE does have an operational
+			  environment. The OE consists of the physical environment in which the TOE operates (e.g., 
+			  data center, enterprise office, vehicle, outdoors) and any networks to which the TOE may
+			  be connected. Different use cases may invoke different requirements depending on the 
+			  operational environment.
+		</sec:TOE_Operational_Environment>
+    </section>
     <sec:Use_Cases>
       
 		This Protection Profile supports several use cases. The cases
