@@ -1927,9 +1927,9 @@
 							</selectables></col>
 							<col>KPF2 - KDF in Counter Mode using <selectables>
 								<selectable id="sel-fcs-ckm-5-kdf-ctr-cmac">AES-256-CMAC</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">>HMAC-SHA-256</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">>HMAC-SHA-384</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac512">>HMAC-SHA-512</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">HMAC-SHA-256</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">HMAC-SHA-384</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac512">HMAC-SHA-512</selectable>
 							</selectables> as the PRF</col>
 							<col><selectables>
 								<selectable>256</selectable>
@@ -1951,9 +1951,9 @@
 							</selectables></col>
 							<col>KPF3 - KDF in Feedback Mode using <selectables>
 								<selectable id="sel-fcs-ckm-5-kdf-fb-cmac">AES-256-CMAC</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-fb-hmac256">>HMAC-SHA-256</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">>HMAC-SHA-384</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-fb-hmac512">>HMAC-SHA-512</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-fb-hmac256">HMAC-SHA-256</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">HMAC-SHA-384</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-fb-hmac512">HMAC-SHA-512</selectable>
 							</selectables> as the PRF</col>
 							<col><selectables>
 								<selectable>256</selectable>
@@ -1974,9 +1974,9 @@
 								</selectables></col>
 							<col>KDF in Double Pipeline Iteration Mode using <selectables>
 								<selectable id="sel-fcs-ckm-5-kdf-dpi-cmac">AES-256-CMAC</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-dpi-hmac256">>HMAC-SHA-256</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">>HMAC-SHA-384</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-dpi-hmac512">>HMAC-SHA-512</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-dpi-hmac256">HMAC-SHA-256</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">HMAC-SHA-384</selectable>
+								<selectable id="sel-fcs-ckm-5-kdf-dpi-hmac512">HMAC-SHA-512</selectable>
 								</selectables> as the PRF</col>
 							<col><selectables>
 								<selectable>256</selectable>
@@ -2983,11 +2983,18 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
-						nonces, and tags in conformance with the relevant specifications.
+						nonces, and tags in conformance with the relevant specifications.<h:p/>
+						If a CCM mode algorithm is selected, then the evaluator shall examine the TOE summary
+						specification to confirm that it describes how the nonce is generated and that the same nonce is
+						never reused to encrypt different plaintext pairs under the same key.<h:p/>
+						If a GCM mode algorithm is selected, then the evaluator shall examine the TOE summary
+						specification to confirm that it describes how the IV is generated and that the same IV is never
+						reused to encrypt different plaintext pairs under the same key. The evaluator shall also confirm
+						that for each invocation of GCM, the length of the plaintext is at most (2<h:sup>32</h:sup>)-2 blocks.
 					</TSS>
 					<Guidance/>
 					<Tests>
-						The following tests require the developer to provide access to a test platform that
+						The following tests may require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
 						The following tests are conditional based upon the selections made in the SFR. The
 						evaluator shall perform the following test or witness respective tests executed by
@@ -3152,7 +3159,7 @@
 					</TSS>
 					<Guidance/>
 					<Tests>
-						The following tests require the developer to provide access to a test platform that
+						The following tests may require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
 						The following tests are conditional based upon the selections made in the SFR. The
 						evaluator shall perform the following test or witness respective tests executed by
@@ -3275,7 +3282,7 @@
 					</TSS>
                     <Guidance/>
                     <Tests>
-						The following tests require the developer to provide access to a test platform that
+						The following tests may require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
 						The following tests are conditional based upon the selections made in the SFR. The
 						evaluator shall perform the following test or witness respective tests executed by
@@ -3545,19 +3552,19 @@
 						
 						<selectable id="sel-fcs-cop-keyencap-kas1">
 							<col>KAS1</col>
-							<col>KAS1 [RSA-single party]</col>
+							<col>RSASVE</col>
 						<col><selectables>
 							<selectable>3072</selectable>
 							<selectable>4096</selectable>
 							<selectable>6144</selectable>
 							<selectable>8192</selectable>
 						</selectables> bits</col>
-						<col>NIST SP 800-56B Revision  2 (Sections 6.3 and 8.2)</col>
+						<col>NIST SP 800-56B Revision 2 (Section 7.2.1)</col>
 						</selectable>
 						
 						<selectable id="sel-fcs-cop-keyencap-kts">
 							<col>KTS-OAEP</col>
-							<col>KTS-OAEP [RSA-OAEP]</col>
+							<col>RSA-OAEP</col>
 						<col><selectables>
 							<selectable>3072</selectable>
 							<selectable>4096</selectable>
@@ -3590,7 +3597,7 @@
 					</TSS>
 					<Guidance/>
 					<Tests>
-						The following tests require the developer to provide access to a test platform that
+						The following tests may require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<h:p/>
 						The following tests are conditional based upon the selections made in the SFR. The
 						evaluator shall perform the following test or witness respective tests executed by
@@ -3601,7 +3608,7 @@
 						environment and TOE execution environment shall be described.<h:p/>
 
 						<!-- KAS1 -->
-						<h:br/><h:b>KAS1 [RSA-single party]</h:b><h:p/>
+						<h:br/><h:b>KAS1 [RSASVE single-party]</h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
@@ -3611,21 +3618,21 @@
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">KAS1</h:td>
-								<h:td valign="top">KAS1 [RSA-single party]</h:td>
+								<h:td valign="top">RSASVE</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits</h:td>
-								<h:td valign="top">NIST SP 800-56B Revision 2 (Sections 6.3 &amp; 8.2)</h:td>
+								<h:td valign="top">NIST SP 800-56B Revision 2 (Section 7.2.1)</h:td>
 							</h:tr>
 						</h:table><h:p/>	
-						To test the TOE’s implementation of the of KAS1 RSA Single-Party Key Encapsulation, the
+						To test the TOE’s implementation of the of KAS1 RSASVE Single-Party Key Encapsulation, the
 						evaluator shall perform the Algorithm Functional Test and Validation Test using the following
 						input parameters:<h:ul>
 						<h:li>RSA Private key format [Basic with fixed public exponent, Prime Factor with fixed
 							public exponent, Chinese Remainder Theorem with fixed public exponent, Basic with
 							random public exponent, Prime Factor with random public exponent, Chinese
 							Remainder Theorem with random public exponent]</h:li>
-						<h:li>Modulus value [3072, 4096, 6144, 8192]</h:li>
+						<h:li>Modulo value [3072, 4096, 6144, 8192]</h:li>
 						<h:li>Role [initiator, responder]</h:li>
-						<h:li>Key confirmation supported [yes, no] [not included in KAS2]</h:li></h:ul><h:p/>
+						<h:li>Key confirmation supported [yes, no]</h:li></h:ul><h:p/>
 						The evaluator shall generate a test group (i.e. set of tests) for each parameter value of the above
 						parameter type with the largest number of supported values. For example, if the TOE supports all
 						six key formats, then the evaluator shall generate six test groups. Each of the above supported
@@ -3662,7 +3669,7 @@
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">KTS-OAEP</h:td>
-								<h:td valign="top">KTS-OAEP [RSA-OAEP]</h:td>
+								<h:td valign="top">RSA-OAEP</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits</h:td>
 								<h:td valign="top">NIST SP 800-56B Revision 2 (Sections 6.3 &amp; 9)</h:td>
 							</h:tr>
