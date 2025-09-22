@@ -179,6 +179,7 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[21]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[22]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[23]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:table[4]""/h:tr[2]""/h:td[4]"RFC 8554 "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[24]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[25]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[26]""
@@ -186,6 +187,19 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[28]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[29]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[30]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[31]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[32]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[33]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[34]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[35]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[36]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:table[8]""/h:tr[2]""/h:td[4]"RFC 8391 "/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[37]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[38]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[39]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[40]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[41]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[42]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[3]"The follo"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[3]"The follo"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
@@ -879,6 +893,7 @@ output/pkg-x509.xml:1: parser error : Document is empty
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
+ Failed to find a reference to xmss-test-cases.
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
