@@ -2929,7 +2929,7 @@
 				The TSF shall perform [authenticated encryption with associated data] in accordance with a specified 
 					cryptographic algorithm 
 					<selectables>
-						<tabularize id="fcs-cop-aead-sels" title="Recommended choices for FCS_COP.1/AEAD">
+						<tabularize id="fcs-cop-aead-sels" title="Required choices for FCS_COP.1/AEAD">
 							<textcol>Identifier</textcol>
 							<reqtext></reqtext>
 							<selectcol>Cryptographic algorithm</selectcol>
@@ -3124,7 +3124,7 @@
 			<f-element id="fcs-cop-1e1-cmac">
 				<title> The TSF shall perform [CMAC] in accordance with a specified cryptographic algorithm 
 					<selectables>
-						<tabularize id="tab-fcs-cop-cmac-sels" title="Recommended choices for FCS_COP.1/CMAC">
+						<tabularize id="tab-fcs-cop-cmac-sels" title="Required choices for FCS_COP.1/CMAC">
 							<textcol>Identifier</textcol>
 							<reqtext></reqtext>
 							<selectcol>Cryptographic algorithm</selectcol>
@@ -3413,7 +3413,7 @@
 				<title>The TSF shall perform [keyed hash message authentication] in accordance
 					with a specified cryptographic algorithm 
 					<selectables>
-						<tabularize id="tab-fcs-cop-keyedhash-sels" title="Recommended choices for FCS_COP.1/KeyedHash">
+						<tabularize id="tab-fcs-cop-keyedhash-sels" title="Required choices for FCS_COP.1/KeyedHash">
 							<selectcol>Keyed Hash Algorithm</selectcol>
 							<reqtext>and cryptographic key sizes</reqtext>
 							<selectcol>Cryptographic key sizes</selectcol>
@@ -3538,7 +3538,7 @@
 			<f-element id="fcs-cop-1e1-keyencap">
 				<title> The TSF shall perform [key encapsulation] in accordance with a specified cryptographic algorithm 
 					<selectables>
-						<tabularize id="tab-fcs-cop-keyencap-sels" title="Recommended choices for FCS_COP.1/KeyEncap">
+						<tabularize id="tab-fcs-cop-keyencap-sels" title="Required choices for FCS_COP.1/KeyEncap">
 							<textcol>Identifier</textcol>
 							<reqtext></reqtext>
 							<selectcol>Cryptographic algorithm</selectcol>
@@ -3782,7 +3782,7 @@
 				<title>
 					The TSF shall perform [key wrapping] in accordance with a specified cryptographic algorithm 
 					<selectables>
-						<tabularize id="fcs-cop-kw-sels" title="Recommended choices for FCS_COP.1/KeyWrap">
+						<tabularize id="fcs-cop-kw-sels" title="Required choices for FCS_COP.1/KeyWrap">
 							<textcol>Identifier</textcol>
 							<reqtext></reqtext>
 							<selectcol>Cryptographic algorithm</selectcol>
@@ -3962,7 +3962,7 @@
 				<title> The TSF shall perform [digital signature generation] in accordance with a specified 
 					cryptographic algorithm 
 					<selectables>
-						<tabularize id="tab-fcs-cop-siggen-sels" title="Recommended choices for FCS_COP.1/SigGen">
+						<tabularize id="tab-fcs-cop-siggen-sels" title="Required choices for FCS_COP.1/SigGen">
 							<textcol>Identifier</textcol>
 							<reqtext></reqtext>
 							<selectcol>Cryptographic algorithm</selectcol>
@@ -4471,7 +4471,7 @@
 					The TSF shall perform [digital signature verification] in accordance with a specified 
 					cryptographic algorithm  
 					<selectables>
-					<tabularize id="tab-fcs-cop-sigver-sels" title="Recommended choices for FCS_COP.1/SigVer">
+					<tabularize id="tab-fcs-cop-sigver-sels" title="Required choices for FCS_COP.1/SigVer">
 						<textcol>Identifier</textcol>
 						<reqtext></reqtext>
 						<selectcol>Cryptographic algorithm</selectcol>
@@ -4921,7 +4921,7 @@
 					The TSF shall perform [symmetric-key encryption/decryption] in accordance with a 
 					specified cryptographic algorithm   
 					<selectables>
-						<tabularize id="fcs-cop-skc-sels" title="Recommended choices for FCS_COP.1/SKC">
+						<tabularize id="fcs-cop-skc-sels" title="Required choices for FCS_COP.1/SKC">
 							<textcol>Identifier</textcol>
 							<reqtext></reqtext>
 							<selectcol>Cryptographic algorithm</selectcol>
@@ -5192,7 +5192,7 @@
 				<title>
 					The TSF shall perform [extendable-output function] in accordance with a specified cryptographic algorithm  
 					<selectables>
-						<tabularize id="fcs-cop-xof-sels" title="Recommended choices for FCS_COP.1/XOF">
+						<tabularize id="fcs-cop-xof-sels" title="Required choices for FCS_COP.1/XOF">
 							<selectcol>Cryptographic algorithm</selectcol>
 							<reqtext>and parameters</reqtext>
 							<selectcol>Parameters</selectcol>
@@ -7514,14 +7514,16 @@
 					<Tests>
 						The evaluator shall attempt to access test and debug functions/ports. Connect probes or
 						adapters to ports, pads, or interfaces as necessary. Utilize package analyzer or other
-						tools as appropriate.
+						tools as appropriate. If FMT_LIM.2 is also utilized, then the evaluator may not utilize
+						a signing key for this test.
 						<testlist>
 							The evaluator shall conduct the following tests:
 							<test>Execute all documented get, read, and query commands. Examine the captured output.
-								Output must not contain user data, TSF environment data, or firmware instructions.</test>
+								Output must not contain user data, TSF data, or firmware instructions. No output is
+								also acceptable.</test>
 							<test>The evaluator shall execute all documented set, write, and allocate functions with
 								the intent to inject arbitrary examination data through the TSF boundary. Attempts to
-								alter user data, TSF environment data, and TOE firmware should fail.</test>
+								alter user data, TSF data, and TOE firmware should fail. </test>
 						</testlist>
 					</Tests>
 				</aactivity>
@@ -7579,18 +7581,20 @@
 					<Tests>
 						The evaluator shall attempt to access test and debug functions/ports. Connect probes or
 						adaptors to ports, pads, or interfaces as necessary. Utilize a package analyzer or other
-						tools as appropriate.
+						tools as appropriate. If FMT_LIM.1 is also utilized, then get/read/query and set/write/allocate
+						functions may perform actions on user data, TSF data, and firmware when a signing key is
+						used to provide authentication.
 						<testlist>
 							The evaluator shall conduct the following tests:
 							<test>If "<h:i>disable access through hardware</h:i>" is selected then the evaluator shall
-								utilize the test and debug ports to retrieve arbitrary data. The test succeeds if
-								an error is returned or no response is observed. The test fails if arbitrary data is
+								utilize the test and debug ports to retrieve arbitrary data. The test succeeds if an
+								error is returned or no response is observed. The test fails if arbitrary data is
 								returned.</test>
 							<test>If “<h:i>control access by a signing key</h:i>” is selected then the evaluator shall
-								use a signing key provided by the vendor or follow instructions to create a signing
-								key used for test and debug features. The evaluator shall query the test and debug ports for
-								its arbitrary data and provide the signing key to authorize this query. The test succeeds
-								if data is returned to the evaluator. The test fails if no data is returned.</test>
+								create a signing key used for test and debug features. The evaluator shall query the
+								test and debug ports for its arbitrary data and provide the signing key to authorize
+								this query. The test succeeds if data is returned to the evaluator. The test fails if
+								no data is returned.</test>
 						</testlist>
 					</Tests>
 				</aactivity>
@@ -8300,11 +8304,11 @@
 				<title>The integrity of all mutable platform firmware outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
 					prior to
 					<selectables>
-						<selectable>execution,</selectable>
-						<selectable>use,</selectable>
+						<selectable>execution</selectable>
+						<selectable>use</selectable>
 						<selectable>or access to TSF data</selectable>
 					</selectables>
-					through:
+					through
 					<selectables linebreak="yes">
 						<selectable id="sel-rot2-hash">computation and verification of a hash by trusted code/data</selectable>
 						<selectable id="sel-rot2-digsig">verification of a digital signature by trusted code/data</selectable>
