@@ -7512,10 +7512,11 @@
 						by default.
 					</Guidance>
 					<Tests>
-						The evaluator shall attempt to access test and debug functions/ports. Connect probes or
+						The evaluator shall attempt to access test and debug functions/ports. If the test and debug
+						functions/ports allow for authorization credentials, the evaluator shall create an arbitrary
+						authorization credential that is not provided by the vendor. The evaluator shall connect probes or
 						adapters to ports, pads, or interfaces as necessary. Utilize package analyzer or other
-						tools as appropriate. If FMT_LIM.2 is also utilized, then the evaluator may not utilize
-						a signing key for this test.
+						tools as appropriate.
 						<testlist>
 							The evaluator shall conduct the following tests:
 							<test>Execute all documented get, read, and query commands. Examine the captured output.
@@ -7523,7 +7524,7 @@
 								also acceptable.</test>
 							<test>The evaluator shall execute all documented set, write, and allocate functions with
 								the intent to inject arbitrary examination data through the TSF boundary. Attempts to
-								alter user data, TSF data, and TOE firmware should fail. </test>
+								alter user data, TSF data, and TOE firmware must fail.</test>
 						</testlist>
 					</Tests>
 				</aactivity>
@@ -7536,17 +7537,25 @@
 			<f-element id="fmt-lim-2e1">
 				<title>
 					The TSF shall be designed in a manner that limits its availability so that in conjunction
-					with “Limited capabilities (FMT_LIM.1)” the following policy is enforced: [
-					The TSF shall <selectables onlyone="yes">
-						<selectable>disable access through hardware</selectable>
-						<selectable>control access by a signing key</selectable>
-					</selectables> to testing and debug features.]
+					with “Limited capabilities (FMT_LIM.1)” the following policy is enforced:
+					[Deploying test and debug features after
+					TOE delivery does not allow user data of the TOE to be disclosed or manipulated, TSF data
+					to be disclosed or manipulated, and firmware to be reconstructed such that information about
+					construction of the TSF may enable other attacks.]
 				</title>
 				<note role="application">
-					This requirement means that test and debug functions/ports may not be accessible following
+					The GPCP may implement test and debug features such as (but not limited to) JTAG, SWD, UART,
+					and USB. The TOE shall prevent abuse of such functionality after the production test phase.
+					The protection can be achieved by limiting the capability of the implemented features and/or
+					limiting their availability.<h:p/>
+					Limited availability means that test and debug functions/ports may not be accessible following
 					TOE production. Examples of test and debug functions/ports include but are not limited to
 					JTAG, SWD, UART, and USB. This requirement should be included in the ST for use cases that
-					include the threat T.PHYSICAL.
+					include the threat T.PHYSICAL.<h:p/>
+					Limited capability prevents misuse or compromise of TSF data or user data, or the characterization
+					of security functions and security services – even if the functions/ports can be activated –
+					while limited availability controls or prevents access to the capabilities after testing. 
+					In most cases, both types of limitations are implemented to ensure the required protection.
 				</note>
 				<aactivity>
 					<TSS>
@@ -7561,16 +7570,6 @@
 						and test and debug mechanisms identified by reverse engineers. The TOE shall be
 						configured to enforce TSF boundaries per vendor configuration instructions (this may
 						require disabling test and debugging features in firmware configuration).<h:p/>
-						
-						If "<h:i>disable access through hardware</h:i>" is selected:<h:br/>
-						The evaluator shall examine the TSS to determine the location of the test and debug
-						functions/ports on the TSF, to include the order of the ports (i.e. Data In, Data Out,
-						Clock, and similar as appropriate for the interface/specification).<h:p/>
-						
-						If "<h:i>control access by a signing key</h:i>" is selected:<h:br/>
-						The evaluator shall examine the TSS to determine how access to the test and debug portsare controlled by a
-						signing key. The evaluator shall examine the TSS to determine when the test and debug ports can be accessed,
-						i.e. what has the access to the signing key.
 					</TSS>
 					<Guidance>
 						TOEs that do not provide test and debug functionality/ports are compliant with this
@@ -7579,22 +7578,19 @@
 						by default.
 					</Guidance>
 					<Tests>
-						The evaluator shall attempt to access test and debug functions/ports. Connect probes or
-						adaptors to ports, pads, or interfaces as necessary. Utilize a package analyzer or other
-						tools as appropriate. If FMT_LIM.1 is also utilized, then get/read/query and set/write/allocate
-						functions may perform actions on user data, TSF data, and firmware when a signing key is
-						used to provide authentication.
+						The evaluator shall attempt to access test and debug functions/ports. If the test and debug
+						functions/ports allow for authorization credentials, the evaluator shall create an arbitrary
+						authorization credential that is not provided by the vendor. The evaluator shall connect probes or
+						adapters to ports, pads, or interfaces as necessary. Utilize package analyzer or other
+						tools as appropriate.
 						<testlist>
 							The evaluator shall conduct the following tests:
-							<test>If "<h:i>disable access through hardware</h:i>" is selected then the evaluator shall
-								utilize the test and debug ports to retrieve arbitrary data. The test succeeds if an
-								error is returned or no response is observed. The test fails if arbitrary data is
-								returned.</test>
-							<test>If “<h:i>control access by a signing key</h:i>” is selected then the evaluator shall
-								create a signing key used for test and debug features. The evaluator shall query the
-								test and debug ports for its arbitrary data and provide the signing key to authorize
-								this query. The test succeeds if data is returned to the evaluator. The test fails if
-								no data is returned.</test>
+							<test>Execute all documented get, read, and query commands. Examine the captured output.
+								Output must not contain user data, TSF data, or firmware instructions. No output is
+								also acceptable.</test>
+							<test>The evaluator shall execute all documented set, write, and allocate functions with
+								the intent to inject arbitrary examination data through the TSF boundary. Attempts to
+								alter user data, TSF data, and TOE firmware must fail.</test>
 						</testlist>
 					</Tests>
 				</aactivity>
