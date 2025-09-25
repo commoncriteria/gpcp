@@ -244,7 +244,7 @@
       <term full="Exclusive Or" abbr="XOR"/>
       <term full="eXtensible Configuration Checklist Description Format" abbr="XCCDF"/>
     </tech-terms>
-    <section title="Compliant Targets of Evaluation" id="TOEdescription">
+    <sec:TOE_Overview>
       
 		This Protection Profile for General-Purpose Computing Platforms (GPCP) specifies security requirements 
 		for general-purpose computing platforms. A GPCP is is a hardware device that is capable of hosting one or more 
@@ -296,7 +296,7 @@
 			  be connected. Different use cases may invoke different requirements depending on the 
 			  operational environment.
 		</sec:TOE_Operational_Environment>
-    </section>
+    </sec:TOE_Overview>
     <sec:Use_Cases>
       
 		This Protection Profile supports several use cases. The cases
@@ -377,7 +377,7 @@
     </CClaimsInfo>
   </sec:Conformance_Claims>
   <!-- 3.0 Security Problem Definition-->
-  <sec:Security_Problem_Definition >
+  <sec:spd  title="Security Problem Definition">
     
 	The security problem is described in terms of the threats that the GPCP is expected to address, assumptions 
 	about the operational environment, and any organizational security policies that the GPCP
@@ -481,7 +481,7 @@
     <sec:Organizational_Security_Policies>
       <OSPs/>
     </sec:Organizational_Security_Policies>
-  </sec:Security_Problem_Definition>
+  </sec:spd>
   <!-- 4.0 Security Objectives -->
   <sec:Security_Objectives >
     <!-- 4.1 Security Objectives for the TOE -->
@@ -531,7 +531,21 @@
           <depends on-use="uc-ent-clients-desktop"/>
           <f-element id="fau-gen-1e1">
             <title>The TSF shall be able to generate audit data of the following auditable events:<h:ol><h:li>Start-up and shutdown of the audit functions</h:li> <h:li>All administrative actions</h:li> <h:li>Start-up, shutdown, and reboot of the platform</h:li> <h:li>Specifically defined auditable events in <xref g="t-audit-mandatory"/></h:li> <h:li><selectables linebreak="yes"><selectable id="fau_gen.1.1_1" >Specifically defined auditable event in <xref g="t-audit-optional"/> for Strictly Optional requirements</selectable><selectable id="fau_gen.1.1_2" >Specifically defined auditable event in <xref g="t-audit-objective"/> for Objective requirements</selectable><selectable id="fau_gen.1.1_3" >Specifically defined auditable event in <xref g="t-audit-sel-based"/> for Selection-based requirements</selectable><selectable id="fau_gen.1.1_4" >Additional information defined in the audit table for the <xref to="pkg-tls"/></selectable><selectable id="fau_gen.1.1_5" >Additional information defined in the audit table for the <xref to="pkg-ssh"/></selectable><selectable id="fau_gen.1.1_6" exclusive="yes">no additional auditable events</selectable></selectables>.</h:li></h:ol></title>
-            <aactivity level="element">
+          </f-element>
+          <f-element id="fau-gen-1e2">
+            <title>The TSF shall record within the audit data at least the following information:
+                    <h:ol><h:li>Date and time of the event</h:li> <h:li>Type of event</h:li> <h:li>Subject and object identity (if applicable)</h:li> <h:li>The outcome (success or failure) of the event</h:li> <h:li>[<h:b>Additional information defined in <xref g="t-audit-mandatory"/></h:b>]</h:li> <h:li><h:b><selectables linebreak="yes"><selectable id="fau_gen.1.2_1" >Additional information defined in <xref g="t-audit-optional"/> for Strictly Optional SFRs</selectable><selectable id="fau_gen.1.2_2" >Additional information defined in <xref g="t-audit-objective"/> for Objective SFRs</selectable><selectable id="fau_gen.1.2_3" >Additional information defined in <xref g="t-audit-sel-based"/> for Selection-Based SFRs</selectable><selectable id="fau_gen.1.2_4" >Additional information defined in the audit table for the <xref to="pkg-tls"/></selectable><selectable id="fau_gen.1.2_5" >Additional information defined in the audit table for the <xref to="pkg-ssh"/></selectable><selectable id="fau_gen.1.2_6" exclusive="yes">no other information</selectable></selectables>.</h:b></h:li></h:ol></title>
+            <note role="application">
+					The ST Author should include this SFR in the ST if the TOE generates audit events for integrity verification 
+					or boot failures as indicated by the appropriate selections in FPT_ROT_EXT.2, FPT_ROT_EXT.3,
+					FPT_TUD_EXT.2, or FPT_TUD_EXT.3.4; or if the TOE supports the Server (basic or enhanced), CSfC EUD, or
+					Enterprise Desktop use cases.<h:p/>
+					If this SFR is included in the ST, then all the other FAU SFRs must also be claimed.<h:p/>
+					Appropriate entries from <xref g="t-audit-optional"/>, <xref g="t-audit-objective"/>, and
+					<xref g="t-audit-sel-based"/> should be included in the ST if the 
+					associated SFRs and selections are included.<h:p/>
+					Specific auditable events required for SFRs from the functional packages are defined in the respective packages.<h:p/></note>
+            <aactivity>
               <TSS>The evaluator shall check the TSS and ensure that it lists all of the auditable events 
                         and provides a format for audit records. Each audit record format type shall be covered, along with a 
                         brief description of each field.</TSS>
@@ -547,20 +561,6 @@
               <Tests>The evaluator shall test the TOE’s ability to correctly generate audit records by having the TOE generate audit records for the events listed and administrative actions. For administrative actions, the evaluator shall test that each action determined by the evaluator above to be security relevant in the context of this PP is auditable. When verifying the test results, the evaluator shall ensure the audit records generated during testing match the format specified in the administrative guide, and that the fields in each audit record have the proper entries. <h:p/>Note that the testing here can be accomplished in conjunction with the testing of the security mechanisms directly. <h:br/></Tests>
             </aactivity>
           </f-element>
-          <f-element id="fau-gen-1e2">
-            <title>The TSF shall record within the audit data at least the following information:
-                    <h:ol><h:li>Date and time of the event</h:li> <h:li>Type of event</h:li> <h:li>Subject and object identity (if applicable)</h:li> <h:li>The outcome (success or failure) of the event</h:li> <h:li>[<h:b>Additional information defined in <xref g="t-audit-mandatory"/></h:b>]</h:li> <h:li><h:b><selectables linebreak="yes"><selectable id="fau_gen.1.2_1" >Additional information defined in <xref g="t-audit-optional"/> for Strictly Optional SFRs</selectable><selectable id="fau_gen.1.2_2" >Additional information defined in <xref g="t-audit-objective"/> for Objective SFRs</selectable><selectable id="fau_gen.1.2_3" >Additional information defined in <xref g="t-audit-sel-based"/> for Selection-Based SFRs</selectable><selectable id="fau_gen.1.2_4" >Additional information defined in the audit table for the <xref to="pkg-tls"/></selectable><selectable id="fau_gen.1.2_5" >Additional information defined in the audit table for the <xref to="pkg-ssh"/></selectable><selectable id="fau_gen.1.2_6" exclusive="yes">no other information</selectable></selectables>.</h:b></h:li></h:ol></title>
-            <note role="application">
-					The ST Author should include this SFR in the ST if the TOE generates audit events for integrity verification 
-					or boot failures as indicated by the appropriate selections in FPT_ROT_EXT.2, FPT_ROT_EXT.3,
-					FPT_TUD_EXT.2, or FPT_TUD_EXT.3.4; or if the TOE supports the Server (basic or enhanced), CSfC EUD, or
-					Enterprise Desktop use cases.<h:p/>
-					If this SFR is included in the ST, then all the other FAU SFRs must also be claimed.<h:p/>
-					Appropriate entries from <xref g="t-audit-optional"/>, <xref g="t-audit-objective"/>, and
-					<xref g="t-audit-sel-based"/> should be included in the ST if the 
-					associated SFRs and selections are included.<h:p/>
-					Specific auditable events required for SFRs from the functional packages are defined in the respective packages.<h:p/></note>
-          </f-element>
           <audit-event/>
         </f-component>
         <!-- FAU_SAR.1 Audit Review -->
@@ -570,13 +570,6 @@
             <title>The TSF shall provide <h:b>the Administrator</h:b> with the
 					capability to read <h:b>all audited events and record contents</h:b>
 					from the audit data.</title>
-            <aactivity level="element">
-              <TSS/>
-              <Guidance>The evaluator shall review the AGD for the procedure on how to review the audit 
-						records.
-					</Guidance>
-              <Tests>The evaluator shall verify that the audit records provide all of the information specified in FAU_GEN.1 and that this information is suitable for human interpretation. The evaluation activity for this requirement is performed in conjunction with the evaluation activity for FAU_GEN.1.</Tests>
-            </aactivity>
           </f-element>
           <f-element id="fau-sar-1e2">
             <title>The TSF shall provide the audit data in a manner suitable for the <h:b>Administrator
@@ -584,6 +577,13 @@
             <note role="application">
 					This SFR must be included in the ST if FAU_GEN.1 is claimed.
 				</note>
+            <aactivity>
+              <TSS/>
+              <Guidance>The evaluator shall review the AGD for the procedure on how to review the audit 
+						records.
+					</Guidance>
+              <Tests>The evaluator shall verify that the audit records provide all of the information specified in FAU_GEN.1 and that this information is suitable for human interpretation. The evaluation activity for this requirement is performed in conjunction with the evaluation activity for FAU_GEN.1.</Tests>
+            </aactivity>
           </f-element>
         </f-component>
         <!-- FAU_STG.1 Audit Data Storage Location -->
@@ -627,7 +627,20 @@
             <title>
 					The TSF shall protect the stored audit data in the audit trail from unauthorized deletion.
 				</title>
-            <aactivity level="element">
+          </f-element>
+          <f-element id="fau-stg-2e2">
+            <title>
+					The TSF shall be able to [<h:i>prevent</h:i>] unauthorized modifications to the stored audit data
+					in the audit trail.
+				</title>
+            <note role="application">
+					Deletion of audit data within the TOE is "authorized" if the deletion is initiated or performed by 
+					an Administrator.<h:p/>
+					Notwithstanding this requirement, audit records may be overwritten if local audit record storage is full
+					in accordance with FAU_STG.5.<h:p/>
+					This SFR must be included in the ST if FAU_GEN.1 is claimed.
+				</note>
+            <aactivity>
               <TSS>The evaluator shall ensure that the TSS lists the locations of all logs and the access 
 						controls of those files such that unauthorized modification and deletion are prevented.</TSS>
               <Guidance>
@@ -643,19 +656,6 @@
               </Tests>
             </aactivity>
           </f-element>
-          <f-element id="fau-stg-2e2">
-            <title>
-					The TSF shall be able to [<h:i>prevent</h:i>] unauthorized modifications to the stored audit data
-					in the audit trail.
-				</title>
-            <note role="application">
-					Deletion of audit data within the TOE is "authorized" if the deletion is initiated or performed by 
-					an Administrator.<h:p/>
-					Notwithstanding this requirement, audit records may be overwritten if local audit record storage is full
-					in accordance with FAU_STG.5.<h:p/>
-					This SFR must be included in the ST if FAU_GEN.1 is claimed.
-				</note>
-          </f-element>
           <audit-event/>
         </f-component>
         <!-- FAU_STG.5 Prevention of Audit Data Loss -->
@@ -669,7 +669,7 @@
             <note role="application">
 					This SFR must be included in the ST if FAU_GEN.1 is claimed.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to ensure that it describes the size limits on the 
 						audit records, the detection of a full audit trail, and the action(s) taken by the TSF
 						when the audit trail is full. The evaluator shall ensure that the action(s) results in the
@@ -746,7 +746,7 @@
 					which is a point on the elliptic curve, are determined by the choice of the 
 					curve.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to verify that it describes how the TOE generates a key
 						based on output from a random bit generator as specified in FCS_RBG.1. The evaluator shall
 						review the TSS to verify that it describes how the functionality described by FCS_RBG.1 is
@@ -800,7 +800,7 @@
 					FCS_COP.1/AEAD, FCS_COP.1/KeyedHash, FCS_COP.1/KeyWrap, FCS_COP.1/CMAC, or FCS_COP.1/SKC.<h:p/>
 					If this SFR is claimed in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to verify that it describes how the TOE obtains a symmetric
 						cryptographic key through direct generation from a random bit generator as specified in
 						FCS_RBG.1. The evaluator shall review the TSS to verify that it describes how the functionality
@@ -837,7 +837,7 @@
 					relevant list of standards.<h:p/>
 					If “encrypted channels” is selected, FTP_ITC_EXT.1 must be claimed.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall ensure that the TSS documents that the security strength supported by
 						the selected key distribution methods is sufficient for the security strength of the keys
 						distributed through those methods.<h:p/>
@@ -875,7 +875,7 @@
 					sufficient for the security strength of the keys derived through those methods. Since CNSA 1.0
 					permits keys no smaller than 256 bits, no 128- or 192-bit PRFs are permitted. 
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall verify that the TSS describes and documents:<h:ul><h:li>that the security strengths of the Pseudo-Random functions for the key 
 							derivation methods are sufficient for the security strength of the keys derived through those
 							methods.</h:li> <h:li>that the security strengths of the input parameters are sufficient for the security
@@ -937,13 +937,37 @@
           <f-element id="fcs-ckm-6e1">
             <title>
 					The TSF shall destroy  <assignable>list of cryptographic keys (including keying material)</assignable>  
-					when  <selectables><selectable id="fcs_ckm.6.1_2" >no longer needed</selectable><selectable id="fcs_ckm.6.1_3" ></selectable><selectable id="fcs_ckm.6.1_5" ><assignable>other circumstances for key or key material destruction</assignable></selectable></selectables>.
+					when  <selectables><selectable id="fcs_ckm.6.1_2" >no longer needed</selectable><selectable id="fcs_ckm.6.1_3" ><h:mark>as specified in NIST SP 800-57 Part 1 Rev. 5</h:mark></selectable><selectable id="fcs_ckm.6.1_5" ><assignable>other circumstances for key or key material destruction</assignable></selectable></selectables>.
 				</title>
-            <note role="application">
+            <note role="application"><h:mark>(See also Issue 58.) The purpose of key destruction is "To remove all traces of a cryptographic key so that it cannot be
+					recovered by either physical or electronic means." (NIST SP 800-57 Part 1 Rev. 5).<h:p/></h:mark>
 					The TOE implements methods for destroying keys and key material as specified in FCS_CKM.6.2.<h:p/>
 					The ST Author shall list all such keys and keying material that are subject 
-					to destruction in the first assignment. </note>
-            <aactivity level="element">
+					to destruction in the first assignment. <h:mark>The description of each key 
+					must also include the types of memory or storage where the key may be found
+					while in use and between uses.</h:mark></note>
+          </f-element>
+          <f-element id="fcs-ckm-6e2">
+            <title>The TSF shall destroy cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance
+					with a specified cryptographic key destruction method  <assignable>description of the key destruction methods used for all keys and memory or storage media specified in FCS_CKM.6.1</assignable>  
+					that meets the following: [<h:i>No standard</h:i>].
+				</title>
+            <note role="application">
+					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
+					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SFR
+					must be included in the ST if any of the following SFRs are claimed: FCS_CKM.1/AKG, FCS_CKM.1/SKG,
+					FCS_CKM.2, FCS_CKM.5, FCS_CKM_EXT.7, FCS_CKM_EXT.8, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
+					The term “cryptographic keys” in this SFR includes the authorization data that is the entry point
+					to a key chain and all other cryptographic keys and keying material (whether in plaintext or
+					encrypted form). Examples of keys and key material include intermediate keys, encryption keys, 
+					signing keys, verification keys, authentication tokens, and submasks.<h:p/>
+					This SFR does not apply to the public component of asymmetric key pairs, or to keys that are permitted to remain stored such as device
+					identification keys. <h:p/>
+					The ST Author must complete the assignment in FCS_CKM.6.2 with descriptions of the methods 
+					implemented by the TOE to destroy the keys and keying material in FCS_CKM.6.1 with respect to 
+					each type of media in which the keys may be found.
+				</note>
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to verify that it<h:ul><h:li>lists all relevant keys and keying material,</h:li> <h:li>describes the source of any key material,</h:li> <h:li>documents all memory or storage media types in which the keys or keying material
 							may be found both during use and between uses,</h:li> <h:li>documents all relevant destruction situations (including the
 							point in time at which the destruction occurs; e.g. factory reset or device wipe
@@ -956,7 +980,9 @@
 						The evaluator shall verify that the TSS identifies any configurations or
 						circumstances that may not conform to the key destruction requirement, such as delays in the
 						destruction of keys in some configurations or circumstances.</TSS>
-              <Guidance/>
+              <Guidance><h:mark>The evaluator shall verify that the Guidance describes any configurable parameters
+						related to the lifecycle of cryptographic keys, including lifetimes or storage 
+						parameters...??</h:mark></Guidance>
               <Tests>
                 The following tests may require the developer to provide access to a test platform that provides the evaluator with tools that are typically not found on factory products. <h:p/> <h:mark>What if the methods do not fall into any of the below categories?</h:mark> <h:p/>The evaluator shall perform the following for each of the key destruction methods described in FCS_CKM.6.2:
                 <testlist>
@@ -993,27 +1019,6 @@
                 </testlist>
               </Tests>
             </aactivity>
-          </f-element>
-          <f-element id="fcs-ckm-6e2">
-            <title>The TSF shall destroy cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance
-					with a specified cryptographic key destruction method  <assignable>description of the key destruction methods used for all keys and memory or storage media specified in FCS_CKM.6.1</assignable>  
-					that meets the following: [<h:i>No standard</h:i>].
-				</title>
-            <note role="application">
-					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
-					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SFR
-					must be included in the ST if any of the following SFRs are claimed: FCS_CKM.1/AKG, FCS_CKM.1/SKG,
-					FCS_CKM.2, FCS_CKM.5, FCS_CKM_EXT.7, FCS_CKM_EXT.8, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
-					The term “cryptographic keys” in this SFR includes the authorization data that is the entry point
-					to a key chain and all other cryptographic keys and keying material (whether in plaintext or
-					encrypted form). Examples of keys and key material include intermediate keys, encryption keys, 
-					signing keys, verification keys, authentication tokens, and submasks.<h:p/>
-					This SFR does not apply to the public component of asymmetric key pairs, or to keys that are permitted to remain stored such as device
-					identification keys. <h:p/>
-					The ST Author must complete the assignment in FCS_CKM.6.2 with descriptions of the methods 
-					implemented by the TOE to destroy the keys and keying material in FCS_CKM.6.1 with respect to 
-					each type of media in which the keys may be found.
-				</note>
           </f-element>
           <audit-event/>
         </f-component>
@@ -1054,7 +1059,7 @@
 					If this SFR is claimed, then FCS_CKM.6 an FCS_CKM.1/AKG must also be claimed.<h:p/>
 					This SFR has dependencies FCS_COP.1/Hash and FCS_COP.1/XOF only if ML-KEM is selected.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall ensure that the TSS documents that the security strength of the
 						material contributed by the TOE is sufficient for the security strength of the key and the
 						agreement method.</TSS>
@@ -1100,7 +1105,7 @@
 					If this SFR is claimed, then FCS_COP.1/KeyedHash and FCS_RBG.1 must also be claimed.<h:p/>
 					For CNSA 1.0 and 2.0 compliance, only SHA-384 or SHA-512 may be used.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator must verify that the TSS documents that the selection of the keyed hash
 						algorithm, iteration count, length of salt, and other mitigations are sufficient for the
 						security strength of the key derived.<h:p/>
@@ -1139,7 +1144,7 @@
             <note role="application">
 					The use of 256-bit keys for AES encryption is required by CNSA 1.0 and 2.0.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
 						nonces, and tags in conformance with the relevant specifications.</TSS>
               <Guidance/>
@@ -1176,7 +1181,7 @@
             <note role="application">
 					The use of 256-bit keys for AES algorithms is required by CNSA 1.0 and 2.0.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to verify that the IV consists of all zeros in accordance with
 						the relevant standards.</TSS>
               <Guidance/>
@@ -1218,7 +1223,7 @@
 					algorithm used for signature generation. For example, the TOE should choose SHA-384 for 3072-bit RSA, 
 					4096-bit RSA, or ECC with P-384; and SHA-512 for ECC with P-521.
                 </note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to verify that if SHA-256 is selected, that it is being 
 						used only as a PRF or MAC step in a key derivation function or as part of LMS, and not as a hash algorithm.</TSS>
               <Guidance/>
@@ -1298,7 +1303,7 @@
 					In accordance with CNSA 1.0 and 2.0, HMAC-SHA-256 may be used only as a PRF or MAC step in a 
 					key derivation function.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to ensure that the size of the key is sufficient for the desired
 						security strength of the output.<h:p/>
 						The evaluator shall examine the TSS to verify that if HMAC-SHA-256 is selected, that it is being 
@@ -1326,7 +1331,7 @@
 					If this SFR is claimed, then FCS_CKM.1/AKG and FCS_CKM.6 must also be claimed.<h:p/>
 					KAS1 and KTS-OAEP with the selectable parameters are CNSA 1.0 compliant. ML-KEM-1024 is CNSA 2.0 compliant.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall ensure that the TSS documents that the selection of the key size is
 						sufficient for the security strength of the key encapsulated.<h:p/>
 						The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
@@ -1359,7 +1364,7 @@
 					NIST 800-57p1rev5 sec. 5.6.2 specifies that the size of key used to protect the key being 
 					transported should be at least the security strength of the key it is protecting.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall ensure that the TSS documents that the selection of the key size is
 						sufficient for the security strength of the key wrapped.<h:p/>
 						The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
@@ -1394,7 +1399,7 @@
 					using an asymmetric key that is protected in accordance with FCS_STG_EXT.2</h:i>" is selected in FCS_STG_EXT.3.<h:p/>
 					If this SFR is included in the ST, then FCS_COP.1/Hash and FCS_RBG.1 must also be claimed.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS and verify that any hash function is the appropriate security
 						strength for the signing algorithm.<h:p/>
 						The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
@@ -1576,7 +1581,7 @@
 					dependencies required for generating or destroying cryptographic keys.<h:p/>
 					If LMS or XMSS is claimed, then FCS_COP.1/XOF must also be claimed.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
 						are constructed and used in accordance with the relevant standards.</TSS>
               <Guidance/>
@@ -1629,7 +1634,7 @@
 					functionality.<h:p/> 
 					Specifically, this SFR must be included if the ST includes FCS_IPSEC_EXT.1 or FCS_STG_EXT.2, or includes
 					any of the following selections: <h:ul><h:li>"<h:i>CTR_DRBG (AES)</h:i>" in FCS_RBG.1</h:li> <h:li>"<h:i>AES-*</h:i>" in FCS_STG_EXT.3</h:li></h:ul> <h:p/></note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
 						tweak values, and counters in conformance with the relevant specifications.<h:p/>
 						If XTS-AES is claimed then the evaluator shall examine the TSS to verify that the TOE creates
@@ -1699,7 +1704,7 @@
 					Since LMS and XMSS use both SHAKE128 and SHAKE256 internally, claiming and testing of both
 					Functions is mandatory.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS/>
               <Guidance/>
               <Tests>The following tests are conditional based upon the selections made in the SFR. The evaluator shall perform the following test or witness respective tests executed by the developer. The tests must be executed on a platform that is as close as practically possible to the operational platform (but which may be instrumented in terms of, for example, use of a debug mode). Where the test is not carried out on the TOE itself, the test platform shall be identified and the differences between test environment and TOE execution environment shall be described. <h:p/> <h:br/> <h:b>SHAKE</h:b> <h:p/> <h:table border="1"><h:tr class="header" bgcolor="#cccccc"><h:td valign="top">Cryptographic Algorithm</h:td><h:td valign="top">Parameters</h:td><h:td valign="top">List of Standards</h:td></h:tr><h:tr><h:td valign="top">SHAKE</h:td><h:td valign="top">Function = [SHAKE128, SHAKE256]</h:td><h:td valign="top">NIST FIPS PUB 202 Section 6.2 [SHAKE]</h:td></h:tr></h:table> <h:p/>To test the TOE’s implementation of the SHAKE Extendable Output Function the evaluator shall perform the Algorithm Functional Test, Monte Carlo Test, and Variable Output Test using the following input parameters: <h:ul><h:li>Function [SHAKE128, SHAKE256]</h:li> <h:li>Output length [16-65536] bits</h:li></h:ul> <h:p/> <h:br/> <h:b><h:i>Algorithm Functional Test</h:i></h:b> <h:p/>For each supported function, generate test cases consisting of random data for every message length from 0 bits (if supported) to <h:i>rate</h:i>-1 bits, where <h:i>rate</h:i>equals <h:p/> <h:ul><h:li>1344 for SHAKE128, and</h:li> <h:li>1088 for SHAKE256.</h:li></h:ul> <h:p/>Additionally, generate tests cases of random data for messages of every multiple of (rate+1) bits starting at length rate, and continuing until 65535 is exceeded. For SHAKE128, this should result in a total of 1391 test cases. <h:p/> <h:br/> <h:b><h:i>Monte Carlo Test</h:i></h:b> <h:p/>The Monte Carlos test takes in a single 128-bit message (SEED) and desired output length in bits, and runs 100 iterations of the chained computation. MaxOutBytes and MinOutBytes are the largest and smallest supported input and output sizes in bytes, respectively. <h:p/> <h:pre>
@@ -1745,7 +1750,11 @@
                 	If this SFR is included in the ST, then the <xref to="pkg-tls"/>
 					must also be claimed.
 				</note>
-            <aactivity level="element">
+          </f-element>
+          <f-element id="fcs-https-ext-1e2">
+            <title>The TSF shall implement HTTPS using TLS.
+                </title>
+            <aactivity>
               <TSS>The evaluator shall check the TSS to ensure that it is clear on how HTTPS uses 
                         TLS to establish an administrative session, focusing on any client authentication required by 
                         the TLS protocol vs. security administrator authentication which may be done at a different 
@@ -1753,10 +1762,6 @@
               <Guidance/>
               <Tests>Testing for this activity is done as part of the TLS testing; this may result in additional testing if the TLS tests are done at the TLS protocol level.</Tests>
             </aactivity>
-          </f-element>
-          <f-element id="fcs-https-ext-1e2">
-            <title>The TSF shall implement HTTPS using TLS.
-                </title>
           </f-element>
           <audit-event>
             <audit-event-descr>Failure to establish a HTTPS Session.</audit-event-descr>
@@ -1801,7 +1806,7 @@
 					is not mandated, as long as the TOE can distinguish the IP packets and apply the
 					rules accordingly. There may be multiple SPDs (one for each network interface),
 					but this is not required. <h:p/></note>
-            <aactivity level="element">
+            <aactivity level="component">
               <TSS>In addition to the TSS EAs for the individual FCS_IPSEC_EXT.1 elements below, the
 						evaluator shall perform the following:<h:p/>
 						If the TOE boundary includes a general-purpose operating system or mobile device, the evaluator shall
@@ -2234,30 +2239,10 @@
 					If "Hash_DRBG" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
 					If "CTR_DRBG" is selected, then FCS_COP.1/SKC must be claimed.
 				</note>
-            <aactivity level="element">
-              <TSS>If the ST specifies more than one DRBG, the evaluator shall examine the TSS
-						to verify that it identifies the usage of each DRBG mechanism.<h:p/>
-						The evaluator shall examine the TSS to verify that it specifies the DRBG type,
-						identifies entropy source(s) initializing and reseeding the DRBG, and 
-						the situations under which this may occur.</TSS>
-              <Guidance>
-						The evaluator shall verify that the Guidance instructs the administrator how to configure
-						the TOE to use the selected DRBG mechanism(s), if necessary, and provides information
-						regarding how to instantiate/call the DRBG for RBG services.<h:p/>
-						If the ST claims that the DRBG state can be updated on demand, the evaluator shall
-						verify that the guidance includes instructions for how to perform this operation.
-					</Guidance>
-              <Tests>The following tests are conditional based upon the selections made in the SFR. The evaluator shall perform the following test or witness respective tests executed by the developer. The tests must be executed on a platform that is as close as practically possible to the operational platform (but which may be instrumented in terms of, for example, use of a debug mode). Where the test is not carried out on the TOE itself, the test platform shall be identified and the differences between test environment and TOE execution environment shall be described. <h:p/> <h:br/> <h:b>HASH_DRBG, HMAC_DRBG</h:b> <h:p/> <h:table border="1"><h:tr class="header" bgcolor="#cccccc"><h:td valign="top">Identifier</h:td><h:td valign="top">RBG Algorithm</h:td><h:td valign="top">List of Standards</h:td></h:tr><h:tr><h:td valign="top">HASH_DRBG</h:td><h:td valign="top">Hash_DRBG with [<h:b>selection:</h:b> SHA-384,
-									SHA-512]</h:td><h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.2.2),
-									NIST SP 800-90A Revision 1 (Section 10.1.1)]</h:td></h:tr><h:tr><h:td valign="top">HMAC_DRBG</h:td><h:td valign="top">HMAC_DRBG with [<h:b>selection:</h:b> SHA-384,
-									SHA-512]</h:td><h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.2.3),
-									NIST SP 800-90A Revision 1 (Section 10.1.2)]</h:td></h:tr></h:table> <h:p/>To test the TOE’s ability to generate random bits using Hash_DRBG or HMAC_DRBG, the evaluator shall perform the Algorithm Functional Test using the following input parameters: <h:ul><h:li>Function [SHA-384, SHA-512]</h:li> <h:li>Max security strength [256] bits</h:li> <h:li>Entropy length [256-65536] bits</h:li> <h:li>Max Personalization String size [65536] bits</h:li> <h:li>Max additional string [65536] bits</h:li> <h:li>Nonce length [128-65536] bits</h:li> <h:li>Min returned bits length [256, 384, 512]</h:li> <h:li>Prediction resistance [on, off]</h:li> <h:li>Reseed [on, off]</h:li></h:ul> <h:p/> <h:br/> <h:b><h:i>Algorithm Functional Test</h:i></h:b> <h:p/>The evaluator shall generate 16 test groups for each claimed function. Eight with prediction resistance enabled, and eight with prediction resistance turned off. For each of the eight test groups, four must have reseed enabled and four must have reseed turned off. <h:p/>Each test group within the core sets of four test groups shall consist of 15 test cases each, such that minimum lengths and maximum lengths for the above parameters are used at least once across the four groups, and the rest are random lengths. <h:p/>Correctness is determined by comparing the results from a known-good implementation using the same input parameters. <h:p/> <h:br/> <h:b>CTR_DRBG</h:b> <h:p/> <h:table border="1"><h:tr class="header" bgcolor="#cccccc"><h:td valign="top">Identifier</h:td><h:td valign="top">RBG Algorithm</h:td><h:td valign="top">List of Standards</h:td></h:tr><h:tr><h:td valign="top">CTR_DRBG</h:td><h:td valign="top">CTR_DRBG with AES-CTR-256</h:td><h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.3.2),
-									NIST SP 800-90A Revision 1 (Section 10.2.1)]</h:td></h:tr></h:table> <h:p/>To test the TOE’s ability to generate random bits using CTR_DRBG, the evaluator shall perform the Algorithm Functional Test using the following input parameters: <h:ul><h:li>Mode [AES-CTR-256]</h:li> <h:li>Max security strength [256] bits</h:li> <h:li>Entropy length [256-65536] bits</h:li> <h:li>Max Personalization String size [65536] bits</h:li> <h:li>Max additional string [65536] bits</h:li> <h:li>Nonce length [0-65536] bits</h:li> <h:li>Min returned bits length [128]</h:li> <h:li>Prediction resistance [on, off]</h:li> <h:li>Reseed [on, off]</h:li> <h:li>Derivation Function [true, false]</h:li></h:ul> <h:p/> <h:br/> <h:b><h:i>Algorithm Functional Test</h:i></h:b> <h:p/>The evaluator shall generate 16 test groups for each claimed function and supported derivation function state (on or off). Eight with prediction resistance enabled, and eight with prediction resistance turned off. For each of the eight test groups, four must have reseed enabled and four must have reseed turned off. <h:p/>Each test group within the core sets of four test groups shall consist of 15 test cases each, such that minimum supported lengths and maximum supported lengths for the above parameters are used at least once across the four groups, and the rest are random lengths. <h:p/>Correctness is determined by comparing the results from a known-good implementation using the same input parameters.</Tests>
-            </aactivity>
           </f-element>
           <f-element id="fcs-rbg-1e2">
             <title>
-					The TSF shall use a  <selectables><selectable id="sel-drbg-internal-seed">TSF entropy source <assignable>name of entropy source</assignable> </selectable><selectable id="sel-drbg-external-seed" >TSF interface for seeding</selectable></selectables> 
+					The TSF shall use a  <selectables><selectable id="sel-drbg-internal-seed">TSF entropy source <assignable>name of entropy source</assignable></selectable><selectable id="sel-drbg-external-seed" >TSF interface for seeding</selectable></selectables> 
 					for initialization and reseeding.
 				</title>
             <note role="application"><h:p>
@@ -2282,8 +2267,8 @@
           </f-element>
           <f-element id="fcs-rbg-1e3">
             <title>
-					The TSF shall update the DRBG state by  <selectables><selectable id="fcs_rbg.1.3_1" >reseeding</selectable><selectable id="fcs_rbg.1.3_2" >uninstantiating and re-instantiating</selectable></selectables>  using a  <selectables><selectable id="fcs_rbg.1.3_3">TSF entropy source <assignable>name of entropy source</assignable> </selectable><selectable id="fcs_rbg.1.3_5">TSF interface for obtaining entropy <assignable>name of the interface</assignable> </selectable></selectables> 
-					in the following situations:  <selectables linebreak="yes"><selectable id="fcs_rbg.1.3_7" >never</selectable><selectable id="fcs_rbg.1.3_8" >on demand</selectable><selectable id="fcs_rbg.1.3_9">on the condition: <assignable>condition</assignable> </selectable><selectable id="fcs_rbg.1.3_11">after <assignable>time</assignable> </selectable></selectables> 
+					The TSF shall update the DRBG state by  <selectables><selectable id="fcs_rbg.1.3_1" >reseeding</selectable><selectable id="fcs_rbg.1.3_2" >uninstantiating and re-instantiating</selectable></selectables>  using a  <selectables><selectable id="fcs_rbg.1.3_3">TSF entropy source <assignable>name of entropy source</assignable></selectable><selectable id="fcs_rbg.1.3_5">TSF interface for obtaining entropy <assignable>name of the interface</assignable></selectable></selectables> 
+					in the following situations:  <selectables linebreak="yes"><selectable id="fcs_rbg.1.3_7" >never</selectable><selectable id="fcs_rbg.1.3_8" >on demand</selectable><selectable id="fcs_rbg.1.3_9">on the condition: <assignable>condition</assignable></selectable><selectable id="fcs_rbg.1.3_11">after <assignable>time</assignable></selectable></selectables> 
 					in accordance with  <assignable>list of standards</assignable>.
 				</title>
             <note role="application">
@@ -2298,6 +2283,26 @@
 					of an authorized user, either with an internal source, an external source, or from input 
 					provided through the TSFI (e.g., the API call).
 				</note>
+            <aactivity>
+              <TSS>If the ST specifies more than one DRBG, the evaluator shall examine the TSS
+						to verify that it identifies the usage of each DRBG mechanism.<h:p/>
+						The evaluator shall examine the TSS to verify that it specifies the DRBG type,
+						identifies entropy source(s) initializing and reseeding the DRBG, and 
+						the situations under which this may occur.</TSS>
+              <Guidance>
+						The evaluator shall verify that the Guidance instructs the administrator how to configure
+						the TOE to use the selected DRBG mechanism(s), if necessary, and provides information
+						regarding how to instantiate/call the DRBG for RBG services.<h:p/>
+						If the ST claims that the DRBG state can be updated on demand, the evaluator shall
+						verify that the guidance includes instructions for how to perform this operation.
+					</Guidance>
+              <Tests>The following tests are conditional based upon the selections made in the SFR. The evaluator shall perform the following test or witness respective tests executed by the developer. The tests must be executed on a platform that is as close as practically possible to the operational platform (but which may be instrumented in terms of, for example, use of a debug mode). Where the test is not carried out on the TOE itself, the test platform shall be identified and the differences between test environment and TOE execution environment shall be described. <h:p/> <h:br/> <h:b>HASH_DRBG, HMAC_DRBG</h:b> <h:p/> <h:table border="1"><h:tr class="header" bgcolor="#cccccc"><h:td valign="top">Identifier</h:td><h:td valign="top">RBG Algorithm</h:td><h:td valign="top">List of Standards</h:td></h:tr><h:tr><h:td valign="top">HASH_DRBG</h:td><h:td valign="top">Hash_DRBG with [<h:b>selection:</h:b> SHA-384,
+									SHA-512]</h:td><h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.2.2),
+									NIST SP 800-90A Revision 1 (Section 10.1.1)]</h:td></h:tr><h:tr><h:td valign="top">HMAC_DRBG</h:td><h:td valign="top">HMAC_DRBG with [<h:b>selection:</h:b> SHA-384,
+									SHA-512]</h:td><h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.2.3),
+									NIST SP 800-90A Revision 1 (Section 10.1.2)]</h:td></h:tr></h:table> <h:p/>To test the TOE’s ability to generate random bits using Hash_DRBG or HMAC_DRBG, the evaluator shall perform the Algorithm Functional Test using the following input parameters: <h:ul><h:li>Function [SHA-384, SHA-512]</h:li> <h:li>Max security strength [256] bits</h:li> <h:li>Entropy length [256-65536] bits</h:li> <h:li>Max Personalization String size [65536] bits</h:li> <h:li>Max additional string [65536] bits</h:li> <h:li>Nonce length [128-65536] bits</h:li> <h:li>Min returned bits length [256, 384, 512]</h:li> <h:li>Prediction resistance [on, off]</h:li> <h:li>Reseed [on, off]</h:li></h:ul> <h:p/> <h:br/> <h:b><h:i>Algorithm Functional Test</h:i></h:b> <h:p/>The evaluator shall generate 16 test groups for each claimed function. Eight with prediction resistance enabled, and eight with prediction resistance turned off. For each of the eight test groups, four must have reseed enabled and four must have reseed turned off. <h:p/>Each test group within the core sets of four test groups shall consist of 15 test cases each, such that minimum lengths and maximum lengths for the above parameters are used at least once across the four groups, and the rest are random lengths. <h:p/>Correctness is determined by comparing the results from a known-good implementation using the same input parameters. <h:p/> <h:br/> <h:b>CTR_DRBG</h:b> <h:p/> <h:table border="1"><h:tr class="header" bgcolor="#cccccc"><h:td valign="top">Identifier</h:td><h:td valign="top">RBG Algorithm</h:td><h:td valign="top">List of Standards</h:td></h:tr><h:tr><h:td valign="top">CTR_DRBG</h:td><h:td valign="top">CTR_DRBG with AES-CTR-256</h:td><h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18031:2011 (Section C.3.2),
+									NIST SP 800-90A Revision 1 (Section 10.2.1)]</h:td></h:tr></h:table> <h:p/>To test the TOE’s ability to generate random bits using CTR_DRBG, the evaluator shall perform the Algorithm Functional Test using the following input parameters: <h:ul><h:li>Mode [AES-CTR-256]</h:li> <h:li>Max security strength [256] bits</h:li> <h:li>Entropy length [256-65536] bits</h:li> <h:li>Max Personalization String size [65536] bits</h:li> <h:li>Max additional string [65536] bits</h:li> <h:li>Nonce length [0-65536] bits</h:li> <h:li>Min returned bits length [128]</h:li> <h:li>Prediction resistance [on, off]</h:li> <h:li>Reseed [on, off]</h:li> <h:li>Derivation Function [true, false]</h:li></h:ul> <h:p/> <h:br/> <h:b><h:i>Algorithm Functional Test</h:i></h:b> <h:p/>The evaluator shall generate 16 test groups for each claimed function and supported derivation function state (on or off). Eight with prediction resistance enabled, and eight with prediction resistance turned off. For each of the eight test groups, four must have reseed enabled and four must have reseed turned off. <h:p/>Each test group within the core sets of four test groups shall consist of 15 test cases each, such that minimum supported lengths and maximum supported lengths for the above parameters are used at least once across the four groups, and the rest are random lengths. <h:p/>Correctness is determined by comparing the results from a known-good implementation using the same input parameters.</Tests>
+            </aactivity>
           </f-element>
           <audit-event>
             <audit-event-descr>Failure of the randomization process</audit-event-descr>
@@ -2319,7 +2324,7 @@
 					The ST author ensures that the assignment is completed with the minimum length of the input
 					sufficient to initialize or reseed a DRBG.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall verify that the TSS documents the minimum amount of input expected from
 						external entropy sources. If this SFR is iterated, the evaluator shall check that the TSS indicates
 						the minimum input size for each external entropy source.</TSS>
@@ -2337,7 +2342,7 @@
           <depends on-sel="sel-drbg-internal-seed"/>
           <f-element id="fcs-rbg-3e1">
             <title>
-					The TSF shall be able to seed the DRBG using a  <selectables><selectable id="fcs_rbg.3.1_1" >TSF software-based entropy source</selectable><selectable id="fcs_rbg.3.1_2">TSF hardware-based entropy source <assignable>name of entropy source</assignable> </selectable></selectables> 
+					The TSF shall be able to seed the DRBG using a  <selectables><selectable id="fcs_rbg.3.1_1" >TSF software-based entropy source</selectable><selectable id="fcs_rbg.3.1_2">TSF hardware-based entropy source <assignable>name of entropy source</assignable></selectable></selectables> 
 					with  <assignable>number of bits</assignable>  bits of min-entropy.
 				</title>
             <note role="application">
@@ -2354,7 +2359,7 @@
 					assignment is completed with the number of bits of the input sufficient to initialize or reseed a
 					DRBG.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall verify that the TSS documents the types of entropy sources selected in
 						FCS_RBG.3.1 and indicates the amount of entropy provided by these sources.</TSS>
               <Guidance>
@@ -2379,7 +2384,7 @@
 					FCS_RBG.5 defines the mechanism by which these sources are combined to ensure sufficient
 					minimum entropy.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall verify that the TSS documents number and the types of entropy sources
 						selected in FCS_RBG.4.1.</TSS>
               <Guidance>
@@ -2413,7 +2418,7 @@
 					min-entropy from external sources that contribute to the overall entropy requirements for 
 					the DRBG.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS and verify that it documents the types of noise sources
 						selected in FCS_RBG.5.1 and indicates the amount of entropy provided by these sources in
 						combination.</TSS>
@@ -2443,7 +2448,7 @@
 					This requirement ensures that the TOE makes available entropy to any tenant
 					that requires it.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to verify that it describes how the DRBG output is made
 						available to entities outside the TOE.</TSS>
               <Guidance>
@@ -2485,26 +2490,6 @@
 					and also claim FCS_STG_EXT.3.<h:p/>
 					If this SFR is included in the ST, then FCS_CKM.6 must also be claimed.
 				</note>
-            <aactivity level="element">
-              <TSS>The evaluator shall review the TSS to determine that the TOE implements the
-					required protected storage. The evaluator shall ensure that the TSS contains a
-					description of the protected storage mechanism that justifies the selection of
-					mutable hardware-based or software-based.</TSS>
-              <Guidance>
-					The evaluator shall examine the AGD to ensure that it describes the
-					process for generating keys, importing keys, or both, based on what is claimed by
-					the ST. The evaluator shall also examine the AGD to ensure that it
-					describes the process for destroying keys that have been imported or generated.
-				</Guidance>
-              <Tests>
-                The evaluator shall test the functionality of each security function as described below. If the TOE supports both import and generation of keys, the evaluator shall repeat the testing as needed to demonstrate that the keys resulting from both operations are treated in the same manner. The devices used with the tooling may need to be non-production devices in order to enable the execution of testing and gathering of evidence. <h:p/>
-                <testlist>
-                  <test>The evaluator shall import or generate keys/secrets of each supported type according to the operational guidance. The evaluator shall write, or the developer shall provide access to, an application that generates a key/secret of each supported type and calls the import functions. The evaluator shall verify that no errors occur during import.</test>
-                  <test>The evaluator shall write, or the developer shall provide access to, tenant software that uses a generated or imported key/secret: <h:ul><h:li>For RSA, the secret shall be used to sign data.</h:li> <h:li>For ECDSA, the secret shall be used to sign data.</h:li></h:ul> The evaluator shall verify that the tenant software is able to access and use the key/secret as described.</test>
-                  <test>The evaluator shall destroy keys/secrets of each supported type according to the operational guidance. The evaluator shall write, or the developer shall provide access to, tenant software that destroys an imported or generated key/secret. The evaluator shall verify that the tenant software is able to cause the deletion of only keys that were created or imported on its behalf.</test>
-                </testlist>
-              </Tests>
-            </aactivity>
           </f-element>
           <f-element id="fcs-stg-ext-1e2">
             <title>
@@ -2532,6 +2517,26 @@
             <ext-comp-def-title><title>
 					The TSF shall be capable of destroying keys/secrets in the protected storage
 					upon request of <assignable>authorized subject</assignable>.</title></ext-comp-def-title>
+            <aactivity>
+              <TSS>The evaluator shall review the TSS to determine that the TOE implements the
+					required protected storage. The evaluator shall ensure that the TSS contains a
+					description of the protected storage mechanism that justifies the selection of
+					mutable hardware-based or software-based.</TSS>
+              <Guidance>
+					The evaluator shall examine the AGD to ensure that it describes the
+					process for generating keys, importing keys, or both, based on what is claimed by
+					the ST. The evaluator shall also examine the AGD to ensure that it
+					describes the process for destroying keys that have been imported or generated.
+				</Guidance>
+              <Tests>
+                The evaluator shall test the functionality of each security function as described below. If the TOE supports both import and generation of keys, the evaluator shall repeat the testing as needed to demonstrate that the keys resulting from both operations are treated in the same manner. The devices used with the tooling may need to be non-production devices in order to enable the execution of testing and gathering of evidence. <h:p/>
+                <testlist>
+                  <test>The evaluator shall import or generate keys/secrets of each supported type according to the operational guidance. The evaluator shall write, or the developer shall provide access to, an application that generates a key/secret of each supported type and calls the import functions. The evaluator shall verify that no errors occur during import.</test>
+                  <test>The evaluator shall write, or the developer shall provide access to, tenant software that uses a generated or imported key/secret: <h:ul><h:li>For RSA, the secret shall be used to sign data.</h:li> <h:li>For ECDSA, the secret shall be used to sign data.</h:li></h:ul> The evaluator shall verify that the tenant software is able to access and use the key/secret as described.</test>
+                  <test>The evaluator shall destroy keys/secrets of each supported type according to the operational guidance. The evaluator shall write, or the developer shall provide access to, tenant software that destroys an imported or generated key/secret. The evaluator shall verify that the tenant software is able to cause the deletion of only keys that were created or imported on its behalf.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
           </f-element>
           <audit-event/>
         </f-component>
@@ -2554,7 +2559,7 @@
             <note role="application">
 					This SFR is included in the ST if "software-based" is selected in FCS_STG_EXT.1.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall review the TSS to determine that the TSS describes the
 						protection of symmetric keys, KEKs, long-term trusted channel key material, and
 						software-based key storage as claimed in FCS_STG_EXT.2.1.</TSS>
@@ -2584,12 +2589,6 @@
             <note role="application">
 						This SFR is included in the ST if "software-based" is selected in FCS_STG_EXT.1.
 				</note>
-            <aactivity level="element">
-              <TSS>The evaluator shall examine the TSS and ensure that it contains a description of
-						how the TOE protects the integrity of its keys.</TSS>
-              <Guidance/>
-              <Tests/>
-            </aactivity>
           </f-element>
           <f-element id="fcs-stg-ext-3e2">
             <title>
@@ -2602,6 +2601,12 @@
 					use one integrity-protection method for one type of key and a different method for other types of
 					keys.
 				</note>
+            <aactivity>
+              <TSS>The evaluator shall examine the TSS and ensure that it contains a description of
+						how the TOE protects the integrity of its keys.</TSS>
+              <Guidance/>
+              <Tests/>
+            </aactivity>
           </f-element>
         </f-component>
       </section>
@@ -2633,13 +2638,6 @@
 					The TSF shall support importing keys/key material using 
 					<assignable>import mechanism</assignable>.
 				</title></ext-comp-def-title>
-            <aactivity level="element">
-              <TSS>The evaluator shall confirm the TSS contains descriptions of the supported methods
-						the TSF uses to import keys and key material into the TOE. For each import method selected, 
-						the TSS shall describe integrity verification schemes employed.</TSS>
-              <Guidance/>
-              <Tests>For each supported import method selected in FDP_ITC_EXT.1.1 and for each supported integrity verification method selected in FDP_ITC_EXT.1.2. used by the selected import method, provide one key/credential with valid integrity credentials, one with invalid integrity credentials (e.g. hash). The operations with invalid integrity credentials must result in error. The operations with valid integrity credentials must accept the keys/credentials.</Tests>
-            </aactivity>
           </f-element>
           <f-element id="fdp-itc-ext-1e2">
             <title>
@@ -2656,6 +2654,13 @@
 					The way the TSF checks the integrity of the keys depends on the method of importation. For
 					example, the encrypted data channel may provide data integrity as part of its service.
 				</note>
+            <aactivity>
+              <TSS>The evaluator shall confirm the TSS contains descriptions of the supported methods
+						the TSF uses to import keys and key material into the TOE. For each import method selected, 
+						the TSS shall describe integrity verification schemes employed.</TSS>
+              <Guidance/>
+              <Tests>For each supported import method selected in FDP_ITC_EXT.1.1 and for each supported integrity verification method selected in FDP_ITC_EXT.1.2. used by the selected import method, provide one key/credential with valid integrity credentials, one with invalid integrity credentials (e.g. hash). The operations with invalid integrity credentials must result in error. The operations with valid integrity credentials must accept the keys/credentials.</Tests>
+            </aactivity>
           </f-element>
           <audit-event/>
         </f-component>
@@ -2678,7 +2683,7 @@
 					This SFR should be claimed in the ST if the TOE includes a trusted execution environment 
 					for the use of tenant software.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to ensure that it describes the protections provided by the 
 						TOE's TEE implementation.</TSS>
               <Guidance>
@@ -2746,7 +2751,102 @@
 					regardless of if it is being entered at the DAR decryption interface or at a lockscreen
 					interface. 
 				</note>
-            <aactivity level="element">
+          </f-element>
+          <f-element id="fia-afl-ext-1e2">
+            <title>
+					The TSF shall detect when a configurable positive non-zero integer within 
+					 <assignable>range of acceptable values for each authentication mechanism</assignable> 
+					of  <selectables onlyone="yes"><selectable id="fia_afl_ext.1.2_2" >unique</selectable><selectable id="fia_afl_ext.1.2_3" >non-unique</selectable></selectables>  unsuccessful authentication attempts occur related to last successful authentication for
+					each authentication mechanism.
+				</title>
+            <note role="application">
+					The positive integer is configured according to <xref to="t-manfunc"/> in FMT_SMF.1.1.<h:p/>
+					An unique authentication attempt is defined as any attempt to verify an authentication attempt
+					in which the input is different from a previous attempt. "Unique" must be selected if
+					the authentication system increments the counter only for unique unsuccessful authentication
+					attempts. For example, if the same incorrect password is attempted twice the authentication 
+					system increments the counter once. "Non-unique" must be selected if the authentication system 
+					increments the counter for each unsuccessful authentication attempt, regardless of whether the
+					input is unique. For example, if the same incorrect password is attempted twice the
+					authentication system increments the counter twice.<h:p/>
+					If the TOE supports multiple authentication mechanisms per FIA_UAU.5.1, this element applies
+					to all authentication mechanisms. It is acceptable for each authentication mechanism to
+					utilize an independent counter or for multiple authentication mechanisms to utilize a shared 
+					counter. The interaction between the authentication factors with regard to the authentication
+					counter must be in accordance with FIA_UAU.5.2.<h:p/>
+					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption 
+					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
+					to all available interfaces. However, it is acceptable for each Authentication Factor interface
+					to be configurable with a different number of unsuccessful authentication attempts.<h:p/></note>
+          </f-element>
+          <f-element id="fia-afl-ext-1e3">
+            <title><h:mark>The TSF shall maintain the number of unsuccessful authentication attempts that have occurred 
+					upon power off if the minimum boot time of the system is shorter than the lockout time
+					specified in FIA_AFL_EXT.1.5. (see Issue 64)</h:mark></title>
+            <note role="application"><h:mark>The purpose of this requirement is to prevent hammering attacks focused on
+					a device's pre-OS firmware from bypassing the actions in FIA_AFL_EXT.1.5 by power
+					cycling the system in order to zero the authentication failure count. This purpose
+					is achieved by default if the minimum reboot time of the system is greater than the
+					timeout penalty specified in FIA_AFL_EXT.1.5.<h:p/>
+					If the actions specified in FIA_AFL_EXT.1.5 are device wipe or a non-time-limited lockout, or if
+					the minimum reboot time is shorter than the specified lockout time, then  
+					the authentication failure count must be maintained across power cycles. The variation of
+					boot duration of individual devices and the configurability of FIA_AFL_EXT.1.5
+					may create scenarios where some devices are compliant by design (specifically server-class
+					devices with lengthy boot times) while other devices (specifically fast-booting
+					workstations) may need to implement this requirement. The intention is to protect
+					the pre-OS firmware without making assumptions as to boot duration per device.
+					<h:p/></h:mark>	
+					The TOE may implement an Authentication Factor interface that precedes another Authentication
+					Factor interface in the boot sequence (for example, a volume DAR decryption interface which
+					precedes the lockscreen interface) before the user can access the GPCP. In this situation,
+					because the user must successfully authenticate to the first interface to access the second,
+					the number of unsuccessful authentication attempts need not be maintained for the second 
+					interface.
+				</note>
+          </f-element>
+          <f-element id="fia-afl-ext-1e4">
+            <title>
+					When the defined number of unsuccessful authentication attempts has exceeded the maximum
+					allowed for a given authentication mechanism, all future authentication attempts shall be
+					limited to other available authentication mechanisms, unless the given mechanism is designated
+					as a critical authentication mechanism. 
+				</title>
+            <note role="application">
+					See FIA_AFL_EXT.1.5 for exceeding the maximum failure threshold for critical authentication mechanisms.<h:p/>
+					In accordance with FIA_AFL_EXT.1.3, this requirement also applies after the TOE is powered off 
+					and powered back on.
+				</note>
+          </f-element>
+          <f-element id="fia-afl-ext-1e5">
+            <title>
+					When the defined number of unsuccessful authentication attempts for the last available
+					authentication mechanism or a critical authentication mechanism has been surpassed, the 
+					TSF shall 
+						 <selectables linebreak="yes"><selectable id="fia_afl_ext.1.5_1" >perform a wipe of all protected data</selectable><selectable id="fia_afl_ext.1.5_2" >exclude the <h:mark>current Administrator</h:mark> from further authentication attempts</selectable><selectable id="fia_afl_ext.1.5_3">exclude the <h:mark>current Administrator</h:mark> from further authentication attempts for <assignable><h:mark>a period of time greater than zero seconds</h:mark></assignable></selectable><selectable id="fia_afl_ext.1.5_5">exclude the <h:mark>current Administrator</h:mark> from further authentication attempts for <assignable><h:mark>a period of time greater than the minimum boot time of the system</h:mark></assignable></selectable></selectables>.
+				</title>
+            <note role="application"><h:mark>(Issue 65) The "current Administrator" is the entity attempting to authenticate to the TOE that has run afoul of 
+					the limit on authentication attempts. For platforms that support multiple Administrator identities, only the
+					identity that has run afoul is punished. For platforms without such support, these actions
+					are effectively applied to the authentication mechanism rather than a specific user.</h:mark> <h:p/>
+					Wipe is performed in accordance with FCS_CKM.6. Protected data is all non-TSF data, 
+					including all user or enterprise data. Some or all of this data may be considered sensitive
+					data as well.<h:p/>
+					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption
+					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
+					to all available interfaces.
+				</note>
+          </f-element>
+          <f-element id="fia-afl-ext-1e6">
+            <title>
+					The TSF shall increment the number of unsuccessful authentication attempts prior to notifying the 
+					user that the authentication was unsuccessful.
+				</title>
+            <note role="application">
+					This requirement is to ensure that if power is cut to the device directly after an
+					authentication attempt, the counter will be incremented to reflect that attempt.
+				</note>
+            <aactivity>
               <TSS>The evaluator shall ensure that the TSS describes that a value corresponding to the number 
 						of unsuccessful authentication attempts since the last successful authentication is kept 
 						for each Authentication Factor interface. The evaluator shall ensure that this description
@@ -2784,83 +2884,6 @@
                 </testlist>
               </Tests>
             </aactivity>
-          </f-element>
-          <f-element id="fia-afl-ext-1e2">
-            <title>
-					The TSF shall detect when a configurable positive non-zero integer within 
-					 <assignable>range of acceptable values for each authentication mechanism</assignable> 
-					of  <selectables onlyone="yes"><selectable id="fia_afl_ext.1.2_2" >unique</selectable><selectable id="fia_afl_ext.1.2_3" >non-unique</selectable></selectables>  unsuccessful authentication attempts occur related to last successful authentication for
-					each authentication mechanism.
-				</title>
-            <note role="application">
-					The positive integer is configured according to <xref to="t-manfunc"/> in FMT_SMF.1.1.<h:p/>
-					An unique authentication attempt is defined as any attempt to verify an authentication attempt
-					in which the input is different from a previous attempt. "Unique" must be selected if
-					the authentication system increments the counter only for unique unsuccessful authentication
-					attempts. For example, if the same incorrect password is attempted twice the authentication 
-					system increments the counter once. "Non-unique" must be selected if the authentication system 
-					increments the counter for each unsuccessful authentication attempt, regardless of whether the
-					input is unique. For example, if the same incorrect password is attempted twice the
-					authentication system increments the counter twice.<h:p/>
-					If the TOE supports multiple authentication mechanisms per FIA_UAU.5.1, this element applies
-					to all authentication mechanisms. It is acceptable for each authentication mechanism to
-					utilize an independent counter or for multiple authentication mechanisms to utilize a shared 
-					counter. The interaction between the authentication factors with regard to the authentication
-					counter must be in accordance with FIA_UAU.5.2.<h:p/>
-					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption 
-					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
-					to all available interfaces. However, it is acceptable for each Authentication Factor interface
-					to be configurable with a different number of unsuccessful authentication attempts.<h:p/></note>
-          </f-element>
-          <f-element id="fia-afl-ext-1e3">
-            <title/>
-            <note role="application">	
-					The TOE may implement an Authentication Factor interface that precedes another Authentication
-					Factor interface in the boot sequence (for example, a volume DAR decryption interface which
-					precedes the lockscreen interface) before the user can access the GPCP. In this situation,
-					because the user must successfully authenticate to the first interface to access the second,
-					the number of unsuccessful authentication attempts need not be maintained for the second 
-					interface.
-				</note>
-          </f-element>
-          <f-element id="fia-afl-ext-1e4">
-            <title>
-					When the defined number of unsuccessful authentication attempts has exceeded the maximum
-					allowed for a given authentication mechanism, all future authentication attempts shall be
-					limited to other available authentication mechanisms, unless the given mechanism is designated
-					as a critical authentication mechanism. 
-				</title>
-            <note role="application">
-					See FIA_AFL_EXT.1.5 for exceeding the maximum failure threshold for critical authentication mechanisms.<h:p/>
-					In accordance with FIA_AFL_EXT.1.3, this requirement also applies after the TOE is powered off 
-					and powered back on.
-				</note>
-          </f-element>
-          <f-element id="fia-afl-ext-1e5">
-            <title>
-					When the defined number of unsuccessful authentication attempts for the last available
-					authentication mechanism or a critical authentication mechanism has been surpassed, the 
-					TSF shall 
-						 <selectables linebreak="yes"><selectable id="fia_afl_ext.1.5_1" >perform a wipe of all protected data</selectable><selectable id="fia_afl_ext.1.5_2" >exclude the from further authentication attempts</selectable><selectable id="fia_afl_ext.1.5_3">exclude the from further authentication attempts for <assignable>a period of time greater than zero seconds</assignable> </selectable><selectable id="fia_afl_ext.1.5_5">exclude the from further authentication attempts for <assignable>a period of time greater than the minimum boot time of the system</assignable> </selectable></selectables>.
-				</title>
-            <note role="application"><h:p/>
-					Wipe is performed in accordance with FCS_CKM.6. Protected data is all non-TSF data, 
-					including all user or enterprise data. Some or all of this data may be considered sensitive
-					data as well.<h:p/>
-					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption
-					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
-					to all available interfaces.
-				</note>
-          </f-element>
-          <f-element id="fia-afl-ext-1e6">
-            <title>
-					The TSF shall increment the number of unsuccessful authentication attempts prior to notifying the 
-					user that the authentication was unsuccessful.
-				</title>
-            <note role="application">
-					This requirement is to ensure that if power is cut to the device directly after an
-					authentication attempt, the counter will be incremented to reflect that attempt.
-				</note>
           </f-element>
           <audit-event>
             <audit-event-descr>Failed attempt at Administrator authentication.</audit-event-descr>
@@ -2906,7 +2929,7 @@
 					characters that are supported by TOE; they may optionally list additional special characters
 					supported using the assignment.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS/>
               <Guidance>
 						The evaluator shall examine the AGD to determine that it provides
@@ -2932,16 +2955,6 @@
 					The TSF shall limit user authentication attempts by 
 					 <selectables><selectable id="fia_trt_ext.1.1_1" >preventing authentication via an external port</selectable><selectable id="fia_trt_ext.1.1_2" >enforcing a delay between incorrect authentication attempts</selectable></selectables>  for all authentication mechanisms selected in FIA_UAU.5.1.
 				</title>
-            <aactivity level="element">
-              <TSS>The evaluator shall verify that the TSS describes the method by which authentication 
-						attempts are not able to be automated. The evaluator shall ensure that the TSS describes 
-						either how the TSF disables authentication via external interfaces (other than the 
-						ordinary user interface) or how authentication attempts are delayed in order to slow 
-						automated entry and shall ensure that no more than 10 attempts can be attempted
-						per 500 milliseconds for all authentication mechanisms selected in FIA_UAU.5.1.</TSS>
-              <Guidance/>
-              <Tests/>
-            </aactivity>
           </f-element>
           <f-element id="fia-trt-ext-1e2">
             <title>The minimum delay between incorrect authentication attempts  
@@ -2956,6 +2969,16 @@
 					requirements using unequal or equal timing of delays. The minimum delay specified in this 
 					requirement provides defense against brute forcing.
 				</note>
+            <aactivity>
+              <TSS>The evaluator shall verify that the TSS describes the method by which authentication 
+						attempts are not able to be automated. The evaluator shall ensure that the TSS describes 
+						either how the TSF disables authentication via external interfaces (other than the 
+						ordinary user interface) or how authentication attempts are delayed in order to slow 
+						automated entry and shall ensure that no more than 10 attempts can be attempted
+						per 500 milliseconds for all authentication mechanisms selected in FIA_UAU.5.1.</TSS>
+              <Guidance/>
+              <Tests/>
+            </aactivity>
           </f-element>
           <audit-event>
             <audit-event-descr>Authentication throttling triggered.</audit-event-descr>
@@ -2970,7 +2993,7 @@
           <f-element id="fia-uau-5e1">
             <title>
 					The TSF shall provide [<h:i>password and 
-					 <selectables><selectable id="sel-fia-uau-5-x509" >X.509 certificate-based authentication</selectable><selectable id="sel-fia-uau-5-ssh" ></selectable><selectable id="fia_uau.5.1_1" >biometric authentication</selectable><selectable id="fia_uau.5.1_2" exclusive="yes">no other authentication mechanism</selectable></selectables></h:i>] to support user authentication.</title>
+					 <selectables><selectable id="sel-fia-uau-5-x509" >X.509 certificate-based authentication</selectable><selectable id="sel-fia-uau-5-ssh" ><h:mark>SSH-based public key, password, or certificate authentication</h:mark></selectable><selectable id="fia_uau.5.1_1" >biometric authentication</selectable><selectable id="fia_uau.5.1_2" exclusive="yes">no other authentication mechanism</selectable></selectables></h:i>] to support user authentication.<h:mark>See Issue 67</h:mark></title>
             <note role="application">
 					This SFR is included in the ST if the "<h:i>Administrator</h:i>" role is selected
 					in FMT_SMR.1, or if the "<h:i>Server-Class Platform, Basic</h:i>" or "<h:i>Server-Class Platform, Enhanced</h:i>"
@@ -2985,7 +3008,17 @@
 					SSH-based authentication, whether public key-, password-, or certificate-based. In this case,
 					the ST claims the <xref to="pkg-ssh"/>.	
 				</note>
-            <aactivity level="element">
+          </f-element>
+          <f-element id="fia-uau-5e2">
+            <title>
+					The TSF shall authenticate any user's claimed identity according to the 
+					 <assignable>rules describing how the multiple authentication mechanisms provide authentication</assignable>.
+				</title>
+            <note role="application">
+					Rules regarding how the authentication factors interact in terms of unsuccessful authentication
+					are covered in FIA_AFL_EXT.1.
+				</note>
+            <aactivity>
               <TSS>The evaluator shall ensure that the TSS describes each mechanism provided to support user
 						authentication and the rules describing how the authentication mechanism(s) provide
 						authentication.<h:p/>
@@ -3011,16 +3044,6 @@
                 </testlist>
               </Tests>
             </aactivity>
-          </f-element>
-          <f-element id="fia-uau-5e2">
-            <title>
-					The TSF shall authenticate any user's claimed identity according to the 
-					 <assignable>rules describing how the multiple authentication mechanisms provide authentication</assignable>.
-				</title>
-            <note role="application">
-					Rules regarding how the authentication factors interact in terms of unsuccessful authentication
-					are covered in FIA_AFL_EXT.1.
-				</note>
           </f-element>
           <audit-event/>
         </f-component>
@@ -3054,7 +3077,7 @@
 					information regarding the authentication factors that could aid an adversary in spoofing or
 					circumventing the authentication protocols.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall ensure that the TSS describes the means of obscuring the authentication
 						information for all authentication methods specified in FIA_UAU.5.1.</TSS>
               <Guidance>
@@ -3097,7 +3120,7 @@
 					The TSF-mediated management functions are listed in the management functions table 
 					(<xref to="t-manfunc"/>) in FMT_SMF.1.  
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to determine that it describes the logon
                         process for each logon method (local, remote (HTTPS, SSH, etc.)) supported for the platform. 
                         This description shall contain information pertaining to the credentials allowed/used, any 
@@ -3141,7 +3164,7 @@
 					they are default values or randomly generated. This requirement applies only to credentials
 					used by an Administrator for logging in to the TOE, and not to other platform credentials that might come
 					pre-installed.<h:p/></note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall check the TSS to determine whether the platform comes  
 						pre-installed with default Administrator credentials, or does not require credentials for
 						initial Administrator access.</TSS>
@@ -3182,7 +3205,7 @@
 					cases, both types of limitations are implemented to ensure the required
 					protection.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to determine that it identifies all the accessible test
 						and debug ports and interfaces of the TOE and affirms that they do not allow user data
 						of the TOE to be disclosed or manipulated, TSF data to be disclosed or manipulated,
@@ -3222,7 +3245,7 @@
 					accessible to tennant software. This requirement should be included in the
 					ST for use cases that include the threat T.PHYSICAL.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>If "<h:i>disable access through hardware</h:i>" is selected:<h:br/>
 						The evaluator shall examine the TSS to determine the location of the test and ports on the TSF, to
 						include the order of the ports (i.e. Data In, Data Out, Clock, etc.).<h:p/>
@@ -3250,7 +3273,7 @@
 					Administrators are required to authenticate themselves to the platform.<h:p/>
 					Users have a limited ability to select responses to certain events
 					as specified in the Management Functions table in FMT_SMF.1.<h:p/></note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall verify that the TSS describes those management functions that
 						may be performed by the Administrator, and those that can be performed by
 						ordinary users. The TSS also describes any functionality that is affected by 
@@ -3269,324 +3292,186 @@
 					Status Markers:
 					M - Mandatory
 					O - Optional/Selectable/Conditional
-					X - Not permitted<h:p/>
-			<h:br/><h:br/>
-			<h:b><ctr id="undefined" ctr-type="Table">: Management Functions</ctr></h:b>
-			<h:br/><h:br/>
-			Status Markers:<h:br/> O - Indicates that this function is optional for this role<h:br/>M - Indicates that this function is mandatory for this role.<h:br/>X - Indicates that this function is not permitted for this role<h:br/><h:br/>
-		<management-function-set default="O"><manager cid="A">Admin</manager><manager cid="U">User</manager>
-				<management-function id="mf-admin-platform">
-					<text>Ability to administer the platform <selectables><selectable id="fmt_smf.1.1_1" >locally</selectable><selectable id="sel-smf-remote-admin" >remotely</selectable></selectables> </text>
-					<M ref="A"/><X ref="U"/>
-					<app-note>
+					X - Not permitted<h:p/>Status Markers:<h:br/> O - Indicates that this function is optional for this role<h:br/>M - Indicates that this function is mandatory for this role.<h:br/>X - Indicates that this function is not permitted for this role<h:br/><h:br/><management-function-set default="O"><manager cid="A">Admin</manager><manager cid="U">User</manager>
+          <management-function id="mf-admin-platform">
+          <text>Ability to administer the platform <selectables><selectable id="fmt_smf.1.1_1" >locally</selectable><selectable id="sel-smf-remote-admin" >remotely</selectable></selectables> </text>
+          <M ref="A"/><X ref="U"/>
+          <app-note>
 								Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
 								Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
 								If "<h:i>remotely</h:i>" is selected, then FTP_TRP.1 must be claimed in the 
 								ST and Function <xref to="mf-support-channel"/> must be selected.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-audit-admin">
-					<text>Ability to configure and manage the audit functionality and audit data.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note><h:p/>
+          </management-function>
+        
+          <management-function id="mf-audit-admin">
+          <text>Ability to configure and manage the audit functionality and audit data.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note><h:mark>Management of audit data includes the ability to delete it.</h:mark> <h:p/>
 								This Function must be claimed if FAU_GEN.1 is claimed in the ST.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-audit-server">
-					<text>Ability to configure name/address of audit/logging server to which to send audit/logging records.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-audit-server">
+          <text>Ability to configure name/address of audit/logging server to which to send audit/logging records.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
 								This function must be claimed if FAU_STG.1 is claimed in the ST.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-audit-review">
-					<text>Ability to review audit records.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-audit-review">
+          <text>Ability to review audit records.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
 								This Function must be claimed if FAU_SAR.1 is claimed in the ST.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-support-channel">
-					<text><comment>Issue 47</comment></text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-support-channel">
+          <text><comment>Issue 47</comment>  <h:mark>Ability to initiate a trusted channel or accept an incoming channel for remote administration.  </h:mark></text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
 								This Function must be claimed if FTP_TRP.1 is claimed in the ST.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-auth-creds">
-					<text></text>
-					<M ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-auth-creds">
+          <text><h:mark>Ability to manage authentication credentials for Administrators.  </h:mark></text>
+          <M ref="A"/><X ref="U"/>
+          <app-note>
 								This Function must be claimed if FIA_UIA_EXT.1 is claimed in the ST.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-auth-fail-params">
-					<text>Ability to set parameters for allowable number of authentication failures.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-auth-fail-params">
+          <text>Ability to set parameters for allowable number of authentication failures.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
 								This Function must be claimed if FIA_AFL_EXT.1 is claimed in the ST.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-config-pwd">
-					<text>Ability to configure password length and complexity.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-config-pwd">
+          <text>Ability to configure password length and complexity.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
 								This Function must be claimed if FIA_PMG_EXT.1 is claimed in the ST.<h:p/>
 								If password length and complexity are not configurable, then the Administrator 
 								Option should be denied.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-config-throttling">
-					<text>Ability to configure authentication throttling policy.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-config-throttling">
+          <text>Ability to configure authentication throttling policy.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
 								This Function must be claimed if FIA_TRT_EXT.1 is claimed in the ST.<h:p/>
 								If authentication throttling policy is not configurable, then the Administrator 
 								Option should be denied.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-auth-methods">
-					<text>Ability to manage authentication methods and change default authorization factors.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-auth-methods">
+          <text>Ability to manage authentication methods and change default authorization factors.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
 								This Function must be claimed if FIA_UAU.5 is claimed in the ST. <h:p/> 
 								If authentication methods are not configurable, then the Administrator 
 								Option should be denied.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-config-revocation-checking">
-					<text>Ability to configure of certificate revocation checking methods.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-config-revocation-checking">
+          <text>Ability to configure of certificate revocation checking methods.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
 								This function must be claimed if FIA_X509_EXT.1 is claimed in the ST (i.e., the TOE claims conformance to <xref to="pkg-x509"/>. <h:p/>
 								If TOE does not support configuration of certificate revocation checking methods,
 								then the Administrator option should be denied.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-config-revocation-actions">
-					<text>Ability to configure TSF behavior when certificate revocation status cannot be determined.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-config-revocation-actions">
+          <text>Ability to configure TSF behavior when certificate revocation status cannot be determined.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
                             	This function must be claimed if FIA_X509_EXT.2 is claimed in the ST (i.e., the TOE claims conformance
 								to <xref to="pkg-x509"/> and the claims made in the SFR indicate that the administrator is allowed to
 								configure how the TSF treats a certificate with undetermined revocation status.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-config-ipsec-refid">
-					<text><comment>Issue 47</comment></text>
-					<M ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-config-ipsec-refid">
+          <text><comment>Issue 47</comment>  <h:mark>Ability to manage the IPsec reference identifier.  </h:mark></text>
+          <M ref="A"/><X ref="U"/>
+          <app-note>
                             	This function must be claimed if FCS_IPSEC_EXT.1 is claimed in the ST.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-config-boot-integrity-failure-actions">
-					<text>Ability to configure default action to take on boot integrity failure.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-config-boot-integrity-failure-actions">
+          <text>Ability to configure default action to take on boot integrity failure.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
 								This Function must be claimed if "<h:i>in accordance with Administrator-configurable policy</h:i>" 
 								is selected in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-config-default-update-failure-actions">
-					<text>Ability to configure default action to take on update failure.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-config-default-update-failure-actions">
+          <text>Ability to configure default action to take on update failure.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
 								This Function must be claimed if FPT_TUD_EXT.2 or FPT_TUD_EXT.3 is claimed in 
 								the ST and "<h:i>in accordance with Administrator-configurable policy</h:i>" 
 								is selected in FPT_TUD_EXT.2.5 or FPT_TUD_EXT.3.4.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-initiate-update">
-					<text></text>
-					<O ref="A"/><O ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-initiate-update">
+          <text><h:mark>Ability to initiate the update process.  </h:mark></text>
+          <O ref="A"/><O ref="U"/>
+          <app-note>
 								This Function must be claimed if something other than "<h:i>no mechanism for platform firmware update</h:i>"
 								is selected in FPT_TUD_EXT.1.1.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-determine-update-failure-action">
-					<text>Ability to determine the action to take on update failure.</text>
-					<O ref="A"/><O ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-determine-update-failure-action">
+          <text>Ability to determine the action to take on update failure.</text>
+          <O ref="A"/><O ref="U"/>
+          <app-note>
 								This Function must be claimed if FPT_TUD_EXT.2 or FPT_TUD_EXT.3 are claimed in 
 								the ST.<h:p/></app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-determine-update-integrity-failure-action">
-					<text>Ability to determine the action to take on integrity check failure.</text>
-					<O ref="A"/><O ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-determine-update-integrity-failure-action">
+          <text>Ability to determine the action to take on integrity check failure.</text>
+          <O ref="A"/><O ref="U"/>
+          <app-note>
 								This Function must be claimed if FPT_ROT_EXT.2 or FPT_ROT_EXT.3 is claimed in the ST.<h:p/>
 								The Administrator Option must be selected if "<h:i>by express determination of an [Administrator]</h:i>" is selected
 								in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2.<h:p/>
 								The User Option must be selected if "<h:i>by express determination of an [User]</h:i>" is selected
 								in FPT_ROT_EXT.2.2 or FPT_ROT_EXT.3.2.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			
-				<management-function id="mf-key-import-export">
-					<text>Ability to manage import and export of keys/secrets to and from protected storage.</text>
-					<O ref="A"/><X ref="U"/>
-					<app-note>
+          </management-function>
+        
+          <management-function id="mf-key-import-export">
+          <text>Ability to manage import and export of keys/secrets to and from protected storage.</text>
+          <O ref="A"/><X ref="U"/>
+          <app-note>
 								This Function must be claimed if FCS_STG_EXT.1 is claimed in the ST.
 							</app-note>
-				<aactivity>
-					
-					<TSS></TSS>
-					<Guidance></Guidance>
-					<Tests></Tests>
-				</aactivity>
-			
-				</management-function>
-			</management-function-set>].</title>
+          </management-function>
+        </management-function-set>].</title>
             <note role="application">
 					These functions become Mandatory or Selectable as indicated in the Notes.<h:p/>
 					If "<h:i>not at all</h:i>" is selected in Function <xref to="mf-admin-platform"/>, then no other management
 					Management Functions may be selected.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to ensure that it describes each management function
 						and its associated actions.</TSS>
               <Guidance>
@@ -3604,10 +3489,7 @@
         <f-component cc-id="fmt_smr.1" id="sfr-fmt-smr-1" name="Security Roles">
           <f-element id="fmt-smr-1e1">
             <title>The TSF shall maintain the roles [<h:i>User</h:i> and 
-				 <selectables><selectable id="sel-fmt-smr-1-admin" >Administrator</selectable><selectable id="fmt_smr.1.1_1" exclusive="yes">no other roles</selectable></selectables></title>
-            <aactivity level="element">
-              <no-tests>Documentation and testing for roles is covered in the Evaluation Activities for FMT_SMF.1</no-tests>
-            </aactivity>
+				 <selectables><selectable id="sel-fmt-smr-1-admin" >Administrator</selectable><selectable id="fmt_smr.1.1_1" exclusive="yes">no other roles</selectable></selectables>].</title>
           </f-element>
           <f-element id="fmt-smr-1e2">
             <title>The TSF shall be able to associate users with roles.</title>
@@ -3620,6 +3502,9 @@
 				to administer the GPCP. This role is distinct from OS or VS administrators, who are
 				may are authenticated to tenant software and are considered to be Users in the context of the GPCP.				
 			</note>
+            <aactivity>
+              <no-tests>Documentation and testing for roles is covered in the Evaluation Activities for FMT_SMF.1</no-tests>
+            </aactivity>
           </f-element>
           <audit-event/>
         </f-component>
@@ -3659,7 +3544,7 @@
 				</title>
             <note role="application">The intent of this requirement is to ensure that cryptographic services requiring random bit
 				generation cannot be performed if a failure of a self-test defined in FPT_TST.1 occurs.</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall verify that the TSF describes how the TOE enters an error state in the event of a DRBG 
 						self-test failure.</TSS>
               <Guidance>
@@ -3682,15 +3567,6 @@
             <title>The TSF shall provide unambiguous detection of physical tampering
 					that can compromise the TSF.
 				</title>
-            <aactivity level="element">
-              <TSS>The evaluator shall examine the TSS to ensure it describes the methods used by the
-						TOE to detect physical tampering and how tampering is indicated when detected.</TSS>
-              <Guidance>
-						The evaluator shall ensure that the AGD describes how the TOE indicates to users
-						and Administrators that it has detected tampering. 
-					</Guidance>
-              <Tests>The evaluator shall verify that attempts to open the TOE enclosure result in indications consistent with the operational guidance. Such indications could include damaged tamper seals, logged events, or other physical or electronic manifestations.</Tests>
-            </aactivity>
           </f-element>
           <f-element id="fpt-php-1e2">
             <title>
@@ -3702,6 +3578,15 @@
 					The audit event "Detection of intrusion" should be claimed if the TOE is capable of generating
 					an audit event in circumstances where an intrusion is detected.
 				</note>
+            <aactivity>
+              <TSS>The evaluator shall examine the TSS to ensure it describes the methods used by the
+						TOE to detect physical tampering and how tampering is indicated when detected.</TSS>
+              <Guidance>
+						The evaluator shall ensure that the AGD describes how the TOE indicates to users
+						and Administrators that it has detected tampering. 
+					</Guidance>
+              <Tests>The evaluator shall verify that attempts to open the TOE enclosure result in indications consistent with the operational guidance. Such indications could include damaged tamper seals, logged events, or other physical or electronic manifestations.</Tests>
+            </aactivity>
           </f-element>
           <audit-event>
             <audit-event-descr>
@@ -3720,22 +3605,6 @@
             <title>The TSF shall provide unambiguous detection of physical tampering that
 					can compromise the TSF.
 				</title>
-            <aactivity level="element">
-              <TSS>The evaluator shall examine the TSS to ensure it describes the methods used by the
-					TOE to detect physical tampering and how the TOE will respond when physical
-					tampering has been detected for each device/element specified in FPT_PHP.2.3.</TSS>
-              <Guidance>
-					The evaluator shall ensure that the AGD describes how the TOE notifies users
-					or Administrators that it has detected tampering.
-				</Guidance>
-              <Tests>
-                The evaluator shall perform the following tests:
-                <testlist>
-                  <test>The evaluator shall verify that attempts to open the TOE enclosure result in indications consistent with the operational guidance. Such indications could include damaged tamper seals, logged events, or other physical or electronic manifestations.</test>
-                  <test>For each device/element listed in FPT_PHP.2.3, the evaluator shall verify that attempts to physically tamper with the device/element results in notification to the designated users or roles consistent with the operational guidance.</test>
-                </testlist>
-              </Tests>
-            </aactivity>
           </f-element>
           <f-element id="fpt-php-2e2">
             <title>
@@ -3756,6 +3625,22 @@
 					The audit event "Detection of intrusion" should be claimed if the TOE is capable of generating
 					an audit event in circumstances where an intrusion is detected.		
 				</note>
+            <aactivity>
+              <TSS>The evaluator shall examine the TSS to ensure it describes the methods used by the
+					TOE to detect physical tampering and how the TOE will respond when physical
+					tampering has been detected for each device/element specified in FPT_PHP.2.3.</TSS>
+              <Guidance>
+					The evaluator shall ensure that the AGD describes how the TOE notifies users
+					or Administrators that it has detected tampering.
+				</Guidance>
+              <Tests>
+                The evaluator shall perform the following tests:
+                <testlist>
+                  <test>The evaluator shall verify that attempts to open the TOE enclosure result in indications consistent with the operational guidance. Such indications could include damaged tamper seals, logged events, or other physical or electronic manifestations.</test>
+                  <test>For each device/element listed in FPT_PHP.2.3, the evaluator shall verify that attempts to physically tamper with the device/element results in notification to the designated users or roles consistent with the operational guidance.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
           </f-element>
           <audit-event>
             <audit-event-descr>
@@ -3778,7 +3663,7 @@
 				</title>
             <note role="application">
 					This SFR should be included in the ST if the TOE implements the following use cases:<h:ol><h:li>Server-Class Platform, Enhanced</h:li> <h:li>Tactical EUD</h:li></h:ol></note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to ensure it describes the methods used by the
 					TOE to detect physical tampering and how the TOE will respond when physical
 					tampering has been detected such that SFRs are always enforced.</TSS>
@@ -3801,7 +3686,7 @@
           <dependencies>No dependencies.</dependencies>
           <f-element id="fpt-ppf-ext-1e1">
             <title>The TSF shall allow modification of platform firmware only through the update mechanisms
-					described in FPT_TUD_EXT.1.</title>
+					described in FPT_TUD_EXT.1.<h:mark>(See Issue 73)</h:mark></title>
             <note role="application">
 					Platform firmware must be modifiable only through one of the secure update mechanisms 
 					specified in FPT_TUD_EXT.1. If the update mechanism itself is implemented in platform 
@@ -3812,7 +3697,7 @@
 					this includes the key store and the signature verification algorithm used by the update
 					mechanisms. 
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to ensure that it explains how the various areas of platform firmware and critical data 
 						are protected from modification outside of the platform firmware update mechanism described in FPT_TUD_EXT.1. 
 						If the TOE implements an authenticated update mechanism as specified in FPT_TUD_EXT.2, then the evaluator shall ensure
@@ -3834,7 +3719,7 @@
           <dependencies>No dependencies.</dependencies>
           <f-element id="fpt-rot-ext-1e1">
             <title>The integrity of platform firmware shall be rooted in 
-					 <selectables linebreak="yes"><selectable id="sel-rot-immutable-code" >code or data written to immutable memory or storage</selectable><selectable id="sel-rot-immutable-creds" >credentials held in immutable storage on-platform or protected storage off-platform</selectable><selectable id="sel-rot-mc" >a separate management controller that is itself rooted in a mechanism that meets this requirement</selectable><selectable id="sel-rot-dsc" >integrity measurements held securely in an on-platform dedicated security component</selectable><selectable id="sel-rot-offplat" >integrity measurements held securely by an off-platform entity</selectable></selectables>. </title>
+					 <selectables linebreak="yes"><selectable id="sel-rot-immutable-code" >code or data written to immutable memory or storage</selectable><selectable id="sel-rot-immutable-creds" >credentials held in immutable storage on-platform or protected storage off-platform</selectable><selectable id="sel-rot-mc" >a separate management controller that is itself rooted in a mechanism that meets this requirement</selectable><selectable id="sel-rot-dsc" >integrity measurements held securely in an on-platform dedicated security component</selectable><selectable id="sel-rot-offplat" >integrity measurements held securely by an off-platform entity</selectable></selectables>. <h:mark>(See also Issue 74)</h:mark></title>
             <ext-comp-def-title><title>The integrity of platform firmware shall be rooted in 
 					<assignable>platform firmware root of trust</assignable>.
 				</title></ext-comp-def-title>
@@ -3849,7 +3734,7 @@
 					that provides security services to the platform such as measurement or secure storage.<h:p/>
 					Selection of "<h:i>a separate management controller...</h:i>" implies the existence of an Administrator role.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall verify that the TSS describes the Root of Trust on which initial integrity 
 						of platform firmware is anchored, consistent with the selection above. The description shall
 						include means by which the Root of Trust is protected from modification.</TSS>
@@ -3869,7 +3754,7 @@
           <f-element id="fpt-rot-ext-2e1">
             <title>The integrity of all mutable platform firmware outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
 					prior to execution or use through:
-					 <selectables linebreak="yes"><selectable id="sel-rot2-hash" >computation and verification of a hash by trusted code/data</selectable><selectable id="sel-rot2-digsig" >verification of a digital signature by trusted code/data</selectable><selectable id="fpt_rot_ext.2.1_1" >measurement and verification by trusted code/data</selectable><selectable id="fpt_rot_ext.2.1_2" ></selectable></selectables>.</title>
+					 <selectables linebreak="yes"><selectable id="sel-rot2-hash" >computation and verification of a hash by trusted code/data</selectable><selectable id="sel-rot2-digsig" >verification of a digital signature by trusted code/data</selectable><selectable id="fpt_rot_ext.2.1_1" >measurement and verification by trusted code/data</selectable><selectable id="fpt_rot_ext.2.1_2" ><h:mark>measurement by an on-platform dedicated security component and verification by an off-platform entity</h:mark></selectable></selectables>.<h:mark>(see Issues 79 and 80)</h:mark></title>
             <ext-comp-def-title><title>The integrity of all mutable platform firmware outside of the platform integrity root specified in FPT_ROT_EXT.1 shall be verified 
 					prior to execution or use through:
 					<assignable>method for extending the platform integrity root</assignable>.
@@ -3886,22 +3771,10 @@
 					If "<h:i>computation and verification of a hash by trusted code/data</h:i>" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
 					If "<h:i>verification of a digital signature by trusted code/data</h:i>" is selected, then FCS_COP.1/SigVer must be claimed.					
 				</note>
-            <aactivity level="element">
-              <TSS>The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware is
-						extended to other platform components, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.2.
-						The TSS shall also describe how the TOE responds to failure of verification consistent with the selections in
-						FPT_ROT_EXT.2.2.</TSS>
-              <Guidance>
-						The evaluator shall examine the AGD to ensure that it describes the actions taken and notification
-						methods used in case of failure to establish the integrity of the platform firmware root. If the actions are 
-						configurable, the AGD shall explain how they are configured.
-					</Guidance>
-              <Tests>The evaluator shall modify the platform firmware in a way that should cause a failure of the integrity check. The test passes if the mechanism specified in FPT_ROT_EXT.2.2 is triggered on the first subsequent boot of the platform. <h:p/>Depending on the protections implemented, the evaluator may need a specially crafted update module from the vendor to perform this test. But note that this is not necessarily the same as a test of the update mechanism. The update mechanism can be tested either at boot time or at the time of the update. This verification check must be done during boot. <h:p/>If modification of platform firmware <h:i>in situ</h:i>or using the update mechanism is deemed to be not feasible within the time and cost constraints of the evaluation, then the evaluator shall make such an argument in the AAR, and with concurrence of the CC scheme, this test can be replaced by evidence of vendor testing.</Tests>
-            </aactivity>
           </f-element>
           <f-element id="fpt-rot-ext-2e2">
             <title>The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.2.1 fails:
-					 <selectables linebreak="yes"><selectable id="fpt_rot_ext.2.2_1" >Stop all execution, or</selectable><selectable id="fpt_rot_ext.2.2_2">Notify an <selectables><selectable id="sel-rot2-admin-notify" >Administrator</selectable><selectable id="fpt_rot_ext.2.2_3" >User</selectable></selectables> by <selectables><selectable id="sel-rot2-audit" >generating an audit event</selectable><selectable id="fpt_rot_ext.2.2_5" ><assignable>other notification method(s)</assignable></selectable></selectables>, and <selectables linebreak="yes"><selectable id="fpt_rot_ext.2.2_6" >Stop all execution</selectable><selectable id="fpt_rot_ext.2.2_7" >Shut down, or</selectable><selectable id="sel-rot2-recovery" >Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable></selectables>  <selectables linebreak="yes"><selectable id="fpt_rot_ext.2.2_8" >automatically</selectable><selectable id="sel-rot2-admin-config" >in accordance with Administrator-configurable policy</selectable><selectable id="fpt_rot_ext.2.2_9">by express determination of an <selectables><selectable id="sel-rot2-admin-det" >Administrator</selectable><selectable id="sel-rot2-user-det" >User</selectable></selectables> </selectable></selectables> </selectable></selectables>.	</title>
+					 <selectables linebreak="yes"><selectable id="fpt_rot_ext.2.2_1" >Stop all execution, or</selectable><selectable id="fpt_rot_ext.2.2_2">Notify an <selectables><selectable id="sel-rot2-admin-notify" >Administrator</selectable><selectable id="fpt_rot_ext.2.2_3" >User</selectable></selectables> by <selectables><selectable id="sel-rot2-audit" >generating an audit event</selectable><selectable id="fpt_rot_ext.2.2_5" ><assignable>other notification method(s)</assignable></selectable></selectables>, and <selectables linebreak="yes"><selectable id="fpt_rot_ext.2.2_6" >Stop all execution</selectable><selectable id="fpt_rot_ext.2.2_7" >Shut down, or</selectable><selectable id="sel-rot2-recovery" >Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable></selectables>  <selectables linebreak="yes"><selectable id="fpt_rot_ext.2.2_8" >automatically</selectable><selectable id="sel-rot2-admin-config" >in accordance with Administrator-configurable policy</selectable><selectable id="fpt_rot_ext.2.2_9">by express determination of an <selectables><selectable id="sel-rot2-admin-det" >Administrator</selectable><selectable id="sel-rot2-user-det" >User</selectable></selectables> </selectable></selectables> </selectable></selectables>.	<h:mark>(see Issue 81)</h:mark></title>
             <ext-comp-def-title><title>The TOE shall take the following actions if an integrity check specified in
 					FPT_ROT_EXT.2.1 fails: 
 					<h:ol type="1"><h:li><h:mark>Halt,</h:mark></h:li><h:li><h:mark>Sometimes stop, sometimes notify, sometimes keep going but skip the bad code</h:mark></h:li><h:li>Notify an 
@@ -3923,6 +3796,18 @@
 					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then management function 
 					<xref to="mf-config-boot-integrity-failure-actions"/> must be claimed in FMT_SMF.1.
 				</note>
+            <aactivity>
+              <TSS>The evaluator shall verify that the TSS describes the means by which initial integrity of platform firmware is
+						extended to other platform components, and that the means are consistent with the selection(s) made in FPT_ROT_EXT.2.
+						The TSS shall also describe how the TOE responds to failure of verification consistent with the selections in
+						FPT_ROT_EXT.2.2.</TSS>
+              <Guidance>
+						The evaluator shall examine the AGD to ensure that it describes the actions taken and notification
+						methods used in case of failure to establish the integrity of the platform firmware root. If the actions are 
+						configurable, the AGD shall explain how they are configured.
+					</Guidance>
+              <Tests>The evaluator shall modify the platform firmware in a way that should cause a failure of the integrity check. The test passes if the mechanism specified in FPT_ROT_EXT.2.2 is triggered on the first subsequent boot of the platform. <h:p/>Depending on the protections implemented, the evaluator may need a specially crafted update module from the vendor to perform this test. But note that this is not necessarily the same as a test of the update mechanism. The update mechanism can be tested either at boot time or at the time of the update. This verification check must be done during boot. <h:p/>If modification of platform firmware <h:i>in situ</h:i>or using the update mechanism is deemed to be not feasible within the time and cost constraints of the evaluation, then the evaluator shall make such an argument in the AAR, and with concurrence of the CC scheme, this test can be replaced by evidence of vendor testing.</Tests>
+            </aactivity>
           </f-element>
           <audit-event>
             <audit-event-descr>
@@ -3965,18 +3850,6 @@
 					"Critical components" generally would include chassis, motherboards, CPUs, network cards, memory chips, hard drives, controllers, 
 					graphics processors, and service controllers.
 				</note>
-            <aactivity level="element">
-              <TSS>The evaluator shall verify that the TSS describes the means by which integrity of platform hardware and
-						firmware is maintained from TOE manufacture to delivery of the TOE to its operational site.
-						The TSS shall also describe how the TOE responds to failure of an integrity check consistent with the 
-						selections in FPT_ROT_EXT.3.2.</TSS>
-              <Guidance>
-						The evaluator shall examine the AGD to ensure that it describes the actions taken and notification
-						methods used in case of detection of a platform integrity violation. If the actions are 
-						configurable, the AGD shall explain how they are configured.
-					</Guidance>
-              <Tests/>
-            </aactivity>
           </f-element>
           <f-element id="fpt-rot-ext-3e2">
             <title>
@@ -4002,6 +3875,18 @@
 					If "<h:i>in accordance with administrator-configurable policy</h:i>" is selected, then FMT_MOF.1 and FMT_SMF.1
 					must be claimed in the ST.
 				</note>
+            <aactivity>
+              <TSS>The evaluator shall verify that the TSS describes the means by which integrity of platform hardware and
+						firmware is maintained from TOE manufacture to delivery of the TOE to its operational site.
+						The TSS shall also describe how the TOE responds to failure of an integrity check consistent with the 
+						selections in FPT_ROT_EXT.3.2.</TSS>
+              <Guidance>
+						The evaluator shall examine the AGD to ensure that it describes the actions taken and notification
+						methods used in case of detection of a platform integrity violation. If the actions are 
+						configurable, the AGD shall explain how they are configured.
+					</Guidance>
+              <Tests/>
+            </aactivity>
           </f-element>
           <audit-event>
             <audit-event-descr>Detection of attempted intrusion.</audit-event-descr>
@@ -4037,7 +3922,7 @@
 					The recovery process may be initiated automatically on failure, as the result of physically present user
 					action, or as the result of pre-configured policy. The action taken may depend on the nature of the
 					failure as specified in FPT_ROT_EXT.2.2 and FPT_TUD_EXT.2.5.<h:p/></note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS section to confirm that it describes how the platform 
 						firmware recovery mechanism works and the conditions under which it is invoked.</TSS>
               <Guidance>
@@ -4063,7 +3948,7 @@
 					It is acceptable for the TSF to provide timestamp data either through an internal clock or a
 					counter. It is also permissible for the TSF to obtain time data from a clock contained within the
 					same physical enclosure as the TOE.<h:p/></note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to ensure that it lists each security function
 					that makes use of time. The TSS provides a description of how the time is
 					maintained and considered reliable in the context of each of the time related
@@ -4091,23 +3976,9 @@
           </depends>
           <f-element id="fel-tsf-self-test">
             <title>
-					The TSF shall run a suite of the following self-tests  <selectables><selectable id="fpt_tst.1.1_1" >during initial start-up</selectable><selectable id="fpt_tst.1.1_2" >periodically during normal operation</selectable><selectable id="fpt_tst.1.1_3" >at the request of the authorized user</selectable><selectable id="fpt_tst.1.1_4">at the conditions <assignable>conditions under which self-test should occur</assignable> </selectable></selectables> 
+					The TSF shall run a suite of the following self-tests  <selectables><selectable id="fpt_tst.1.1_1" >during initial start-up</selectable><selectable id="fpt_tst.1.1_2" >periodically during normal operation</selectable><selectable id="fpt_tst.1.1_3" >at the request of the authorized user</selectable><selectable id="fpt_tst.1.1_4">at the conditions <assignable>conditions under which self-test should occur</assignable></selectable></selectables> 
 					to demonstrate the correct operation of [<h:i>TSF DRBG specified in FCS_RBG.1</h:i>].              
 				</title>
-            <aactivity level="element">
-              <TSS>The	evaluator shall examine the TSS to ensure that it details the self-tests that are run by the 
-						TSF along with how they are run. This description should include an outline of what the tests are
-						actually doing. The evaluator shall ensure that the TSS makes an argument that the tests are
-						sufficient to demonstrate that the DRBG is operating correctly.
-						<h:p/>
-						Note that this information may also be placed in the entropy documentation specified
-						by <xref to="entropyappendix"/>.</TSS>
-              <Guidance>
-						If a self-test can be executed at the request of an authorized user, the evaluator shall verify 
-						that the operational guidance provides instructions on how to execute that self-test.
-					</Guidance>
-              <Tests>For each self-test, the evaluator shall verify that evidence is produced that the self-test is executed when specified by FPT_TST.1.1. <h:p/>If a self-test can be executed at the request of an authorized user, the evaluator shall verify that following the steps documented in the operational guidance to perform the self-test will result in execution of the self-test.</Tests>
-            </aactivity>
           </f-element>
           <f-element id="fel-tsf-ver-int-data">
             <title>
@@ -4124,6 +3995,20 @@
 					any DRBG implemented by the TOE undergo health testing to ensure that the random bit generation
 					functionality has not been degraded. If the TSF supports multiple DRBGs, this SFR should be iterated
 					to describe the self-test behavior for each.</note>
+            <aactivity>
+              <TSS>The	evaluator shall examine the TSS to ensure that it details the self-tests that are run by the 
+						TSF along with how they are run. This description should include an outline of what the tests are
+						actually doing. The evaluator shall ensure that the TSS makes an argument that the tests are
+						sufficient to demonstrate that the DRBG is operating correctly.
+						<h:p/>
+						Note that this information may also be placed in the entropy documentation specified
+						by <xref to="entropyappendix"/>.</TSS>
+              <Guidance>
+						If a self-test can be executed at the request of an authorized user, the evaluator shall verify 
+						that the operational guidance provides instructions on how to execute that self-test.
+					</Guidance>
+              <Tests>For each self-test, the evaluator shall verify that evidence is produced that the self-test is executed when specified by FPT_TST.1.1. <h:p/>If a self-test can be executed at the request of an authorized user, the evaluator shall verify that following the steps documented in the operational guidance to perform the self-test will result in execution of the self-test.</Tests>
+            </aactivity>
           </f-element>
           <audit-event>
             <audit-event-descr>Execution of self-tests.</audit-event-descr>
@@ -4160,7 +4045,7 @@
 					If platform firmware is modifiable only through a local update requiring physical presence at the platform,
 					then the ST Author must select "<h:i>a secure local platform firmware update mechanism...</h:i>" and include FPT_TUD_EXT.4 in the ST.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>If the ST Author selects "<h:i>no provision for platform firmware update</h:i>," then the 
 						evaluator shall examine the TSS to ensure that it explains all ways of modifying platform 
 						firmware in the absence of any provided mechanism. For example, breaking open the case
@@ -4206,33 +4091,6 @@
 					as described in FPT_TUD_EXT.2</h:i>" is selected in FPT_TUD_EXT.1.1.<h:p/>
 					The ST must include FCS_COP.1/Hash if "<h:i>hash value of the public key</h:i>" is selected.
 				</note>
-            <aactivity level="element">
-              <h:p/>
-              <TSS>The evaluator shall ensure that the TSS includes a comprehensive description of how the 
-						authentication of platform firmware updates is implemented by the TSF. The TSS should cover the 
-						initialization process and the activities that are performed to ensure that the
-						digital signature of the update image is verified before modification of the firmware. <h:p/>
-						The evaluator shall examine the TSF to ensure that it describes the platform firmware version identifier
-						and explains its meaning and encoding.<h:p/>
-						The evaluator shall also ensure that the TSS describes the actions taken by the TSF is 
-						an update image fails authentication.</TSS>
-              <Guidance>
-						The evaluator shall examine the AGD to ensure that it describes the process for 
-						updating the platform firmware.<h:p/>
-						The evaluator shall examine the AGD to ensure that it documents the observable indications
-						of update success or failure, and that it describes how to access the platform firmware version indicators.
-					</Guidance>
-              <Tests>
-                The evaluator shall perform the following tests:
-                <testlist>
-                  <test>The evaluator determines the current version of the platform firmware, and obtains or produces a valid, authentic, and permissible update image of platform firmware. The evaluator initiates an update using this image through the process described in the operational guidance. After the process is complete, the evaluator checks the current firmware version to ensure that the new firmware version matches that of the update.</test>
-                  <test>The evaluator performs the same test, this time using a valid update image that is signed with an incorrect key. The update must fail.</test>
-                  <test>The evaluator performs the same test, this time using an update image that is corrupted but is signed with the correct key. The update must fail.</test>
-                  <test>The evaluator performs the same test, this time using a valid update image that is not signed. The update must fail.</test>
-                  <test>[conditional] If the TSF implements rollback protections, the evaluator performs the same test, this time using a valid, signed update image that has an earlier version number than the currently installed firmware. The update must fail.</test>
-                </testlist>
-              </Tests>
-            </aactivity>
           </f-element>
           <f-element id="fpt-tud-ext-2e2">
             <title>
@@ -4299,6 +4157,33 @@
 					the "operator." It can be either a User or an Administrator, but the distinction is not important in the
 					context of this requirement.
 				</note>
+            <aactivity>
+              <h:p/>
+              <TSS>The evaluator shall ensure that the TSS includes a comprehensive description of how the 
+						authentication of platform firmware updates is implemented by the TSF. The TSS should cover the 
+						initialization process and the activities that are performed to ensure that the
+						digital signature of the update image is verified before modification of the firmware. <h:p/>
+						The evaluator shall examine the TSF to ensure that it describes the platform firmware version identifier
+						and explains its meaning and encoding.<h:p/>
+						The evaluator shall also ensure that the TSS describes the actions taken by the TSF is 
+						an update image fails authentication.</TSS>
+              <Guidance>
+						The evaluator shall examine the AGD to ensure that it describes the process for 
+						updating the platform firmware.<h:p/>
+						The evaluator shall examine the AGD to ensure that it documents the observable indications
+						of update success or failure, and that it describes how to access the platform firmware version indicators.
+					</Guidance>
+              <Tests>
+                The evaluator shall perform the following tests:
+                <testlist>
+                  <test>The evaluator determines the current version of the platform firmware, and obtains or produces a valid, authentic, and permissible update image of platform firmware. The evaluator initiates an update using this image through the process described in the operational guidance. After the process is complete, the evaluator checks the current firmware version to ensure that the new firmware version matches that of the update.</test>
+                  <test>The evaluator performs the same test, this time using a valid update image that is signed with an incorrect key. The update must fail.</test>
+                  <test>The evaluator performs the same test, this time using an update image that is corrupted but is signed with the correct key. The update must fail.</test>
+                  <test>The evaluator performs the same test, this time using a valid update image that is not signed. The update must fail.</test>
+                  <test>[conditional] If the TSF implements rollback protections, the evaluator performs the same test, this time using a valid, signed update image that has an earlier version number than the currently installed firmware. The update must fail.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
           </f-element>
           <audit-event>
             <audit-event-descr>
@@ -4359,32 +4244,6 @@
 					The ST Author should select "<h:i>the version number of the platform firmware update is more recent than 
 					the version number of the previously installed platform firmware</h:i>" if the TSF supports rollback prevention.
 				</note>
-            <aactivity level="element">
-              <h:p/>
-              <TSS>The evaluator shall ensure that the TSS includes a comprehensive description of how the 
-						authentication of platform firmware updates is implemented by the TSF. The TSS should cover the 
-						initialization process and the activities that are performed to ensure that the
-						digital signature of the update image is verified before it is executed or used. <h:p/>
-						The evaluator shall examine the TSF to ensure that it describes the platform firmware version identifier
-						and explains its meaning and encoding.<h:p/>
-						The evaluator shall also ensure that the TSS describes the actions taken by the TSF if 
-						an update image fails authentication, integrity, or rollback-prevention checks.</TSS>
-              <Guidance>
-						The evaluator shall examine the AGD to ensure that it describes the process for 
-						updating the platform firmware.<h:p/>
-						The evaluator shall examine the AGD to ensure that it documents the observable indications
-						of update success or failure, and that it describes how to access the platform firmware version indicators.
-					</Guidance>
-              <Tests>
-                The evaluator shall perform the following tests:
-                <testlist>
-                  <test>The evaluator determines the current version of the platform firmware, and obtains or produces a valid, authentic, and permissible update image of platform firmware. The evaluator initiates an update using this image through the process described in the operational guidance. After the process is complete, the evaluator checks the current firmware version to ensure that the new firmware version matches that of the update.</test>
-                  <test>The evaluator performs the same test, this time using a inauthentic update image. The update code must fail to execute.</test>
-                  <test>The evaluator performs the same test, this time using an update image that is corrupted but is otherwise authentic. The update code must fail to execute.</test>
-                  <test>[conditional] If the TSF implements rollback protections, the evaluator performs the same test, this time using a valid, signed update image that is has an earlier version number than the currently installed firmware. The update code must fail to execute.</test>
-                </testlist>
-              </Tests>
-            </aactivity>
           </f-element>
           <f-element id="fpt-tud-ext-3e2">
             <title>
@@ -4429,6 +4288,32 @@
 					the "operator." It can be either a User or an Administrator, but the distinction is not important in the
 					context of this requirement.
 				</note>
+            <aactivity>
+              <h:p/>
+              <TSS>The evaluator shall ensure that the TSS includes a comprehensive description of how the 
+						authentication of platform firmware updates is implemented by the TSF. The TSS should cover the 
+						initialization process and the activities that are performed to ensure that the
+						digital signature of the update image is verified before it is executed or used. <h:p/>
+						The evaluator shall examine the TSF to ensure that it describes the platform firmware version identifier
+						and explains its meaning and encoding.<h:p/>
+						The evaluator shall also ensure that the TSS describes the actions taken by the TSF if 
+						an update image fails authentication, integrity, or rollback-prevention checks.</TSS>
+              <Guidance>
+						The evaluator shall examine the AGD to ensure that it describes the process for 
+						updating the platform firmware.<h:p/>
+						The evaluator shall examine the AGD to ensure that it documents the observable indications
+						of update success or failure, and that it describes how to access the platform firmware version indicators.
+					</Guidance>
+              <Tests>
+                The evaluator shall perform the following tests:
+                <testlist>
+                  <test>The evaluator determines the current version of the platform firmware, and obtains or produces a valid, authentic, and permissible update image of platform firmware. The evaluator initiates an update using this image through the process described in the operational guidance. After the process is complete, the evaluator checks the current firmware version to ensure that the new firmware version matches that of the update.</test>
+                  <test>The evaluator performs the same test, this time using a inauthentic update image. The update code must fail to execute.</test>
+                  <test>The evaluator performs the same test, this time using an update image that is corrupted but is otherwise authentic. The update code must fail to execute.</test>
+                  <test>[conditional] If the TSF implements rollback protections, the evaluator performs the same test, this time using a valid, signed update image that is has an earlier version number than the currently installed firmware. The update code must fail to execute.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
           </f-element>
           <audit-event>
             <audit-event-descr>
@@ -4468,21 +4353,6 @@
             <title>The TSF shall provide a secure local update mechanism that requires an assertion of physical access to the TOE
 					before installation of an update.
 				</title>
-            <aactivity level="element">
-              <TSS>The evaluator shall check the TSS section to confirm that it clearly and thoroughly describes how the
-					secure local update functionality is implemented.</TSS>
-              <Guidance>
-					The evaluator shall examine the AGD to ensure that it describes instructions for 
-					using the local update mechanism, and how to validate that the update was successful.	
-				</Guidance>
-              <Tests>
-                The evaluator shall perform the following tests:
-                <testlist>
-                  <test>The evaluator tests the secure local update by following the instructions provided in the operational guidance to update the platform firmware image. The update must succeed. <h:p/> </test>
-                  <test>The evaluator next tries to update the platform firmware image without first asserting physical presence. The update must fail or be not possible.</test>
-                </testlist>
-              </Tests>
-            </aactivity>
           </f-element>
           <f-element id="fpt-tud-ext-4e2">
             <title>
@@ -4525,6 +4395,21 @@
 					Notification of failure could be through a beep code, an indication on a splash screen, or simple failure to 
 					continue functioning.
 				</note>
+            <aactivity>
+              <TSS>The evaluator shall check the TSS section to confirm that it clearly and thoroughly describes how the
+					secure local update functionality is implemented.</TSS>
+              <Guidance>
+					The evaluator shall examine the AGD to ensure that it describes instructions for 
+					using the local update mechanism, and how to validate that the update was successful.	
+				</Guidance>
+              <Tests>
+                The evaluator shall perform the following tests:
+                <testlist>
+                  <test>The evaluator tests the secure local update by following the instructions provided in the operational guidance to update the platform firmware image. The update must succeed. <h:p/> </test>
+                  <test>The evaluator next tries to update the platform firmware image without first asserting physical presence. The update must fail or be not possible.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
           </f-element>
           <audit-event/>
         </f-component>
@@ -4596,7 +4481,7 @@
 					<h:p/>"<h:i>No authentication of the remote peer</h:i>" should be selected only if the TOE is acting 
 					as a server in a non-mutual authentication configuration.<h:p/>.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator will review the TSS to determine that it lists all trusted channels 
 						the TOE uses for remote communications, including both the external IT entities and 
 						remote users that use the channel as well as the protocol that is used for each.</TSS>
@@ -4650,7 +4535,7 @@
 					requirement would apply, for example, for communications implemented through a shared data
 					buffer.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall review the TSS to determine that it lists all encryption
 						mechanisms the TOE uses for protected external communications, along with the
 						types of communications protected using each mechanism.</TSS>
@@ -4671,13 +4556,13 @@
             <title>
 					The TSF shall provide a physically protected communication channel
 					between itself and  <assignable>list of other IT entities within the same platform</assignable>.
-				</title>
+				<h:mark>Issue 69</h:mark></title>
             <note role="application">
 					This SFR must be claimed if "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is
 					selected in either FDP_ITC_EXT.1, or if "<h:i>Keys exchanged using a physically protected communication mechanism
 					conformant with FTP_ITP_EXT.1</h:i>" is selected in FTP_ITE_EXT.1.1.
 				</note>
-            <aactivity level="element">
+            <aactivity>
               <TSS>The evaluator shall review the TSS to determine that it lists all mechanisms the TOE
 						uses for physically protected external communications, along with the types of
 						communications protected using each mechanism.</TSS>
@@ -4697,7 +4582,24 @@
 				    other communication paths and provides assured identification of its end points and 
 				    protection of the communicated data from [<h:i>modification, disclosure</h:i>].
                 </title>
-            <aactivity level="element">
+          </f-element>
+          <f-element id="ftp-trp-1e2">
+            <title>The TSF shall permit [<h:i>remote <h:b>Administrators</h:b></h:i>] to initiate communication via the trusted path.
+                </title>
+          </f-element>
+          <f-element id="ftp-trp-1e3">
+            <title>The TSF shall require the use of the trusted path for [<h:i>[all remote administration actions]</h:i>].
+                </title>
+            <note role="application">
+					This SFR is included in the ST if "<h:i>remotely</h:i>" is selected in Management Function 1 of FMT_SMF.1.1.<h:p/>
+					Protocols used to implement the remote administration trusted channel must be
+					selected in FTP_ITC_EXT.1.<h:p/>
+                    This requirement ensures that authorized remote Administrators initiate all communication with the
+					TOE via a trusted path, and that all communications with the TOE by remote Administrators is performed
+					over this path. The data passed in this trusted communication channel are encrypted as defined the 
+					protocol chosen in the first selection in FTP_ITC_EXT.1.
+				</note>
+            <aactivity>
               <TSS>The evaluator shall examine the TSS to determine that the methods of remote 
                         TOE administration are indicated, along with how those communications are protected.
                         The evaluator shall also confirm that all protocols listed in the TSS in support of 
@@ -4718,23 +4620,6 @@
                 Additional evaluation activities are associated with the specific protocols.
               </Tests>
             </aactivity>
-          </f-element>
-          <f-element id="ftp-trp-1e2">
-            <title>The TSF shall permit [<h:i>remote <h:b>Administrators</h:b></h:i>] to initiate communication via the trusted path.
-                </title>
-          </f-element>
-          <f-element id="ftp-trp-1e3">
-            <title>The TSF shall require the use of the trusted path for [<h:i>[all remote administration actions]</h:i>].
-                </title>
-            <note role="application">
-					This SFR is included in the ST if "<h:i>remotely</h:i>" is selected in Management Function 1 of FMT_SMF.1.1.<h:p/>
-					Protocols used to implement the remote administration trusted channel must be
-					selected in FTP_ITC_EXT.1.<h:p/>
-                    This requirement ensures that authorized remote Administrators initiate all communication with the
-					TOE via a trusted path, and that all communications with the TOE by remote Administrators is performed
-					over this path. The data passed in this trusted communication channel are encrypted as defined the 
-					protocol chosen in the first selection in FTP_ITC_EXT.1.
-				</note>
           </f-element>
           <audit-event>
             <audit-event-descr>Initiation of the trusted channel.</audit-event-descr>
@@ -5652,7 +5537,6 @@
 		The ST must describe all configurations evaluated down to processor manufacturer, model number, and microarchitecture version.
 	</section></appendix>
   <bibliography>
-    <cc-entry/>
     <entry id="bibOMB">
       <tag>OMB</tag>
       <description><h:a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf">Reporting Incidents Involving Personally Identifiable Information and Incorporating the
