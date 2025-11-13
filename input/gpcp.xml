@@ -7631,8 +7631,10 @@
 							<app-note>
 								Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
 								Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
+								If "<h:i>locally</h:i>" is selected, then function <xref to="mf-auth-creds"/> must be selected.<h:p/>
 								If "<h:i>remotely</h:i>" is selected, then FTP_TRP.1 must be claimed in the 
-								ST and Function <xref to="mf-support-channel"/> must be selected.
+								ST and functions <xref to="mf-support-channel"/>, <xref to="mf-auth-creds"/>, and <xref to="="mf-config-ipsec-refid"/>
+								must be selected.
 							</app-note>
 						</management-function>
 
@@ -7679,14 +7681,14 @@
 						<!-- 5 -->
 						<management-function id="mf-support-channel">	
 							<depends on-sfr="sfr-ftp-trp-1"/>
-							<text><comment>Issue 47</comment>
-								<h:mark>Ability to initiate a trusted channel or accept an incoming channel 
-								for remote administration.</h:mark>
+							<text>Ability to initiate a trusted channel or accept an incoming channel 
+								for remote administration.
 							</text>
 							<O ref="A"/>
 							<X ref="U"/>
 							<app-note>
-								This Function must be claimed if FTP_TRP.1 is claimed in the ST.
+								This Function must be claimed if FTP_TRP.1 is claimed in the ST.<h:p/>
+								This function is mandatory when row 1's remote administrator function is selected.
 							</app-note>
 						</management-function>
 
@@ -7694,12 +7696,13 @@
 						<management-function id="mf-auth-creds">	
 							<depends on-sfr="sfr-fia-uia-ext-1"/>
 							<text>
-								<h:mark>Ability to manage authentication credentials for Administrators.</h:mark>
+								Ability to manage authentication credentials for Administrators.
 							</text>
-							<M ref="A"/>
+							<O ref="A"/>
 							<X ref="U"/>
                             <app-note>
-								This Function must be claimed if FIA_UIA_EXT.1 is claimed in the ST.
+								This Function must be claimed if FIA_UIA_EXT.1 is claimed in the ST.<h:p/>
+								This function is mandatory when row 1 is selected.
 							</app-note>
 						</management-function>
 
@@ -7796,13 +7799,14 @@
 						<!-- 13 -->
 						<management-function id="mf-config-ipsec-refid">	
 							<depends on-sel="sfr-fcs-ipsec-ext-1"/>
-							<text><comment>Issue 47</comment>
-								<h:mark>Ability to manage the IPsec reference identifier.</h:mark>
+							<text>
+								Ability to manage the IPsec reference identifier.
 							</text>
-							<M ref="A"/>
+							<O ref="A"/>
 							<X ref="U"/>
                             <app-note>
-                            	This function must be claimed if FCS_IPSEC_EXT.1 is claimed in the ST.
+                            	This function must be claimed if FCS_IPSEC_EXT.1 is claimed in the ST.<h:p/>
+								This function is mandatory when row 1's remote administrator role is selected.
 							</app-note>
 						</management-function>
 
@@ -9422,8 +9426,8 @@
 					between itself and <assignable>list of other IT entities within the same platform</assignable>.
 				<h:mark>Issue 69</h:mark></title>
 				<note role="application">
-					This SFR focuses on persistent communication channels and does not apply to communication channels intended
-					for use with removable media, ephemeral devices, or peripherals. This SFR must be claimed if
+					This SFR focuses on persistent internal communication channels and does not apply to communication channels intended
+					for use with external media, ephemeral devices, or peripherals. This SFR must be claimed if
 					"<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is selected in either
 					FDP_ITC_EXT.1, or if "<h:i>Keys exchanged using a physically protected communication mechanism
 					conformant with FTP_ITP_EXT.1</h:i>" is selected in FTP_ITE_EXT.1.1.
