@@ -629,7 +629,7 @@ function showTarget(id){
 	            img[src="images/collapsed.png"] { display:none;}
 
           }
-    </style></head><body onLoad="init()"><div id="commmentbox-"><a href="#Comment-1-">Comment: Comment-1-</a><br/><a href="#Comment-2-">Comment: Comment-2-</a><br/></div><h1 class="title" style="page-break-before:auto;">DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
+    </style></head><body onLoad="init()"><h1 class="title" style="page-break-before:auto;">DRAFT Protection Profile for General-Purpose Computing Platforms DRAFT</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
       Version: 2.0<br/>2025-06-27<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>0.1</td><td>2020-11-16</td><td>Started</td></tr>
 <tr><td>1.0</td><td>2022-02-10</td><td>Initial publication.</td></tr>
 <tr><td>1.1</td><td>2024-12-13</td><td>Updates for <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022</td></tr>
@@ -7394,8 +7394,10 @@ The following sections list Common Criteria and technology terms used in this do
 							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">X<span class="tooltiptext">Not permitted</span></div></td><td style="text-align:left"><p>
 								Administration is considered “local” if the Administrator is physically present at the <abbr class="dyn-abbr"><a href="#abbr_GPCP">GPCP</a></abbr>.<p></p>
 								Administration is considered “remote” if communications between the Administrator and <abbr class="dyn-abbr"><a href="#abbr_GPCP">GPCP</a></abbr> is over a network.<p></p>
+								If "<i>locally</i>" is selected, then function <a href="#mf-auth-creds">6</a> must be selected.<p></p>
 								If "<i>remotely</i>" is selected, then <a href="#FTP_TRP.1">FTP_TRP.1</a> must be claimed in the 
-								<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and Function <a href="#mf-support-channel">5</a> must be selected.
+								<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and functions <a href="#mf-support-channel">5</a>, <a href="#mf-auth-creds">6</a>, and <a href="#mf-config-ipsec-refid">13</a>
+								must be selected.
 							</p></td></tr>
 <tr id="mf-audit-admin"><td>2</td><td style="text-align:left">
 								Ability to configure and manage the audit functionality and audit data.
@@ -7413,16 +7415,17 @@ The following sections list Common Criteria and technology terms used in this do
 							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">X<span class="tooltiptext">Not permitted</span></div></td><td style="text-align:left"><p>
 								This Function must be claimed if <a href="#FAU_SAR.1">FAU_SAR.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 							</p></td></tr>
-<tr id="mf-support-channel"><td>5</td><td style="text-align:left"><span style="" class="comment " id="Comment-1-">Issue 47</span>
-								<mark>Ability to initiate a trusted channel or accept an incoming channel 
-								for remote administration.</mark>
+<tr id="mf-support-channel"><td>5</td><td style="text-align:left">Ability to initiate a trusted channel or accept an incoming channel 
+								for remote administration.
 							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">X<span class="tooltiptext">Not permitted</span></div></td><td style="text-align:left"><p>
-								This Function must be claimed if <a href="#FTP_TRP.1">FTP_TRP.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+								This Function must be claimed if <a href="#FTP_TRP.1">FTP_TRP.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.<p></p>
+								This function is mandatory when function <a href="#mf-admin-platform">1</a> remote administrator is selected.
 							</p></td></tr>
 <tr id="mf-auth-creds"><td>6</td><td style="text-align:left">
-								<mark>Ability to manage authentication credentials for Administrators.</mark>
-							</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">X<span class="tooltiptext">Not permitted</span></div></td><td style="text-align:left"><p>
-								This Function must be claimed if <a href="#FIA_UIA_EXT.1">FIA_UIA_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+								Ability to manage authentication credentials for Administrators.
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">X<span class="tooltiptext">Not permitted</span></div></td><td style="text-align:left"><p>
+								This Function must be claimed if <a href="#FIA_UIA_EXT.1">FIA_UIA_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.<p></p>
+								This function is mandatory when function <a href="#mf-admin-platform">1</a> is selected (local or remote).
 							</p></td></tr>
 <tr id="mf-auth-fail-params"><td>7</td><td style="text-align:left">
 								Ability to set parameters for allowable number of authentication failures.
@@ -7470,10 +7473,11 @@ The following sections list Common Criteria and technology terms used in this do
         </a> and the claims made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> indicate that the administrator is allowed to
 								configure how the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> treats a certificate with undetermined revocation status.
 							</p></td></tr>
-<tr id="mf-config-ipsec-refid"><td>13</td><td style="text-align:left"><span style="" class="comment " id="Comment-2-">Issue 47</span>
-								<mark>Ability to manage the IPsec reference identifier.</mark>
-							</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">X<span class="tooltiptext">Not permitted</span></div></td><td style="text-align:left"><p>
-                            	This function must be claimed if <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+<tr id="mf-config-ipsec-refid"><td>13</td><td style="text-align:left">
+								Ability to manage the IPsec reference identifier.
+							</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">X<span class="tooltiptext">Not permitted</span></div></td><td style="text-align:left"><p>
+                            	This function must be claimed if <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> is claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.<p></p>
+								This function is mandatory when function <a href="#mf-admin-platform">1</a> remote administrator is selected.
 							</p></td></tr>
 <tr id="mf-config-boot-integrity-failure-actions"><td>14</td><td style="text-align:left">
 								Ability to configure default action to take on boot integrity failure.
@@ -8653,8 +8657,8 @@ The following sections list Common Criteria and technology terms used in this do
 				<mark>Issue 69</mark><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> focuses on persistent communication channels and does not apply to communication channels intended
-					for use with removable media, ephemeral devices, or peripherals. This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be claimed if
+					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> focuses on persistent internal communication channels and does not apply to communication channels intended
+					for use with external media, ephemeral devices, or peripherals. This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be claimed if
 					"<i>physically protected channels as specified in <a href="#FTP_ITP_EXT.1">FTP_ITP_EXT.1</a></i>" is selected in either
 					<a href="#FDP_ITC_EXT.1">FDP_ITC_EXT.1</a>, or if "<i>Keys exchanged using a physically protected communication mechanism
 					conformant with <a href="#FTP_ITP_EXT.1">FTP_ITP_EXT.1</a></i>" is selected in <a href="#FTP_ITE_EXT.1.1">FTP_ITE_EXT.1.1</a>.
