@@ -528,6 +528,73 @@
 		that uses platform resources to run workloads on behalf of Users. Tenant software generally has the privilege 
 		of the User or Administrator in whose context it runs.<h:p/> 
     </sec:Roles>
+
+<!--   1.6 Package Usage -->
+<section title="Package Usage">
+      This section contains selections and assignments that are required when the listed Functional Packages are claimed by this PP. 
+      <package-usage-list>
+        <package-usage ref="X509">
+          <usage id="usage-x509-revocation-sigalgs" title="Limitations on Signature Algorithms in FIA_X509_EXT.1.1">
+            <description>
+            	The TOE must utilize appropriate cryptographic algorithms that conform to CNSA standards.
+				Thus, the TOE shall utilize no other algorithms outside of those specified in RFC 8603 for
+				certificate validation and CRL signature validation (if claimed). If OCSP is claimed, the ST
+				author shall only claim support for algorithms that use SHA-384 and either 3072-bit RSA or
+				greater, or NIST P-384. In all cases, the assignment that allows the ST author to specify
+				additional algorithms shall not be selected.
+            </description>
+            <config>
+            <ref-id>dummy-ref-id</ref-id>
+          </config>
+          </usage>
+          <usage id="usage-x509-revocation-methods" title="CRL or OCSP-based Revocation is Optional With Justification">
+            <description>
+            	The TOE must identify where/when CRL or OCSP-based revocation is infeasible and not supported.
+				Examples of such situations include UEFI Secure Boot enforcement at device boot time or
+				administrator interaction with a Baseboard Management Controller (BMC) where resources are
+				severely constrained or internet access is unavailable. Use of CRL or OCSP-based revocation
+				is not required when justified as infeasible.
+            </description> 
+            <config>
+              <ref-id>dummy-ref-id</ref-id>
+            </config>
+          </usage>
+          <usage id="usage-x509-eku-values" title="Restrictions on Acceptable Key Usage Values for FIA_X509_EXT.1.5">
+            <description>
+            	The TOE will always support the use of extendedKeyUsage values to verify that X.509
+				certificates are used in accordance with their intended purpose. Accordingly, the
+				ST author shall claim that the TOE supports the processing of extendedKeyUsage fields
+				in the leaf certificate (as opposed to application of trust store context rules or
+				passing the certification path or other supported context information to an
+				external function) and shall select all values that are relevant to the claimed
+				uses of X.509 in the ST. In particular, since the PP does not define any functions
+				that require the use of S/MIME, the ST author shall not select this as an
+				extendedKeyUsage value to be validated.
+            </description>
+            <config>
+              <ref-id>dummy-ref-id</ref-id>
+            </config>
+          </usage>
+          <usage id="usage-x509-functions" title="Restrictions on Acceptable Functions for FIA_X509_EXT.2.1">
+            <description>
+              The PP does not define SMIME functionality, therefore the ST shall not select this as a function for which X.509 validation functionality is used.
+            </description>
+            <config>
+              <ref-id>dummy-ref-id</ref-id>
+            </config>
+          </usage>
+          <usage id="usage-x509-acquisition-purposes" title="Restrictions on Acceptable Purposes for Certificate Acquisition for FIA_XCU_EXT.2.1">
+            <description>
+              The PP does not define SMIME functionality, therefore the ST shall not select this as a function for which X.509 validation functionality is used.
+            </description>
+            <config>
+              <ref-id>dummy-ref-id</ref-id>
+            </config>
+          </usage>
+        </package-usage>
+      </package-usage-list>
+    </section>
+	
 </sec:Introduction>
 
 <!-- 2.0 Conformance Claims (this is all boilerplate) -->
