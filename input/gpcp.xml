@@ -508,29 +508,13 @@
 		</usecases>
     </sec:Use_Cases>
 	
-	<!--   1.5 Roles -->
-    <sec:Roles>
-		For purposes of these requirements there are two entities that interact with a general-purpose computing 
-		platform: <h:ol type="1">
-			<h:li>Users (unprivileged users)</h:li>
-    		<h:li>Administrators (privileged users)</h:li> </h:ol>
-    	Users are humans who interact with the platform through user interfaces. They usually have to authenticate 
-    	themselves to tenant software (e.g. an operating system), but generally not to the platform itself. Throughout
-		this document the term "user" refers generally to a person interacting with the platform.<h:p/>
-    	Administrators are users who manage the platform through a management interface. The interface
-    	may be local or remote to the platform. <h:p/>
-		Administrators manage the physical platform, not the OS (OS Administrators would be classified
-		as platform Users). Administrators must be authenticated to the platform before the platform can allow them 
-		to perform administrative functions. For an EUD, this could be accomplished through an interface implemented 
-		in firmware. For server-class hardware, the management interface could be implemented in a management
-		controller that is part of the platform. Administrators are assumed to be acting in the best interests of the platform owner.<h:p/>
-		Tenant Software generally consists of an operating system, virtualization system, or application
-		that uses platform resources to run workloads on behalf of Users. Tenant software generally has the privilege 
-		of the User or Administrator in whose context it runs.<h:p/> 
-    </sec:Roles>
 
-<!--   1.6 Package Usage -->
-	<section title="Package Usage">
+<!--   1.5 Package Usage -->
+	
+
+	<section title="Package Usage" id="package-usage">
+		
+		
       This section contains selections and assignments that are required when the listed Functional Packages are claimed by this PP. 
 		<package-usage-list>
 	        <package-usage ref="X509">
@@ -594,6 +578,28 @@
 	        </package-usage>
 		</package-usage-list>
     </section>
+	
+	
+	<!--   1.6 Roles -->
+	<sec:Roles>
+		For purposes of these requirements there are two entities that interact with a general-purpose computing 
+		platform: <h:ol type="1">
+			<h:li>Users (unprivileged users)</h:li>
+			<h:li>Administrators (privileged users)</h:li> </h:ol>
+		Users are humans who interact with the platform through user interfaces. They usually have to authenticate 
+		themselves to tenant software (e.g. an operating system), but generally not to the platform itself. Throughout
+		this document the term "user" refers generally to a person interacting with the platform.<h:p/>
+		Administrators are users who manage the platform through a management interface. The interface
+		may be local or remote to the platform. <h:p/>
+		Administrators manage the physical platform, not the OS (OS Administrators would be classified
+		as platform Users). Administrators must be authenticated to the platform before the platform can allow them 
+		to perform administrative functions. For an EUD, this could be accomplished through an interface implemented 
+		in firmware. For server-class hardware, the management interface could be implemented in a management
+		controller that is part of the platform. Administrators are assumed to be acting in the best interests of the platform owner.<h:p/>
+		Tenant Software generally consists of an operating system, virtualization system, or application
+		that uses platform resources to run workloads on behalf of Users. Tenant software generally has the privilege 
+		of the User or Administrator in whose context it runs.<h:p/> 
+	</sec:Roles>
 	
 </sec:Introduction>
 
