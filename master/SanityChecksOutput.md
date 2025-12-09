@@ -95,15 +95,15 @@
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
 	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[5]""/config[1]""/ref-id[2]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
-	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage[1]""/usage[1]""/config[1]""/ref-id[1]"dummy-ref"
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[1]""/config[1]""/ref-id[1]"dummy-ref"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
-	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage[1]""/usage[2]""/config[1]""/ref-id[1]"dummy-ref"
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[2]""/config[1]""/ref-id[1]"dummy-ref"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
-	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage[1]""/usage[3]""/config[1]""/ref-id[1]"dummy-ref"
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[3]""/config[1]""/ref-id[1]"dummy-ref"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
-	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage[1]""/usage[4]""/config[1]""/ref-id[1]"dummy-ref"
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[4]""/config[1]""/ref-id[1]"dummy-ref"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
-	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage[1]""/usage[5]""/config[1]""/ref-id[1]"dummy-ref"
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[5]""/config[1]""/ref-id[1]"dummy-ref"
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Overview[1]"The scope"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Overview[1]"The scope"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Overview[1]"The scope"/h:p[3]""
@@ -904,6 +904,8 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[6]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[7]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[5]"In order "/h:p[1]""
+warning: failed to load external entity "output/.xml"
+warning: failed to load external entity "output/.xml"
 output/pkg-x509.xml:1: parser error : Document is empty
 
 ^
