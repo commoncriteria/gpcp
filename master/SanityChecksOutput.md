@@ -104,6 +104,12 @@
 	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[4]""/config[1]""/ref-id[1]"dummy-ref"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
 	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[5]""/config[1]""/ref-id[1]"dummy-ref"
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[2]""/usage[1]""/config[1]""/ref-id[1]"dummy-ref"
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[3]""/usage[1]""/config[1]""/ref-id[1]"dummy-ref"
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[3]""/usage[2]""/config[1]""/ref-id[1]"dummy-ref"
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Overview[1]"The scope"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Overview[1]"The scope"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Overview[1]"The scope"/h:p[3]""
