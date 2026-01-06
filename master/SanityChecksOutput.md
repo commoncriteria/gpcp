@@ -912,48 +912,27 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[5]"In order "/h:p[1]""
 warning: failed to load external entity "output/.xml"
 warning: failed to load external entity "output/.xml"
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
+ Failed to find a reference to pkg-x509.
+ Failed to find a reference to pkg-x509.
  Failed to find a reference to SecurityObjectivesTOE.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
+ Failed to find a reference to pkg-tls.
+ Failed to find a reference to pkg-ssh.
+ Failed to find a reference to pkg-tls.
+ Failed to find a reference to pkg-ssh.
  Failed to find a reference to xmss-test-cases.
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
+ Failed to find a reference to pkg-tls.
+ Failed to find a reference to pkg-x509.
+ Failed to find a reference to pkg-x509.
+ Failed to find a reference to pkg-x509.
+ Failed to find a reference to pkg-ssh.
  Failed to find a reference to entropyappendix.
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
-output/pkg-x509.xml:1: parser error : Document is empty
-
-^
+ Failed to find a reference to pkg-tls.
+ Failed to find a reference to pkg-ssh.
+ Failed to find a reference to pkg-ssh.
+ Failed to find a reference to pkg-x509.
 * Warning: Since FCS_CKM_EXT.7.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
                        
  Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j" (use case or rule)
