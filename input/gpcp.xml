@@ -76,7 +76,7 @@
 	</RevisionHistory>
 
 	<!-- Include SSH, TLS, and X.509 packages -->
-	<include-pkg id="pkg-tls">
+	<include-pkg id="tls">
 		<git>
 		  <url>https://github.com/commoncriteria/tls</url>
 		  <branch>release-2.1</branch>
@@ -86,7 +86,7 @@
         <depends on-sel="sel-itc-https"/>
 	</include-pkg>
 	    
-    <include-pkg id="pkg-ssh">
+    <include-pkg id="ssh">
 	    <git>
 			<url>https://github.com/commoncriteria/ssh</url>
 			<branch>release-2.0</branch>
@@ -97,7 +97,7 @@
    </include-pkg>	
 
 
-	<include-pkg id="pkg-x509">
+	<include-pkg id="x509">
 		<git>
 			<url>https://github.com/commoncriteria/x509</url>
 			<branch>release-1.0</branch>
@@ -515,7 +515,7 @@
 		
       This section contains selections and assignments that are required when the listed Functional Packages are claimed by this PP. 
 		<package-usage-list>
-	        <package-usage ref="pkg-X509">
+	        <package-usage ref="X509">
 	          <usage id="usage-x509-revocation-sigalgs" title="Limitations on Signature Algorithms in FIA_X509_EXT.1.1">
 	            <description>
 	            	The TOE must utilize appropriate cryptographic algorithms that conform to CNSA standards.
@@ -574,7 +574,7 @@
 	            </config>
 	          </usage>
 	        </package-usage>
-			<package-usage ref="pkg-tls">
+			<package-usage ref="tls">
 	          <usage id="usage-tls-client" title="TLS Client Functionality Required in FCS_HTTPS_EXT.1">
 	            <description>The ST author shall claim support for TLS as a client.</description>
 	            <config>
@@ -582,7 +582,7 @@
 	            </config>
 	          </usage>
 			</package-usage>
-			<package-usage ref="pkg-ssh">
+			<package-usage ref="ssh">
 				<usage id="usage-ssh-pubkey" title="SSH Client Functionality Required in FIA_UAU.5">
 	            <description>Selection of "public key-based authentication" via SSH requires the ST author to
 					claim support for SSH and related functional package requirements.</description>
