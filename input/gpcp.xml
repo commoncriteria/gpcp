@@ -510,14 +510,12 @@
 	
 
 <!--   1.5 Package Usage -->
-	
 
 	<section title="Package Usage" id="package-usage">
 		
-		
       This section contains selections and assignments that are required when the listed Functional Packages are claimed by this PP. 
 		<package-usage-list>
-	        <package-usage ref="X509">
+	        <package-usage ref="pkg-X509">
 	          <usage id="usage-x509-revocation-sigalgs" title="Limitations on Signature Algorithms in FIA_X509_EXT.1.1">
 	            <description>
 	            	The TOE must utilize appropriate cryptographic algorithms that conform to CNSA standards.
@@ -576,6 +574,31 @@
 	            </config>
 	          </usage>
 	        </package-usage>
+			<package-usage ref="pkg-tls">
+	          <usage id="usage-tls-client" title="TLS Client Functionality Required in FCS_HTTPS_EXT.1">
+	            <description>The ST author shall claim support for TLS as a client.</description>
+	            <config>
+	              <ref-id>dummy-ref-id</ref-id>
+	            </config>
+	          </usage>
+			</package-usage>
+			<package-usage ref="pkg-ssh">
+				<usage id="usage-ssh-pubkey" title="SSH Client Functionality Required in FIA_UAU.5">
+	            <description>Selection of "public key-based authentication" via SSH requires the ST author to
+					claim support for SSH and related functional package requirements.</description>
+	            <config>
+	              <ref-id>dummy-ref-id</ref-id>
+	            </config>
+	          </usage>
+				<usage id="usage-ssh-channel" title="SSH Functionality Required in FTP_ITC_EXT.1">
+	            <description>The ST author shall claim support for SSH when the option to set up a trusted
+					communication channel with SSH as the protocol is selected. The TOE may act as a client,
+					server, or both as necessary and documented by the ST author.</description>
+	            <config>
+	              <ref-id>dummy-ref-id</ref-id>
+	            </config>
+	          </usage>
+			</package-usage>
 		</package-usage-list>
     </section>
 	
