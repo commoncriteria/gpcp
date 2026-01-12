@@ -910,12 +910,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[6]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[7]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[5]"In order "/h:p[1]""
-output/X509.xml:1: parser error : Document is empty
-
-^
-output/X509.xml:1: parser error : Document is empty
-
-^
  Failed to find a reference to pkg-x509.
  Failed to find a reference to pkg-x509.
  Failed to find a reference to SecurityObjectivesTOE.
