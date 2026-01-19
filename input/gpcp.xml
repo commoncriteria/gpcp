@@ -3668,7 +3668,7 @@
 					</selectables>
 				</title>
 				<note role="application">
-					NIST SP 800-57 Part 1 Revision 5 Section 5.6.2 specifies that the size of key used to protect the
+					This SFR is claimed when "key encapsulation" is selected in FCS_CKM.2.1. NIST SP 800-57 Part 1 Revision 5 Section 5.6.2 specifies that the size of key used to protect the
 					key being transported should be at least the security strength of the key it is protecting.<h:p/>
 					If this SFR is claimed, then FCS_CKM.1/AKG and FCS_CKM.6 must also be claimed.<h:p/>
 					KAS1 and KTS-OAEP with the selectable parameters are CNSA 1.0 compliant. ML-KEM-1024 is CNSA 2.0 compliant.
@@ -3940,7 +3940,7 @@
 					</selectables>
 				</title>
 				<note role="application">
-					NIST 800-57p1rev5 sec. 5.6.2 specifies that the size of key used to protect the key being 
+					This SFR is claimed when "key wrapping" is selected in FCS_CKM.2.1. NIST 800-57p1rev5 sec. 5.6.2 specifies that the size of key used to protect the key being 
 					transported should be at least the security strength of the key it is protecting.
 				</note>
 				<aactivity>
@@ -5289,7 +5289,7 @@
 				</title>
 				<note role="application">
 					In accordance with CNSA 2.0, SHAKE is permitted to be used only as a component of LMS or XMSS. 
-					Therefore this component is claimed only if LMS or XMSS is claimed in FCS_COP.1/SigVer. <h:p/>
+					Therefore this component is claimed only if LMS or XMSS is claimed in FCS_CKM.1/AKG or FCS_COP.1/SigVer. <h:p/>
 					Since LMS and XMSS use both SHAKE128 and SHAKE256 internally, claiming and testing of both
 					Functions is mandatory.
 				</note>
@@ -8892,7 +8892,7 @@
 			<dependencies><h:br/>FCS_COP.1 Cryptographic Operations</dependencies>
 			<f-element id="fpt-tud-ext-2e1">
 				<title>The TSF shall authenticate the source of all platform firmware updates using a 
-					digital signature algorithm specified in FCS_COP.1/SigVer and using a key store 
+					digital signature algorithm specified in FCS_COP.1<h:b>/SigVer</h:b> and using a key store 
 					that contains 
 					<selectables>
 						<selectable>the public key</selectable>
@@ -8918,7 +8918,7 @@
 			<f-element id="fpt-tud-ext-2e2">
 				<title>
 					The TSF shall allow installation of updates only if the digital signature has been
-					successfully verified as specified in FCS_COP.1/SigVer and 
+					successfully verified as specified in FCS_COP.1<h:b>/SigVer</h:b> and 
 					<selectables>
 						<selectable>the version number of the platform firmware update is more recent than 
 							the version number of the current installed platform firmware</selectable>
