@@ -320,6 +320,12 @@
 			An isolated and secure area that ensures the confidentiality and integrity of code and data 
 			loaded inside.
 		</term>
+		<term full="Trusted Platform Module" abbr="TPM">
+			A security processor that provides services for cryptographic key management, encryption and decryption,
+			platform integrity management, and device identity. TPMs that are discrete/dedicated chips (dTPM) or
+			firmware/integrated with another component such as the CPU (fTPM) are within the scope of a GPCP TOE.
+			Virtual/software TPMs (vTPM) are out of scope.
+		</term>
 		<term abbr='USB' full="Universal Serial Bus"/>
 		<term full="User">
 			In the context of a GPCP, a User is a human who interacts with the platform through a user interface.
@@ -364,7 +370,7 @@
 			tenant software is an operating system or virtualization system, but may also be "bare-metal" applications.
 			Tenant software is outside the TOE boundary.<h:p/>
 			For example, for a PC Client platform, the hardware and firmware responsible for booting the platform and 
-			operation of platform devices (such as BIOS, device controller firmware, and platform management firmware would all 
+			operation of platform devices (such as BIOS, device controller firmware, and platform management firmware) would all 
 			be included in the TOE. Operating systems and application software is outside the TOE.<h:p/>
 			For server-class hardware, any management controller responsible for updating platform firmware (such as a 
 			baseboard management controller) is expressly included within the TOE.<h:p/>
@@ -381,10 +387,10 @@
 			If the GPCP includes Full Drive Encryption (FDE), and the FDE component has been previously evaluated against 
 			the FDE cPPs, or will be evaluated against the FDE cPPs concurrently with the GPCP evaluation, then the FDE component may be
 			excluded from the TOE for purposes of the GPCP evaluation.
-<!--
-			<h:p/>Likewise, if the GPCP includes a Dedicated Security Component (DSC) that has been previously evaluated against 
-			the DSCcPP, or will be evaluated against the DSCcPP concurrently with the GPCP evaluation, then the DSC component may be
-			excluded from the TOE for purposes of the GPCP evaluation.  -->
+
+			<h:p/>If the GPCP includes a Dedicated Security Component (DSC) that has been previously evaluated against 
+			the DSC cPP, or will be evaluated against the DSC cPP concurrently with the GPCP evaluation, then the DSC component may be
+			excluded from the TOE for purposes of the GPCP evaluation.
 		</sec:TOE_Boundary>
 
 		<!-- 1.3.2 TOE Operational Environment -->
@@ -7714,17 +7720,17 @@
 								<selectables>
 									<selectable>locally</selectable>
 									<selectable id="sel-smf-remote-admin">remotely</selectable>
-								</selectables>
+								</selectables>.
 							</text>
 							<O ref="A"/>
 							<X ref="U"/>
 							<app-note>
 								Administration is considered “local” if the Administrator is physically present at the GPCP.<h:p/>
 								Administration is considered “remote” if communications between the Administrator and GPCP is over a network.<h:p/>
-								If "<h:i>locally</h:i>" is selected, then function <xref to="mf-auth-creds"/> must be selected.<h:p/>
+								If "<h:i>locally</h:i>" is selected, then function <xref to="mf-auth-creds"/> is mandatory.<h:p/>
 								If "<h:i>remotely</h:i>" is selected, then FTP_TRP.1 must be claimed in the 
 								ST and functions <xref to="mf-support-channel"/>, <xref to="mf-auth-creds"/>, and <xref to="mf-config-ipsec-refid"/>
-								must be selected.
+								are mandatory.
 							</app-note>
 						</management-function>
 
@@ -8003,8 +8009,8 @@
 
 				<note role="application">
 					These functions become Mandatory or Selectable as indicated in the Notes.<h:p/>
-					If "<h:i>not at all</h:i>" is selected in Function <xref to="mf-admin-platform"/>, then no other management
-					Management Functions may be selected.
+					If function <xref to="mf-admin-platform"/> is not selected, then no other
+					administrative functions may be selected.
 				</note>
 				<aactivity>
 					<TSS>
