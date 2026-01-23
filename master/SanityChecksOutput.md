@@ -84,6 +84,18 @@
 * Error: Detected multiple elements with an id of 'sel-fcs-ckm-5-kdf-ctr-hmac256'.
 * Error: Detected multiple elements with an id of 'sel-fcs-ckm-5-kdf-ctr-hmac256'.
 * Error: Detected multiple elements with an id of 'sel-fcs-ckm-5-kdf-ctr-hmac256'.
+* Error: Detected multiple elements with an id of 'sel-rot2-admin-notify'.
+* Error: Detected multiple elements with an id of 'sel-rot2-audit'.
+* Error: Detected multiple elements with an id of 'sel-rot2-recovery'.
+* Error: Detected multiple elements with an id of 'sel-rot2-admin-config'.
+* Error: Detected multiple elements with an id of 'sel-rot2-admin-det'.
+* Error: Detected multiple elements with an id of 'sel-rot2-user-det'.
+* Error: Detected multiple elements with an id of 'sel-rot2-admin-notify'.
+* Error: Detected multiple elements with an id of 'sel-rot2-audit'.
+* Error: Detected multiple elements with an id of 'sel-rot2-recovery'.
+* Error: Detected multiple elements with an id of 'sel-rot2-admin-config'.
+* Error: Detected multiple elements with an id of 'sel-rot2-admin-det'.
+* Error: Detected multiple elements with an id of 'sel-rot2-user-det'.
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
 	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
