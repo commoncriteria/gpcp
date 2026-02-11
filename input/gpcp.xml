@@ -990,8 +990,9 @@
 								for Objective requirements</selectable>
 							<selectable>Specifically defined auditable event in <xref g="t-audit-sel-based"/> 
 								for Selection-based requirements</selectable>
-							<selectable>Additional information defined in the audit table for the <xref to="pkg-tls"/></selectable>
-							<selectable>Additional information defined in the audit table for the <xref to="pkg-ssh"/></selectable>
+							<selectable>Additional information defined in the audit table for the <xref to="tls"/></selectable>
+							<selectable>Additional information defined in the audit table for the <xref to="ssh"/></selectable>
+							<selectable>Additional information defined in the audit table for the <xref to="X509"/></selectable>
 							<selectable exclusive="yes">no additional auditable events</selectable>
 						</selectables>.</h:li>
 					</h:ol>
@@ -1009,8 +1010,9 @@
                             <selectable>Additional information defined in <xref g="t-audit-optional"/> for Strictly Optional SFRs</selectable>
                             <selectable>Additional information defined in <xref g="t-audit-objective"/> for Objective SFRs</selectable>
                             <selectable>Additional information defined in <xref g="t-audit-sel-based"/> for Selection-Based SFRs</selectable>
-							<selectable>Additional information defined in the audit table for the <xref to="pkg-tls"/></selectable>
-							<selectable>Additional information defined in the audit table for the <xref to="pkg-ssh"/></selectable>
+							<selectable>Additional information defined in the audit table for the <xref to="tls"/></selectable>
+							<selectable>Additional information defined in the audit table for the <xref to="ssh"/></selectable>
+                        	<selectable>Additional information defined in the audit table for the <xref to="X509"/></selectable>
                             <selectable exclusive="yes">no other information</selectable>
 						</selectables>.</refinement></h:li>
                     </h:ol>
@@ -5384,7 +5386,7 @@
                 <note role="application">
 					This SFR is included in the ST if the ST Author selects "<h:i>TLS/HTTPS</h:i>" in 
 					FTP_ITC_EXT.1.1.<h:p/>
-                	If this SFR is included in the ST, then the <xref to="pkg-tls"/>
+                	If this SFR is included in the ST, then the <xref to="tls"/>
 					must also be claimed.
 				</note>
             </f-element>
@@ -5890,7 +5892,7 @@
 					the ST Author to reflect what is implemented. The ST Author also ensures that
 					appropriate FCS requirements reflecting the algorithms used (and key
 					generation capabilities, if provided) are listed to support those methods. 
-					Applicable claims from the <xref to="pkg-x509"/> are made to support X.509 
+					Applicable claims from the <xref to="X509"/> are made to support X.509 
 					validation functionality,  most notably FIA_XCU_EXT.1 (mandatory requirement
 					defining the TOE's use of certificates), FIA_X509_EXT.1 (X.509 certificate validation)
 					and FIA_X509_EXT.2 (X.509 certificate authentication).<h:p/>
@@ -5927,7 +5929,7 @@
 					</Guidance>
 					<Tests>
 						For efficiency’s sake, the testing that is performed here has been combined with the testing for
-						X.509 certificate validation defined by <xref to="pkg-x509"/>,
+						X.509 certificate validation defined by <xref to="X509"/>,
 						FCS_IPSEC_EXT.1.12, and FCS_IPSEC_EXT.1.13. The following tests shall be repeated for each peer
 						authentication protocol selected in the FCS_IPSEC_EXT.1.11 selection above:<h:p/>
 						<testlist>
@@ -7296,9 +7298,9 @@
 					authentication factor.<h:p/>
 					The Password Authentication Factor is configured according to FIA_PMG_EXT.1.<h:p/>
 					If "<h:i>X.509 certificate-based authentication</h:i>" is selected, then the ST must include 
-					FIA_X509_EXT.1 and FIA_X509_EXT.2 from <xref to="pkg-x509"/>.<h:p/>
+					FIA_X509_EXT.1 and FIA_X509_EXT.2 from <xref to="X509"/>.<h:p/>
 					If "<h:i>public key-based authentication</h:i>" is selected, then the ST must claim
-					the <xref to="pkg-ssh"/>.	
+					the <xref to="ssh"/>.	
 				</note>
 			</f-element>
 			<f-element id="fia-uau-5e2">
@@ -7865,7 +7867,7 @@
 							<O ref="A"/>
 							<X ref="U"/>
                             <app-note>
-								This function must be claimed if FIA_X509_EXT.1 is claimed in the ST (i.e., the TOE claims conformance to <xref to="pkg-x509"/>. <h:p/>
+								This function must be claimed if FIA_X509_EXT.1 is claimed in the ST (i.e., the TOE claims conformance to <xref to="X509"/>. <h:p/>
 								If TOE does not support configuration of certificate revocation checking methods,
 								then the Administrator option should be denied.
 							</app-note>
@@ -7882,7 +7884,7 @@
 							<X ref="U"/>
                             <app-note>
                             	This function must be claimed if FIA_X509_EXT.2 is claimed in the ST (i.e., the TOE claims conformance
-								to <xref to="pkg-x509"/> and the claims made in the SFR indicate that the administrator is allowed to
+								to <xref to="X509"/> and the claims made in the SFR indicate that the administrator is allowed to
 								configure how the TSF treats a certificate with undetermined revocation status.
 							</app-note>
 						</management-function>
@@ -9357,11 +9359,11 @@
 			<f-element id="ftp-itc-ext-1e1">
 				<title>The TSF shall use
 					<selectables linebreak="yes">
-						<selectable id="sel-itc-tls">TLS as conforming to the <xref to="pkg-tls"/></selectable>
+						<selectable id="sel-itc-tls">TLS as conforming to the <xref to="tls"/></selectable>
 						<selectable id="sel-itc-https">TLS/HTTPS as conforming to FCS_HTTPS_EXT.1</selectable>
 						<selectable id="sel-itc-ipsec">IPsec as conforming to FCS_IPSEC_EXT.1</selectable>
 						<selectable id="sel-itc-ssh">SSH as conforming to the
-							<xref to="pkg-ssh"/></selectable>
+							<xref to="ssh"/></selectable>
 					</selectables> 
 					protocols with 
 					<selectables linebreak="yes" onlyone="yes">
@@ -9398,8 +9400,8 @@
 					Functional Package for TLS. This PP does not mandate that a product implement TLS with mutual authentication,
 					but if the product includes the capability to perform TLS with mutual authentication, then
 					mutual authentication must be included within the TOE boundary.<h:p/>
-					If the ST Author selects "<h:i>SSH</h:i>," the TOE must conform to <xref to="pkg-ssh"/>.<h:p/>
-					If the ST Author selects "<h:i>certificate-based authentication of the remote peer</h:i>," then the TOE must conform to <xref to="pkg-x509"/>.<h:p/>
+					If the ST Author selects "<h:i>SSH</h:i>," the TOE must conform to <xref to="ssh"/>.<h:p/>
+					If the ST Author selects "<h:i>certificate-based authentication of the remote peer</h:i>," then the TOE must conform to <xref to="X509"/>.<h:p/>
 					Claims from this package are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
 					<h:p/>	
 					If the TSF implements a protocol that requires the validation of a certificate presented by an
