@@ -8377,10 +8377,29 @@
 					</selectables>
 					through
 					<selectables linebreak="yes">
-						<selectable id="sel-rot2-hash">computation and verification of a hash by trusted code/data</selectable>
-						<selectable id="sel-rot2-digsig">verification of a digital signature by trusted code/data</selectable>
-						<selectable>measurement and verification by trusted code/data</selectable>
-						<selectable>measurement by an on-platform dedicated security component and verification by an off-platform entity</selectable>
+						<selectable id="sel-rot2-hash">computation of a hash by
+							<selectables>
+								<selectable>trusted code</selectable>
+								<selectable>trusted data</selectable>
+							</selectables>
+							and verification by
+							<selectables>
+								<selectable>trusted code</selectable>
+								<selectable>trusted data</selectable>
+								<selectable>an on-platform Dedicated Security Component (DSC)</selectable>
+								<selectable>an off-platform verifier</selectable>
+							</selectables>
+						.</selectable>
+						<selectable id="sel-rot2-digsig">verification of a digital signature by
+							<selectables>
+								<selectable>trusted code</selectable>
+								<selectable>trusted data</selectable>
+								<selectable>an on-platform Dedicated Security Component (DSC)</selectable>
+								<selectable>an off-platform verifier</selectable>
+							</selectables>
+						.</selectable>
+						<selectable>some other well-documented evaluation mechanism involving integrity
+							evidence and a verifier entity (e.g. an A/B Test, Hardware Security Module (HSM)).</selectable>
 					</selectables>.
 				</title>
 				<ext-comp-def-title>
@@ -8394,7 +8413,7 @@
 					of platform firmware established by FPT_ROT_EXT.1.1 to subsequently executed
 					platform firmware and data located in mutable storage.
 					(Integrity of code and data written to immutable storage is assured).<h:p/>
-					Otherwise, integrity must be extended through cryptographic means: either through hashes
+					Integrity must be extended through cryptographic means: either through hashes
 					or digital signatures computed and verified by firmware that is trusted because it has  
 					previously had its integrity verified or is itself a Root of Trust. Verification can be performed
 					by TOE components such as management controllers or non-TOE trusted entities such as remote verifiers.<h:p/>
