@@ -1805,9 +1805,16 @@ The following sections list Common Criteria and technology terms used in this do
 			<div class="element"><div class="reqid" id="FPT_STM.1.1"><a href="#FPT_STM.1.1" class="abbr">FPT_STM.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to provide reliable time stamps.<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					It is acceptable for the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to provide timestamp data either through an internal clock or a
+					It is acceptable for the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to provide time stamp data either through an internal clock or a
 					counter. It is also permissible for the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to obtain time data from a clock contained within the
 					same physical enclosure as the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.<p></p>
+					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> does not mandate that time match a regional clock or some other external
+					time authority. This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> cannot assume external connectivity to a time source.<p></p>
+					If a total loss of line and battery power or some other event forces a disruption
+					to time keeping, then the internal clock or counter must either continue incrementing
+					from the last known	value or a default value. The internal clock or counter must
+					not become static or be set to a constant value -- time must continue to advance
+					predictably.
 				</span></div></div></div>
 			
 		<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FPT_STM.1">FPT_STM.1</a></div>
@@ -1824,9 +1831,12 @@ The following sections list Common Criteria and technology terms used in this do
 					Administrator on any mechanisms for configuring the time source.
 				</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 					The evaluator shall perform the following tests:<p></p>
-					[conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> provides a mechanism to manually set the time, the
+					If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> provides a mechanism to manually set the time, the
 					evaluator shall use the guidance documentation to set the time. The evaluator shall
-					then use an available interface to observe that the time is reported correctly.
+					then use an available interface to observe that the time is reported correctly.<p></p>
+					Otherwise, the evaluator shall use an available interface to observe that time or a
+					time-related counter is	not null and is incrementing in an expected way (i.e. the
+					time or counter is not locked at a constant default value).
 				</div></div></div></div></div>
 		
 		
