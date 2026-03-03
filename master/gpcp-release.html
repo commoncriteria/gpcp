@@ -1857,7 +1857,7 @@ The following sections list Common Criteria and technology terms used in this do
 					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="sel-tud1-auth-update">an authenticated platform firmware update mechanism as 
 							described in <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a></span></li><li style=""><span class="selectable-content" id="sel-tud1-unauth-update">a delayed-authentication platform firmware update mechanism as described in
 							<a href="#FPT_TUD_EXT.3">FPT_TUD_EXT.3</a></span></li><li style=""><span class="selectable-content" id="sel-tud1-local-update">a secure local platform firmware update mechanism
-							described in <a href="#FPT_TUD_EXT.4">FPT_TUD_EXT.4</a></span></li></ul>].
+							described in <a href="#FPT_TUD_EXT.4">FPT_TUD_EXT.4</a></span></li><li style=""><span class="selectable-content" id="_s_589">no mechanism for platform firmware update</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -1882,7 +1882,7 @@ The following sections list Common Criteria and technology terms used in this do
 					
 					
 				<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
-						If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i>no provision for platform firmware update</i>," then the 
+						If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i>no mechanism for platform firmware update</i>," then the 
 						evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure that it explains all ways of modifying platform 
 						firmware in the absence of any provided mechanism. For example, breaking open the case
 						and prying a chip off the motherboard and then reprogramming the chip. The purpose of this
@@ -1890,7 +1890,7 @@ The following sections list Common Criteria and technology terms used in this do
 						meet the requirements of <a href="#FPT_TUD_EXT.4">FPT_TUD_EXT.4</a>.<p></p>
 						This requirement is met if the platform implements no means for updating platform firmware
 						and the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes a method for updating or replacing platform firmware that involves
-						potentially destroying or damaging the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or some of its components.<p></p>
+						destroying or damaging the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or some of its components.<p></p>
 						If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i>an authenticated platform firmware update mechanism...</i>," then this requirement is 
 						satisfied if <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a> is satisfied. <p></p>
 						If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i>a delayed-authentication platform firmware update mechanism...</i>," then this requirement is 
@@ -8440,7 +8440,7 @@ The following sections list Common Criteria and technology terms used in this do
 			<div class="element"><div class="reqid" id="FPT_TUD_EXT.2.1"><a href="#FPT_TUD_EXT.2.1" class="abbr">FPT_TUD_EXT.2.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate the source of all platform firmware updates using a 
 					digital signature algorithm specified in FCS_COP.1<b>/SigVer</b> and using a key store 
 					that contains 
-					[<b>selection</b>: <span class="selectable-content" id="_s_589">the public key</span>, <span class="selectable-content" id="sel-tud2-hash">hash value of the public key</span>].
+					[<b>selection</b>: <span class="selectable-content" id="_s_590">the public key</span>, <span class="selectable-content" id="sel-tud2-hash">hash value of the public key</span>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8451,8 +8451,8 @@ The following sections list Common Criteria and technology terms used in this do
 			<div class="element"><div class="reqid" id="FPT_TUD_EXT.2.2"><a href="#FPT_TUD_EXT.2.2" class="abbr">FPT_TUD_EXT.2.2</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall allow installation of updates only if the digital signature has been
 					successfully verified as specified in FCS_COP.1<b>/SigVer</b> and 
-					[<b>selection</b>: <span class="selectable-content" id="_s_593">the version number of the platform firmware update is more recent than 
-							the version number of the current installed platform firmware</span>, <span class="selectable-content" id="_s_594">no other conditions</span>].
+					[<b>selection</b>: <span class="selectable-content" id="_s_594">the version number of the platform firmware update is more recent than 
+							the version number of the current installed platform firmware</span>, <span class="selectable-content" id="_s_595">no other conditions</span>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8479,8 +8479,8 @@ The following sections list Common Criteria and technology terms used in this do
 					<ul>
 						<li>Do not install the update,</li>
 					</ul>and
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_595">Continue execution</span></li><li style=""><span class="selectable-content" id="_s_596">Halt</span></li><li style=""><span class="selectable-content" id="_s_597">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-tud2-recovery">Initiate recovery as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]<br/>
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_599">automatically</span></li><li style=""><span class="selectable-content" id="sel-tud2-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_601">by express determination of a User</span></li></ul>].
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_596">Continue execution</span></li><li style=""><span class="selectable-content" id="_s_597">Halt</span></li><li style=""><span class="selectable-content" id="_s_598">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-tud2-recovery">Initiate recovery as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]<br/>
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_600">automatically</span></li><li style=""><span class="selectable-content" id="sel-tud2-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_602">by express determination of a User</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8557,8 +8557,8 @@ The following sections list Common Criteria and technology terms used in this do
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall allow execution or use of platform firmware updates only if new platform firmware
 					is integrity- and authenticity-checked using the mechanism described in <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a> prior to its
 					execution or use, and
-					[<b>selection</b>: <span class="selectable-content" id="_s_609">the version number of the platform firmware update is more recent than 
-							the version number of the previously installed platform firmware</span>, <span class="selectable-content" id="_s_610">no other conditions</span>].
+					[<b>selection</b>: <span class="selectable-content" id="_s_610">the version number of the platform firmware update is more recent than 
+							the version number of the previously installed platform firmware</span>, <span class="selectable-content" id="_s_611">no other conditions</span>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8589,8 +8589,8 @@ The following sections list Common Criteria and technology terms used in this do
 			<div class="element"><div class="reqid" id="FPT_TUD_EXT.3.4"><a href="#FPT_TUD_EXT.3.4" class="abbr">FPT_TUD_EXT.3.4</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall take the following actions if a platform firmware update integrity, authentication, or
 					rollback-prevention check fails, or a platform firmware update fails for any other reason:
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_611">Halt</span></li><li style=""><span class="selectable-content" id="_s_612">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-tud3-recovery">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]<br/>
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_614">automatically</span></li><li style=""><span class="selectable-content" id="sel-tud3-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_616">by express determination of a User</span></li></ul>].
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_612">Halt</span></li><li style=""><span class="selectable-content" id="_s_613">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-tud3-recovery">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]<br/>
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_615">automatically</span></li><li style=""><span class="selectable-content" id="sel-tud3-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_617">by express determination of a User</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8662,7 +8662,7 @@ The following sections list Common Criteria and technology terms used in this do
 				</div></div>
 			<div class="element"><div class="reqid" id="FPT_TUD_EXT.4.2"><a href="#FPT_TUD_EXT.4.2" class="abbr">FPT_TUD_EXT.4.2</a></div><div class="reqdesc">
 					A user shall assert physical presence to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> through: 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_623">login to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> from a physically connected console or terminal</span></li><li style=""><span class="selectable-content" id="_s_624">physical connection of a jumper or cable</span></li><li style=""><span class="selectable-content" id="_s_625">connection to a debug port</span></li><li style=""><span class="selectable-content" id="_s_626">[<b>assignment</b>: 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_624">login to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> from a physically connected console or terminal</span></li><li style=""><span class="selectable-content" id="_s_625">physical connection of a jumper or cable</span></li><li style=""><span class="selectable-content" id="_s_626">connection to a debug port</span></li><li style=""><span class="selectable-content" id="_s_627">[<b>assignment</b>: 
      <span class="assignable-content">description of other mechanism for asserting physical presence</span>]</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
@@ -8738,10 +8738,10 @@ The following sections list Common Criteria and technology terms used in this do
         version 
         2.0</a></span></li></ul>] 
 					protocols with 
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="sel-itc-certauth">X.509 certificate-based authentication of the remote peer</span></li><li style=""><span class="selectable-content" id="_s_632">non-certificate-based authentication of the remote peer</span></li><li style=""><span class="selectable-content" id="_s_633">no authentication of the remote peer</span></li></ul>]				
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="sel-itc-certauth">X.509 certificate-based authentication of the remote peer</span></li><li style=""><span class="selectable-content" id="_s_633">non-certificate-based authentication of the remote peer</span></li><li style=""><span class="selectable-content" id="_s_634">no authentication of the remote peer</span></li></ul>]				
 					to provide a communication channel between itself and 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_634">audit servers (as required by <a href="#FAU_STG.1.1">FAU_STG.1.1</a> if selected)</span></li><li style=""><span class="selectable-content" id="_s_635">remote administrators (as required by <a href="#FTP_TRP.1.1">FTP_TRP.1.1</a> if selected in <a href="#FMT_MOF.1">FMT_MOF.1</a>)</span></li><li style=""><span class="selectable-content" id="_s_636">[<b>assignment</b>: 
-     <span class="assignable-content">other capabilities</span>]</span></li><li style=""><span class="selectable-content" id="_s_637">no other capabilities</span></li></ul>]
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_635">audit servers (as required by <a href="#FAU_STG.1.1">FAU_STG.1.1</a> if selected)</span></li><li style=""><span class="selectable-content" id="_s_636">remote administrators (as required by <a href="#FTP_TRP.1.1">FTP_TRP.1.1</a> if selected in <a href="#FMT_MOF.1">FMT_MOF.1</a>)</span></li><li style=""><span class="selectable-content" id="_s_637">[<b>assignment</b>: 
+     <span class="assignable-content">other capabilities</span>]</span></li><li style=""><span class="selectable-content" id="_s_638">no other capabilities</span></li></ul>]
 					that is logically distinct from other communication channels, provides assured 
 					identification of its end points, protects channel data from disclosure, and detects modification
 					of the channel data. 
@@ -8807,7 +8807,7 @@ The following sections list Common Criteria and technology terms used in this do
      <span class="assignable-content">list of entities external to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr></span>]
 					using a cryptographic algorithm and key size as specified in
 					<a href="#FCS_COP.1/SKC">FCS_COP.1/SKC</a> or <a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a>, and using 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_638">Pre-shared keys</span></li><li style=""><span class="selectable-content" id="sel-ftp-ite-ext-1-est">Keys established according to <a href="#FCS_CKM.2">FCS_CKM.2</a></span></li><li style=""><span class="selectable-content" id="sel-ftp-ite-ext-1-itp">Keys exchanged using a physically protected communication 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_639">Pre-shared keys</span></li><li style=""><span class="selectable-content" id="sel-ftp-ite-ext-1-est">Keys established according to <a href="#FCS_CKM.2">FCS_CKM.2</a></span></li><li style=""><span class="selectable-content" id="sel-ftp-ite-ext-1-itp">Keys exchanged using a physically protected communication 
 							mechanism conformant with <a href="#FTP_ITP_EXT.1">FTP_ITP_EXT.1</a></span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
       Note:
@@ -9311,7 +9311,7 @@ The following sections list Common Criteria and technology terms used in this do
 				<li>Success of update operation</li></ul></p><h4>FPT_TUD_EXT.2 Platform Firmware Authenticated Update Mechanism</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><br/>FCS_COP.1 Cryptographic Operations</td></tr></table><h4 id="ext-comp-FPT_TUD_EXT.2.1">FPT_TUD_EXT.2.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate the source of all platform firmware updates using a 
 					digital signature algorithm specified in FCS_COP.1 and using a key store 
 					that contains 
-					[<b>selection</b>: <span class="selectable-content" id="_s_591">the public key</span>, <span class="selectable-content" id="_s_592">hash value of the public key</span>].
+					[<b>selection</b>: <span class="selectable-content" id="_s_592">the public key</span>, <span class="selectable-content" id="_s_593">hash value of the public key</span>].
 				<h4 id="ext-comp-FPT_TUD_EXT.2.2">FPT_TUD_EXT.2.2</h4>
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall allow installation of updates only if the digital signature has been
 					successfully verified as specified in FCS_COP.1 and 
@@ -9328,8 +9328,8 @@ The following sections list Common Criteria and technology terms used in this do
 					<ul>
 						<li>Do not install the update,</li>
 					</ul>and
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_602">Continue execution</span></li><li style=""><span class="selectable-content" id="_s_603">Halt</span></li><li style=""><span class="selectable-content" id="_s_604">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_605">Initiate recovery as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]			
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_606">automatically</span></li><li style=""><span class="selectable-content" id="_s_607">in accordance with Administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_608">by express determination of a User</span></li></ul>].
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_603">Continue execution</span></li><li style=""><span class="selectable-content" id="_s_604">Halt</span></li><li style=""><span class="selectable-content" id="_s_605">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_606">Initiate recovery as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]			
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_607">automatically</span></li><li style=""><span class="selectable-content" id="_s_608">in accordance with Administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_609">by express determination of a User</span></li></ul>].
 				</div><h4>Management: FPT_TUD_EXT.3</h4><p>The following actions could be considered for the management functions in FMT:<ul>
 				<li>Configuration of action to take on an update failure.</li></ul></p><h4>Audit: FPT_TUD_EXT.3</h4><p>The following actions should be auditable if FAU_GEN Security audit data generation is
 				included in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:<ul><li>Failure of update authentication/integrity check/rollback</li>
@@ -9348,8 +9348,8 @@ The following sections list Common Criteria and technology terms used in this do
 				<h4 id="ext-comp-FPT_TUD_EXT.3.4">FPT_TUD_EXT.3.4</h4>
 					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall take the following actions if a platform firmware update integrity, authentication, or
 					rollback-prevention check fails, or a platform firmware update fails for any other reason:
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_617">Halt</span></li><li style=""><span class="selectable-content" id="_s_618">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_619">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]<br/>
-					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_620">automatically</span></li><li style=""><span class="selectable-content" id="_s_621">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_622">by express determination of a User</span></li></ul>].
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_618">Halt</span></li><li style=""><span class="selectable-content" id="_s_619">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_620">Initiate a recovery process as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]<br/>
+					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_621">automatically</span></li><li style=""><span class="selectable-content" id="_s_622">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_623">by express determination of a User</span></li></ul>].
 				</div><h4>Management: FPT_TUD_EXT.4</h4><p>There are no management functions foreseen.</p><h4>Audit: FPT_TUD_EXT.4</h4><p>There are no audit events foreseen.</p><h4>FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>No dependencies.</td></tr></table><h4 id="ext-comp-FPT_TUD_EXT.4.1">FPT_TUD_EXT.4.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide a secure local update mechanism that requires an assertion of physical access to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
 					before installation of an update.
 				<h4 id="ext-comp-FPT_TUD_EXT.4.2">FPT_TUD_EXT.4.2</h4>
