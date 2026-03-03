@@ -8733,9 +8733,16 @@
 			<f-element id="fpt-stm-1e1">
 				<title>The TSF shall be able to provide reliable time stamps.</title>
 				<note role="application">
-					It is acceptable for the TSF to provide timestamp data either through an internal clock or a
+					It is acceptable for the TSF to provide time stamp data either through an internal clock or a
 					counter. It is also permissible for the TSF to obtain time data from a clock contained within the
 					same physical enclosure as the TOE.<h:p/>
+					This SFR does not mandate that time match a regional clock or some other external
+					time authority. This SFR cannot assume external connectivity to a time source.<h:p/>
+					If a total loss of line and battery power or some other event forces a disruption
+					to time keeping, then the internal clock or counter must either continue incrementing
+					from the last known	value or a default value. The internal clock or counter must
+					not become static or be set to a constant value -- time must continue to advance
+					predictably.
 				</note>
 				<aactivity>
 				<TSS>
@@ -8750,9 +8757,12 @@
 				</Guidance>
 				<Tests>
 					The evaluator shall perform the following tests:<h:p/>
-					[conditional] If the TSF provides a mechanism to manually set the time, the
+					If the TSF provides a mechanism to manually set the time, the
 					evaluator shall use the guidance documentation to set the time. The evaluator shall
-					then use an available interface to observe that the time is reported correctly.
+					then use an available interface to observe that the time is reported correctly.<h:p/>
+					Otherwise, the evaluator shall use an available interface to observe that time or a
+					time-related counter is	not null and is incrementing in an expected way (i.e. the
+					time or counter is not locked at a constant default value).
 				</Tests>
 				</aactivity>
 			</f-element>
