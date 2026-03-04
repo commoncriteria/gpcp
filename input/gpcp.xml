@@ -1832,7 +1832,7 @@
 						<h:li>Tree height [10, 16, 20] (XMSS only)</h:li></h:ul><h:p/>
 
 						<h:b><h:div style="text-align: center;">
-							<ctr ctr-type="Table" pre="Table " id="xmss-akg-test-cases">: Number of Test Cases for XMSS<h:sup>MT</h:sup></ctr>
+							<ctr ctr-type="Table" pre="Table " id="xmss-akg-test-cases">: Number of Test Cases for XMSS</ctr>
 						</h:div></h:b>
 						<h:table border="1" style="width:50%">
 							<h:tr class="header" bgcolor="#cccccc">
@@ -1950,7 +1950,7 @@
 						the differences between test environment and TOE execution environment shall be
 						described.<h:p/>
 						To test the TOE’s ability to generate symmetric cryptographic keys using a 
-						random bit generator, the evaluator shall configure the asymmetric cryptographic 
+						random bit generator, the evaluator shall configure the symmetric cryptographic 
 						key generation capability for each claimed key size. The evaluator shall use the
 						description of the RBG interface to verify that the TOE requests and receives an
 						amount of RBG output greater than or equal to the requested key size.
@@ -2035,7 +2035,6 @@
 							</selectables></col>
 							<col>KPF2 - KDF in Counter Mode using <selectables>
 								<selectable id="sel-fcs-ckm-5-kdf-ctr-cmac">AES-256-CMAC</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">HMAC-SHA-256</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">HMAC-SHA-384</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac512">HMAC-SHA-512</selectable>
 							</selectables> as the PRF</col>
@@ -2059,7 +2058,6 @@
 							</selectables></col>
 							<col>KPF3 - KDF in Feedback Mode using <selectables>
 								<selectable id="sel-fcs-ckm-5-kdf-fb-cmac">AES-256-CMAC</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-fb-hmac256">HMAC-SHA-256</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">HMAC-SHA-384</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-fb-hmac512">HMAC-SHA-512</selectable>
 							</selectables> as the PRF</col>
@@ -2082,7 +2080,6 @@
 								</selectables></col>
 							<col>KDF in Double Pipeline Iteration Mode using <selectables>
 								<selectable id="sel-fcs-ckm-5-kdf-dpi-cmac">AES-256-CMAC</selectable>
-								<selectable id="sel-fcs-ckm-5-kdf-dpi-hmac256">HMAC-SHA-256</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-ctr-hmac256">HMAC-SHA-384</selectable>
 								<selectable id="sel-fcs-ckm-5-kdf-dpi-hmac512">HMAC-SHA-512</selectable>
 								</selectables> as the PRF</col>
@@ -2147,7 +2144,6 @@
 							<col>KDF-MAC-1S</col>  <!-- formerly KeyDrv8 -->
 							<col>Shared secret, salt, IV, output length, fixed information</col>
 							<col>Keyed hash <selectables>
-								<selectable>HMAC-SHA-256</selectable>
 								<selectable>HMAC-SHA-384</selectable>
 								<selectable>HMAC-SHA-512</selectable></selectables></col>
 							<col><selectables>
@@ -2167,7 +2163,6 @@
 									<selectable exclusive="yes">no other parameters</selectable>
 								</selectables></col>
 							<col>MAC Step <selectables>
-								<selectable>HMAC-SHA-256</selectable>
 								<selectable>HMAC-SHA-384</selectable>
 								<selectable>HMAC-SHA-512</selectable></selectables>
 								as randomness extraction and; KDF Step <selectables>
@@ -2257,7 +2252,7 @@
 								<h:td valign="top">[<h:b>selection:</h:b> Direct Generation from a Random Bit Generator as 
 									specified in FCS_RBG.1, Concatenated keys]</h:td>
 								<h:td valign="top">KPF2 - KDF in Counter Mode using [<h:b>selection:</h:b> 
-									AES-256-CMAC, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512] as the PRF</h:td>
+									AES-256-CMAC HMAC-SHA-384, HMAC-SHA-512] as the PRF</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 11770-6:2016
 									(Subclause 7.3.2) [KPF2], NIST SP 800-108 Revision 1 Update 1 (Section 4.1) 
@@ -2267,8 +2262,8 @@
 						To test the TOE’s ability to derive cryptographic keys using KDF in Counter 
 						Mode/KDF2, the evaluator shall perform the Counter KDF Algorithm Functional
 						Test using the following input parameters:<h:ul>
-						<h:li>Pseudo Random Function (PRF) [AES-256-CMAC, HMAC-SHA-256, HMAC-SHA-512]</h:li>
-						<h:li>Derived key length [256, 512] bits</h:li>
+						<h:li>Pseudo Random Function (PRF) [AES-256-CMAC, HMAC-SHA-384, HMAC-SHA-512]</h:li>
+						<h:li>Derived key length [256, 384, 512] bits</h:li>
 						<h:li>Location of the counter [after fixed data, before fixed data, middle fixed data]</h:li>
 						<h:li>Counter length [8, 16, 24, 32] bits</h:li></h:ul><h:p/>
 						<h:br/><h:i><h:b>Counter KDF Algorithm Functional Test</h:b></h:i><h:br/>
@@ -2292,7 +2287,7 @@
 								<h:td valign="top">[<h:b>selection:</h:b> Direct Generation from a Random Bit Generator as 
 									specified in FCS_RBG.1, Concatenated keys]</h:td>
 								<h:td valign="top">KPF3 - KDF in Feedback Mode using [<h:b>selection:</h:b> 
-									AES-256-CMAC, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512] as the PRF</h:td>
+									AES-256-CMAC, HMAC-SHA-384, HMAC-SHA-512] as the PRF</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 11770-6:2016
 									(Subclause 7.3.3) [KPF3], NIST SP 800-108 Revision 1 Update 1 (Section 4.2) 
@@ -2302,8 +2297,8 @@
 						To test the TOE’s ability to derive cryptographic keys using KDF in Feedback 
 						Mode/KDF3, the evaluator shall perform the Feedback KDF Algorithm Functional
 						Test using the following input parameters:<h:ul>
-						<h:li>Pseudo Random Function (PRF) [AES-256-CMAC, HMAC-SHA-256, HMAC-SHA-512]</h:li>
-						<h:li>Derived key length [256, 512] bits</h:li>
+						<h:li>Pseudo Random Function (PRF) [AES-256-CMAC, HMAC-SHA-384, HMAC-SHA-512]</h:li>
+						<h:li>Derived key length [256, 384, 512] bits</h:li>
 						<h:li>Location of the counter [none, after fixed data, before fixed data, before iterator]</h:li>
 						<h:li>Counter length [0, 8, 16, 24, 32] bits</h:li></h:ul><h:p/>		
 						<h:br/><h:i><h:b>Feedback KDF Algorithm Functional Test</h:b></h:i><h:br/>
@@ -2327,7 +2322,7 @@
 								<h:td valign="top">[<h:b>selection:</h:b> Direct Generation from a Random Bit Generator as 
 									specified in FCS_RBG.1, Concatenated keys]</h:td>
 								<h:td valign="top">KPF4 - KDF in Double-Pipeline Iteration Mode using [<h:b>selection:</h:b> 
-									HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512] as the PRF</h:td>
+									AES-256-CMAC, HMAC-SHA-384, HMAC-SHA-512] as the PRF</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 11770-6:2016
 									(Subclause 7.3.4) [KPF4], NIST SP 800-108 Revision 1 Update 1 (Section 4.3) 
@@ -2337,8 +2332,8 @@
 						To test the TOE’s ability to derive cryptographic keys using KDF in Double Pipeline Iteration  
 						Mode/KDF4, the evaluator shall perform the Double Pipeline Iteration KDF Algorithm Functional
 						Test using the following input parameters:<h:ul>
-						<h:li>Pseudo Random Function (PRF) [HMAC-SHA-256, HMAC-SHA-512]</h:li>
-						<h:li>Derived key length [256, 512] bits</h:li>
+						<h:li>Pseudo Random Function (PRF) [AES-256-CMAC, HMAC-SHA-384, HMAC-SHA-512]</h:li>
+						<h:li>Derived key length [256, 384, 512] bits</h:li>
 						<h:li>Location of the counter [none, after fixed data, before fixed data, before iterator]</h:li>
 						<h:li>Counter length [0, 8, 16, 24, 32] bits</h:li></h:ul><h:p/>
 						<h:br/><h:i><h:b>Double Pipeline Iteration KDF Algorithm Functional Test</h:b></h:i><h:br/>
@@ -2435,7 +2430,7 @@
 							<h:tr>
 								<h:td valign="top">KDF-MAC-1S</h:td>
 								<h:td valign="top">Shared secret, salt, output length, fixed information</h:td>
-								<h:td valign="top">Keyed Hash function [<h:b>selection:</h:b> HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512]</h:td>
+								<h:td valign="top">Keyed Hash function [<h:b>selection:</h:b> HMAC-SHA-384, HMAC-SHA-512]</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
 								<h:td valign="top">NIST SP 800-56C Revision 2 (Section 4.1, Options 2, 3) 
 									[One-Step Key Derivation]</h:td>
@@ -2444,7 +2439,7 @@
 						To test the TOE’s ability to derive cryptographic keys using One-Step
 						MAC-based Key Derivation, the evaluator shall perform the Algorithm Functional
 						Test using the following input parameters:<h:ul>
-						<h:li>Auxiliary Function [HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512]</h:li>
+						<h:li>Auxiliary Function [HMAC-SHA-384, HMAC-SHA-512]</h:li>
 						<h:li>Salt [0s, random]</h:li>
 						<h:li>Derived key length [256, 384, 512] bits</h:li>
 						<h:li>Fixed information pattern </h:li></h:ul><h:p/>		
@@ -2471,7 +2466,7 @@
 									fixed information, and [<h:b>selection:</h:b> auxiliary shared secret, 
 									no other parameters]</h:td>
 								<h:td valign="top">MAC Step [<h:b>selection:</h:b> 
-									HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512] as randomness extraction and; 
+									HMAC-SHA-384, HMAC-SHA-512] as randomness extraction and; 
 									KDF Step [<h:b>selection:</h:b> 
 									KDF-CTR, KDF-FB, KDF-DPI]</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> 256, 384, 512] bits</h:td>
@@ -2481,7 +2476,7 @@
 						To test the TOE’s ability to derive cryptographic keys using Two-Step MAC-based Key Derivation,
 						the evaluator shall perform the Algorithm Functional Test using the following input
 						parameters:<h:ul>
-						<h:li>MAC mode [HMAC-SHA-256; HMAC-SHA-384, HMAC-SHA-512]</h:li>
+						<h:li>MAC mode [HMAC-SHA-384, HMAC-SHA-512]</h:li>
 						<h:li>KDF Mode [Counter, feedback, Double Pipeline Iteration]</h:li>
 						<h:li>Salt [0s, random]</h:li>
 						<h:li>Length of shared secret [224-65535]</h:li>
@@ -6639,7 +6634,10 @@
 								use the key/secret as described. Additionally, the evaluator shall create
 							arbitrary authorization data and key/secret storage identifiers that must not
 							permit access to keys/secrets that have not been imported or generated by the
-							evaluator or in which would not be available to a TOE user.
+							evaluator or in which would not be available to a TOE user. In other words,
+							the evaluator shall test that imported keys/secrets do not reveal, destroy, or
+							modify keys/secrets belonging to other users or otherwise restricted by
+							the TOE itself.
 						</test>
 						<test>The evaluator shall destroy keys/secrets of each supported type according
 							to the operational guidance. The evaluator shall write, or the developer shall provide
