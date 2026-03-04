@@ -3296,8 +3296,8 @@
 					<h:li>SHA-1 hash is no longer permitted to be used as a hash function, </h:li>
 					<h:li>SHA3 hashes may be used only for internal hardware functionality such as
 						boot integrity checks, and</h:li>
-					<h:li>SHA-256 is permitted only for use as a PRF or MAC as part of a key derivation function,
-						or as part of LMS or XMSS.</h:li>
+					<h:li>SHA-256 is permitted only for use as part of LMS and XMSS, or temporarily
+						in certain non-CNSA cases as a PRF, but these non-CNSA uses are discouraged.</h:li>
 					</h:ul><h:p/>
 					The hash selection should be consistent with the overall strength of the 
 					algorithm used for signature generation. For example, the TOE should choose SHA-384 for 3072-bit RSA, 
@@ -3306,7 +3306,7 @@
                 <aactivity> 
                     <TSS>
 						The evaluator shall examine the TSS to verify that if SHA-256 is selected, that it is being 
-						used only as a PRF or MAC step in a key derivation function or as part of LMS, and not as a hash algorithm.
+						used only as part of LMS and XMSS, or as a PRF, not as a hash algorithm.
 					</TSS>
                     <Guidance/>
                     <Tests>
@@ -3333,7 +3333,7 @@
 						largest size supported.<h:p/>
 						<h:br/><h:b>Monte Carlo Test</h:b><h:p/>
 						Monte Carlo tests begin with a single seed and run 100 iterations of the chained computation.<h:p/>
-						There are two versions of the Monte Carlo test for SHA-1 and SHA-2. Either one is acceptable.
+						There are two versions of the Monte Carlo test SHA-2. Either one is acceptable.
 						For the Standard Monte Carlo test the message hashed is always three times the length of the
 						initial seed.<h:p/>
 						<h:pre>
@@ -3450,15 +3450,6 @@
 							<reqtext><h:p/><h:p/>The following table provides the allowable choices for
 										completion of the selection operations of FCS_COP.1/KeyedHash.</reqtext>
 						</tabularize>
-						
-						<selectable id="sel-fcs-cop-keyedhash-hmac-sha-256">
-							<col>HMAC-SHA-256</col>
-							<col>256 bits</col>
-							<col><selectables>
-								<selectable>ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”)</selectable>
-								<selectable>FIPS PUB 198-1</selectable></selectables>
-							</col>
-						</selectable>
 
 						<selectable id="sel-fcs-cop-keyedhash-hmac-sha-384">
 							<col>HMAC-SHA-384</col>
@@ -3490,16 +3481,12 @@
 					The HMAC minimum key sizes in the table are specified in ISO/IEC 9797-2:2021, which requires that the
 					minimum key size be equal to the digest size. The FIPS standard specifies no minimum or maximum 
 					key sizes, so if FIPS PUB 198-1 is selected, larger or smaller key sizes may be used. This is 
-					indicated by the parenthesized annotations in the Cryptographic Key Sizes column.<h:p/>
-					In accordance with CNSA 1.0 and 2.0, HMAC-SHA-256 may be used only as a PRF or MAC step in a 
-					key derivation function.
+					indicated by the parenthesized annotations in the Cryptographic Key Sizes column.
 				</note>
 				<aactivity>
 					<TSS>
 						The evaluator shall examine the TSS to ensure that the size of the key is sufficient for the desired
-						security strength of the output.<h:p/>
-						The evaluator shall examine the TSS to verify that if HMAC-SHA-256 is selected, that it is being 
-						used only as a PRF or MAC step in a key derivation function.
+						security strength of the output.
 					</TSS>
 					<Guidance/>
 					<Tests>
@@ -3519,12 +3506,6 @@
 								<h:td valign="top">List of Standards</h:td>
 							</h:tr>
 							<h:tr>
-								<h:td valign="top">HMAC-SHA-256</h:td>
-								<h:td valign="top">256 bits</h:td>
-								<h:td valign="top">
-									[<h:b>selection:</h:b> ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”), FIPS PUB 198-1] </h:td>
-							</h:tr>
-							<h:tr>
 								<h:td valign="top">HMAC-SHA-384</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> (ISO, FIPS) 384, (FIPS) 256] bits</h:td>
 								<h:td valign="top">
@@ -3540,7 +3521,7 @@
 						To test the TOE’s ability to generate keyed hashes using HMAC the evaluator shall perform the
 						Algorithm Functional Test for each combination of claimed HMAC algorithm the following
 						parameters:<h:ul>
-						<h:li>Hash function [SHA-256, SHA-384, SHA-512]</h:li>
+						<h:li>Hash function [SHA-384, SHA-512]</h:li>
 						<h:li>Key length [8-65536] bits by 8s</h:li>
 						<h:li>MAC length [32-[digest size of hash function (256, 384, 512)]] bits</h:li></h:ul><h:p/>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
