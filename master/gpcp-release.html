@@ -1808,13 +1808,17 @@ The following sections list Common Criteria and technology terms used in this do
 					It is acceptable for the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to provide time stamp data either through an internal clock or a
 					counter. It is also permissible for the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to obtain time data from a clock contained within the
 					same physical enclosure as the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.<p></p>
-					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> does not mandate that time match a regional clock or some other external
-					time authority. This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> cannot assume external connectivity to a time source.<p></p>
-					If a total loss of line and battery power or some other event forces a disruption
-					to time keeping, then the internal clock or counter must either continue incrementing
-					from the last known	value or a default value. The internal clock or counter must
-					not become static or be set to a constant value -- time must continue to advance
-					predictably.
+					Devices may be configured with an internal clock value or counter value during the
+					production phase. This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> does not require the internal clock match a specific
+					external clock such as a regional or world clock (e.g. GMT, UTC). This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> also
+					does not establish any requirements regarding clock drift because the ability to
+					synchronize with an external clock authority cannot be guaranteed.<p></p>
+					In the event of a disruption to reliable time (e.g. total loss of line and battery
+					power, a service event) the internal clock or counter should continue incrementing
+					once the disruption is resolved. If a default clock or counter value is set, then
+					the device must continue to increment time predictably and may optionally generate
+					an audit event indicating that a default has been set. The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must claim <a href="#FAU_GEN.1">FAU_GEN.1</a>
+					if audit events are generated due to changes to reliable time.
 				</span></div></div></div>
 			
 		<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FPT_STM.1">FPT_STM.1</a></div>
@@ -1833,10 +1837,12 @@ The following sections list Common Criteria and technology terms used in this do
 					The evaluator shall perform the following tests:<p></p>
 					If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> provides a mechanism to manually set the time, the
 					evaluator shall use the guidance documentation to set the time. The evaluator shall
-					then use an available interface to observe that the time is reported correctly.<p></p>
-					Otherwise, the evaluator shall use an available interface to observe that time or a
+					then use an available interface to observe that the time is reported correctly
+					and that the clock or time-related counter increments in an expected way (i.e. the clock
+					or counter is not frozen to the value set during this test).<p></p>
+					Otherwise, the evaluator shall use an available interface to observe that the clock or 
 					time-related counter is	not null and is incrementing in an expected way (i.e. the
-					time or counter is not locked at a constant default value).
+					clock or counter is not frozen to a constant/static value).
 				</div></div></div></div></div>
 		
 		
