@@ -3568,7 +3568,7 @@
 							<selectable>6144</selectable>
 							<selectable>8192</selectable>
 						</selectables> bits</col>
-						<col>NIST SP 800-56B Revision 2 (Section 7.2.1)</col>
+						<col>NIST SP 800-56B Revision 2 (Section 8.2)</col>
 						</selectable>
 						
 						<selectable id="sel-fcs-cop-keyencap-kts">
@@ -3629,7 +3629,7 @@
 								<h:td valign="top">KAS1</h:td>
 								<h:td valign="top">RSASVE</h:td>
 								<h:td valign="top">[<h:b>selection:</h:b> 3072, 4096, 6144, 8192] bits</h:td>
-								<h:td valign="top">NIST SP 800-56B Revision 2 (Section 7.2.1)</h:td>
+								<h:td valign="top">NIST SP 800-56B Revision 2 (Section 8.2)</h:td>
 							</h:tr>
 						</h:table><h:p/>	
 						To test the TOE’s implementation of the of KAS1 RSASVE Single-Party Key Encapsulation, the
@@ -4627,13 +4627,12 @@
 					parameters that are implemented for that algorithm. In particular, if ECDSA is selected as one of the signature
 					algorithms, the key size specified must match the selection for the curve used in the algorithm.<h:p/>
 					For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the
-					base point. As the preferred approach for digital signatures, elliptic curves will be required after all the
-					necessary standards and other supporting information are fully established.<h:p/>
+					base point.<h:p/>
 					The TOE may contain a public key which is integrity protected (e.g., in hardware), in which 
 					case the FDP_ITC.1 and FDP_ITC.2 dependencies do not apply.  In this case, no dependencies 
 					may be chosen.  For signature verifications, private keys are not necessary, so there are no
 					dependencies required for generating or destroying cryptographic keys.<h:p/>
-					If LMS or XMSS is claimed, then FCS_COP.1/XOF must also be claimed.
+					If LMS or XMSS is claimed, then FCS_COP.1/XOF must also be claimed when SHAKE is utilized.
 				</note>
 				<aactivity>
 					<TSS>
@@ -4970,7 +4969,7 @@
 								<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable> 
 								<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/><selectables>
 								<selectable>: ISO/IEC 10116:2017 (Clause 10)</selectable> 
-								<selectable>NIST SP 800-38A</selectable></selectables> [CBC]
+								<selectable>NIST SP 800-38A</selectable></selectables> [CTR]
 							</col>
 						</selectable>
 					</selectables>
@@ -4990,7 +4989,7 @@
 						The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
 						tweak values, and counters in conformance with the relevant specifications.<h:p/>
 						If XTS-AES is claimed then the evaluator shall examine the TSS to verify that the TOE creates
-						full-length keys by methods that ensure that the two key halves are different and independent.
+						full-length keys by methods that ensure that the two key halves are different.
 					</TSS>
 					<Guidance/>
 					<Tests>
@@ -6896,7 +6895,7 @@
 					of <selectables onlyone="yes">
 						<selectable>unique</selectable>
 						<selectable>non-unique</selectable>
-					</selectables> unsuccessful authentication attempts occur related to last successful authentication for
+					</selectables> unsuccessful authentication attempts occur since the last successful authentication for
 					each authentication mechanism.
 				</title>
 				<note role="application">
@@ -8928,6 +8927,7 @@
 					or rollback-prevention check fails, or a platform firmware update fails for any other reason: 
 					<h:ul>
 						<h:li>Do not install the update,</h:li>
+						<h:li>Generate an audit event (optional),</h:li>
 					</h:ul>and
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>Continue execution</selectable>
@@ -8947,6 +8947,7 @@
 					or rollback-prevention check fails, or a platform firmware update fails for any other reason: 
 					<h:ul>
 						<h:li>Do not install the update,</h:li>
+						<h:li>Generate an audit event (optional),</h:li>
 					</h:ul>and
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>Continue execution</selectable>
@@ -8962,14 +8963,14 @@
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
-					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1 and the other audit requirements must be claimed.<h:p/>
+					If "<h:i>generate an audit event</h:i>" is selected, then FAU_GEN.1 and the other audit requirements must be claimed.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					The platform firmware authenticated update mechanism employs digital signatures to ensure the authenticity of the
 					firmware update image. The TSF includes a signature verification algorithm and a key
 					store containing the public key needed to verify the signature on the firmware update image. <h:p/>
 					A hash of the public key may be stored if a copy of the public key is provided with firmware
 					update images. In this case, the update mechanism hashes the public key provided with the update 
-					image, and ensure that it matches a hash which appears in the key store before using the provided public 
+					image, and ensures that it matches a hash which appears in the key store before using the provided public 
 					key to verify the signature of the update image. If the hash of the public key is selected, the ST Author may
 					iterate the FCS_COP.1/Hash requirement to specify the hashing functions used.<h:p/>
 					An indication of success or failure can be generation of an audit event by a management subsystem, a beep code,
@@ -8988,7 +8989,7 @@
 						digital signature of the update image is verified before modification of the firmware. <h:p/>
 						The evaluator shall examine the TSF to ensure that it describes the platform firmware version identifier
 						and explains its meaning and encoding.<h:p/>
-						The evaluator shall also ensure that the TSS describes the actions taken by the TSF is 
+						The evaluator shall also ensure that the TSS describes the actions taken by the TSF if 
 						an update image fails authentication.
 					</TSS>
 					<Guidance>
@@ -9098,14 +9099,19 @@
 				<title>
 					The TOE shall take the following actions if a platform firmware update integrity, authentication, or
 					rollback-prevention check fails, or a platform firmware update fails for any other reason:
+					<h:ul>
+						<h:li>Do not install the update,</h:li>
+						<h:li>Generate an audit event (optional),</h:li>
+					</h:ul>and
 					<selectables linebreak="yes" onlyone="yes">
+						<selectable>Continue execution</selectable>
 						<selectable>Halt</selectable>
 						<selectable>Stop all execution and shut down</selectable>
-						<selectable id="sel-tud3-recovery">Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
+						<selectable id="sel-tud2-recovery">Initiate recovery as specified in FPT_RVR_EXT.1</selectable>
 					</selectables><h:br/>
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
-						<selectable id="sel-tud3-admin-config">in accordance with administrator-configurable policy</selectable>
+						<selectable id="sel-tud2-admin-config">in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of a User</selectable>
 					</selectables>.
 				</title>
@@ -9113,20 +9119,25 @@
 				<title>
 					The TOE shall take the following actions if a platform firmware update integrity, authentication, or
 					rollback-prevention check fails, or a platform firmware update fails for any other reason:
+					<h:ul>
+						<h:li>Do not install the update,</h:li>
+						<h:li>Generate an audit event (optional),</h:li>
+					</h:ul>and
 					<selectables linebreak="yes" onlyone="yes">
+						<selectable>Continue execution</selectable>
 						<selectable>Halt</selectable>
 						<selectable>Stop all execution and shut down</selectable>
-						<selectable>Initiate a recovery process as specified in FPT_RVR_EXT.1</selectable>
+						<selectable id="sel-tud2-recovery">Initiate recovery as specified in FPT_RVR_EXT.1</selectable>
 					</selectables><h:br/>
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>automatically</selectable>
-						<selectable>in accordance with administrator-configurable policy</selectable>
+						<selectable id="sel-tud2-admin-config">in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of a User</selectable>
 					</selectables>.
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
-					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1 and the other audit SFRs must be claimed.<h:p/>
+					If "<h:i>generate an audit event</h:i>" is selected, then FAU_GEN.1 and the other audit SFRs must be claimed.<h:p/>
 					If "<h:i>Initiate recovery as specified in FPT_RVR_EXT.1</h:i>" is selected, then FPT_RVR_EXT.1 must be included in the ST.<h:p/>
 					The platform firmware unauthenticated update mechanism installs platform firmware updates without
 					first checking their integrity or authenticity. Instead, this mechanism either invokes a 
