@@ -2538,42 +2538,68 @@
 				<title>
 					The TSF shall destroy cryptographic keys and keying material specified by
 					FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method:<h:p/>
-					For volatile memory, the destruction shall be executed by a
-					<selectables linebreak="yes" onlyone="yes">
-						<selectable>single overwrite consisting of [selection, choose one of: a pseudorandom pattern
-							using the TSF’s RBG, zeroes, ones, a new value of a key, [assignment: some value that does
-							not contain any CSP]]</selectable>
-						<selectable>Removal of power to the memory</selectable>
-						<selectable>Removal of all references to the key directly followed by a request for garbage collection</selectable>
-					</selectables>
+					<h:ul>
+					<h:li>
+						For volatile memory, the destruction shall be executed by a
+						<selectables linebreak="yes">
+							<selectable>single overwrite consisting of
+								<selectables onlyone="yes">
+									<selectable>a pseudorandom pattern using the TSF’s RBG</selectable>
+									<selectable>zeroes</selectable>
+									<selectable>ones</selectable>
+									<selectable>a new value of a key</selectable>
+									<selectable>
+										<assignable>some value that doesnot contain any CSP</assignable>
+									</selectable>
+							</selectable>
+							<selectable>Removal of power to the memory</selectable>
+							<selectable>Removal of all references to the key directly followed by a request for garbage collection</selectable>
+						</selectables>
+					</h:li>
+					<h:li>
 					For non-volatile memory
-					<selectables linebreak="yes" onlyone="yes">
-						<selectable>that employs a wear-leveling algorithm, the destruction shall be executed by a
-							<selectables linebreak="yes" onlyone="yes">
-								<selectable>single overwrite consisting of [selection, choose one of: zeroes, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: some value that does not contain any CSP]]</selectable>
-								<selectable>secure block erase</selectable>
-								<selectable>ONFI Sanitize command</selectable>
-								<selectable>vendor-specific secure erase command</selectable>
-								<selectable>cryptographic erase</selectable>
-							</selectables>
-						</selectable>
-						<selectable>that does not employ a wear-leveling algorithm, the destruction shall be executed by a
-							<selectables linebreak="yes" onlyone="yes">
-								<selectable>
-									<selectables linebreak="yes" onlyone="yes">
-										<selectable>single pass</selectable>
-										<selectable>[assignment: ST Author-defined multi-pass]] overwrite consisting of
-											[selection: zeros, ones, pseudo-random pattern, a new value of a key of the same
-											size, [assignment: some value that does not contain any CSP]] followed by a
-											read-verify. If the read-verification of the overwritten data fails, the process
-											shall be repeated again up to [assignment: number of times to attempt overwrite]
-											times, whereupon an error is returned</selectable>
-									</selectables>
-								</selectable>
-								<selectable>block erase</selectable>
-							</selectables>
-						</selectable>
-					</selectables>
+						<selectables linebreak="yes" onlyone="yes">
+							<selectable>that employs a wear-leveling algorithm, the destruction shall be executed by a
+								<selectables linebreak="yes">
+									<selectable>single overwrite consisting of
+										<selectables onlyone="yes">
+											<selectable>zeroes</selectable>
+											<selectable>ones</selectable>
+											<selectable>pseudo-random pattern</selectable>
+											<selectable>a new value of a key of the same size</selectable>
+											<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
+										</selectables>
+									</selectable>
+									<selectable>secure block erase</selectable>
+									<selectable>ONFI Sanitize command</selectable>
+									<selectable>vendor-specific secure erase command</selectable>
+									<selectable>cryptographic erase</selectable>
+								</selectables>
+							</selectable>
+							<selectable>that does not employ a wear-leveling algorithm, the destruction shall be executed by a
+								<selectables linebreak="yes">
+									<selectable>
+										<selectables linebreak="yes" onlyone="yes">
+											<selectable>single pass or <assignable>ST Author-defined multi-pass</assignable> overwrite consisting of
+												<selectables onlyone="yes">
+													<selectable>zeroes</selectable>
+													<selectable>ones</selectable>
+													<selectable>pseudo-random pattern</selectable>
+													<selectable>a new value of a key of the same size</selectable>
+													<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
+												</selectables>
+												followed by a read-verify. If the read-verification of the overwritten
+												data fails, the process shall be repeated again up to <assignable>number
+												of times to attempt overwrite</assignable> times, whereupon an error
+												is returned</selectable>
+										</selectables>
+									</selectable>
+									<selectable>block erase</selectable>
+								</selectables>
+							</selectable>
+						</selectables>
+					</h:li>
+					</h:ul>
 					implemented in a way that conforms to NIST SP 800-88.
 				</title>
 				<note role="application">
