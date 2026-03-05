@@ -2535,26 +2535,102 @@
 				</note>
 			</f-element>
 			<f-element id="fcs-ckm-6e2">
-				<title>The TSF shall destroy cryptographic keys and keying material	specified by
-					FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method
-					<assignable>description of the key destruction methods used for all keys and
-					memory or storage media specified in FCS_CKM.6.1</assignable>
-					that conforms to NIST SP 800-88.
+				<title>
+					The TSF shall destroy cryptographic keys and keying material specified by
+					FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method:<h:p/>
+					For volatile memory, the destruction shall be executed by a
+					<selectables linebreak="yes" onlyone="yes">
+						<selectable>single overwrite consisting of [selection, choose one of: a pseudorandom pattern
+							using the TSF’s RBG, zeroes, ones, a new value of a key, [assignment: some value that does
+							not contain any CSP]]</selectable>
+						<selectable>Removal of power to the memory</selectable>
+						<selectable>Removal of all references to the key directly followed by a request for garbage collection</selectable>
+					</selectables>
+					For non-volatile memory
+					<selectables linebreak="yes" onlyone="yes">
+						<selectable>that employs a wear-leveling algorithm, the destruction shall be executed by a
+							<selectables linebreak="yes" onlyone="yes">
+								<selectable>single overwrite consisting of [selection, choose one of: zeroes, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: some value that does not contain any CSP]]</selectable>
+								<selectable>secure block erase</selectable>
+								<selectable>ONFI Sanitize command</selectable>
+								<selectable>vendor-specific secure erase command</selectable>
+								<selectable>cryptographic erase</selectable>
+							</selectables>
+						</selectable>
+						<selectable>that does not employ a wear-leveling algorithm, the destruction shall be executed by a
+							<selectables linebreak="yes" onlyone="yes">
+								<selectable>
+									<selectables linebreak="yes" onlyone="yes">
+										<selectable>single pass</selectable>
+										<selectable>[assignment: ST Author-defined multi-pass]] overwrite consisting of [selection: zeros, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: some value that does not contain any CSP]] followed by a read-verify. If the read-verification of the overwritten data fails, the process shall be repeated again up to [assignment: number of times to attempt overwrite] times, whereupon an error is returned</selectable>
+									</selectables>
+								<selectable>block erase</selectable>
+							</selectables>
+						</selectable>
+					</selectables>
+					implemented in a way that conforms to NIST SP 800-88.
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
-					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically, this SFR
-					must be included in the ST if any of the following SFRs are claimed: FCS_CKM.1/AKG, FCS_CKM.1/SKG,
-					FCS_CKM.2, FCS_CKM.5, FCS_CKM_EXT.7, FCS_CKM_EXT.8, FCS_STG_EXT.1, or FIA_AFL_EXT.1<h:p/>
-					The term “cryptographic keys” in this SFR includes the authorization data that is the entry point
-					to a key chain and all other cryptographic keys and keying material (whether in plaintext or
-					encrypted form). Examples of keys and key material include intermediate keys, encryption keys, 
-					signing keys, verification keys, authentication tokens, and submasks.<h:p/>
-					This SFR does not apply to the public component of asymmetric key pairs, or to keys that are permitted to remain stored such as device
-					identification keys. <h:p/>
-					The ST Author must complete the assignment in FCS_CKM.6.2 with descriptions of the methods 
-					implemented by the TOE to destroy the keys and keying material in FCS_CKM.6.1 with respect to 
-					each type of media in which the keys may be found.
+					In particular, if the TOE creates or stores keys, it must be able to destroy them. Specifically,
+					this SFR must be included in the ST if any of the following SFRs are claimed: FCS_CKM.1/AKG,
+					FCS_CKM.1/SKG, FCS_CKM.2, FCS_CKM.5, FCS_COP.1/KAT, FCS_STG_EXT.1, or FIA_AFL_EXT.1 .<h:p/>
+					
+					The term “cryptographic keys” in this SFR includes the authorization data that is the entry point to
+					a key chain and all other cryptographic keys and keying material (whether in plaintext or encrypted
+					form). Examples of keys and key material include intermediate keys, encryption keys, signing keys,
+					verification keys, authentication tokens, and submasks. This SFR does not apply to the public
+					component of asymmetric key pairs, or to keys that are permitted to remain stored such as device
+					identification keys. The TOE will have mechanisms to destroy keys and key material when the keys and
+					key material is no longer needed. Based on their implementations, vendors will explain when certain
+					keys are no longer needed.<h:p/>
+					
+					In the case of volatile memory, the selection “removal of all references to the key directly followed
+					by a request for garbage collection” is used in a situation where the TSF cannot address the specific
+					physical memory locations holding the data to be erased and therefore relies on addressing logical
+					addresses (which frees the relevant physical addresses holding the old data) and then requesting the
+					platform to ensure that the data in the physical addresses is no longer available for reading (i.e.
+					the “garbage collection” referred to in the SFR text).<h:p/>
+					
+					The selection for destruction of data in non-volatile memory includes block erase as an option, and
+					this option applies only to flash memory. A block erase does not require a read verify, since the
+					mappings of logical addresses to the erased memory locations are erased as well as the data
+					itself.<h:p/>
+					
+					Some selections allow assignment of “some value that does not contain any CSP.” This means that the
+					TOE uses some specified data not drawn from an RBG meeting FCS_RBG requirements, and not being any of
+					the particular values listed as other selection options. The point of the phrase “does not contain any
+					sensitive data” is to ensure that the overwritten data is carefully selected, and not taken from a
+					general pool that might contain current or residual data that itself requires confidentiality
+					protection.<h:p/>
+					From crypto catalog In the case of volatile memory, the selection “removal of all references to the key
+					directly followed by a request for garbage collection” is used in a situation where the TSF cannot
+					address the specific physical memory locations holding the data to be erased and therefore relies on
+					addressing logical addresses (which frees the relevant physical addresses holding the old data) and
+					then requesting the platform to ensure that the data in the physical addresses is no longer available
+					for reading (i.e. the “garbage collection” referred to in the SFR text).<h:p/>
+					
+					When selecting a key destruction method for non-volatile memory that employs a wear leveling algorithm,
+					cryptographic erase is the preferred option, especially when the key is used solely to decrypt user or
+					keying material. For devices that support ONFI, the Security Target (ST) must include documentation
+					demonstrating that the ONFI Sanitize command erases all physical instances of the target key. If a
+					vendor-specific secure erase command is used instead, the ST must specify its opcodes, sequence of
+					operations, and provide evidence of its effectiveness; the TOE must also be able to verify successful
+					completion of the erase. If using secure block erase, the method must be FTL-aware, and capable of
+					identifying and erasing all physical pages, including any stale or remapped copies of the key.
+					Overwriting should only be selected if the NAND device has no wear leveling, or if wear leveling can
+					be reliably disabled or bypassed through secure firmware.<h:p/>
+					
+					The selection for destruction of data in non-volatile memory includes block erase as an option, and
+					this option applies only to flash memory. A block erase does not require a read verify, since the
+					mappings of logical addresses to the erased memory locations are erased, as well as the data
+					itself.<h:p/>
+					
+					Some selections allow the assignment of “some value that does not contain any CSP.” This means that
+					the TOE uses some specified data not drawn from an RBG meeting FCS_RBG requirements, and not being
+					any of the values listed as other selection options. The point of the phrase “does not contain any
+					CSP” is to ensure that the overwritten data is carefully selected, and not taken from a general pool
+					that might contain data that itself requires confidentiality protection.<h:p/>
 				</note>
 				<aactivity>
 					<TSS>
