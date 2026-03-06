@@ -2541,9 +2541,9 @@
 					<h:ul>
 					<h:li>
 						For volatile memory, the destruction shall be executed by a
-						<selectables linebreak="yes" onlyone="no">
+						<selectables linebreak="yes">
 							<selectable>single overwrite consisting of
-								<selectables linebreak="no" onlyone="yes">
+								<selectables onlyone="yes">
 									<selectable>a pseudorandom pattern using the TSF’s RBG</selectable>
 									<selectable>zeroes</selectable>
 									<selectable>ones</selectable>
@@ -2561,9 +2561,9 @@
 					For non-volatile memory
 						<selectables linebreak="yes" onlyone="yes">
 							<selectable>that employs a wear-leveling algorithm, the destruction shall be executed by a
-								<selectables linebreak="yes" onlyone="no">
+								<selectables linebreak="yes">
 									<selectable>single overwrite consisting of
-										<selectables linebreak="no" onlyone="yes">
+										<selectables onlyone="yes">
 											<selectable>zeroes</selectable>
 											<selectable>ones</selectable>
 											<selectable>pseudo-random pattern</selectable>
@@ -2578,24 +2578,24 @@
 								</selectables>
 							</selectable>
 							<selectable>that does not employ a wear-leveling algorithm, the destruction shall be executed by a
-								<selectables linebreak="yes" onlyone="no">
+								<selectables linebreak="yes">
 									<selectable>
-										<selectables linebreak="no" onlyone="yes">
+										<selectables linebreak="yes" onlyone="yes">
 											<selectable>single pass</selectable>
 											<selectable><assignable>ST Author-defined multi-pass</assignable></selectable>
-										</selectables>
-											overwrite consisting of
-												<selectables linebreak="no" onlyone="yes">
-													<selectable>zeroes</selectable>
-													<selectable>ones</selectable>
-													<selectable>pseudo-random pattern</selectable>
-													<selectable>a new value of a key of the same size</selectable>
-													<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
-												</selectables>
-												followed by a read-verify. If the read-verification of the overwritten
-												data fails, the process shall be repeated again up to <assignable>number
-												of times to attempt overwrite</assignable> times, whereupon an error
-												is returned
+										</selectables><h:br/>
+										overwrite consisting of
+											<selectables onlyone="yes">
+												<selectable>zeroes</selectable>
+												<selectable>ones</selectable>
+												<selectable>pseudo-random pattern</selectable>
+												<selectable>a new value of a key of the same size</selectable>
+												<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
+											</selectables>
+											followed by a read-verify. If the read-verification of the overwritten
+											data fails, the process shall be repeated again up to <assignable>number
+											of times to attempt overwrite</assignable> times, whereupon an error
+											is returned
 									</selectable>
 									<selectable>block erase</selectable>
 								</selectables>
