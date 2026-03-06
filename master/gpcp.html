@@ -2667,8 +2667,8 @@ The following sections list Common Criteria and technology terms used in this do
 						The following tests may require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products.<p></p>
 						
-						The evaluator shall perform the following for each of the key destruction methods 
-						described in <a href="#FCS_CKM.6.2">FCS_CKM.6.2</a>:
+						The evaluator shall perform the following for each of the key destruction circumstance or trigger
+						described in <a href="#FCS_CKM.6.1">FCS_CKM.6.1</a>:
 						<span class="testlist-"><ul>
 							<li class="test-"><a id="_t_3" class="defined" href="#_t_3">Test FCS_CKM.6:1</a>:
       
@@ -2677,14 +2677,15 @@ The following sections list Common Criteria and technology terms used in this do
 								subsequently encrypted for storage in volatile or non-volatile memory).<p></p>
 								The evaluator shall:<ol type="1">
 								<li>Record the value of the key or keying material.</li>
+								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform normal cryptographic processing with the key
+									from Step #1.</li>
 								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to dump the appropriate memory into a binary file.</li>
 								<li>Search the content of the binary file created in Step #2 to locate all
 									instances of the known key value from Step #1.<p></p>
 									Note that the primary purpose of Step #3 is to demonstrate that appropriate
 									search commands are being used for Steps #8 and #9.</li>
-								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform normal cryptographic processing with the key
-									from Step #1.</li>
-								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to destroy the key.</li>
+								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to destroy the key by triggering the circumstance from <a href="#FCS_CKM.6.1">FCS_CKM.6.1</a>
+									currently being tested.</li>
 								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to stop execution but not exit.</li>
 								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to dump the appropriate memory into a binary file.</li>
 								<li>Search the contents of the binary file created in Step #7 for instances of the
@@ -2717,7 +2718,8 @@ The following sections list Common Criteria and technology terms used in this do
 									known key value from Step #1. <p></p>
 									Note that the primary purpose of Step #3 is to demonstrate that appropriate
 									search commands are being used for Steps #5 and #6.</li>
-								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to clear the key.</li>
+								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to destroy the key by triggering the circumstance from <a href="#FCS_CKM.6.1">FCS_CKM.6.1</a>
+									currently being tested.</li>
 								<li>Search the non-volatile memory in which the key was stored for instances
 									of the known key value from Step #1. If a copy is found, then the test fails.</li>
 								<li>Break the key value from Step #1 into an evaluator-chosen set of

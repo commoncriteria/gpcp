@@ -4034,8 +4034,8 @@ The following sections list Common Criteria and technology terms used in this do
 						The following tests may require the developer to provide access to a test platform that
 						provides the evaluator with tools that are typically not found on factory products<a id="period_1113" href="#period_1113">. </a><p></p>
 						
-						The evaluator shall perform the following for each of the key destruction methods 
-						described in <a href="#FCS_CKM.6.2">FCS_CKM.6.2</a>:
+						The evaluator shall perform the following for each of the key destruction circumstance or trigger
+						described in <a href="#FCS_CKM.6.1">FCS_CKM.6.1</a>:
 						<span class="testlist-"><ul>
 							<li class="test-"><a id="_t_3" class="defined" href="#_t_3">Test FCS_CKM.6:1</a>:
       
@@ -4044,14 +4044,15 @@ The following sections list Common Criteria and technology terms used in this do
 								subsequently encrypted for storage in volatile or non-volatile memory)<a id="period_1114" href="#period_1114">. </a><p></p>
 								The evaluator shall:<ol type="1">
 								<li>Record the value of the key or keying material<a id="period_1115" href="#period_1115">. </a></li>
-								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to dump the appropriate memory into a binary file<a id="period_1116" href="#period_1116">. </a></li>
-								<li>Search the content of the binary file created in Step #2 to locate all
-									instances of the known key value from Step #1<a id="period_1117" href="#period_1117">. </a><p></p>
-									Note that the primary purpose of Step #3 is to demonstrate that appropriate
-									search commands are being used for Steps #8 and #9<a id="period_1118" href="#period_1118">. </a></li>
 								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform normal cryptographic processing with the key
-									from Step #1<a id="period_1119" href="#period_1119">. </a></li>
-								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to destroy the key<a id="period_1120" href="#period_1120">. </a></li>
+									from Step #1<a id="period_1116" href="#period_1116">. </a></li>
+								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to dump the appropriate memory into a binary file<a id="period_1117" href="#period_1117">. </a></li>
+								<li>Search the content of the binary file created in Step #2 to locate all
+									instances of the known key value from Step #1<a id="period_1118" href="#period_1118">. </a><p></p>
+									Note that the primary purpose of Step #3 is to demonstrate that appropriate
+									search commands are being used for Steps #8 and #9<a id="period_1119" href="#period_1119">. </a></li>
+								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to destroy the key by triggering the circumstance from <a href="#FCS_CKM.6.1">FCS_CKM.6.1</a>
+									currently being tested<a id="period_1120" href="#period_1120">. </a></li>
 								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to stop execution but not exit<a id="period_1121" href="#period_1121">. </a></li>
 								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to dump the appropriate memory into a binary file<a id="period_1122" href="#period_1122">. </a></li>
 								<li>Search the contents of the binary file created in Step #7 for instances of the
@@ -4083,7 +4084,8 @@ The following sections list Common Criteria and technology terms used in this do
 									known key value from Step #1<a id="period_1136" href="#period_1136">. </a><p></p>
 									Note that the primary purpose of Step #3 is to demonstrate that appropriate
 									search commands are being used for Steps #5 and #6<a id="period_1137" href="#period_1137">. </a></li>
-								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to clear the key<a id="period_1138" href="#period_1138">. </a></li>
+								<li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to destroy the key by triggering the circumstance from <a href="#FCS_CKM.6.1">FCS_CKM.6.1</a>
+									currently being tested<a id="period_1138" href="#period_1138">. </a></li>
 								<li>Search the non-volatile memory in which the key was stored for instances
 									of the known key value from Step #1<a id="period_1139" href="#period_1139">. </a>If a copy is found, then the test fails<a id="period_1140" href="#period_1140">. </a></li>
 								<li>Break the key value from Step #1 into an evaluator-chosen set of
