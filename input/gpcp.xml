@@ -2201,10 +2201,10 @@
 					If KDF-MAC-1S is claimed, then FCS_COP.1/KeyedHash must also be claimed.<h:p/>
 					If KDF-MAC-2S is claimed, then both FCS_COP.1/KeyedHash and FCS_COP.1/CMAC must also be claimed.<h:p/>
 					In KDF-MAC-2S, CMAC has been removed as a selection for the MAC step because it requires
-					selection of 128 bits for the output key size, which is not supported in CNSA 1.0. If HMAC is
+					selection of 128 bits for the output key size, which is not supported in CNSA. If HMAC is
 					selected in the MAC step, then the same HMAC is used as the KDF.<h:p/>
 					The security strengths of the Pseudo-Random functions for the key derivation methods must be 
-					sufficient for the security strength of the keys derived through those methods. Since CNSA 1.0
+					sufficient for the security strength of the keys derived through those methods. Since CNSA
 					permits keys no smaller than 256 bits, no 128- or 192-bit PRFs are permitted. 
 				</note>
 				<aactivity>
@@ -2857,7 +2857,7 @@
 					</title>
 				</ext-comp-def-title>
 				<note role="application">
-					All of the above algorithms with the selectable parameters are CNSA 1.0 compliant.<h:p/>
+					All of the above algorithms with the selectable parameters are CNSA compliant.<h:p/>
 					This SFR must be included in the ST if key agreement is a service provided by the TOE to 
 					tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
 					functionality.<h:p/> 
@@ -3004,7 +3004,7 @@
 					NIST recommends that the randomly generated portion of the salt have length of at least 128 bits 
 					and must be derived from Random Bit Generation.<h:p/>
 					If this SFR is claimed, then FCS_COP.1/KeyedHash and FCS_RBG.1 must also be claimed.<h:p/>
-					For CNSA 1.0 and 2.0 compliance, only SHA-384 or SHA-512 may be used.
+					For CNSA compliance, only SHA-384 or SHA-512 may be used.
 				</note>
 				<aactivity>
 					<TSS>
@@ -3120,7 +3120,7 @@
 					</selectables>
 				</title>
 				<note role="application">
-					The use of 256-bit keys for AES encryption is required by CNSA 1.0 and 2.0.
+					The use of 256-bit keys for AES encryption is required by CNSA.
 				</note>
 				<aactivity>
 					<TSS>
@@ -3292,7 +3292,7 @@
 					</selectables>
 				</title>
 				<note role="application">
-					The use of 256-bit keys for AES algorithms is required by CNSA 1.0 and 2.0.
+					The use of 256-bit keys for AES algorithms is required by CNSA.
 				</note>
 				<aactivity>
 					<TSS>
@@ -3406,7 +3406,7 @@
 					</selectables>.   
                 </title>
                 <note role="application">
-					In accordance with CNSA 1.0 and 2.0:<h:ul>
+					In accordance with CNSA:<h:ul>
 					<h:li>SHA-1 hash is no longer permitted to be used as a hash function, </h:li>
 					<h:li>SHA3 hashes may be used only for internal hardware functionality such as
 						boot integrity checks, and</h:li>
@@ -3710,7 +3710,7 @@
 					This SFR is claimed when "key encapsulation" is selected in FCS_CKM.2.1. NIST SP 800-57 Part 1 Revision 5 Section 5.6.2 specifies that the size of key used to protect the
 					key being transported should be at least the security strength of the key it is protecting.<h:p/>
 					If this SFR is claimed, then FCS_CKM.1/AKG and FCS_CKM.6 must also be claimed.<h:p/>
-					KAS1 and KTS-OAEP with the selectable parameters are CNSA 1.0 compliant. ML-KEM-1024 is CNSA 2.0 compliant.
+					KAS1 and KTS-OAEP with the selectable parameters are CNSA compliant. ML-KEM-1024 is CNSA 2.0 compliant.
 				</note>
 				<aactivity>
 					<TSS>The evaluator shall ensure that the TSS documents that the selection of the key size is
@@ -6163,7 +6163,7 @@
 					</selectables>
 				</title>
 				<note role="application">
-					CNSA 1.0 and 2.0 requires the use of 256-bit AES and SHA-384 or SHA-512. SHA-256 and all SHA3
+					CNSA requires the use of 256-bit AES and SHA-384 or SHA-512. SHA-256 and all SHA3
 					hashes are not allowed. <h:p/>
 					NIST SP 800-90A contains three different methods of generating random numbers;
 					each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers).
