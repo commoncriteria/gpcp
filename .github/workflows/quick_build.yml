@@ -1,4 +1,4 @@
-name: QuickBuild v4.5 20241220
+name: QuickBuild v4.6 20251010 NoDiff
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
 
       - name: Install Build Packages
         #      run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell pandoc"
-        run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell python3-lxml"
+        run: "sudo apt-get update && sudo apt-get install -y hunspell python3-lxml xsltproc"
 
       - name: Install Jing
         run: wget -O - https://github.com/relaxng/jing-trang/releases/download/V20181222/jing-20181222.zip | jar -x
@@ -51,12 +51,12 @@ jobs:
       - name: PDFify
         if: ${{ env.action_is_release == 'YES' }}
         run: |
-          sudo apt-get install -y wkhtmltopdf xvfb
+          sudo apt install -y chromium
           cd output
           for aa in *.html; do
-            xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf \
-              --enable-local-file-access --javascript-delay 15000 --footer-right '[page]' \
-              file://${PWD}/${aa}?expand=on ${aa}.pdf
+            chromium --no-sandbox --headless --disable-gpu --no-pdf-header-footer --timeout=10000 \
+              --print-to-pdf=${aa}.pdf \
+              file://${PWD}/${aa}
           done
 
       - id: validate
@@ -77,22 +77,32 @@ jobs:
         #      run: echo "action_tdate=2002222" >> $GITHUB_ENV
         run: echo "action_tdate=$(cd transforms && git log -1 --format=%cs; cd ->/dev/null)" >> $GITHUB_ENV
 
-      #    - name: Get DaisyDiff
-      #      run: |
-      #        wget -O- https://github.com/AndroidKitKat/ExecuteDaisy/archive/master.zip | jar -x
-      #        [ -d "output/images" ] || mkdir "output/images";
-      #        cp -u -r ExecuteDaisy-master/js ExecuteDaisy-master/css output;
-      #        cp -u ExecuteDaisy-master/images/* output/images;
+      - name: Get DaisyDiff
+        run: |
+          wget -O- https://github.com/AndroidKitKat/ExecuteDaisy/archive/master.zip | jar -x
+          [ -d "output/images" ] || mkdir "output/images";
+          cp -u -r ExecuteDaisy-master/js ExecuteDaisy-master/css output;
+          cp -u ExecuteDaisy-master/images/* output/images;
 
       - name: Make tmp dir
         run: mkdir tmp
 
-      #   - name: diff
-      #     run: TMP=tmp make diff || true;
+      #  - name: diff
+      #  run: TMP=tmp make diff || true;
       # Little diff depends on having a git history.
       # The current checkout has  depth=1 and has no history
       #- name: little diff
       #  run: make little-diff || true
+
+      # Create a diff against master branch (rename gh-pages:main if necessary)
+      - name: Diff master
+        id: master_diff
+        run: |
+          git fetch origin gh-pages
+          git show origin/gh-pages:master/${{ env.action_projname }}.html > /tmp/master.html 2>/dev/null || true
+          if [ -f /tmp/master.html ]; then
+            java -jar ExecuteDaisy-master/*.jar /tmp/master.html output/${{ env.action_projname }}.html --file=output/Master-Diff.html
+          fi
 
       - name: Outstanding TDs
         id: tds
