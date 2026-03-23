@@ -462,31 +462,6 @@
         </package-usage>
       </package-usage-list>
     </section>
-    <section title="Roles">
-      For purposes of these requirements there are two entities that interact with a general-purpose computing 
-		platform:
-      <h:ol type="1">
-        <h:li>Users (unprivileged users)</h:li>
-        <h:li>Administrators (privileged users)</h:li>
-      </h:ol>
-      Users are humans who interact with the platform through user interfaces. They usually have to authenticate 
-		themselves to tenant software (e.g. an operating system), but generally not to the platform itself. Throughout
-		this document the term "user" refers generally to a person interacting with the platform.
-      <h:p/>
-      Administrators are users who manage the platform through a management interface. The interface
-		may be local or remote to the platform.
-      <h:p/>
-      Administrators manage the physical platform, not the OS (OS Administrators would be classified
-		as platform Users). Administrators must be authenticated to the platform before the platform can allow them 
-		to perform administrative functions. For an EUD, this could be accomplished through an interface implemented 
-		in firmware. For server-class hardware, the management interface could be implemented in a management
-		controller that is part of the platform. Administrators are assumed to be acting in the best interests of the platform owner.
-      <h:p/>
-      Tenant Software generally consists of an operating system, virtualization system, or application
-		that uses platform resources to run workloads on behalf of Users. Tenant software generally has the privilege 
-		of the User or Administrator in whose context it runs.
-      <h:p/>
-    </section>
   </sec:Introduction>
   <sec:Conformance_Claims boilerplate="no">
     <CClaimsInfo cc-version="cc-2022r1" cc-approach="direct-rationale" cc-errata="v1.1">
@@ -9687,6 +9662,20 @@
         should provide the ST Authors with
 			sufficient information to determine the appropriate content for the TSS section.
         <a-component cc-id="adv_fsp.1" name="Basic Functional Specification (ADV_FSP.1)">
+          <summary>The functional specification describes the TSFIs. It is not
+				necessary to have a formal or complete specification of these interfaces. Additionally,
+				because TOEs conforming to this PP will not necessarily have interfaces to
+				the Operational Environment that are not directly invokable by TOE
+				users, there is little point specifying that such interfaces be described in and of
+				themselves since only indirect testing of such interfaces may be possible. For this PP,
+				the activities for this family should focus on understanding the interfaces presented in
+				the TSS, KMD, and any other supplemental evidence that may be required to satisfy
+				the TSS Evaluation Activities, such as a non-public interface specification, 
+				in response to the functional requirements and the interfaces
+				presented in the AGD documentation. No additional "functional specification" documentation
+				is necessary to satisfy the Evaluation Activities specified. The interfaces that need to be
+				evaluated are characterized through the information needed to perform the Evaluation
+				Activities listed, rather than as an independent, abstract list.</summary>
           <a-element type="D">
             <title>The developer shall provide a functional specification.</title>
           </a-element>
@@ -9873,6 +9862,9 @@
 			practices play in contributing to the overall trustworthiness of a product; rather, it is a
 			reflection on the information to be made available for evaluation at this assurance level.
         <a-component cc-id="alc_cmc.1" name="Labeling of the TOE (ALC_CMC.1)">
+          <summary>This component is targeted at identifying the TOE such that it can be distinguished from
+				other products or versions from the same vendor and can be easily specified when being
+				procured by an end user.</summary>
           <a-element type="D">
             <title>The developer shall provide the TOE and a reference for the TOE.</title>
           </a-element>
@@ -9902,6 +9894,9 @@
           </a-element>
         </a-component>
         <a-component cc-id="alc_cms.1" name="TOE CM Coverage (ALC_CMS.1)">
+          <summary>Given the scope of the TOE and its associated evaluation 
+				evidence requirements, this component’s Evaluation Activities are covered 
+				by the Evaluation Activities listed for ALC_CMC.1.</summary>
           <a-element type="D">
             <title>The developer shall provide a configuration list for the TOE.</title>
           </a-element>
@@ -10090,6 +10085,19 @@
           </a-element>
         </a-component>
         <a-component cc-id="alc_tsu_ext.1" name="Timely Security Updates">
+          <summary>
+            This component requires the TOE developer, in conjunction with any other necessary parties, to provide
+				information as to how the TOE is updated to address security issues in a timely manner. The
+				documentation describes the process of providing updates to the public from the time a
+				security flaw is reported/discovered, to the time an update is released. This description
+				includes the parties involved (e.g., developer/OEM, component manufacturers) and the steps that are
+				performed (e.g., developer testing), including worst case time periods,
+				before an update is made available to the public.
+            <h:p/>
+            For TOE implementations with immutable firmware, update might not be possible other than through 
+				replacement of the entire device. In this case, delivery of a new device with the necessary 
+				security fixes would constitute deployment of the security update.
+          </summary>
           <a-element type="D">
             <title>The developer shall provide a description in the TSS of how timely security
 						updates are made to the TOE.</title>
@@ -10142,6 +10150,21 @@
 			of the primary outputs of the evaluation process is the test report as specified in the
 			following requirements.
         <a-component cc-id="ate_ind.1" name="Independent Testing – Conformance (ATE_IND.1)">
+          <summary>
+            Testing is performed to confirm the
+				functionality described in the TSS as well as the administrative
+				(including configuration and operational) documentation provided. The focus of the testing
+				is to confirm that the requirements specified in
+            <xref to="SFRs"/>
+            being met,
+				although some additional testing is specified for SARs in
+            <xref to="SARs"/>. The
+				Evaluation Activities identify the additional testing activities associated with these
+				components. The evaluator produces a test report documenting the plan for and results of
+				testing, as well as coverage arguments focused on the hardware configurations
+				that are claiming conformance to this PP. Given the scope of the TOE and its associated evaluation evidence 
+				requirements, this component’s Evaluation Activities are covered by the Evaluation Activities listed for ALC_CMC.1.
+          </summary>
           <a-element type="D">
             <title>The developer shall provide the TOE for testing.</title>
           </a-element>
