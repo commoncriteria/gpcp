@@ -18,14 +18,6 @@
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[1]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-fdp-itc-ext-1e2-sk from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[4]""/on-sel[1]""
-* Error: Detected dangling id-reference to sel-drbg-external-seed from attribute
-        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[21]""/depends[1]""/on[1]""
-* Error: Detected dangling id-reference to sel-drbg-internal-seed from attribute
-        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[22]""/depends[1]""/on[1]""
-* Error: Detected dangling id-reference to sel-drbg-internal-seed from attribute
-        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[23]""/depends[1]""/on[1]""
-* Error: Detected dangling id-reference to sel-drbg-internal-seed from attribute
-        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[24]""/depends[1]""/on[1]""
 * Error: Detected dangling id-reference to sfr-fia-x509-ext-1 from attribute
         on-sfr/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[11]""/depends[1]""/on-sfr[1]""
 * Error: Detected dangling id-reference to sel-x509-adminset from attribute
@@ -117,6 +109,8 @@
 	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[3]""/config[1]""/ref-id[2]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
 	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[1]"sfr-fpt-j"
+* Error: Detected dangling ref-id to 'sfr-fcs-rbg-6'.
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[6]"sfr-fcs-r"
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
 	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[5]""/config[1]""/ref-id[2]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
@@ -697,7 +691,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[19]""/f-element[1]""/note[1]"This SFR "/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[19]""/f-element[1]""/note[1]"This SFR "/h:p[3]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[19]""/f-element[1]""/note[1]"This SFR "/h:p[4]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[19]""/f-element[1]""/aactivity[1]""/TSS[1]"In additi"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[19]""/f-element[1]""/aactivity[1]""/Guidance[1]"In additi"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[19]""/f-element[1]""/aactivity[1]""/Guidance[1]"In additi"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[19]""/f-element[1]""/aactivity[1]""/Tests[1]"As a prer"/h:p[1]""
@@ -736,29 +729,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"This SFR "/h:p[3]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"This SFR "/h:p[4]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"This SFR "/h:p[5]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/note[1]"If a rese"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/TSS[1]"If the ST"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[4]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[5]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[6]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[7]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[8]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[9]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[10]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[11]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[12]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[13]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Tests[1]"The follo"/h:p[14]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[22]""/f-element[1]""/note[1]"The ST au"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[22]""/f-element[1]""/note[1]"The ST au"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[22]""/f-element[1]""/note[1]"The ST au"/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[24]""/f-element[1]""/note[1]"The ST au"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[25]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[25]""/f-element[1]""/aactivity[1]""/Tests[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[26]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[26]""/f-element[1]""/note[1]"This SFR "/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[26]""/f-element[1]""/note[1]"This SFR "/h:p[3]""
@@ -934,9 +904,10 @@
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
- Failed to find a reference to fel-rbg-init-seed-how.
+ Failed to find a reference to entropyappendix.
  Failed to find a reference to entropyappendix.
  Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j" (use case or rule)
  Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[3]""/config[1]""/ref-id[2]"sfr-fpt-j" (use case or rule)
  Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[1]"sfr-fpt-j" (use case or rule)
+ Failed to find sfr-fcs-rbg-6 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[6]"sfr-fcs-r" (use case or rule)
  Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[5]""/config[1]""/ref-id[2]"sfr-fpt-j" (use case or rule)
