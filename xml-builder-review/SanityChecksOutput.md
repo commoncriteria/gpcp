@@ -18,13 +18,27 @@
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[3]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-fdp-itc-ext-1e2-sk from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[4]""/on-sel[1]""
+* Error: Detected dangling id-reference to sel-drbg-external-seed from attribute
+        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[21]""/depends[1]""/on-sel[1]""
+* Error: Detected dangling id-reference to sel-drbg-internal-seed from attribute
+        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[22]""/depends[1]""/on-sel[1]""
+* Error: Detected dangling id-reference to sel-drbg-internal-seed from attribute
+        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[23]""/depends[1]""/on-sel[1]""
+* Error: Detected dangling id-reference to sel-drbg-internal-seed from attribute
+        on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[24]""/depends[1]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-fau-itc from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[8]""/f-component[1]""/depends[1]""/on-sel[1]""
+* Error: Detected multiple elements with an id of ''.
+* Error: Detected multiple elements with an id of ''.
 * Error: Detected multiple elements with an id of 'sel-exp-skg-256'.
 * Error: Detected multiple elements with an id of 'sel-exp-skg-256'.
 * Error: Detected multiple elements with an id of 'sel-fcs-ckm-5-kdf-ctr-hmac256'.
 * Error: Detected multiple elements with an id of 'sel-fcs-ckm-5-kdf-ctr-hmac256'.
 * Error: Detected multiple elements with an id of 'sel-fcs-ckm-5-kdf-ctr-hmac256'.
+* Error: Detected multiple elements with an id of ''.
+* Error: Detected multiple elements with an id of ''.
+* Error: Detected multiple elements with an id of ''.
+* Error: Detected multiple elements with an id of ''.
 * Error: Detected multiple elements with an id of 'sel-rot2-admin-notify'.
 * Error: Detected multiple elements with an id of 'sel-rot2-audit'.
 * Error: Detected multiple elements with an id of 'sel-rot2-recovery'.
@@ -41,6 +55,7 @@
 * Error: Detected multiple elements with an id of 'sel-tud3-admin-config'.
 * Error: Detected multiple elements with an id of 'sel-tud3-recovery'.
 * Error: Detected multiple elements with an id of 'sel-tud3-admin-config'.
+* Error: Detected multiple elements with an id of ''.
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
 	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[1]""/config[1]""/ref-id[1]"dummy-ref"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
@@ -169,8 +184,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[3]""/f-element[1]""/note[1]"If "key e"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[3]""/f-element[1]""/note[1]"If "key e"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[3]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[4]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[5]"."/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[4]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[5]"."/h:p[2]""
@@ -651,13 +664,11 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[19]""/f-element[13]""/note[1]"At this t"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[3]"after ini"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[3]"after ini"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"CNSA requ"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"CNSA requ"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"CNSA requ"/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"CNSA requ"/h:p[4]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"CNSA requ"/h:p[5]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"CNSA requ"/h:p[6]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"CNSA requ"/h:p[7]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"This SFR "/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"This SFR "/h:p[3]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"This SFR "/h:p[4]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"This SFR "/h:p[5]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/note[1]"If a rese"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/TSS[1]"If the ST"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
@@ -855,6 +866,7 @@
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
+ Failed to find a reference to fel-rbg-init-seed-how.
  Failed to find a reference to entropyappendix.
 * Warning: Since FCS_CKM_EXT.8.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
                        
