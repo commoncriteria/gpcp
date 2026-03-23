@@ -594,7 +594,7 @@
           <addressed-by>FCS_RBG.4 (Selection-based)</addressed-by>
           <rationale>Mitigates threat by using multiple internal seed sources to ensure sufficiently strong random-bit generation.</rationale>
           <addressed-by>FCS_RBG.5 (Selection-based)</addressed-by>
-          <rationale>Mitigates threat by ensuring that each noise source's random data is combined to ensure strong entropy when multiple sources are used.</rationale>
+          <rationale>Mitigates threat by ensuring that each entropy source's random data is combined to ensure strong entropy when multiple sources are used.</rationale>
           <addressed-by>FCS_STG_EXT.1 (Optional)</addressed-by>
           <rationale>Mitigates threat by generating keys/secrets and storing them in a secure manner, as well as destroying them on request.</rationale>
           <addressed-by>FDP_ITC_EXT.1 (Selection-based)</addressed-by>
@@ -835,8 +835,8 @@
       <section id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
         <audit-table id="t-audit-mandatory" table="mandatory"/>
       </section>
-      <!-- 5.1.1 Class: Security Audit (FAU) -->
-      <section id="fau" title="Class: Security Audit (FAU)">
+      <!-- 5.1.1 Class FAU: Security Audit -->
+      <section id="" title="Class FAU: Security Audit">
         <!-- FAU_GEN.1 Audit Data Generation -->
         <f-component cc-id="fau_gen.1" id="sfr-fau-gen-1" name="Audit Data Generation" status="sel-based">
           <depends on-sel="sel-rot2-audit"/>
@@ -1050,8 +1050,8 @@
           </audit-event>
         </f-component>
       </section>
-      <!-- 5.1.2 Class: Cryptographic Support (FCS) -->
-      <section id="fcs" title="Class: Cryptographic Support (FCS)">
+      <!-- 5.1.2 Class FCS: Cryptographic Support -->
+      <section id="" title="Class FCS: Cryptographic Support">
         <ext-comp-def title="Cryptographic Key Management" fam-id="FCS_CKM_EXT">
           <fam-behavior>This family defines requirements for management of cryptographic keys using mechanisms beyond what are specified in CC Part 2.</fam-behavior>
         </ext-comp-def>
@@ -1803,7 +1803,7 @@
 						TSS describes how the key is used as part of the key chain/hierarchy.
               </TSS>
               <Guidance>The evaluator shall verify that the AGD instructs the administrator how to configure the TOE to
-						use the RBG to generate symmetric keys for all uses identified in the ST.</Guidance>
+						use the DRBG to generate symmetric keys for all uses identified in the ST.</Guidance>
               <Tests>
                 The following tests are conditional based upon the selections made in the SFR.
 						The evaluator shall perform the following test or witness respective tests 
@@ -1817,8 +1817,8 @@
                 To test the TOE’s ability to generate symmetric cryptographic keys using a 
 						random bit generator, the evaluator shall configure the symmetric cryptographic 
 						key generation capability for each claimed key size. The evaluator shall use the
-						description of the RBG interface to verify that the TOE requests and receives an
-						amount of RBG output greater than or equal to the requested key size.
+						description of the DRBG interface to verify that the TOE requests and receives an
+						amount of DRBG output greater than or equal to the requested key size.
               </Tests>
             </aactivity>
           </f-element>
@@ -1837,21 +1837,13 @@
               The TSF shall distribute cryptographic keys in accordance with a specified cryptographic 
 					key distribution method
               <selectables>
-                <selectable id="sel-ckm-2-encap">key encapsulation</selectable>
-                <selectable id="sel-ckm-2-wrap">key wrapping</selectable>
-                <selectable id="sel-ckm-2-echan">encrypted channels</selectable>
+                <selectable id="sel-ckm-2-encap">key encapsulation as specified in FCS_COP.1/KeyEncap</selectable>
+                <selectable id="sel-ckm-2-wrap">key wrapping as specified in FCS_COP.1/KeyWrap</selectable>
+                <selectable id="sel-ckm-2-echan">encrypted channels as specified in FTP_ITC_EXT.1</selectable>
               </selectables>
               that meets the following: [none].
             </title>
-            <note role="application">
-              If "key encapsulation" is selected, FCS_COP.1/KeyEncap must be claimed, which specifies 
-					the relevant list of standards.
-              <h:p/>
-              If "key wrapping" is selected, FCS_COP.1/KeyWrap must be claimed, which specifies the 
-					relevant list of standards.
-              <h:p/>
-              If "encrypted channels" is selected, FTP_ITC_EXT.1 must be claimed.
-            </note>
+            <note role="application">If "key encapsulation..." is selected, FCS_COP.1/KeyEncap is claimed. If "key wrapping..." is selected, FCS_COP.1/KeyWrap must be claimed. If "encrypted channels..." is selected, FTP_ITC_EXT.1 must be claimed.</note>
             <aactivity>
               <TSS>
                 The evaluator shall ensure that the TSS documents that the security strength supported by
@@ -2436,15 +2428,15 @@
                 <h:li>
                   For volatile memory, the destruction shall be executed by a
                   <selectables linebreak="yes">
-                    <selectable id="fcs_ckm.6.2_1">single overwrite consisting of <selectables onlyone="yes"><selectable id="fcs_ckm.6.2_2">a pseudorandom pattern using the TSF’s RBG</selectable><selectable id="fcs_ckm.6.2_3">zeroes</selectable><selectable id="fcs_ckm.6.2_4">ones</selectable><selectable id="fcs_ckm.6.2_5">a new value of a key</selectable><selectable id="fcs_ckm.6.2_7"><assignable>some value that does not contain any CSP</assignable></selectable></selectables></selectable>
+                    <selectable id="fcs_ckm.6.2_1">single overwrite consisting of <selectables choose-one-of="yes"><selectable id="fcs_ckm.6.2_2">a pseudorandom pattern using the TSF’s DRBG</selectable><selectable id="fcs_ckm.6.2_3">zeroes</selectable><selectable id="fcs_ckm.6.2_4">ones</selectable><selectable id="fcs_ckm.6.2_5">a new value of a key</selectable><selectable id="fcs_ckm.6.2_7"><assignable>some value that does not contain any CSP</assignable></selectable></selectables></selectable>
                     <selectable id="fcs_ckm.6.2_8">Removal of power to the memory</selectable>
                     <selectable id="fcs_ckm.6.2_9">Removal of all references to the key directly followed by a request for garbage collection</selectable>
                   </selectables></h:li>
                 <h:li>
                   For non-volatile memory
-                  <selectables onlyone="yes" linebreak="yes">
-                    <selectable id="fcs_ckm.6.2_10">that employs a wear-leveling algorithm, the destruction shall be executed by a <selectables linebreak="yes"><selectable id="fcs_ckm.6.2_11">single overwrite consisting of <selectables onlyone="yes"><selectable id="fcs_ckm.6.2_12">zeroes</selectable><selectable id="fcs_ckm.6.2_13">ones</selectable><selectable id="fcs_ckm.6.2_14">pseudo-random pattern</selectable><selectable id="fcs_ckm.6.2_15">a new value of a key of the same size</selectable><selectable id="fcs_ckm.6.2_17"><assignable>some value that does not contain any CSP</assignable></selectable></selectables> </selectable><selectable id="fcs_ckm.6.2_18">secure block erase</selectable><selectable id="fcs_ckm.6.2_19">ONFI Sanitize command</selectable><selectable id="fcs_ckm.6.2_20">vendor-specific secure erase command</selectable><selectable id="fcs_ckm.6.2_21">cryptographic erase</selectable></selectables></selectable>
-                    <selectable id="fcs_ckm.6.2_22">that does not employ a wear-leveling algorithm, the destruction shall be executed by a <selectables linebreak="yes"><selectable id="fcs_ckm.6.2_23"> <selectables onlyone="yes" linebreak="yes"><selectable id="fcs_ckm.6.2_24">single pass</selectable><selectable id="fcs_ckm.6.2_26"><assignable>ST Author-defined multi-pass</assignable></selectable></selectables> <h:br/> overwrite consisting of <selectables onlyone="yes"><selectable id="fcs_ckm.6.2_27">zeroes</selectable><selectable id="fcs_ckm.6.2_28">ones</selectable><selectable id="fcs_ckm.6.2_29">pseudo-random pattern</selectable><selectable id="fcs_ckm.6.2_30">a new value of a key of the same size</selectable><selectable id="fcs_ckm.6.2_32"><assignable>some value that does not contain any CSP</assignable></selectable></selectables> followed by a read-verify. If the read-verification of the overwritten data fails, the process shall be repeated again up to <assignable>number of times to attempt overwrite</assignable> times, whereupon an error is returned</selectable><selectable id="fcs_ckm.6.2_34">block erase</selectable></selectables></selectable>
+                  <selectables choose-one-of="yes" linebreak="yes">
+                    <selectable id="fcs_ckm.6.2_10">that employs a wear-leveling algorithm, the destruction shall be executed by a <selectables linebreak="yes"><selectable id="fcs_ckm.6.2_11">single overwrite consisting of <selectables choose-one-of="yes"><selectable id="fcs_ckm.6.2_12">zeroes</selectable><selectable id="fcs_ckm.6.2_13">ones</selectable><selectable id="fcs_ckm.6.2_14">pseudo-random pattern</selectable><selectable id="fcs_ckm.6.2_15">a new value of a key of the same size</selectable><selectable id="fcs_ckm.6.2_17"><assignable>some value that does not contain any CSP</assignable></selectable></selectables> </selectable><selectable id="fcs_ckm.6.2_18">secure block erase</selectable><selectable id="fcs_ckm.6.2_19">ONFI Sanitize command</selectable><selectable id="fcs_ckm.6.2_20">vendor-specific secure erase command</selectable><selectable id="fcs_ckm.6.2_21">cryptographic erase</selectable></selectables></selectable>
+                    <selectable id="fcs_ckm.6.2_22">that does not employ a wear-leveling algorithm, the destruction shall be executed by a <selectables linebreak="yes"><selectable id="fcs_ckm.6.2_23"> <selectables choose-one-of="yes" linebreak="yes"><selectable id="fcs_ckm.6.2_24">single pass</selectable><selectable id="fcs_ckm.6.2_26"><assignable>ST Author-defined multi-pass</assignable></selectable></selectables> <h:br/> overwrite consisting of <selectables choose-one-of="yes"><selectable id="fcs_ckm.6.2_27">zeroes</selectable><selectable id="fcs_ckm.6.2_28">ones</selectable><selectable id="fcs_ckm.6.2_29">pseudo-random pattern</selectable><selectable id="fcs_ckm.6.2_30">a new value of a key of the same size</selectable><selectable id="fcs_ckm.6.2_32"><assignable>some value that does not contain any CSP</assignable></selectable></selectables> followed by a read-verify. If the read-verification of the overwritten data fails, the process shall be repeated again up to <assignable>number of times to attempt overwrite</assignable> times, whereupon an error is returned</selectable><selectable id="fcs_ckm.6.2_34">block erase</selectable></selectables></selectable>
                   </selectables></h:li>
               </h:ul>
               The above must be implemented in a way that conforms to NIST SP 800-88.
@@ -2477,7 +2469,7 @@
 					itself.
               <h:p/>
               Some selections allow assignment of "<h:i>some value that does not contain any CSP.</h:i>" This means that the
-					TOE uses some specified data not drawn from an RBG meeting FCS_RBG requirements, and not being any of
+					TOE uses some specified data not drawn from an DRBG meeting FCS_RBG requirements, and not being any of
 					the particular values listed as other selection options. The point of the phrase "<h:i>does not contain any
 					CSP</h:i>" is to ensure that the overwritten data is carefully selected, and not taken from a
 					general pool that might contain current or residual data that itself requires confidentiality
@@ -3077,7 +3069,7 @@
                     <h:td valign="top">
                       AES in GCM mode with nonrepeating IVs using 
 									[<h:b>selection:</h:b>
-                      deterministic, RBG-based] IV construction; 
+                      deterministic, DRBG-based] IV construction; 
 									the tag must be of length [<h:b>selection:</h:b>
                       96, 104, 112, 120, or 128] bits.
                     </h:td>
@@ -6032,7 +6024,7 @@
                 <selectable id="sel-ipsec-ecdsa-auth">ECDSA</selectable>
               </selectables>
               that use X.509v3 certificates that conform to RFC 4945 and
-              <selectables onlyone="yes">
+              <selectables choose-one-of="yes">
                 <selectable id="fcs_ipsec_ext.1.11_1">Pre-shared Keys</selectable>
                 <selectable id="fcs_ipsec_ext.1.11_2">no other method</selectable>
               </selectables>.
@@ -6122,7 +6114,7 @@
                 <selectable id="fcs_ipsec_ext.1.12_4">Distinguished Name (DN)</selectable>
               </selectables>
               and
-              <selectables onlyone="yes">
+              <selectables choose-one-of="yes">
                 <selectable id="fcs_ipsec_ext.1.12_5">no other reference identifier type</selectable>
                 <selectable id="fcs_ipsec_ext.1.12_7">
                   <assignable>other supported reference identifier types</assignable></selectable>
@@ -6213,7 +6205,7 @@
                   <reqtext> in accordance with </reqtext>
                   <selectcol>List of standards</selectcol>
                   <reqtext>
-                    after initialization with a seed.
+                    after initialization.
                     <h:p/>
                     <h:p/>
                     <xref to="fcs-rbg-1-sels"/>
@@ -6254,15 +6246,6 @@
               </selectables>
             </title>
             <note role="application">
-              CNSA requires the use of 256-bit AES and SHA-384 or SHA-512. SHA-256 and all SHA3
-					hashes are not allowed.
-              <h:p/>
-              NIST SP 800-90A contains three different methods of generating random numbers;
-					each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers).
-					The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement or in the TSS.
-					While any of the identified hash functions (SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
-					only AES-based implementations for CTR_DRBG are allowed.
-              <h:p/>
               This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
 					or if it is used by the TOE itself to support or implement PP-specified security functionality.
               <h:p/>
@@ -6283,25 +6266,20 @@
             <title>
               The TSF shall use a
               <selectables>
-                <selectable id="sel-drbg-internal-seed">TSF entropy source <assignable>name of entropy source</assignable></selectable>
-                <selectable id="sel-drbg-external-seed">TSF interface for seeding</selectable>
+                <selectable id="internal-seed">TSF entropy source <assignable>name of entropy source</assignable></selectable>
+                <selectable id="internal-seeds">
+                  <h:b>multiple TSF entropy sources <assignable>names of entropy sources</assignable></h:b></selectable>
+                <selectable id="external-seed">TSF interface for obtaining entropy</selectable>
               </selectables>
-              for initialization and reseeding.
+              after initialization and reseeding.
             </title>
             <note role="application">
-              <h:p>For the selection in this requirement, the ST author selects "TSF entropy source" if
-						a single entropy source is used as input to the DRBG. The ST author selects "multiple TSF noise 
-						sources" if a seed is formed from a combination of two or more entropy sources within the TOE boundary. 
-						If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should
-						be iterated for each DRBG. It multiple distinct entropy sources exist such that each DRBG only uses 
-						one of them, then each iteration would select "TSF entropy source"; "multiple TSF entropy sources" 
-						is only selected if a single DRBG uses multiple entropy sources for its seed. The ST author selects 
-						"TSF interface for seeding" if entropy source data is generated outside the TOE boundary.</h:p>
+              <h:p>For the 
+						selection in this requirement, the ST author selects "TSF entropy source" if
+						a single entropy source is used as input to the DRBG. The ST author selects "multiple TSF entropy sources" if a seed is formed from a combination of two or more entropy sources within the TOE boundary. If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should be iterated for each DRBG. If multiple distinct entropy sources exist such that each DRBG only uses one of them, then each iteration would select "TSF entropy source"; "multiple TSF entropy sources" is only selected if a single DRBG uses multiple entropy sources for its seed. The ST author selects "TSF interface for obtaining entropy" if entropy source data is generated outside the TOE boundary.</h:p>
               <h:p>If "TSF entropy source" is selected, FCS_RBG.3 must be claimed.</h:p>
               <h:p>If "multiple TSF entropy sources" is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed.</h:p>
-              <h:p>If "TSF interface for seeding" is selected, FCS_RBG.2 must be claimed.</h:p>
-              <h:p>The security strength of the entropy used for seeding depends on the functions for which the TSF uses entropy. 
-						The security strength for the various functions is defined in Tables 2 and 3 of NIST SP 800-57A.</h:p>
+              <h:p>If "TSF interface for obtaining entropy" is selected, FCS_RBG.2 must be claimed.</h:p>
             </note>
           </f-element>
           <f-element id="fcs-rbg-1e3">
@@ -6309,7 +6287,7 @@
               The TSF shall update the DRBG state by
               <selectables>
                 <selectable id="fcs_rbg.1.3_1">reseeding</selectable>
-                <selectable id="fcs_rbg.1.3_2">uninstantiating and re-instantiating</selectable>
+                <selectable id="fcs_rbg.1.3_2">uninstantiating and reinstantiating</selectable>
               </selectables>
               using a
               <selectables>
@@ -6329,7 +6307,7 @@
             <note role="application">
               If a reseeding is selected in the first selection and something other than "never" is 
 					selected in the third selection of FCS_RBG.1.3, but reseeding is not feasible, the TSF will
-					uninstantiate RBGs, rather than produce output that is of insufficient quality.  The listed 
+					uninstantiate DRBGs, rather than produce output that is of insufficient quality.  The listed 
 					standards should specify the reseed interval and procedure for uninstantiating and reseeding. 
 					The remaining selection allows the PP Author to require application-specific conditions for 
 					reseeding.
@@ -6351,7 +6329,7 @@
               <Guidance>
                 The evaluator shall verify that the Guidance instructs the administrator how to configure
 						the TOE to use the selected DRBG mechanism(s), if necessary, and provides information
-						regarding how to instantiate/call the DRBG for RBG services.
+						regarding how to instantiate/call the DRBG for DRBG services.
                 <h:p/>
                 If the ST claims that the DRBG state can be updated on demand, the evaluator shall
 						verify that the guidance includes instructions for how to perform this operation.
@@ -6497,14 +6475,20 @@
           <f-element id="fcs-rbg-2e1">
             <title>
               The TSF shall be able to accept a minimum input of
-              <assignable>minimum input length greater than zero</assignable>
-              from a TSF interface for the purpose of obtaining entropy.
+              <assignable>sufficient input length to ensure 256 bits of entropy</assignable>
+              from a TSF interface for obtaining entropy.
             </title>
-            <note role="application">The ST author claims this requirement when a TOE uses an external source of entropy to
-					initialize or reseed a DRBG. The TOE collects enough input from the external entropy source
-					such that the total measured entropy of the input is sufficient to initialize or reseed a DRBG.
-					The ST author ensures that the assignment is completed with the minimum length of the input
-					sufficient to initialize or reseed a DRBG.</note>
+            <note role="application">
+              This requirement is claimed when a DRBG is seeded with entropy from one or more entropy sources that are outside the TOE
+					boundary. Typically the entropy produced by an environmental entropy source is conditioned such that the input length has
+					full entropy and is therefore  usable as the seed. However, if this is not the case, it should be noted what the minimum
+					entropy rate of the entropy source is so that the TSF can collect a sufficiently large sample of entropy data to be
+					conditioned into a seed value.
+              <h:br/>
+              <h:br/>
+              This requirement is claimed if "TSF interface for obtaining entropy" is selected in
+              <xref to="fel-rbg-init-seed-how"/>.
+            </note>
             <aactivity>
               <TSS>The evaluator shall verify that the TSS documents the minimum amount of input expected from
 						external entropy sources. If this SFR is iterated, the evaluator shall check that the TSS indicates
@@ -6522,29 +6506,27 @@
           <depends on-sel="sel-drbg-internal-seed"/>
           <f-element id="fcs-rbg-3e1">
             <title>
-              The TSF shall be able to seed the RBG using a
-              <selectables onlyone="yes">
-                <selectable id="fcs_rbg.3.1_1">TSF software-based noise source</selectable>
-                <selectable id="fcs_rbg.3.1_2">TSF hardware-based noise source</selectable>
+              The TSF shall be able to seed the DRBG using a
+              <selectables choose-one-of="yes">
+                <selectable id="fcs_rbg.3.1_1">TSF software-based entropy source</selectable>
+                <selectable id="fcs_rbg.3.1_2">TSF hardware-based entropy source</selectable>
               </selectables>
-              <assignable>name of noise source</assignable>
-              with a minimum of
-              <assignable>number of bits</assignable>
-              bits of min-entropy.
+              <assignable>name of entropy source</assignable>
+              with [<h:i>a minimum of  <selectables><selectable id="fcs_rbg.3.1_4">256</selectable><selectable id="fcs_rbg.3.1_5">384</selectable></selectables></h:i>] bits of min-entropy.
             </title>
             <note role="application">
               The ST author claims this requirement when a TOE uses a single internal source of entropy to
 					initialize or reseed a DRBG. Seeding a DRBG is the same as initializing a DRBG.
               <h:p/>
-              Hardware-based noise sources are entropy sources whose primary function is noise generation,
-					such as ring oscillators, diodes, and thermal noise. While a TOE may use software to collect the
-					noise from these hardware sources, these are not software-based.
+              Hardware-based entropy sources are entropy sources whose primary function is entropy generation,
+					such as ring oscillators, diodes, and thermal entropy. While a TOE may use software to collect the
+					entropy from these hardware sources, these are not software-based.
               <h:p/>
-              Software-based noise sources generate noise as a byproduct of their normal operation. Examples
-					of software-based noise sources can be user or system-based events such as reading the least
+              Software-based entropy sources generate entropy as a byproduct of their normal operation. Examples
+					of software-based entropy sources can be user or system-based events such as reading the least
 					significant bits from an event timer, etc.
               <h:p/>
-              The TOE collects enough input from the internal noise source such that the total measured
+              The TOE collects enough input from the internal entropy source such that the total measured
 					entropy of the input is sufficient to initialize or reseed a DRBG. The ST author ensures that the
 					assignment is completed with the number of bits of the input sufficient to initialize or reseed a
 					DRBG.
@@ -6579,7 +6561,7 @@
               <TSS>The evaluator shall verify that the TSS documents number and the types of entropy sources
 						selected in FCS_RBG.4.1.</TSS>
               <Guidance>The evaluator shall verify that the Guidance describes any settings, operational requirements, or
-						user input necessary for the proper function of the noise sources.</Guidance>
+						user input necessary for the proper function of the entropy sources.</Guidance>
               <Tests/>
             </aactivity>
           </f-element>
@@ -6591,46 +6573,37 @@
           <f-element id="fcs-rbg-5e1">
             <title>
               The TSF shall
+              <assignable>combining operation</assignable>
               <selectables>
-                <selectable id="fcs_rbg.5.1_1">hash</selectable>
-                <selectable id="fcs_rbg.5.1_2">concatenate and hash</selectable>
-                <selectable id="fcs_rbg.5.1_3">XOR</selectable>
-                <selectable id="fcs_rbg.5.1_4">input into a linear feedback shift register</selectable>
-                <selectable id="fcs_rbg.5.1_6">
-                  <assignable>combining operation</assignable></selectable>
+                <selectable id="fcs_rbg.5.1_2">output from TSF entropy source(s)</selectable>
+                <selectable id="fcs_rbg.5.1_3">input from TSF interface(s) for obtaining entropy</selectable>
               </selectables>
-              <selectables>
-                <selectable id="fcs_rbg.5.1_7">output from TSF entropy source(s)</selectable>
-                <selectable id="fcs_rbg.5.1_8">input from TSF interface(s) for obtaining entropy</selectable>
-              </selectables>
-              resulting in a minimum of
-              <assignable>number of bits</assignable>
-              bits of min-entropy to create the entropy input into the derivation function as defined in
-              <selectables>
-                <selectable id="fcs_rbg.5.1_10">ISO/IEC 18031:2011</selectable>
-                <selectable id="fcs_rbg.5.1_11">NIST SP 800-90A Revision 1</selectable>
-              </selectables>
+              resulting in a minimum of [<h:i> <selectables>
+                  <selectable id="fcs_rbg.5.1_4">256</selectable>
+                  <selectable id="fcs_rbg.5.1_5">384</selectable>
+                </selectables></h:i>] bits of min-entropy to create the entropy input into the derivation function as defined in
+              <assignable>list of standards</assignable>.
             </title>
             <note role="application">
               The ST author claims this requirement when a TOE combines two or more sources of entropy to
 					initialize or reseed a DRBG. Seeding a DRBG is the same as initializing a DRBG. The ST
 					author ensures that the assignment is completed with the number of bits of the combined entropy
-					sufficient to initialize or reseed a DRBG.
+					sufficient to initialize or reseed a DRBG. Different entropy sources may contribute different amounts of entropy to the entropy pool over time, whether due to collection rate or to the relative strength of the entropy that is collected. When CTR_DRBG is selected in FCS_RBG.1 and the TSF uses no derivation function after acquiring the seed, then the minimum bits of entropy must be 384. If an amount of entropy greater than the minimum is collected, the ST author selects the minimum value.
               <h:p/>
-              One can apply NIST SP 800-90B (or AIS-31) statistical tests against internal noise sources
-					(aka raw entropy) to confirm the min-entropy of the noise sources either in aggregate or
+              One can apply NIST SP 800-90B (or AIS-31) statistical tests against internal entropy sources
+					(aka raw entropy) to confirm the min-entropy of the entropy sources either in aggregate or
 					individually. One should not apply NIST SP 800-90B (or AIS-31) statistical tests against
-					external noise sources since the TOE is unable to enforce entropy requirements or conditioning
+					external entropy sources since the TOE is unable to enforce entropy requirements or conditioning
 					requirements against external sources of entropy. However, the TSS may include estimates for
 					min-entropy from external sources that contribute to the overall entropy requirements for 
 					the DRBG.
             </note>
             <aactivity>
-              <TSS>The evaluator shall examine the TSS and verify that it documents the types of noise sources
+              <TSS>The evaluator shall examine the TSS and verify that it documents the types of entropy sources
 						selected in FCS_RBG.5.1 and indicates the amount of entropy provided by these sources in
 						combination.</TSS>
               <Guidance>The evaluator shall verify that the Guidance describes any settings, operational requirements, or
-						user input necessary for the proper function of the noise sources.</Guidance>
+						user input necessary for the proper function of the entropy sources.</Guidance>
               <Tests>The evaluator shall ensure that the combination of claimed entropy sources can provide the at
 						least the number of bits of entropy claimed in the assignment.</Tests>
             </aactivity>
@@ -6651,7 +6624,7 @@
                 <selectable id="fcs_rbg.6.1_4">
                   <assignable>other interface type</assignable></selectable>
               </selectables>
-              interface to make the DRBG output, as specified in FCS_RBG.1 Random Bit Generation (RBG), 
+              interface to make the output, as specified in FCS_RBG.1 Random bit generation (RBG),
 					available as a service to entities outside of the TOE.
             </title>
             <note role="application">
@@ -6888,8 +6861,8 @@
           </f-element>
         </f-component>
       </section>
-      <!-- 5.1.3 Class: User Data Protection (FDP) -->
-      <section id="fdp" title="Class: User Data Protection (FDP)">
+      <!-- 5.1.3 Class FDP: User Data Protection -->
+      <section id="" title="Class FDP: User Data Protection">
         <ext-comp-def title="Key Import" fam-id="FDP_ITC_EXT">
           <fam-behavior>This family defines requirements for importing cryptographic keys and credentials into the TOE.</fam-behavior>
         </ext-comp-def>
@@ -7000,8 +6973,8 @@
           <audit-event/>
         </f-component>
       </section>
-      <!-- 5.1.4 Class: Identification and Authentication (FIA) -->
-      <section id="fia" title="Class: Identification and Authentication (FIA)">
+      <!-- 5.1.4 Class FIA: Identification and Authentication -->
+      <section id="" title="Class FIA: Identification and Authentication">
         <ext-comp-def title="Authentication Failure Handling" fam-id="FIA_AFL_EXT">
           <fam-behavior>This family defines requirements for the TOE’s behavior when repeated failed attempts to gain authorization to access TSF data occur.</fam-behavior>
         </ext-comp-def>
@@ -7080,7 +7053,7 @@
               The TSF shall detect when a configurable positive non-zero integer within
               <assignable>range of acceptable values for each authentication mechanism</assignable>
               of
-              <selectables onlyone="yes">
+              <selectables choose-one-of="yes">
                 <selectable id="fia_afl_ext.1.2_2">unique</selectable>
                 <selectable id="fia_afl_ext.1.2_3">non-unique</selectable>
               </selectables>
@@ -7556,8 +7529,8 @@
           </audit-event>
         </f-component>
       </section>
-      <!-- 5.1.5 Class: Security Management (FMT) -->
-      <section id="fmt" title="Class: Security Management (FMT)">
+      <!-- 5.1.5 Class FMT: Security Management -->
+      <section id="" title="Class FMT: Security Management">
         <ext-comp-def title="Secure by Default" fam-id="FMT_CFG_EXT">
           <fam-behavior>This family defines requirements for secure by default configuration of the TOE.</fam-behavior>
         </ext-comp-def>
@@ -8023,8 +7996,8 @@
           <audit-event/>
         </f-component>
       </section>
-      <!-- 5.1.6 Class: Protection of the TSF (FPT) -->
-      <section id="fpt" title="Class: Protection of the TSF (FPT)">
+      <!-- 5.1.6 Class FPT: Protection of the TSF -->
+      <section id="" title="Class FPT: Protection of the TSF">
         <ext-comp-def title="Debug Port Access" fam-id="FPT_JTA_EXT">
           <fam-behavior>This family defines requirements for access to debug ports during normal operation.</fam-behavior>
         </ext-comp-def>
@@ -8502,13 +8475,13 @@
                   </selectables>, and
                 </h:li>
                 <h:li>
-                  <selectables onlyone="yes" linebreak="yes">
+                  <selectables choose-one-of="yes" linebreak="yes">
                     <selectable id="fpt_rot_ext.3.2_4">Stop all execution and shut down</selectable>
                     <selectable id="fpt_rot_ext.3.2_5">Continue execution without the integrity-compromised component</selectable>
                     <selectable id="fpt_rot_ext.3.2_6">Continue execution</selectable>
                   </selectables>
                   <h:br/>
-                  <selectables onlyone="yes" linebreak="yes">
+                  <selectables choose-one-of="yes" linebreak="yes">
                     <selectable id="sel-rot3-admin-config">in accordance with administrator-configurable policy</selectable>
                     <selectable id="fpt_rot_ext.3.2_7">by express determination of an <selectables><selectable id="sel-rot3-admin-det">Administrator</selectable><selectable id="sel-rot3-user-det">User</selectable></selectables></selectable>
                   </selectables></h:li>
@@ -8914,14 +8887,14 @@
                 <h:li>Generate an audit event (optional),</h:li>
               </h:ul>
               and
-              <selectables onlyone="yes" linebreak="yes">
+              <selectables choose-one-of="yes" linebreak="yes">
                 <selectable id="fpt_tud_ext.2.5_1">Continue execution</selectable>
                 <selectable id="fpt_tud_ext.2.5_2">Halt</selectable>
                 <selectable id="fpt_tud_ext.2.5_3">Stop all execution and shut down</selectable>
                 <selectable id="sel-tud2-recovery">Initiate recovery as specified in FPT_RVR_EXT.1</selectable>
               </selectables>
               <h:br/>
-              <selectables onlyone="yes" linebreak="yes">
+              <selectables choose-one-of="yes" linebreak="yes">
                 <selectable id="fpt_tud_ext.2.5_4">automatically</selectable>
                 <selectable id="sel-tud2-admin-config">in accordance with administrator-configurable policy</selectable>
                 <selectable id="fpt_tud_ext.2.5_5">by express determination of a User</selectable>
@@ -9102,14 +9075,14 @@
                 <h:li>Generate an audit event (optional),</h:li>
               </h:ul>
               and
-              <selectables onlyone="yes" linebreak="yes">
+              <selectables choose-one-of="yes" linebreak="yes">
                 <selectable id="fpt_tud_ext.3.4_1">Continue execution</selectable>
                 <selectable id="fpt_tud_ext.3.4_2">Halt</selectable>
                 <selectable id="fpt_tud_ext.3.4_3">Stop all execution and shut down</selectable>
                 <selectable id="sel-tud3-recovery">Initiate recovery as specified in FPT_RVR_EXT.1</selectable>
               </selectables>
               <h:br/>
-              <selectables onlyone="yes" linebreak="yes">
+              <selectables choose-one-of="yes" linebreak="yes">
                 <selectable id="fpt_tud_ext.3.4_4">automatically</selectable>
                 <selectable id="sel-tud3-admin-config">in accordance with administrator-configurable policy</selectable>
                 <selectable id="fpt_tud_ext.3.4_5">by express determination of a User</selectable>
@@ -9294,8 +9267,8 @@
           <audit-event/>
         </f-component>
       </section>
-      <!-- 5.1.7 Class: Trusted Path/Channels (FTP) -->
-      <section id="ftp" title="Class: Trusted Path/Channels (FTP)">
+      <!-- 5.1.7 Class FTP: Trusted Path/Channels -->
+      <section id="" title="Class FTP: Trusted Path/Channels">
         <ext-comp-def title="Trusted Channel Communications" fam-id="FTP_ITC_EXT">
           <fam-behavior>This family defines requirements for protection of data in transit between the TOE and its operational environment.</fam-behavior>
         </ext-comp-def>
@@ -9339,7 +9312,7 @@
                 <selectable id="sel-itc-ssh">SSH as conforming to the <xref to="ssh"/></selectable>
               </selectables>
               protocols with
-              <selectables onlyone="yes" linebreak="yes">
+              <selectables choose-one-of="yes" linebreak="yes">
                 <selectable id="sel-itc-certauth">X.509 certificate-based authentication of the remote peer</selectable>
                 <selectable id="ftp_itc_ext.1.1_1">non-certificate-based authentication of the remote peer</selectable>
                 <selectable id="ftp_itc_ext.1.1_2">no authentication of the remote peer</selectable>
