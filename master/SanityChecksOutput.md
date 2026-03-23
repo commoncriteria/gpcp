@@ -18,6 +18,14 @@
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[1]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-fdp-itc-ext-1e2-sk from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[16]""/depends[4]""/on-sel[1]""
+* Error: Detected dangling id-reference to sel-drbg-external-seed from attribute
+        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[21]""/depends[1]""/on[1]""
+* Error: Detected dangling id-reference to sel-drbg-internal-seed from attribute
+        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[22]""/depends[1]""/on[1]""
+* Error: Detected dangling id-reference to sel-drbg-internal-seed from attribute
+        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[23]""/depends[1]""/on[1]""
+* Error: Detected dangling id-reference to sel-drbg-internal-seed from attribute
+        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[24]""/depends[1]""/on[1]""
 * Error: Detected dangling id-reference to sfr-fia-x509-ext-1 from attribute
         on-sfr/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[11]""/depends[1]""/on-sfr[1]""
 * Error: Detected dangling id-reference to sel-x509-adminset from attribute
@@ -928,6 +936,7 @@
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
+ Failed to find a reference to fel-rbg-init-seed-how.
  Failed to find a reference to entropyappendix.
  Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j" (use case or rule)
  Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[3]""/config[1]""/ref-id[2]"sfr-fpt-j" (use case or rule)
