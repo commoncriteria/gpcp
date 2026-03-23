@@ -212,13 +212,7 @@
 			Data that establishes the identity of a user, e.g. a cryptographic key or password.
 		</term>
 		<term abbr='CRL' full="Certificate Revocation List"/>
-		<term full="Critical Security Parameters" abbr="CSP">
-			Information that is either user or system defined and
-			is used to operate a cryptographic module in processing encryption functions including
-			cryptographic keys and authentication data, such as passwords, the disclosure or modification
-			of which can compromise the security of a cryptographic module or the security of the
-			information protected by the module.
-		</term>
+	
 		<term full="Commercial Solutions for Classified" abbr="CSfC">
 			An US Department of Defense program for delivering cybersecurity solutions that leverage commercial 
 			technologies and products. 
@@ -2546,7 +2540,7 @@
 			<f-element id="fcs-ckm-6e2">
 				<title>
 					The TSF shall destroy cryptographic keys and keying material specified by
-					FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method:<h:p/>
+					FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method: [<h:i><h:p/>
 					<h:ul>
 					<h:li>
 						For volatile memory, the destruction shall be executed by a
@@ -2558,7 +2552,7 @@
 									<selectable>ones</selectable>
 									<selectable>a new value of a key</selectable>
 									<selectable>
-										<assignable>some value that does not contain any CSP</assignable>
+										<assignable>some value that does not contain any keying material</assignable>
 									</selectable>
 								</selectables>
 							</selectable>
@@ -2577,7 +2571,7 @@
 											<selectable>ones</selectable>
 											<selectable>pseudo-random pattern</selectable>
 											<selectable>a new value of a key of the same size</selectable>
-											<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
+											<selectable><assignable>some value that does not contain any keying material</assignable></selectable>
 										</selectables>
 									</selectable>
 									<selectable>secure block erase</selectable>
@@ -2599,7 +2593,7 @@
 												<selectable>ones</selectable>
 												<selectable>pseudo-random pattern</selectable>
 												<selectable>a new value of a key of the same size</selectable>
-												<selectable><assignable>some value that does not contain any CSP</assignable></selectable>
+												<selectable><assignable>some value that does not contain any keying material</assignable></selectable>
 											</selectables>
 											followed by a read-verify. If the read-verification of the overwritten
 											data fails, the process shall be repeated again up to <assignable>number
@@ -2611,8 +2605,7 @@
 							</selectable>
 						</selectables>
 					</h:li>
-					</h:ul>
-					The above must be implemented in a way that conforms to NIST SP 800-88.
+					</h:ul></h:i>] that meets the following: [<h:i>NIST SP 800-88</h:i>].
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if the TOE handles sensitive cryptographic keys or credentials.
@@ -2641,10 +2634,10 @@
 					mappings of logical addresses to the erased memory locations are erased as well as the data
 					itself.<h:p/>
 					
-					Some selections allow assignment of "<h:i>some value that does not contain any CSP.</h:i>" This means that the
+					Some selections allow assignment of "<h:i>some value that does not contain any keying material.</h:i>" This means that the
 					TOE uses some specified data not drawn from an DRBG meeting FCS_RBG requirements, and not being any of
 					the particular values listed as other selection options. The point of the phrase "<h:i>does not contain any
-					CSP</h:i>" is to ensure that the overwritten data is carefully selected, and not taken from a
+					keying material</h:i>" is to ensure that the overwritten data is carefully selected, and not taken from a
 					general pool that might contain current or residual data that itself requires confidentiality
 					protection.<h:p/>
 					
