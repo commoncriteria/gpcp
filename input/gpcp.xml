@@ -627,7 +627,7 @@
           <!-- New mapping to build updated threat mapping table. -->
           <addressed-by>FPT_PHP.1 (Objective)</addressed-by>
           <rationale>Mitigates threat by passively detecting physical tampering.</rationale>
-          <addressed-by>FPT_PHP.2 (Selection-based)</addressed-by>
+          <addressed-by>FPT_PHP.2 (Objective)</addressed-by>
           <rationale>Mitigates threat by providing methods to detect and report physical tampering.</rationale>
           <addressed-by>FPT_PHP.3 (Selection-based)</addressed-by>
           <rationale>Mitigates threat by resisting physical tampering.</rationale>
@@ -7980,7 +7980,7 @@
           </audit-event>
         </f-component>
         <!-- FPT_PHP.1 Passive detection of physical attack -->
-        <f-component cc-id="fpt_php.1" id="sfr-fpt-php-1" name="Passive detection of physical attack" status="objective">
+        <f-component cc-id="fpt_php.1" id="sfr-fpt-php-1" name="Passive detection of physical attack" status="sel-based">
           <depends>
             <objective/>
           </depends>
@@ -8022,6 +8022,9 @@
         </f-component>
         <!-- FPT_PHP.2 Notification of Physical Attack -->
         <f-component cc-id="fpt_php.2" id="sfr-fpt-php-2" name="Notification of Physical Attack" status="sel-based">
+          <depends>
+            <objective/>
+          </depends>
           <f-element id="fpt-php-2e1">
             <title>The TSF shall provide unambiguous detection of physical tampering that
 					can compromise the TSF.</title>
@@ -8355,9 +8358,6 @@
         </f-component>
         <!-- FPT_ROT_EXT.3 Hardware component integrity -->
         <f-component cc-id="fpt_rot_ext.3" id="sfr-fpt-rot-ext-3" name="Hardware component integrity" status="objective">
-          <depends>
-            <objective/>
-          </depends>
           <comp-lev>requires that the TOE support hardware supply chain integrity.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:<h:ul><h:li>Configuration of action to take on integrity failure.</h:li></h:ul></management>
           <audit>
