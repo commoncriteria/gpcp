@@ -88,17 +88,17 @@
     <depends on-sel="sel-itc-ssh"/>
     <depends on-sel="sel-fia-uau-5-ssh"/>
   </include-pkg>
-<include-pkg id="X509">
-		<git>
-		      <url>https://github.com/commoncriteria/X509</url>
-		      <branch>release-1.0</branch>
-		</git>
-		<url><![CDATA[https://www.niap-ccevs.org/protectionprofiles/511]]></url>
-		<depends on-sel="sel-fia-uau-5-x509"/>
-		<depends on-sel="sel-itc-certauth"/>
-		<depends on-sel="sel-ipsec-rsa-auth"/>
-		<depends on-sel="sel-ipsec-ecdsa-auth"/>
-	</include-pkg>	
+  <include-pkg id="X509">
+    <git>
+      <url>https://github.com/commoncriteria/X509</url>
+      <branch>release-1.0</branch>
+    </git>
+    <url>https://www.niap-ccevs.org/protectionprofiles/511</url>
+    <depends on-sel="sel-fia-uau-5-x509"/>
+    <depends on-sel="sel-itc-certauth"/>
+    <depends on-sel="sel-ipsec-rsa-auth"/>
+    <depends on-sel="sel-ipsec-ecdsa-auth"/>
+  </include-pkg>
   <pp-preferences>
     <!--          <pp-pref name="display-audit-with-sfrs">0</pp-pref>   -->
     <audit-events-in-sfrs/>
@@ -1901,7 +1901,7 @@
                 <selectable id="sel-ckm-2-wrap">key wrapping as specified in FCS_COP.1/KeyWrap</selectable>
                 <selectable id="sel-ckm-2-echan">encrypted channels as specified in FTP_ITC_EXT.1</selectable>
               </selectables>
-              that meets the following: [none].
+              that meets the following: [<h:i>none</h:i>].
             </title>
             <note role="application">If "key encapsulation..." is selected, FCS_COP.1/KeyEncap is claimed. If "key wrapping..." is selected, FCS_COP.1/KeyWrap must be claimed. If "encrypted channels..." is selected, FTP_ITC_EXT.1 must be claimed.</note>
             <aactivity>
@@ -5589,8 +5589,8 @@
           <depends on-sel="sel-itc-ssh"/>
           <comp-lev>defines requirements for the implementation of the HTTPS protocol.</comp-lev>
           <audit>
-            The following actions should be auditable if FAU_GEN Security audit data 
-				generation is included in the PP/ST:
+            The following actions should be auditable if FAU_GEN Security audit data generation is included
+        		in the PP, PP-Module, functional package or ST:
             <h:ol type="a">
               <h:li>Failure to establish an HTTPS session.</h:li>
               <h:li>Establishment/termination of an HTTPS session.</h:li>
@@ -5650,8 +5650,8 @@
             </h:ol>
           </management>
           <audit>
-            The following actions should be auditable if FAU_GEN Security audit data 
-				generation is included in the PP/ST:
+            The following actions should be auditable if FAU_GEN Security audit data generation is included
+        		in the PP, PP-Module, functional package or ST:
             <h:ol type="a">
               <h:li>Failure to establish an IPsec SA.</h:li>
               <h:li>Establishment/Termination of an IPsec SA.</h:li>
@@ -6432,10 +6432,7 @@
               <Tests/>
             </aactivity>
           </f-element>
-          <audit-event>
-            <audit-event-descr>Failure of the randomization process</audit-event-descr>
-            <audit-event-info>None.</audit-event-info>
-          </audit-event>
+          <audit-event/>
         </f-component>
         <!-- FCS_RBG.2 Random Bit Generation (External Seeding) -->
         <f-component cc-id="fcs_rbg.2" id="fcs-rbg-2" name="Random Bit Generation (External Seeding)" status="sel-based">
@@ -7247,7 +7244,13 @@
               <h:li>Ability to configure an authentication throttling policy for the TOE.</h:li>
             </h:ul>
           </management>
-          <audit>The following should be considered for auditable events if FAU_GEN.1 is included in the ST:<h:ul><h:li>Authentication throttling is triggered.</h:li></h:ul></audit>
+          <audit>
+            The following actions should be auditable if FAU_GEN Security audit data generation is included
+				in the PP, PP-Module, functional package or ST:
+            <h:ul>
+              <h:li>Authentication throttling is triggered.</h:li>
+            </h:ul>
+          </audit>
           <dependencies><h:br/>FIA_UAU.5 Multiple Authentication Mechanisms</dependencies>
           <f-element id="fia-trt-ext-1e1">
             <title>
@@ -7413,8 +7416,8 @@
           <comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
 				are authenticated prior to authorizing these actions to be performed.</comp-lev>
           <audit>
-            The following actions should be auditable if FAU_GEN Security audit data 
-				generation is included in the PP/ST:
+            The following actions should be auditable if FAU_GEN Security audit data generation is included
+        		in the PP, PP-Module, functional package or ST:
             <h:ol type="a">
               <h:li>All use of the authentication mechanism.</h:li>
             </h:ol>
@@ -8190,8 +8193,8 @@
           <comp-lev>specifies how platform integrity is extended from the integrity root to other platform firmware.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:<h:ul><h:li>Configuration of action to take on integrity failure.</h:li></h:ul></management>
           <audit>
-            The following actions should be auditable if FAU_GEN Security audit data generation is
-					included in the PP/ST:
+            The following actions should be auditable if FAU_GEN Security audit data generation is included
+				in the PP, PP-Module, functional package or ST:
             <h:ul>
               <h:li>Failure of integrity verification.</h:li>
             </h:ul>
@@ -8347,8 +8350,8 @@
           <comp-lev>requires that the TOE support hardware supply chain integrity.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:<h:ul><h:li>Configuration of action to take on integrity failure.</h:li></h:ul></management>
           <audit>
-            The following actions should be auditable if FAU_GEN Security audit data generation is
-					included in the PP/ST:
+            The following actions should be auditable if FAU_GEN Security audit data generation is included
+				in the PP, PP-Module, functional package or ST:
             <h:ul>
               <h:li>Detection of attempted intrusion.</h:li>
             </h:ul>
@@ -8731,8 +8734,8 @@
           <comp-lev>specifies the requirements for authenticated update of platform firmware.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:<h:ul><h:li>Configuration of action to take on an update failure.</h:li></h:ul></management>
           <audit>
-            The following actions should be auditable if FAU_GEN Security audit data generation is
-				included in the PP/ST:
+            The following actions should be auditable if FAU_GEN Security audit data generation is included
+				in the PP, PP-Module, functional package or ST:
             <h:ul>
               <h:li>Failure of update authentication/integrity check/rollback</h:li>
               <h:li>Failure of update operation</h:li>
@@ -8940,8 +8943,8 @@
           <comp-lev>specifies the requirements for delayed-authentication update of platform firmware.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:<h:ul><h:li>Configuration of action to take on an update failure.</h:li></h:ul></management>
           <audit>
-            The following actions should be auditable if FAU_GEN Security audit data generation is
-				included in the PP/ST:
+            The following actions should be auditable if FAU_GEN Security audit data generation is included
+				in the PP, PP-Module, functional package or ST:
             <h:ul>
               <h:li>Failure of update authentication/integrity check/rollback</h:li>
               <h:li>Failure of update operation</h:li>
@@ -9219,8 +9222,8 @@
             </h:ol>
           </management>
           <audit>
-            The following actions should be auditable if FAU_GEN Security audit data
-				generation is included in the PP/ST:
+            The following actions should be auditable if FAU_GEN Security audit data generation is included
+	    		in the PP, PP-Module, functional package or ST:
             <h:ol type="a">
               <h:li>Initiation of the trusted channel.</h:li>
               <h:li>Termination of the trusted channel.</h:li>
@@ -9274,8 +9277,8 @@
 					is selected in FAU_STG.1.1, if "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is 
 					selected in FDP_ITC_EXT.1.1, or if "<h:i>remotely</h:i>" is selected in Management Function 1 in FMT_SMF.1.1.
               <h:p/>
-              If the ST Author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TOE must be validated against the 
-					Functional Package for TLS. This PP does not mandate that a product implement TLS with mutual authentication,
+              If the ST Author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TOE must be validated against the
+              <xref to="tls"/>. This PP does not mandate that a product implement TLS with mutual authentication,
 					but if the product includes the capability to perform TLS with mutual authentication, then
 					mutual authentication must be included within the TOE boundary.
               <h:p/>
