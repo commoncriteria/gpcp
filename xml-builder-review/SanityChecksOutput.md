@@ -49,15 +49,15 @@
 * Error: Detected multiple elements with an id of 'sel-tud3-admin-config'.
 * Error: Detected multiple elements with an id of ''.
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/metaData[1]""/config[1]""/ref-id[8]"sfr-fpt-j"
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[3]""/metaData[1]""/config[1]""/ref-id[2]"sfr-fpt-j"
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[3]""/config[1]""/ref-id[2]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/metaData[1]""/config[1]""/ref-id[1]"sfr-fpt-j"
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[1]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'sfr-fcs-rbg-6'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/metaData[1]""/config[1]""/ref-id[6]"sfr-fcs-r"
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[6]"sfr-fcs-r"
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[5]""/metaData[1]""/config[1]""/ref-id[2]"sfr-fpt-j"
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[5]""/config[1]""/ref-id[2]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
 	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[1]""/config[1]""/ref-id[1]"dummy-ref"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
@@ -860,3 +860,8 @@
                        
 * Warning: Since FIA_TRT_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
                        
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j" (use case or rule)
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[3]""/config[1]""/ref-id[2]"sfr-fpt-j" (use case or rule)
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[1]"sfr-fpt-j" (use case or rule)
+ Failed to find sfr-fcs-rbg-6 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[6]"sfr-fcs-r" (use case or rule)
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[5]""/config[1]""/ref-id[2]"sfr-fpt-j" (use case or rule)
