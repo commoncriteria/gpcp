@@ -22,9 +22,9 @@ jobs:
         with:
           submodules: true
 
-      - name: Install Build Packages
-        #      run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell pandoc"
-        run: "sudo apt-get update && sudo apt-get install -y hunspell python3-lxml xsltproc"
+    - name: Install Build Packages
+#      run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell pandoc"
+      run: "sudo apt-get update && sudo apt-get install -y hunspell python3-lxml xsltproc"
 
       - name: Install Jing
         run: wget -O - https://github.com/relaxng/jing-trang/releases/download/V20181222/jing-20181222.zip | jar -x
@@ -35,8 +35,27 @@ jobs:
       - name: Set base URL
         run: echo "action_projname=${PWD##*/}" >> $GITHUB_ENV
 
-      - name: Quick Build
-        run: WARN_PATH="output/SanityChecksOutput.md" make
+      
+    - name: Branch Test
+      run: |
+        branchname=$(echo ${GITHUB_REF#refs/heads/})
+        if [[ $branchname =~ [0-9] ]]; then
+          echo "action_is_release=YES" >> $GITHUB_ENV
+        else
+          echo "action_is_release=NO"  >> $GITHUB_ENV
+        fi
+        
+      # PDFify
+    - name: PDFify
+      if: ${{ env.action_is_release == 'YES' }}
+      run: |
+        sudo apt install -y chromium
+        cd output
+        for aa in *.html; do
+          chromium --no-sandbox --headless --disable-gpu --no-pdf-header-footer --timeout=10000 \
+            --print-to-pdf=${aa}.pdf \
+            file://${PWD}/${aa}
+        done
 
       - name: Branch Test
         run: |
@@ -63,12 +82,27 @@ jobs:
         run: |
           RNG_OUT="output/ValidationReport.txt" make validate || true
 
-      - name: Set valerrors
-        run: echo "action_valerrors=$(wc -l output/ValidationReport.txt | { read first rest ; echo $first ; } )" >> $GITHUB_ENV
+    - name: Get Transforms Date
+#      run: echo "action_tdate=2002222" >> $GITHUB_ENV
+      run: echo "action_tdate=$(cd transforms && git log -1 --format=%cs; cd ->/dev/null)" >> $GITHUB_ENV
+       
+    - name: Get DaisyDiff
+      run: |
+        wget -O- https://github.com/AndroidKitKat/ExecuteDaisy/archive/master.zip | jar -x
+        [ -d "output/images" ] || mkdir "output/images";
+        cp -u -r ExecuteDaisy-master/js ExecuteDaisy-master/css output;
+        cp -u ExecuteDaisy-master/images/* output/images;
 
-      - id: spellcheck
-        run: |
-          SPELL_OUT="output/SpellCheckReport.txt" make spellcheck
+      
+    - name: Make tmp dir
+      run: mkdir tmp
+      
+   #  - name: diff
+    #  run: TMP=tmp make diff || true; 
+    # Little diff depends on having a git history. 
+    # The current checkout has  depth=1 and has no history
+    #- name: little diff
+    #  run: make little-diff || true
 
       - name: Set spellerrors
         run: echo "action_spellerrors=$(wc -l output/SpellCheckReport.txt | { read first rest ; echo $first ; } )" >> $GITHUB_ENV
