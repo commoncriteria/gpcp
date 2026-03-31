@@ -900,9 +900,13 @@
         <!-- FAU_GEN.1 Audit Data Generation -->
         <f-component cc-id="fau_gen.1" id="sfr-fau-gen-1" name="Audit Data Generation" status="sel-based">
           <depends on-sel="sel-rot2-audit"/>
+          <!--FPT_ROT_EXT.2.2-->
           <depends on-sel="sel-rot3-audit"/>
+          <!--FPT_ROT_EXT.3.2-->
           <depends on-sel="sel-tud2-audit"/>
+          <!--FPT_TUD_EXT.2.5-->
           <depends on-sel="sel-tud3-audit"/>
+          <!--FPT_TUD_EXT.3.4-->
           <depends on-use="uc-server-secureenv"/>
           <depends on-use="uc-server-enhanced"/>
           <depends on-use="uc-csfc-eud"/>
@@ -1131,12 +1135,17 @@
         <!-- FCS_CKM.1/AKG Cryptographic Key Generation - Asymmetric Key -->
         <f-component cc-id="fcs_ckm.1" id="sfr-fcs-ckm-1-akg" name="Cryptographic Key Generation - Asymmetric Key" iteration="AKG" status="sel-based">
           <depends on-incl="sfr-fcs-ipsec-ext-1"/>
+          <!--FCS_IPSEC_EXT.1-->
           <depends on-sel="sel-fcs-stg-ext-1e2-ak"/>
+          <!--from FCS_STG_EXT.1-->
           <depends on-sel="sel-itc-tls"/>
+          <!--TLS-->
           <depends on-sel="sel-itc-https"/>
+          <!--TLS/HTTPS-->
           <depends>
             <optional/>
           </depends>
+          <!--May also be optionally added-->
           <f-element id="fcs-ckm-1e1-akg">
             <title>
               The TSF shall generate
@@ -1807,10 +1816,13 @@
         <!-- FCS_CKM.1/SKG Cryptographic Key Generation - Symmetric Key -->
         <f-component cc-id="fcs_ckm.1" id="sfr-fcs-ckm-1-skg" name="Cryptographic Key Generation - Symmetric Key" iteration="SKG" status="sel-based">
           <depends on-sel="sel-fcs-stg-ext-1e2-sk"/>
+          <!--from FCS_STG_EXT.1-->
           <depends on-sel="sel-itc-tls"/>
+          <!--TLS-->
           <depends>
             <optional/>
           </depends>
+          <!--May be manually added-->
           <f-element id="fcs-ckm-1e1-skg">
             <title>
               The TSF shall generate
@@ -1891,11 +1903,15 @@
         <!-- FCS_CKM.2 Cryptographic Key Distribution -->
         <f-component cc-id="fcs_ckm.2" id="sfr-fcs-ckm-2" name="Cryptographic Key Distribution" status="sel-based">
           <depends on-incl="sfr-fcs-ipsec-ext-1"/>
+          <!--FCS_IPSEC_EXT.1-->
           <depends on-sel="sel-ftp-ite-ext-1-est"/>
+          <!--FTP_ITE_EXT.1-->
           <depends on-sel="sel-itc-tls"/>
+          <!--TLS-->
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <f-element id="fcs-ckm-2e1">
             <title>
               The TSF shall distribute cryptographic keys in accordance with a specified cryptographic 
@@ -2456,6 +2472,7 @@
           <depends on-incl="sfr-fcs-ckm-ext-8"/>
           <depends on-incl="sfr-fcs-stg-ext-1"/>
           <depends on-incl="sfr-fia-afl-ext-1"/>
+          <!--Required for wipe on multiple auth failures-->
           <f-element id="fcs-ckm-6e1">
             <title>
               The TSF shall destroy
@@ -2619,6 +2636,7 @@
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <comp-lev>requires that cryptographic key agreement be performed in accordance with specified standards.</comp-lev>
           <audit>
             The following actions should be auditable if FAU_GEN Security audit data generation is
@@ -2954,14 +2972,20 @@
         <f-component cc-id="fcs_cop.1" id="sfr-fcs-cop-1-aead" name="Cryptographic Operation – Authenticated Encryption with Associated Data" iteration="AEAD" status="sel-based">
           <depends on-incl="sfr-fcs-stg-ext-2"/>
           <depends on-incl="sfr-fcs-ipsec-ext-1"/>
+          <!--FCS_IPSEC_EXT.1-->
           <depends on-sel="sel-rbg-ctr"/>
+          <!--FCS_RBG.1-->
           <depends on-sel="sel-fdp-itc-ext-1e2-sk"/>
+          <!--from FDP_ITC_EXT.1-->
           <depends on-sel="sel-fcs-ckm-5-kdf-enc-aead"/>
+          <!--KDF-ENC-->
           <depends on-sel="sel-itc-tls"/>
+          <!--TLS-->
           <depends on-sel="sel-itc-ssh"/>
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <f-element id="fcs-cop-1e1-aead">
             <title>
               The TSF shall perform [<h:i>authenticated encryption with associated data</h:i>] in accordance with a specified 
@@ -3197,13 +3221,16 @@
         <!-- FCS_COP.1/CMAC Cryptographic Operation - CMAC -->
         <f-component cc-id="fcs_cop.1" id="sfr-fcs-cop-1-cmac" name="Cryptographic Operation - CMAC" iteration="CMAC" status="sel-based">
           <depends on-sel="sel-stg3-digsig"/>
+          <!--FCS_STG_EXT.3.1-->
           <depends on-sel="sel-fcs-ckm-5-kdf-ctr-cmac"/>
+          <!--KDFs-->
           <depends on-sel="sel-fcs-ckm-5-kdf-fb-cmac"/>
           <depends on-sel="sel-fcs-ckm-5-kdf-dpi-cmac"/>
           <depends on-sel="sel-fcs-ckm-5-kdf-mac-2S"/>
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <f-element id="fcs-cop-1e1-cmac">
             <title>
               The TSF shall perform [<h:i>CMAC</h:i>] in accordance with a specified cryptographic algorithm
@@ -3321,18 +3348,27 @@
         <!-- FCS_COP.1/Hash Cryptographic Operation - Hashing -->
         <f-component cc-id="fcs_cop.1" id="sfr-fcs-cop-1-hash" name="Cryptographic Operation - Hashing" iteration="Hash" status="sel-based">
           <depends on-incl="sfr-fcs-cop-1-keyedhash"/>
+          <!--FCS_COP.1/KeyedHash-->
           <depends on-incl="sfr-fcs-cop-1-sigver"/>
+          <!--FCS_COP.1/SigVer-->
           <depends on-incl="sfr-fcs-cop-1-siggen"/>
+          <!--FCS_COP.1/SigGen-->
           <depends on-sel="sel-itc-tls"/>
           <depends on-sel="sel-itc-ssh"/>
           <depends on-sel="sel-rot2-hash"/>
+          <!--FPT_ROT_EXT.2.1-->
           <depends on-sel="sel-rbg-hmac"/>
+          <!--FCS_RBG.1.1-->
           <depends on-sel="sel-tud2-hash"/>
+          <!--FPT_TUD_EXT.2.1-->
           <depends on-sel="sel-fdp-itc-ext-1e2-hash"/>
+          <!--from FDP_ITC_EXT.1-->
           <depends on-sel="sel-fcs-ckm-5-kdf-hash"/>
+          <!--KDF-Hash-->
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <f-element id="fcs-cop-1e1-hash">
             <title>
               The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified 
@@ -3519,11 +3555,17 @@
         <!-- FCS_COP.1/KeyedHash Cryptographic Operation - Keyed Hash -->
         <f-component cc-id="fcs_cop.1" id="sfr-fcs-cop-1-keyedhash" name="Cryptographic Operation - Keyed Hash" iteration="KeyedHash" status="sel-based">
           <depends on-incl="sfr-fcs-ipsec-ext-1"/>
+          <!--FCS_IPSEC_EXT.1-->
           <depends on-incl="sfr-fcs-ckm-ext-8"/>
+          <!--FCS_CKM_EXT.8-->
           <depends on-sel="sel-rbg-hmac"/>
+          <!--FCS_RBG.1.1-->
           <depends on-sel="sel-fdp-itc-ext-1e2-mac"/>
+          <!--from FDP_ITC_EXT.1-->
           <depends on-sel="sel-stg3-hmac"/>
+          <!--FCS_STG_EXT.3.1-->
           <depends on-sel="sel-fcs-ckm-5-kdf-ctr-hmac256"/>
+          <!--KDFs-->
           <depends on-sel="sel-fcs-ckm-5-kdf-ctr-hmac512"/>
           <depends on-sel="sel-fcs-ckm-5-kdf-fb-hmac256"/>
           <depends on-sel="sel-fcs-ckm-5-kdf-fb-hmac512"/>
@@ -3534,6 +3576,7 @@
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <f-element id="fcs-cop-1e1-keyedhash">
             <title>
               The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
@@ -4116,9 +4159,11 @@
         <!-- FCS_COP.1/SigGen Cryptographic Operation - Signature Generation -->
         <f-component cc-id="fcs_cop.1" id="sfr-fcs-cop-1-siggen" name="Cryptographic Operation - Signature Generation" iteration="SigGen" status="sel-based">
           <depends on-sel="sel-stg3-digsig"/>
+          <!--FCS_STG_EXT.3.1-->
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <f-element id="fcs-cop-1e1-siggen">
             <title>
               The TSF shall perform [<h:i>digital signature generation</h:i>] in accordance with a specified 
@@ -4650,12 +4695,17 @@
         <!-- FCS_COP.1/SigVer Cryptographic Operation - Signature Verification -->
         <f-component cc-id="fcs_cop.1" id="sfr-fcs-cop-1-sigver" name="Cryptographic Operation - Signature Verification" iteration="SigVer" status="sel-based">
           <depends on-sel="sel-rot2-digsig"/>
+          <!--FPT_ROT_EXT.2-->
           <depends on-sel="sel-tud1-auth-update"/>
+          <!--FPT_TUD_EXT.1 (covers TUD2, which requires SigVer)-->
           <depends on-sel="sel-tud1-unauth-update"/>
+          <!--FPT_TUD_EXT.1-->
           <depends on-sel="sel-fdp-itc-ext-1e2-sig"/>
+          <!--from FDP_ITC_EXT.1-->
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <f-element id="fcs-cop-1e1-sigver">
             <title>
               The TSF shall perform [<h:i>digital signature verification</h:i>] in accordance with a specified 
@@ -5126,13 +5176,19 @@
         <f-component cc-id="fcs_cop.1" id="sfr-fcs-cop-1-skc" name="Cryptographic Operation - Symmetric Key Cryptography" iteration="SKC" status="sel-based">
           <depends on-incl="sfr-fcs-stg-ext-2"/>
           <depends on-incl="sfr-fcs-ipsec-ext-1"/>
+          <!--FCS_IPSEC_EXT.1-->
           <depends on-sel="sel-rbg-ctr"/>
+          <!--FCS_RBG.1-->
           <depends on-sel="sel-fdp-itc-ext-1e2-sk"/>
+          <!--from FDP_ITC_EXT.1-->
           <depends on-sel="sel-itc-ssh"/>
+          <!--for CTR mode-->
           <depends on-sel="sel-fcs-ckm-5-kdf-enc-skc"/>
+          <!--KDF-ENC-->
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <f-element id="fcs-cop-1e1-skc">
             <title>
               The TSF shall perform [<h:i>symmetric-key encryption/decryption</h:i>] in accordance with a 
@@ -6247,14 +6303,21 @@
         <!-- FCS_RBG.1 Random Bit Generation (RBG) -->
         <f-component cc-id="fcs_rbg.1" id="fcs-rbg-1" name="Random Bit Generation (RBG)" status="sel-based">
           <depends on-incl="sfr-fcs-ckm-1-akg"/>
+          <!--FCS_CKM.1/AKG is included-->
           <depends on-incl="sfr-fcs-ckm-1-skg"/>
+          <!--FCS_CKM.1/SKG-->
           <depends on-incl="sfr-fcs-ipsec-ext-1"/>
+          <!--FCS_IPSEC_EXT.1-->
           <depends on-incl="sfr-fcs-cop-1-siggen"/>
+          <!--FCS_CKM.1/SigGen is included-->
           <depends on-incl="sfr-fcs-ckm-ext-8"/>
+          <!--FCS_CKM_EXT.8-->
           <depends on-sel="sel-itc-tls"/>
+          <!--TLS-->
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <f-element id="fel-rbg-init-seed">
             <title>
               The TSF shall perform deterministic random bit generation services using
@@ -6701,6 +6764,7 @@
         <!-- FCS_STG_EXT.2 Key Storage Encryption -->
         <f-component cc-id="fcs_stg_ext.2" id="sfr-fcs-stg-ext-2" name="Key Storage Encryption" status="sel-based">
           <depends on-sel="sel-stg1-sw-based"/>
+          <!--implies sel-stg2-sw-based-->
           <comp-lev>requires the TSF to ensure the confidentiality of stored
 				data using a specified method.</comp-lev>
           <dependencies>
@@ -6922,8 +6986,11 @@
         <!-- FIA_AFL_EXT.1 Authentication Failure Handling -->
         <f-component cc-id="fia_afl_ext.1" id="sfr-fia-afl-ext-1" name="Authentication Failure Handling" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <!--FMT_SMR.1 Admin Role-->
           <depends on-use="uc-server-secureenv"/>
+          <!--Server, basic use case-->
           <depends on-use="uc-server-enhanced"/>
+          <!--Server, enhanced use case-->
           <comp-lev>requires the TSF to monitor authorization attempts, including counting and limiting the number of 
 				attempts at failed or passed authorizations. This extended component permits considerably
 				more flexibility for dealing with multiple authentication mechanisms than FIA_AFL.</comp-lev>
@@ -7145,8 +7212,11 @@
         <!-- FIA_PMG_EXT.1 Password Management -->
         <f-component cc-id="fia_pmg_ext.1" id="sfr-fia-pmg-ext-1" name="Password Management" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <!--FMT_SMR.1 Admin Role-->
           <depends on-use="uc-server-secureenv"/>
+          <!--Server, basic use case-->
           <depends on-use="uc-server-enhanced"/>
+          <!--Server, enhanced use case-->
           <comp-lev>requires the TSF to support passwords with varying composition and length requirements.</comp-lev>
           <management>
             The following actions could be considered for the management functions in FMT:
@@ -7307,8 +7377,11 @@
         <!-- FIA_UAU.5 Multiple Authentication Mechanisms -->
         <f-component cc-id="fia_uau.5" id="sfr-fia-uau-5" name="Multiple Authentication Mechanisms" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <!--FMT_SMR.1 Admin Role-->
           <depends on-use="uc-server-secureenv"/>
+          <!--Server, basic use case-->
           <depends on-use="uc-server-enhanced"/>
+          <!--Server, enhanced use case-->
           <f-element id="fia-uau-5e1">
             <title>
               The TSF shall provide [<h:i>password and
@@ -7380,8 +7453,11 @@
         <!-- FIA_UAU.7 Protected Authentication Feedback -->
         <f-component cc-id="fia_uau.7" id="sfr-fia-uau-7" name="Protected Authentication Feedback" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <!--FMT_SMR.1 Admin Role-->
           <depends on-use="uc-server-secureenv"/>
+          <!--Server, basic use case-->
           <depends on-use="uc-server-enhanced"/>
+          <!--Server, enhanced use case-->
           <f-element id="fia-uau-7e1">
             <title>
               The TSF shall provide only [<h:i>obscured feedback</h:i>] to the user
@@ -7430,8 +7506,11 @@
         <!-- FIA_UIA_EXT.1 Administrator Authentication -->
         <f-component cc-id="fia_uia_ext.1" id="sfr-fia-uia-ext-1" name="Administrator Authentication" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <!--FMT_SMR.1 Admin Role-->
           <depends on-use="uc-server-secureenv"/>
+          <!--Server, basic use case-->
           <depends on-use="uc-server-enhanced"/>
+          <!--Server, enhanced use case-->
           <comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
 				are authenticated prior to authorizing these actions to be performed.</comp-lev>
           <audit>
@@ -7964,15 +8043,23 @@
         <!-- FPT_FLS.1 Failure with Preservation of Secure State -->
         <f-component cc-id="fpt_fls.1" id="fpt-fls-1" name="Failure with Preservation of Secure State" status="sel-based">
           <depends on-incl="sfr-fcs-ckm-1-skg"/>
+          <!--FCS_CKM.1/SKG-->
           <depends on-incl="sfr-fcs-ipsec-ext-1"/>
+          <!--FCS_IPSEC_EXT.1-->
           <depends on-incl="sfr-fcs-ckm-1-akg"/>
+          <!--FCS_CKM.1/AKG is included-->
           <depends on-incl="sfr-fcs-cop-1-siggen"/>
+          <!--FCS_CKM.1/SigGen is included-->
           <depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>
+          <!--FCS_CKM.5.1-->
           <depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>
+          <!--FCS_CKM.5.1-->
           <depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>
+          <!--FCS_CKM.5.1-->
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <f-element id="fel-pres-sec-state">
             <title>
               The TSF shall preserve a secure state when the following types of failures occur: [<h:i>DRBG self-test failure</h:i>].
@@ -7999,6 +8086,7 @@
           <depends>
             <objective/>
           </depends>
+          <!--TRRT 1560-->
           <f-element id="fpt-php-1e1">
             <title>The TSF shall provide unambiguous detection of physical tampering
 					that can compromise the TSF.</title>
@@ -8041,6 +8129,7 @@
           <depends>
             <objective/>
           </depends>
+          <!--TRRT 1560-->
           <f-element id="fpt-php-2e1">
             <title>The TSF shall provide unambiguous detection of physical tampering that
 					can compromise the TSF.</title>
@@ -8512,8 +8601,11 @@
         <!-- FPT_RVR_EXT.1 Platform Firmware Recovery -->
         <f-component cc-id="fpt_rvr_ext.1" id="sfr-fpt-rvr-ext-1" name="Platform Firmware Recovery" status="sel-based">
           <depends on-sel="sel-rot2-recovery"/>
+          <!--FPT_ROT_EXT.2-->
           <depends on-sel="sel-tud2-recovery"/>
+          <!--FPT_TUD_EXT.2-->
           <depends on-sel="sel-tud3-recovery"/>
+          <!--FPT_TUD_EXT.3-->
           <comp-lev>defines mechanisms for recovering from a platform firmware integrity failure.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:<h:ul><h:li>Configuration of action to take on integrity failure.</h:li></h:ul></management>
           <dependencies><h:br/>FPT_TUD_EXT.4 Secure Local Update Mechanism</dependencies>
@@ -8619,15 +8711,23 @@
         <!-- FPT_TST.1 TSF Self-Testing -->
         <f-component cc-id="fpt_tst.1" id="fpt-tst-1" name="TSF Self-Testing" status="sel-based">
           <depends on-incl="sfr-fcs-ckm-1-skg"/>
+          <!--FCS_CKM.1/SKG-->
           <depends on-incl="sfr-fcs-ipsec-ext-1"/>
+          <!--FCS_IPSEC_EXT.1-->
           <depends on-incl="sfr-fcs-ckm-1-akg"/>
+          <!--FCS_CKM.1/AKG is included-->
           <depends on-incl="sfr-fcs-cop-1-siggen"/>
+          <!--FCS_CKM.1/SigGen is included-->
           <depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>
+          <!--FCS_CKM.5.1-->
           <depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>
+          <!--FCS_CKM.5.1-->
           <depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>
+          <!--FCS_CKM.5.1-->
           <depends>
             <optional/>
           </depends>
+          <!--May be also included optionally-->
           <f-element id="fel-tsf-self-test">
             <title>
               The TSF shall run a suite of the following self-tests [<h:i>during initial start-up,
@@ -8760,6 +8860,7 @@
         <!-- FPT_TUD_EXT.2 Platform Firmware Authenticated Update Mechanism -->
         <f-component cc-id="fpt_tud_ext.2" id="sfr-fpt-tud-ext-2" name="Platform Firmware Authenticated Update Mechanism" status="sel-based">
           <depends on-sel="sel-tud1-auth-update"/>
+          <!--FPT_TUD_EXT.1-->
           <comp-lev>specifies the requirements for authenticated update of platform firmware.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:<h:ul><h:li>Configuration of action to take on an update failure.</h:li></h:ul></management>
           <audit>
@@ -8969,6 +9070,7 @@
         <!-- FPT_TUD_EXT.3 Platform Firmware Delayed-Authentication Update Mechanism -->
         <f-component cc-id="fpt_tud_ext.3" id="sfr-fpt-tud-ext-3" name="Platform Firmware Delayed-Authentication Update Mechanism" status="sel-based">
           <depends on-sel="sel-tud1-unauth-update"/>
+          <!--FPT_TUD_EXT.1-->
           <comp-lev>specifies the requirements for delayed-authentication update of platform firmware.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:<h:ul><h:li>Configuration of action to take on an update failure.</h:li></h:ul></management>
           <audit>
@@ -9153,7 +9255,9 @@
         <!-- FPT_TUD_EXT.4 Secure Local Platform Firmware Update Mechanism -->
         <f-component cc-id="fpt_tud_ext.4" id="sfr-fpt-tud-ext-4" name="Secure Local Platform Firmware Update Mechanism" status="sel-based">
           <depends on-sel="sel-tud1-local-update"/>
+          <!--FPT_TUD_EXT.1-->
           <depends on-sel="sel-rvr-local-update"/>
+          <!--FPT_RVR_EXT.1-->
           <comp-lev>specifies the requirements for secure local update of platform firmware.</comp-lev>
           <dependencies>No dependencies.</dependencies>
           <f-element id="fpt-tud-ext-4e1">
@@ -9241,7 +9345,9 @@
           <depends on-sel="sel-fau-itc"/>
           <depends on-sel="sel-smf-remote-admin"/>
           <depends on-sel="sel-fdp-itc-ext-1e1-chan"/>
+          <!--from FDP_ITC_EXT.1-->
           <depends on-sel="sel-ckm-2-echan"/>
+          <!--FCS_CKM.2-->
           <comp-lev>requires the TSF to implement one or more cryptographic protocols
 					to secure connectivity between the TSF and various external entities.</comp-lev>
           <management>
@@ -9359,6 +9465,7 @@
         <!-- FTP_ITE_EXT.1 Encrypted Data Communications -->
         <f-component cc-id="ftp_ite_ext.1" id="sfr-ftp-ite-ext-1" name="Encrypted Data Communications" status="sel-based">
           <depends on-sel="sel-fdp-itc-ext-1e1-buf"/>
+          <!--from FDP_ITC_EXT.1-->
           <comp-lev>requires the TSF to encrypt data in the specified manner using key data that is provided
 				to an external entity in the specified manner.</comp-lev>
           <dependencies><h:br/>FCS_COP.1 Cryptographic Operation</dependencies>
@@ -9413,6 +9520,7 @@
         <f-component cc-id="ftp_itp_ext.1" id="sfr-ftp-itp-ext-1" name="Physically Protected Channel" status="sel-based">
           <depends on-sel="sel-fdp-itc-ext-1e1-phys"/>
           <depends on-sel="sel-ftp-ite-ext-1-itp"/>
+          <!--FTP_ITE_EXT.1-->
           <comp-lev>requires the TSF to use a physically protected
 				channel for transmission of data to an external entity.</comp-lev>
           <dependencies>No dependencies.</dependencies>
