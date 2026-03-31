@@ -903,6 +903,10 @@
           <depends on-sel="sel-rot3-audit"/>
           <depends on-sel="sel-tud2-audit"/>
           <depends on-sel="sel-tud3-audit"/>
+          <depends on-use="uc-server-secureenv"/>
+          <depends on-use="uc-server-enhanced"/>
+          <depends on-use="uc-csfc-eud"/>
+          <depends on-use="uc-ent-clients-desktop"/>
           <f-element id="fau-gen-1e1">
             <title>The TSF shall be able to generate audit data of the following auditable events:<h:br/><h:ol type="1"><h:li>Start-up and shutdown of the audit functions</h:li> <h:li>All administrative actions</h:li> <h:li>Start-up, shutdown, and reboot of the platform</h:li> <h:li>Specifically defined auditable events in <xref g="t-audit-mandatory"/></h:li> <h:li> <selectables linebreak="yes"><selectable id="fau_gen.1.1_1">Specifically defined auditable event in <xref g="t-audit-optional"/> for Strictly Optional requirements</selectable><selectable id="fau_gen.1.1_2">Specifically defined auditable event in <xref g="t-audit-objective"/> for Objective requirements</selectable><selectable id="fau_gen.1.1_3">Specifically defined auditable event in <xref g="t-audit-sel-based"/> for Selection-based requirements</selectable><selectable id="fau_gen.1.1_4">Additional information defined in the audit table for the <xref to="tls"/></selectable><selectable id="fau_gen.1.1_5">Additional information defined in the audit table for the <xref to="ssh"/></selectable><selectable id="fau_gen.1.1_6">Additional information defined in the audit table for the <xref to="X509"/></selectable><selectable id="fau_gen.1.1_7" exclusive="yes">no additional auditable events</selectable></selectables>.</h:li></h:ol></title>
           </f-element>
@@ -6918,6 +6922,8 @@
         <!-- FIA_AFL_EXT.1 Authentication Failure Handling -->
         <f-component cc-id="fia_afl_ext.1" id="sfr-fia-afl-ext-1" name="Authentication Failure Handling" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-secureenv"/>
+          <depends on-use="uc-server-enhanced"/>
           <comp-lev>requires the TSF to monitor authorization attempts, including counting and limiting the number of 
 				attempts at failed or passed authorizations. This extended component permits considerably
 				more flexibility for dealing with multiple authentication mechanisms than FIA_AFL.</comp-lev>
@@ -7139,6 +7145,8 @@
         <!-- FIA_PMG_EXT.1 Password Management -->
         <f-component cc-id="fia_pmg_ext.1" id="sfr-fia-pmg-ext-1" name="Password Management" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-secureenv"/>
+          <depends on-use="uc-server-enhanced"/>
           <comp-lev>requires the TSF to support passwords with varying composition and length requirements.</comp-lev>
           <management>
             The following actions could be considered for the management functions in FMT:
@@ -7299,6 +7307,8 @@
         <!-- FIA_UAU.5 Multiple Authentication Mechanisms -->
         <f-component cc-id="fia_uau.5" id="sfr-fia-uau-5" name="Multiple Authentication Mechanisms" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-secureenv"/>
+          <depends on-use="uc-server-enhanced"/>
           <f-element id="fia-uau-5e1">
             <title>
               The TSF shall provide [<h:i>password and
@@ -7370,6 +7380,8 @@
         <!-- FIA_UAU.7 Protected Authentication Feedback -->
         <f-component cc-id="fia_uau.7" id="sfr-fia-uau-7" name="Protected Authentication Feedback" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-secureenv"/>
+          <depends on-use="uc-server-enhanced"/>
           <f-element id="fia-uau-7e1">
             <title>
               The TSF shall provide only [<h:i>obscured feedback</h:i>] to the user
@@ -7418,6 +7430,8 @@
         <!-- FIA_UIA_EXT.1 Administrator Authentication -->
         <f-component cc-id="fia_uia_ext.1" id="sfr-fia-uia-ext-1" name="Administrator Authentication" status="sel-based">
           <depends on-sel="sel-fmt-smr-1-admin"/>
+          <depends on-use="uc-server-secureenv"/>
+          <depends on-use="uc-server-enhanced"/>
           <comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
 				are authenticated prior to authorizing these actions to be performed.</comp-lev>
           <audit>
@@ -7981,6 +7995,7 @@
         </f-component>
         <!-- FPT_PHP.1 Passive detection of physical attack -->
         <f-component cc-id="fpt_php.1" id="sfr-fpt-php-1" name="Passive detection of physical attack" status="sel-based">
+          <depends on-use="uc-client-portable-enhanced"/>
           <depends>
             <objective/>
           </depends>
@@ -8022,6 +8037,7 @@
         </f-component>
         <!-- FPT_PHP.2 Notification of Physical Attack -->
         <f-component cc-id="fpt_php.2" id="sfr-fpt-php-2" name="Notification of Physical Attack" status="sel-based">
+          <depends on-use="uc-server-enhanced"/>
           <depends>
             <objective/>
           </depends>
@@ -8079,6 +8095,8 @@
         </f-component>
         <!-- FPT_PHP.3 Resistance to Physical Attack -->
         <f-component cc-id="fpt_php.3" id="sfr-fpt-php-3" name="Resistance to Physical Attack" status="sel-based">
+          <depends on-use="uc-server-enhanced"/>
+          <depends on-use="uc-tactical-eud"/>
           <f-element id="fpt-php-3e1">
             <title>
               The TSF shall resist
