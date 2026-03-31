@@ -6408,19 +6408,37 @@
 			<audit-event/>
 		</f-component>  
 		
-		<f-component cc-id="fcs_rbg.6" name="Random Bit Generation Service">
+		<f-component cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="sel-based">
+			<depends on-uc="uc-csfc-eud"/>
+			<depends><optional/></depends>
 			<f-element id="fel-external-service">
 				<title>
-					The TSF shall provide a [<h:i>software</h:i>]
-					interface to make the output, as specified in FCS_RBG.1 Random bit generation (RBG),
+					The TSF shall provide a <selectables>
+						<selectable>hardware</selectable>
+						<selectable>software</selectable>
+						<selectable><assignable>other interface type</assignable></selectable> </selectables>
+					interface to make the DRBG output, as specified in FCS_RBG.1 Random Bit Generation (RBG), 
 					available as a service to entities outside of the TOE.
-				</title>        
+				</title> 
+				<note role="application">
+					This SFR must be included in the ST if the TOE provides an entropy source accessible to tenant software.<h:p/>
+					This requirement ensures that the TOE makes available entropy to any tenant
+					that requires it.
+				</note>       
 				<aactivity>              
 					<TSS>
-						The evaluator shall verify that the TSS identifies the interface that the TSF makes available for calling applications to obtain DRBG output. 
+						The evaluator shall examine the TSS to verify that it describes how the DRBG output is made
+						available to entities outside the TOE.
 					</TSS>
-					<Guidance>The evaluator shall verify that the guidance documentation includes an API specification for the random bit generation service such that it is clear how a calling application is able to obtain DRBG output from the TSF.</Guidance>
-					<Tests>The evaluator shall invoke the API specified by the guidance documentation to determine that the TSF provides DRBG output upon proper invocation of the API.</Tests>
+					<Guidance>
+						The evaluator shall examine the Guidance to verify that it describes how to configure and use the
+						claimed interface(s) so that DRBG output is available to entities outside of the TOE.
+					</Guidance>
+					<Tests>
+						The evaluator shall perform the following test:<h:p/>
+						The evaluator shall invoke the entropy source(s) from tenant software.
+						The evaluator shall verify that the tenant acquires values from the interface.
+					</Tests>
 				</aactivity>
 			</f-element>
 			<audit-event/>
