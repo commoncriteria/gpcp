@@ -104,15 +104,15 @@
 * Error: Detected multiple elements with an id of 'sel-tud3-recovery'.
 * Error: Detected multiple elements with an id of 'sel-tud3-admin-config'.
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j"
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[3]""/config[1]""/ref-id[2]"sfr-fpt-j"
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[3]""/config[1]""/ref-id[2]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[1]"sfr-fpt-j"
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[4]""/config[1]""/ref-id[1]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'sfr-fcs-rbg-6'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[6]"sfr-fcs-r"
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[4]""/config[1]""/ref-id[6]"sfr-fcs-r"
 * Error: Detected dangling ref-id to 'sfr-fpt-jta-ext-2'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[5]""/config[1]""/ref-id[2]"sfr-fpt-j"
+	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[5]""/config[1]""/ref-id[2]"sfr-fpt-j"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
 	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[1]""/config[1]""/ref-id[1]"dummy-ref"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
@@ -144,12 +144,12 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:TOE_Overview[1]"This Prot"/sec:TOE_Boundary[1]"The TOE c"/h:p[5]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:TOE_Overview[1]"This Prot"/sec:TOE_Boundary[1]"The TOE c"/h:p[6]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:TOE_Overview[1]"This Prot"/sec:TOE_Boundary[1]"The TOE c"/h:p[7]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[1]""/description[1]"This use "/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/description[1]"This use "/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/description[1]"EUDs used"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/description[1]"EUDs used"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[6]""/description[1]"This use "/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[1]""/description[1]"This use "/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[2]""/description[1]"This use "/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[4]""/description[1]"EUDs used"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[4]""/description[1]"EUDs used"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[6]""/description[1]"This use "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Roles[1]"For purpo"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Roles[1]"For purpo"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Introduction[1]""/sec:Roles[1]"For purpo"/h:p[3]""
@@ -783,16 +783,16 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[1]""/app-note[1]"Administr"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[1]""/app-note[1]"Administr"/h:p[3]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[2]""/app-note[1]"Managemen"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[5]""/app-note[1]"This Func"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[6]""/app-note[1]"This Func"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[8]""/app-note[1]"This Func"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[9]""/app-note[1]"This Func"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[10]""/app-note[1]"This Func"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[5]""/app-note[1]"This func"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[6]""/app-note[1]"This func"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[8]""/app-note[1]"This func"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[9]""/app-note[1]"This func"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[10]""/app-note[1]"This func"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[11]""/app-note[1]"This func"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[13]""/app-note[1]"This func"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/app-note[1]"This Func"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/app-note[1]"This Func"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/app-note[1]"This Func"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[17]""/app-note[1]"This func"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/app-note[1]"This func"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/title[1]"The TSF s"/management-function-set[1]""/management-function[18]""/app-note[1]"This func"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/note[1]"These fun"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[6]""/f-element[2]""/note[1]"If ""/h:p[1]""
@@ -902,13 +902,12 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[6]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[7]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[5]"In order "/h:p[1]""
- Failed to find a reference to SecurityObjectivesTOE.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to entropyappendix.
- Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j" (use case or rule)
- Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[3]""/config[1]""/ref-id[2]"sfr-fpt-j" (use case or rule)
- Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[1]"sfr-fpt-j" (use case or rule)
- Failed to find sfr-fcs-rbg-6 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[4]""/config[1]""/ref-id[6]"sfr-fcs-r" (use case or rule)
- Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This Prot"/usecases[1]""/usecase[5]""/config[1]""/ref-id[2]"sfr-fpt-j" (use case or rule)
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[2]""/config[1]""/ref-id[8]"sfr-fpt-j" (use case or rule)
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[3]""/config[1]""/ref-id[2]"sfr-fpt-j" (use case or rule)
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[4]""/config[1]""/ref-id[1]"sfr-fpt-j" (use case or rule)
+ Failed to find sfr-fcs-rbg-6 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[4]""/config[1]""/ref-id[6]"sfr-fcs-r" (use case or rule)
+ Failed to find sfr-fpt-jta-ext-2 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[5]""/config[1]""/ref-id[2]"sfr-fpt-j" (use case or rule)
