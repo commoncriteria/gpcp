@@ -1077,7 +1077,7 @@
                     </h:ol>
                 </title>		
 				<note role="application">
-					The ST Author should include this SFR in the ST if the TOE generates audit events for integrity verification 
+					The ST author should include this SFR in the ST if the TOE generates audit events for integrity verification 
 					or boot failures as indicated by the appropriate selections in FPT_ROT_EXT.2, FPT_ROT_EXT.3,
 					FPT_TUD_EXT.2, or FPT_TUD_EXT.3.4; or if the TOE supports the Server (basic or enhanced), CSfC EUD, or
 					Enterprise Desktop use cases.<h:p/>
@@ -1163,10 +1163,10 @@
 						under administrative control in accordance with FIA_UIA_EXT.</selectable></selectables>  
 				</title>
 				<note role="application">
-					The ST Author selects "<h:i>trusted channel</h:i>" and includes FTP_ITC_EXT.1 in the ST if the TOE offloads
+					The ST author selects "<h:i>trusted channel</h:i>" and includes FTP_ITC_EXT.1 in the ST if the TOE offloads
 					audit data to external IT entity over a network connection. Protocols used for implementing the trusted
 					channel must be selected in FTP_ITC_EXT.1. <h:p/>
-					The ST Author selects "<h:i>removable media</h:i>" if the TOE supports offload of audit data using 
+					The ST author selects "<h:i>removable media</h:i>" if the TOE supports offload of audit data using 
 					removable media such as thumb drives or disks. Note that the CSfC Use Case prohibits the
 					use of removable media.
 				</note>
@@ -2325,8 +2325,8 @@
 						</h:table><h:p/>						
 						To test the TOE’s ability to derive cryptographic keys using KDF in Counter 
 						Mode/KDF2, the evaluator shall perform the Counter KDF Algorithm Functional
-						Test using the following input parameters:<h:ul>
-						<h:li>Pseudo Random Function (PRF) [AES-256-CMAC, HMAC-SHA-384, HMAC-SHA-512]</h:li>
+						Test using the following input parameters.<h:ul>
+						<h:li>Pseudorandom Function (PRF) [AES-256-CMAC, HMAC-SHA-384, HMAC-SHA-512]</h:li>
 						<h:li>Derived key length [256, 384, 512] bits</h:li>
 						<h:li>Location of the counter [after fixed data, before fixed data, middle fixed data]</h:li>
 						<h:li>Counter length [8, 16, 24, 32] bits</h:li></h:ul><h:p/>
@@ -2360,12 +2360,12 @@
 						</h:table><h:p/>						
 						To test the TOE’s ability to derive cryptographic keys using KDF in Feedback 
 						Mode/KDF3, the evaluator shall perform the Feedback KDF Algorithm Functional
-						Test using the following input parameters:<h:ul>
+						Test using the following input parameters.<h:ul>
 						<h:li>Pseudorandom Function (PRF) [AES-256-CMAC, HMAC-SHA-384, HMAC-SHA-512]</h:li>
 						<h:li>Derived key length [256, 384, 512] bits</h:li>
 						<h:li>Location of the counter [none, after fixed data, before fixed data, before iterator]</h:li>
 						<h:li>Counter length [0, 8, 16, 24, 32] bits</h:li></h:ul><h:p/>		
-						<h:i><h:b>Feedback KDF Algorithm Functional Test</h:b></h:i><h:br/>
+						<h:br/><h:i><h:b>Feedback KDF Algorithm Functional Test</h:b></h:i><h:br/>
 						For each supported combination of the above input parameters the evaluator 
 						shall require the implementation under test to derive two keys using random 
 						data. The evaluator shall compare the resulting keys with keys generated using 
@@ -2395,8 +2395,8 @@
 						</h:table><h:p/>						
 						To test the TOE’s ability to derive cryptographic keys using KDF in Double Pipeline Iteration  
 						Mode/KDF4, the evaluator shall perform the Double Pipeline Iteration KDF Algorithm Functional
-						Test using the following input parameters:<h:ul>
-						<h:li>Pseudo Random Function (PRF) [AES-256-CMAC, HMAC-SHA-384, HMAC-SHA-512]</h:li>
+						Test using the following input parameters.<h:ul>
+						<h:li>Pseudorandom Function (PRF) [AES-256-CMAC, HMAC-SHA-384, HMAC-SHA-512]</h:li>
 						<h:li>Derived key length [256, 384, 512] bits</h:li>
 						<h:li>Location of the counter [none, after fixed data, before fixed data, before iterator]</h:li>
 						<h:li>Counter length [0, 8, 16, 24, 32] bits</h:li></h:ul><h:p/>
@@ -2470,7 +2470,7 @@
 						To test the TOE’s ability to derive cryptographic keys by hashing a shared 
 						secret (a.k.a. One-Step HASH-based Key Derivation), the evaluator shall perform 
 						the Algorithm Functional Test using the following input
-						parameters:<h:ul>
+						parameters.<h:ul>
 						<h:li>Auxiliary Function [SHA-384, SHA-512]</h:li>
 						<h:li>Derived key length [256, 384, 512] bits</h:li></h:ul><h:p/>
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
@@ -2502,7 +2502,7 @@
 						</h:table><h:p/>			
 						To test the TOE’s ability to derive cryptographic keys using One-Step
 						MAC-based Key Derivation, the evaluator shall perform the Algorithm Functional
-						Test using the following input parameters:<h:ul>
+						Test using the following input parameters.<h:ul>
 						<h:li>Auxiliary Function [HMAC-SHA-384, HMAC-SHA-512]</h:li>
 						<h:li>Salt [0s, random]</h:li>
 						<h:li>Derived key length [256, 384, 512] bits</h:li>
@@ -2539,7 +2539,7 @@
 						</h:table><h:p/>			
 						To test the TOE’s ability to derive cryptographic keys using Two-Step MAC-based Key Derivation,
 						the evaluator shall perform the Algorithm Functional Test using the following input
-						parameters:<h:ul>
+						parameters.<h:ul>
 						<h:li>MAC mode [HMAC-SHA-384, HMAC-SHA-512]</h:li>
 						<h:li>KDF Mode [Counter, feedback, Double Pipeline Iteration]</h:li>
 						<h:li>Salt [0s, random]</h:li>
@@ -2552,7 +2552,7 @@
 						<h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
 						The evaluator shall define a test group for each supported combination of KDF mode, MAC
 						mode, fixed information pattern, derived key length, counter location, counter length, salt
-						method, and five random pairs of shared secrets &amp; auxiliary secrets (if supported) such that
+						method, and five random pairs of shared secrets and auxiliary secrets (if supported) such that
 						collectively the minimum length, maximum length and three random lengths of each are
 						included in each test group. For each test group, the evaluator shall require the implementation
 						under test to derive 25 keys using random data for a shared secret, either a random salt or a salt
@@ -2589,7 +2589,7 @@
 					The purpose of key destruction is "To remove all traces of a cryptographic key so that it cannot be
 					recovered by either physical or electronic means." (NIST SP 800-57 Part 1 Rev. 5).<h:p/>
 					The TOE implements methods for destroying keys and key material as specified in FCS_CKM.6.2.<h:p/>
-					The ST Author shall list all such keys and keying material that are subject 
+					The ST author shall list all such keys and keying material that are subject 
 					to destruction in the first assignment. The description of each key 
 					must also include the types of memory or storage (e.g.: DRAM, SRAM, flash, etc.) where the
 					key may be found while in use and between uses. Cryptographic material that is infeasible to
@@ -2646,7 +2646,7 @@
 									<selectable>
 										<selectables linebreak="yes" onlyone="yes">
 											<selectable>single pass</selectable>
-											<selectable><assignable>ST Author-defined multi-pass</assignable></selectable>
+											<selectable><assignable>ST author-defined multi-pass</assignable></selectable>
 										</selectables><h:br/>
 										overwrite consisting of
 											<selectables onlyone="yes">
@@ -3067,7 +3067,7 @@
 					</TSS>
 					<Guidance/>
 					<Tests>
-						The following tests are conditional based upon the selections made in the SFR.
+						The following tests are conditional based on the selections made in the SFR.
 						The evaluator shall perform the following test or witness respective tests
 						executed by the developer. The tests must be executed on a platform that is as 
 						close as practically possible to the operational platform (but which may be 
@@ -3078,12 +3078,12 @@
 
 						To test the TOE’s ability to derive cryptographic keys from a password using PBKDF2 the
 						evaluator shall perform the Algorithm Functional Test using the following input 
-						parameters:<h:ul>
+						parameters.<h:ul>
 						<h:li>HMAC algorithms [SHA-384, SHA-512]</h:li>
 						<h:li>Iteration count [1-10000000]</h:li>
 						<h:li>Derived Key size [256, 384, 512] bits</h:li>
 						<h:li>Password length [8-128] bytes</h:li>
-						<h:li>Salt length [128-4096] bits in multiples of 8.</h:li></h:ul><h:p/>
+						<h:li>Salt length [128-4096] bits in multiples of 8</h:li></h:ul><h:p/>
 
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
 						For each supported HMAC algorithm, the evaluator shall generate 50 test cases using 
@@ -3091,7 +3091,7 @@
 						<h:li>All supported derived key sizes are tested at least 10 times, </h:li>
 						<h:li>Iteration counts are random values between the supported minimum and maximum
 						values, with the supported minimum and maximum tested at least once each, </h:li>
-						<h:li>Passwords are random byte strings representing upper- and lower-case letters of random
+						<h:li>Passwords are random byte strings representing upper and lower case letters of random
 						supported lengths such that the minimum and maximum lengths are tested at least once, and </h:li>
 						<h:li>Salts are random values between the supported minimum and maximum lengths such that
 						the supported minimum and maximum lengths are both tested at least once. </h:li></h:ul><h:p/>
@@ -4785,13 +4785,13 @@
 					This SFR must be included in the ST if digital signature verification is a service provided by 
 					the TOE to tenant software, or if digital signature verification is used by the TOE itself to 
 					support or implement PP-specified security functionality.<h:p/> 
-					Specifically, this SFR must be included if the ST Author chooses "<h:i>implement an authenticated platform
+					Specifically, this SFR must be included if the ST author chooses "<h:i>implement an authenticated platform
 					firmware update mechanism as described in FPT_TUD_EXT.2</h:i>" or "<h:i>implement a delayed-authentication platform
-					firmware update mechanism as described in FPT_TUD_EXT.3</h:i>" in FPT_TUD_EXT.1; or if the ST Author 
+					firmware update mechanism as described in FPT_TUD_EXT.3</h:i>" in FPT_TUD_EXT.1; or if the ST author 
 					selects "<h:i>verification of a digital signature by trusted code/data</h:i>" in FPT_ROT_EXT.2.<h:p/>	
 					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/>
-					The ST Author should choose the algorithm implemented to perform verification of digital signatures. 
-					For the algorithm chosen, the ST Author should make the appropriate assignments/selections to specify the 
+					The ST author should choose the algorithm implemented to perform verification of digital signatures. 
+					For the algorithm chosen, the ST author should make the appropriate assignments/selections to specify the 
 					parameters that are implemented for that algorithm. In particular, if ECDSA is selected as one of the signature
 					algorithms, the key size specified must match the selection for the curve used in the algorithm.<h:p/>
 					For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the
@@ -5477,7 +5477,7 @@
                 <title>The TSF shall implement the HTTPS protocol that complies with RFC 2818.
                 </title>
                 <note role="application">
-					This SFR is included in the ST if the ST Author selects "<h:i>TLS/HTTPS</h:i>" in 
+					This SFR is included in the ST if the ST author selects "<h:i>TLS/HTTPS</h:i>" in 
 					FTP_ITC_EXT.1.1.<h:p/>
                 	If this SFR is included in the ST, then the <xref to="tls"/>
 					must also be claimed.
@@ -5539,7 +5539,7 @@
                 <title>The TSF shall implement the IPsec architecture as specified in RFC 4301.
                 </title>
                 <note role="application">
-					This SFR must be included in the ST if the ST Author selects "<h:i>IPsec</h:i>" in FTP_ITC_EXT.1.1.<h:p/>
+					This SFR must be included in the ST if the ST author selects "<h:i>IPsec</h:i>" in FTP_ITC_EXT.1.1.<h:p/>
 					If this SFR is claimed, then FCS_COP.1/KeyedHash and FCS_RBG.1 must also be claimed.<h:p/>
 					RFC 4301 calls for an IPsec implementation to protect IP traffic through the use
 					of a Security Policy Database (SPD). The SPD is used to define how IP packets are
@@ -5651,11 +5651,11 @@
                 </title></ext-comp-def-title>				
 				<note role="application">
 					If the TOE is used to connect to a VPN gateway for the purposes of establishing a
-					secure connection to a private network, the ST Author should select
+					secure connection to a private network, the ST author should select
 					tunnel mode. If the TOE uses IPsec to establish an end-to-end connection to
-					another IPsec VPN Client, the ST Author should select transport mode. If
+					another IPsec VPN Client, the ST author should select transport mode. If
 					the TOE uses IPsec to establish a connection to a specific endpoint device for the
-					purpose of secure remote administration, the ST Author should select
+					purpose of secure remote administration, the ST author should select
 					transport mode.<h:p/>
 				</note>
                 <aactivity level="element">
@@ -5828,13 +5828,13 @@
 					<title>The TSF shall ensure that <assignable>key exchange protocol lifetime configuration rules</assignable>.
 					</title></ext-comp-def-title>
 		    <note role="application">
-					The ST Author is afforded a selection that allows the
-					ST Author to specify which entity is responsible for "configuring" the life of the
+					The ST author is afforded a selection that allows the
+					ST author to specify which entity is responsible for "configuring" the life of the
 					SA. An implementation that allows an administrator to configure the client or a
 					VPN gateway that pushes the SA lifetime down to the client are both acceptable.<h:p/>
 					As far as SA lifetimes are concerned, the TOE can limit the lifetime based on the
 					number of bytes transmitted, or the number of packets transmitted. Either
-					packet-based or volume-based SA lifetimes are acceptable; the ST Author makes
+					packet-based or volume-based SA lifetimes are acceptable; the ST author makes
 					the appropriate selection to indicate which type of lifetime limits are supported.<h:p/>
 					For IKEv2, there are no
 					hard-coded limits, therefore it is required that an administrator be able to
@@ -5900,7 +5900,7 @@
 					Since the implementation may allow different Diffie-Hellman groups to be
 					negotiated for use in forming the SAs, the assignments in FCS_IPSEC_EXT.1.9
 					and FCS_IPSEC_EXT.1.10 may contain multiple values. For each DH group
-					supported, the ST Author consults Table 2 in 800-57 to determine the "bits of
+					supported, the ST author consults Table 2 in 800-57 to determine the "bits of
 					security" associated with the DH group. Each unique value is then used to fill in
 					the assignment (for 1.9 they are doubled; for 1.10 they are inserted directly into
 					the assignment). For example, suppose the implementation supports DH group
@@ -5976,7 +5976,7 @@
                 <note role="application">
 					At least one public-key-based Peer Authentication method is required in order to
 					conform to this PP. One or more of the public key schemes is chosen by
-					the ST Author to reflect what is implemented. The ST Author also ensures that
+					the ST author to reflect what is implemented. The ST author also ensures that
 					appropriate FCS requirements reflecting the algorithms used (and key
 					generation capabilities, if provided) are listed to support those methods. 
 					Applicable claims from the <xref to="X509"/> are made to support X.509 
@@ -6000,7 +6000,7 @@
 						to the reference identifier. This description shall include whether the certificate presented identifier is
 						compared to the ID payload presented identifier, which field(s) of the certificate are used as the presented
 						identifier (DN, Common Name, or SAN) and, if multiple fields are supported, the logical order comparison.
-						If the ST Author assigned an additional identifier type, the TSS description shall also include a description
+						If the ST author assigned an additional identifier type, the TSS description shall also include a description
 						of that type and the method by which that type is compared to the peer’s presented certificate.
                     </TSS>
 					<Guidance>
@@ -6097,7 +6097,7 @@
 					Fully Qualified Domain Name (FQDN), user FQDN, or Distinguished Name (DN).
 					In the future, the TOE will be required to support all of these identifier types. The
 					TOE is expected to support as many IP address formats (IPv4 and IPv6) as IP
-					versions supported by the TOE in general. The ST Author may assign additional
+					versions supported by the TOE in general. The ST author may assign additional
 					supported identifier types in the second selection.
 				</note>
                 <aactivity level="element">
@@ -6541,9 +6541,9 @@
 					This SFR must be claimed if the TOE includes a Dedicated Security Component that provides 
 					storage services, such as a TPM.<h:p/>
 					If the protected storage is implemented in software that is protected as required by
-					FCS_STG_EXT.2, the ST Author is expected to select "<h:i>software-based</h:i>." 
+					FCS_STG_EXT.2, the ST author is expected to select "<h:i>software-based</h:i>." 
 					If "<h:i>software-based</h:i>" is selected,
-					the ST Author is expected to select "<h:i>software-based key storage</h:i>" in FCS_STG_EXT.2
+					the ST author is expected to select "<h:i>software-based key storage</h:i>" in FCS_STG_EXT.2
 					and also claim FCS_STG_EXT.3.<h:p/>
 					If this SFR is included in the ST, then FCS_CKM.6 must also be claimed.
 				</note>
@@ -6557,7 +6557,7 @@
 							<selectables>
 								<selectable id="sel-fcs-stg-ext-1e2-ak">asymmetric</selectable>
 								<selectable id="sel-fcs-stg-ext-1e2-sk">symmetric</selectable>
-								</selectables>keys/secrets</selectable>
+								</selectables> keys/secrets</selectable>
 					</selectables> upon request of 
 					<selectables>
 						<selectable>a client application</selectable>
@@ -7185,10 +7185,10 @@
 					Encryption Key for DAR protection and key storage protection and the anti-hammer requirement (FIA_TRT_EXT.1)
 					addresses the threat of attackers with physical access using much smaller and less complex
 					passwords.<h:p/>
-					The ST Author selects the character set: either the upper and lower case Basic Latin letters 
+					The ST author selects the character set: either the upper and lower case Basic Latin letters 
 					or another assigned character set containing at least 52 characters. The assigned character
 					set must be well defined: either according to an international encoding standard (such as
-					Unicode) or defined in the assignment by the ST Author. The ST Author also selects the special
+					Unicode) or defined in the assignment by the ST author. The ST author also selects the special
 					characters that are supported by TOE; they may optionally list additional special characters
 					supported using the assignment.
 				</note>
@@ -7245,7 +7245,7 @@
 					number or frequency of administrator authentication attempts.<h:p/>
 					The authentication throttling applies to all authentication mechanisms selected in
 					FIA_UAU.5.1. The user authentication attempts in this requirement are attempts to guess the 
-					Authentication Factor. The developer can implement the timing of the delays in the 
+					authentication factor. The developer can implement the timing of the delays in the 
 					requirements using unequal or equal timing of delays. The minimum delay specified in this 
 					requirement provides defense against brute forcing.
 				</note>
@@ -8329,7 +8329,7 @@
 				<note role="application">
 					Roots of trust are components that constitute a set of unconditionally trusted functions. The above are acceptable
 					roots of trust for platform firmware integrity.<h:p/>
-					The ST Author must select the root of trust used to ensure the integrity of the first platform firmware that executes. The integrity
+					The ST author must select the root of trust used to ensure the integrity of the first platform firmware that executes. The integrity
 					of subsequently executed platform firmware must be traceable back to this root or to some other root as specified in FPT_ROT_EXT.2.
 					This SFR should be iterated for additional TOE roots (for example, a management controller or firmware executed from 
 					an add-in card).<h:p/>
@@ -8560,24 +8560,24 @@
 					The component manifest and hardware IDs provide proof of provenance for the TOE and its hardware components.<h:p/>
 					For purposes of this requirement, hardware identities can be verified once on first boot, on every boot, when new hardware is detected, 
 					or during normal operation of the platform - as long as the hardware integrity is verified before the component or device is used.<h:p/>
-					The ST Author lists the hardware components for which the integrity is checked, and the methods used for conducting the checks. 
+					The ST author lists the hardware components for which the integrity is checked, and the methods used for conducting the checks. 
 					"Critical components" generally would include chassis, motherboards, CPUs, network cards, memory chips, hard drives, controllers, 
 					graphics processors, and service controllers.
 				</note>
 			</f-element>
 			<f-element id="fpt-rot-ext-3e2">
 				<title>
-					The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.3.1 fails:
+					The TOE shall take the following actions if an integrity check specified in FPT_ROT_EXT.3.1 fails.
 					<h:ol type="1">
 						<h:li>Halt,</h:li>
 						<h:li>Notify an 
 							<selectables>
-								<selectable id="sel-rot3-admin-notify">Administrator</selectable>
-								<selectable>User</selectable>
+								<selectable id="sel-rot3-admin-notify">administrator</selectable>
+								<selectable>user</selectable>
 							</selectables> by
 							<selectables>
 								<selectable id="sel-rot3-audit">generating an audit event</selectable>
-								<selectable><assignable>other notification method(s)</assignable></selectable>
+								<selectable><assignable>other notification methods</assignable></selectable>
 							</selectables>, and</h:li>
 						<h:li><selectables linebreak="yes" onlyone="yes">
 							<selectable>Stop all execution and shut down</selectable>
@@ -8588,11 +8588,11 @@
 						<selectable id="sel-rot3-admin-config">in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
 							<selectables>
-								<selectable id="sel-rot3-admin-det">Administrator</selectable>
-								<selectable id="sel-rot3-user-det">User</selectable>
+								<selectable id="sel-rot3-admin-det">administrator</selectable>
+								<selectable id="sel-rot3-user-det">user</selectable>
 							</selectables></selectable>
-					</selectables></h:li>
-					</h:ol>.	
+					</selectables></h:li>.
+					</h:ol>	
 				</title>
 				<ext-comp-def-title>
 				<title>
@@ -8601,8 +8601,8 @@
 						<h:li>Halt,</h:li>
 						<h:li>Notify an 
 							<selectables>
-								<selectable>Administrator</selectable>
-								<selectable>User</selectable>
+								<selectable>administrator</selectable>
+								<selectable>user</selectable>
 							</selectables> by <assignable>notification method</assignable>, and</h:li>
 						<h:li><selectables linebreak="yes" onlyone="yes">
 							<selectable>Stop all execution and shut down</selectable>
@@ -8613,11 +8613,11 @@
 						<selectable>in accordance with administrator-configurable policy</selectable>
 						<selectable>by express determination of an 
 							<selectables>
-								<selectable>Administrator</selectable>
-								<selectable>User</selectable>
+								<selectable>administrator</selectable>
+								<selectable>user</selectable>
 							</selectables></selectable>
-					</selectables></h:li>
-					</h:ol>.	
+					</selectables></h:li>.
+					</h:ol>	
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
@@ -8689,7 +8689,7 @@
 						<h:li>The TOE implements a recovery mechanism for firmware corruption not necessarily related to 
 							integrity or update failure.</h:li>
 					</h:ul>
-					If the ST Author selects "<h:i>the secure local update mechanism described in FPT_TUD_EXT.4</h:i>," then 
+					If the ST author selects "<h:i>the secure local update mechanism described in FPT_TUD_EXT.4</h:i>," then 
 					FPT_TUD_EXT.4 must be claimed in the ST.<h:p/>
 					As indicated above, in addition to integrity or update failure, the TOE may use a recovery 
 					mechanism to deal with non-security-related failures, such as a power outage during update or a 
@@ -8971,7 +8971,7 @@
 				</title>
 				</ext-comp-def-title>
 				<note role="application">
-					The ST Author should select "<h:i>the version number...</h:i>" if the TSF supports rollback prevention. That is, the TSF
+					The ST author should select "<h:i>the version number...</h:i>" if the TSF supports rollback prevention. That is, the TSF
 					does not allow "update" to an older version of the platform firmware. In general, rollback should be permitted
 					only through a secure local update mechanism at the express direction of an physically present administrator or user.
 				</note>
@@ -9042,11 +9042,11 @@
 					A hash of the public key may be stored if a copy of the public key is provided with firmware
 					update images. In this case, the update mechanism hashes the public key provided with the update 
 					image, and ensures that it matches a hash which appears in the key store before using the provided public 
-					key to verify the signature of the update image. If the hash of the public key is selected, the ST Author may
+					key to verify the signature of the update image. If the hash of the public key is selected, the ST author may
 					iterate the FCS_COP.1/Hash requirement to specify the hashing functions used.<h:p/>
 					An indication of success or failure can be generation of an audit event by a management subsystem, a beep code,
 					an updated version number on a splash screen, or simple failure to continue functioning.<h:p/>
-					If the update mechanism generates audit events, the ST Author must make the appropriate selections
+					If the update mechanism generates audit events, the ST author must make the appropriate selections
 					from the audit events table (<xref g="t-audit-sel-based"/>).<h:p/>
 					In the selection "by express determination of a user," the "user" could be more properly expressed as 
 					the "operator." It can be either a user or an administrator, but the distinction is not important in the
@@ -9145,7 +9145,7 @@
 					being executed or used. This update mechanism takes advantage of the existing FPT_ROT_EXT.2
 					requirement to avoid having to verify the integrity and authenticity of an update package
 					at install time.<h:p/>
-					The ST Author should select "<h:i>the version number of the platform firmware update is more recent than 
+					The ST author should select "<h:i>the version number of the platform firmware update is more recent than 
 					the version number of the previously installed platform firmware</h:i>" if the TSF supports rollback prevention.
 				</note>
 			</f-element>
@@ -9443,12 +9443,12 @@
 					or if the platform is administered remotely. That is, if "<h:i>a trusted channel as specified in FTP_ITC_EXT.1</h:i>" 
 					is selected in FAU_STG.1.1, if "<h:i>physically protected channels as specified in FTP_ITP_EXT.1</h:i>" is 
 					selected in FDP_ITC_EXT.1.1, or if "<h:i>remotely</h:i>" is selected in Management Function 1 in FMT_SMF.1.1.<h:p/>
-					If the ST Author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TOE must be validated against the 
+					If the ST author selects either "<h:i>TLS</h:i>" or "<h:i>HTTPS</h:i>," the TOE must be validated against the 
 					<xref to="tls"/>. This PP does not mandate that a product implement TLS with mutual authentication,
 					but if the product includes the capability to perform TLS with mutual authentication, then
 					mutual authentication must be included within the TOE boundary.<h:p/>
-					If the ST Author selects "<h:i>SSH</h:i>," the TOE must conform to <xref to="ssh"/>.<h:p/>
-					If the ST Author selects "<h:i>certificate-based authentication of the remote peer</h:i>," then the TOE must conform to <xref to="X509"/>.<h:p/>
+					If the ST author selects "<h:i>SSH</h:i>," the TOE must conform to <xref to="ssh"/>.<h:p/>
+					If the ST author selects "<h:i>certificate-based authentication of the remote peer</h:i>," then the TOE must conform to <xref to="X509"/>.<h:p/>
 					Claims from this package are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
 					<h:p/>	
 					If the TSF implements a protocol that requires the validation of a certificate presented by an
