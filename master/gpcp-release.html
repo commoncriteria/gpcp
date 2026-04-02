@@ -1679,7 +1679,7 @@ The following sections list Common Criteria and technology terms used in this do
     </span><span class="note">
 					Roots of trust are components that constitute a set of unconditionally trusted functions. The above are acceptable
 					roots of trust for platform firmware integrity.<p></p>
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author must select the root of trust used to ensure the integrity of the first platform firmware that executes. The integrity
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must select the root of trust used to ensure the integrity of the first platform firmware that executes. The integrity
 					of subsequently executed platform firmware must be traceable back to this root or to some other root as specified in <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a>.
 					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> should be iterated for additional <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> roots (for example, a management controller or firmware executed from 
 					an add-in card).<p></p>
@@ -2835,8 +2835,8 @@ The following sections list Common Criteria and technology terms used in this do
 						</table><p></p>						
 						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Counter 
 						Mode/KDF2, the evaluator shall perform the Counter <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Algorithm Functional
-						Test using the following input parameters:<ul>
-						<li>Pseudo Random Function (PRF) [<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-384, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
+						Test using the following input parameters.<ul>
+						<li>Pseudorandom Function (PRF) [<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-384, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
 						<li>Derived key length [256, 384, 512] bits</li>
 						<li>Location of the counter [after fixed data, before fixed data, middle fixed data]</li>
 						<li>Counter length [8, 16, 24, 32] bits</li></ul><p></p>
@@ -2870,12 +2870,12 @@ The following sections list Common Criteria and technology terms used in this do
 						</table><p></p>						
 						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Feedback 
 						Mode/KDF3, the evaluator shall perform the Feedback <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Algorithm Functional
-						Test using the following input parameters:<ul>
+						Test using the following input parameters.<ul>
 						<li>Pseudorandom Function (PRF) [<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-384, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
 						<li>Derived key length [256, 384, 512] bits</li>
 						<li>Location of the counter [none, after fixed data, before fixed data, before iterator]</li>
 						<li>Counter length [0, 8, 16, 24, 32] bits</li></ul><p></p>		
-						<i><b>Feedback <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Algorithm Functional Test</b></i><br/>
+						<br/><i><b>Feedback <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Algorithm Functional Test</b></i><br/>
 						For each supported combination of the above input parameters the evaluator 
 						shall require the implementation under test to derive two keys using random 
 						data. The evaluator shall compare the resulting keys with keys generated using 
@@ -2905,8 +2905,8 @@ The following sections list Common Criteria and technology terms used in this do
 						</table><p></p>						
 						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> in Double Pipeline Iteration  
 						Mode/KDF4, the evaluator shall perform the Double Pipeline Iteration <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Algorithm Functional
-						Test using the following input parameters:<ul>
-						<li>Pseudo Random Function (PRF) [<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-384, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
+						Test using the following input parameters.<ul>
+						<li>Pseudorandom Function (PRF) [<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-384, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
 						<li>Derived key length [256, 384, 512] bits</li>
 						<li>Location of the counter [none, after fixed data, before fixed data, before iterator]</li>
 						<li>Counter length [0, 8, 16, 24, 32] bits</li></ul><p></p>
@@ -2980,7 +2980,7 @@ The following sections list Common Criteria and technology terms used in this do
 						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys by hashing a shared 
 						secret (a.k.a. One-Step HASH-based Key Derivation), the evaluator shall perform 
 						the Algorithm Functional Test using the following input
-						parameters:<ul>
+						parameters.<ul>
 						<li>Auxiliary Function [<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512]</li>
 						<li>Derived key length [256, 384, 512] bits</li></ul><p></p>
 						<br/><i><b>Algorithm Functional Test</b></i><br/>
@@ -3012,7 +3012,7 @@ The following sections list Common Criteria and technology terms used in this do
 						</table><p></p>			
 						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using One-Step
 						<abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>-based Key Derivation, the evaluator shall perform the Algorithm Functional
-						Test using the following input parameters:<ul>
+						Test using the following input parameters.<ul>
 						<li>Auxiliary Function [<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-384, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
 						<li>Salt [0s, random]</li>
 						<li>Derived key length [256, 384, 512] bits</li>
@@ -3049,7 +3049,7 @@ The following sections list Common Criteria and technology terms used in this do
 						</table><p></p>			
 						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys using Two-Step <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>-based Key Derivation,
 						the evaluator shall perform the Algorithm Functional Test using the following input
-						parameters:<ul>
+						parameters.<ul>
 						<li><abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> mode [<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-384, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-512]</li>
 						<li><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> Mode [Counter, feedback, Double Pipeline Iteration]</li>
 						<li>Salt [0s, random]</li>
@@ -3062,7 +3062,7 @@ The following sections list Common Criteria and technology terms used in this do
 						<br/><i><b>Algorithm Functional Test</b></i><br/>
 						The evaluator shall define a test group for each supported combination of <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr> mode, <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr>
 						mode, fixed information pattern, derived key length, counter location, counter length, salt
-						method, and five random pairs of shared secrets &amp; auxiliary secrets (if supported) such that
+						method, and five random pairs of shared secrets and auxiliary secrets (if supported) such that
 						collectively the minimum length, maximum length and three random lengths of each are
 						included in each test group. For each test group, the evaluator shall require the implementation
 						under test to derive 25 keys using random data for a shared secret, either a random salt or a salt
@@ -3113,7 +3113,7 @@ The following sections list Common Criteria and technology terms used in this do
 						interface-based mitigations and secret salts.
 					</div></div><div class="eacategory">Guidance</div><div class="ea">
 			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
-						The following tests are conditional based upon the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.
+						The following tests are conditional based on the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.
 						The evaluator shall perform the following test or witness respective tests
 						executed by the developer. The tests must be executed on a platform that is as 
 						close as practically possible to the operational platform (but which may be 
@@ -3124,12 +3124,12 @@ The following sections list Common Criteria and technology terms used in this do
 
 						To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys from a password using PBKDF2 the
 						evaluator shall perform the Algorithm Functional Test using the following input 
-						parameters:<ul>
+						parameters.<ul>
 						<li><abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> algorithms [<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512]</li>
 						<li>Iteration count [1-10000000]</li>
 						<li>Derived Key size [256, 384, 512] bits</li>
 						<li>Password length [8-128] bytes</li>
-						<li>Salt length [128-4096] bits in multiples of 8.</li></ul><p></p>
+						<li>Salt length [128-4096] bits in multiples of 8</li></ul><p></p>
 
 						<br/><b>Algorithm Functional Test</b><p></p>
 						For each supported <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> algorithm, the evaluator shall generate 50 test cases using 
@@ -3137,7 +3137,7 @@ The following sections list Common Criteria and technology terms used in this do
 						<li>All supported derived key sizes are tested at least 10 times, </li>
 						<li>Iteration counts are random values between the supported minimum and maximum
 						values, with the supported minimum and maximum tested at least once each, </li>
-						<li>Passwords are random byte strings representing upper- and lower-case letters of random
+						<li>Passwords are random byte strings representing upper and lower case letters of random
 						supported lengths such that the minimum and maximum lengths are tested at least once, and </li>
 						<li>Salts are random values between the supported minimum and maximum lengths such that
 						the supported minimum and maximum lengths are both tested at least once. </li></ul><p></p>
@@ -3161,16 +3161,16 @@ The following sections list Common Criteria and technology terms used in this do
 					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be claimed if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> includes a Dedicated Security Component that provides 
 					storage services, such as a <abbr class="dyn-abbr"><a href="#abbr_TPM">TPM</a></abbr>.<p></p>
 					If the protected storage is implemented in software that is protected as required by
-					<a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author is expected to select "<i>software-based</i>." 
+					<a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author is expected to select "<i>software-based</i>." 
 					If "<i>software-based</i>" is selected,
-					the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author is expected to select "<i>software-based key storage</i>" in <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>
+					the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author is expected to select "<i>software-based key storage</i>" in <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>
 					and also claim <a href="#FCS_STG_EXT.3">FCS_STG_EXT.3</a>.<p></p>
 					If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_CKM.6">FCS_CKM.6</a> must also be claimed.
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FCS_STG_EXT.1.2"><a href="#FCS_STG_EXT.1.2" class="abbr">FCS_STG_EXT.1.2</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall support the capability of 
 					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="sel-fcs-stg-ext-1e2-import">importing keys/secrets into the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_469">causing the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to generate 
-							[<b>selection</b>: <span class="selectable-content" id="sel-fcs-stg-ext-1e2-ak">asymmetric</span>, <span class="selectable-content" id="sel-fcs-stg-ext-1e2-sk">symmetric</span>]keys/secrets</span></li></ul>] upon request of 
+							[<b>selection</b>: <span class="selectable-content" id="sel-fcs-stg-ext-1e2-ak">asymmetric</span>, <span class="selectable-content" id="sel-fcs-stg-ext-1e2-sk">symmetric</span>] keys/secrets</span></li></ul>] upon request of 
 					[<b>selection</b>: <span class="selectable-content" id="_s_472">a client application</span>, <span class="selectable-content" id="_s_473">an administrator</span>].
 				<div class="appnote"><span class="note-header">Application
       Note:
@@ -3287,7 +3287,7 @@ The following sections list Common Criteria and technology terms used in this do
 					number or frequency of administrator authentication attempts.<p></p>
 					The authentication throttling applies to all authentication mechanisms selected in
 					<a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>. The user authentication attempts in this requirement are attempts to guess the 
-					Authentication Factor. The developer can implement the timing of the delays in the 
+					authentication factor. The developer can implement the timing of the delays in the 
 					requirements using unequal or equal timing of delays. The minimum delay specified in this 
 					requirement provides defense against brute forcing.
 				</span></div></div></div>
@@ -3336,22 +3336,22 @@ The following sections list Common Criteria and technology terms used in this do
 					The component manifest and hardware IDs provide proof of provenance for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and its hardware components.<p></p>
 					For purposes of this requirement, hardware identities can be verified once on first boot, on every boot, when new hardware is detected, 
 					or during normal operation of the platform - as long as the hardware integrity is verified before the component or device is used.<p></p>
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author lists the hardware components for which the integrity is checked, and the methods used for conducting the checks. 
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author lists the hardware components for which the integrity is checked, and the methods used for conducting the checks. 
 					"Critical components" generally would include chassis, motherboards, CPUs, network cards, memory chips, hard drives, controllers, 
 					graphics processors, and service controllers.
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FPT_ROT_EXT.3.2"><a href="#FPT_ROT_EXT.3.2" class="abbr">FPT_ROT_EXT.3.2</a></div><div class="reqdesc">
-					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall take the following actions if an integrity check specified in <a href="#FPT_ROT_EXT.3.1">FPT_ROT_EXT.3.1</a> fails:
+					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall take the following actions if an integrity check specified in <a href="#FPT_ROT_EXT.3.1">FPT_ROT_EXT.3.1</a> fails.
 					<ol type="1">
 						<li>Halt,</li>
 						<li>Notify an 
-							[<b>selection</b>: <span class="selectable-content" id="sel-rot3-admin-notify">Administrator</span>, <span class="selectable-content" id="_s_581">User</span>] by
+							[<b>selection</b>: <span class="selectable-content" id="sel-rot3-admin-notify">administrator</span>, <span class="selectable-content" id="_s_581">user</span>] by
 							[<b>selection</b>: <span class="selectable-content" id="sel-rot3-audit">generating an audit event</span>, <span class="selectable-content" id="_s_583">[<b>assignment</b>: 
-     <span class="assignable-content">other notification method(s)</span>]</span>], and</li>
+     <span class="assignable-content">other notification methods</span>]</span>], and</li>
 						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_584">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_585">Continue execution without the integrity-compromised component</span></li><li style=""><span class="selectable-content" id="_s_586">Continue execution</span></li></ul>]<br/>
 					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="sel-rot3-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_588">by express determination of an 
-							[<b>selection</b>: <span class="selectable-content" id="sel-rot3-admin-det">Administrator</span>, <span class="selectable-content" id="sel-rot3-user-det">User</span>]</span></li></ul>]</li>
-					</ol>.	
+							[<b>selection</b>: <span class="selectable-content" id="sel-rot3-admin-det">administrator</span>, <span class="selectable-content" id="sel-rot3-user-det">user</span>]</span></li></ul>]</li>.
+					</ol>	
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -3447,7 +3447,7 @@ The following sections list Common Criteria and technology terms used in this do
                 <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author should include this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> generates audit events for integrity verification 
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should include this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> generates audit events for integrity verification 
 					or boot failures as indicated by the appropriate selections in <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a>, <a href="#FPT_ROT_EXT.3">FPT_ROT_EXT.3</a>,
 					<a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a>, or <a href="#FPT_TUD_EXT.3.4">FPT_TUD_EXT.3.4</a>; or if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports the Server (basic or enhanced), <abbr class="dyn-abbr"><a href="#abbr_CSfC">CSfC</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_EUD">EUD</a></abbr>, or
 					Enterprise Desktop use cases.<p></p>
@@ -3514,10 +3514,10 @@ The following sections list Common Criteria and technology terms used in this do
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i>trusted channel</i>" and includes <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> offloads
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "<i>trusted channel</i>" and includes <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> offloads
 					audit data to external <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entity over a network connection. Protocols used for implementing the trusted
 					channel must be selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>. <p></p>
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i>removable media</i>" if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports offload of audit data using 
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "<i>removable media</i>" if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports offload of audit data using 
 					removable media such as thumb drives or disks. Note that the <abbr class="dyn-abbr"><a href="#abbr_CSfC">CSfC</a></abbr> Use Case prohibits the
 					use of removable media.
 				</span></div></div></div>
@@ -4289,7 +4289,7 @@ The following sections list Common Criteria and technology terms used in this do
 					The purpose of key destruction is "To remove all traces of a cryptographic key so that it cannot be
 					recovered by either physical or electronic means." (<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-57 Part 1 Rev. 5).<p></p>
 					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements methods for destroying keys and key material as specified in <a href="#FCS_CKM.6.2">FCS_CKM.6.2</a>.<p></p>
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author shall list all such keys and keying material that are subject 
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall list all such keys and keying material that are subject 
 					to destruction in the first assignment. The description of each key 
 					must also include the types of memory or storage (e.g.: DRAM, SRAM, flash, etc.) where the
 					key may be found while in use and between uses. Cryptographic material that is infeasible to
@@ -4314,7 +4314,7 @@ The following sections list Common Criteria and technology terms used in this do
 										[<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_169">zeroes</span>, <span class="selectable-content" id="_s_170">ones</span>, <span class="selectable-content" id="_s_171">pseudorandom pattern</span>, <span class="selectable-content" id="_s_172">a new value of a key of the same size</span>, <span class="selectable-content" id="_s_173">[<b>assignment</b>: 
      <span class="assignable-content">some value that does not contain any keying material</span>]</span>]</span></li><li style=""><span class="selectable-content" id="_s_174">secure block erase</span></li><li style=""><span class="selectable-content" id="_s_175">ONFI Sanitize command</span></li><li style=""><span class="selectable-content" id="_s_176">vendor-specific secure erase command</span></li><li style=""><span class="selectable-content" id="_s_177">cryptographic erase</span></li></ul>]</span></li><li style=""><span class="selectable-content" id="_s_178">that does not employ a wear-leveling algorithm, the destruction shall be executed by a
 								[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_179">[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_180">single pass</span></li><li style=""><span class="selectable-content" id="_s_181">[<b>assignment</b>: 
-     <span class="assignable-content"><abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author-defined multi-pass</span>]</span></li></ul>]<br/>
+     <span class="assignable-content"><abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author-defined multi-pass</span>]</span></li></ul>]<br/>
 										overwrite consisting of
 											[<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_182">zeroes</span>, <span class="selectable-content" id="_s_183">ones</span>, <span class="selectable-content" id="_s_184">pseudorandom pattern</span>, <span class="selectable-content" id="_s_185">a new value of a key of the same size</span>, <span class="selectable-content" id="_s_186">[<b>assignment</b>: 
      <span class="assignable-content">some value that does not contain any keying material</span>]</span>]
@@ -6109,13 +6109,13 @@ The following sections list Common Criteria and technology terms used in this do
 					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if digital signature verification is a service provided by 
 					the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software, or if digital signature verification is used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself to 
 					support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality.<p></p> 
-					Specifically, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author chooses "<i>implement an authenticated platform
+					Specifically, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author chooses "<i>implement an authenticated platform
 					firmware update mechanism as described in <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a></i>" or "<i>implement a delayed-authentication platform
-					firmware update mechanism as described in <a href="#FPT_TUD_EXT.3">FPT_TUD_EXT.3</a></i>" in <a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a>; or if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author 
+					firmware update mechanism as described in <a href="#FPT_TUD_EXT.3">FPT_TUD_EXT.3</a></i>" in <a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a>; or if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author 
 					selects "<i>verification of a digital signature by trusted code/data</i>" in <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a>.<p></p>	
 					If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> must also be claimed.<p></p>
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author should choose the algorithm implemented to perform verification of digital signatures. 
-					For the algorithm chosen, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author should make the appropriate assignments/selections to specify the 
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should choose the algorithm implemented to perform verification of digital signatures. 
+					For the algorithm chosen, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should make the appropriate assignments/selections to specify the 
 					parameters that are implemented for that algorithm. In particular, if <abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> is selected as one of the signature
 					algorithms, the key size specified must match the selection for the curve used in the algorithm.<p></p>
 					For elliptic curve-based schemes, the key size refers to the binary logarithm (log2) of the order of the
@@ -6779,7 +6779,7 @@ The following sections list Common Criteria and technology terms used in this do
                 <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></i>" in 
+					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "<i><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></i>" in 
 					<a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.<p></p>
                 	If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then the <a href="https://www.niap-ccevs.org/static_html/protection-profile/465/Functional%20Package%20for%20Transport%20Layer%20Security/index.html">Functional Package for Transport Layer Security (TLS),
         version 
@@ -6815,7 +6815,7 @@ The following sections list Common Criteria and technology terms used in this do
                 <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i>IPsec</i>" in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.<p></p>
+					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "<i>IPsec</i>" in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.<p></p>
 					If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed, then <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> and <a href="#FCS_RBG.1">FCS_RBG.1</a> must also be claimed.<p></p>
 					<abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4301 calls for an IPsec implementation to protect <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic through the use
 					of a Security Policy Database (<abbr class="dyn-abbr"><a href="#abbr_SPD">SPD</a></abbr>). The <abbr class="dyn-abbr"><a href="#abbr_SPD">SPD</a></abbr> is used to define how <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> packets are
@@ -6836,11 +6836,11 @@ The following sections list Common Criteria and technology terms used in this do
       Note:
     </span><span class="note">
 					If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is used to connect to a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> gateway for the purposes of establishing a
-					secure connection to a private network, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author should select
+					secure connection to a private network, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should select
 					tunnel mode. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses IPsec to establish an end-to-end connection to
-					another IPsec <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Client, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author should select transport mode. If
+					another IPsec <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Client, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should select transport mode. If
 					the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses IPsec to establish a connection to a specific endpoint device for the
-					purpose of secure remote administration, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author should select
+					purpose of secure remote administration, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should select
 					transport mode.<p></p>
 				</span></div></div></div>
             <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.3"><a href="#FCS_IPSEC_EXT.1.3" class="abbr">FCS_IPSEC_EXT.1.3</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall have a nominal, final entry in the <abbr class="dyn-abbr"><a href="#abbr_SPD">SPD</a></abbr> that matches anything that is otherwise unmatched, 
@@ -6864,13 +6864,13 @@ The following sections list Common Criteria and technology terms used in this do
                 <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author is afforded a selection that allows the
-					<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author to specify which entity is responsible for "configuring" the life of the
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author is afforded a selection that allows the
+					<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author to specify which entity is responsible for "configuring" the life of the
 					<abbr class="dyn-abbr"><a href="#abbr_SA">SA</a></abbr>. An implementation that allows an administrator to configure the client or a
 					<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> gateway that pushes the <abbr class="dyn-abbr"><a href="#abbr_SA">SA</a></abbr> lifetime down to the client are both acceptable.<p></p>
 					As far as <abbr class="dyn-abbr"><a href="#abbr_SA">SA</a></abbr> lifetimes are concerned, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can limit the lifetime based on the
 					number of bytes transmitted, or the number of packets transmitted. Either
-					packet-based or volume-based <abbr class="dyn-abbr"><a href="#abbr_SA">SA</a></abbr> lifetimes are acceptable; the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author makes
+					packet-based or volume-based <abbr class="dyn-abbr"><a href="#abbr_SA">SA</a></abbr> lifetimes are acceptable; the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author makes
 					the appropriate selection to indicate which type of lifetime limits are supported.<p></p>
 					For IKEv2, there are no
 					hard-coded limits, therefore it is required that an administrator be able to
@@ -6893,7 +6893,7 @@ The following sections list Common Criteria and technology terms used in this do
 					Since the implementation may allow different Diffie-Hellman groups to be
 					negotiated for use in forming the SAs, the assignments in <a href="#FCS_IPSEC_EXT.1.9">FCS_IPSEC_EXT.1.9</a>
 					and <a href="#FCS_IPSEC_EXT.1.10">FCS_IPSEC_EXT.1.10</a> may contain multiple values. For each <abbr class="dyn-abbr"><a href="#abbr_DH">DH</a></abbr> group
-					supported, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author consults Table 2 in 800-57 to determine the "bits of
+					supported, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author consults Table 2 in 800-57 to determine the "bits of
 					security" associated with the <abbr class="dyn-abbr"><a href="#abbr_DH">DH</a></abbr> group. Each unique value is then used to fill in
 					the assignment (for 1.9 they are doubled; for 1.10 they are inserted directly into
 					the assignment). For example, suppose the implementation supports <abbr class="dyn-abbr"><a href="#abbr_DH">DH</a></abbr> group
@@ -6927,7 +6927,7 @@ The following sections list Common Criteria and technology terms used in this do
     </span><span class="note">
 					At least one public-key-based Peer Authentication method is required in order to
 					conform to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>. One or more of the public key schemes is chosen by
-					the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author to reflect what is implemented. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author also ensures that
+					the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author to reflect what is implemented. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author also ensures that
 					appropriate FCS requirements reflecting the algorithms used (and key
 					generation capabilities, if provided) are listed to support those methods. 
 					Applicable claims from the <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
@@ -6950,7 +6950,7 @@ The following sections list Common Criteria and technology terms used in this do
 					Fully Qualified Domain Name (<abbr class="dyn-abbr"><a href="#abbr_FQDN">FQDN</a></abbr>), user <abbr class="dyn-abbr"><a href="#abbr_FQDN">FQDN</a></abbr>, or Distinguished Name (<abbr class="dyn-abbr"><a href="#abbr_DN">DN</a></abbr>).
 					In the future, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will be required to support all of these identifier types. The
 					<abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is expected to support as many <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> address formats (IPv4 and IPv6) as <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr>
-					versions supported by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in general. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author may assign additional
+					versions supported by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in general. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author may assign additional
 					supported identifier types in the second selection.
 				</span></div></div></div>
             <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.13"><a href="#FCS_IPSEC_EXT.1.13" class="abbr">FCS_IPSEC_EXT.1.13</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall not establish an <abbr class="dyn-abbr"><a href="#abbr_SA">SA</a></abbr> if the presented identifier does not match the
@@ -7257,7 +7257,7 @@ The following sections list Common Criteria and technology terms used in this do
 						to the reference identifier. This description shall include whether the certificate presented identifier is
 						compared to the ID payload presented identifier, which field(s) of the certificate are used as the presented
 						identifier (<abbr class="dyn-abbr"><a href="#abbr_DN">DN</a></abbr>, Common Name, or <abbr class="dyn-abbr"><a href="#abbr_SAN">SAN</a></abbr>) and, if multiple fields are supported, the logical order comparison.
-						If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author assigned an additional identifier type, the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> description shall also include a description
+						If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author assigned an additional identifier type, the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> description shall also include a description
 						of that type and the method by which that type is compared to the peer’s presented certificate.
                     </div>
 					<div class="eacategory">Guidance</div><div class="ea">
@@ -7981,10 +7981,10 @@ The following sections list Common Criteria and technology terms used in this do
 					Encryption Key for <abbr class="dyn-abbr"><a href="#abbr_DAR">DAR</a></abbr> protection and key storage protection and the anti-hammer requirement (<a href="#FIA_TRT_EXT.1">FIA_TRT_EXT.1</a>)
 					addresses the threat of attackers with physical access using much smaller and less complex
 					passwords.<p></p>
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects the character set: either the upper and lower case Basic Latin letters 
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects the character set: either the upper and lower case Basic Latin letters 
 					or another assigned character set containing at least 52 characters. The assigned character
 					set must be well defined: either according to an international encoding standard (such as
-					Unicode) or defined in the assignment by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author also selects the special
+					Unicode) or defined in the assignment by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author also selects the special
 					characters that are supported by <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>; they may optionally list additional special characters
 					supported using the assignment.
 				</span></div></div></div>
@@ -8364,7 +8364,7 @@ The following sections list Common Criteria and technology terms used in this do
 						<li>The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements a recovery mechanism for firmware corruption not necessarily related to 
 							integrity or update failure.</li>
 					</ul>
-					If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i>the secure local update mechanism described in <a href="#FPT_TUD_EXT.4">FPT_TUD_EXT.4</a></i>," then 
+					If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "<i>the secure local update mechanism described in <a href="#FPT_TUD_EXT.4">FPT_TUD_EXT.4</a></i>," then 
 					<a href="#FPT_TUD_EXT.4">FPT_TUD_EXT.4</a> must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.<p></p>
 					As indicated above, in addition to integrity or update failure, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may use a recovery 
 					mechanism to deal with non-security-related failures, such as a power outage during update or a 
@@ -8476,7 +8476,7 @@ The following sections list Common Criteria and technology terms used in this do
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author should select "<i>the version number...</i>" if the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> supports rollback prevention. That is, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should select "<i>the version number...</i>" if the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> supports rollback prevention. That is, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>
 					does not allow "update" to an older version of the platform firmware. In general, rollback should be permitted
 					only through a secure local update mechanism at the express direction of an physically present administrator or user.
 				</span></div></div></div>
@@ -8513,11 +8513,11 @@ The following sections list Common Criteria and technology terms used in this do
 					A hash of the public key may be stored if a copy of the public key is provided with firmware
 					update images. In this case, the update mechanism hashes the public key provided with the update 
 					image, and ensures that it matches a hash which appears in the key store before using the provided public 
-					key to verify the signature of the update image. If the hash of the public key is selected, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author may
+					key to verify the signature of the update image. If the hash of the public key is selected, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author may
 					iterate the <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> requirement to specify the hashing functions used.<p></p>
 					An indication of success or failure can be generation of an audit event by a management subsystem, a beep code,
 					an updated version number on a splash screen, or simple failure to continue functioning.<p></p>
-					If the update mechanism generates audit events, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author must make the appropriate selections
+					If the update mechanism generates audit events, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must make the appropriate selections
 					from the audit events table (<a onclick="showTarget('t-audit-sel-based')" href="#t-audit-sel-based" class="t-audit-sel-based-ref">Table  <span class="counter">9</span></a>).<p></p>
 					In the selection "by express determination of a user," the "user" could be more properly expressed as 
 					the "operator." It can be either a user or an administrator, but the distinction is not important in the
@@ -8590,7 +8590,7 @@ The following sections list Common Criteria and technology terms used in this do
 					being executed or used. This update mechanism takes advantage of the existing <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a>
 					requirement to avoid having to verify the integrity and authenticity of an update package
 					at install time.<p></p>
-					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author should select "<i>the version number of the platform firmware update is more recent than 
+					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should select "<i>the version number of the platform firmware update is more recent than 
 					the version number of the previously installed platform firmware</i>" if the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> supports rollback prevention.
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FPT_TUD_EXT.3.2"><a href="#FPT_TUD_EXT.3.2" class="abbr">FPT_TUD_EXT.3.2</a></div><div class="reqdesc">
@@ -8777,16 +8777,16 @@ The following sections list Common Criteria and technology terms used in this do
 					or if the platform is administered remotely. That is, if "<i>a trusted channel as specified in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></i>" 
 					is selected in <a href="#FAU_STG.1.1">FAU_STG.1.1</a>, if "<i>physically protected channels as specified in <a href="#FTP_ITP_EXT.1">FTP_ITP_EXT.1</a></i>" is 
 					selected in <a href="#FDP_ITC_EXT.1.1">FDP_ITC_EXT.1.1</a>, or if "<i>remotely</i>" is selected in Management Function 1 in <a href="#FMT_SMF.1.1">FMT_SMF.1.1</a>.<p></p>
-					If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects either "<i><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr></i>" or "<i><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></i>," the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must be validated against the 
+					If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects either "<i><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr></i>" or "<i><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></i>," the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must be validated against the 
 					<a href="https://www.niap-ccevs.org/static_html/protection-profile/465/Functional%20Package%20for%20Transport%20Layer%20Security/index.html">Functional Package for Transport Layer Security (TLS),
         version 
         2.1</a>. This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not mandate that a product implement <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> with mutual authentication,
 					but if the product includes the capability to perform <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> with mutual authentication, then
 					mutual authentication must be included within the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> boundary.<p></p>
-					If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i><abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr></i>," the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must conform to <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
+					If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "<i><abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr></i>," the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must conform to <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
         2.0</a>.<p></p>
-					If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selects "<i>certificate-based authentication of the remote peer</i>," then the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must conform to <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
+					If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "<i>certificate-based authentication of the remote peer</i>," then the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must conform to <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
         version 
         1.0</a>.<p></p>
 					Claims from this package are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
@@ -9298,12 +9298,12 @@ The following sections list Common Criteria and technology terms used in this do
 					<ol type="1">
 						<li>Halt,</li>
 						<li>Notify an 
-							[<b>selection</b>: <span class="selectable-content" id="_s_591">Administrator</span>, <span class="selectable-content" id="_s_592">User</span>] by [<b>assignment</b>: 
+							[<b>selection</b>: <span class="selectable-content" id="_s_591">administrator</span>, <span class="selectable-content" id="_s_592">user</span>] by [<b>assignment</b>: 
      <span class="assignable-content">notification method</span>], and</li>
 						<li>[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_593">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_594">Continue execution without the integrity-compromised component</span></li><li style=""><span class="selectable-content" id="_s_595">Continue execution</span></li></ul>]<br/>
 					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_596">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_597">by express determination of an 
-							[<b>selection</b>: <span class="selectable-content" id="_s_598">Administrator</span>, <span class="selectable-content" id="_s_599">User</span>]</span></li></ul>]</li>
-					</ol>.	
+							[<b>selection</b>: <span class="selectable-content" id="_s_598">administrator</span>, <span class="selectable-content" id="_s_599">user</span>]</span></li></ul>]</li>.
+					</ol>	
 				</div></div><h3 id="ext-comp-FPT_PPF_EXT" class="indexable" data-level="4">C.2.5.2 FPT_PPF_EXT Protection of Platform Firmware</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for protecting platform firmware from unauthorized update.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FPT_PPF_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FPT_PPF_EXT.1">FPT_PPF_EXT.1</a>,
              Protection of Platform Firmware and Critical Data,
              requires that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> prevent platform firmware from being modified outside 
