@@ -432,6 +432,11 @@
 					<ref-id>sfr-fau-stg-1</ref-id>
 					<ref-id>sfr-fau-stg-2</ref-id>
 					<ref-id>sfr-fau-stg-5</ref-id>
+					<ref-id>sfr-fia-afl-ext-1</ref-id>
+					<ref-id>sfr-fia-pmg-ext-1</ref-id>
+					<ref-id>sfr-fia-uau-5</ref-id>
+					<ref-id>sfr-fia-uau-7</ref-id>
+					<ref-id>sfr-fia-uia-ext-1</ref-id>
 				</config>
 			</usecase>
 			<usecase title="Server-Class Platform, Enhanced Security Requirements" id="uc-server-enhanced">
@@ -449,8 +454,11 @@
 					<ref-id>sfr-fau-stg-1</ref-id>
 					<ref-id>sfr-fau-stg-2</ref-id>
 					<ref-id>sfr-fau-stg-5</ref-id>
-					<ref-id>sfr-fmt-lim-1</ref-id>
-					<ref-id>sfr-fmt-lim-2</ref-id>
+					<ref-id>sfr-fia-afl-ext-1</ref-id>
+					<ref-id>sfr-fia-pmg-ext-1</ref-id>
+					<ref-id>sfr-fia-uau-5</ref-id>
+					<ref-id>sfr-fia-uau-7</ref-id>
+					<ref-id>sfr-fia-uia-ext-1</ref-id>
 					<ref-id>sfr-fpt-php-2</ref-id> 
 					<ref-id>sfr-fpt-php-3</ref-id> 
 					
@@ -462,8 +470,6 @@
 					devices. It is intended for devices are used in high-assurance scenarios.
 				</description>
 				<config>
-					<ref-id>sfr-fmt-lim-1</ref-id>
-					<ref-id>sfr-fmt-lim-2</ref-id>
 					<ref-id>sfr-fpt-php-1</ref-id> 
 					
 				</config>
@@ -487,8 +493,6 @@
 					<ref-id>sfr-fau-stg-1</ref-id>
 					<ref-id>sfr-fcs-stg-ext-1</ref-id>
 					<ref-id>sfr-fcs-rbg-6</ref-id>
-					<ref-id>sfr-fmt-lim-1</ref-id>
-					<ref-id>sfr-fmt-lim-2</ref-id>
 				</config>
 			</usecase>
 			<usecase title="Tactical EUD" id="uc-tactical-eud">
@@ -1228,19 +1232,19 @@
 						the audit data are transferred to the external audit server.
 					</TSS>
 					<Guidance>
-						If "...trusted channel..." is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
+						If "<h:i>...trusted channel...</h:i>" is selected above, the evaluator shall examine the AGD to ensure it describes how to establish the 
 						trusted channel to the audit server, as well as describe any requirements 
 						on the audit server (particular audit server protocol, version of the protocol required, etc.), as well 
 						as configuration of the TOE needed to communicate with the audit server. Furthermore, it must describe whether the 
 						transfer mechanism is periodic or continuous, and what happens in the event of a loss of connectivity. <h:p/>
-						If "...removable media..." is selected, the evaluator shall ensure that the AGD describes the process for
+						If "<h:i>...removable media...</h:i>" is selected, the evaluator shall ensure that the AGD describes the process for
 						accessing audit data and copying it to media. The AGD must also include high-level guidance on 
 						how frequently this operation may need to be done to minimize risk of data loss.
 					</Guidance>
 					<Tests>
-						If "...trusted channel..." is selected above, testing of the trusted channel mechanism itself is to be performed 
+						If "<h:i>...trusted channel...</h:i>" is selected above, testing of the trusted channel mechanism itself is to be performed 
 						as specified in the evaluation activities for FTP_ITC_EXT.1. In addition, the evaluator must 
-						perform the following test:<h:p/>
+						perform the following test.<h:p/>
 						The evaluator shall establish a session between the TOE and the audit server according
 						to the configuration guidance provided. The evaluator shall then examine the traffic
 						that passes between the audit server and the TOE during several activities of the 
@@ -1250,7 +1254,7 @@
 						shall record the particular software (name, version) used on the audit server during 
 						testing.
 						<h:p/>
-						If "...removable media..." is selected above, the evaluator must run the system for a time long enough to generate
+						If "<h:i>...removable media...</h:i>" is selected above, the evaluator must run the system for a time long enough to generate
 						some audit data and then collect audit data onto removable media for transfer to another machine. On another 
 						machine, the evaluator shall examine the audit data to ensure that it appears to be complete and correct. This test
 						may be performed in conjunction with any other requirement that generates audit events.
@@ -1298,7 +1302,7 @@
 						administrator to delete audit records, if such a capability is implemented.
 					</Guidance>
 					<Tests>
-						The evaluator shall perform the following tests:
+						The evaluator shall perform the following tests.
 						<testlist>
 							<test>
 								[conditional] If the TOE implements an audit record deletion capability, then
@@ -2094,8 +2098,8 @@
 					</selectables> that meets the following: [<h:i>none</h:i>].
 				</title>
 				<note role="application">
-					If "key encapsulation..." is selected, FCS_COP.1/KeyEncap is claimed. If "key wrapping..." is selected, FCS_COP.1/KeyWrap must be claimed. If "encrypted
-					channels..." is selected, FTP_ITC_EXT.1 must be claimed.<h:p/>
+					If "<h:i>key encapsulation...</h:i>" is selected, FCS_COP.1/KeyEncap is claimed. If "<h:i>key wrapping...</h:i>" is selected, FCS_COP.1/KeyWrap must be
+					claimed. If "<h:i>encrypted channels...</h:i>" is selected, FTP_ITC_EXT.1 must be claimed.<h:p/>
 					
 					This SFR must be claimed if "<h:i>Keys established according to FCS_CKM.2</h:i>" is selected in FTP_ITE_EXT.1.1.
 				</note>
@@ -2327,9 +2331,9 @@
 							other values that are concatenated with them. This may occur in instances when input
 							keying material for the KDF comes from two independent sources, for example, a client
 							and a server.</h:li>
-						<h:li>if KDF-XOR is selected, the TSS describes this method as there is no standard that
+							<h:li>if "<h:i>KDF-XOR</h:i>" is selected, the TSS describes this method as there is no standard that
 							specifies how to derive a key from two keys using only XOR.</h:li>
-						<h:li>if KDF-ENC is selected, the TSS documents the encryption algorithm used from
+							<h:li>if "<h:i>KDF-ENC</h:i>" is selected, the TSS documents the encryption algorithm used from
 							FCS_COP.1/SKC or FCS_COP.1/AEAD with 256-bit keys, and describes which of the inputs is the
 							plaintext and which is the key. There are no standards that specify how to derive a key
 							from two keys using encryption (KDF-ENC).</h:li>
@@ -2886,17 +2890,17 @@
 			<audit>
 				The following actions should be auditable if FAU_GEN Security audit data generation is
 				included in the PP, PP-Module, functional package or ST:<h:br/><h:ul>
-					<h:li>minimal: Success and failure of the activity;</h:li>
-					<h:li>basic: The object attribute(s), and object value(s) excluding any sensitive information.</h:li>
+					<h:li>Minimal: Success and failure of the activity;</h:li>
+					<h:li>Basic: The object attributes, and object values excluding any sensitive information.</h:li>
 				</h:ul>
 			</audit>
 			<dependencies>[FDP_ITC.1 Import of User Data without Security Attributes, or
-				<h:br/>FDP_ITC.2 Import of User Data with Security Attributes]
-				<h:br/>[FCS_CKM.1 Cryptographic Key Generation, or
+				<h:br/>FDP_ITC.2 Import of User Data with Security Attributes or
+				<h:br/>FCS_CKM.1 Cryptographic Key Generation, or
 				<h:br/>FCS_CKM.5 Cryptographic Key Derivation, or
-				<h:br/>FCS_CKM_EXT.8 Password-based Key Derivation]
+				<h:br/>FCS_CKM_EXT.8 Password-Based Key Derivation]
 				<h:br/>[FCS_CKM.2 Cryptographic Key Distribution, or
-				<h:br/>FCS_COP.1 Cryptographic operation]
+				<h:br/>FCS_COP.1 Cryptographic Operation]
 				<h:br/>FCS_CKM.6 Timing and Event of Cryptographic Key Destruction
 				<h:br/>[FCS_COP.1 Cryptographic Operation, or
 				<h:br/>no other dependencies]
@@ -3077,8 +3081,8 @@
 			<audit>
 				The following actions should be auditable if FAU_GEN Security audit data generation is
 				included in the PP, PP-Module, functional package or ST:<h:br/><h:ul>
-					<h:li>minimal: Success and failure of the activity;</h:li>
-					<h:li>basic: The object attribute(s), and object value(s) excluding any sensitive information.</h:li>
+					<h:li>Minimal: Success and failure of the activity;</h:li>
+					<h:li>Basic: The object attributes, and object values excluding any sensitive information.</h:li>
 				</h:ul>
 			</audit>
 			<dependencies>[FCS_CKM.2 Cryptographic Key Distribution, or
@@ -3813,7 +3817,8 @@
 					</selectables>
 				</title>
 				<note role="application">
-					This SFR is claimed when "key encapsulation" is selected in FCS_CKM.2.1. NIST SP 800-57 Part 1 Revision 5 Section 5.6.2 specifies that the size of key used to protect the
+					This SFR is claimed when "<h:i>key encapsulation</h:i>" is selected in FCS_CKM.2.1. NIST SP 800-57 Part 1 Revision 5 Section 5.6.2 specifies that the size
+					of key used to protect the
 					key being transported should be at least the security strength of the key it is protecting.<h:p/>
 					If this SFR is claimed, then FCS_CKM.1/AKG and FCS_CKM.6 must also be claimed.<h:p/>
 					KAS1 and KTS-OAEP with the selectable parameters are CNSA compliant. ML-KEM-1024 is CNSA compliant.
@@ -4088,7 +4093,7 @@
 					</selectables>
 				</title>
 				<note role="application">
-					This SFR is claimed when "key wrapping" is selected in FCS_CKM.2.1 or is used as a mechanism supporting verification of imported key integrity (FDP_ITC_EXT.1.2) or the integrity of stored key data (FCS_STG_EXT.3.1). NIST 800-57p1rev5 sec. 5.6.2 specifies that the size of key used to protect the key being 
+					This SFR is claimed when "<h:i>key wrapping</h:i>" is selected in FCS_CKM.2.1 or is used as a mechanism supporting verification of imported key integrity (FDP_ITC_EXT.1.2) or the integrity of stored key data (FCS_STG_EXT.3.1). NIST 800-57p1rev5 sec. 5.6.2 specifies that the size of key used to protect the key being 
 					transported should be at least the security strength of the key it is protecting.
 				</note>
 				<aactivity>
@@ -5526,9 +5531,9 @@
 				</h:ol>
 			</audit>
 			<dependencies>[FCS_TLSC_EXT.1 TLS Client Protocol, or<h:br/>
-					FCS_TLSC_EXT.2 TLS Client Protocol with Mutual Authentication, or<h:br/>
+					FCS_TLSC_EXT.2 TLS Client Support for Mutual Authentication, or<h:br/>
 					FCS_TLSS_EXT.1 TLS Server Protocol, or<h:br/>
-					FCS_TLSS_EXT.2 TLS Server Protocol with Mutual Authentication]
+					FCS_TLSS_EXT.2 TLS Server Support for Mutual Authentication]
 			</dependencies>
             <f-element id="fcs-https-ext-1e1">
                 <title>The TSF shall implement the HTTPS protocol that complies with RFC 2818.
@@ -5587,7 +5592,7 @@
 				</h:ol>
 			</audit>
 			<dependencies>FCS_CKM.1 Cryptographic Key Generation<h:br/>
-					FCS_CKM.2 Cryptographic Key Establishment<h:br/>
+					FCS_CKM.2 Cryptographic Key Distribution<h:br/>
 					FCS_COP.1 Cryptographic Operation<h:br/>
 					FCS_RBG.1 Random Bit Generation<h:br/>
 					FIA_X509_EXT.1 X.509 Certificate Validation
@@ -5616,7 +5621,7 @@
 					<TSS/>
 					<Guidance>
 						In addition to the AGD EAs for the individual FCS_IPSEC_EXT.1 elements below, the
-						evaluator shall perform the following:<h:p/>
+						evaluator shall perform the following.<h:p/>
 						If the configuration of the IPsec behavior is from an environmental source, most notably a VPN gateway
 						(e.g., through receipt of required connection parameters from a VPN gateway), the evaluator shall ensure
 						that the AGD contains any appropriate information for ensuring that this configuration
@@ -5729,7 +5734,7 @@
                     <Tests>
                         The evaluator shall perform the following tests based on the selections chosen.
                         <testlist>
-                            <test>[conditional] If tunnel mode is selected, the evaluator shall use the operational guidance to 
+                        	<test>[conditional] If "<h:i>tunnel mode</h:i>" is selected, the evaluator shall use the operational guidance to 
 								configure the TOE/platform to operate in tunnel mode and also configures 
 								a VPN peer to operate in tunnel mode. The evaluator shall configure the TOE/platform and the
 								VPN peer to use any of the allowable cryptographic algorithms, authentication methods,
@@ -5737,7 +5742,7 @@
 								connection from the TOE/Platform to the VPN peer. The evaluator shall observe (for example,
 								in the audit trail and the captured packets) that a successful connection was established
 								using the tunnel mode.</test>
-                            <test>[conditional] If transport mode is selected, the evaluator uses the operational guidance to
+                        	<test>[conditional] If "<h:i>transport mode</h:i>" is selected, the evaluator uses the operational guidance to
 								configure the TOE/platform to operate in 
 								transport mode and also configures a VPN peer to operate in transport mode. The evaluator 
 								shall configure the TOE/platform and the VPN peer to use any of the allowed cryptographic
@@ -5860,7 +5865,7 @@
                     <Tests>
 						The evaluator shall use the operational guidance to configure the TOE (or to configure the operational
 						environment to have the TOE receive configuration) to perform the following test for each ciphersuite
-						selected:<h:p/>
+						selected.<h:p/>
 							The evaluator shall configure the TOE to use the ciphersuite under test to encrypt the 
 								IKEv2 payload and establish a connection with a peer device, which is configured to only accept the
 								payload encrypted using the indicated ciphersuite. The evaluator shall confirm the algorithm was that used
@@ -6206,7 +6211,7 @@
 		<!-- FCS_RBG.1 Random Bit Generation -->
 		<!-- CC:2022 replacement for FCS_RBG_EXT.1 -->
 		<f-component cc-id="fcs_rbg.1" name="Random Bit Generation (RBG)" status="sel-based">			
-			<depends on-s="sel-fcs-stg-ext-1e2-cause"/>
+			<depends on-sel="sel-fcs-stg-ext-1e2-cause"/>
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  <!-- FCS_IPSEC_EXT.1 -->
@@ -6269,9 +6274,9 @@
 					FCS_CKM.1/AKG, FCS_CKM.1/SKG, and FCS_COP.1/SigGen.<h:p/>
 					Also, this SFR must be claimed if "<h:i>KDF-CTR</h:i>," "<h:i>KDF-FB</h:i>," or
 					"<h:i>KDF-DPI</h:i>" is selected in FCS_CKM.5.<h:p/>
-					If "HMAC_DRBG" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
-					If "Hash_DRBG" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
-					If "CTR_DRBG" is selected, then FCS_COP.1/SKC must be claimed.
+					If "<h:i>HMAC_DRBG</h:i>" is selected, then FCS_COP.1/KeyedHash must be claimed.<h:p/>
+					If "<h:i>Hash_DRBG</h:i>" is selected, then FCS_COP.1/Hash must be claimed.<h:p/>
+					If "<h:i>CTR_DRBG</h:i>" is selected, then FCS_COP.1/SKC must be claimed.
 				</note>
 				<aactivity level="element">
 					Documentation will be produced and the evaluator shall perform the
@@ -6361,13 +6366,13 @@
 						author selects "TSF interface for obtaining entropy" if entropy source data is generated outside the TOE boundary.
 					</h:p>
 					<h:p>
-						If "TSF entropy source..." is selected, FCS_RBG.3 must be claimed.
+						If "<h:i>TSF entropy source...</h:i>" is selected, FCS_RBG.3 must be claimed.
 					</h:p>
 					<h:p>
-						If "multiple TSF entropy sources..." is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed. 
+						If "<h:i>multiple TSF entropy sources...</h:i>" is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed. 
 					</h:p>
 					<h:p>
-						If "TSF interface for obtaining entropy" is selected, FCS_RBG.2 must be claimed. 
+						If "<h:i>TSF interface for obtaining entropy</h:i>" is selected, FCS_RBG.2 must be claimed. 
 					</h:p>
 				</note>
 				<aactivity level="element">
@@ -6414,7 +6419,7 @@
 				</title>
 				<note role="application">
 					<h:p>
-						This SFR is claimed if "TSF interface for obtaining entropy" is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TOE's entropy source is outside the TOE boundary. In the case of a general purpose computing platform this would likely only occur when the entropy source is a Dedicated Security Component that is integrated with the TOE.
+						This SFR is claimed if "<h:i>TSF interface for obtaining entropy</h:i>" is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TOE's entropy source is outside the TOE boundary. In the case of a general purpose computing platform this would likely only occur when the entropy source is a Dedicated Security Component that is integrated with the TOE.
 					</h:p><h:p>
 						The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the environmental entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.
 					</h:p>
@@ -6454,7 +6459,7 @@
 				</title>          
 				<note role="application">
 					<h:p>
-						This SFR is claimed if "TSF entropy source..." is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TOE has a single entropy source that is inside the TOE boundary. If the TOE obtains seed material from an environmental component, this is specified using FCS_RBG.2.
+						This SFR is claimed if "<h:i>TSF entropy source...</h:i>" is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TOE has a single entropy source that is inside the TOE boundary. If the TOE obtains seed material from an environmental component, this is specified using FCS_RBG.2.
 					</h:p><h:p>
 						The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the TSF entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.
 					</h:p>
@@ -6486,7 +6491,7 @@
 				</title>
 				<note role="application">
 					<h:p>
-						This SFR is claimed if "multiple TSF entropy sources..." is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TSF performs some sort of operation to combine data from multiple distinct sources into a value that is used to derive a seed. If the TOE has only a single entropy source, this is specified using FCS_RBG.3. FCS_RBG.5 defines the mechanism by which these sources are combined to ensure sufficient minimum entropy. 
+						This SFR is claimed if "<h:i>multiple TSF entropy sources...</h:i>" is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TSF performs some sort of operation to combine data from multiple distinct sources into a value that is used to derive a seed. If the TOE has only a single entropy source, this is specified using FCS_RBG.3. FCS_RBG.5 defines the mechanism by which these sources are combined to ensure sufficient minimum entropy. 
 					</h:p>
 				</note>
 				<aactivity>
@@ -6515,7 +6520,7 @@
 				</title>    
 				<note role="application">
 					<h:p>
-						This SFR is claimed if "multiple TSF entropy sources..." is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TSF performs some sort of operation to combine data from multiple distinct sources into a value that is used to derive a seed. If the TOE has only a single entropy source, this is specified using FCS_RBG.3. 
+						This SFR is claimed if "<h:i>multiple TSF entropy sources...</h:i>" is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TSF performs some sort of operation to combine data from multiple distinct sources into a value that is used to derive a seed. If the TOE has only a single entropy source, this is specified using FCS_RBG.3. 
 					</h:p>
 					<h:p>
 						The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the environmental entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.
@@ -6538,7 +6543,7 @@
 			<audit-event/>
 		</f-component>  
 		
-		<f-component cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="sel-based">
+		<f-component id="sfr-fcs-rbg-6" cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="sel-based">
 			<depends on-uc="uc-csfc-eud"/>
 			<depends><optional/></depends>
 			<f-element id="fel-external-service">
@@ -6643,7 +6648,7 @@
 				</title>
 				</ext-comp-def-title>					
 				<note role="application">
-					If "causing the TOE to generate keys/secrets" is selected in FCS_STG_EXT.1.2, then the 
+					If "<h:i>causing the TOE to generate keys/secrets</h:i>" is selected in FCS_STG_EXT.1.2, then the 
 					ST must include at least one of FCS_CKM.1/AKG or FCS_CKM.1/SKG depending on the value of the 
 					internal selection.
 				</note>
@@ -6743,7 +6748,7 @@
 					</title>
 					</ext-comp-def-title>
 				<note role="application">
-					This SFR is included in the ST if "software-based" is selected in FCS_STG_EXT.1.
+					This SFR is included in the ST if "<h:i>software-based</h:i>" is selected in FCS_STG_EXT.1.
 				</note>
 				<aactivity>
 					<TSS>
@@ -6777,7 +6782,7 @@
 						<selectable exclusive="yes">no other keys</selectable>
 					</selectables></h:i>] by using 
 					<selectables linebreak="yes">
-						<selectable id="sel-stg3-kw">Key wrapping accordance with FCS_COP.1/KeyWrap</selectable>
+						<selectable id="sel-stg3-kw">Key wrapping in accordance with FCS_COP.1/KeyWrap</selectable>
 	<!--					<selectable id="sel-stg3-hash">A hash of the stored key in accordance with FCS_COP.1/Hash</selectable>  -->
 						<selectable id="sel-stg3-hmac">A keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</selectable>
 						<selectable id="sel-stg3-digsig">A digital signature of the stored key in accordance with FCS_COP.1/SigGen
@@ -6792,7 +6797,7 @@
 					<assignable>integrity protection mechanism</assignable>.
 				</title></ext-comp-def-title>
 				<note role="application">
-						This SFR is included in the ST if "software-based" is selected in FCS_STG_EXT.1.
+						This SFR is included in the ST if "<h:i>software-based</h:i>" is selected in FCS_STG_EXT.1.
 				</note>
 			</f-element>
 			<f-element id="fcs-stg-ext-3e2">
@@ -6852,8 +6857,8 @@
 			<management/>
 			<audit/>
 			<dependencies>FCS_COP.1 Cryptographic Operation<h:br/>
-			FCS_STG_EXT.1 Key Storage Encryption<h:br/>
-			FCS_CKM.2 Key Distribution <h:br/>
+			FCS_STG_EXT.1 Protected Storage<h:br/>
+			FCS_CKM.2 Cryptographic Key Distribution <h:br/>
 			FTP_ITE_EXT.1 Encrypted Data Communications<h:br/>
 			FTP_ITP_EXT.1 Physically Protected Channel
 			</dependencies>
@@ -6909,7 +6914,7 @@
 						supported integrity verification method selected in FDP_ITC_EXT.1.2, used by the
 						selected import method, provide one key/credential with valid integrity credentials, 
 						one with invalid integrity credentials (e.g., hash). The operations with invalid integrity
-						credentials must result in error. The operations with valid integrity credentials must
+						credentials must result in an error. The operations with valid integrity credentials must
 						accept the keys/credentials.
 					</Tests>
 				</aactivity>
@@ -6988,10 +6993,11 @@
 				more flexibility for dealing with multiple authentication mechanisms than FIA_AFL.</comp-lev>
 			<management>The following actions could be considered for the management functions in FMT:
 				<h:ul><h:li>Set authorization failure parameters</h:li></h:ul></management>
-			<audit>If FAU_GEN.1 is included in the ST, then the following audit events should be considered:
-				<h:ul><h:li>administrator authentication failures.</h:li></h:ul></audit>
+			<audit>The following actions should be auditable if FAU_GEN Security audit data generation is included
+				in the PP, PP-Module, functional package or ST:
+				<h:ul><h:li>Administrator authentication failures.</h:li></h:ul></audit>
 			<dependencies>FCS_CKM.6 Timing and Event of Cryptographic Key Destruction<h:br/>
-				FIA_SMF.1 Specification of Management Functions
+				FMT_SMF.1 Specification of Management Functions
 				</dependencies>
 			<f-element id="fia-afl-ext-1e1">
 				<title>
@@ -7018,7 +7024,7 @@
 					This requirement applies to both critical and non-critical authentication mechanisms. The difference 
 					between the two is that excessive authentication failures of critical authentication mechanisms 
 					result in the actions defined in FIA_AFL_EXT.1.5.<h:p/>
-					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption
+					If the TOE implements multiple authentication factor interfaces (for example, a DAR decryption
 					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
 					to all available interfaces. For example, a password is a critical authentication mechanism 
 					regardless of if it is being entered at the DAR decryption interface or at a lockscreen
@@ -7037,11 +7043,11 @@
 				</title>
 				<note role="application">
 					The positive integer is configured according to <xref to="t-manfunc"/> in FMT_SMF.1.1.<h:p/>
-					An unique authentication attempt is defined as any attempt to verify an authentication attempt
-					in which the input is different from a previous attempt. "Unique" must be selected if
+					A unique authentication attempt is defined as any attempt to verify an authentication attempt
+					in which the input is different from a previous attempt. "<h:i>Unique</h:i>" must be selected if
 					the authentication system increments the counter only for unique unsuccessful authentication
 					attempts. For example, if the same incorrect password is attempted twice the authentication 
-					system increments the counter once. "Non-unique" must be selected if the authentication system 
+					system increments the counter once. "<h:i>Non-unique</h:i>" must be selected if the authentication system 
 					increments the counter for each unsuccessful authentication attempt, regardless of whether the
 					input is unique. For example, if the same incorrect password is attempted twice the
 					authentication system increments the counter twice.<h:p/>
@@ -7050,9 +7056,9 @@
 					use an independent counter or for multiple authentication mechanisms to use a shared 
 					counter. The interaction between the authentication factors with regard to the authentication
 					counter must be in accordance with FIA_UAU.5.2.<h:p/>
-					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption 
+					If the TOE implements multiple authentication factor interfaces (for example, a DAR decryption 
 					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
-					to all available interfaces. However, it is acceptable for each Authentication Factor interface
+					to all available interfaces. However, it is acceptable for each authentication factor interface
 					to be configurable with a different number of unsuccessful authentication attempts.<h:p/>
 				</note>
 			</f-element>
@@ -7075,7 +7081,7 @@
 					configurability of FIA_AFL_EXT.1.5 may create scenarios where some devices are compliant by default
 					(specifically slow-booting servers and workstations) while other devices (specifically fast-booting
 					desktops and notebooks) may need to implement this requirement.<h:p/>
-					The TOE may implement an Authentication Factor interface that precedes another Authentication Factor
+					The TOE may implement an authentication factor interface that precedes another authentication factor
 					interface in the boot sequence (for example, a volume DAR decryption interface which precedes the
 					lockscreen interface) before the user can access the GPCP. In this situation, because the user must
 					successfully authenticate to the first interface to access the second, the number of unsuccessful
@@ -7118,7 +7124,7 @@
 					Wipe is performed in accordance with FCS_CKM.6. Protected data is all non-TSF data, 
 					including all user or enterprise data. Some or all of this data may be considered sensitive
 					data as well.<h:p/>
-					If the TOE implements multiple Authentication Factor interfaces (for example, a DAR decryption
+					If the TOE implements multiple authentication factor interfaces (for example, a DAR decryption
 					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
 					to all available interfaces.
 				</note>
@@ -7136,7 +7142,7 @@
 					<TSS>
 						The evaluator shall ensure that the TSS describes that a value corresponding to the number 
 						of unsuccessful authentication attempts since the last successful authentication is kept 
-						for each Authentication Factor interface. The evaluator shall ensure that this description
+						for each authentication factor interface. The evaluator shall ensure that this description
 						also includes if and how this value is maintained when the TOE loses power, either through
 						a graceful powered off or an ungraceful loss of power. The evaluator shall ensure that if 
 						the value is not maintained, the interface is after another interface in the boot sequence 
@@ -7173,7 +7179,7 @@
 							<test>
 								[conditional] If the mechanism is critical or if all authentication mechanisms are
 								exhausted, then if "<h:i>perform a wipe of all protected data</h:i>" is selected in 
-								FIA_AFL_EXT.1.5 the evaluator shall verify that the wipe is implemented.
+								FIA_AFL_EXT.1.5, the evaluator shall verify that the wipe is implemented.
 							</test>
 							<test>
 								[conditional] If the mechanism is critical or if all authentication mechanisms are
@@ -7262,7 +7268,7 @@
 					or another assigned character set containing at least 52 characters. The assigned character
 					set must be well defined: either according to an international encoding standard (such as
 					Unicode) or defined in the assignment by the ST author. The ST author also selects the special
-					characters that are supported by TOE; they may optionally list additional special characters
+					characters that are supported by the TOE; they may optionally list additional special characters
 					supported using the assignment.
 				</note>
 				<aactivity>
@@ -7270,19 +7276,18 @@
 					<Guidance>
 						The evaluator shall examine the AGD to determine that it provides
 						guidance to security administrators on the composition of strong passwords, and that it 
-						provides instructions on setting the minimum password length. The evaluator shall also 
-						perform the following tests. Note that one or more of these tests can be performed with a 
-						single test case.
+						provides instructions on setting the minimum password length. 
 					</Guidance>
 					<Tests>
-						The evaluator shall perform the following test:<h:p/>
+						The evaluator shall perform the following test.<h:p/>
 								The evaluator shall compose passwords that either meet the requirements, or fail 
 								to meet the requirements, in some way. For each password, the evaluator shall 
 								verify that the TOE supports the password. While the evaluator is not required
 								(nor is it feasible) to test all possible compositions of passwords, the evaluator 
 								shall ensure that all characters, rule characteristics, and a minimum length
 								listed in the requirement are supported, and justify the subset of those 
-								characters chosen for testing.		
+								characters chosen for testing.<h:p/>
+								Note that this test can be performed with a single test case.
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -7383,13 +7388,13 @@
 				<aactivity>
 					<TSS>
 						The evaluator shall ensure that the TSS describes each mechanism provided to support user
-						authentication and the rules describing how the authentication mechanism(s) provide
+						authentication and the rules describing how the authentication mechanisms provide
 						authentication.<h:p/>
 						Specifically, for all authentication mechanisms specified in FIA_UAU.5.1, the evaluator 
 						shall ensure that the TSS describes the rules as to how each authentication mechanism is
 						used. Example rules are how the authentication mechanism authenticates the user (i.e., how 
 						does the TSF verify that the correct password or biometric sample was entered), the result
-						of a successful authentication (i.e., is the user input used to derive or unlock a key) and
+						of a successful authentication (i.e., is the user input used to derive or unlock a key), and
 						which authentication mechanism can be used at which authentication factor interfaces
 						(i.e., if there are times, for example, after a reboot, that only specific authentication 
 						mechanisms can be used). If multiple Biometric Authentication Factors (BAF) are supported per FIA_UAU.5.1, the interaction
@@ -7401,7 +7406,7 @@
 						is addressed in the AGD guidance.
 					</Guidance>
 					<Tests>
-						The evaluator shall perform the following tests:
+						The evaluator shall perform the following tests.
 						<testlist>
 							<test>
 								For each authentication mechanism selected in FIA_UAU.5.1, the evaluator shall
@@ -7436,12 +7441,12 @@
 					This requirement applies to all authentication mechanisms specified in FIA_UAU.5.1 that provide 
 					feedback to a user or administrator during authentication.<h:p/>
 					For authentication mechanisms that require the user or administrator to enter a
-					password or PIN, the TSF may briefly (1 second or less) display each character or provide an option
+					password or PIN, the TSF may briefly (one second or less) display each character or provide an option
 					to allow the user to unmask the user input; however, the user input must be obscured by default.<h:p/>
 					If a BAF is selected in FIA_UAU.5.1, the TSF must not display sensitive information regarding
 					the biometric that could aid an adversary in identifying or spoofing the respective 
 					biometric characteristics of a given human user. While it is true that biometric samples, by
-					themselves, are not secret, the analysis performed by the respective biometric algorithms, as
+					themselves are not secret, the analysis performed by the respective biometric algorithms, as
 					well as output data from these biometric algorithms, is considered sensitive and must be kept
 					secret. Where applicable, the TSF must not reveal or make public the reasons for
 					authentication failure.<h:p/>
@@ -7459,7 +7464,7 @@
 						AGD guidance and that user authentication input is obscured by default.
 					</Guidance>
 					<Tests>
-						The evaluator shall perform the following tests:
+						The evaluator shall perform the following tests.
 						<testlist>
 							<test>
 								The evaluator shall enter passwords on the device, including at least the Password
@@ -7469,11 +7474,11 @@
 							<test>
 								[conditional] For each Biometric Authentication Factor (BAF) selected 
 								in FIA_UAU.5.1, the evaluator shall 
-								authenticate by producing a biometric sample at lockscreen. As the biometric
+								authenticate by producing a biometric sample at the lockscreen. As the biometric
 								algorithms are performed, the evaluator shall verify that sensitive images, audio, 
 								or other information identifying the user are kept secret and are not revealed to
 								the user. Additionally, the evaluator shall produce a biometric sample that fails
-								to authenticate and verify that the reason(s) for authentication failure (user
+								to authenticate and verify that the reasons for authentication failure (user
 								mismatch, low sample quality, etc.) are not revealed to the user. It is acceptable
 								for the BAF to state that it was unable to physically read the biometric sample,
 								for example, if the sensor is unclean or the biometric sample was removed too
@@ -7518,7 +7523,7 @@
 					in FMT_SMR.1, or if the "<h:i>Server-Class Platform, Basic</h:i>" or "<h:i>Server-Class Platform, Enhanced</h:i>"
 					use cases are selected.<h:p/>
 					Ordinary unprivileged users of the platform need not authenticate to the platform, though they
-					may well have to authenticate themselves to tenant software such as an Operating System. <h:p/>
+					may well have to authenticate themselves to tenant software such as an operating system. <h:p/>
 					The TSF-mediated management functions are listed in the management functions table 
 					(<xref to="t-manfunc"/>) in FMT_SMF.1.  
 				</note>
@@ -7533,7 +7538,7 @@
 						The evaluator shall examine the AGD to determine that any necessary preparatory
 						steps (e.g., establishing credential material such as pre-shared keys, tunnels, certificates) to logging
                         in are described. For each supported login method, the evaluator shall ensure the AGD
-                        provides clear instructions for successfully logging on. If configuration is necessary
+                        provides clear instructions for successfully logging in. If configuration is necessary
                         to ensure the services provided before login are limited, the evaluator shall determine that the
                         AGD provides sufficient instruction on limiting the allowed services.							
                     </Guidance>
@@ -8197,8 +8202,7 @@
 					tampering with the TSF's devices or TSF's elements has occurred. 
 				</title>
 				<note role="application">
-					This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
-					<h:li>Portable Clients (laptops, tablets), Enhanced</h:li></h:ol>
+					This SFR should be included in the ST if the TOE implements the following use case: Portable Clients (laptops, tablets), Enhanced.<h:p/>
 					The audit event "Detection of intrusion" should be claimed if the TOE is capable of generating
 					an audit event in circumstances where an intrusion is detected.
 				</note>
@@ -8248,8 +8252,7 @@
 					TSF's devices or TSF's elements has occurred. 
 				</title>
 				<note role="application">
-					This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
-					<h:li>Server-Class Platform, Enhanced</h:li></h:ol>
+					This SFR should be included in the ST if the TOE implements the following use case: Server-Class Platform, Enhanced.<h:p/>
 					FPT_PHP.2 is hierarchical to FPT_PHP.1 which means that all requirements of FPT_PHP.1 are
 					also included as part of FPT_PHP.2. A TOE that conforms to FPT_PHP.2 therefore does not claim FPT_PHP.1.<h:p/>
 					The audit event "Detection of intrusion" should be claimed if the TOE is capable of generating
@@ -8266,7 +8269,7 @@
 					or administrators that it has detected tampering.
 				</Guidance>
 				<Tests>
-						The evaluator shall perform the following tests:
+						The evaluator shall perform the following tests.
 					<testlist>
 						<test>
 							The evaluator shall verify that attempts to open the TOE enclosure  
@@ -8299,9 +8302,9 @@
 					such that the SFRs are always enforced. 
 				</title>
 				<note role="application">
-					This SFR should be included in the ST if the TOE implements the following use cases:<h:ol>
+					This SFR should be included in the ST if the TOE implements the following use cases.<h:ul>
 					<h:li>Server-Class Platform, Enhanced</h:li>
-					<h:li>Tactical EUD</h:li></h:ol>
+					<h:li>Tactical EUD</h:li></h:ul>
 				</note>
 			<aactivity>
 				<TSS>
@@ -8314,7 +8317,7 @@
 					of the TOE when physical tampering is detected.
 				</Guidance>
 				<Tests>
-					The evaluator shall perform the following test:<h:p/>
+					The evaluator shall perform the following test.<h:p/>
 					For each physical tampering scenario and device/element 
 					listed in FPT_PHP.3.1, the evaluator shall verify that tampering attempts
 					result in a response from the TSF consistent with the operational guidance.					
@@ -8364,7 +8367,7 @@
 						FPT_TUD_EXT.1.
 					</Guidance>
 					<Tests>
-						The evaluator shall perform the following test:<h:p/>
+						The evaluator shall perform the following test.<h:p/>
 						The evaluator shall attempt to overwrite or modify the platform firmware without invoking one of
 						the update mechanisms specified in FPT_TUD_EXT.1. The test succeeds
 						if the attempts to overwrite platform firmware fail. The evaluator shall attempt at least three 
@@ -8561,8 +8564,8 @@
 					Notification of an administrator can take many forms. For server-class platforms, such notification could take the form 
 					of administrator alerts or audit events. For platforms without management controllers, notification could be achieved, for
 					example, by blinking lights, beep codes, screen indications, or local logging.<h:p/>
-					If "administrator" is selected anywhere in FPT_ROT_EXT.2.2, or if "in accordance with administrator-configurable
-					policy" is selected, then all administrator authentication requirements must be included in the ST
+					If "<h:i>administrator</h:i>" is selected anywhere in FPT_ROT_EXT.2.2, or if "<h:i>in accordance with administrator-configurable
+					policy</h:i>" is selected, then all administrator authentication requirements must be included in the ST
 					(FIA_UIA_EXT.1, FIA_UAU.5, FIA_PMG_EXT.1, FIA_AFL_EXT.1, FIA_UAU.7).<h:p/>
 					If "<h:i>generating an audit event</h:i>" is selected, then FAU_GEN.1, FAU_SAR.1, FAU_STG.1, FAU_STG.2, and FAU_STG.5 
 					must be claimed in the ST. This selection should be made only if the TOE is capable of generating an audit event, (e.g.,
@@ -8781,7 +8784,7 @@
 						conditions under which the recovery mechanism is initiated (if configurable).
 					</Guidance>
 					<Tests>
-						The evaluator shall perform the following tests:
+						The evaluator shall perform the following tests.
 						<testlist>
 							<test>To test this requirement, the evaluator shall trigger the recovery process
 								either by forcing an update error or a boot integrity failure and observing that 
@@ -9046,7 +9049,7 @@
 				<note role="application">
 					The ST author should select "<h:i>the version number...</h:i>" if the TSF supports rollback prevention. That is, the TSF
 					does not allow "update" to an older version of the platform firmware. In general, rollback should be permitted
-					only through a secure local update mechanism at the express direction of an physically present administrator or user.
+					only through a secure local update mechanism at the express direction of a physically present administrator or user.
 				</note>
 			</f-element>
 			<f-element id="fpt-tud-ext-2e3">
@@ -9121,7 +9124,7 @@
 					an updated version number on a splash screen, or simple failure to continue functioning.<h:p/>
 					If the update mechanism generates audit events, the ST author must make the appropriate selections
 					from the audit events table (<xref g="t-audit-sel-based"/>).<h:p/>
-					In the selection "by express determination of a user," the "user" could be more properly expressed as 
+					In the selection "<h:i>by express determination of a user</h:i>," the "user" could be more properly expressed as 
 					the "operator." It can be either a user or an administrator, but the distinction is not important in the
 					context of this requirement.
 				</note>
@@ -9143,20 +9146,20 @@
 						of update success or failure, and that it describes how to access the platform firmware version indicators.
 					</Guidance>
 					<Tests>
-						The evaluator shall perform the following tests:
+						The evaluator shall perform the following tests.
 						<testlist>
-							<test>The evaluator determines the current version of the platform firmware, and obtains or 
-								produces a valid, authentic, and permissible update image of platform firmware. The evaluator 
-								initiates an update using this image through the process described in the operational guidance.
-								After the process is complete, the evaluator checks the current firmware version to ensure
+							<test>The evaluator shall determine the current version of the platform firmware, and obtain or 
+								produce a valid, authentic, and permissible update image of platform firmware. The evaluator 
+								shall initiate an update using this image through the process described in the operational guidance.
+							After the process is complete, the evaluator shall check the current firmware version to ensure
 								that the new firmware version matches that of the update.</test>
-							<test>The evaluator performs the same test, this time using a valid update image that is signed
+							<test>The evaluator shall perform the same test, this time using a valid update image that is signed
 								with an incorrect key. The update must fail.</test>
-							<test>The evaluator performs the same test, this time using an update image that is corrupted
+							<test>The evaluator shall perform the same test, this time using an update image that is corrupted
 								but is signed with the correct key. The update must fail.</test>
-							<test>The evaluator performs the same test, this time using a valid update image that is not signed.
+							<test>The evaluator shall perform the same test, this time using a valid update image that is not signed.
 								The update must fail.</test>
-							<test>[conditional] If the TSF implements rollback protections, the evaluator performs the same test, this time using 
+							<test>[conditional] If the TSF implements rollback protections, the evaluator shall perform the same test, this time using 
 								a valid, signed update image that has an earlier version number than the currently installed
 								firmware. The update must fail.</test>
 						</testlist>
@@ -9291,7 +9294,7 @@
 					updated firmware is executed or used.<h:p/>
 					Likewise, if the TSF implements rollback prevention, this check must be made before the newly installed
 					firmware is executed.<h:p/>
-					In the selection "by express determination of a user," the "user" could be more properly expressed as 
+					In the selection "<h:i>by express determination of a user</h:i>," the "user" could be more properly expressed as 
 					the "operator." It can be either a user or an administrator, but the distinction is not important in the
 					context of this requirement.
 				</note>
@@ -9313,18 +9316,18 @@
 						of update success or failure, and that it describes how to access the platform firmware version indicators.
 					</Guidance>
 					<Tests>
-						The evaluator shall perform the following tests:
+						The evaluator shall perform the following tests.
 						<testlist>
-							<test>The evaluator determines the current version of the platform firmware, and obtains or 
-								produces a valid, authentic, and permissible update image of platform firmware. The evaluator 
-								initiates an update using this image through the process described in the operational guidance.
-								After the process is complete, the evaluator checks the current firmware version to ensure
+							<test>The evaluator shall determine the current version of the platform firmware, and obtain or 
+								produce a valid, authentic, and permissible update image of platform firmware. The evaluator 
+								shall initiate an update using this image through the process described in the operational guidance.
+								After the process is complete, the evaluator shall check the current firmware version to ensure
 								that the new firmware version matches that of the update.</test>
-							<test>The evaluator performs the same test, this time using a inauthentic update image. The update code
+							<test>The evaluator shall perform the same test, this time using a inauthentic update image. The update code
 								must fail to execute.</test>
-							<test>The evaluator performs the same test, this time using an update image that is corrupted
+							<test>The evaluator shall perform the same test, this time using an update image that is corrupted
 								but is otherwise authentic. The update code must fail to execute.</test>
-							<test>[conditional] If the TSF implements rollback protections, the evaluator performs the same test, this time using 
+							<test>[conditional] If the TSF implements rollback protections, the evaluator shall perform the same test, this time using 
 								a valid, signed update image that is has an earlier version number than the currently installed
 								firmware. The update code must fail to execute.</test>
 						</testlist>
@@ -9388,9 +9391,9 @@
 					requiring entry of a password at a boot screen, unlocking of a physical lock (e.g., a motherboard
 					jumper), or inserting a USB cable before permitting platform firmware to be updated. <h:p/>
 					There is no requirement that the local update mechanism support rollback prevention.<h:p/>
-					The local update mechanism must be a designed mechanism. If update can be accomplished only
+					The local update mechanism must be a designed mechanism. If an update can be accomplished only
 					through the physical removal and replacement of a part, then that is not a secure local
-					update mechanism, and "make no provision for platform firmware update" should be selected in FPT_TUD_EXT.1.1.<h:p/>
+					update mechanism, and "<h:i>make no provision for platform firmware update</h:i>" should be selected in FPT_TUD_EXT.1.1.<h:p/>
 				</note>
 			</f-element>
 				<f-element id="fpt-tud-ext-4e3">
@@ -9418,13 +9421,13 @@
 					using the local update mechanism, and how to validate that the update was successful.	
 				</Guidance>
 				<Tests> 
-						The evaluator shall perform the following tests:
+						The evaluator shall perform the following tests.
 					<testlist>
-						<test>The evaluator tests the secure local update by following the instructions provided in the operational 
+						<test>The evaluator shall test the secure local update by following the instructions provided in the operational 
 					guidance to update the platform firmware image. The update must succeed.<h:p/>
 						</test>
 						<test>
-							The evaluator next tries to update the platform firmware image without 
+							The evaluator shall next try to update the platform firmware image without 
 							first asserting physical presence. The update must fail or be not possible.
 						</test>
 						</testlist>
@@ -9470,9 +9473,9 @@
 	    	<audit>The following actions should be auditable if FAU_GEN Security audit data generation is included
 	    		in the PP, PP-Module, functional package or ST:
 				<h:ol type="a">
-					<h:li>Initiation of the trusted channel.</h:li>
-					<h:li>Termination of the trusted channel.</h:li>
-					<h:li>Failures of the trusted path functions.</h:li>
+					<h:li>Initiation of the trusted channel</h:li>
+					<h:li>Termination of the trusted channel</h:li>
+					<h:li>Failures of the trusted path functions</h:li>
 				</h:ol>
 			</audit>
 			<dependencies>No dependencies.</dependencies>          
@@ -9533,11 +9536,11 @@
 					by the TOE are obtained.
 					<h:p/>	
 					"<h:i>No authentication of the remote peer</h:i>" should be selected only if the TOE is acting 
-					as a server in a non-mutual authentication configuration.<h:p/>.
+					as a server in a non-mutual authentication configuration.<h:p/>
 				</note>
 				<aactivity>
 					<TSS>
-						The evaluator will review the TSS to determine that it lists all trusted channels 
+						The evaluator shall review the TSS to determine that it lists all trusted channels 
 						the TOE uses for remote communications, including both the external IT entities and 
 						remote users that use the channel as well as the protocol that is used for each.
 					</TSS>
@@ -9546,9 +9549,9 @@
 						remote users.
 					</Guidance>
 					<Tests>
-						The evaluator will configure the TOE to communicate with each external IT entity 
-						and type of remote user identified in the TSS. The evaluator will monitor network
-						traffic while the VS performs communication with each of these destinations. The evaluator will ensure
+						The evaluator shall configure the TOE to communicate with each external IT entity 
+						and type of remote user identified in the TSS. The evaluator shall monitor network
+						traffic while the VS performs communication with each of these destinations. The evaluator shall ensure
 						that for each session a trusted channel was established in conformance with the protocols identified 
 						in the selection.
 					</Tests>
@@ -9582,7 +9585,7 @@
 					The TSF shall encrypt data for transfer between the TOE and 
 					<assignable>list of entities external to the TOE</assignable>
 					using a cryptographic algorithm and key size as specified in
-					FCS_COP.1/SKC or FCS_COP.1/AEAD, and using 
+					FCS_COP.1<h:b>/SKC or FCS_COP.1/AEAD</h:b>, and using 
 					<selectables linebreak="yes">
 						<selectable>Pre-shared keys</selectable>
 						<selectable id="sel-ftp-ite-ext-1-est">Keys established according to FCS_CKM.2</selectable>
@@ -9708,7 +9711,7 @@
 						establishing the remote administrative sessions for each supported method.
                     </Guidance>
                     <Tests>
-                        The evaluator shall also perform the following tests:
+                        The evaluator shall also perform the following tests.
                         <testlist>
                             <test>The evaluator shall ensure that communications using each specified (in the AGD) 
 								remote administration method is tested during the course of the evaluation,
@@ -10596,7 +10599,7 @@
 	
 	<section id="s-vm-intro" title="Introduction">
 		The purpose of equivalence in PP-based evaluations is to find a balance between evaluation rigor and commercial
-		practicability--to ensure that evaluations meet customer expectations while recognizing that there is little 
+		practicability - to ensure that evaluations meet customer expectations while recognizing that there is little 
 		to be gained from requiring that every variation in a product or platform be fully tested. Generally, if a product is 
 		found to be compliant with a PP on a particular platform, then all equivalent products on equivalent platforms are also
 		considered to be compliant with the PP. In this case, since the GPCP is itself a platform, only equivalent 
@@ -10605,22 +10608,22 @@
 		PP-specified security functionality in a way equivalent to the implementation of the same functionality on another 
 		instance of their product on which the functionality was tested. The product instances can differ in version number 
 		or feature level (model). Equivalence can be used to reduce the testing required across claimed evaluated configurations.
-		It can also be used during Assurance Maintenance to reduce testing needed to add more evaluated configurations to a
+		It can also be used during assurance maintenance to reduce testing needed to add more evaluated configurations to a
 		certification.<h:p/>
-		These equivalency guidelines do not replace Assurance Maintenance requirements or NIAP Policy #5 requirements for CAVP
+		These equivalency guidelines do not replace assurance maintenance requirements or NIAP Policy #5 requirements for CAVP
 		certificates. Nor may equivalence be used to leverage evaluations with expired certifications.<h:p/>
 		This appendix provides guidance for determining whether products are equivalent for purposes of evaluation against 
-		the GPCPPP. This guidance differs from that provided in other
+		the GPCP PP. This guidance differs from that provided in other
 		PPs in that a GPCP is itself a platform, and thus the distinction between product and platform is somewhat blurred.
 		This equivalency analysis is adjusted to reflect this.<h:p/>
 		For a GPCP, equivalence has two aspects:<h:br />
-		<h:ol>
+		<h:ul>
 			<h:li><h:b><h:i>Product Equivalence:</h:i></h:b> To be considered equivalent, GPCPs must be produced 
 				by the same vendor and support the same tenant software.</h:li>
 			<h:li><h:b><h:i>Technical Equivalence:</h:i></h:b> GPCPs may be considered equivalent if there are no 
 				differences between them with respect to their implementations of PP-specified security 
 				functionality.</h:li>
-		</h:ol><h:p/>
+		</h:ul><h:p/>
 		The equivalency determination is made in accordance with these guidelines by the validator and scheme using information
 		provided by the evaluator/vendor.
 	</section>
@@ -10632,19 +10635,19 @@
 		the amount of testing that must be done. The basic rules for determining equivalence are the same in both cases. But
 		there is one additional consideration that applies to equivalence with previously certified products. That is, the
 		product with which equivalence is being claimed must have a valid certification in accordance with scheme rules and
-		the Assurance Maintenance process must be followed. If a product’s certification has expired, then equivalence cannot
+		the assurance maintenance process must be followed. If a product’s certification has expired, then equivalence cannot
 		be claimed with that product.<h:p/>
 		When performing equivalency analysis for a GPCP, the evaluator/vendor should first use the factors and guidelines for 
-		Product Equivalence to determine the set of products to be further considered.<h:p/>
+		product equivalence to determine the set of products to be further considered.<h:p/>
 		Each non-equivalent product for which compliance is claimed must be fully tested.<h:p/>
-		<h:b><h:i>"Differences in PP-Specified Security Functionality" Defined</h:i></h:b><h:br />
+		<h:b>"Differences in PP-Specified Security Functionality" Defined</h:b><h:br />
 		PP-specified security functionality implemented by the TOE that differs in actual implementation between versions or product
 		models break equivalence for that functionality. Likewise, the TOE invokes PP-specified security functionality
 		differently in different versions or models of the TOE, then equivalence is broken for that functionality.
 	</section>
 	
 	<section id="s-modelequiv" title="Specific Guidance for Determining Product Equivalence">
-		Product Equivalence attempts to determine whether different feature levels or versions of the same product are equivalent 
+		Product equivalence attempts to determine whether different feature levels or versions of the same product are equivalent 
 		for purposes of PP testing. For example, if a product has a "basic" edition and an "enterprise" edition, is it necessary
 		to test both models? Or does testing one model provide sufficient confidence that both models are compliant? <h:p/>
 		<h:b><ctr ctr-type="Table" pre="Table " id="equiv-prod-model">: Factors for Determining Product Equivalence</ctr></h:b><h:br/>
@@ -10675,7 +10678,7 @@
 			  <h:td valign="top">If PP-specified security functionality is affected by the differences between products, then
 					the products are not equivalent and must be tested separately. It is necessary to test only the functionality
 					affected by the differences. If only differences are tested, then the differences must be enumerated,
-					and for each difference the Vendor must provide an explanation of why each difference does or does not affect
+					and for each difference the vendor must provide an explanation of why each difference does or does not affect
 					PP-specified functionality. If the products are fully tested separately, then there is no need to document the 
 					differences.
 			  </h:td>
