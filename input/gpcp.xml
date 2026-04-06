@@ -427,7 +427,7 @@
 					the base mandatory requirements.
 				</description>
 				<config>
-					<ref-id>fau_gen.1</ref-id>
+					<ref-id>sfr-fau-gen-1</ref-id>
 					<ref-id>sfr-fau-sar-1</ref-id>
 					<ref-id>sfr-fau-stg-1</ref-id>
 					<ref-id>sfr-fau-stg-2</ref-id>
@@ -686,18 +686,6 @@
     <sec:Threats>
 		<threats>
 			
-			<threat name="T.PERSISTENCE">
-				<description>An attacker might be able to establish a permanent presence on the TOE in
-					firmware. This could result in permanent compromise of tenant information, as
-					well as TOE updates. This threat does not encompass attacker presence in tenant
-					software, as tenant software is not part of the TOE. </description>
-				<addressed-by>FPT_ROT_EXT.1</addressed-by><rationale>Mitigates the threat by providing platform integrity to prevent intrusion of a persistent presence on the
-					platform.</rationale>
-				<addressed-by>FCS_STG_EXT.2 (optional)</addressed-by><rationale>Mitigates the threat by enforcing access control on key data to prevent its unauthorized
-					disclosure.</rationale>
-				<addressed-by>FPT_RVR_EXT.1 (sel-based)</addressed-by><rationale>Mitigates the threat with firmware recovery mechanism in case of failure.</rationale>
-			</threat>
-			
 			<threat name="T.NETWORK_BASED_ATTACK">
 				<description>An attacker from off the TOE can attempt to compromise the TOE
 					through a network interface connected to an active TOE component, such
@@ -752,6 +740,18 @@
 				<addressed-by>FTP_TRP.1 (sel-based)</addressed-by><rationale>Mitigates the threat by ensuring that remote administration only uses trusted channels.</rationale>
 			</threat>
 			
+			<threat name="T.PERSISTENCE">
+				<description>An attacker might be able to establish a permanent presence on the TOE in
+					firmware. This could result in permanent compromise of tenant information, as
+					well as TOE updates. This threat does not encompass attacker presence in tenant
+					software, as tenant software is not part of the TOE. </description>
+				<addressed-by>FPT_ROT_EXT.1</addressed-by><rationale>Mitigates the threat by providing platform integrity to prevent intrusion of a persistent presence on the
+					platform.</rationale>
+				<addressed-by>FCS_STG_EXT.2 (sel-based)</addressed-by><rationale>Mitigates the threat by enforcing access control on key data to prevent its unauthorized
+					disclosure.</rationale>
+				<addressed-by>FPT_RVR_EXT.1 (sel-based)</addressed-by><rationale>Mitigates the threat with firmware recovery mechanism in case of failure.</rationale>
+			</threat>
+			
 			<threat id="t-physical" name="T.PHYSICAL">
 				<description>An attacker with physical access might be able to compromise TOE integrity, subvert
 					TOE protections, or access tenant data through hardware attacks such as probing, physical
@@ -769,16 +769,6 @@
 				<addressed-by>FPT_PHP.3 (sel-based)</addressed-by><rationale>Mitigates the threat by resisting physical tampering.</rationale>
 			</threat>
 			
-			
-
-			<threat name="T.SIDE_CHANNEL_LEAKAGE">
-				<description>An attacker running in a tenant context might be able to leverage physical
-					effects caused by the operation of the TOE to derive sensitive information about
-					other tenants or the TOE.</description>
-				<addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Mitigates the threat of side channel leakage by providing trusted updates that are known to mitigate side
-					channel attacks.</rationale>
-			</threat>
-
 			<threat name="T.SECURITY_FUNCTIONALITY_FAILURE">
 				<description>An attacker could leverage failed or compromised security functionality to 
 					access, change, or modify tenant data, TOE data, or other security functionality
@@ -815,6 +805,14 @@
 				<addressed-by>FPT_TST.1 (sel-based)</addressed-by><rationale>Mitigates the threat by using self-tests to ensure correct operation of the DRBG.</rationale>
 			</threat>
 			
+			<threat name="T.SIDE_CHANNEL_LEAKAGE">
+				<description>An attacker running in a tenant context might be able to leverage physical
+					effects caused by the operation of the TOE to derive sensitive information about
+					other tenants or the TOE.</description>
+				<addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Mitigates the threat of side channel leakage by providing trusted updates that are known to mitigate side
+					channel attacks.</rationale>
+			</threat>			
+			
 			<threat name="T.TENANT_BASED_ATTACK">
 				<description>An attacker running software as a tenant can attempt to access or modify
 					TOE firmware or functionality. Note that direct tenant attacks against other
@@ -825,6 +823,7 @@
 					data, even if an attacker is running software as a tenant.</rationale>
 				<addressed-by>FPT_STM.1</addressed-by><rationale>Mitigates the threat by ensuring that audit data indicating a potential attack is accurately
 					timestamped.</rationale>	
+				<addressed-by>FCS_CKM.5 (optional)</addressed-by><rationale>Mitigates the threat by using strong algorithms to derive keys that protect stored data.</rationale>
 				<addressed-by>FCS_CKM_EXT.8 (optional)</addressed-by><rationale>Mitigates the threat by implementing password-based key derivation functions used for trusted
 					communications.</rationale>	
 				<addressed-by>FDP_TEE_EXT.1 (optional)</addressed-by><rationale>Mitigates the threat by establishing a trusted execution environment for tenant software to
@@ -843,7 +842,7 @@
 					data.</rationale>
 				<addressed-by>FCS_CKM.1/SKG (sel-based)</addressed-by><rationale>Mitigates the threat by generating strong cryptographic symmetric keys to protect stored
 					data.</rationale>
-				<addressed-by>FCS_CKM.5 (sel-based)</addressed-by><rationale>Mitigates the threat by using strong algorithms to derive keys that protect stored data.</rationale>				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates the threat by implementing key destruction to prevent the disclosure of keys used to
+				<addressed-by>FCS_CKM.6 (sel-based)</addressed-by><rationale>Mitigates the threat by implementing key destruction to prevent the disclosure of keys used to
 					protect stored data.</rationale>
 				<addressed-by>FCS_COP.1/AEAD (sel-based)</addressed-by><rationale>Mitigates the threat by implementing AEAD functions used for trusted
 					communications.</rationale>
@@ -870,37 +869,6 @@
 					outside access.</rationale>
 				<addressed-by>FCS_STG_EXT.3 (sel-based)</addressed-by><rationale>Mitigates the threat by using cryptography to protect the integrity of key data from outside
 					modification.</rationale>
-			</threat>
-
-			<threat name="T.UPDATE_COMPROMISE">
-				<description>An attacker may attempt to provide a compromised update of TOE firmware. 
-					Such updates can undermine the security functionality of the device if they are
-					unauthorized, unauthenticated, or are improperly validated using non-secure or
-					weak cryptography.</description>
-				<addressed-by>FPT_PPF_EXT.1</addressed-by><rationale>Mitigates the threat by using the official update process to be the only method to modify platform
-					firmware.</rationale>
-				<addressed-by>FPT_ROT_EXT.2</addressed-by><rationale>Mitigates the threat by providing a means to attest the validity of updates.</rationale>
-				<addressed-by>FCS_CKM_EXT.8 (optional)</addressed-by><rationale>Mitigates the threat by implementing password-based key derivation functions used for trusted
-					communications.</rationale>	
-				<addressed-by>FCS_COP.1/AEAD (sel-based)</addressed-by><rationale>Mitigates the threat by implementing AEAD functions used for trusted
-					communications.</rationale>
-				<addressed-by>FCS_COP.1/CMAC (sel-based)</addressed-by><rationale>Mitigates the threat by implementing CMAC functions used for trusted
-					communications.</rationale>
-				<addressed-by>FCS_COP.1/Hash (sel-based)</addressed-by><rationale>Mitigates the threat by providing a means to validate the integrity of an update using a
-					hash.</rationale>
-				<addressed-by>FCS_COP.1/KeyEncap (sel-based)</addressed-by><rationale>Mitigates the threat by implementing key encapsulation functions used for trusted
-					communications.</rationale>
-				<addressed-by>FCS_COP.1/KeyWrap (sel-based)</addressed-by><rationale>Mitigates the threat by implementing key wrapping functions used for trusted communications.						</rationale><addressed-by>FCS_COP.1/SigGen (sel-based)</addressed-by><rationale>Mitigates the threat by implementing signature generation functions	 used for					trusted communications.</rationale>
-				<addressed-by>FCS_COP.1/SigVer (sel-based)</addressed-by><rationale>Mitigates the threat by providing a means to validate the integrity of an update using a
-					digital signature verification.</rationale>
-				<addressed-by>FCS_COP.1/XOF (sel-based)</addressed-by><rationale>Mitigates the threat by implementing extensible output functions used for trusted
-					communications.</rationale>
-				<addressed-by>FPT_TUD_EXT.2 (sel-based)</addressed-by><rationale>Mitigates the threat by using a digital signature mechanism to verify the integrity of updates
-					and a rollback protection mechanism to prevent application of an unauthorized update.</rationale>
-				<addressed-by>FPT_TUD_EXT.3 (sel-based)</addressed-by><rationale>Mitigates the threat by using the TOE's root of trust to validate the authenticity and 
-					integrity of an update when it is applied.</rationale>
-				<addressed-by>FPT_TUD_EXT.4 (sel-based)</addressed-by><rationale>Mitigates the threat through an update mechanism that requires physical access to the TOE to
-					use.</rationale>
 			</threat>
 
 			<threat name="T.UNAUTHORIZED_PLATFORM_ADMINISTRATOR">
@@ -931,6 +899,37 @@
 					functions.</rationale>
 				<addressed-by>FIA_UIA_EXT.1 (sel-based)</addressed-by><rationale>Mitigates the threat by preventing the TSF from being modified by an unauthenticated
 					subject.</rationale>
+			</threat>
+			
+			<threat name="T.UPDATE_COMPROMISE">
+				<description>An attacker may attempt to provide a compromised update of TOE firmware. 
+					Such updates can undermine the security functionality of the device if they are
+					unauthorized, unauthenticated, or are improperly validated using non-secure or
+					weak cryptography.</description>
+				<addressed-by>FPT_PPF_EXT.1</addressed-by><rationale>Mitigates the threat by using the official update process to be the only method to modify platform
+					firmware.</rationale>
+				<addressed-by>FPT_ROT_EXT.2</addressed-by><rationale>Mitigates the threat by providing a means to attest the validity of updates.</rationale>
+				<addressed-by>FCS_CKM_EXT.8 (optional)</addressed-by><rationale>Mitigates the threat by implementing password-based key derivation functions used for trusted
+					communications.</rationale>	
+				<addressed-by>FCS_COP.1/AEAD (sel-based)</addressed-by><rationale>Mitigates the threat by implementing AEAD functions used for trusted
+					communications.</rationale>
+				<addressed-by>FCS_COP.1/CMAC (sel-based)</addressed-by><rationale>Mitigates the threat by implementing CMAC functions used for trusted
+					communications.</rationale>
+				<addressed-by>FCS_COP.1/Hash (sel-based)</addressed-by><rationale>Mitigates the threat by providing a means to validate the integrity of an update using a
+					hash.</rationale>
+				<addressed-by>FCS_COP.1/KeyEncap (sel-based)</addressed-by><rationale>Mitigates the threat by implementing key encapsulation functions used for trusted
+					communications.</rationale>
+				<addressed-by>FCS_COP.1/KeyWrap (sel-based)</addressed-by><rationale>Mitigates the threat by implementing key wrapping functions used for trusted communications.						</rationale><addressed-by>FCS_COP.1/SigGen (sel-based)</addressed-by><rationale>Mitigates the threat by implementing signature generation functions	 used for					trusted communications.</rationale>
+				<addressed-by>FCS_COP.1/SigVer (sel-based)</addressed-by><rationale>Mitigates the threat by providing a means to validate the integrity of an update using a
+					digital signature verification.</rationale>
+				<addressed-by>FCS_COP.1/XOF (sel-based)</addressed-by><rationale>Mitigates the threat by implementing extensible output functions used for trusted
+					communications.</rationale>
+				<addressed-by>FPT_TUD_EXT.2 (sel-based)</addressed-by><rationale>Mitigates the threat by using a digital signature mechanism to verify the integrity of updates
+					and a rollback protection mechanism to prevent application of an unauthorized update.</rationale>
+				<addressed-by>FPT_TUD_EXT.3 (sel-based)</addressed-by><rationale>Mitigates the threat by using the TOE's root of trust to validate the authenticity and 
+					integrity of an update when it is applied.</rationale>
+				<addressed-by>FPT_TUD_EXT.4 (sel-based)</addressed-by><rationale>Mitigates the threat through an update mechanism that requires physical access to the TOE to
+					use.</rationale>
 			</threat>
 		</threats>
     </sec:Threats>
@@ -3357,7 +3356,7 @@
 						<h:br/><h:b><h:i>Decryption Algorithm Functional Tests</h:i></h:b><h:p/>
 						The evaluator shall test the authenticated decrypt functionality of AES-GCM by supplying 15
 						test cases for the supported combinations of the parameters as described above. For each
-						parameter combination the evaluator shall introduce an error into either the Ciphertext or the Tag
+						parameter combination the evaluator shall introduce an error into either the ciphertext or the Tag
 						such that approximately half of the cases are correct and half the cases contain errors.
 					</Tests>
 				</aactivity>
@@ -4965,7 +4964,7 @@
 								<h:td valign="top">DSA</h:td>
 								<h:td valign="top">DSA</h:td>
 								<h:td valign="top">Domain parameters for (L, N) = [(3072, 256)] bits</h:td>
-								<h:td valign="top">FIPS PUB 186-4 (Section 4.7) [DSA Signature Verification]</h:td>
+								<h:td valign="top">FIPS PUB 186-5 (Section 3.3) [Digital Signature Verification and Validation]</h:td>
 							</h:tr>
 						</h:table><h:p/>	
 						To test the TOE’s ability to perform DSA Digital Signature Verification, the evaluator shall
