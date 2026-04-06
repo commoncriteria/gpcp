@@ -103,8 +103,6 @@
 * Error: Detected multiple elements with an id of 'sel-tud3-admin-config'.
 * Error: Detected multiple elements with an id of 'sel-tud3-recovery'.
 * Error: Detected multiple elements with an id of 'sel-tud3-admin-config'.
-* Error: Detected dangling ref-id to 'fau_gen.1'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[1]""/config[1]""/ref-id[1]"fau_gen.1"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
 	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[1]""/config[1]""/ref-id[1]"dummy-ref"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
@@ -906,4 +904,3 @@
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to entropyappendix.
- Failed to find fau_gen.1 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[1]""/config[1]""/ref-id[1]"fau_gen.1" (use case or rule)
