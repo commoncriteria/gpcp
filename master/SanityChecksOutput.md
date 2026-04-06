@@ -103,8 +103,6 @@
 * Error: Detected multiple elements with an id of 'sel-tud3-admin-config'.
 * Error: Detected multiple elements with an id of 'sel-tud3-recovery'.
 * Error: Detected multiple elements with an id of 'sel-tud3-admin-config'.
-* Error: Detected dangling ref-id to 'sfr-fcs-rbg-6'.
-	  /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[4]""/config[1]""/ref-id[5]"sfr-fcs-r"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
 	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[1]""/config[1]""/ref-id[1]"dummy-ref"
 * Error: Detected dangling ref-id to 'dummy-ref-id'.
@@ -153,9 +151,9 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[1]""/f-element[2]""/note[1]"The ST au"/h:p[4]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[1]""/f-element[2]""/aactivity[1]""/Tests[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[3]""/f-element[1]""/note[1]"The ST au"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[3]""/f-element[1]""/aactivity[1]""/Guidance[1]"If "...tr"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[3]""/f-element[1]""/aactivity[1]""/Tests[1]"If "...tr"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[3]""/f-element[1]""/aactivity[1]""/Tests[1]"If "...tr"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[3]""/f-element[1]""/aactivity[1]""/Guidance[1]"If ""/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[3]""/f-element[1]""/aactivity[1]""/Tests[1]"If ""/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[3]""/f-element[1]""/aactivity[1]""/Tests[1]"If ""/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[4]""/f-element[2]""/note[1]"Deletion "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[4]""/f-element[2]""/note[1]"Deletion "/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[3]"."/h:p[1]""
@@ -237,7 +235,7 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[3]""/f-element[1]""/note[1]"If "key e"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[3]""/f-element[1]""/note[1]"If ""/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[3]""/f-element[1]""/aactivity[1]""/TSS[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[4]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[5]"."/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[4]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[5]"."/h:p[2]""
@@ -752,6 +750,7 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[2]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[2]""/f-element[1]""/note[1]"This SFR "/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[2]""/f-element[1]""/aactivity[1]""/Tests[1]"The evalu"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[2]""/f-element[1]""/aactivity[1]""/Tests[1]"The evalu"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[3]""/f-element[2]""/note[1]"This SFR "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[4]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[5]""/f-component[4]""/f-element[1]""/note[1]"This SFR "/h:p[2]""
@@ -793,7 +792,9 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[5]""/f-element[1]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[6]""/f-element[2]""/note[1]"If ""/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[6]""/f-element[2]""/note[1]"If ""/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[2]""/f-element[2]""/note[1]"This SFR "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[3]""/f-element[3]""/note[1]"This SFR "/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[3]""/f-element[3]""/note[1]"This SFR "/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[4]""/f-element[1]""/aactivity[1]""/Tests[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[5]""/f-element[1]""/aactivity[1]""/Tests[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[7]""/f-component[6]""/f-element[1]""/note[1]"Roots of "/h:p[1]""
@@ -889,8 +890,8 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[2]"There are"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[2]"There are"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[2]"There are"/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[3]"Product E"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[3]"Product E"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[3]"Product e"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[3]"Product e"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[3]""/section[4]"Platform "/h:p[3]""
@@ -903,4 +904,3 @@
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to entropyappendix.
- Failed to find sfr-fcs-rbg-6 in /PP[1]""/sec:Introduction[1]""/sec:Use_Cases[1]"This PP s"/usecases[1]""/usecase[4]""/config[1]""/ref-id[5]"sfr-fcs-r" (use case or rule)
