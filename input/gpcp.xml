@@ -1213,7 +1213,7 @@
 			<f-element id="fau-stg-1e1">
 				<title>The TSF shall be able to store generated audit data on the <selectables>
 					<selectable>TOE itself</selectable>
-					<selectable>transmit audit data to an external IT entity using a trusted 
+					<selectable id="sel-fau-itc">transmit audit data to an external IT entity using a trusted 
 						channel in accordance with <h:b>FTP_ITC_EXT.1</h:b></selectable>
 					<selectable id="sel-fau-stg-1e1-removable">write audit data to removable media
 						under administrative control in accordance with FIA_UIA_EXT.1</selectable></selectables>.  
@@ -1384,9 +1384,7 @@
 		<f-component id="sfr-fcs-ckm-1-akg" cc-id="fcs_ckm.1" iteration="AKG" 
 			name="Cryptographic Key Generation - Asymmetric Key" status="sel-based">
 			<depends on-sel="sel-fcs-stg-ext-1e2-ak"/>  <!-- from FCS_STG_EXT.1 -->
-			<depends on-incl="sfr-fcs-ipsec-ext-1"/>  	<!-- FCS_IPSEC_EXT.1 -->
-			<depends on-sel="sel-itc-tls"/>    <!-- TLS -->
-			<depends on-sel="sel-itc-https"/>  <!-- TLS/HTTPS -->
+			<depends on-incl="sfr-ftp-itc-ext-1"/>  	<!-- FTP_ITC_EXT.1 -->
 			<depends on-sfr="sfr-fcs-cop-1-keyencap"/>   <!-- FCS_COP.1/KeyEncap -->
 			<depends on-sfr="sfr-fcs-cop-1-siggen"/>     <!-- FCS_COP.1/SigGen -->
 			<depends on-sfr="sfr-fcs-ckm-ext-7"/>        <!-- FCS_CKM_EXT.7 -->
@@ -1577,10 +1575,9 @@
 					This SFR must be included in the ST if asymmetric key generation is a service provided by 
 					the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
 					security functionality.<h:p/> 
-					This SFR must also be claimed in the ST if FCS_IPSEC_EXT.1 is claimed, or if 
+					This SFR must also be claimed in the ST if FTP_ITC_EXT.1 is claimed, or if 
 					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected
 					in FCS_STG_EXT.1.2.<h:p/>
-					Furthermore, this SFR must be claimed if TLS or HTTPS is claimed in FTP_ITC_EXT.1.<h:p/>
 					
 					If this SFR is included in the ST, then FCS_CKM.6 and FCS_RBG.1 must also be claimed.<h:p/>
 					
@@ -1591,8 +1588,8 @@
 					For Finite Field Cryptography (FFC) DSA, ST authors should consult schemes for 
 					guidelines on use.  FIPS PUB 186-5 does not approve DSA for digital signature 
 					generation but allows DSA for digital signature verification for legacy purposes.
-					"FFC-ERB" or  "FFC–RS" may be claimed only for generating private and public keys
-					when "DH" is claimed in FCS_CKM_EXT.7.<h:p/>
+					"<h:li>FFC-ERB</h:li>" or  "<h:li>FFC–RS</h:li>" may be claimed only for generating private and public keys
+					when "<h:li>DH</h:li>" is selected in FCS_CKM_EXT.7.<h:p/>
 
 					When generating ECC keys pairs for key agreement and if "ECDH" is 
 					claimed in FCS_CKM_EXT.7, then "ECC–ERB" or "ECC–RS" must be claimed.  The sizes 
@@ -2879,7 +2876,7 @@
 		<!-- FCS_CKM_EXT.7 Cryptographic Key Agreement -->
 		<f-component id="sfr-fcs-ckm-ext-7" cc-id="fcs_ckm_ext.7" name="Cryptographic Key Agreement" status="sel-based">
 			<depends on-incl="sfr-ftp-itc-ext-1"/> 	<!-- FTP_ITC_EXT.1 -->
-			<depends on-sel="sel-ftp-ite-ext-1-est"/>   <!-- FTP_ITE_EXT.1 -->
+			
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 
 			<consistency-rationale/>
@@ -3168,10 +3165,8 @@
 			<depends on-sel="sel-rbg-ctr"/>  <!-- FCS_RBG.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
 			<depends on-incl="sfr-fcs-stg-ext-2"/>	
 			<depends on-incl="sfr-ftp-itc-ext-1"/>  <!-- FCS_IPSEC_EXT.1 --> <!-- implies sel-fcs-cop-skc-aes-gcm & sel-fcs-cop-skc-aes-cbc -->
-			<depends on-sel="sel-fdp-itc-ext-1e2-sk"/>  <!-- from FDP_ITC_EXT.1 -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-enc-aead"/>   <!-- KDF-ENC -->
-			<depends on-sel="sel-itc-tls"/>    <!-- TLS -->
-			<depends on-sel="sel-itc-ssh"/>
+			
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-aead">
 				<title>
@@ -3227,7 +3222,7 @@
 					</selectables>
 				</title>
 				<note role="application">
-					This SFR is claimed if "encrypting using an algorithm specified in [FCS_COP.1/AEAD]" is selected in FCS_CKM.5. 
+					This SFR is claimed if "<h:i>encrypting using an algorithm specified in [FCS_COP.1/AEAD]</h:i>" is selected in FCS_CKM.5. 
 					The use of 256-bit keys for AES encryption is required by CNSA. It is also claimed if FTP_ITC_EXT.1 or FCS_STG_EXT.2 is claimed as both require AEAD cryptographic operations.
 				</note>
 				<aactivity>
@@ -3400,7 +3395,7 @@
 					</selectables>
 				</title>
 				<note role="application">
-					This SFR is claimed if any key derivation functions using AES-256-CMAC are selected in FCS_CKM.5.1 or if "Key wrapping in accordance with FCS_COP.1/KeyWrap" is selected in FCS_STG_EXT.3.1.<h:p/> 
+					This SFR is claimed if any key derivation functions using AES-256-CMAC are selected in FCS_CKM.5.1 or if "<h:i>Key wrapping in accordance with FCS_COP.1/KeyWrap</h:i>" is selected in FCS_STG_EXT.3.1.<h:p/> 
 					The use of 256-bit keys for AES algorithms is required by CNSA.
 				</note>
 				<aactivity>
@@ -3486,8 +3481,6 @@
 
 		<!-- FCS_COP.1/Hash Cryptographic Operation - Hashing -->
 		<f-component id="sfr-fcs-cop-1-hash" cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation - Hashing" status="sel-based">
-			<depends on-sel="sel-itc-tls"/>
-			<depends on-sel="sel-itc-ssh"/>
 			<depends on-sel="sel-rot2-hash"/>  <!-- FPT_ROT_EXT.2.1 -->
 			<depends on-sel="sel-rbg-hmac"/>  <!-- FCS_RBG.1.1 -->
 			<depends on-sel="sel-tud2-hash"/>  <!-- FPT_TUD_EXT.2.1 -->
@@ -3517,7 +3510,7 @@
 					</selectables>.   
                 </title>
                 <note role="application">
-                	This SFR is claimed if any key derivation functions using HMAC are selected in FCS_CKM.5.1, or if "cryptographic hash as specified in FCS_COP.1/Hash" is selected in FDP_ITC_EXT.1.2, or if "computation of a hash..." is selected in FDP_ROT_EXT.2.1, or if "hash value of the public key" is selected in FPT_TUD_EXT.2.1. It must also be claimed if any SFRs that require computation of a hash are claimed (i.e., FCS_COP.1/KeyedHash, FCS_COP.1/SigGen, FCS_COP.1/SigVer, or FTP_ITC_EXT.1).<h:p/>
+                	This SFR is claimed if any key derivation functions using HMAC are selected in FCS_CKM.5.1, or if "<h:i>cryptographic hash as specified in FCS_COP.1/Hash</h:i>" is selected in FDP_ITC_EXT.1.2, or if "<h:i>computation of a hash...</h:i>" is selected in FDP_ROT_EXT.2.1, or if "<h:i>hash value of the public key</h:i>" is selected in FPT_TUD_EXT.2.1. It must also be claimed if any SFRs that require computation of a hash are claimed (i.e., FCS_COP.1/KeyedHash, FCS_COP.1/SigGen, FCS_COP.1/SigVer, or FTP_ITC_EXT.1).<h:p/>
 					In accordance with CNSA:<h:ul>
 					<h:li>SHA-1 hash is no longer permitted to be used as a hash function, </h:li>
 					<h:li>SHA3 hashes may be used only for internal hardware functionality such as
@@ -3704,7 +3697,7 @@
 					</selectables>
 				</title>	
 				<note role="application">
-					This SFR is claimed if any key derivation functions using HMAC are selected in FCS_CKM.5.1, or if "a keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash" is selected in FCS_STG_EXT.3.1, or if "keyed hash as specified in FCS_COP.1/KeyedHash" is selected in FDP_ITC_EXT.1.2.
+					This SFR is claimed if any key derivation functions using HMAC are selected in FCS_CKM.5.1, or if "<h:i>a keyed hash of the stored key in accordance with FCS_COP.1/KeyedHash</h:i>" is selected in FCS_STG_EXT.3.1, or if "<h:i>keyed hash as specified in FCS_COP.1/KeyedHash</h:i>" is selected in FDP_ITC_EXT.1.2.
 					It must also be claimed if any SFRs that require a keyed hash algorithm are claimed (i.e., FCS_CKM_EXT.8 or FTP_ITC_EXT.1).<h:p/>
 					
 					The HMAC minimum key sizes in the table are specified in ISO/IEC 9797-2:2021, which requires that the
@@ -4710,7 +4703,8 @@
 			<depends on-sel="sel-rot2-digsig"/>  <!-- FPT_ROT_EXT.2 -->
 			<depends on-sel="sel-tud1-auth-update"/>  <!-- FPT_TUD_EXT.1 (covers TUD2, which requires SigVer) -->
 			<depends on-sel="sel-tud1-unauth-update"/> <!-- FPT_TUD_EXT.1 -->
-			<depends on-sel="sel-fdp-itc-ext-1e2-sig"/>  <!-- from FDP_ITC_EXT.1 -->			
+			<depends on-sel="sel-fdp-itc-ext-1e2-sig"/>  <!-- from FDP_ITC_EXT.1 -->		
+			<depends on-incl="sfr-ftp-itc-ext-1"/> <!-- FTP_ITC_EXT.1 -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
 			<f-element id="fcs-cop-1e1-sigver">
 				<title> 
@@ -4857,7 +4851,7 @@
 					Specifically, this SFR must be included if the ST author chooses "<h:i>implement an authenticated platform
 					firmware update mechanism as described in FPT_TUD_EXT.2</h:i>" or "<h:i>implement a delayed-authentication platform
 					firmware update mechanism as described in FPT_TUD_EXT.3</h:i>" in FPT_TUD_EXT.1; or if the ST author 
-					selects "<h:i>verification of a digital signature by trusted code/data</h:i>" in FPT_ROT_EXT.2. It must also be claimed if "digital signature as specified in FCS_COP.1/SigVer" is selected in FDP_ITC_EXT.1.2.<h:p/>	
+					selects "<h:i>verification of a digital signature by trusted code/data</h:i>" in FPT_ROT_EXT.2. It must also be claimed if "<h:i>digital signature as specified in FCS_COP.1/SigVer</h:i>" is selected in FDP_ITC_EXT.1.2, or if FTP_ITC_EXT.1 is claimed.<h:p/>	
 					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/>
 					The ST author should choose the algorithm implemented to perform verification of digital signatures. 
 					For the algorithm chosen, the ST author should make the appropriate assignments/selections to specify the 
@@ -5145,9 +5139,7 @@
 		
 		<!-- FCS_COP.1/SKC Cryptographic Operation - Symmetric Key Cryptography -->	
 		<f-component id="sfr-fcs-cop-1-skc" cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation - Symmetric Key Cryptography" status="sel-based">
-			<depends on-sel="sel-rbg-ctr-drbg"/>  <!-- FCS_RBG.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
-			<depends on-incl="sfr-fcs-stg-ext-2"/>	
-			<depends on-sel="sel-fdp-itc-ext-1e2-sk"/>  <!-- from FDP_ITC_EXT.1 -->
+			<depends on-sel="sel-fcs-rbg-ctr-drbg"/>  <!-- FCS_RBG.1 -->  <!-- implies "sel-fcs-cop-skc-aes-ctr" below -->
 			<depends on-sel="sel-itc-ssh"/>  <!-- for CTR mode -->
 			<depends on-sel="sel-fcs-ckm-5-kdf-enc-skc"/>   <!-- KDF-ENC -->
 			<depends><optional/></depends>    		<!-- May be also included optionally -->
@@ -5214,7 +5206,7 @@
 					This SFR must be included in the ST if symmetric-key cryptography is a service provided by the TOE 
 					to tenant software, or if the TOE itself uses SKC to support or implement PP-specified security 
 					functionality.<h:p/> 
-					Specifically, this SFR must be included if the ST claims "SSH..." in FTP_ITC_EXT.1 but only if the TOE's SSH algorithm implements a symmetric key algorithm (i.e., AES-CTR or AES-CBC). It must also be included if "Encrypting using an algorithm specified in [selection: FCS_COP.1/SKC] with a 256-bit key" is claimed in FCS_CKM.5.1, or if "CTR_DRBG (AES)" is selected in FCS_RBG.1.
+					Specifically, this SFR must be included if the ST claims "SSH..." in FTP_ITC_EXT.1 but only if the TOE's SSH algorithm implements a symmetric key algorithm (i.e., AES-CTR or AES-CBC). It must also be included if "<h:i>Encrypting using an algorithm specified in [selection: FCS_COP.1/SKC] with a 256-bit key</h:i>" is selected in FCS_CKM.5.1, or if "<h:i>CTR_DRBG (AES)</h:i>" is selected in FCS_RBG.1.
 <h:p/>
 				</note>
 				<aactivity>
@@ -6214,6 +6206,9 @@
 		<!-- CC:2022 replacement for FCS_RBG_EXT.1 -->
 		<f-component cc-id="fcs_rbg.1" id="sfr-fcs-rbg-1" name="Random Bit Generation (RBG)" status="sel-based">			
 			<depends on-sel="sel-fcs-stg-ext-1e2-cause"/>
+			<depends on-sel="sel-fcs-ckm-5-kdf-ctr-dirgen"/>
+			<depends on-sel="sel-fcs-ckm-5-kdf-fb-dirgen"/>
+			<depends on-sel="sel-fcs-ckm-5-kdf-dpi-dirgen"/>
 			<depends on-incl="sfr-fcs-ckm-1-akg"/>   <!-- FCS_CKM.1/AKG is included -->
 			<depends on-incl="sfr-fcs-ckm-1-skg"/>   <!-- FCS_CKM.1/SKG -->
 			<depends on-incl="sfr-fcs-cop-1-siggen"/>   <!-- FCS_CKM.1/SigGen is included -->
@@ -6271,10 +6266,10 @@
 				</title>
 				<note role="application">
 					This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
-					or if it is used by the TOE itself to support or implement PP-specified security functionality. Specifically it mist be claimed if "causing the TOE to generate..." is selected in FCS_STG_EXT.1.2, or if any selections including "direct generation from a Random Bit Generator as specified in FCS_RBG.1" is selected in FCS_CKM.5.1.
+					or if it is used by the TOE itself to support or implement PP-specified security functionality. Specifically it mist be claimed if "<h:i>causing the TOE to generate...</h:i>" is selected in FCS_STG_EXT.1.2, or if any selections including "<h:i>direct generation from a Random Bit Generator as specified in FCS_RBG.1</h:i>" is selected in FCS_CKM.5.1.
 					<h:p/>
 					This SFR is also needed if the following SFRs are included in the ST: FTP_ITC_EXT.1, 
-					FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM_EXT>8, and FCS_COP.1/SigGen.
+					FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM_EXT.8, and FCS_COP.1/SigGen.
 				</note>
 				<aactivity level="element">
 					Documentation will be produced and the evaluator shall perform the
@@ -7499,8 +7494,9 @@
         <f-component id="sfr-fia-uia-ext-1" cc-id="fia_uia_ext.1" name="Administrator Authentication" status="sel-based"> 
 			<depends on-uc="uc-server-secureenv"/>		<!-- Server, basic use case-->
 			<depends on-uc="uc-server-enhanced"/>	<!-- Server, enhanced use case -->
-			<depends on-sel="sel-fmt-smr-1-admin"/>  <!-- FMT_SMR.1 Admin Role -->
-        	<depends on-incl="sfr-fau-stg-1"/> <!-- FAU_STG.1 -->
+        	<depends on-sel="sel-fau-stg-1e1-removable"/> <!-- FAU_STG.1 -->
+        	<depends on-sel="sel-fmt-smr-1-admin"/>  <!-- FMT_SMR.1 Admin Role -->
+        	
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to ensure that all subjects attempting to perform TSF-mediated actions
 				are authenticated prior to authorizing these actions to be performed.</comp-lev>
@@ -7518,7 +7514,7 @@
                     function to be performed by that administrator.
                 </title>
                 <note role="application">
-					This SFR is included in the ST if "write audit data to removable media under administrative control in accordance with FIA_UIA_EXT.1" is claimed in FAU_STG.1.1, if the "<h:i>administrator</h:i>" role is selected
+                	This SFR is included in the ST if "<h:i>write audit data to removable media under administrative control in accordance with FIA_UIA_EXT.1</h:i>" is selected in FAU_STG.1.1, if the "<h:i>administrator</h:i>" role is selected
 					in FMT_SMR.1.1, or if the "<h:i>Server-Class Platform, Basic</h:i>" or "<h:i>Server-Class Platform, Enhanced</h:i>"
 					use cases apply to the TOE.<h:p/>
 					Ordinary unprivileged users of the platform need not authenticate to the platform, though they
@@ -9063,7 +9059,7 @@
 					or rollback-prevention check fails, or a platform firmware update fails for any other reason: 
 					<h:ul>
 						<h:li>Do not install the update,</h:li>
-					</h:ul>, 
+					</h:ul> 
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>Continue execution</selectable>
 						<selectable>Halt</selectable>
@@ -9085,7 +9081,7 @@
 					or rollback-prevention check fails, or a platform firmware update fails for any other reason: 
 					<h:ul>
 						<h:li>Do not install the update,</h:li>
-					</h:ul>, 
+					</h:ul>
 					<selectables linebreak="yes" onlyone="yes">
 						<selectable>Continue execution</selectable>
 						<selectable>Halt</selectable>
@@ -9462,7 +9458,7 @@
 			<depends on-sel="sel-smf-remote-admin"/>
 			<depends on-sel="sel-fdp-itc-ext-1e1-chan"/>   <!-- from FDP_ITC_EXT.1 -->
 			<depends on-sel="sel-ckm-2-echan"/>   <!-- FCS_CKM.2 -->
-	    	<depends on-incl="sfr-fau-stg-1"/>   <!-- FAU_STG.1 -->
+	    	
 			<consistency-rationale/>
 			<comp-lev>requires the TSF to implement one or more cryptographic protocols
 					to secure connectivity between the TSF and various external entities.</comp-lev>
@@ -9541,14 +9537,12 @@
 					Regardless of the communications protocol selected, if this SFR is claimed, then the following SFRs must also be claimed in support of these protocols: <h:ul>
 						<h:li>FCS_CKM.1/AKG</h:li>
 						<h:li>FCS_CKM.1/SKG</h:li>
-						<h:li>FCS_COP.1/AEAD</h:li>
 						<h:li>FCS_COP.1/Hash</h:li>
 						<h:li>FCS_COP.1/KeyedHash</h:li>
-						<h:li>FCS_COP.1/SigGen</h:li>
 						<h:li>FCS_COP.1/SigVer</h:li>
 						<h:li>FCS_RBG.1</h:li>
 					</h:ul>
-					In most cases it is also expected that FCS_COP.1/AEAD will be claimed because AES-GCM is the primary symmetric encryption algorithm used for these channels, but there may be some cases where the functions defined by FCS_COP.1/SKC must additonally be implemented. 
+					In most cases it is also expected that FCS_COP.1/AEAD will be claimed because AES-GCM is the primary symmetric encryption algorithm used for these channels, but there may be some cases where the functions defined by FCS_COP.1/SKC must alternatively or additonally be implemented. 
 				</note>
 				<aactivity>
 					<TSS>
@@ -9623,7 +9617,7 @@
 					requirement would apply, for example, for communications implemented through a shared data
 					buffer.<h:p/>
 					
-					If "<h:i>Keys established according to FCS_CKM.2</h:i>" is selected, FCS_CKM.2 must also be claimed.
+					If "<h:i>Keys established according to FCS_CKM.2</h:i>" is selected, FCS_CKM.2 must also be claimed. If "<h:i>Keys exchanged using a physically protected...</h:i>" is selected, FTP_ITP_EXT.1 must be claimed.
 				</note>
 				<aactivity>
 					<TSS>
