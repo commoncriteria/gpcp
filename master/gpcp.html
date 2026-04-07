@@ -1303,7 +1303,7 @@ The following sections list Common Criteria and technology terms used in this do
       </i></b></div>
 			  
 			
-			<div class="element"><div class="reqid" id="FAU_STG.1.1"><a href="#FAU_STG.1.1" class="abbr">FAU_STG.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to store generated audit data on the [<b>selection</b>: <span class="selectable-content" id="_s_15"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself</span>, <span class="selectable-content" id="_s_16">transmit audit data to an external <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entity using a trusted 
+			<div class="element"><div class="reqid" id="FAU_STG.1.1"><a href="#FAU_STG.1.1" class="abbr">FAU_STG.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to store generated audit data on the [<b>selection</b>: <span class="selectable-content" id="_s_15"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself</span>, <span class="selectable-content" id="sel-fau-itc">transmit audit data to an external <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entity using a trusted 
 						channel in accordance with <b><a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></b></span>, <span class="selectable-content" id="sel-fau-stg-1e1-removable">write audit data to removable media
 						under administrative control in accordance with <a href="#FIA_UIA_EXT.1">FIA_UIA_EXT.1</a></span>].  
 				<div class="appnote"><span class="note-header">Application
@@ -1449,12 +1449,10 @@ The following sections list Common Criteria and technology terms used in this do
 		
 		
 		<div class="comp" id="FCS_CKM.1/AKG"><h4>FCS_CKM.1/AKG Cryptographic Key Generation - Asymmetric Key</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</a>, <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
+	  <a href="#FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</a>.
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>
 			  
 			  	
-			    
-			  
 			   
 			     
 			        
@@ -1556,10 +1554,9 @@ The following sections list Common Criteria and technology terms used in this do
 					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if asymmetric key generation is a service provided by 
 					the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software, or if it is used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified
 					security functionality.<p></p> 
-					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must also be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> is claimed, or if 
+					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must also be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> is claimed, or if 
 					"<i>causing the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to generate [asymmetric] keys/secrets</i>" is selected
 					in <a href="#FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</a>.<p></p>
-					Furthermore, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be claimed if <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr> is claimed in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>.<p></p>
 					
 					If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_CKM.6">FCS_CKM.6</a> and <a href="#FCS_RBG.1">FCS_RBG.1</a> must also be claimed.<p></p>
 					
@@ -1570,8 +1567,8 @@ The following sections list Common Criteria and technology terms used in this do
 					For Finite Field Cryptography (FFC) DSA, <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> authors should consult schemes for 
 					guidelines on use.  <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-5 does not approve DSA for digital signature 
 					generation but allows DSA for digital signature verification for legacy purposes.
-					"FFC-ERB" or  "FFC–RS" may be claimed only for generating private and public keys
-					when "<abbr class="dyn-abbr"><a href="#abbr_DH">DH</a></abbr>" is claimed in <a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a>.<p></p>
+					"<li>FFC-ERB</li>" or  "<li>FFC–RS</li>" may be claimed only for generating private and public keys
+					when "<li><abbr class="dyn-abbr"><a href="#abbr_DH">DH</a></abbr></li>" is selected in <a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a>.<p></p>
 
 					When generating ECC keys pairs for key agreement and if "ECDH" is 
 					claimed in <a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a>, then "ECC–ERB" or "ECC–RS" must be claimed.  The sizes 
@@ -2724,10 +2721,10 @@ The following sections list Common Criteria and technology terms used in this do
 
 		
 		<div class="comp" id="FCS_CKM_EXT.7"><h4>FCS_CKM_EXT.7 Cryptographic Key Agreement</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FTP_ITE_EXT.1.1">FTP_ITE_EXT.1.1</a>.
+	  .
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>
 			 	
-			   
+			
 			    		
 
 			
@@ -2965,14 +2962,12 @@ The following sections list Common Criteria and technology terms used in this do
 
 			
 		<div class="comp" id="FCS_COP.1/AEAD"><h4>FCS_COP.1/AEAD Cryptographic Operation – Authenticated Encryption with Associated Data</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
+	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>.
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>
 			    
 				
 			   
-			  
 			   
-			    
 			
 			    		
 			<div class="element"><div class="reqid" id="FCS_COP.1.1/AEAD"><a href="#FCS_COP.1.1/AEAD" class="abbr">FCS_COP.1.1/AEAD</a></div><div class="reqdesc">
@@ -3023,7 +3018,7 @@ The following sections list Common Criteria and technology terms used in this do
 					</table><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if "encrypting using an algorithm specified in [<a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a>]" is selected in <a href="#FCS_CKM.5">FCS_CKM.5</a>. 
+					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if "<i>encrypting using an algorithm specified in [<a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a>]</i>" is selected in <a href="#FCS_CKM.5">FCS_CKM.5</a>. 
 					The use of 256-bit keys for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption is required by CNSA. It is also claimed if <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> or <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a> is claimed as both require AEAD cryptographic operations.
 				</span></div></div></div>
 			
@@ -3206,7 +3201,7 @@ The following sections list Common Criteria and technology terms used in this do
 					</table><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if any key derivation functions using <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC are selected in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a> or if "Key wrapping in accordance with <a href="#FCS_COP.1/KeyWrap">FCS_COP.1/KeyWrap</a>" is selected in <a href="#FCS_STG_EXT.3.1">FCS_STG_EXT.3.1</a>.<p></p> 
+					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if any key derivation functions using <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC are selected in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a> or if "<i>Key wrapping in accordance with <a href="#FCS_COP.1/KeyWrap">FCS_COP.1/KeyWrap</a></i>" is selected in <a href="#FCS_STG_EXT.3.1">FCS_STG_EXT.3.1</a>.<p></p> 
 					The use of 256-bit keys for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> algorithms is required by CNSA.
 				</span></div></div></div>
 			
@@ -3291,10 +3286,8 @@ The following sections list Common Criteria and technology terms used in this do
 
 		
 		<div class="comp" id="FCS_COP.1/Hash"><h4>FCS_COP.1/Hash Cryptographic Operation - Hashing</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>, <a href="#FPT_ROT_EXT.2.1">FPT_ROT_EXT.2.1</a>, <a href="#FPT_TUD_EXT.2.1">FPT_TUD_EXT.2.1</a>, <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
+	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>, <a href="#FPT_ROT_EXT.2.1">FPT_ROT_EXT.2.1</a>, <a href="#FPT_TUD_EXT.2.1">FPT_TUD_EXT.2.1</a>.
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>
-			
-			
 			  
 			  
 			  
@@ -3314,7 +3307,7 @@ The following sections list Common Criteria and technology terms used in this do
                 <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-                	This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if any key derivation functions using <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> are selected in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, or if "cryptographic hash as specified in <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a>" is selected in <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>, or if "computation of a hash..." is selected in FDP_ROT_EXT.2.1, or if "hash value of the public key" is selected in <a href="#FPT_TUD_EXT.2.1">FPT_TUD_EXT.2.1</a>. It must also be claimed if any <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> that require computation of a hash are claimed (i.e., <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a>, <a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a>, <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a>, or <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>).<p></p>
+                	This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if any key derivation functions using <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> are selected in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, or if "<i>cryptographic hash as specified in <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a></i>" is selected in <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>, or if "<i>computation of a hash...</i>" is selected in FDP_ROT_EXT.2.1, or if "<i>hash value of the public key</i>" is selected in <a href="#FPT_TUD_EXT.2.1">FPT_TUD_EXT.2.1</a>. It must also be claimed if any <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> that require computation of a hash are claimed (i.e., <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a>, <a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a>, <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a>, or <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>).<p></p>
 					In accordance with CNSA:<ul>
 					<li><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1 hash is no longer permitted to be used as a hash function, </li>
 					<li>SHA3 hashes may be used only for internal hardware functionality such as
@@ -3501,7 +3494,7 @@ The following sections list Common Criteria and technology terms used in this do
 					</table><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if any key derivation functions using <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> are selected in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, or if "a keyed hash of the stored key in accordance with <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a>" is selected in <a href="#FCS_STG_EXT.3.1">FCS_STG_EXT.3.1</a>, or if "keyed hash as specified in <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a>" is selected in <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>.
+					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if any key derivation functions using <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> are selected in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, or if "<i>a keyed hash of the stored key in accordance with <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a></i>" is selected in <a href="#FCS_STG_EXT.3.1">FCS_STG_EXT.3.1</a>, or if "<i>keyed hash as specified in <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a></i>" is selected in <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>.
 					It must also be claimed if any <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> that require a keyed hash algorithm are claimed (i.e., <a href="#FCS_CKM_EXT.8">FCS_CKM_EXT.8</a> or <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>).<p></p>
 					
 					The <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> minimum key sizes in the table are specified in <abbr class="dyn-abbr"><a href="#abbr_ISO">ISO</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_IEC">IEC</a></abbr> 9797-2:2021, which requires that the
@@ -4415,7 +4408,8 @@ The following sections list Common Criteria and technology terms used in this do
 			  
 			  
 			 
-			  			
+			  		
+			 
 			    		
 			<div class="element"><div class="reqid" id="FCS_COP.1.1/SigVer"><a href="#FCS_COP.1.1/SigVer" class="abbr">FCS_COP.1.1/SigVer</a></div><div class="reqdesc"> 
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform [<i>digital signature verification</i>] in accordance with a specified 
@@ -4498,7 +4492,7 @@ The following sections list Common Criteria and technology terms used in this do
 					Specifically, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author chooses "<i>implement an authenticated platform
 					firmware update mechanism as described in <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a></i>" or "<i>implement a delayed-authentication platform
 					firmware update mechanism as described in <a href="#FPT_TUD_EXT.3">FPT_TUD_EXT.3</a></i>" in <a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a>; or if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author 
-					selects "<i>verification of a digital signature by trusted code/data</i>" in <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a>. It must also be claimed if "digital signature as specified in <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a>" is selected in <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>.<p></p>	
+					selects "<i>verification of a digital signature by trusted code/data</i>" in <a href="#FPT_ROT_EXT.2">FPT_ROT_EXT.2</a>. It must also be claimed if "<i>digital signature as specified in <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a></i>" is selected in <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>, or if <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> is claimed.<p></p>	
 					If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> must also be claimed.<p></p>
 					The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should choose the algorithm implemented to perform verification of digital signatures. 
 					For the algorithm chosen, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should make the appropriate assignments/selections to specify the 
@@ -4785,11 +4779,9 @@ The following sections list Common Criteria and technology terms used in this do
 		
 			
 		<div class="comp" id="FCS_COP.1/SKC"><h4>FCS_COP.1/SKC Cryptographic Operation - Symmetric Key Cryptography</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
+	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, <a href="#FCS_RBG.1.1">FCS_RBG.1.1</a>, <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>
 			    
-				
-			  
 			  
 			   
 			    		
@@ -4848,7 +4840,7 @@ The following sections list Common Criteria and technology terms used in this do
 					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if symmetric-key cryptography is a service provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> 
 					to tenant software, or if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself uses SKC to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security 
 					functionality.<p></p> 
-					Specifically, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> claims "<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>..." in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> but only if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> algorithm implements a symmetric key algorithm (i.e., <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CTR or <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC). It must also be included if "Encrypting using an algorithm specified in [selection: <a href="#FCS_COP.1/SKC">FCS_COP.1/SKC</a>] with a 256-bit key" is claimed in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, or if "CTR_DRBG (<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>)" is selected in <a href="#FCS_RBG.1">FCS_RBG.1</a>.
+					Specifically, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> claims "<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>..." in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> but only if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> algorithm implements a symmetric key algorithm (i.e., <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CTR or <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC). It must also be included if "<i>Encrypting using an algorithm specified in [selection: <a href="#FCS_COP.1/SKC">FCS_COP.1/SKC</a>] with a 256-bit key</i>" is selected in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, or if "<i>CTR_DRBG (<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>)</i>" is selected in <a href="#FCS_RBG.1">FCS_RBG.1</a>.
 <p></p>
 				</span></div></div></div>
 			
@@ -5754,8 +5746,11 @@ The following sections list Common Criteria and technology terms used in this do
 		
 		
 		<div class="comp" id="FCS_RBG.1"><h4>FCS_RBG.1 Random Bit Generation (RBG)</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</a>.
+	  <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, <a href="#FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</a>.
       <p>This component may also be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> as if optional.</p></i></b></div>			
+			
+			
+			
 			
 			   
 			   
@@ -5805,10 +5800,10 @@ The following sections list Common Criteria and technology terms used in this do
       Note:
     </span><span class="note">
 					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if random bits are provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to tenant software,
-					or if it is used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality. Specifically it mist be claimed if "causing the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to generate..." is selected in <a href="#FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</a>, or if any selections including "direct generation from a Random Bit Generator as specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>" is selected in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>.
+					or if it is used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security functionality. Specifically it mist be claimed if "<i>causing the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to generate...</i>" is selected in <a href="#FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</a>, or if any selections including "<i>direct generation from a Random Bit Generator as specified in <a href="#FCS_RBG.1">FCS_RBG.1</a></i>" is selected in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>.
 					<p></p>
 					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is also needed if the following <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> are included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>: <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>, 
-					<a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a>, <a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a>, FCS_CKM_EXT&gt;8, and <a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a>.
+					<a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a>, <a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a>, <a href="#FCS_CKM_EXT.8">FCS_CKM_EXT.8</a>, and <a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a>.
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FCS_RBG.1.2"><a href="#FCS_RBG.1.2" class="abbr">FCS_RBG.1.2</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use a [<b>selection</b>: <span class="selectable-content" id="internal-seed"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy source [<b>assignment</b>: 
@@ -6827,12 +6822,13 @@ The following sections list Common Criteria and technology terms used in this do
         
 		
         <div class="comp" id="FIA_UIA_EXT.1"><h4>FIA_UIA_EXT.1 Administrator Authentication</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FMT_SMR.1.1">FMT_SMR.1.1</a>.
+	  <a href="#FAU_STG.1.1">FAU_STG.1.1</a>, <a href="#FMT_SMR.1.1">FMT_SMR.1.1</a>.
       </i></b></div> 
 					
 				
-			  
         	 
+        	  
+        	
 			
 			
 			
@@ -6844,7 +6840,7 @@ The following sections list Common Criteria and technology terms used in this do
                 <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if "write audit data to removable media under administrative control in accordance with <a href="#FIA_UIA_EXT.1">FIA_UIA_EXT.1</a>" is claimed in <a href="#FAU_STG.1.1">FAU_STG.1.1</a>, if the "<i>administrator</i>" role is selected
+                	This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if "<i>write audit data to removable media under administrative control in accordance with <a href="#FIA_UIA_EXT.1">FIA_UIA_EXT.1</a></i>" is selected in <a href="#FAU_STG.1.1">FAU_STG.1.1</a>, if the "<i>administrator</i>" role is selected
 					in <a href="#FMT_SMR.1.1">FMT_SMR.1.1</a>, or if the "<i>Server-Class Platform, Basic</i>" or "<i>Server-Class Platform, Enhanced</i>"
 					use cases apply to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.<p></p>
 					Ordinary unprivileged users of the platform need not authenticate to the platform, though they
@@ -7962,7 +7958,7 @@ The following sections list Common Criteria and technology terms used in this do
 					or rollback-prevention check fails, or a platform firmware update fails for any other reason: 
 					<ul>
 						<li>Do not install the update,</li>
-					</ul>, 
+					</ul> 
 					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_618">Continue execution</span></li><li style=""><span class="selectable-content" id="_s_619">Halt</span></li><li style=""><span class="selectable-content" id="_s_620">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="sel-tud2-recovery">Initiate recovery as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]<br/>
 					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_622">automatically</span></li><li style=""><span class="selectable-content" id="sel-tud2-admin-config">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_624">by express determination of a user</span></li></ul>], and [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="sel-tud2-audit">generate an audit event</span></li><li style=""><span class="selectable-content" id="_s_626">no other actions</span></li></ul>].
 				<div class="appnote"><span class="note-header">Application
@@ -8237,13 +8233,13 @@ The following sections list Common Criteria and technology terms used in this do
 
 		
 	    <div class="comp" id="FTP_ITC_EXT.1"><h4>FTP_ITC_EXT.1 Trusted Channel Communication</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
-	  <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a>, <a href="#FDP_ITC_EXT.1.1">FDP_ITC_EXT.1.1</a>, <a href="#FMT_SMF.1.1">FMT_SMF.1.1</a>.
+	  <a href="#FAU_STG.1.1">FAU_STG.1.1</a>, <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a>, <a href="#FDP_ITC_EXT.1.1">FDP_ITC_EXT.1.1</a>, <a href="#FMT_SMF.1.1">FMT_SMF.1.1</a>.
       </i></b></div>
 			
 			
 			   
 			   
-	    	   
+	    	
 			
 			
 			
@@ -8298,14 +8294,12 @@ The following sections list Common Criteria and technology terms used in this do
 					Regardless of the communications protocol selected, if this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed, then the following <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> must also be claimed in support of these protocols: <ul>
 						<li><a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a></li>
 						<li><a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a></li>
-						<li><a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a></li>
 						<li><a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a></li>
 						<li><a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a></li>
-						<li><a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a></li>
 						<li><a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a></li>
 						<li><a href="#FCS_RBG.1">FCS_RBG.1</a></li>
 					</ul>
-					In most cases it is also expected that <a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a> will be claimed because <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM is the primary symmetric encryption algorithm used for these channels, but there may be some cases where the functions defined by <a href="#FCS_COP.1/SKC">FCS_COP.1/SKC</a> must additonally be implemented. 
+					In most cases it is also expected that <a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a> will be claimed because <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM is the primary symmetric encryption algorithm used for these channels, but there may be some cases where the functions defined by <a href="#FCS_COP.1/SKC">FCS_COP.1/SKC</a> must alternatively or additonally be implemented. 
 				</span></div></div></div>
 		        
 		        
@@ -8359,7 +8353,7 @@ The following sections list Common Criteria and technology terms used in this do
 					requirement would apply, for example, for communications implemented through a shared data
 					buffer.<p></p>
 					
-					If "<i>Keys established according to <a href="#FCS_CKM.2">FCS_CKM.2</a></i>" is selected, <a href="#FCS_CKM.2">FCS_CKM.2</a> must also be claimed.
+					If "<i>Keys established according to <a href="#FCS_CKM.2">FCS_CKM.2</a></i>" is selected, <a href="#FCS_CKM.2">FCS_CKM.2</a> must also be claimed. If "<i>Keys exchanged using a physically protected...</i>" is selected, <a href="#FTP_ITP_EXT.1">FTP_ITP_EXT.1</a> must be claimed.
 				</span></div></div></div>
 			
 		<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FTP_ITE_EXT.1">FTP_ITE_EXT.1</a></div>
@@ -9535,7 +9529,7 @@ The following sections list Common Criteria and technology terms used in this do
 					or rollback-prevention check fails, or a platform firmware update fails for any other reason: 
 					<ul>
 						<li>Do not install the update,</li>
-					</ul>, 
+					</ul>
 					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_627">Continue execution</span></li><li style=""><span class="selectable-content" id="_s_628">Halt</span></li><li style=""><span class="selectable-content" id="_s_629">Stop all execution and shut down</span></li><li style=""><span class="selectable-content" id="_s_630">Initiate recovery as specified in <a href="#FPT_RVR_EXT.1">FPT_RVR_EXT.1</a></span></li></ul>]			
 					[<b>selection</b><b>, choose one of</b>: <ul><li style=""><span class="selectable-content" id="_s_631">automatically</span></li><li style=""><span class="selectable-content" id="_s_632">in accordance with administrator-configurable policy</span></li><li style=""><span class="selectable-content" id="_s_633">by express determination of a user</span></li></ul>], and [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="sel-tud2-audit">generate an audit event</span></li><li style=""><span class="selectable-content" id="_s_635">no other actions</span></li></ul>].
 				</div><h4>Management: FPT_TUD_EXT.3</h4><p>The following actions could be considered for the management functions in FMT:<ul>
