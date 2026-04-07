@@ -1575,7 +1575,7 @@
 					This SFR must be included in the ST if asymmetric key generation is a service provided by 
 					the TOE to tenant software, or if it is used by the TOE itself to support or implement PP-specified
 					security functionality.<h:p/> 
-					This SFR must also be claimed in the ST if FTP_ITC_EXT.1 is claimed, or if 
+					This SFR must also be claimed in the ST if any of FTP_ITC_EXT.1, FCS_CKM_EXT.7, FCS_COP.1/KeyEncap, or FCS_COP.1/SigGen is claimed, or if 
 					"<h:i>causing the TOE to generate [asymmetric] keys/secrets</h:i>" is selected
 					in FCS_STG_EXT.1.2.<h:p/>
 					
@@ -2005,7 +2005,7 @@
 			<depends on-sfr="sfr-fcs-cop-1-keyedhash"/>
 			<depends on-sfr="sfr-fcs-cop-1-kw"/>
 			<depends on-sfr="sfr-fcs-cop-1-skc"/>
-			<depends on-incl="sel-ftp-itc-ext-1"/>
+			<depends on-incl="sfr-ftp-itc-ext-1"/>
 			<depends><optional/></depends>		<!-- May be manually added -->
 			<f-element id="fcs-ckm-1e1-skg">
 				<title>
@@ -4850,7 +4850,7 @@
 					support or implement PP-specified security functionality.<h:p/> 
 					Specifically, this SFR must be included if the ST author chooses "<h:i>implement an authenticated platform
 					firmware update mechanism as described in FPT_TUD_EXT.2</h:i>" or "<h:i>implement a delayed-authentication platform
-					firmware update mechanism as described in FPT_TUD_EXT.3</h:i>" in FPT_TUD_EXT.1; or if the ST author 
+					firmware update mechanism as described in FPT_TUD_EXT.3</h:i>" in FPT_TUD_EXT.1.1; or if the ST author 
 					selects "<h:i>verification of a digital signature by trusted code/data</h:i>" in FPT_ROT_EXT.2. It must also be claimed if "<h:i>digital signature as specified in FCS_COP.1/SigVer</h:i>" is selected in FDP_ITC_EXT.1.2, or if FTP_ITC_EXT.1 is claimed.<h:p/>	
 					If this SFR is included in the ST, then FCS_COP.1/Hash must also be claimed.<h:p/>
 					The ST author should choose the algorithm implemented to perform verification of digital signatures. 
@@ -6264,13 +6264,7 @@
 						</selectable>
 					</selectables>           
 				</title>
-				<note role="application">
-					This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
-					or if it is used by the TOE itself to support or implement PP-specified security functionality. Specifically it mist be claimed if "<h:i>causing the TOE to generate...</h:i>" is selected in FCS_STG_EXT.1.2, or if any selections including "<h:i>direct generation from a Random Bit Generator as specified in FCS_RBG.1</h:i>" is selected in FCS_CKM.5.1.
-					<h:p/>
-					This SFR is also needed if the following SFRs are included in the ST: FTP_ITC_EXT.1, 
-					FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM_EXT.8, and FCS_COP.1/SigGen.
-				</note>
+				
 				<aactivity level="element">
 					Documentation will be produced and the evaluator shall perform the
 					activities in accordance with <xref to="entropyappendix"/> and
@@ -6388,6 +6382,13 @@
 					</selectables>
 					in accordance with <assignable>list of standards</assignable>.
 				</title>
+				<note role="application">
+					This SFR must be included in the ST if random bits are provided by the TOE to tenant software,
+					or if it is used by the TOE itself to support or implement PP-specified security functionality. Specifically it mist be claimed if "<h:i>causing the TOE to generate...</h:i>" is selected in FCS_STG_EXT.1.2, or if any selections including "<h:i>direct generation from a Random Bit Generator as specified in FCS_RBG.1</h:i>" is selected in FCS_CKM.5.1.
+					<h:p/>
+					This SFR is also needed if the following SFRs are included in the ST: FTP_ITC_EXT.1, 
+					FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM_EXT.8, and FCS_COP.1/SigGen.
+				</note>
 				<aactivity level="element">              
 					<TSS>
 						The evaluator shall verify that the TSS identifies how the DRBG state is updated, and the situations under which this may occur.
