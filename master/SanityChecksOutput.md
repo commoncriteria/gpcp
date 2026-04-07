@@ -1,5 +1,3 @@
-* Error: Detected dangling id-reference to sel-ftp-itc-ext-1 from attribute
-        on-incl/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/depends[7]""/on-incl[1]""
 * Error: Detected dangling id-reference to sel-rbg-ctr from attribute
         on-sel/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[8]""/depends[1]""/on-sel[1]""
 * Error: Detected dangling id-reference to sel-rbg-hmac from attribute
@@ -710,8 +708,8 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[19]""/f-element[13]""/note[1]"This SFR "/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[3]"after ini"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[3]"after ini"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[1]""/aactivity[1]"Documenta"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[20]""/f-element[3]""/note[1]"This SFR "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[25]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[25]""/f-element[1]""/aactivity[1]""/Tests[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[26]""/f-element[1]""/note[1]"This SFR "/h:p[1]""
