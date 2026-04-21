@@ -6145,24 +6145,24 @@ Mitigates the threat by implementing signature generation functions used for pro
               <selectables>
                 <selectable id="internal-seed">TSF entropy source <assignable>name of entropy source</assignable></selectable>
                 <selectable id="internal-seeds">
-                  <h:b>multiple independent TSF entropy sources <assignable>names of entropy sources</assignable></h:b></selectable>
+                  <h:b>multiple TSF entropy sources <assignable>names of entropy sources</assignable></h:b></selectable>
                 <selectable id="external-seed">TSF interface for obtaining entropy</selectable>
               </selectables>
               after initialization and reseeding.
             </title>
             <note role="application">
-              <h:p>Following the approach in SP800-90B/C, noise sources are required to be independent. Non-independent noise sources that share dependencies are treated as a single raw source requiring a single entropy source validation. If a TOE has multiple dependent noise sources, they should be grouped according to their dependencies for the purposes of these requirements. For the 
+              <h:p>For the 
 						selection in this requirement, the ST author selects "TSF entropy source..." if
-						a single entropy source is used as input to the DRBG. The ST author selects "multiple independent TSF entropy sources..." if a seed is formed from a combination of
-						two or more independent entropy sources within the TOE boundary. If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR
+						a single entropy source is used as input to the DRBG. The ST author selects "multiple TSF entropy sources..." if a seed is formed from a combination of
+						two or more entropy sources within the TOE boundary. If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR
 						should be iterated for each DRBG. If multiple distinct entropy sources exist, such that each DRBG only uses one of them, then each iteration would 
-						select "TSF entropy source..."; "multiple independent TSF entropy sources..." is only selected if a single DRBG uses multiple independent entropy sources for its seed. The ST
+						select "TSF entropy source..."; "multiple TSF entropy sources..." is only selected if a single DRBG uses multiple entropy sources for its seed. The ST
 						author selects "TSF interface for obtaining entropy" if entropy source data is generated outside the TOE boundary.</h:p>
               <h:p>
                 If "<h:i>TSF entropy source...</h:i>" is selected, FCS_RBG.3 must be claimed.
               </h:p>
               <h:p>
-                If "<h:i>multiple independent TSF entropy sources...</h:i>" is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed.
+                If "<h:i>multiple TSF entropy sources...</h:i>" is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed.
               </h:p>
               <h:p>
                 If "<h:i>TSF interface for obtaining entropy</h:i>" is selected, FCS_RBG.2 must be claimed.
@@ -6214,14 +6214,14 @@ Mitigates the threat by implementing signature generation functions used for pro
           <depends on-sel="external-seed"/>
           <f-element id="fe1-rbg-seed">
             <title>
-              The TSF shall be able to accept a minimum input of [<h:i>384 bits of min-entropy</h:i>] from a TSF interface for obtaining entropy.
+              The TSF shall be able to accept a minimum input of [<h:i> <selectables><selectable id="fcs_rbg.2.1_1">256</selectable><selectable id="fcs_rbg.2.1_2">384</selectable></selectables>  bits of min-entropy</h:i>] for a TSF interface for obtaining entropy.
             </title>
             <note role="application">
               <h:p>
                 This SFR is claimed if "<h:i>TSF interface for obtaining entropy</h:i>" is selected in
                 <xref to="fel-rbg-init-seed-how"/>, i.e., the TOE's entropy source is outside the TOE boundary. In the case of a general purpose computing platform this would likely only occur when the entropy source is a Dedicated Security Component that is integrated with the TOE.
               </h:p>
-              <h:p>If the environmental entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.</h:p>
+              <h:p>The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the environmental entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.</h:p>
               <h:p>One should not apply NIST SP 800-90B (or AIS-31) statistical tests against
 						an external entropy source since the TSF is unable to enforce entropy requirements or conditioning
 						requirements against something outside of its logical boundary. However, the TSS may include estimates for
@@ -6248,14 +6248,14 @@ Mitigates the threat by implementing signature generation functions used for pro
                 <selectable id="fcs_rbg.3.1_2">TSF hardware-based entropy source</selectable>
               </selectables>
               <assignable>name of entropy source</assignable>
-              with [<h:i>a minimum of 384</h:i>] bits of min-entropy.
+              with [<h:i>a minimum of  <selectables><selectable id="fcs_rbg.3.1_4">256</selectable><selectable id="fcs_rbg.3.1_5">384</selectable></selectables></h:i>] bits of min-entropy.
             </title>
             <note role="application">
               <h:p>
                 This SFR is claimed if "<h:i>TSF entropy source...</h:i>" is selected in
                 <xref to="fel-rbg-init-seed-how"/>, i.e., the TOE has a single entropy source that is inside the TOE boundary. If the TOE obtains seed material from an environmental component, this is specified using FCS_RBG.2.
               </h:p>
-              <h:p>If the TSF entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.</h:p>
+              <h:p>The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the TSF entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.</h:p>
               <h:p>One can apply NIST SP 800-90B (or AIS-31) statistical tests against internal entropy sources
 						(aka raw entropy) to confirm the min-entropy of the entropy source.</h:p>
             </note>
@@ -6275,13 +6275,13 @@ Mitigates the threat by implementing signature generation functions used for pro
             <title>
               The TSF shall be able to seed the DRBG using
               <selectables>
-                <selectable id="fcs_rbg.4.1_1"><assignable>number</assignable> independent TSF software-based entropy (sources)</selectable>
-                <selectable id="fcs_rbg.4.1_3"><assignable>number</assignable> independent TSF hardware-based entropy (sources)</selectable>
+                <selectable id="fcs_rbg.4.1_1"><assignable>number</assignable> TSF software-based entropy (sources)</selectable>
+                <selectable id="fcs_rbg.4.1_3"><assignable>number</assignable> TSF hardware-based entropy (sources)</selectable>
               </selectables>.
             </title>
             <note role="application">
               <h:p>
-                This SFR is claimed if "<h:i>multiple independent TSF entropy sources...</h:i>" is selected in
+                This SFR is claimed if "<h:i>multiple TSF entropy sources...</h:i>" is selected in
                 <xref to="fel-rbg-init-seed-how"/>, i.e., the TSF performs some sort of operation to combine data from multiple distinct sources into a value that is used to derive a seed. If the TOE has only a single entropy source, this is specified using FCS_RBG.3. FCS_RBG.5 defines the mechanism by which these sources are combined to ensure sufficient minimum entropy.
               </h:p>
             </note>
@@ -6305,7 +6305,10 @@ Mitigates the threat by implementing signature generation functions used for pro
                 <selectable id="fcs_rbg.5.1_2">output from TSF entropy source(s)</selectable>
                 <selectable id="fcs_rbg.5.1_3">input from TSF interface(s) for obtaining entropy</selectable>
               </selectables>
-              resulting in a minimum of [<h:i>384</h:i>] bits of min-entropy to create the entropy input into the derivation function as defined in
+              resulting in a minimum of [<h:i> <selectables>
+                  <selectable id="fcs_rbg.5.1_4">256</selectable>
+                  <selectable id="fcs_rbg.5.1_5">384</selectable>
+                </selectables></h:i>] bits of min-entropy to create the entropy input into the derivation function as defined in
               <assignable>list of standards</assignable>.
             </title>
             <note role="application">
@@ -6313,7 +6316,7 @@ Mitigates the threat by implementing signature generation functions used for pro
                 This SFR is claimed if "<h:i>multiple TSF entropy sources...</h:i>" is selected in
                 <xref to="fel-rbg-init-seed-how"/>, i.e., the TSF performs some sort of operation to combine data from multiple distinct sources into a value that is used to derive a seed. If the TOE has only a single entropy source, this is specified using FCS_RBG.3.
               </h:p>
-              <h:p>If the environmental entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.</h:p>
+              <h:p>The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the environmental entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.</h:p>
               <h:p>One can apply NIST SP 800-90B (or AIS-31) statistical tests against internal entropy sources
 						(aka raw entropy) to confirm the min-entropy of the entropy sources either in aggregate or
 						individually.</h:p>
