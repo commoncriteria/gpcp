@@ -901,7 +901,7 @@ The following sections list Common Criteria and technology terms used in this do
     
     <h2 class="indexable" data-level="2" id="package-usage">1.5 Package Usage</h2>
       This section contains selections and assignments that are required when the listed Functional Packages are claimed by this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
-      <dt><b>Functional Package for X.509, Version 1.0</b><p></p></dt><dd><b>Limitations on Signature Algorithms in FIA_X509_EXT.1.1</b><p></p><span class="description">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must use appropriate cryptographic algorithms that conform to CNSA standards.
+      <dt><b>Functional Package for X.509, Version 1.0</b><p></p></dt><dd><b>Limitations on Signature Algorithms in FIA_X509_EXT.1.1</b><p></p><span class="description">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must use appropriate cryptographic algorithms that conform to <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr> standards.
 					Thus, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall use no other algorithms outside of those specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8603 for
 					certificate validation and <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> signature validation (if claimed). If <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> is claimed, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
 					author shall only claim support for algorithms that use <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 and either 3072-bit RSA or
@@ -2621,11 +2621,11 @@ Mitigates the threat by implementing signature generation functions used for pro
               If <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-MAC-2S is claimed, then both <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> and <a href="#FCS_COP.1/CMAC">FCS_COP.1/CMAC</a> must also be claimed.
               <p></p>
               In <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>-MAC-2S, <abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr> has been removed as a selection for the <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> step because it requires
-					selection of 128 bits for the output key size, which is not supported in CNSA. If <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> is
+					selection of 128 bits for the output key size, which is not supported in <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>. If <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> is
 					selected in the <abbr class="dyn-abbr"><a href="#abbr_MAC">MAC</a></abbr> step, then the same <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> is used as the <abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>.
               <p></p>
               The security strengths of the pseudorandom functions for the key derivation methods must be 
-					sufficient for the security strength of the keys derived through those methods. Since CNSA
+					sufficient for the security strength of the keys derived through those methods. Since <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>
 					permits keys no smaller than 256 bits, no 128- or 192-bit PRFs are permitted.
               <p></p>
               If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_CKM.6">FCS_CKM.6</a> must also be claimed.
@@ -3009,7 +3009,7 @@ Mitigates the threat by implementing signature generation functions used for pro
               <p></p>
               If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed, then <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> and <a href="#FCS_RBG.1">FCS_RBG.1</a> must also be claimed.
               <p></p>
-              For CNSA compliance, only <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 or <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512 may be used.
+              For <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr> compliance, only <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 or <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512 may be used.
               <p></p>
               If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then <a href="#FCS_CKM.6">FCS_CKM.6</a> must also be claimed.
             </span></div></div></div>
@@ -3583,7 +3583,7 @@ Mitigates the threat by implementing signature generation functions used for pro
               <p></p>
               For RSA, the choice of the modulus implies the resulting key sizes of the public and 
 					private keys generated using the specified standard methods.  
-					RSA key generation with modulus size 2048 bits is no longer permitted by CNSA.
+					RSA key generation with modulus size 2048 bits is no longer permitted by <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>.
               <p></p>
               For Finite Field Cryptography (FFC) DSA, <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> authors should consult schemes for 
 					guidelines on use.  <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-5 does not approve DSA for digital signature 
@@ -4439,7 +4439,7 @@ Mitigates the threat by implementing signature generation functions used for pro
 					tenant software, or if they are used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself to support or implement <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-specified security 
 					functionality. Specifically, it is included when <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> is claimed as all trusted channels defined there are expected to use a key agreement mechanism defined by this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.
               <p></p>
-              All of the above algorithms with the selectable parameters are CNSA compliant.
+              All of the above algorithms with the selectable parameters are <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr> compliant.
               <p></p>
               If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed, then <a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a>, <a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a>, or both must be claimed as well as <a href="#FCS_CKM.6">FCS_CKM.6</a>.
               <p></p>
@@ -4608,7 +4608,7 @@ Mitigates the threat by implementing signature generation functions used for pro
       Note:
     </span><span class="note">
               This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if "<i>encrypting using an algorithm specified in [<a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a>]</i>" is selected in <a href="#FCS_CKM.5">FCS_CKM.5</a>. 
-					The use of 256-bit keys for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption is required by CNSA. It is also claimed if <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> or <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a> is claimed as both require AEAD cryptographic operations.
+					The use of 256-bit keys for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption is required by <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>. It is also claimed if <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> or <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a> is claimed as both require AEAD cryptographic operations.
             </span></div></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a></div>
@@ -4828,7 +4828,7 @@ Mitigates the threat by implementing signature generation functions used for pro
     </span><span class="note">
               This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if any key derivation functions using <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256-CMAC are selected in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a> or if "<i>Key wrapping in accordance with <a href="#FCS_COP.1/KeyWrap">FCS_COP.1/KeyWrap</a></i>" is selected in <a href="#FCS_STG_EXT.3.1">FCS_STG_EXT.3.1</a>.
               <p></p>
-              The use of 256-bit keys for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> algorithms is required by CNSA.
+              The use of 256-bit keys for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> algorithms is required by <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>.
             </span></div></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/CMAC">FCS_COP.1/CMAC</a></div>
@@ -4924,7 +4924,7 @@ Mitigates the threat by implementing signature generation functions used for pro
     </span><span class="note">
               This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if any key derivation functions using <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> are selected in <a href="#FCS_CKM.5.1">FCS_CKM.5.1</a>, or if "<i>cryptographic hash as specified in <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a></i>" is selected in <a href="#FDP_ITC_EXT.1.2">FDP_ITC_EXT.1.2</a>, or if "<i>computation of a hash...</i>" is selected in FDP_ROT_EXT.2.1, or if "<i>hash value of the public key</i>" is selected in <a href="#FPT_TUD_EXT.2.1">FPT_TUD_EXT.2.1</a>. It must also be claimed if any <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> that require computation of a hash are claimed (i.e., <a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a>, <a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a>, <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a>, or <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>).
               <p></p>
-              In accordance with CNSA:
+              In accordance with <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>:
               <ul>
                 <li><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1 hash is no longer permitted to be used as a hash function, </li>
                 <li>SHA3 hashes may be used only for internal hardware functionality such as
@@ -5233,7 +5233,7 @@ Mitigates the threat by implementing signature generation functions used for pro
               <p></p>
               If this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed, then <a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a> and <a href="#FCS_CKM.6">FCS_CKM.6</a> must also be claimed.
               <p></p>
-              KAS1 and KTS-OAEP with the selectable parameters are CNSA compliant. ML-KEM-1024 is CNSA compliant.
+              KAS1 and KTS-OAEP with the selectable parameters are <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr> compliant. ML-KEM-1024 is <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr> compliant.
               <p></p>
               This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> has dependencies on <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> and <a href="#FCS_COP.1/XOF">FCS_COP.1/XOF</a> only if ML-KEM is selected.
             </span></div></div></div>
@@ -6821,7 +6821,7 @@ Mitigates the threat by implementing signature generation functions used for pro
 
               </table><div class="appnote"><span class="note-header">Application
       Note:
-    </span><span class="note">In accordance with CNSA, SHAKE is permitted to be used only as a component of LMS or XMSS. 
+    </span><span class="note">In accordance with <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>, SHAKE is permitted to be used only as a component of LMS or XMSS. 
 					Therefore this component is claimed only if LMS or XMSS is claimed in <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a>.</span></div></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/XOF">FCS_COP.1/XOF</a></div>
@@ -9790,6 +9790,7 @@ Mitigates the threat by implementing signature generation functions used for pro
 <tr><td><span class="term" id="abbr_CEM"><abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr></span></td><td><span id="long_abbr_CEM">Common Evaluation Methodology</span></td></tr>
 <tr><td><span class="term" id="abbr_CMAC"><abbr class="dyn-abbr"><a href="#abbr_CMAC">CMAC</a></abbr></span></td><td><span id="long_abbr_CMAC">Cipher-based Message Authentication Code</span></td></tr>
 <tr><td><span class="term" id="abbr_CN"><abbr class="dyn-abbr"><a href="#abbr_CN">CN</a></abbr></span></td><td><span id="long_abbr_CN">Common Names</span></td></tr>
+<tr><td><span class="term" id="abbr_CNSA"><abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr></span></td><td><span id="long_abbr_CNSA">Commercial National Security Algorithm</span></td></tr>
 <tr><td><span class="term" id="abbr_cPP" data-plural="cPPs"><abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr></span></td><td><span id="long_abbr_cPP">Collaborative Protection Profile</span></td></tr>
 <tr><td><span class="term" id="abbr_CRL"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr></span></td><td><span id="long_abbr_CRL">Certificate Revocation List</span></td></tr>
 <tr><td><span class="term" id="abbr_CSfC"><abbr class="dyn-abbr"><a href="#abbr_CSfC">CSfC</a></abbr></span></td><td><span id="long_abbr_CSfC">Commercial Solutions for Classified</span></td></tr>
@@ -9877,5 +9878,5 @@ Mitigates the threat by implementing signature generation functions used for pro
               Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), Version 1.1</a>, 
 			  CCMB-2024-02-002, 22 July 2024.
         </span></td></tr><tr><td><span id="bibCCerrata">[Errata]</span></td><td><span class="description">
-        <a href="https://www.commoncriteriaportal.org/files/ccfiles/CCMB-2025-001-v1_2-Errata_Interpretation_CC_CEM_2022.pdf">Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), Version 1.2</a>
+        <a href="https://www.commoncriteriaportal.org/files/ccfiles/CCMB-2025-001-v1_2-Errata_Interpretation_CC_CEM_2022.pdf">Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1)</a>, Version 1.2
       </span></td></tr><tr><td><span id="bibOMB">[OMB]</span></td><td><span class="description"><a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf">Reporting Incidents Involving Personally Identifiable Information and Incorporating the Cost for Security in Agency Information Technology Investments</a>, OMB M-06-19, July 12, 2006. </span></td></tr></table></body></html>
