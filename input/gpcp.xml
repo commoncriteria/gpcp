@@ -4064,7 +4064,6 @@ Mitigates the threat by implementing signature generation functions used for pro
                   <selectcol>List of standards</selectcol>
                   <reqtext>.
                     <h:p/>
-                    <h:p/>
                     <xref to="fcs-cop-siggen-sels"/>
                     provides the allowable choices for
 										completion of the selection operations of FCS_COP.1/SigGen.
@@ -6746,7 +6745,10 @@ Mitigates the threat by implementing signature generation functions used for pro
             <ext-comp-def-title>
               <title>
                 The TSF shall consider password and
-                <assignable>other authentication mechanisms</assignable>
+				<selectables>
+                	<selectable><assignable>other authentication mechanisms</assignable></selectable>
+					<selectable>no other authentication mechanisms</selectable>
+				</selectables>
                 as critical authentication mechanisms.
               </title>
             </ext-comp-def-title>
@@ -6856,6 +6858,7 @@ Mitigates the threat by implementing signature generation functions used for pro
                 <selectable id="fia_afl_ext.1.5_2">exclude the current administrator from further authentication attempts</selectable>
                 <selectable id="fia_afl_ext.1.5_3">exclude the current administrator from further authentication attempts for <assignable>a period of time greater than zero seconds</assignable></selectable>
                 <selectable id="fia_afl_ext.1.5_5">exclude the current administrator from further authentication attempts for <assignable>a period of time greater than the minimum boot time of the system</assignable></selectable>
+			    <selectable id="fia_afl_ext.1.5_6">perform no additional action if relying on public key authentication</selectable>
               </selectables>.
             </title>
             <note role="application">
@@ -6871,6 +6874,10 @@ Mitigates the threat by implementing signature generation functions used for pro
               If the TOE implements multiple authentication factor interfaces (for example, a DAR decryption
 					interface, a lockscreen interface, an auxiliary boot mode interface), this element applies
 					to all available interfaces.
+			  <h:p/>
+			  The option of "perform no additional action if relying on public key authentication" is appropriate
+				for public key-based authentication mechanisms where the key strength and algorithms are selected
+				from FCS_COP.1.1/SigGen <xref to="fcs-cop-siggen-sels"/>. 
             </note>
           </f-element>
           <f-element id="fia-afl-ext-1e6">
@@ -6914,12 +6921,13 @@ Mitigates the threat by implementing signature generation functions used for pro
 						selected in FIA_UAU.5.1, and configure a maximum number of unsuccessful authentication
 						attempts for each mechanism.
                 <testlist>
-                  <test>The evaluator shall for each authentication mechanism make unsuccessful authentication attempts until the maximum is exceeded and verify that the number of failures corresponds to the configured maximum and that no further authentication attempts can be made using that mechanism.</test>
+                  <test>The evaluator shall for each authentication mechanism make unsuccessful authentication attempts until the maximum is exceeded and verify that the number of failures corresponds to the configured maximum and that no further authentication attempts can be made using that mechanism. This test does not apply when "perform no additional action if relying on public key authentication" is selected under FIA_AFL_EXT.1.5.</test>
                   <test>[conditional] If the mechanism is critical or if all authentication mechanisms are exhausted, then if " <h:i>perform a wipe of all protected data</h:i> " is selected in FIA_AFL_EXT.1.5, the evaluator shall verify that the wipe is implemented.</test>
                   <test>[conditional] If the mechanism is critical or if all authentication mechanisms are exhausted, then if " <h:i>exclude the current user/administrator from further authentication 
 								attempts</h:i> " is selected in FIA_AFL_EXT.1.5 the evaluator shall verify that the user/administrator can make no further authentication attempts.</test>
                   <test>[conditional] If the mechanism is critical or if all authentication mechanisms are exhausted, then if " <h:i>exclude the current user/administrator from further authentication 
 								attempts for a period of [assignment: greater than zero seconds] time</h:i> " is selected in FIA_AFL_EXT.1.5 the evaluator shall verify that the user/administrator can make no further authentication attempts until the specified time period has expired.</test>
+				  <test>[conditional] If the mechanism is critical and "perform no additional action if relying on public key authentication" has been selected as a response to unsuccessful authentication attempts, then the evaluator shall create random credentials for use in subjecting the authentication interface to multiple unsuccessful authentication attempts. This interface must remain functional for the duration of the test and may not be deactivated by the TOE. The evaluator shall conduct this test for a duration or number of attempts of their choosing with a minimum duration of 30 seconds or 30 attempts.</test>
                 </testlist>
               </Tests>
             </aactivity>
