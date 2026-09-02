@@ -65,36 +65,8 @@
       <subject>Updates to incorporate TRRTs and Technical Community feedback and recommendations</subject>
     </entry>
   </RevisionHistory>
-  <include-pkg id="tls">
-    <git>
-      <url>https://github.com/commoncriteria/tls</url>
-      <branch>release-2.1</branch>
-    </git>
-    <url>https://www.niap-ccevs.org/static_html/protection-profile/465/Functional%20Package%20for%20Transport%20Layer%20Security/index.html</url>
-    <depends on-sel="sel-itc-tls"/>
-    <depends on-sel="sel-itc-https"/>
-  </include-pkg>
-  <include-pkg id="ssh">
-    <git>
-      <url>https://github.com/commoncriteria/ssh</url>
-      <branch>release-2.0</branch>
-    </git>
-    <url>https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm</url>
-    <depends on-sel="sel-itc-ssh"/>
-    <depends on-sel="sel-fia-uau-5-ssh"/>
-  </include-pkg>
-  <include-pkg id="X509">
-    <git>
-      <url>https://github.com/commoncriteria/X509</url>
-      <branch>release-1.0</branch>
-    </git>
-    <url>https://www.niap-ccevs.org/protectionprofiles/511</url>
-    <depends on-sel="sel-fia-uau-5-x509"/>
-    <depends on-sel="sel-itc-certauth"/>
-    <depends on-sel="sel-ipsec-rsa-auth"/>
-    <depends on-sel="sel-ipsec-ecdsa-auth"/>
-  </include-pkg>
-  <pp-preferences>
+  
+   <pp-preferences>
     <!--          <pp-pref name="display-audit-with-sfrs">0</pp-pref>   -->
     <audit-events-in-sfrs/>
   </pp-preferences>
@@ -535,13 +507,45 @@
       <cc-pp-conf/>
       <cc-pp-config-with/>
       <cc-pkg-claim>
-        <AP-cc-ref conf="conformant">Assurance Package for Flaw Remediation Version 1.0</AP-cc-ref>
-        <FP-cc-ref conf="conformant">Functional Package for Secure Shell (SSH) Version 2.0</FP-cc-ref>
-        <FP-cc-ref conf="conformant">Functional Package for Transport Layer Security Version 2.1</FP-cc-ref>
-        <FP-cc-ref conf="conformant">Functional Package for X.509 Version 1.0</FP-cc-ref>
+        <FP-cc-ref conf="conformant">
+			<cc-doc-ref id="ssh">
+				<git>
+					<url>https://github.com/commoncriteria/ssh</url>
+					<branch>release-2.0</branch>
+				</git>
+				<url>https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm</url>
+				<depends on-sel="sel-itc-ssh"/>
+				<depends on-sel="sel-fia-uau-5-ssh"/>
+			</cc-doc-ref>
+		</FP-cc-ref>
+        <FP-cc-ref conf="conformant">
+			<cc-doc-ref id="tls">
+				<git>
+					<url>https://github.com/commoncriteria/tls</url>
+					<branch>release-2.1</branch>
+				</git>
+				<url>https://www.niap-ccevs.org/static_html/protection-profile/465/Functional%20Package%20for%20Transport%20Layer%20Security/index.html</url>
+				<depends on-sel="sel-itc-tls"/>
+				<depends on-sel="sel-itc-https"/>
+			</cc-doc-ref>
+		</FP-cc-ref>
+        <FP-cc-ref conf="conformant">
+			<cc-doc-ref id="X509">
+				<git>
+					<url>https://github.com/commoncriteria/X509</url>
+					<branch>release-1.0</branch>
+				</git>
+				<url>https://www.niap-ccevs.org/protectionprofiles/511</url>
+				<depends on-sel="sel-fia-uau-5-x509"/>
+				<depends on-sel="sel-itc-certauth"/>
+				<depends on-sel="sel-ipsec-rsa-auth"/>
+				<depends on-sel="sel-ipsec-ecdsa-auth"/>
+			</cc-doc-ref>
+		</FP-cc-ref>
       </cc-pkg-claim>
     </CClaimsInfo>
   </sec:Conformance_Claims>
+  
   <!-- 3.0 Security Problem Definition-->
   <sec:spd title="Security Problem Definition">
     The security problem is described in terms of the threats that the GPCP is expected to address, assumptions 
